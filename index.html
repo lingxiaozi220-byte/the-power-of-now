@@ -1,0 +1,3224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《当下的力量》多媒体书 · 第一章 你不是你的头脑</title>
+<style>
+:root{
+  --paper:#f7f3ea; --paper2:#efe8d8; --ink:#2b2620; --ink2:#6b6255;
+  --green:#3e8e6e; --blue:#3f6fa8; --clay:#b4603a; --gold:#a8842c; --brown:#7c5a3a;
+  --card:#fffdf7; --line:#e2dac6; --nightbg:#161a1d; --nightbg2:#1d2327; --nightink:#e6e0d2; --nightink2:#a99f8d; --nightcard:#22292e; --nightline:#333d44;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Songti SC","STSong","Noto Serif SC","SimSun",serif;
+  background:var(--paper); color:var(--ink);
+  font-size:17px; line-height:1.85; transition:background .4s,color .4s;
+}
+body.night{background:var(--nightbg);color:var(--nightink)}
+img,video{max-width:100%;display:block}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px}
+
+/* 顶栏 */
+#topbar{position:sticky;top:0;z-index:90;display:flex;align-items:center;gap:8px;padding:10px 16px;background:rgba(247,243,234,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:background .4s}
+body.night #topbar{background:rgba(22,26,29,.92);border-color:var(--nightline)}
+#topbar .brand{font-size:15px;font-weight:700;letter-spacing:1px;margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#topbar button{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13.5px;color:var(--ink);cursor:pointer;font-family:inherit;transition:all .2s}
+body.night #topbar button{background:var(--nightcard);color:var(--nightink);border-color:var(--nightline)}
+#topbar button:hover{border-color:var(--green);color:var(--green)}
+#menuBtn{display:none}
+#progressBar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--green),var(--gold));z-index:100;transition:width .15s}
+
+/* 侧栏目录 */
+#toc{position:fixed;top:0;left:0;height:100%;width:280px;background:var(--card);z-index:120;transform:translateX(-102%);transition:transform .3s;padding:26px 18px;overflow-y:auto;border-right:1px solid var(--line)}
+body.night #toc{background:var(--nightcard);border-color:var(--nightline)}
+#toc.open{transform:none}
+#toc h3{font-size:15px;letter-spacing:3px;color:var(--gold);margin-bottom:14px}
+.toc-chap{display:block;width:100%;text-align:left;background:none;border:none;font-family:inherit;font-size:14.5px;color:var(--ink);padding:9px 8px;cursor:pointer;border-radius:8px;transition:background .2s}
+body.night .toc-chap{color:var(--nightink)}
+.toc-chap:hover{background:var(--paper2)}
+.toc-chap .toc-no{font-size:11px;color:var(--ink2);margin-right:6px;letter-spacing:1px}
+body.night .toc-chap .toc-no{color:var(--nightink2)}
+.toc-chap[data-toast]{color:var(--ink2)}
+body.night .toc-chap[data-toast]{color:var(--nightink2)}
+.toc-sub{display:none;margin:2px 0 8px 18px;border-left:2px solid var(--line);padding-left:12px}
+.toc-sub a{display:block;font-size:13px;color:var(--ink2);text-decoration:none;padding:5px 4px;border-radius:6px}
+body.night .toc-sub a{color:var(--nightink2)}
+.toc-sub a.active{color:var(--green);font-weight:700}
+.toc-note{margin-top:18px;font-size:12px;color:var(--ink2);line-height:1.7;border-top:1px dashed var(--line);padding-top:12px}
+body.night .toc-note{color:var(--nightink2)}
+#tocBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:110;opacity:0;pointer-events:none;transition:opacity .3s}
+#tocBackdrop.show{opacity:1;pointer-events:auto}
+
+/* 封面 */
+#cover{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#cover .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,10,.25),rgba(20,16,10,.55))}
+.cover-inner{position:relative;z-index:2;text-align:center;color:#fdf8ee;padding:30px 20px;max-width:720px}
+.cover-kicker{letter-spacing:6px;font-size:14px;color:#e8d9b8;margin-bottom:22px}
+.cover-title{font-size:clamp(34px,7vw,60px);font-weight:900;letter-spacing:6px;line-height:1.3;margin-bottom:16px;text-shadow:0 4px 24px rgba(0,0,0,.5)}
+.cover-sub{font-size:18px;letter-spacing:4px;color:#e8d9b8;margin-bottom:26px}
+.cover-tag{font-size:14px;color:#d9cfb8;letter-spacing:2px;margin-bottom:28px}
+.cover-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 18px;font-size:13px;letter-spacing:1px}
+.scroll-hint{margin-top:44px;font-size:13px;letter-spacing:3px;color:#d9cfb8;animation:hint 2s ease-in-out infinite}
+@keyframes hint{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(8px);opacity:1}}
+
+/* 章节容器 */
+.chap{margin:34px 0 8px}
+.chap-head{margin-bottom:20px}
+.chap-no{font-size:13px;letter-spacing:5px;color:var(--gold);margin-bottom:8px}
+.chap-title{font-size:clamp(26px,4.5vw,38px);font-weight:900;letter-spacing:3px}
+.chap-lead{color:var(--ink2);font-size:15px;margin-top:10px}
+body.night .chap-lead{color:var(--nightink2)}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:34px 0}
+body.night .divider{background:linear-gradient(90deg,transparent,var(--nightline),transparent)}
+
+/* 章节地图 */
+.map{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:8px 0 0}
+body.night .map{background:var(--nightcard);border-color:var(--nightline)}
+.map-head{font-size:15px;font-weight:700;color:var(--brown);letter-spacing:2px;margin-bottom:16px;text-align:center}
+body.night .map-head{color:#c9a877}
+.map-head .arrow{color:var(--gold);margin:0 6px}
+.map-grid{display:flex;flex-wrap:wrap;gap:10px}
+.map-card{flex:1 1 150px;min-width:0;background:var(--paper2);border-radius:12px;padding:12px 14px;transition:transform .2s}
+body.night .map-card{background:var(--nightbg2)}
+.map-card:hover{transform:translateY(-2px)}
+.map-card .no{font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:5px}
+.map-card .t{font-size:14.5px;font-weight:700;line-height:1.5;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:11px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+body.night .chip{color:var(--nightink2);border-color:var(--nightline)}
+.map-note{font-size:12px;color:var(--ink2);margin-top:14px;text-align:center}
+body.night .map-note{color:var(--nightink2)}
+
+/* 小节 */
+.sec{margin:30px 0}
+.sec-no{font-size:12.5px;letter-spacing:4px;color:var(--blue);margin-bottom:6px}
+.sec h2{font-size:clamp(22px,3.8vw,30px);font-weight:900;letter-spacing:2px;margin-bottom:18px}
+.sec p{margin:14px 0}
+.sec p.first{font-size:18px;font-weight:700}
+.sec .short{margin:10px 0}
+.hl{background:linear-gradient(transparent 60%,#f2e2b0 60%);padding:0 2px}
+body.night .hl{background:linear-gradient(transparent 60%,rgba(168,132,44,.45) 60%)}
+.lead-tag{display:inline-block;font-size:11px;letter-spacing:2px;color:var(--blue);border:1px solid var(--blue);border-radius:999px;padding:2px 10px;margin-bottom:10px}
+
+/* 图 */
+figure{margin:20px 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+body.night figure{border-color:var(--nightline);background:var(--nightcard)}
+figure img{width:100%;object-fit:cover}
+figcaption{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:13px;color:var(--ink2);line-height:1.6}
+body.night figcaption{color:var(--nightink2)}
+.media-tag{flex:none;font-size:11px;letter-spacing:1px;border-radius:6px;padding:2px 8px;color:#fff}
+.tag-img{background:var(--green)}
+.tag-audio{background:var(--blue)}
+.tag-video{background:var(--clay)}
+.tag-quote{background:var(--gold)}
+.tag-practice{background:var(--brown)}
+.tag-interact{background:#7a6ba8}
+
+/* 音频卡 */
+.audio-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:18px 0}
+body.night .audio-card{background:var(--nightcard);border-color:var(--nightline)}
+.audio-head{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.audio-icon{width:40px;height:40px;flex:none;border-radius:12px;background:rgba(63,111,168,.12);display:flex;align-items:center;justify-content:center}
+.audio-icon svg{width:20px;height:20px;fill:var(--blue)}
+.audio-title{font-size:14.5px;font-weight:700}
+.audio-desc{font-size:12px;color:var(--ink2)}
+body.night .audio-desc{color:var(--nightink2)}
+audio{width:100%;height:40px}
+
+/* 视频卡 */
+.video-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:20px 0}
+body.night .video-card{background:var(--nightcard);border-color:var(--nightline)}
+.video-card video{width:100%;background:#000}
+.video-foot{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:13px;color:var(--ink2)}
+body.night .video-foot{color:var(--nightink2)}
+
+/* 金句卡 */
+.quote-card{position:relative;background:var(--card);border-left:4px solid var(--gold);border-radius:14px;padding:18px 20px 16px;margin:20px 0}
+body.night .quote-card{background:var(--nightcard)}
+.qm{position:absolute;top:-6px;left:14px;font-size:52px;color:var(--gold);font-family:Georgia,serif;line-height:1;opacity:.35}
+.q{font-size:17px;font-weight:700;line-height:1.7;padding-left:8px}
+.src{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);margin-top:10px;padding-left:8px}
+body.night .src{color:var(--nightink2)}
+.src .line{width:24px;height:1px;background:var(--gold)}
+
+/* 练习卡 */
+.practice-card{background:linear-gradient(160deg,var(--paper2),var(--card));border:1px solid var(--line);border-radius:16px;padding:18px;margin:20px 0}
+body.night .practice-card{background:linear-gradient(160deg,var(--nightbg2),var(--nightcard));border-color:var(--nightline)}
+.pc-title{font-size:15px;font-weight:800;letter-spacing:1px;margin-bottom:10px}
+.practice-card p{font-size:14.5px;margin:8px 0}
+.steps{margin:10px 0 6px 18px;font-size:14px}
+.steps li{margin:5px 0}
+.btn{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:10px 20px;font-size:14px;color:var(--ink);cursor:pointer;font-family:inherit;transition:all .2s}
+body.night .btn{background:var(--nightcard);color:var(--nightink);border-color:var(--nightline)}
+.btn.primary{background:var(--green);border-color:var(--green);color:#fff}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn:hover{border-color:var(--green)}
+.btn:active{transform:scale(.97)}/* ===== 新增多媒体组件样式 ===== */
+
+/* 要点卡 */
+.point-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0;display:flex;gap:12px;align-items:flex-start}
+body.night .point-card{background:var(--nightcard);border-color:var(--nightline)}
+.pc-ico{flex:none;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;background:rgba(62,142,110,.12)}
+.pc-body{font-size:14.5px;line-height:1.7}
+.pc-body b{color:var(--green)}
+body.night .pc-body b{color:#6fc0a0}
+.pc-tag{display:inline-block;font-size:11px;color:var(--green);border:1px solid var(--green);border-radius:999px;padding:1px 8px;margin-right:6px;vertical-align:1px}
+
+/* 迷你卡片组 */
+.mini-grid{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.mini-card{flex:1 1 150px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;transition:transform .2s,box-shadow .2s}
+body.night .mini-card{background:var(--nightcard);border-color:var(--nightline)}
+.mini-card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.06)}
+.mini-card .mc-ico{font-size:22px;margin-bottom:8px}
+.mini-card .mc-t{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
+.mini-card .mc-d{font-size:12.5px;color:var(--ink2);line-height:1.6}
+body.night .mini-card .mc-d{color:var(--nightink2)}
+
+/* 宝箱互动卡 */
+.box-card{position:relative;background:linear-gradient(160deg,#5a4030,#7c5a3a);border-radius:18px;padding:22px;margin:20px 0;text-align:center;overflow:hidden;min-height:210px;color:#f5ead6;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.box-card .bc-hint{font-size:13.5px;letter-spacing:2px;opacity:.9;margin-bottom:14px}
+.box-card .chest{width:120px;height:90px;cursor:pointer;position:relative;filter:drop-shadow(0 8px 12px rgba(0,0,0,.4));transition:transform .3s}
+.box-card .chest:hover{transform:scale(1.06)}
+.box-card .chest .lid{position:absolute;top:0;left:0;width:100%;height:34px;background:linear-gradient(#b58a4e,#8a6534);border-radius:10px 10px 0 0;transition:transform .6s;transform-origin:left center}
+.box-card .chest .body{position:absolute;top:30px;left:6px;width:108px;height:56px;background:linear-gradient(#9c7340,#6d4f28);border-radius:6px 6px 12px 12px;border:2px solid #4a3518}
+.box-card .chest .lock{position:absolute;top:52px;left:50%;transform:translateX(-50%);width:18px;height:14px;background:#e8c86a;border-radius:5px;transition:opacity .3s}
+.box-card .light{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .8s;background:radial-gradient(circle at 50% 62%,rgba(255,220,130,.95),rgba(255,200,90,.35) 40%,transparent 70%)}
+.box-card .treasure{opacity:0;transform:translateY(14px);transition:all .7s .2s;font-size:19px;font-weight:800;letter-spacing:2px;color:#ffe9b0;text-shadow:0 2px 10px rgba(0,0,0,.5);margin-top:8px}
+.box-card .treasure small{display:block;font-size:12.5px;font-weight:400;color:#e5d3a8;margin-top:6px;letter-spacing:1px}
+.box-card.opened .chest .lid{transform:rotate(-42deg) translateX(-10px)}
+.box-card.opened .chest .lock{opacity:0}
+.box-card.opened .light{opacity:1}
+.box-card.opened .treasure{opacity:1;transform:none}
+
+/* 思维流动画 */
+.mind-flow{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0;overflow:hidden}
+body.night .mind-flow{background:var(--nightcard);border-color:var(--nightline)}
+.mf-stage{position:relative;height:150px;background:linear-gradient(180deg,rgba(63,111,168,.05),rgba(63,111,168,.12));border-radius:12px;overflow:hidden}
+.mf-thought{position:absolute;top:8px;left:-140px;width:130px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.95);border:1px solid var(--line);font-size:12.5px;color:var(--ink2);box-shadow:0 3px 8px rgba(0,0,0,.08);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.night .mf-thought{background:var(--nightbg2);border-color:var(--nightline);color:var(--nightink2)}
+.mf-thought.dark{background:rgba(180,96,58,.12);border-color:var(--clay);color:var(--clay)}
+.mf-thought.light{background:rgba(62,142,110,.12);border-color:var(--green);color:var(--green)}
+.mf-observer{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(62,142,110,.16);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:26px;z-index:2}
+.mf-observer .mf-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--green);top:2px;right:2px;opacity:0;transition:opacity .4s}
+.mf-stage.aware .mf-observer .mf-dot{opacity:1}
+.mf-stage.aware .mf-thought{animation-play-state:paused;opacity:.35}
+.mf-ctl{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.mf-status{font-size:13px;color:var(--ink2);flex:1}
+body.night .mf-status{color:var(--nightink2)}
+.mf-status b{color:var(--green)}
+.mf-note{font-size:12px;color:var(--ink2);margin-top:8px;line-height:1.7}
+body.night .mf-note{color:var(--nightink2)}
+
+/* 间隙时间轴 */
+.gap-timeline{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0}
+body.night .gap-timeline{background:var(--nightcard);border-color:var(--nightline)}
+.gt-track{position:relative;display:flex;align-items:center;height:64px;margin:14px 0}
+.gt-track .base{position:absolute;left:0;right:0;top:50%;height:3px;background:var(--line);border-radius:2px}
+body.night .gt-track .base{background:var(--nightline)}
+.gt-thought{position:absolute;top:50%;transform:translateY(-50%);height:34px;border-radius:8px;background:rgba(63,111,168,.18);border:1.5px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--blue);font-weight:700;cursor:pointer;transition:all .3s;z-index:2}
+.gt-thought:hover{height:44px}
+.gt-gap{position:absolute;top:50%;transform:translateY(-50%);height:44px;border-radius:10px;background:rgba(62,142,110,.14);border:1.5px dashed var(--green);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--green);font-weight:700;transition:all .3s;cursor:default}
+.gt-gap.hot{background:rgba(62,142,110,.3);box-shadow:0 0 14px rgba(62,142,110,.4)}
+.gt-legend{display:flex;gap:16px;font-size:12px;color:var(--ink2);margin-top:6px;flex-wrap:wrap}
+body.night .gt-legend{color:var(--nightink2)}
+.gt-legend span{display:flex;align-items:center;gap:6px}
+.gt-legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+
+/* 环形图 */
+.donut-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0;text-align:center}
+body.night .donut-card{background:var(--nightcard);border-color:var(--nightline)}
+.donut-wrap{position:relative;width:190px;height:190px;margin:10px auto}
+.donut-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+.donut-seg{transition:stroke-dashoffset 1.2s ease}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-center .big{font-size:26px;font-weight:900;color:var(--clay)}
+.donut-center .lbl{font-size:12px;color:var(--ink2)}
+body.night .donut-center .lbl{color:var(--nightink2)}
+.donut-legend{display:flex;justify-content:center;gap:20px;font-size:13px;margin-top:10px;flex-wrap:wrap}
+.donut-legend span{display:flex;align-items:center;gap:6px}
+.donut-legend i{width:12px;height:12px;border-radius:3px}
+.donut-note{font-size:12px;color:var(--ink2);margin-top:12px}
+body.night .donut-note{color:var(--nightink2)}
+
+/* 循环图 */
+.loop-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0}
+body.night .loop-card{background:var(--nightcard);border-color:var(--nightline)}
+.loop-title{font-size:15px;font-weight:800;margin-bottom:4px}
+.loop-sub{font-size:12.5px;color:var(--ink2);margin-bottom:12px}
+body.night .loop-sub{color:var(--nightink2)}
+.loop-stage{position:relative;height:210px;margin:8px 0}
+.loop-node{position:absolute;width:118px;padding:12px 10px;border-radius:14px;text-align:center;font-size:13px;font-weight:700;line-height:1.5;transition:all .35s;cursor:default;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.loop-node .ln-ico{font-size:20px;display:block;margin-bottom:4px}
+.loop-node.hot{transform:scale(1.09);box-shadow:0 6px 18px rgba(0,0,0,.16);z-index:3}
+.loop-arrow{position:absolute;font-size:20px;color:var(--line);z-index:1;transition:color .3s}
+body.night .loop-arrow{color:var(--nightline)}
+.loop-arrow.hot{color:var(--clay)}
+.loop-ctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.loop-status{font-size:13px;color:var(--ink2);flex:1}
+body.night .loop-status{color:var(--nightink2)}
+.loop-note{font-size:12px;color:var(--ink2);margin-top:8px;line-height:1.7}
+body.night .loop-note{color:var(--nightink2)}
+
+/* 翻牌卡 */
+.flip-card{perspective:1000px;margin:18px 0;cursor:pointer}
+.flip-inner{position:relative;width:100%;min-height:120px;transition:transform .6s;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid var(--line)}
+.flip-front{background:var(--card)}
+body.night .flip-front{background:var(--nightcard);border-color:var(--nightline)}
+.flip-back{background:linear-gradient(160deg,var(--paper2),var(--card));transform:rotateY(180deg)}
+body.night .flip-back{background:linear-gradient(160deg,var(--nightbg2),var(--nightcard));border-color:var(--nightline)}
+.flip-front .ff-ico{font-size:30px;margin-bottom:8px}
+.flip-front .ff-q{font-size:16px;font-weight:800;line-height:1.6}
+.flip-front .ff-tip{font-size:12px;color:var(--ink2);margin-top:10px;letter-spacing:2px}
+body.night .flip-front .ff-tip{color:var(--nightink2)}
+.flip-back .fb-a{font-size:15px;line-height:1.8;color:var(--ink)}
+body.night .flip-back .fb-a{color:var(--nightink)}
+.flip-back .fb-src{font-size:12px;color:var(--ink2);margin-top:8px}
+body.night .flip-back .fb-src{color:var(--nightink2)}
+
+/* 打字机金句 */
+.typewriter{background:linear-gradient(160deg,rgba(168,132,44,.1),rgba(168,132,44,.03));border:1px solid var(--line);border-radius:16px;padding:22px;margin:20px 0;text-align:center}
+body.night .typewriter{border-color:var(--nightline)}
+.tw-quote{font-size:19px;font-weight:800;line-height:1.8;color:var(--brown);min-height:70px}
+body.night .tw-quote{color:#d9b57a}
+.tw-caret{display:inline-block;width:2px;height:1.1em;background:var(--gold);vertical-align:-2px;animation:blink 1s steps(1) infinite;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+.tw-ctl{margin-top:12px}
+.tw-status{font-size:12px;color:var(--ink2);margin-top:8px}
+body.night .tw-status{color:var(--nightink2)}
+
+/* 阅读打卡徽章 */
+.badge-track{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.bd{flex:1 1 120px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;font-size:12px;color:var(--ink2);transition:all .3s}
+body.night .bd{background:var(--nightcard);border-color:var(--nightline);color:var(--nightink2)}
+.bd .bd-ico{font-size:18px;display:block;margin-bottom:4px;filter:grayscale(1);opacity:.5;transition:all .3s}
+.bd.done{border-color:var(--green);color:var(--green)}
+.bd.done .bd-ico{filter:none;opacity:1}
+
+/* 对比卡 */
+.contrast{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.ct-side{flex:1 1 200px;min-width:0;border-radius:14px;padding:16px;border:1px solid var(--line)}
+.ct-side .ct-t{font-size:14px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.ct-side .ct-b{font-size:13px;line-height:1.8;color:var(--ink2)}
+body.night .ct-side .ct-b{color:var(--nightink2)}
+.ct-mind{background:rgba(63,111,168,.07);border-color:rgba(63,111,168,.35)}
+.ct-mind .ct-t{color:var(--blue)}
+.ct-being{background:rgba(62,142,110,.07);border-color:rgba(62,142,110,.35)}
+.ct-being .ct-t{color:var(--green)}
+
+/* 小结 */
+.summary{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:26px 0}
+body.night .summary{background:var(--nightcard);border-color:var(--nightline)}
+.summary h3{font-size:17px;font-weight:900;letter-spacing:2px;margin-bottom:14px;color:var(--gold)}
+.summary ol{margin-left:20px;font-size:14.5px}
+.summary li{margin:10px 0;line-height:1.8}
+.summary b{color:var(--green)}
+body.night .summary b{color:#6fc0a0}
+
+/* 结尾 */
+.next-chap{text-align:center;padding:40px 20px 10px}
+.n1{font-size:13px;letter-spacing:4px;color:var(--gold);margin-bottom:10px}
+.n2{font-size:22px;font-weight:900;letter-spacing:2px;margin-bottom:8px}
+.n3{font-size:13px;color:var(--ink2);line-height:1.8;max-width:480px;margin:0 auto}
+body.night .n3{color:var(--nightink2)}
+.soon2{display:inline-block;margin-top:16px;font-size:12px;color:var(--clay);border:1px dashed var(--clay);border-radius:999px;padding:5px 14px}
+
+/* 序言 */
+.prelude{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin:8px 0}
+body.night .prelude{background:var(--nightcard);border-color:var(--nightline)}
+.prelude h4{font-size:13px;letter-spacing:3px;color:var(--gold);margin-bottom:12px}
+.prelude p{font-size:14.5px;margin:10px 0;line-height:1.85}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+.legend span{font-size:12px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+body.night .legend span{color:var(--nightink2);border-color:var(--nightline)}
+
+/* 呼吸弹窗 */
+#breathModal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(15,12,8,.6);backdrop-filter:blur(4px)}
+#breathModal.open{display:flex}
+.breath-card{background:var(--card);border-radius:22px;padding:28px 26px;text-align:center;width:min(400px,90vw);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+body.night .breath-card{background:var(--nightcard)}
+.breath-card h4{font-size:20px;letter-spacing:3px;margin-bottom:4px}
+.breath-card .sub{font-size:12.5px;color:var(--ink2);margin-bottom:18px}
+body.night .breath-card .sub{color:var(--nightink2)}
+.breath-stage{display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.breath-ring{width:150px;height:150px;border-radius:50%;border:6px solid var(--line);position:relative;transition:all 1.2s ease;background:rgba(62,142,110,.06)}
+body.night .breath-ring{border-color:var(--nightline)}
+.breath-ring.inhale{border-color:var(--blue);transform:scale(1.22);box-shadow:0 0 40px rgba(63,111,168,.35)}
+.breath-ring.hold{border-color:var(--gold);box-shadow:0 0 40px rgba(168,132,44,.3)}
+.breath-ring.exhale{border-color:var(--green);transform:scale(.9);box-shadow:0 0 30px rgba(62,142,110,.3)}
+.breath-phase{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:20px;font-weight:800;letter-spacing:4px}
+.breath-time{font-size:44px;font-weight:900;color:var(--clay);margin:8px 0 14px}
+.breath-btns{display:flex;gap:10px;justify-content:center}
+
+/* toast */
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(30,26,20,.92);color:#f5ead6;padding:11px 22px;border-radius:999px;font-size:13.5px;letter-spacing:1px;opacity:0;pointer-events:none;transition:all .3s;z-index:300}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+footer{background:var(--paper2);border-top:1px solid var(--line);padding:30px 0 40px;margin-top:30px;text-align:center;font-size:12.5px;color:var(--ink2);line-height:2}
+body.night footer{background:var(--nightbg2);border-color:var(--nightline);color:var(--nightink2)}
+
+/* 移动端 */
+@media(max-width:640px){
+  #menuBtn{display:block}
+  .brand{display:none}
+  body{font-size:16px}
+  .cover-title{letter-spacing:3px}
+  .loop-stage{height:240px}
+  .loop-node{width:96px;font-size:12px;padding:9px 6px}
+}
+
+/* ===== V3 · 游戏 / 实景 / 测验 / 成就 / 沉浸 ===== */
+.immersed #topbar{opacity:0;pointer-events:none;transform:translateY(-110%);transition:.45s;}
+.immersed .wrap{max-width:600px;}
+.mind-game{background:linear-gradient(160deg,#f7f4ec,#eef5f1);border:1px solid #e2e6e0;border-radius:18px;padding:18px 16px 16px;margin:20px 0;}
+.mg-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
+.mg-title{font-size:15px;font-weight:700;}
+.mg-hint{font-size:12.5px;color:#667;line-height:1.6;margin:6px 0 12px;}
+.mg-stage{position:relative;height:330px;background:radial-gradient(circle at 50% 26%,#eef7f2,#dfebe5);border:1px dashed #c3d6cc;border-radius:14px;overflow:hidden;}
+.mg-bubble{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;border-radius:50%;width:94px;height:94px;font-size:11.5px;line-height:1.35;color:#33463e;background:radial-gradient(circle at 32% 26%,#ffffff,#d9efe2);border:1px solid #b9dcc8;box-shadow:0 4px 12px rgba(50,85,70,.14);cursor:pointer;user-select:none;transition:transform .16s;animation:mgFloat 5.5s ease-in-out infinite alternate;}
+.mg-bubble:hover{transform:scale(1.1);}
+.mg-bubble.pop{animation:mgPop .5s forwards;pointer-events:none;}
+@keyframes mgFloat{from{transform:translateY(0)}to{transform:translateY(-16px)}}
+@keyframes mgPop{0%{transform:scale(1);opacity:1}45%{transform:scale(1.18);opacity:.85}100%{transform:scale(.15) rotate(18deg);opacity:0}}
+.mg-stat{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:#556;}
+.mg-stat b{font-size:16px;color:#2e4a40;}
+.mg-msg{flex:1 1 100%;font-size:13px;color:#2e6f52;min-height:18px;}
+.mg-btn{margin-left:auto;padding:7px 16px;border-radius:999px;border:1px solid #c4d8cd;background:#fff;color:#2e4a40;font-size:13px;cursor:pointer;}
+.mg-btn:hover{background:#eaf5ef;}
+.photo-card{margin:20px 0;border-radius:16px;overflow:hidden;border:1px solid #e2e6e0;box-shadow:0 8px 20px rgba(40,60,55,.10);background:#fff;}
+.photo-card img{width:100%;display:block;max-height:430px;object-fit:cover;}
+.photo-cap{padding:11px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.photo-cap .media-tag{background:#8BC8EA22;color:#2f6f96;}
+.photo-quote{margin:0;font-size:13.5px;color:#445;line-height:1.7;}
+.p-src{margin-left:auto;font-size:11px;color:#9aa3a0;text-decoration:none;white-space:nowrap;}
+.p-src:hover{color:#2f6f96;}
+.quiz-card{margin:20px 0;border:1px solid #e2e6e0;border-radius:18px;padding:18px 16px;background:linear-gradient(165deg,#fdfbf5,#f4f8f5);}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap;}
+.quiz-title{font-size:15px;font-weight:700;}
+.quiz-bar{height:8px;background:#e6ece8;border-radius:99px;overflow:hidden;margin:12px 0 4px;}
+.quiz-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7fc8a0,#4aa97b);border-radius:99px;transition:width .5s;}
+.quiz-note{font-size:12px;color:#889;margin-bottom:10px;}
+.q-item{margin:12px 0;padding:13px;border:1px solid #e2e6e0;border-radius:13px;background:#fff;}
+.q-q{font-size:14px;font-weight:600;margin-bottom:10px;line-height:1.55;}
+.q-opts{display:flex;flex-wrap:wrap;gap:8px;}
+.q-opt{padding:7px 14px;border-radius:999px;border:1px solid #ccd6d1;background:#fff;color:#3a4a44;font-size:13px;cursor:pointer;transition:.2s;}
+.q-opt:hover{border-color:#7fc8a0;background:#f0faf4;}
+.q-opt.right{background:#e2f7e6;border-color:#52C41A;color:#2c7a2c;cursor:default;}
+.q-opt.wrong{background:#fdeaea;border-color:#EA6668;color:#a33;cursor:default;}
+.q-fb{font-size:12.5px;color:#667;margin-top:9px;line-height:1.6;display:none;}
+.q-fb.show{display:block;}
+.q-fb.ok{color:#2c7a2c;}
+.q-fb.no{color:#a3553f;}
+.ach-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.ach-item{flex:1 1 140px;border:1px solid #e2e6e0;border-radius:14px;padding:12px 10px;background:#fff;text-align:center;filter:grayscale(1);opacity:.5;transition:.35s;}
+.ach-item.got{filter:none;opacity:1;background:linear-gradient(150deg,#fff8e2,#fff);border-color:#e5c97e;box-shadow:0 4px 12px rgba(200,160,60,.18);}
+.ach-ico{font-size:24px;display:block;margin-bottom:4px;}
+.ach-name{font-size:13px;font-weight:700;color:#3a3f3c;}
+.ach-desc{font-size:11px;color:#8a938e;margin-top:3px;line-height:1.45;}
+.ach-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.ach-note{font-size:12px;color:#889;margin-top:4px;}
+.bili-wrap{margin:20px 0;border-radius:16px;overflow:hidden;border:1px solid #e2e6e0;background:#111;box-shadow:0 8px 20px rgba(40,60,55,.10);}
+.bili-wrap iframe{width:100%;aspect-ratio:16/9;border:0;display:block;}
+.bili-cap{padding:10px 14px;background:#1c1c1e;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.bili-cap .media-tag{background:#F47C5C22;color:#f4a08a;}
+.bili-t{font-size:13px;color:#d8d8d8;line-height:1.5;}
+.bili-cap a{margin-left:auto;font-size:11.5px;color:#9fb4aa;text-decoration:none;white-space:nowrap;}
+.bili-cap a:hover{color:#7fc8a0;}
+.footer{margin:26px 0 8px;padding:14px 4px 4px;border-top:1px dashed #dfe4e0;font-size:11.5px;color:#97a09b;line-height:1.8;}
+.mg-confetti{position:absolute;top:-14px;width:8px;height:12px;border-radius:2px;pointer-events:none;animation:mgConfetti linear forwards;z-index:5;}
+@keyframes mgConfetti{to{transform:translateY(380px) rotate(720deg);opacity:0;}}
+.q-item.right{border-color:#52C41A!important;background:#f0faf3!important;}
+.q-item.wrong{border-color:#EA6668!important;background:#fdf1f1!important;}
+.q-mark{float:right;font-weight:700;font-size:15px;}
+body.night .q-item.right{background:#22302a!important;border-color:#52C41A!important;}
+body.night .q-item.wrong{background:#332327!important;border-color:#EA6668!important;}
+.sec-sub{font-size:17px;font-weight:700;margin:32px 0 8px;padding-left:10px;border-left:3px solid var(--green);color:var(--ink);}
+.chap-jump{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px;}
+.chap-jump a{display:inline-block;padding:8px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;font-size:13px;transition:.2s;}
+.chap-jump a:hover{border-color:var(--green);color:var(--green);}
+.inter-card{background:linear-gradient(160deg,#f7f4ec,#eef5f1);border:1px solid #e2e6e0;border-radius:18px;padding:18px 16px 16px;margin:20px 0;}
+.inter-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.inter-title{font-size:15px;font-weight:700;}
+.inter-hint{font-size:13px;color:#667;margin-bottom:12px;line-height:1.6;}
+.inter-msg{min-height:46px;font-size:13.5px;color:#556;margin:10px 0;line-height:1.65;}
+.pain-stage{position:relative;height:150px;background:radial-gradient(circle at 50% 40%,#fdf3ec,#f6e7dc);border:1px dashed #e0c8b8;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:.3s;}
+.pain-core{font-size:54px;transition:transform .45s,filter .45s;}
+.pain-core.hot{transform:scale(1.35);filter:drop-shadow(0 0 18px rgba(200,80,40,.65));}
+.pain-core.cool{transform:scale(.82);filter:grayscale(.7) brightness(1.1);}
+.pain-events{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px;}
+.pain-ev{padding:6px 12px;border-radius:99px;border:1px solid #d8c4b4;background:#fff;color:#7a5a48;font-size:12.5px;cursor:pointer;transition:.2s;}
+.pain-ev:hover{border-color:#b4603a;background:#fdf1e8;}
+.pain-actions{display:flex;gap:10px;margin:8px 0;}
+.pain-actions .btn{flex:1;padding:9px 10px;border-radius:999px;border:1px solid;font-size:13px;cursor:pointer;font-family:inherit;transition:.2s;}
+.pain-feed{background:#fff5f0;border-color:#e0b4a0!important;color:#a05038;}
+.pain-feed:hover{background:#fde8dd;}
+.pain-watch{background:#f0faf4;border-color:#9fd4b8!important;color:#2f7a5a;}
+.pain-watch:hover{background:#e2f5ea;}
+.pain-bar{height:10px;background:#eee;border-radius:99px;overflow:hidden;margin-top:6px;}
+.pain-fill{height:100%;width:50%;background:linear-gradient(90deg,#e8a06a,#c96a4a);border-radius:99px;transition:width .45s;}
+.pain-fill.low{background:linear-gradient(90deg,#a9d4ba,#6fae8a);}
+body.night .inter-card{background:linear-gradient(160deg,#232b30,#1b2623);border-color:#333d44;}
+body.night .sec-sub{color:var(--nightink);}
+body.night .chap-jump a{background:var(--nightcard);border-color:var(--nightline);color:var(--nightink);}
+body.night .chap-jump a:hover{border-color:#7fc8a0;color:#7fc8a0;}
+body.night .pain-stage{background:radial-gradient(circle at 50% 40%,#33251f,#241a15);border-color:#4a3a30;}
+body.night .pain-ev{background:#27302d;border-color:#4a3a30;color:#e0d2c8;}
+body.night .pain-msg{color:#bfb6a8;}
+body.night .pain-bar{background:#333d44;}
+body.night .inter-msg{color:#bfb6a8;}`r`n.tm-stage{position:relative;height:170px;background:linear-gradient(170deg,#eef6f4,#e2eee9);border:1px dashed #b8d6cc;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:.3s;}
+.tm-now{position:absolute;top:10px;left:14px;font-size:12px;color:#3f7a63;letter-spacing:2px;background:#e4f3ec;padding:3px 10px;border-radius:99px;}
+.tm-card{max-width:82%;padding:16px 18px;background:#fff;border:1px solid #d7e4df;border-radius:14px;font-size:15px;line-height:1.6;color:#334;box-shadow:0 6px 16px rgba(40,80,70,.08);transition:.3s;text-align:center;}
+.tm-card.sink{transform:translateY(90px);opacity:0;transition:.5s;}
+.tm-card.burn{animation:tmBurn .6s forwards;}
+@keyframes tmBurn{40%{transform:scale(1.08) rotate(2deg);filter:brightness(1.3);}100%{transform:scale(.4);opacity:0;filter:brightness(1.6);}}
+.tm-actions{display:flex;gap:10px;margin:12px 0 4px;}
+.tm-actions .btn{flex:1;padding:9px 10px;border-radius:999px;border:1px solid;font-size:13px;cursor:pointer;font-family:inherit;transition:.2s;}
+.tm-now-btn{background:#f0faf4;border-color:#9fd4b8!important;color:#2f7a5a;}
+.tm-past-btn{background:#fdf4f0;border-color:#e0b4a0!important;color:#a05038;}
+.tm-score{font-size:12.5px;color:#889;margin-top:6px;}
+body.night .tm-stage{background:linear-gradient(170deg,#1d2926,#16201c);border-color:#3a4a44;}
+body.night .tm-card{background:#27302d;border-color:#3a4a44;color:#d8e2dc;}
+body.night .tm-now{background:#22302a;color:#7fc8a0;}
+body.night .tm-score{color:#9aa49e;}`r`n.ch-stage{position:relative;height:200px;background:linear-gradient(170deg,#f2efea,#e8e4dc);border:1px dashed #cfc8ba;border-radius:14px;overflow:hidden;}
+.ch-bub{position:absolute;padding:7px 12px;background:#fff;border:1px solid #d8cfc0;border-radius:99px;font-size:12.5px;color:#7a6a55;box-shadow:0 3px 8px rgba(90,70,40,.1);animation:chRise 2.6s ease-out forwards;max-width:86%;}
+@keyframes chRise{0%{transform:translateY(16px);opacity:0;}12%{opacity:1;}100%{opacity:.9;}}
+.ch-bub.burst{animation:chBurst .5s forwards;}
+@keyframes chBurst{100%{transform:scale(1.6);opacity:0;}}
+.ch-stage.full{background:linear-gradient(170deg,#e6ddd2,#d9cdbc);}
+.ch-actions{display:flex;gap:10px;margin:12px 0 4px;}
+.ch-actions .btn{flex:1;padding:9px 10px;border-radius:999px;border:1px solid;font-size:13px;cursor:pointer;font-family:inherit;transition:.2s;}
+.ch-watch{background:#f0faf4;border-color:#9fd4b8!important;color:#2f7a5a;}
+.ch-skip{background:#fdf4f0;border-color:#e0b4a0!important;color:#a05038;}
+.ch-score{font-size:12.5px;color:#889;margin-top:6px;}
+body.night .ch-stage{background:linear-gradient(170deg,#25252a,#1d1d21);border-color:#3c3c44;}
+body.night .ch-bub{background:#2b2b31;border-color:#45454e;color:#cfc9ba;}
+body.night .ch-score{color:#9a9688;}`r`n.see-stage{position:relative;height:200px;background:linear-gradient(170deg,#eaf3ee,#dcebe1);border:1px dashed #b9d4c2;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;transition:.3s;}
+.see-img{font-size:86px;transition:transform .6s,filter .6s;}
+.see-stage.pres .see-img{transform:scale(1.18);filter:drop-shadow(0 0 26px rgba(120,190,150,.75));}
+.see-stage.pres{background:radial-gradient(circle at 50% 45%,#f2faf5,#dcebe1);}
+.see-tag{font-size:13px;color:#5f7a6a;background:#ffffffcc;padding:5px 12px;border-radius:99px;transition:.3s;max-width:88%;text-align:center;}
+.see-stage.pres .see-tag{color:#2f6a4f;background:#fff;}
+.see-actions{display:flex;gap:10px;margin:12px 0 4px;}
+.see-actions .btn{flex:1;padding:9px 10px;border-radius:999px;border:1px solid;font-size:13px;cursor:pointer;font-family:inherit;transition:.2s;}
+.see-mind{background:#fdf4f0;border-color:#e0b4a0!important;color:#a05038;}
+.see-pres{background:#f0faf4;border-color:#9fd4b8!important;color:#2f7a5a;}
+.see-count{font-size:12.5px;color:#889;margin-top:6px;}
+body.night .see-stage{background:linear-gradient(170deg,#1c2822,#162019);border-color:#38503f;}
+body.night .see-tag{background:#252e28cc;color:#b8cdbe;}
+body.night .see-stage.pres{background:radial-gradient(circle at 50% 45%,#22382c,#162019);}
+body.night .see-stage.pres .see-tag{background:#2c3a32;color:#9fd4b8;}
+body.night .see-count{color:#9aa49e;}`r`n.scan-card{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+.scan-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.scan-part{padding:10px 16px;border-radius:12px;border:1px solid #d0d8d2;background:#fff;font-size:13px;cursor:pointer;transition:.3s;min-width:96px;text-align:center;}
+.scan-part:hover{border-color:#9fb8a8;}
+.scan-part.done{background:linear-gradient(135deg,#e8f6ec,#cdeeda);border-color:#8fc4a0;color:#2c6a4a;box-shadow:0 0 12px rgba(120,190,150,.35);}
+.scan-body{display:flex;align-items:center;justify-content:center;font-size:64px;transition:.3s;height:110px;}
+.scan-body.lit{filter:drop-shadow(0 0 22px rgba(140,200,160,.8));transform:scale(1.06);}
+.scan-prog{height:10px;background:#eee;border-radius:99px;overflow:hidden;}
+.scan-fill{height:100%;width:0;background:linear-gradient(90deg,#9fd4b8,#5fae8a);border-radius:99px;transition:width .4s;}
+body.night .scan-part{background:#27302d;border-color:#3a4a44;color:#d8e2dc;}
+body.night .scan-part.done{background:linear-gradient(135deg,#2c4234,#244a33);border-color:#5fae8a;color:#9fd4b8;}
+body.night .scan-prog{background:#333d44;}`r`n.sil-room{position:relative;height:190px;background:radial-gradient(circle at 50% 45%,#f6f3ec,#e9e4da);border:1px dashed #d5ccbc;border-radius:14px;display:flex;align-items:center;justify-content:center;transition:.4s;overflow:hidden;}
+.sil-room.calm{background:radial-gradient(circle at 50% 45%,#f0f7f2,#dce9df);border-color:#b8d4c0;}
+.sil-room.calm .sil-ring{border-color:#8fc4a0;box-shadow:0 0 30px rgba(140,200,160,.5);}
+.sil-ring{width:120px;height:120px;border-radius:50%;border:4px solid #d8cdb8;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:.4s;}
+.sil-num{font-size:44px;font-weight:700;color:#5a6b58;line-height:1;}
+.sil-label{font-size:12px;color:#97a092;margin-top:6px;}
+.sil-actions{display:flex;gap:10px;margin:12px 0 4px;}
+.sil-actions .btn{flex:1;padding:9px 10px;border-radius:999px;border:1px solid;font-size:13px;cursor:pointer;font-family:inherit;transition:.2s;}
+.sil-grab{background:#fdf4f0;border-color:#e0b4a0!important;color:#a05038;}
+.sil-reset{background:#f0faf4;border-color:#9fd4b8!important;color:#2f7a5a;}
+body.night .sil-room{background:radial-gradient(circle at 50% 45%,#232830,#1b1f26);border-color:#3a4250;}
+body.night .sil-room.calm{background:radial-gradient(circle at 50% 45%,#1d2b24,#151f1a);border-color:#38503f;}
+body.night .sil-ring{border-color:#4a4a40;}
+body.night .sil-num{color:#cfd8cc;}`r`n.rel-stage{position:relative;min-height:170px;background:linear-gradient(170deg,#fdf1f0,#f8e4e2);border:1px dashed #e6c3be;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;transition:.3s;}
+.rel-bubble{background:#fff;border:1px solid #f0d4d0;border-radius:16px 16px 16px 4px;padding:12px 16px;font-size:14.5px;color:#5a4a48;max-width:90%;text-align:center;box-shadow:0 4px 12px rgba(160,90,80,.1);}
+.rel-heart{font-size:44px;transition:.4s;}
+.rel-stage.love{background:radial-gradient(circle at 50% 45%,#fdf6f2,#f8e0da);}
+.rel-stage.love .rel-heart{filter:drop-shadow(0 0 18px rgba(240,120,120,.7));transform:scale(1.15);}
+.rel-stage.ego .rel-heart{filter:grayscale(.9);transform:scale(.85);}
+.rel-opts{display:flex;flex-direction:column;gap:8px;margin:12px 0;}
+.rel-opt{padding:10px 14px;border-radius:12px;border:1px solid #e3d2ce;background:#fff;font-size:13.5px;color:#5a4a48;cursor:pointer;text-align:left;transition:.2s;font-family:inherit;}
+.rel-opt:hover{border-color:#d8958a;background:#fdf3f1;}
+.rel-opt.love{background:#f0faf4;border-color:#9fd4b8;color:#2f7a5a;}
+.rel-opt.ego{background:#fdf4f0;border-color:#e0b4a0;color:#a05038;}
+.rel-score{font-size:12.5px;color:#889;margin-top:6px;}
+body.night .rel-stage{background:linear-gradient(170deg,#2c2025,#231a1e);border-color:#4a3a40;}
+body.night .rel-bubble{background:#2f262a;border-color:#4a3a40;color:#e0d0cc;}
+body.night .rel-stage.love{background:radial-gradient(circle at 50% 45%,#33252b,#241a1e);}
+body.night .rel-opt{background:#2f262a;border-color:#4a3a40;color:#e0d0cc;}
+body.night .rel-opt.love{background:#22302a;border-color:#5fae8a;color:#9fd4b8;}
+body.night .rel-opt.ego{background:#33281f;border-color:#a06850;color:#e0a88a;}
+body.night .rel-score{color:#9aa49e;}`r`n.fl-stage{position:relative;height:180px;background:linear-gradient(180deg,#e8f2f5,#d7e8ee);border:1px dashed #b4d0da;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.fl-river{position:absolute;left:0;right:0;top:50%;height:3px;background:linear-gradient(90deg,rgba(90,150,180,.25),rgba(90,150,180,.6),rgba(90,150,180,.25));}
+.fl-card{position:relative;z-index:1;padding:14px 18px;background:#fff;border:1px solid #cfe0e8;border-radius:14px;font-size:14.5px;color:#3f5560;box-shadow:0 6px 16px rgba(60,120,140,.12);transition:.5s;max-width:86%;text-align:center;}
+.fl-card.gone{transform:translateX(240px) rotate(8deg);opacity:0;transition:.6s;}
+.fl-card.hold{transform:scale(.92);filter:grayscale(.6);box-shadow:none;border-color:#d8c8b8;background:#f6f2ec;}
+.fl-actions{display:flex;gap:10px;margin:12px 0 4px;}
+.fl-actions .btn{flex:1;padding:9px 10px;border-radius:999px;border:1px solid;font-size:13px;cursor:pointer;font-family:inherit;transition:.2s;}
+.fl-let{background:#f0faf4;border-color:#9fd4b8!important;color:#2f7a5a;}
+.fl-hold{background:#fdf4f0;border-color:#e0b4a0!important;color:#a05038;}
+.fl-score{font-size:12.5px;color:#889;margin-top:6px;}
+body.night .fl-stage{background:linear-gradient(180deg,#1c2830,#152029);border-color:#38505e;}
+body.night .fl-card{background:#26323a;border-color:#3a4c56;color:#c8dce4;}
+body.night .fl-card.hold{background:#2c2a26;border-color:#4a4438;}
+body.night .fl-score{color:#9aa49e;}`r`n.bt-stage{position:relative;padding:14px;background:linear-gradient(180deg,#e6f1f6,#d3e6ef);border:1px dashed #aecfd8;border-radius:14px;}
+.bt-track{position:relative;height:46px;background:linear-gradient(90deg,#cfe6ee,#a8cfe0);border-radius:99px;margin-bottom:12px;}
+.bt-boat{position:absolute;left:2%;top:50%;transform:translateY(-50%);font-size:30px;transition:left .7s cubic-bezier(.3,.8,.4,1);}
+.bt-shore{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:26px;}
+.bt-ev{background:#fff;border:1px solid #cfe0e8;border-radius:12px;padding:10px 14px;font-size:14px;color:#3f5560;text-align:center;transition:.3s;}
+.bt-actions{display:flex;gap:10px;margin:12px 0 4px;}
+.bt-actions .btn{flex:1;padding:9px 10px;border-radius:999px;border:1px solid;font-size:13px;cursor:pointer;font-family:inherit;transition:.2s;}
+.bt-sur{background:#f0faf4;border-color:#9fd4b8!important;color:#2f7a5a;}
+.bt-res{background:#fdf4f0;border-color:#e0b4a0!important;color:#a05038;}
+.bt-score{font-size:12.5px;color:#889;margin-top:6px;}
+body.night .bt-stage{background:linear-gradient(180deg,#18242c,#12202a);border-color:#38505e;}
+body.night .bt-track{background:linear-gradient(90deg,#1e3844,#16384a);}
+body.night .bt-ev{background:#22303a;border-color:#3a4c56;color:#c8dce4;}
+body.night .bt-score{color:#9aa49e;}`r`n/* ===== V3 夜间适配 ===== */
+body.night .mind-game{background:linear-gradient(160deg,#232b30,#1b2623);border-color:#333d44;}
+body.night .mg-stage{background:radial-gradient(circle at 50% 26%,#22302b,#18211e);border-color:#3a4a44;}
+body.night .mg-ctrl button{background:var(--nightcard);color:var(--nightink);border-color:var(--nightline);}
+body.night .mg-ctrl button:hover{border-color:var(--green);}
+body.night .photo-card{background:#1d2327;border-color:#333d44;}
+body.night .photo-cap{background:#22292e;}
+body.night .photo-quote{color:#cfc8b8;}
+body.night .photo-cap a{color:#8aa89a;}
+body.night .quiz-card{background:linear-gradient(165deg,#22292e,#1c2421);border-color:#333d44;}
+body.night .quiz-bar{background:#333d44;}
+body.night .q-item{border-color:#333d44;background:#232a2f;}
+body.night .q-q{color:var(--nightink);}
+body.night .q-opt{border-color:#3a4a44;background:#27302d;color:#d8e2dc;}
+body.night .q-opt:hover{border-color:#7fc8a0;background:#2c3a35;}
+body.night .ach-card{background:#22292e;border-color:#333d44;}
+body.night .ach-item{border-color:#333d44;background:#262e33;color:var(--nightink);}
+body.night .ach-note{color:#9aa49e;}
+body.night .toast{background:rgba(20,24,27,.96);border-color:#3a4a44;color:var(--nightink);}
+body.night .flip-face{background:#22292e;border-color:#333d44;}
+body.night .flip-face .ff-q{color:var(--nightink);}
+body.night .flip-face .ff-tip{color:var(--nightink2);}
+body.night .flip-face .fb-a{color:var(--nightink);}
+body.night .gt-track .base{background:var(--nightline);}
+body.night .tw-card{background:var(--nightcard);border-color:var(--nightline);}
+body.night .tw-card .tw-status{color:var(--nightink2);}
+body.night .mg-tip{color:var(--nightink2);}
+body.night .quiz-note{color:var(--nightink2);}
+body.night .photo-figcaption{color:var(--nightink2);}
+</style>
+</head>
+<body><div id="progressBar"></div>
+
+<header id="topbar">
+  <button id="menuBtn">☰</button>
+  <div class="brand">《当下的力量》多媒体书</div>
+  <button id="breathBtn">回到当下</button>
+  <button id="modeBtn">夜间</button>
+  <button id="fontBtn">A+</button><button id="immerseBtn">沉浸</button>
+</header>
+
+<div id="tocBackdrop"></div>
+<nav id="toc">
+  <h3>目 录</h3>
+  <button class="toc-chap" data-target="sub1"><span class="toc-no">第一章</span>你不是你的头脑</button>
+  <div class="toc-sub" id="sub1">
+    <a href="#s1">一 · 开悟是什么</a>
+    <a href="#s2">二 · 挣脱心智牢笼</a>
+    <a href="#s3">三 · 超越思想</a>
+    <a href="#s4">四 · 情绪</a>
+  </div>
+  <button class="toc-chap" data-target="sub2"><span class="toc-no">第二章</span>意识：离苦之道</button>
+  <div class="toc-sub" id="sub2"><a href="#c2s1">一 · 痛苦之身</a><a href="#c2s2">二 · 恐惧的起源</a><a href="#c2s3">三 · 小我的圆满追寻</a></div>
+  <button class="toc-chap" data-target="sub3"><span class="toc-no">第三章</span>深入当下</button>
+  <div class="toc-sub" id="sub3"><a href="#c3s1">一 · 终止时间幻相</a><a href="#c3s2">二 · 当下之外一无所有</a><a href="#c3s3">三 · 放掉心理时间</a></div>
+  <button class="toc-chap" data-target="sub4"><span class="toc-no">第四章</span>心智回避当下的策略</button>
+  <div class="toc-sub" id="sub4"><a href="#c4s1">一 · 无意识的两个层面</a><a href="#c4s2">二 · 瓦解一般无意识</a><a href="#c4s3">三 · 人生之旅的内在目的</a></div>
+  <button class="toc-chap" data-target="sub5"><span class="toc-no">第五章</span>临在状态</button>
+  <div class="toc-sub" id="sub5"><a href="#c5s1">一 · 等待的奥秘</a><a href="#c5s2">二 · 美在临在中发生</a><a href="#c5s3">三 · 体认纯意识</a></div>
+  <button class="toc-chap" data-target="sub6"><span class="toc-no">第六章</span>内在身体</button>
+  <div class="toc-sub" id="sub6"><a href="#c6s1">一 · 超越文字相</a><a href="#c6s2">二 · 与内在身体连接</a><a href="#c6s3">三 · 身体实训</a></div>
+  <button class="toc-chap" data-target="sub7"><span class="toc-no">第七章</span>隐含生命的路口</button>
+  <div class="toc-sub" id="sub7"><a href="#c7s1">一 · 气场探源</a><a href="#c7s2">二 · 无梦之眠</a><a href="#c7s3">三 · 其他入口</a></div>
+  <button class="toc-chap" data-target="sub8"><span class="toc-no">第八章</span>开悟的亲密关系</button>
+  <div class="toc-sub" id="sub8"><a href="#c8s1">一 · 爱／恨关系</a><a href="#c8s2">二 · 瘾头与圆满</a><a href="#c8s3">三 · 在亲密关系中灵修</a></div>
+  <button class="toc-chap" data-target="sub9"><span class="toc-no">第九章</span>超越快乐与不快乐</button>
+  <div class="toc-sub" id="sub9"><a href="#c9s1">一 · 超越好与坏的善</a><a href="#c9s2">二 · 无常和生命循环</a><a href="#c9s3">三 · 慈悲的本质</a></div>
+  <button class="toc-chap" data-target="sub10"><span class="toc-no">第十章</span>臣服的意义</button>
+  <div class="toc-sub" id="sub10"><a href="#c10s1">一 · 接纳当下</a><a href="#c10s2">二 · 人际关系中的臣服</a><a href="#c10s3">三 · 转受苦为和平</a></div>
+  <div class="toc-note">全书十章 · 每章配图、实景、互动实验、视频与闯关</div>
+  <div class="toc-note">这是第一章样章。文字取自原书精校版，配图、朗读、冥想、动画与互动练习均为 AI 原创。</div>
+</nav>
+
+<main id="main">
+
+  <!-- 封面 -->
+  <section id="cover">
+    <img class="bg" src="media/cover.jpg" alt="黎明湖光与静坐者">
+    <div class="veil"></div>
+    <div class="cover-inner">
+      <div class="cover-kicker">当 下 的 力 量 · 多 媒 体 书</div>
+      <h1 class="cover-title">你不是你的头脑</h1>
+      <p class="cover-sub">第一章 · 开悟的最大障碍</p>
+      <p class="cover-tag">以原书文字为骨架，按内容需要嵌入图片 · 音频 · 视频 · 互动</p>
+      <div class="cover-badges">
+        <span class="badge">全书十章</span>
+        <span class="badge">15 幅插画</span>
+        <span class="badge">12 张实景</span>
+        <span class="badge">2 段音频</span>
+        <span class="badge">11 支视频</span>
+        <span class="badge">10 个互动实验</span>
+        <span class="badge">30 题闯关</span>
+      </div>
+      <div class="scroll-hint">▼ 向下翻阅</div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- 写在前面 -->
+    <div class="chap" id="preludeChap">
+      <div class="chap-head">
+        <div class="chap-no">写在前面 · 本书缘起</div>
+        <h2 class="chap-title">一次凌晨的觉醒</h2>
+      </div>
+      <div class="prelude">
+        <p>“我三十岁之前的生命，处在一个持续性的焦虑状态，其间穿插着自杀性的沮丧。”</p>
+        <p>某个凌晨，他被一个念头惊醒：<b>“我活不下去了，我受不了我自己。”</b></p>
+        <p>然后他忽然看见了这个念头的荒诞——<b>“我”和“我自己”，怎么会是两个？</b></p>
+        <p>第二天清晨，他听着窗外的鸟叫，第一次感到：光穿过窗帘，就是爱的本身。</p>
+      </div>
+      <div class="legend">
+        <span>书页 · 原书文字</span><span style="border-color:var(--green);color:var(--green)">图 · 意境插画</span><span style="border-color:var(--blue);color:var(--blue)">音 · 朗读与冥想</span><span style="border-color:var(--clay);color:var(--clay)">视 · 概念动画</span><span style="border-color:var(--gold);color:var(--gold)">金句</span><span style="border-color:var(--brown);color:var(--brown)">练习</span><span style="border-color:#7a6ba8;color:#7a6ba8">互动</span>
+      </div>
+    </div>
+
+    <!-- 第一章 -->
+    <div class="chap" id="chap1">
+      <div class="chap-head">
+        <div class="chap-no">第 一 章</div>
+        <h2 class="chap-title">你不是你的头脑</h2>
+        <p class="chap-lead">开悟的最大障碍，是对心智头脑的认同。四个小节，四步拆开它。</p>
+      </div>
+
+      <!-- 章节地图 -->
+      <div class="map" aria-label="本章结构图">
+        <div class="map-head">你不是你的头脑 <span class="arrow">→</span> 观察它 <span class="arrow">→</span> 超越它</div>
+        <div class="map-grid">
+          <div class="map-card"><div class="no">第一小节</div><div class="t">开悟——到底是什么？</div><div class="chips"><span class="chip">内在宝箱</span><span class="chip">离苦</span><span class="chip">存在</span></div></div>
+          <div class="map-card"><div class="no">第二小节</div><div class="t">挣脱心智的牢笼</div><div class="chips"><span class="chip">观察思考者</span><span class="chip">心智流间隙</span><span class="chip">日常练习</span></div></div>
+          <div class="map-card"><div class="no">第三小节</div><div class="t">开悟：超越思想</div><div class="chips"><span class="chip">我执 Ego</span><span class="chip">当下的钥匙</span><span class="chip">创造性</span></div></div>
+          <div class="map-card"><div class="no">第四小节</div><div class="t">情绪：身体对心智的反应</div><div class="chips"><span class="chip">观察情绪</span><span class="chip">恶性循环</span><span class="chip">爱与喜悦</span></div></div>
+        </div>
+        <div class="map-note">本章地图（示意）· 顺着这条线读下去，你会第一次"看见"自己的头脑</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 阅读打卡 -->
+    <div class="badge-track" id="badgeTrack">
+      <div class="bd" data-sec="s1"><span class="bd-ico">📖</span>第一节 读完</div>
+      <div class="bd" data-sec="s2"><span class="bd-ico">🧘</span>第二节 读完</div>
+      <div class="bd" data-sec="s3"><span class="bd-ico">💡</span>第三节 读完</div>
+      <div class="bd" data-sec="s4"><span class="bd-ico">❤️</span>第四节 读完</div>
+    </div>
+
+    <!-- 第一节 -->
+    <section class="sec" id="s1">
+      <div class="sec-no">第一节 · 配图与朗读</div>
+      <h2>开悟——到底是什么？</h2>
+
+      <p class="first">先讲一个寓言。一个乞丐在路边行乞了三十年，一直坐在一口旧箱子上。</p>
+      <p>路人告诉他：<span class="hl">“你屁股底下，就是一口装满黄金的箱子。”</span></p>
+
+      <figure>
+        <img src="media/parable.jpg" alt="乞丐坐在装满黄金的木箱上" loading="lazy">
+        <figcaption><span class="media-tag tag-img">配图</span>你一直坐在宝藏之上，却从未打开看过</figcaption>
+      </figure>
+
+      <div class="audio-card">
+        <div class="audio-head">
+          <div class="audio-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div>
+            <div class="audio-title">听一听 · 开悟寓言朗读</div>
+            <div class="audio-desc">闭眼听一遍，效果更好</div>
+          </div>
+        </div>
+        <audio controls preload="none" src="media/audio_narration.wav"></audio>
+      </div>
+
+      <p class="short">“可是我不是乞丐呀。”</p>
+      <p class="short">凡是还没找到内在宝藏的人，<span class="hl">即使拥有庞大财富，也是乞丐。</span>他们向外攀援，追寻肯定、安全感或爱。</p>
+
+      <div class="point-card">
+        <div class="pc-ico">🗝️</div>
+        <div class="pc-body"><span class="pc-tag">解读</span><b>开悟</b>不是什么超人成就，而是<b>与存在合一</b>的自然状态。佛陀只用两个字定义它：<b>离苦</b>。</div>
+      </div>
+
+      <div class="box-card" id="boxCard">
+        <div class="bc-hint">点击木箱，打开你的内在宝藏</div>
+        <div class="chest"><div class="lid"></div><div class="body"></div><div class="lock"></div></div>
+        <div class="light"></div>
+        <div class="treasure">你的内在，本来就是完整的<small>不是要向外寻找什么，只是发现早已在的东西</small></div>
+      </div>
+
+      <!-- 念头泡泡消消乐 -->
+      <div class="mind-game" id="mindGame">
+        <div class="mg-head">
+          <div class="mg-title">🎈 念头泡泡消消乐 <span class="media-tag tag-practice">游戏</span></div>
+          <div class="mg-stat"><span>已点掉 <b id="mgScore">0</b> / 10</span><span>⏱ <b id="mgTime">20</b> 秒</span></div>
+        </div>
+        <p class="mg-hint">这些念头都不是"你"——试着把它们一个个点掉，就像看云飘过。点掉 10 个，你就是念头的旁观者。</p>
+        <div class="mg-stage" id="mgStage"></div>
+        <div class="mg-stat">
+          <div class="mg-msg" id="mgMsg"></div>
+          <button class="mg-btn" id="mgPlay">▶ 开始</button>
+        </div>
+      </div>
+<p class="short">存在（Being），是当下就可以触及的<b>最深的自我</b>。不要试图用头脑去了解它——</p>
+      <p class="short"><span class="hl">只有当头脑静止的时候，你才能知道它。</span></p>
+
+      <div class="contrast">
+        <div class="ct-side ct-mind">
+          <div class="ct-t">🧠 心智头脑</div>
+          <div class="ct-b">不断思考<br>制造噪音<br>把"我"等同于思想<br>恐惧与冲突的根源</div>
+        </div>
+        <div class="ct-side ct-being">
+          <div class="ct-t">🌿 存在 Being</div>
+          <div class="ct-b">寂静<br>完整<br>超越形相的永恒本质<br>宁静、平安、喜悦</div>
+        </div>
+      </div>
+
+      <div class="flip-card" id="flipDescartes">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <div class="ff-ico">💭</div>
+            <div class="ff-q">“我思，故我在。”——笛卡儿</div>
+            <div class="ff-tip">点击翻面 · 看看错在哪</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="fb-a">他说对了“我在”，却说错了“我思故我在”。<b>把思考等同于存在，把身份等同于思考</b>——这是最基本的一条谬思。</div>
+            <div class="fb-src">原书 · 第一章</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="short">体验实相的最大障碍是什么？<span class="hl">是我们对心智头脑的认同。</span></p>
+      <p class="short">无法停止思考是一种可怕的痛苦，几乎每个人都身受，却习以为常。</p>
+
+      <div class="quote-card">
+        <div class="qm">“</div>
+        <div class="q">你相信就是你的心智头脑。这是一个幻相。这个工具已经反客为主掌控你了。</div>
+        <div class="src"><span class="line"></span>原书 · 第一章</div>
+      </div>
+
+      <p class="short">头脑像喜欢啃骨头的狗，喜欢啃问题。你找到了控制它的“开关”吗？</p>
+      <p class="short">如果不能随时停下思考——<b>那就是头脑在使用你</b>，像被附身一样。</p>
+      <p class="short">当你明白“我不是那个思考者”的那一刻，<span class="hl">自由的开始</span>就到了。你开始观察它，一个更高的意识层面被启动了。</p>
+      <p class="short">美、爱、创造、喜乐、内在的平安——<b>都来自头脑之外</b>。</p>
+    </section>    <div class="divider"></div>
+
+    <!-- 第二节 -->
+    <section class="sec" id="s2">
+      <div class="sec-no">第二节 · 动画 · 音频 · 练习</div>
+      <h2>挣脱心智的牢笼</h2>
+
+      <p class="first">“观察思考者”是什么意思？</p>
+      <p class="short">如果有人说“我听到脑袋里有个声音”，八成会被送进精神病院。</p>
+      <p class="short">事实上几乎每个人都这样——<span class="hl">你只是还没拥有停止它的力量。</span></p>
+
+      <!-- 思维流动画 -->
+      <div class="mind-flow" id="mindFlow">
+        <div class="mf-title" style="font-size:14px;font-weight:800;margin-bottom:10px">看看你的头脑里，一天都在发生什么</div>
+        <div class="mf-stage" id="mfStage">
+          <div class="mf-observer">🧍<span class="mf-dot"></span></div>
+        </div>
+        <div class="mf-ctl">
+          <button class="btn" id="mfPlay">▶ 让思维流起来</button>
+          <button class="btn" id="mfPause">⏸ 暂停</button>
+          <button class="btn primary" id="mfObserve">👁 变成观察者</button>
+          <div class="mf-status" id="mfStatus">准备：思维正在流过</div>
+        </div>
+        <div class="mf-note">图中每一条气泡都是一缕思绪。点"变成观察者"，思维会慢下来——<b>那一个空隙，就是心智流间隙。</b></div>
+      </div>
+
+      <!-- 实景 · 观察者 -->
+      <div class="photo-card">
+        <img loading="lazy" src="media/photo_meditate_light.jpg" alt="晨光中静坐冥想的人">
+        <div class="photo-cap">
+          <span class="media-tag">实景</span>
+          <p class="photo-quote">“你不是那束光，也不是那些念头——你是看着它们的人。”</p>
+          <a class="p-src" href="https://stockcake.com/es/i/mindful-morning-meditation_1569556_1178263" target="_blank" rel="noopener">图源 · StockCake</a>
+        </div>
+      </div>
+<p class="short">倾听脑袋里的声音，<b>不要批判，不要谴责</b>——一开始批判，同一个声音就从后门溜回来了。</p>
+
+      <div class="practice-card">
+        <div class="pc-title"><span class="media-tag tag-practice">练习</span>现在，就试一分钟</div>
+        <p>闭上眼睛，只是听——听脑袋里那个声音在说什么。</p>
+        <ol class="steps">
+          <li>你听见声音在抱怨、在计划；</li>
+          <li>然后你意识到：<b>声音在那里，而我在这里</b>；</li>
+          <li>这一瞬间的“看见”，就是观察思考者的开始。</li>
+        </ol>
+        <button class="btn primary" id="breathBtn2">播放冥想引导 · 1 分钟回到当下</button>
+      </div>
+
+      <div class="audio-card">
+        <div class="audio-head">
+          <div class="audio-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div>
+            <div class="audio-title">听一听 · 观察思维的冥想引导</div>
+            <div class="audio-desc">温和女声 · 戴耳机效果更佳</div>
+          </div>
+        </div>
+        <audio controls preload="none" src="media/audio_meditation.wav"></audio>
+      </div>
+
+      <p class="short">当你倾听思想时，你同时觉知到那个<b>做为见证人的你自己</b>。思想随即丧失掌控力，急速止息。</p>
+
+      <div class="quote-card">
+        <div class="qm">“</div>
+        <div class="q">当一个思想止息的时候，你经验到一个心智流的中断——一个“无心”的间隙。</div>
+        <div class="src"><span class="line"></span>原书 · 第一章</div>
+      </div>
+
+      <!-- 间隙时间轴 -->
+      <div class="gap-timeline" id="gapTimeline">
+        <div class="loop-title">心智流间隙 · 动画示意</div>
+        <div class="loop-sub">点击每一格思维，观察它；点击间隙，感受宁静</div>
+        <div class="gt-track" id="gtTrack">
+          <div class="base"></div>
+          <div class="gt-thought" style="left:2%;width:16%" data-w="昨天他说那句话…">昨天他说…</div>
+          <div class="gt-thought" style="left:20%;width:15%" data-w="明天怎么办…">明天怎么办</div>
+          <div class="gt-thought" style="left:37%;width:14%" data-w="我是不是不够好…">我不够好</div>
+          <div class="gt-gap" style="left:53%;width:13%" data-w="一个间隙：没有念头，只有宁静。这就是“无心”。">⭘ 间隙</div>
+          <div class="gt-thought" style="left:68%;width:15%" data-w="等下还要…">等下还要…</div>
+          <div class="gt-thought" style="left:85%;width:13%" data-w="如果…就好了">如果…就好</div>
+        </div>
+        <div class="gt-legend">
+          <span><i style="background:rgba(63,111,168,.4)"></i>思维</span>
+          <span><i style="background:rgba(62,142,110,.5)"></i>心智流间隙</span>
+        </div>
+      </div>
+
+      <p class="short">这个间隙一开始只有几秒钟，会逐渐延长。<span class="hl">里面有一种内在的宁静和和平</span>，还有从深处升起的喜悦之流。</p>
+
+      <figure>
+        <img src="media/presence.jpg" alt="站在河岸凝视流动思绪的人" loading="lazy">
+        <figcaption><span class="media-tag tag-img">配图</span>思绪像河上的云影流过——你只是站在岸边看着它</figcaption>
+      </figure>
+
+      <p class="short">把注意力拉回当下，也能创造间隙：<span class="hl">深刻地意识到当下这一刻，就是冥想的精髓。</span></p>
+
+      <div class="mini-grid">
+        <div class="mini-card"><div class="mc-ico">🪜</div><div class="mc-t">上下楼梯</div><div class="mc-d">注意每一步、每一次呼吸，全然临在。</div></div>
+        <div class="mini-card"><div class="mc-ico">🚿</div><div class="mc-t">洗手</div><div class="mc-d">水声、水流的感觉、肥皂的气味。</div></div>
+        <div class="mini-card"><div class="mc-ico">🚗</div><div class="mc-t">上车之后</div><div class="mc-d">关好车门，暂停一会，观察呼吸的进出。</div></div>
+      </div>
+
+      <figure>
+        <img src="media/practice.jpg" alt="清水龙头下专注洗手的双手" loading="lazy">
+        <figcaption><span class="media-tag tag-img">配图</span>把全部注意力放回当下——洗手也可以是一次冥想</figcaption>
+      </figure>
+
+      <p class="short">开悟之旅最重要的一步：<span class="hl">学习不认同你的头脑。</span></p>
+      <p class="short">有朝一日，你会像看到一个耍宝的孩子一样，对头脑里的声音莞尔一笑。</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 第三节 -->
+    <section class="sec" id="s3">
+      <div class="sec-no">第三节 · 数据 · 动画 · 视频</div>
+      <h2>开悟：超越思想</h2>
+
+      <p class="first">难道思考不是在世界上求存的要件吗？</p>
+      <p class="short">心智头脑是一件工具，任务完成就该搁下。</p>
+      <p class="short">原书说：<span class="hl">大多数人的思考，有百分之八十到九十，都是翻来覆去、一无是处的东西。</span></p>
+
+      <!-- 思想占比环图 -->
+      <div class="donut-card" id="donutCard">
+        <div class="loop-title">你的头脑，一天都在忙什么？</div>
+        <div class="donut-wrap">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#e2dac6" stroke-width="14"></circle>
+            <circle class="donut-seg" id="donutWaste" cx="60" cy="60" r="48" fill="none" stroke="#b4603a" stroke-width="14" stroke-dasharray="301.6" stroke-dashoffset="301.6" stroke-linecap="round"></circle>
+            <circle class="donut-seg" id="donutUse" cx="60" cy="60" r="48" fill="none" stroke="#3e8e6e" stroke-width="14" stroke-dasharray="301.6" stroke-dashoffset="301.6" stroke-linecap="round"></circle>
+          </svg>
+          <div class="donut-center"><div class="big" id="donutBig">80%+</div><div class="lbl">是重复无用的</div></div>
+        </div>
+        <div class="donut-legend">
+          <span><i style="background:#b4603a"></i>重复无用的思考 80–90%</span>
+          <span><i style="background:#3e8e6e"></i>有建设性的思考 10–20%</span>
+        </div>
+        <div class="donut-note">数据出自原书第一章论述（约数）· 观察你自己的头脑就能验证</div>
+      </div>
+
+      <div class="point-card">
+        <div class="pc-ico">🎰</div>
+        <div class="pc-body"><span class="pc-tag">解读</span>强迫性思考是一种<b>瘾头</b>：你停不下来，它给你虚假的享乐，以痛苦收场。</div>
+      </div>
+
+      <p class="short">我们何以会上了思考的瘾？</p>
+      <p class="short">因为你<b>跟思考认同</b>——你相信一停止思考，自己就不存在了。</p>
+      <p class="short">这个由思考拼成的虚幻自我，原书叫它<span class="hl">我执（ego）</span>：它只能靠不断的思考苟存。</p>
+
+      <!-- 实景 · 河谷晨雾 -->
+      <div class="photo-card">
+        <img loading="lazy" src="media/photo_river_fog.jpg" alt="晨雾中的河谷">
+        <div class="photo-cap">
+          <span class="media-tag">实景</span>
+          <p class="photo-quote">“思想像河面的雾。雾散了，河还是那条河。”</p>
+          <a class="p-src" href="https://m.ooopic.com/weili_35253509.html" target="_blank" rel="noopener">图源 · 我图网</a>
+        </div>
+      </div>
+<!-- 我执循环图 -->
+      <div class="loop-card" id="egoLoop">
+        <div class="loop-title">我执的时间观 · 动画示意</div>
+        <div class="loop-sub">点"播放"看它如何绕开当下</div>
+        <div class="loop-stage" id="egoStage"></div>
+        <div class="loop-ctl">
+          <button class="btn" id="egoPlay">▶ 播放</button>
+          <button class="btn" id="egoReset">↺ 重置</button>
+          <div class="loop-status" id="egoStatus">我执活在过去与未来</div>
+        </div>
+        <div class="loop-note">我执只记得过去，只投射未来，唯独看不见当下。可<b>当下，正是通往解脱的钥匙。</b></div>
+      </div>
+
+      <p class="short">我执说：<span class="hl">“有朝一日，等这个、那个发生，我就会快乐了。”</span></p>
+      <p class="short">而真相是：<b>只要你仍是心智头脑，就找不到当下这一刻。</b></p>
+
+      <div class="video-card">
+        <video controls preload="metadata" poster="media/presence.jpg" src="media/video_ch1.mp4"></video>
+        <div class="video-foot"><span class="media-tag tag-video">视频</span>概念动画 · 你不是你的头脑：从"被思维占领"到"成为观察者"（完整版制作中）</div>
+      </div>
+
+      <!-- 延伸 · B站视频 -->
+      <div class="bili-wrap">
+        <iframe src="https://player.bilibili.com/player.html?bvid=BV1vY4XzREPi&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：你的大脑不是你的主人（真人讲解）"></iframe>
+        <div class="bili-cap">
+          <span class="media-tag">延伸</span>
+          <span class="bili-t">真人出镜讲解 · 结合佛法，拆解“你不是你的头脑”</span>
+          <a href="https://www.bilibili.com/video/BV1vY4XzREPi" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+        </div>
+      </div>
+<div class="flip-card" id="flipThink">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <div class="ff-ico">🐒</div>
+            <div class="ff-q">“我宁可保持思考，也不想失去我的心智。”</div>
+            <div class="ff-tip">点击翻面 · 看看托利怎么说</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="fb-a">思考不是敌人，<b>不受控的思考才是</b>。开悟不是掉到思想之下，而是<b>超越思想</b>——必要的时候，你仍会思考，但更专注、更有效率，并且多了一份内在的宁静。</div>
+            <div class="fb-src">原书 · 第一章</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="qm">“</div>
+        <div class="q">当思想不再与更广阔的意识领域接轨的时候，它便会快速地枯竭、疯狂、而产生破坏力。</div>
+        <div class="src"><span class="line"></span>原书 · 第一章</div>
+      </div>
+
+      <p class="short">所有真正的艺术家都知道：<span class="hl">灵感来自一个无心的地方，来自内在宁静。</span></p>
+      <p class="short">连最伟大的科学家，也都是在心理的寂静中，产生创造性的突破。</p>
+    </section>    <div class="divider"></div>
+
+    <!-- 第四节 -->
+    <section class="sec" id="s4">
+      <div class="sec-no">第四节 · 互动 · 配图</div>
+      <h2>情绪：身体对心智的反应</h2>
+
+      <p class="first">情绪又是怎么回事？我陷在情绪里的时候，比陷在心智的时候多。</p>
+
+      <div class="point-card">
+        <div class="pc-ico">🌡️</div>
+        <div class="pc-body"><span class="pc-tag">解读</span>情绪是<b>身体对心智的反应</b>。一个敌意念头，会在身体里累积成能量——那就是愤怒；一个受威胁的念头，让身体收缩——那就是恐惧。</div>
+      </div>
+
+      <p class="short">身体会给你最忠实的反映。<span class="hl">审视情绪，最好是在身体里感觉它。</span></p>
+      <p class="short">当思想与感受冲突时——<b>思想是谎言，感受才是真理</b>（关于你当下心智状态的真理）。</p>
+
+      <!-- 情绪恶性循环图 -->
+      <div class="loop-card" id="emoLoop">
+        <div class="loop-title">思考与情绪的恶性循环 · 动画示意</div>
+        <div class="loop-sub">点"播放"看它们如何彼此喂养</div>
+        <div class="loop-stage" id="emoStage"></div>
+        <div class="loop-ctl">
+          <button class="btn" id="emoPlay">▶ 播放循环</button>
+          <button class="btn" id="emoReset">↺ 重置</button>
+          <div class="loop-status" id="emoStatus">一个念头升起</div>
+        </div>
+        <div class="loop-note">念头喂养情绪，情绪喂养念头——<b>除非你成为观察者，临在足够，才能打断这个环。</b></div>
+      </div>
+
+      <figure>
+        <img src="media/observer.jpg" alt="闭目静坐、胸口泛着光晕的人" loading="lazy">
+        <figcaption><span class="media-tag tag-img">配图</span>在身体里感觉情绪——你是观察者，而不是那个情绪</figcaption>
+      </figure>
+
+      <!-- 实景 · 山巅静坐 -->
+      <div class="photo-card">
+        <img loading="lazy" src="media/photo_meditate_mountain.jpg" alt="山巅静坐冥想的人">
+        <div class="photo-cap">
+          <span class="media-tag">实景</span>
+          <p class="photo-quote">“情绪的风暴再大，风暴眼里总有一片不动的天空。”</p>
+          <a class="p-src" href="https://stock.tuchong.com/image/detail/982518101787672671" target="_blank" rel="noopener">图源 · 图虫创意</a>
+        </div>
+      </div>
+<p class="short">观察情绪，和观察思想一样：<b>在不被它掌控的情况下，容许它存在。</b>这时候的你，已经不再是这个情绪了。</p>
+
+      <div class="practice-card">
+        <div class="pc-title"><span class="media-tag tag-practice">练习</span>一个可以随身携带的问题</div>
+        <p>感到烦躁、愤怒或低落时，先别急着反应。在心里轻轻问自己：</p>
+        <p style="text-align:center;font-size:19px;font-weight:700">“这一刻，我的内在发生了什么事？”</p>
+        <p>不要分析，只是感觉。让情绪存在，你退后一步，成为看它的人。</p>
+      </div>
+
+      <p class="short">情绪想要掌控你，而且通常会得逞——<b>除非你有足够的临在</b>。否则它暂时变成了“你”。</p>
+      <p class="short">你的思考与情绪，常常彼此喂养：<span class="hl">一个恶性循环。</span></p>
+
+      <div class="mini-grid">
+        <div class="mini-card"><div class="mc-ico">😨</div><div class="mc-t">所有情绪的根源</div><div class="mc-d">失去了对超越名相的本性的觉知。恐惧、遗弃感、不完整感。</div></div>
+        <div class="mini-card"><div class="mc-ico">❤️</div><div class="mc-t">爱与喜悦</div><div class="mc-d">是存在自然状态的一部分。思想流产生间隙时，它们才会来临。</div></div>
+        <div class="mini-card"><div class="mc-ico">⛅</div><div class="mc-t">痛苦的两个层面</div><div class="mc-d">一层是此刻创造的痛，一层是活在心智身体里的旧痛。</div></div>
+      </div>
+
+      <div class="quote-card">
+        <div class="qm">“</div>
+        <div class="q">纵或乌云铺天盖地，太阳却不曾消失。而太阳就在乌云的另一端。</div>
+        <div class="src"><span class="line"></span>原书 · 第一章</div>
+      </div>
+
+      <p class="short">真爱不会让你受苦。真正的喜悦，也不会变成痛苦。</p>
+      <p class="short">佛陀说：<span class="hl">痛苦源自欲望和渴求。</span>所有的渴求，都是心智向外境寻求救赎——因为失去了存在的喜悦。</p>
+      <p class="short">只要你与心智认同，就难逃痛苦的藩篱。<b>停止制造眼前的痛，瓦解旧痛</b>——这正是下一章要讲的。</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 金句打字机 -->
+    <div class="typewriter" id="typewriter">
+      <div class="tw-quote"><span id="twText"></span><span class="tw-caret" id="twCaret"></span></div>
+      <div class="tw-ctl">
+        <button class="btn" id="twPrev">‹ 上一条</button>
+        <button class="btn primary" id="twPlay">▶ 播放</button>
+        <button class="btn" id="twNext">下一条 ›</button>
+      </div>
+      <div class="tw-status" id="twStatus">第 1 / 4 条 · 本章金句</div>
+    </div>
+
+    <!-- 觉察力闯关 -->
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-head"><span class="quiz-title">🧭 觉察力闯关</span><span class="media-tag tag-practice">测验</span></div>
+        <p class="quiz-note">读完第一章，测一测你真的"看见"了多少。5 题全对，点亮"第一章觉醒者"。</p>
+        <div class="quiz-bar"><i id="quizBar"></i></div>
+        <div class="quiz-body" id="quizBody"></div>
+      </div>
+
+      <!-- 成就面板 -->
+      <div class="quiz-card" id="achCard">
+        <div class="quiz-head"><span class="ach-title">🏆 本章成就</span><span class="media-tag tag-practice">成长</span></div>
+        <p class="ach-note">阅读、游戏、测验、练习都做到，你就是真正的"第一章觉醒者"。</p>
+        <div class="ach-row">
+          <div class="ach-item" id="ach-game"><span class="ach-ico">🎯</span><div class="ach-name">念头的旁观者</div><div class="ach-desc">点掉 10 个念头泡泡</div></div>
+          <div class="ach-item" id="ach-quiz"><span class="ach-ico">🧘</span><div class="ach-name">第一章觉醒者</div><div class="ach-desc">通过 5 道觉察力闯关</div></div>
+          <div class="ach-item" id="ach-breath"><span class="ach-ico">🌬️</span><div class="ach-name">回到当下</div><div class="ach-desc">完成一次呼吸练习</div></div>
+          <div class="ach-item" id="ach-watch"><span class="ach-ico">🎬</span><div class="ach-name">双耳阅读</div><div class="ach-desc">观看本页概念动画</div></div>
+        </div>
+      </div>
+<!-- 小结 -->
+    <div class="summary">
+      <h3>本章小结 · 三点收获</h3>
+      <ol>
+        <li><b>你不是你的头脑。</b>声音、思考、情绪都只是内容；你是那个能"看见"它们的存在。</li>
+        <li><b>观察，是唯一的钥匙。</b>倾听思考、感觉情绪、把注意力放回当下——每个"心智流间隙"，都是一次小开悟。</li>
+        <li><b>超越不是失去，而是升级。</b>开悟后你仍然会用脑，却不再被脑使用。</li>
+      </ol>
+    </div>
+
+    <!-- 结尾 -->
+    <div class="next-chap" id="nextChap">
+      <div class="n1">第一章 · 完</div>
+      <div class="n2">第二章 · 意识：离苦之道</div>
+      <div class="n3">不要为当下创造新痛 —— 痛苦之身 · 恐惧的起源 · 小我对圆满的追寻</div>
+            <div class="n1">第一章 · 完 · 全书共十章</div>
+      <div class="n2">下一站 · 任选一章</div>
+      <div class="chap-jump">
+        <a href="#ch2">二 · 意识：离苦之道</a>
+        <a href="#ch3">三 · 深入当下</a>
+        <a href="#ch4">四 · 心智回避当下的策略</a>
+        <a href="#ch5">五 · 临在状态</a>
+        <a href="#ch6">六 · 内在身体</a>
+        <a href="#ch7">七 · 隐含生命的路口</a>
+        <a href="#ch8">八 · 开悟的亲密关系</a>
+        <a href="#ch9">九 · 超越快乐与不快乐</a>
+        <a href="#ch10">十 · 臣服的意义</a>
+      </div>
+    </div>
+
+<section class="sec" id="ch2">
+  <div class="wrap">
+  <div class="sec-no">第二章 · 意识：离苦之道</div>
+  <h2>不要为当下创造新痛</h2>
+
+  <p class="first">没有人能完全免于痛苦。但<span class="hl">十之八九的痛苦，是不必要的</span>。</p>
+  <p class="short">它是你那个没有被观察的心智，自编自导出来的。</p>
+  <p class="short">心智为什么抗拒当下？<span class="hl">因为它无法在没有"时间"的地方运作。</span></p>
+  <p class="short">当下不愉快？——<b>先接受，再行动。</b>把当下当成盟友，而不是敌人。</p>
+
+  <h3 class="sec-sub" id="c2s1">一 · 痛苦之身：住进你体内的情绪怪兽</h3>
+  <p class="short">你心里住着一只"情绪怪兽"，由所有未被正视的负面情绪喂养长大。</p>
+  <p class="short">平时它睡着。<span class="hl">一句话、一个眼神，就能把它唤醒。</span></p>
+  <p class="short">一旦它接管，你说的话、做的事，都不是你——是它在发作。</p>
+
+  <div class="inter-card" id="painCard">
+    <div class="inter-head"><span class="inter-title">🔥 痛苦之身实验：你喂它，还是看着它？</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">先点一个场景激活它，然后选择：<b>认同（喂养）</b>还是<b>观察（不喂）</b>。看看哪种做法让它熄灭。</p>
+    <div class="pain-stage" id="painStage">
+      <div class="pain-core" id="painCore">😈</div>
+      <div class="pain-energy" id="painEnergy">能量 50</div>
+    </div>
+    <div class="pain-events" id="painEvents">
+      <button class="pain-ev" data-txt="“你总是这样，从来不考虑我。”">被伴侣批评</button>
+      <button class="pain-ev" data-txt="堵在路上，眼看着要迟到。">堵车迟到</button>
+      <button class="pain-ev" data-txt="翻到旧照片，那年的委屈又涌上来。">翻旧账</button>
+      <button class="pain-ev" data-txt="有人插队，还理直气壮。">被人插队</button>
+    </div>
+    <div class="pain-actions">
+      <button class="btn pain-feed" id="painFeed">认同它 · 喂它</button>
+      <button class="btn pain-watch" id="painWatch">观察它 · 不喂</button>
+    </div>
+    <div class="inter-msg" id="painMsg">点击一个场景，看看它怎么被激活……</div>
+    <div class="pain-bar"><div class="pain-fill" id="painFill"></div></div>
+  </div>
+
+  <figure>
+    <img src="media/ch2.jpg" alt="黎明山路，旅人回望旧路" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>痛苦之身以痛苦为食；你不喂它，它就饿死</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c2s2">二 · 恐惧的起源</h3>
+  <p class="short">适量的恐惧是保护。<span class="hl">心理恐惧却永远指向未来</span>——它靠"明天"活着。</p>
+  <p class="short">当下，是恐惧唯一进不来的地方。</p>
+
+  <h3 class="sec-sub" id="c2s3">三 · 小我的圆满追寻</h3>
+  <p class="short">小我感到匮乏，于是向外索取：肯定、财富、关系、身份。</p>
+  <p class="short"><span class="hl">要得越多，匮乏越深。</span>圆满不在外面——停下来，它就在你里面。</p>
+
+  <div class="photo-card">
+    <img src="media/photo_meditate_field.jpg" alt="黄昏田野上的打坐者" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“凡是你抗拒的，都会持续。”</p>
+      <a href="https://stock.tuchong.com" target="_blank" rel="noopener">图源·图虫创意 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1GM5q6YE29&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：第二章 意识——摆脱痛苦的途径"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">第二章深度讲解 · 痛苦之身如何被瓦解</span>
+      <a href="https://www.bilibili.com/video/BV1GM5q6YE29" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh2">
+    <div class="quiz-head"><span class="quiz-title">🧠 第二章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar2"></div>
+    <div class="quiz-body" id="quizBody2"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard2">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch2"><span class="ach-ico">🍽️</span><div class="ach-name">不喂食痛苦</div><div class="ach-desc">把痛苦之身的能量降到 0</div></div>
+      <div class="ach-item" id="ach-q2"><span class="ach-ico">🧠</span><div class="ach-name">离苦之道</div><div class="ach-desc">通过第二章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="sec" id="ch3">
+  <div class="wrap">
+  <div class="sec-no">第三章 · 深入当下</div>
+  <h2>不要在心智里寻找自我</h2>
+
+  <p class="first">心智的问题，无法在心智层面解决。<span class="hl">你无法靠"思考"，走出思考。</span></p>
+  <p class="short">窍门只有一个：<b>终止时间的幻相</b>。时间和心智狼狈为奸，一体不分。</p>
+  <p class="short">把时间从心智里移除，它就停止了——<span class="hl">除非你选择用它</span>。</p>
+
+  <div class="inter-card" id="timeCard">
+    <div class="inter-head"><span class="inter-title">⏳ 时间探测器：当下，还是心理时间？</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">念头卡一张张飘来。<b>当下</b>＝此刻真实可感；<b>心理时间</b>＝懊悔过去或焦虑未来。选对，念头散开；选错，它缠住你。</p>
+    <div class="tm-stage" id="tmStage">
+      <div class="tm-now">此刻 · 唯一真实</div>
+      <div class="tm-card" id="tmCard">准备开始……</div>
+    </div>
+    <div class="tm-actions">
+      <button class="btn tm-now-btn" id="tmNow">🌿 这是当下</button>
+      <button class="btn tm-past-btn" id="tmPast">🌀 这是心理时间</button>
+    </div>
+    <div class="inter-msg" id="tmMsg"></div>
+    <div class="tm-score">已辨别 <b id="tmDone">0</b> / 8</div>
+  </div>
+
+  <figure>
+    <img src="media/ch3.jpg" alt="河面上漂浮的钟表与莲" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>时间在融化——你能在河面看见当下那朵莲吗？</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c3s1">一 · 终止时间幻相</h3>
+  <p class="short"><span class="hl">你可曾在当下之外，经验过任何事吗？</span>过去只是回忆，未来只是投射。</p>
+  <p class="short">苏菲派说：<b>"苏菲是当下之子。"</b>鲁米说：过去和未来挡着我们，把它们付之一炬。</p>
+
+  <h3 class="sec-sub" id="c3s2">二 · 当下之外一无所有</h3>
+  <p class="short">心智无法知道树，它只知道关于树的资料。<span class="hl">只有本体直接地知道。</span></p>
+  <p class="short">当你领会的那一刻，意识就从时间转移到了临在——一切突然生机活现。</p>
+
+  <h3 class="sec-sub" id="c3s3">三 · 放掉心理时间</h3>
+  <p class="short">钟表时间可以用：安排约会、从过去学习、朝目标努力。<b>它们都在当下完成</b>。</p>
+  <p class="short">心理时间才是牢笼：懊悔回不去的过去，焦虑还没到的未来。</p>
+  <p class="short"><span class="hl">时间里没有救赎。你只能在当下是自由的。</span></p>
+
+  <div class="photo-card">
+    <img src="media/photo_lake_mist.jpg" alt="晨雾湖面倒映山峦" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“雾散了，湖还在。念头散了，你还在。”</p>
+      <a href="https://stock.tuchong.com" target="_blank" rel="noopener">图源·图虫创意 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1fbPZzpEEb&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：这个宇宙唯一真实、唯一拥有能量的，只有当下"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">“唯一真实、唯一拥有能量的，只有当下” · 纳瓦尔</span>
+      <a href="https://www.bilibili.com/video/BV1fbPZzpEEb" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh3">
+    <div class="quiz-head"><span class="quiz-title">🧠 第三章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar3"></div>
+    <div class="quiz-body" id="quizBody3"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard3">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch3"><span class="ach-ico">⏳</span><div class="ach-name">时间终结者</div><div class="ach-desc">辨清 8 个念头卡</div></div>
+      <div class="ach-item" id="ach-q3"><span class="ach-ico">🌿</span><div class="ach-name">当下之子</div><div class="ach-desc">通过第三章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="sec" id="ch4">
+  <div class="wrap">
+  <div class="sec-no">第四章 · 心智回避当下的策略</div>
+  <h2>被念头淹没，还是照亮它？</h2>
+
+  <p class="first">心智像不肯睡觉的孩子：它不停地要"更刺激"。</p>
+  <p class="short">无意识地活着，就是被心智掌控地活着。<span class="hl">你以为是你在想，其实是它在想。</span></p>
+  <p class="short">无意识有两个层面：<b>一般无意识</b>（习惯性认同念头）与<b>深层无意识</b>（痛苦之身，情绪爆发）。</p>
+
+  <div class="inter-card" id="chaosCard">
+    <div class="inter-head"><span class="inter-title">🌫️ 无意识迷雾：不点觉察，你会被念头淹没</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">念头一个个冒出来。点"觉察"，迷雾散开；放任不管，念头堆满屏幕——你就被无意识接管了。</p>
+    <div class="ch-stage" id="chStage"></div>
+    <div class="ch-actions">
+      <button class="btn ch-watch" id="chWatch">🌀 觉察（驱散念头）</button>
+      <button class="btn ch-skip" id="chSkip">放着不管</button>
+    </div>
+    <div class="inter-msg" id="chMsg">念头会自己冒出来。看看你多久会想起"觉察"。</div>
+    <div class="ch-score">觉察 <b id="chCnt">0</b> 次</div>
+  </div>
+
+  <figure>
+    <img src="media/ch4.jpg" alt="雾林迷宫中的一束光" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>迷宫不难走，难的是先看见自己走进了迷宫</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c4s1">一 · 无意识的两个层面</h3>
+  <p class="short">一般无意识：认同念头，跟着它走。<span class="hl">深层无意识：情绪能量爆发，你"变成了"它。</span></p>
+  <p class="short">解决之道不是对抗，而是<span class="hl">照亮</span>——把注意力带进来。</p>
+
+  <h3 class="sec-sub" id="c4s2">二 · 瓦解一般无意识</h3>
+  <p class="short">养成自我观察的习惯：问自己<b>"此刻我在想什么？"</b>——这个"问"就是光。</p>
+  <p class="short">观察念头，像在集市门口看人来人往。<b>看，不等于跟进去买。</b></p>
+
+  <h3 class="sec-sub" id="c4s3">三 · 人生之旅的内在目的</h3>
+  <p class="short">外在目的会改变、会失败；<span class="hl">内在目的永不失败——把当下活成唯一重要的时刻。</span></p>
+  <p class="short">把注意力从"思考"移到"呼吸"上五秒，你已经把意识之光带了进来。</p>
+
+  <div class="photo-card">
+    <img src="media/photo_mountain_village.jpg" alt="云雾缭绕的山村" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“云是念头。山才是你。”</p>
+      <a href="https://stock.tuchong.com" target="_blank" rel="noopener">图源·图虫创意 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV12jGC6eE9V&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：《当下的力量》灵性开悟指引之书"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">《当下的力量》全书导读 · 心智如何困住你</span>
+      <a href="https://www.bilibili.com/video/BV12jGC6eE9V" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh4">
+    <div class="quiz-head"><span class="quiz-title">🧠 第四章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar4"></div>
+    <div class="quiz-body" id="quizBody4"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard4">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch4"><span class="ach-ico">🌫️</span><div class="ach-name">迷雾散尽</div><div class="ach-desc">觉察 10 次，驱散念头</div></div>
+      <div class="ach-item" id="ach-q4"><span class="ach-ico">🔦</span><div class="ach-name">照进无意识</div><div class="ach-desc">通过第四章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="sec" id="ch5">
+  <div class="wrap">
+  <div class="sec-no">第五章 · 临在状态</div>
+  <h2>你见过一棵树吗？</h2>
+
+  <p class="first">头脑无法了解美。<span class="hl">美，只在临在中发生。</span></p>
+  <p class="short">树就在那里，却要你完全临在，才能真正"看见"它。</p>
+  <p class="short">不是思考这棵树，而是让树的存在，进入你的存在。</p>
+
+  <div class="inter-card" id="seeCard">
+    <div class="inter-head"><span class="inter-title">👁️ 看之实验：树，还是关于树的念头？</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">同一幅画面，两种看法。<b>心智模式</b>给你标签与判断；<b>临在模式</b>让画面活起来。来回切换，感受差别。</p>
+    <div class="see-stage" id="seeStage">
+      <div class="see-img" id="seeImg">🌳</div>
+      <div class="see-tag" id="seeTag">一棵树 · 品种未知 · 有点挡路</div>
+    </div>
+    <div class="see-actions">
+      <button class="btn see-mind" id="seeMind">🧠 心智模式</button>
+      <button class="btn see-pres" id="seePres">✨ 临在模式</button>
+    </div>
+    <div class="inter-msg" id="seeMsg">先看树，再问自己：我看见的是树，还是关于树的念头？</div>
+    <div class="see-count">临在 <b id="seeCnt">0</b> 次</div>
+  </div>
+
+  <figure>
+    <img src="media/ch5.jpg" alt="湖畔倒影中的临水者" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>你与湖同时临在，倒影才完整</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c5s1">一 · 等待的奥秘</h3>
+  <p class="short">你在等待什么？等待"未来"——<span class="hl">而未来永远不会来，来的只有当下。</span></p>
+  <p class="short">在等待中保持临在：不焦虑结果，只感受此刻。等待，可以是深度的临在。</p>
+
+  <h3 class="sec-sub" id="c5s2">二 · 美在临在中发生</h3>
+  <p class="short">你命名一朵花，它就被概念化、被标签覆盖。</p>
+  <p class="short">但当你临在，花的存在穿过概念，与你相遇。<span class="hl">美不在花里，美在"看见"里。</span></p>
+
+  <h3 class="sec-sub" id="c5s3">三 · 体认纯意识</h3>
+  <p class="short">纯意识就是本体本身。<span class="hl">你无法"想"出它，只能体验它。</span></p>
+  <p class="short">把注意力从"我"移开，落在"此刻"——那一瞬，你就是临在。</p>
+
+  <div class="photo-card">
+    <img src="media/photo_meditate_mountain.jpg" alt="山巅静坐的人" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“山不在你外面。看见山的那个，才是你。”</p>
+      <a href="https://stock.tuchong.com" target="_blank" rel="noopener">图源·图虫创意 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1vY4XzREPi&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：你的大脑不是你的主人"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">你的大脑不是你的主人 · 谁在看？谁在想？</span>
+      <a href="https://www.bilibili.com/video/BV1vY4XzREPi" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh5">
+    <div class="quiz-head"><span class="quiz-title">🧠 第五章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar5"></div>
+    <div class="quiz-body" id="quizBody5"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard5">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch5"><span class="ach-ico">👁️</span><div class="ach-name">第一次真正看见</div><div class="ach-desc">进入临在模式 8 次</div></div>
+      <div class="ach-item" id="ach-q5"><span class="ach-ico">🌊</span><div class="ach-name">美的见证者</div><div class="ach-desc">通过第五章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="sec" id="ch6">
+  <div class="wrap">
+  <div class="sec-no">第六章 · 内在身体</div>
+  <h2>身体是你通往本体的门</h2>
+
+  <p class="first">文字本身无法让你了解本体——<span class="hl">文字只是路标</span>，不是目的地。</p>
+  <p class="short">身体不是念头所说的那个"它"。<span class="hl">身体是你在物质世界的锚。</span></p>
+  <p class="short">何时你最有力量？不是想得最清楚时，而是完全临在于身体时。</p>
+
+  <div class="inter-card" id="scanCard">
+    <div class="inter-head"><span class="inter-title">🫀 身体扫描：把光带回身体</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">按顺序点亮每个部位：把注意力从念头里拿出来，放回身体。每点亮一处，能量就回来一点。</p>
+    <div class="scan-body" id="scanBody">🧍</div>
+    <div class="scan-row" id="scanRow">
+      <button class="scan-part" data-txt="感觉头皮的放松，耳朵里细微的嗡鸣">头部</button>
+      <button class="scan-part" data-txt="肩膀不再绷着，像水一样垂下来">肩膀</button>
+      <button class="scan-part" data-txt="胸腔随呼吸一起一伏">胸腔</button>
+      <button class="scan-part" data-txt="腹部的温度，像一团暖光">腹部</button>
+      <button class="scan-part" data-txt="手心的热量、指尖的脉动">双手</button>
+      <button class="scan-part" data-txt="脚掌踩实大地，稳稳的">双足</button>
+    </div>
+    <div class="inter-msg" id="scanMsg">闭眼十秒，感觉一下你的手——能量在那里吗？然后从头部开始点亮。</div>
+    <div class="scan-prog"><div class="scan-fill" id="scanFill"></div></div>
+  </div>
+
+  <figure>
+    <img src="media/ch6.jpg" alt="金色能量笼罩的冥想者" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>内在身体是一团能量场——你感觉它，不是思考它</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c6s1">一 · 超越文字相</h3>
+  <p class="short">文字指向月亮，但它不是月亮。<span class="hl">别把路标当成目的地。</span></p>
+  <p class="short">真正要做的不是记住概念，而是去体验它。</p>
+
+  <h3 class="sec-sub" id="c6s2">二 · 与内在身体连接</h3>
+  <p class="short">闭上眼，感觉手心的能量、呼吸在体内的流动。<span class="hl">那就是内在身体。</span></p>
+  <p class="short">倾听身体内在的静默——那是你与本体之间最短的路。</p>
+
+  <h3 class="sec-sub" id="c6s3">三 · 身体实训</h3>
+  <p class="short">随时随地：走路时感受脚掌触地，喝水时感受水流过喉咙。</p>
+  <p class="short">练习越频繁，你越不容易被念头带走。<span class="hl">身体，是念头风暴里的避风港。</span></p>
+
+  <div class="photo-card">
+    <img src="media/photo_meditate_window.jpg" alt="窗边盘坐的人与落日" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“窗外的世界在变。窗内的你，一直都在。”</p>
+      <a href="https://stock.tuchong.com" target="_blank" rel="noopener">图源·图虫创意 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1aBL56BEmG&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：第六章 内在身体 有声书"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">《当下的力量》第六章 · 内在身体 完整有声书</span>
+      <a href="https://www.bilibili.com/video/BV1aBL56BEmG" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh6">
+    <div class="quiz-head"><span class="quiz-title">🧠 第六章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar6"></div>
+    <div class="quiz-body" id="quizBody6"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard6">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch6"><span class="ach-ico">🫀</span><div class="ach-name">全身通电</div><div class="ach-desc">点亮全部 6 个身体部位</div></div>
+      <div class="ach-item" id="ach-q6"><span class="ach-ico">🧘</span><div class="ach-name">落地生根</div><div class="ach-desc">通过第六章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="sec" id="ch7">
+  <div class="wrap">
+  <div class="sec-no">第七章 · 隐含生命的路口</div>
+  <h2>入口比你想的多</h2>
+
+  <p class="first">如果临在的入口不好找——<span class="hl">别急，入口比你想的多。</span></p>
+  <p class="short">冥想、静默、接纳：它们都是同一扇门的把手。</p>
+  <p class="short">觉知到呼吸，就是最小的临在练习。<span class="hl">每一次呼吸，都是一次回家。</span></p>
+
+  <div class="inter-card" id="silCard">
+    <div class="inter-head"><span class="inter-title">🤫 静默之室：你能静默几秒？</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">念头会飘过。你<b>什么都不用做</b>——只要不伸手去抓它们。坚持 8 秒，房间就会静下来。</p>
+    <div class="sil-room" id="silRoom">
+      <div class="sil-ring" id="silRing">
+        <div class="sil-num" id="silNum">8</div>
+        <div class="sil-label">秒 · 别抓念头</div>
+      </div>
+    </div>
+    <div class="sil-actions">
+      <button class="btn sil-grab" id="silGrab">🙋 我抓到一个念头</button>
+      <button class="btn sil-reset" id="silReset">↺ 重新开始</button>
+    </div>
+    <div class="inter-msg" id="silMsg">计时开始。念头飘过——但你不需要它。</div>
+  </div>
+
+  <figure>
+    <img src="media/ch7.jpg" alt="日式空房间里的静坐者" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>房间空，是因为你没有往里面搬东西</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c7s1">一 · 气场探源</h3>
+  <p class="short">把"我是谁"从名相中解开：<span class="hl">你不是你的名字、经历与角色。</span></p>
+  <p class="short">把自己视为纯意识，而不是短暂的名与形。</p>
+
+  <h3 class="sec-sub" id="c7s2">二 · 无梦之眠</h3>
+  <p class="short">深睡无梦时，你仍然"在"——那个知道"我睡得很好"的，就是本体。</p>
+  <p class="short"><span class="hl">入睡前，臣服于寂静。</span>那是离本体最近的日常状态。</p>
+
+  <h3 class="sec-sub" id="c7s3">三 · 其他入口</h3>
+  <p class="short">静默、空间、接纳、甚至死亡——<span class="hl">凡让你放下"我执"的，都是门。</span></p>
+  <p class="short">每次深睡、每次昏厥，都是一次"小死"的提醒：你不依赖念头而存在。</p>
+
+  <div class="photo-card">
+    <img src="media/photo_river_valley.jpg" alt="日出时分的雾气河谷" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“雾散之后，山谷一直就在那里。”</p>
+      <a href="https://stock.tuchong.com" target="_blank" rel="noopener">图源·图虫创意 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1Hw7nzWEZX&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：《当下的力量》2.5小时最全解读"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">《当下的力量》最全解读 · 那些不易察觉的入口</span>
+      <a href="https://www.bilibili.com/video/BV1Hw7nzWEZX" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh7">
+    <div class="quiz-head"><span class="quiz-title">🧠 第七章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar7"></div>
+    <div class="quiz-body" id="quizBody7"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard7">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch7"><span class="ach-ico">🤫</span><div class="ach-name">静默 8 秒</div><div class="ach-desc">不抓任何念头，坚持到静默</div></div>
+      <div class="ach-item" id="ach-q7"><span class="ach-ico">🚪</span><div class="ach-name">找到门</div><div class="ach-desc">通过第七章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="sec" id="ch8">
+  <div class="wrap">
+  <div class="sec-no">第八章 · 开悟的亲密关系</div>
+  <h2>爱不是修补，是照见</h2>
+
+  <p class="first">亲密关系不是用来"修补你"的。<span class="hl">它是一面镜子，照出你内在的坑洞。</span></p>
+  <p class="short">你无法在另一个人身上找到圆满——<span class="hl">圆满先在自己里面，才能在关系里流动。</span></p>
+  <p class="short">真正的爱不占有、不抓取，它让彼此自由地临在。</p>
+
+  <div class="inter-card" id="relCard">
+    <div class="inter-head"><span class="inter-title">🪞 关系之镜：TA 说了一句话</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">伴侣开口了。你的回应决定这面镜子是照亮你，还是照出小我。选 6 个场景试试。</p>
+    <div class="rel-stage" id="relStage">
+      <div class="rel-bubble" id="relBubble">……</div>
+      <div class="rel-heart" id="relHeart">💗</div>
+    </div>
+    <div class="rel-opts" id="relOpts"></div>
+    <div class="inter-msg" id="relMsg">面对 TA 的话，你想怎么回应？</div>
+    <div class="rel-score">临在之爱 <b id="relCnt">0</b> / 6 场景</div>
+  </div>
+
+  <figure>
+    <img src="media/ch8.jpg" alt="双人窗前，光交汇" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>两道光不必合并，它们彼此照亮</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c8s1">一 · 爱／恨关系</h3>
+  <p class="short">爱与恨是同一枚硬币——<span class="hl">都带着"他应该让我完整"的执念。</span></p>
+  <p class="short">期待一旦落空，爱就翻面成恨。翻转的，不是爱，是瘾。</p>
+
+  <h3 class="sec-sub" id="c8s2">二 · 瘾头与圆满</h3>
+  <p class="short">把伴侣当成圆满的来源，是最大的瘾。<span class="hl">上瘾，永远饥饿。</span></p>
+  <p class="short">先在自己之内找到圆满，关系才能从"索取"变成"分享"。</p>
+
+  <h3 class="sec-sub" id="c8s3">三 · 在亲密关系中灵修</h3>
+  <p class="short">冲突时刻正是练习场：<span class="hl">看见自己的反应，选择临在。</span></p>
+  <p class="short">停止评判"他应该怎样"——从审判席上下来，你们才都自由。</p>
+
+  <div class="photo-card">
+    <img src="media/photo_couple_sunset.jpg" alt="海边情侣剪影与落日" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“爱不是把彼此填满，是并肩看同一片晚霞。”</p>
+      <a href="https://stock.tuchong.com" target="_blank" rel="noopener">图源·图虫创意 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV19a9oYdEYb&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：托利谈有觉知的爱的关系"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">托利本人谈"有觉知的爱的关系" · 情人节特辑</span>
+      <a href="https://www.bilibili.com/video/BV19a9oYdEYb" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh8">
+    <div class="quiz-head"><span class="quiz-title">🧠 第八章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar8"></div>
+    <div class="quiz-body" id="quizBody8"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard8">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch8"><span class="ach-ico">🪞</span><div class="ach-name">看见即自由</div><div class="ach-desc">用临在回应 6 个场景</div></div>
+      <div class="ach-item" id="ach-q8"><span class="ach-ico">💗</span><div class="ach-name">爱的修行者</div><div class="ach-desc">通过第八章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="sec" id="ch9">
+  <div class="wrap">
+  <div class="sec-no">第九章 · 超越快乐与不快乐</div>
+  <h2>快乐与不快乐，是一枚硬币</h2>
+
+  <p class="first">快乐与不快乐是一枚硬币的两面。<span class="hl">执着于一面，另一面就会翻上来。</span></p>
+  <p class="short">万物都有周期：上升与下沉、得与失。<span class="hl">对抗循环，就是对抗生命。</span></p>
+  <p class="short">慈悲：看见他人痛苦而不评判——<span class="hl">慈悲是"我也是"的觉知。</span></p>
+
+  <div class="inter-card" id="flowCard">
+    <div class="inter-head"><span class="inter-title">🌊 无常之流：抓，还是放？</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">每件事都会流过去——好的坏的都一样。试试放手 8 件，看看不执着是什么滋味。</p>
+    <div class="fl-stage" id="flStage">
+      <div class="fl-river"></div>
+      <div class="fl-card" id="flCard">……</div>
+    </div>
+    <div class="fl-actions">
+      <button class="btn fl-let" id="flLet">🌊 放手（让它流走）</button>
+      <button class="btn fl-hold" id="flHold">🤲 紧握（抓住不放）</button>
+    </div>
+    <div class="inter-msg" id="flMsg">河里的每件事都会流过去。你只能选择怎么经历它。</div>
+    <div class="fl-score">放手 <b id="flCnt">0</b> / 8</div>
+  </div>
+
+  <figure>
+    <img src="media/ch9.jpg" alt="风暴中的圆月与静光" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>风暴会过，圆月一直都在云后</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c9s1">一 · 超越好与坏的善</h3>
+  <p class="short">好与坏是头脑贴的标签。<span class="hl">当下只有"发生"，和你的"回应"。</span></p>
+  <p class="short">当你停止给事件贴标签，一件"坏事"里，反而常常藏着礼物。</p>
+
+  <h3 class="sec-sub" id="c9s2">二 · 无常和生命循环</h3>
+  <p class="short">春天会来，也会走。<span class="hl">你不抗拒冬天，才不辜负春天。</span></p>
+  <p class="short">循环不是惩罚，是生命的呼吸。你顺着它，就站在了潮头。</p>
+
+  <h3 class="sec-sub" id="c9s3">三 · 慈悲的本质</h3>
+  <p class="short">慈悲不是居高临下的拯救，<span class="hl">是承认"我们都在同一艘船上"。</span></p>
+  <p class="short">看见自己的脆弱，才看得见别人的脆弱。那是慈悲的地基。</p>
+
+  <div class="photo-card">
+    <img src="media/photo_stream_highland.jpg" alt="高地溪流蜿蜒而下" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“水不执着于任何河岸，却抵达了大海。”</p>
+      <a href="https://stock.tuchong.com" target="_blank" rel="noopener">图源·图虫创意 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1QLkXB3E9r&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：痛苦也能变能量"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">痛苦也能变能量 · 超越好与坏的真相</span>
+      <a href="https://www.bilibili.com/video/BV1QLkXB3E9r" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh9">
+    <div class="quiz-head"><span class="quiz-title">🧠 第九章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar9"></div>
+    <div class="quiz-body" id="quizBody9"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard9">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch9"><span class="ach-ico">🌊</span><div class="ach-name">顺流而下</div><div class="ach-desc">放手 8 件事</div></div>
+      <div class="ach-item" id="ach-q9"><span class="ach-ico">🪷</span><div class="ach-name">超越好坏</div><div class="ach-desc">通过第九章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="sec" id="ch10">
+  <div class="wrap">
+  <div class="sec-no">第十章 · 臣服的意义</div>
+  <h2>臣服，是最高级的顺流</h2>
+
+  <p class="first">臣服不是认命，<span class="hl">是停止无用的内在抵抗。</span>它是力量，不是软弱。</p>
+  <p class="short">臣服于"本然"：不抵抗当下，然后采取行动。<span class="hl">先接纳，回应才有力。</span></p>
+  <p class="short">你无法控制风，但你可以调整帆。</p>
+
+  <div class="inter-card" id="boatCard">
+    <div class="inter-head"><span class="inter-title">🛶 顺流之舟：臣服，还是逆流？</span><span class="media-tag tag-practice">互动实验</span></div>
+    <p class="inter-hint">每件事都是河上的浪。<b>逆流硬顶</b>，船会晃；<b>顺着走</b>，船自然到岸。8 次顺流，抵达对岸。</p>
+    <div class="bt-stage" id="btStage">
+      <div class="bt-track">
+        <div class="bt-boat" id="btBoat">🛶</div>
+        <div class="bt-shore">🏁</div>
+      </div>
+      <div class="bt-ev" id="btEv">……</div>
+    </div>
+    <div class="bt-actions">
+      <button class="btn bt-sur" id="btSur">🌊 臣服（顺着走）</button>
+      <button class="btn bt-res" id="btRes">⛔ 抗拒（逆流硬顶）</button>
+    </div>
+    <div class="inter-msg" id="btMsg">河上起浪了。你选择怎么过这一段？</div>
+    <div class="bt-score">顺流 <b id="btCnt">0</b> / 8</div>
+  </div>
+
+  <figure>
+    <img src="media/ch10.jpg" alt="河中央的人顺流而下" loading="lazy">
+    <figcaption><span class="media-tag tag-img">配图</span>不与水对抗的人，最先抵达大海</figcaption>
+  </figure>
+
+  <h3 class="sec-sub" id="c10s1">一 · 接纳当下</h3>
+  <p class="short">接受"此时此地"的事实——<span class="hl">不是接受一辈子如此，只是接受此刻如此。</span></p>
+  <p class="short">接纳之后，行动才有力量；抗拒之中，行动全是乱撞。</p>
+
+  <h3 class="sec-sub" id="c10s2">二 · 人际关系中的臣服</h3>
+  <p class="short">不把别人改造成"应该的样子"。<span class="hl">先接纳他此刻的样子，回应才可能真正有效。</span></p>
+  <p class="short">臣服不是让步，是放下"必须赢"的执念。</p>
+
+  <h3 class="sec-sub" id="c10s3">三 · 转受苦为和平</h3>
+  <p class="short"><span class="hl">痛苦 × 抗拒 = 苦难。</span>把抗拒拿掉，痛就只是痛，并且会自己过去。</p>
+  <p class="short">你不必喜欢当下的一切，但你可以不与它作战——那是和平的开始。</p>
+
+  <div class="photo-card">
+    <img src="media/photo_canoe_river.jpg" alt="独木舟顺流在河面上" loading="lazy">
+    <div class="photo-cap">
+      <span class="media-tag">实景</span>
+      <p class="photo-quote">“桨不是用来对抗水的，是用来和它合作的。”</p>
+      <a href="https://www.vcg.com" target="_blank" rel="noopener">图源·视觉中国 ↗</a>
+    </div>
+  </div>
+
+  <div class="bili-wrap">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1pJsFe4E4U&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen scrolling="no" title="B站：臣服——痛苦的炼金术"></iframe>
+    <div class="bili-cap">
+      <span class="media-tag">延伸</span>
+      <span class="bili-t">臣服：痛苦的炼金术 · 顺流而下而不要逆流而上</span>
+      <a href="https://www.bilibili.com/video/BV1pJsFe4E4U" target="_blank" rel="noopener">去 B 站看原视频 ↗</a>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quizCh10">
+    <div class="quiz-head"><span class="quiz-title">🧠 第十章闯关</span><span class="media-tag tag-practice">3 题</span></div>
+    <div class="quiz-bar" style="width:0" id="quizBar10"></div>
+    <div class="quiz-body" id="quizBody10"></div>
+  </div>
+
+  <div class="quiz-card" id="achCard10">
+    <div class="quiz-head"><span class="quiz-title">🏅 本章成就</span></div>
+    <div class="ach-row">
+      <div class="ach-item" id="ach-ch10"><span class="ach-ico">🛶</span><div class="ach-name">抵达对岸</div><div class="ach-desc">8 次顺流完成航行</div></div>
+      <div class="ach-item" id="ach-q10"><span class="ach-ico">🕊️</span><div class="ach-name">和平的开端</div><div class="ach-desc">通过第十章 3 题闯关</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+  <footer>
+    <div class="wrap">
+      《当下的力量》多媒体书 · 全书十章 · V5<br>
+      文字底本：用户提供的《当下的力量》精校版（原书作者：埃克哈特·托利）<br>
+      插画 · 朗读 · 冥想引导 · 概念动画：均由 AI 生成；全书十章 · 配 AI 插画 · 实景照片 · B 站延伸视频 · 10 个互动实验 · 30 题闯关<br>
+      建议使用 Chrome / Edge 浏览器阅读 · 电脑端优先设计，兼顾手机
+    </div>
+  </footer>
+</main><!-- 呼吸练习弹窗 -->
+<div id="breathModal" role="dialog" aria-modal="true" aria-label="回到当下呼吸练习">
+  <div class="breath-card">
+    <h4>回到当下</h4>
+    <div class="sub">一吸、一停、一呼 · 60 秒觉察练习</div>
+    <div class="breath-stage">
+      <div class="breath-ring" id="breathRing"></div>
+      <div class="breath-phase" id="breathPhase">准备</div>
+    </div>
+    <div class="breath-time" id="breathTime">60</div>
+    <div class="breath-btns">
+      <button class="btn primary" id="breathAudioBtn">播放引导音频</button>
+      <button class="btn" id="breathClose">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+function $(id){return document.getElementById(id);}
+var body=document.body;
+
+/* ===== 通用 ===== */
+function showToast(msg){
+  var t=$('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(showToast._t); showToast._t=setTimeout(function(){t.classList.remove('show');},2400);
+}
+function inView(el,fn){
+  if(!('IntersectionObserver' in window)){fn();return;}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){fn();io.disconnect();} });
+  },{threshold:.35});
+  io.observe(el);
+}
+
+/* ===== 阅读进度 ===== */
+var bar=$('progressBar');
+function onScroll(){var h=document.documentElement;var max=(h.scrollHeight-h.clientHeight)||1;bar.style.width=Math.min(100,(h.scrollTop/max)*100)+'%';}
+window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+/* ===== 目录 ===== */
+var toc=$('toc'),backdrop=$('tocBackdrop'),menuBtn=$('menuBtn');
+function closeToc(){toc.classList.remove('open');backdrop.classList.remove('show');}
+menuBtn.addEventListener('click',function(){toc.classList.toggle('open');backdrop.classList.toggle('show');});
+backdrop.addEventListener('click',closeToc);
+[].slice.call(document.querySelectorAll('.toc-chap')).forEach(function(btn){
+  if(btn.getAttribute('data-target')){
+    btn.addEventListener('click',function(){
+      var s=document.getElementById(btn.getAttribute('data-target')); if(s)s.style.display=s.style.display==='block'?'none':'block';
+      if(toc.classList.contains('open'))closeToc();
+    });
+  }else if(btn.getAttribute('data-toast')){
+    btn.addEventListener('click',function(){showToast(btn.getAttribute('data-toast'));});
+  }
+});
+/* 目录高亮 */
+var secs=[].slice.call(document.querySelectorAll('section.sec'));
+var tocLinks=[].slice.call(document.querySelectorAll('.toc-sub a'));
+if('IntersectionObserver' in window){
+  var io2=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){var id=e.target.id;tocLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});} });
+  },{rootMargin:'-35% 0px -55% 0px'});
+  secs.forEach(function(s){io2.observe(s);});
+}
+
+/* ===== 夜间模式 / 字号 ===== */
+var modeBtn=$('modeBtn');
+function applyMode(n){body.classList.toggle('night',n);modeBtn.textContent=n?'日间':'夜间';}
+var saved=null;try{saved=localStorage.getItem('pon-night');}catch(e){}
+applyMode(saved==='1');
+modeBtn.addEventListener('click',function(){var n=!body.classList.contains('night');applyMode(n);try{localStorage.setItem('pon-night',n?'1':'0');}catch(e){}});
+var fontBtn=$('fontBtn'),fs=17;
+try{fs=parseInt(localStorage.getItem('pon-fs'),10)||17;}catch(e){}
+body.style.fontSize=fs+'px';
+if(fs>=21)fontBtn.textContent='A−';
+fontBtn.addEventListener('click',function(){
+  fs=fs>=21?16:fs+1.5; body.style.fontSize=fs+'px'; fontBtn.textContent=fs>=21?'A−':'A+';
+  try{localStorage.setItem('pon-fs',fs);}catch(e){}
+});
+
+/* ===== 宝箱 ===== */
+(function(){
+  var card=$('boxCard'); if(!card)return;
+  var opened=false;
+  card.addEventListener('click',function(){
+    if(opened)return; opened=true; card.classList.add('opened');
+    setTimeout(function(){showToast('其实宝藏一直就在那里——你只是从未打开看过');},900);
+  });
+})();
+
+/* ===== 思维流动画 ===== */
+(function(){
+  var stage=$('mfStage'); if(!stage)return;
+  var thoughts=[
+    {t:'昨天他说那句话是什么意思…',c:''},
+    {t:'等下还要交报告…',c:'dark'},
+    {t:'我是不是又胖了…',c:''},
+    {t:'如果当初…就好了',c:'dark'},
+    {t:'明天的事怎么办…',c:''},
+    {t:'他为什么不回我消息…',c:'dark'},
+    {t:'晚上吃什么好呢…',c:''},
+    {t:'我该不会生病了吧…',c:'dark'}
+  ];
+  var bubbles=[],running=false,aware=false;
+  function spawn(){
+    var i=bubbles.length%thoughts.length;
+    var th=thoughts[i];
+    var el=document.createElement('div');
+    el.className='mf-thought '+(th.c||'');
+    el.textContent=th.t;
+    el.style.top=(10+Math.random()*70)+'px';
+    stage.appendChild(el);
+    bubbles.push(el);
+    var dur=6000+Math.random()*4000;
+    el._anim=el.animate([
+      {transform:'translateX(0px)',opacity:0},
+      {transform:'translateX(120px)',opacity:1,offset:.08},
+      {transform:'translateX('+(stage.clientWidth-200)+'px)',opacity:.85}
+    ],{duration:dur,iterations:Infinity,easing:'linear'});
+    if(aware||!running){el._anim.pause();el.style.opacity=aware?'.35':'.9';}
+    if(bubbles.length>10){var old=bubbles.shift();old._anim.cancel();old.remove();}
+  }
+  function startFlow(){ if(running)return; running=true; aware=false;
+    stage.classList.remove('aware'); $('mfStatus').innerHTML='<b>思维正在流过</b>——你听见它们了吗？';
+    if(!bubbles.length){for(var k=0;k<6;k++)spawn();}else{bubbles.forEach(function(b){b._anim.play();b.style.opacity='';});}
+    spawn._int=setInterval(spawn,2600);
+  }
+  function stopFlow(){ running=false; clearInterval(spawn._int);
+    bubbles.forEach(function(b){b._anim.pause();});
+    $('mfStatus').textContent='思维静止了。';
+  }
+  function observe(){ aware=true; running=false; clearInterval(spawn._int);
+    stage.classList.add('aware');
+    bubbles.forEach(function(b){b._anim.pause();b.style.opacity='.35';});
+    $('mfStatus').innerHTML='<b>你在观察思考者</b>——声音在那里，而你在这里。';
+    showToast('你看见了思维与观察者之间的距离');
+  }
+  $('mfPlay').addEventListener('click',startFlow);
+  $('mfPause').addEventListener('click',stopFlow);
+  $('mfObserve').addEventListener('click',observe);
+})();
+
+/* ===== 间隙时间轴 ===== */
+(function(){
+  var track=$('gtTrack'); if(!track)return;
+  var statusEl=document.createElement('div');
+  statusEl.style.cssText='font-size:12.5px;color:var(--ink2);margin-top:8px;min-height:18px';
+  track.parentNode.insertBefore(statusEl,track.nextSibling);
+  [].slice.call(track.children).forEach(function(el){
+    el.addEventListener('click',function(){
+      [].slice.call(track.children).forEach(function(o){o.classList.remove('hot');});
+      el.classList.add('hot');
+      statusEl.textContent=el.getAttribute('data-w')||'';
+    });
+  });
+})();
+
+/* ===== 环形图 ===== */
+(function(){
+  var card=$('donutCard'); if(!card)return;
+  var C=301.6,done=false;
+  function animate(){
+    if(done)return; done=true;
+    $('donutWaste').style.strokeDashoffset=(C*0.15).toFixed(1);
+    var use=$('donutUse');
+    use.style.transform='rotate(306deg)';
+    use.style.transformOrigin='60px 60px';
+    use.style.strokeDashoffset=(C*0.85).toFixed(1);
+  }
+  function checkDonut(){
+    if(done)return;
+    var r=card.getBoundingClientRect();
+    if(r.top<window.innerHeight*0.85){animate();}
+  }
+  window.addEventListener('scroll',checkDonut,{passive:true});
+  setTimeout(checkDonut,600);
+})();
+
+/* ===== 循环图通用 ===== */
+function buildLoop(stageId,nodes){
+  var stage=$(stageId); if(!stage)return null;
+  var arrowEls=[];
+  nodes.forEach(function(n){
+    var d=document.createElement('div');
+    d.className='loop-node';
+    d.style.background=n.bg;
+    d.style.border='1.5px solid '+n.bd;
+    d.style.color=n.fc;
+    d.style.left=n.left; d.style.top=n.top;
+    d.innerHTML='<span class="ln-ico">'+n.ico+'</span>'+n.t;
+    stage.appendChild(d);
+    n.el=d;
+  });
+  nodes.forEach(function(n){
+    if(!n.next)return;
+    var a=document.createElement('div');
+    a.className='loop-arrow'; a.textContent='➜';
+    var x1=n.cx,y1=n.cy,x2=n.next.cx,y2=n.next.cy;
+    a.style.left=((x1+x2)/2-12)+'px'; a.style.top=((y1+y2)/2-14)+'px';
+    stage.appendChild(a);
+    n._arrow=a;
+  });
+  return nodes;
+}
+/* 我执循环 */
+(function(){
+  var stage=$('egoStage'); if(!stage)return;
+  var W=function(){return stage.clientWidth;},H=function(){return stage.clientHeight;};
+  function pos(p){ return {left:p.x+'%',top:p.y+'%'}; }
+  var past={t:'过去\n重播旧剧情',ico:'📼',bg:'rgba(63,111,168,.12)',bd:'#3f6fa8',fc:'#3f6fa8',x:8,y:12,cx:8+14,cy:12+20};
+  var future={t:'未来\n投射新剧本',ico:'🔮',bg:'rgba(180,96,58,.12)',bd:'#b4603a',fc:'#b4603a',x:56,y:12,cx:56+14,cy:12+20};
+  var now={t:'当下\n被跳过',ico:'⏳',bg:'rgba(62,142,110,.14)',bd:'#3e8e6e',fc:'#3e8e6e',x:32,y:62,cx:32+14,cy:62+18};
+  var nodes=buildLoop('egoStage',[
+    {t:'过去 · 重播旧剧情',ico:'📼',bg:'rgba(63,111,168,.12)',bd:'#3f6fa8',fc:'#3f6fa8',left:past.x+'%',top:past.y+'%',cx:past.cx,cy:past.cy,next:future},
+    {t:'未来 · 投射新剧本',ico:'🔮',bg:'rgba(180,96,58,.12)',bd:'#b4603a',fc:'#b4603a',left:future.x+'%',top:future.y+'%',cx:future.cx,cy:future.cy,next:now},
+    {t:'当下 · 被跳过',ico:'⏳',bg:'rgba(62,142,110,.14)',bd:'#3e8e6e',fc:'#3e8e6e',left:now.x+'%',top:now.y+'%',cx:now.cx,cy:now.cy,next:past}
+  ]);
+  if(!nodes)return;
+  var order=[nodes[0],nodes[1],nodes[2],nodes[0]];
+  var msgs=['我执在重播过去：当初要是…','又投射到未来：有朝一日…','唯独跳过当下：等这个、那个发生，我就会快乐','于是循环继续…'];
+  var timer=null,idx=0,running=false;
+  function step(){
+    order.forEach(function(n,i){n.el.classList.toggle('hot',i===idx);});
+    [].slice.call(stage.querySelectorAll('.loop-arrow')).forEach(function(a,i){a.classList.toggle('hot',i===idx);});
+    $('egoStatus').textContent=msgs[idx];
+    idx=(idx+1)%order.length;
+  }
+  function reset(){clearInterval(timer);running=false;idx=0;
+    [].slice.call(stage.querySelectorAll('.loop-node,.loop-arrow')).forEach(function(e){e.classList.remove('hot');});
+    $('egoStatus').textContent='我执活在过去与未来';
+  }
+  $('egoPlay').addEventListener('click',function(){
+    if(running){clearInterval(timer);running=false;$('egoPlay').textContent='▶ 播放';return;}
+    running=true;$('egoPlay').textContent='⏸ 暂停';
+    step();timer=setInterval(step,2400);
+  });
+  $('egoReset').addEventListener('click',function(){reset();$('egoPlay').textContent='▶ 播放';});
+})();
+
+/* 情绪循环 */
+(function(){
+  var stage=$('emoStage'); if(!stage)return;
+  var seq=[
+    {t:'一个念头升起',ico:'💭',bg:'rgba(63,111,168,.12)',bd:'#3f6fa8',fc:'#3f6fa8',x:38,y:0,cx:38+12,cy:0+16},
+    {t:'情绪被点燃',ico:'🔥',bg:'rgba(180,96,58,.12)',bd:'#b4603a',fc:'#b4603a',x:74,y:33,cx:74+12,cy:33+16},
+    {t:'身体开始反应',ico:'😰',bg:'rgba(124,90,58,.14)',bd:'#7c5a3a',fc:'#7c5a3a',x:38,y:64,cx:38+12,cy:64+16},
+    {t:'更多念头涌入',ico:'🌀',bg:'rgba(168,132,44,.12)',bd:'#a8842c',fc:'#a8842c',x:2,y:33,cx:2+12,cy:33+16}
+  ];
+  var nodes=buildLoop('emoStage',seq.map(function(n,i){
+    return {t:n.t,ico:n.ico,bg:n.bg,bd:n.bd,fc:n.fc,left:n.x+'%',top:n.y+'%',cx:n.cx,cy:n.cy,next:seq[(i+1)%seq.length]};
+  }));
+  if(!nodes)return;
+  var msgs=['念头喂养情绪','情绪接管身体','身体强化念头','恶性循环，彼此喂养'];
+  var timer=null,idx=0,running=false;
+  function step(){
+    nodes.forEach(function(n,i){n.el.classList.toggle('hot',i===idx);});
+    [].slice.call(stage.querySelectorAll('.loop-arrow')).forEach(function(a,i){a.classList.toggle('hot',i===idx);});
+    $('emoStatus').textContent=msgs[idx];
+    idx=(idx+1)%nodes.length;
+  }
+  function reset(){clearInterval(timer);running=false;idx=0;
+    [].slice.call(stage.querySelectorAll('.loop-node,.loop-arrow')).forEach(function(e){e.classList.remove('hot');});
+    $('emoStatus').textContent='一个念头升起';
+  }
+  $('emoPlay').addEventListener('click',function(){
+    if(running){clearInterval(timer);running=false;$('emoPlay').textContent='▶ 播放循环';return;}
+    running=true;$('emoPlay').textContent='⏸ 暂停';
+    step();timer=setInterval(step,2000);
+  });
+  $('emoReset').addEventListener('click',function(){reset();$('emoPlay').textContent='▶ 播放循环';});
+})();
+
+/* ===== 翻牌卡 ===== */
+[].slice.call(document.querySelectorAll('.flip-card')).forEach(function(c){
+  c.addEventListener('click',function(){c.classList.toggle('flipped');});
+});
+
+/* ===== 金句打字机 ===== */
+(function(){
+  var tw=$('typewriter'); if(!tw)return;
+  var quotes=[
+    '你相信就是你的心智头脑。这是一个幻相。这个工具已经反客为主掌控你了。',
+    '当一个思想止息的时候，你经验到一个心智流的中断——一个“无心”的间隙。',
+    '当思想不再与更广阔的意识领域接轨的时候，它便会快速地枯竭、疯狂、而产生破坏力。',
+    '纵或乌云铺天盖地，太阳却不曾消失。而太阳就在乌云的另一端。'
+  ];
+  var idx=0,timer=null,playing=false,pos=0;
+  function stopType(){clearInterval(timer);timer=null;playing=false;$('twPlay').textContent='▶ 播放';}
+  function type(){ $('twCaret').style.display='inline-block';
+    stopType(); pos=0; $('twText').textContent=''; playing=true; $('twPlay').textContent='⏸ 暂停';
+    timer=setInterval(function(){
+      pos++;
+      $('twText').textContent=quotes[idx].slice(0,pos);
+      if(pos>=quotes[idx].length){stopType();}
+    },120);
+  }
+  function render(){ $('twText').textContent=quotes[idx]; $('twStatus').textContent='第 '+(idx+1)+' / 4 条 · 本章金句'; }
+  $('twPrev').addEventListener('click',function(){stopType();idx=(idx+3)%4;render();});
+  $('twNext').addEventListener('click',function(){stopType();idx=(idx+1)%4;render();});
+  $('twPlay').addEventListener('click',function(){
+    if(playing){stopType();}else{type();}
+  });
+  render();
+  inView(tw,function(){setTimeout(type,600);});
+})();
+
+/* ===== 阅读打卡 ===== */
+(function(){
+  var bd=[].slice.call(document.querySelectorAll('.bd'));
+  if(!bd.length)return;
+  function checkBadges(){
+    var vh=window.innerHeight;
+    bd.forEach(function(b){
+      var sec=document.getElementById(b.getAttribute('data-sec'));
+      if(!sec)return;
+      var r=sec.getBoundingClientRect();
+      if(r.top<vh*0.7&&r.bottom>vh*0.1){b.classList.add('done');}
+    });
+  }
+  window.addEventListener('scroll',checkBadges,{passive:true});
+  setTimeout(checkBadges,600);
+})();
+
+/* ===== 呼吸练习 ===== */
+var modal=$('breathModal'),ring=$('breathRing'),phase=$('breathPhase'),timeEl=$('breathTime');
+var breathAudio=null,breathTimer=null,count=60,running=false,phaseTimer=null;
+function openBreath(){modal.classList.add('open');if(!running)startBreath();}
+function closeBreath(){modal.classList.remove('open');if(running)stopBreath();}
+function startBreath(){
+  running=true;count=60;timeEl.textContent=count;
+  schedulePhase('吸气',4000,'inhale');
+  breathTimer=setInterval(function(){count--;if(count<=0){timeEl.textContent='0';stopBreath();try{ACH.got('breath');}catch(e){}return;}timeEl.textContent=count;},1000);
+}
+function schedulePhase(label,ms,cls){
+  clearTimeout(phaseTimer);phase.textContent=label;ring.className='breath-ring '+cls;
+  phaseTimer=setTimeout(function(){nextPhase(label);},ms);
+}
+function nextPhase(prev){
+  if(!running)return;
+  if(prev==='吸气'){schedulePhase('屏息',4000,'hold');}
+  else if(prev==='屏息'){schedulePhase('呼气',6000,'exhale');}
+  else{schedulePhase('吸气',4000,'inhale');}
+}
+function stopBreath(){
+  running=false;clearInterval(breathTimer);clearTimeout(phaseTimer);
+  phase.textContent='准备';ring.className='breath-ring';
+  if(breathAudio){breathAudio.pause();breathAudio.currentTime=0;}
+  $('breathAudioBtn').textContent='播放引导音频';
+}
+$('breathBtn').addEventListener('click',openBreath);
+$('breathBtn2').addEventListener('click',openBreath);
+$('breathClose').addEventListener('click',closeBreath);
+var audioBtn=$('breathAudioBtn');
+audioBtn.addEventListener('click',function(){
+  if(!breathAudio){breathAudio=new Audio('media/audio_meditation.wav');breathAudio.loop=false;breathAudio.onended=function(){audioBtn.textContent='播放引导音频';};}
+  if(breathAudio.paused){breathAudio.play();audioBtn.textContent='暂停音频';}
+  else{breathAudio.pause();audioBtn.textContent='播放引导音频';}
+});
+/* ===== V3 · 成就 / 沉浸 / 游戏 / 测验 ===== */
+var ACH={};
+(function(){
+  ['game','quiz','breath','watch','ch2','q2','ch3','q3','ch4','q4','ch5','q5','ch6','q6','ch7','q7','ch8','q8','ch9','q9','ch10','q10','all'].forEach(function(k){ACH[k]={got:false};});
+  ACH.got=function(k){
+    if(!ACH[k])return;
+    ACH[k].got=true;
+    var el=document.getElementById('ach-'+k);
+    if(el)el.classList.add('got');
+  };
+  ACH.has=function(k){return !!(ACH[k]&&ACH[k].got);};
+})();
+
+/* 沉浸模式 */
+(function(){
+  var btn=$('immerseBtn'); if(!btn)return;
+  btn.addEventListener('click',function(){
+    var on=document.body.classList.toggle('immersed');
+    btn.textContent=on?'退出':'沉浸';
+    if(typeof showToast==='function')showToast(on?'已进入沉浸阅读 · 点右上角退出':'已退出沉浸模式');
+  });
+})();
+
+/* 念头泡泡消消乐 */
+(function(){
+  var stage=$('mgStage'); if(!stage)return;
+  var words=['我担心明天…','他是不是在笑我？','我该换工作吗','刚才那句话什么意思','我要是…就好了','别出丑啊','ta 怎么还不回消息','我是不是很失败','下个月房租怎么办','别人都比我强','那次真不该…','别想了，真的别想了'];
+  var actx=null;
+  function beep(freq,dur,type,gain,when){
+    try{
+      if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();
+      var t=actx.currentTime+(when||0);
+      var o=actx.createOscillator(),g=actx.createGain();
+      o.type=type||'sine';o.frequency.value=freq;
+      g.gain.setValueAtTime(gain||.18,t);
+      g.gain.exponentialRampToValueAtTime(.001,t+dur);
+      o.connect(g);g.connect(actx.destination);
+      o.start(t);o.stop(t+dur+.03);
+    }catch(e){}
+  }
+  function sfxPop(){beep(620+Math.random()*240,.12,'triangle',.16);}
+  function sfxWin(){[523,659,784,1047].forEach(function(f,i){beep(f,.18,'sine',.2,i*.09);});}
+  function sfxLose(){beep(240,.28,'sawtooth',.1,0);beep(180,.32,'sawtooth',.1,.14);}
+  function confetti(){
+    var cols=['#e8b64c','#f2d488','#7fc8a0','#c9a7e8','#eaa7b2'];
+    for(var i=0;i<26;i++){
+      var s=document.createElement('div');s.className='mg-confetti';
+      s.style.left=(Math.random()*94+3)+'%';
+      s.style.background=cols[i%cols.length];
+      s.style.animationDuration=(1.3+Math.random()*1.3)+'s';
+      s.style.animationDelay=(Math.random()*.45)+'s';
+      stage.appendChild(s);
+      (function(el){setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},2800);})(s);
+    }
+  }
+  var target=10,score=0,endAt=0,timer=null,running=false,autoStarted=false;
+  function mkBubble(w){
+    var d=document.createElement('div');
+    d.className='mg-bubble'; d.textContent=w;
+    d.style.left=(3+Math.random()*61)+'%';
+    d.style.top=(5+Math.random()*55)+'%';
+    d.style.animationDelay=(-Math.random()*4.5)+'s';
+    d.addEventListener('click',function(){pop(d);});
+    stage.appendChild(d);
+  }
+  function pop(d){
+    if(d.classList.contains('pop')||!running)return;
+    sfxPop();
+    d.classList.add('pop');
+    score++; $('mgScore').textContent=score;
+    setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},480);
+    if(score>=target){win();}
+  }
+  function start(){
+    clearInterval(timer);
+    stage.innerHTML=''; score=0;
+    $('mgScore').textContent=0; $('mgTime').textContent=20;
+    $('mgMsg').textContent=''; running=true;
+    $('mgPlay').textContent='⏸ 暂停';
+    endAt=Date.now()+20000;
+    for(var i=0;i<words.length;i++){mkBubble(words[i]);}
+    timer=setInterval(function(){
+      var left=Math.max(0,Math.ceil((endAt-Date.now())/1000));
+      $('mgTime').textContent=left;
+      if(left<=0){lose();}
+    },250);
+  }
+  function win(){
+    if(!running)return; running=false;
+    clearInterval(timer);
+    $('mgMsg').textContent='🎉 你成了念头的旁观者——它们飘过，而你一动不动。';
+    $('mgPlay').textContent='▶ 再玩一次';
+    sfxWin();confetti();
+    ACH.got('game');
+    if(typeof showToast==='function')showToast('成就解锁：念头的旁观者 🎯');
+  }
+  function lose(){
+    if(!running)return; running=false;
+    clearInterval(timer);
+    sfxLose();
+    $('mgMsg').textContent='念头太多？别急——旁观者不是要消灭念头，只是看着它们。再试一次。';
+    $('mgPlay').textContent='▶ 再试一次';
+  }
+  window.__sfx={pop:sfxPop,win:sfxWin,lose:sfxLose,right:function(){beep(880,.1,'sine',.14);},wrong:function(){beep(200,.2,'sawtooth',.1);}};
+  $('mgPlay').addEventListener('click',function(){
+    if(running){clearInterval(timer);running=false;this.textContent='▶ 继续';return;}
+    start();
+  });
+  if(typeof inView==='function'){
+    inView(stage,function(){ if(!running&&!autoStarted){autoStarted=true;setTimeout(start,300);} });
+  }
+})();
+
+/* 觉察力闯关 */
+(function(){
+  var body=$('quizBody'); if(!body)return;
+  var qs=[
+    {q:'托利说"开悟的最大障碍"是什么？',opts:['思考太多','无意识认同自己的思维','情绪起伏','工作太忙'],a:1,fb:'不是思维本身，而是"无意识认同"——你把思维当成了自己。'},
+    {q:'脑海里的声音正在批评你时，那个声音是"你"吗？',opts:['是','不是'],a:1,fb:'不是。你能听见它，说明你比它更大——你是那个觉察者。'},
+    {q:'把注意力从思考移开，最直接回到当下的方式是？',opts:['刷手机','回忆过去','感受身体与呼吸','计划明天'],a:2,fb:'身体的感觉和呼吸只存在于当下，一感受它们，你就回来了。'},
+    {q:'对笛卡尔的"我思故我在"，托利的看法是？',opts:['完全赞同','把思考等同于存在，正是痛苦的根源','应该再多想一些'],a:1,fb:'思考只是工具。把工具当成自己，就本末倒置了。'},
+    {q:'观察念头时，正确的做法是？',opts:['跟着念头走','和念头辩论','静静听，不评判不参与','强行压住念头'],a:2,fb:'倾听而不评判、不参与——念头会自己失去力量。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div');
+    box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q';
+    qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button');
+      b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('quiz');
+            if(typeof showToast==='function')showToast('🎉 全部答对 · 成就解锁：第一章觉醒者');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 再想想——回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+
+/* 视频观看成就 */
+(function(){
+  var v=document.querySelector('.video-card video');
+  if(!v)return;
+  var fired=false;
+  v.addEventListener('timeupdate',function(){
+    if(!fired&&v.currentTime>3){fired=true;ACH.got('watch');}
+  });
+})();
+/* ===== 第二章：痛苦之身实验 ===== */
+(function(){
+  var msg=$('painMsg'),core=$('painCore'),en=$('painEnergy'),fill=$('painFill');
+  if(!msg||!core)return;
+  var energy=50,activated=false;
+  function upd(){
+    energy=Math.max(0,Math.min(110,energy));
+    en.textContent='能量 '+energy;
+    fill.style.width=energy+'%';
+    fill.classList.toggle('low',energy<=20);
+    if(energy<=0){
+      core.classList.add('cool'); core.classList.remove('hot');
+      core.textContent='🌫️';
+      msg.textContent='痛苦之身没有食物，慢慢瘪了下去，像一团散掉的烟。你赢了——而赢的方式，只是"看着"。';
+      ACH.got('ch2');
+      if(typeof showToast==='function')showToast('🏅 成就解锁：不喂食痛苦');
+    }else if(energy>=100){
+      core.classList.add('hot'); core.textContent='😡';
+      msg.textContent='它爆发了！你说出伤人的话、做出失控的事——这就是"被痛苦之身接管"。点"观察它"，看着它瘪下去。';
+    }
+  }
+  [].slice.call(document.querySelectorAll('.pain-ev')).forEach(function(b){
+    b.addEventListener('click',function(){
+      if(energy<=0)return;
+      activated=true; energy=Math.min(110,energy+22);
+      core.classList.add('hot'); core.textContent='😠';
+      msg.textContent='场景：'+b.getAttribute('data-txt')+'（它被激活了！）';
+      if(window.__sfx)window.__sfx.wrong();
+      upd();
+    });
+  });
+  $('painFeed').addEventListener('click',function(){
+    if(!activated||energy<=0)return;
+    energy=Math.min(110,energy+16);
+    core.classList.add('hot');
+    var feeds=['你开始想：我就知道ta看不起我…','你翻来覆去地分析：凭什么是我？','你越想越气，血压都上来了…','你把这件事讲给三个人听，越讲越委屈…'];
+    msg.textContent='你喂了它：'+feeds[Math.floor(Math.random()*feeds.length)];
+    if(window.__sfx)window.__sfx.wrong();
+    upd();
+  });
+  $('painWatch').addEventListener('click',function(){
+    if(!activated||energy<=0)return;
+    energy=Math.max(0,energy-26);
+    core.classList.add('cool'); core.textContent='👀';
+    msg.textContent='你没有分析它，只是看着它。它得不到关注，能量正在流失……（再观察几次，它会饿死）';
+    if(window.__sfx)window.__sfx.right();
+    upd();
+  });
+  upd();
+})();
+
+/* 第二章测验 */
+(function(){
+  var body=$('quizBody2'); if(!body)return;
+  var qs=[
+    {q:'托利说，十之八九的痛苦来自哪里？',opts:['命运不公','对当下的不接纳与抗拒','别人造成的','身体疾病'],a:1,fb:'痛苦不是事件本身，是心对"本然"的抗拒。'},
+    {q:'"痛苦之身"是什么？',opts:['一种病','体内累积的负面情绪能量场','头脑的别名','噩梦'],a:1,fb:'它由未被正视的负面情绪喂养长大，一被激活就接管你。'},
+    {q:'痛苦之身被激活时，最有效的做法是？',opts:['跟它讲道理','压制它','观察它而不认同','转移注意力'],a:2,fb:'一观察，无意识认同就被打破——它失去食物，慢慢熄灭。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar2').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q2');
+            if(typeof showToast==='function')showToast('🏅 第二章闯关全对 · 成就：离苦之道');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+/* ===== 第三章：时间探测器 ===== */
+(function(){
+  var card=$('tmCard'),msg=$('tmMsg'),doneEl=$('tmDone');
+  if(!card||!msg)return;
+  var cards=[
+    {t:'喝这杯茶，尝它的温度与香气',now:true},
+    {t:'昨晚他说的那句话，到底什么意思？',now:false},
+    {t:'明天开会我要怎么发言……',now:false},
+    {t:'脚踩在地板上的感觉',now:true},
+    {t:'三年前要是选了另一条路就好了',now:false},
+    {t:'窗外的风轻轻吹过皮肤',now:true},
+    {t:'下周房租到期了怎么办',now:false},
+    {t:'此刻呼吸进出身体的感觉',now:true}
+  ];
+  var idx=0,done=0,wrong=0;
+  function show(){
+    if(idx>=cards.length){ finish(); return; }
+    card.textContent=cards[idx].t;
+    card.className='tm-card';
+    msg.textContent='它是当下的，还是心理时间？';
+  }
+  function finish(){
+    card.textContent=done===8?'🎉 全部辨清！你短暂地站到了时间之外':'辨别完成';
+    card.className='tm-card';
+    msg.textContent=done===8?'心智需要时间，而你不。这一刻，你赢了。':'继续练习——重点不是答对，而是"留意"念头来自哪里。';
+    ACH.got('ch3');
+    if(typeof showToast==='function')showToast('🏅 成就解锁：时间终结者');
+  }
+  function judge(isNow){
+    if(idx>=cards.length)return;
+    var hit=(cards[idx].now===isNow);
+    if(hit){
+      done++; doneEl.textContent=done;
+      if(window.__sfx)window.__sfx.right();
+      card.classList.add('sink');
+      msg.textContent='对！'+cards[idx].t.replace(/[？。…]/g,'')+'——就在当下。';
+    }else{
+      wrong++;
+      if(window.__sfx)window.__sfx.wrong();
+      card.classList.add('burn');
+      msg.textContent=cards[idx].now?'那是当下，你跑回心理时间了。':'对——但你说反了。再看一遍：这一条属于'+(cards[idx].now?'当下':'心理时间')+'。';
+    }
+    idx++;
+    setTimeout(show,600);
+  }
+  $('tmNow').addEventListener('click',function(){judge(true);});
+  $('tmPast').addEventListener('click',function(){judge(false);});
+  show();
+})();
+
+/* 第三章测验 */
+(function(){
+  var body=$('quizBody3'); if(!body)return;
+  var qs=[
+    {q:'为什么心智会抗拒当下？',opts:['它讨厌真实','它无法在没有时间的地方运作','它喜欢痛苦','当下太无聊'],a:1,fb:'时间和心智不可分。抽掉时间，心智就停摆。'},
+    {q:'"钟表时间"和"心理时间"的区别是？',opts:['没区别','钟表时间服务当下，心理时间囚禁当下','一个快一个慢'],a:1,fb:'钟表时间用来安排与学习；心理时间懊悔过去、焦虑未来。'},
+    {q:'开悟者如何对待时间？',opts:['完全不用时间','以当下为焦点，仍用钟表时间','活在过去'],a:1,fb:'他们继续使用钟表时间，却摆脱了心理时间。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar3').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q3');
+            if(typeof showToast==='function')showToast('🏅 第三章闯关全对 · 成就：当下之子');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+/* ===== 第四章：无意识迷雾 ===== */
+(function(){
+  var stage=$('chStage'),msg=$('chMsg'),cntEl=$('chCnt');
+  if(!stage||!msg)return;
+  var pool=['他是不是在针对我？','这破工作什么时候到头…','我是不是选错了路？','别人都比我过得好','明天一定要早起！','刚才那句话太丢人了','钱不够花怎么办','他们为什么都不理解我','上次也是我的错吗？','唉，又胖了','这周末又要加班…','我到底想要什么？'];
+  var bubbles=0,score=0,over=false,stop=false,timer=null;
+  function spawn(){
+    if(over||stop)return;
+    var b=document.createElement('div'); b.className='ch-bub';
+    b.textContent=pool[Math.floor(Math.random()*pool.length)];
+    b.style.left=(8+Math.random()*62)+'%';
+    b.style.top=(10+Math.random()*66)+'%';
+    b.addEventListener('animationend',function(){ if(b.parentNode){b.parentNode.removeChild(b);bubbles--;} });
+    stage.appendChild(b); bubbles++;
+    if(bubbles>=12){
+      over=true; clearInterval(timer);
+      stage.classList.add('full');
+      msg.textContent='🌪️ 念头堆满了——你被无意识接管，完全忘了自己。这就是"认同心智"的样子。点下面的"觉察"按钮，看看会发生什么。';
+      return;
+    }
+  }
+  function watch(){
+    if(over&&score===0)return;
+    if(stop&&score>=10)return;
+    var bs=stage.querySelectorAll('.ch-bub');
+    [].slice.call(bs).forEach(function(b){ b.classList.add('burst'); });
+    bubbles=0; score++;
+    cntEl.textContent=score;
+    if(window.__sfx)window.__sfx.right();
+    msg.textContent='觉察升起，念头像雾一样散开。你没有赶走它们，只是看见了它们。';
+    if(score>=10){
+      stop=true; over=true; clearInterval(timer);
+      stage.style.background='radial-gradient(circle at 50% 50%,#eef7f0,#dcece2)';
+      msg.textContent='🌟 迷雾散尽。你证明了：念头来了又去，而你一直在。';
+      ACH.got('ch4');
+      if(typeof showToast==='function')showToast('🏅 成就解锁：迷雾散尽');
+    }
+  }
+  $('chWatch').addEventListener('click',watch);
+  $('chSkip').addEventListener('click',function(){
+    if(!over){ msg.textContent='你选择不管。念头继续堆积——看，这就是"无意识地活着"。再不想办法，屏幕就要满了。'; }
+  });
+  timer=setInterval(spawn,950);
+})();
+
+/* 第四章测验 */
+(function(){
+  var body=$('quizBody4'); if(!body)return;
+  var qs=[
+    {q:'"一般无意识"指的是？',opts:['睡着了','习惯性认同念头而不自知','失去记忆','做梦'],a:1,fb:'一般无意识＝跟着念头走而不自知；深层无意识＝情绪爆发接管你。'},
+    {q:'瓦解无意识的最直接办法？',opts:['压抑念头','观察念头','换个环境','找人倾诉'],a:1,fb:'一观察，认同就被打破。像集市门口看人来人往——看，不等于跟进去买。'},
+    {q:'内在目的是什么？',opts:['赚更多钱','把当下活成唯一重要的时刻','得到认可','长生不老'],a:1,fb:'外在目的会变会败；内在目的永不失败。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar4').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q4');
+            if(typeof showToast==='function')showToast('🏅 第四章闯关全对 · 成就：照进无意识');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+/* ===== 第五章：看之实验 ===== */
+(function(){
+  var stage=$('seeStage'),tag=$('seeTag'),img=$('seeImg'),msg=$('seeMsg'),cntEl=$('seeCnt');
+  if(!stage||!tag)return;
+  var pres=0;
+  var mindTags=['一棵树 · 品种未知 · 有点挡路','这花是玫瑰，值 30 块','天空：多云转阴，明天降温','这水有点脏，别碰','树很高，大概 12 米'];
+  var presTags=['树在，你也在。没有标签，只有存在','花只是绽放，你只是看','光从云缝漏下来，此刻没有"明天"','水面的波纹，一圈圈地"现在"着','你听见风穿过树叶——那就是临在'];
+  var mindImgs=['🌳','🌹','☁️','💧','🌲'];
+  $('seeMind').addEventListener('click',function(){
+    stage.classList.remove('pres');
+    var i=Math.floor(Math.random()*mindTags.length);
+    tag.textContent=mindTags[i]; img.textContent=mindImgs[i];
+    msg.textContent='🧠 心智接管：它把世界变成标签和判断。这就是你"平时"看世界的方式。';
+  });
+  $('seePres').addEventListener('click',function(){
+    stage.classList.add('pres');
+    tag.textContent=presTags[Math.floor(Math.random()*presTags.length)];
+    img.textContent='🌳';
+    pres++; cntEl.textContent=pres;
+    if(window.__sfx)window.__sfx.right();
+    msg.textContent='✨ 你停止了命名与评判。此刻没有"树"这个字，只有存在与存在相遇。';
+    if(pres>=8){
+      ACH.got('ch5');
+      if(typeof showToast==='function')showToast('🏅 成就解锁：第一次真正看见');
+      msg.textContent='🌟 你证明了：美不是名词，是动词——发生在你临在的那一刻。';
+    }
+  });
+})();
+
+/* 第五章测验 */
+(function(){
+  var body=$('quizBody5'); if(!body)return;
+  var qs=[
+    {q:'等待的奥秘是什么？',opts:['等待会带来结果','等待本身可以是深度临在','忍耐使人强大','时间会解决一切'],a:1,fb:'在等待中保持临在——不焦虑结果，只感受此刻。'},
+    {q:'美在哪里发生？',opts:['在事物本身','在临在中','在照片里','在评价里'],a:1,fb:'美不在花里，美在"看见"里——那一眼需要临在。'},
+    {q:'如何体认纯意识？',opts:['分析它','体验它','背诵定义','讨论它'],a:1,fb:'纯意识是本体本身，只能体验，不能思考出来。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar5').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q5');
+            if(typeof showToast==='function')showToast('🏅 第五章闯关全对 · 成就：美的见证者');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+/* ===== 第六章：身体扫描 ===== */
+(function(){
+  var bodyEl=$('scanBody'),msg=$('scanMsg'),fill=$('scanFill');
+  if(!bodyEl||!msg)return;
+  var parts=[].slice.call(document.querySelectorAll('.scan-part'));
+  var done=0,total=parts.length;
+  parts.forEach(function(p){
+    p.addEventListener('click',function(){
+      if(p.classList.contains('done'))return;
+      p.classList.add('done');
+      done++;
+      bodyEl.classList.add('lit');
+      bodyEl.textContent=['🧍','🧍‍♂️','🧘','🧘‍♀️','✨','🌟'][done];
+      msg.textContent='✨ '+p.getAttribute('data-txt');
+      fill.style.width=(done/total*100).toFixed(0)+'%';
+      if(window.__sfx)window.__sfx.right();
+      if(done===total){
+        msg.textContent='🌟 全身通电。念头还在飘，但你已经有了一个可以随时回去的家——身体。';
+        ACH.got('ch6');
+        if(typeof showToast==='function')showToast('🏅 成就解锁：全身通电');
+      }
+    });
+  });
+})();
+
+/* 第六章测验 */
+(function(){
+  var body=$('quizBody6'); if(!body)return;
+  var qs=[
+    {q:'文字在本体探索中扮演什么角色？',opts:['目的地','路标','真相本身','替代品'],a:1,fb:'文字指向月亮，但不是月亮。别把路标当目的地。'},
+    {q:'如何与内在身体连接？',opts:['分析它','把注意力放进身体，感受能量','练肌肉','照镜子'],a:1,fb:'闭眼感觉手心的能量、呼吸的流动——那是内在身体。'},
+    {q:'你何时最有力量？',opts:['想得最清楚时','完全临在于身体时','赢得争论时','计划周全时'],a:1,fb:'不是想得最清楚时，而是完全临在于身体时。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar6').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q6');
+            if(typeof showToast==='function')showToast('🏅 第六章闯关全对 · 成就：落地生根');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+/* ===== 第七章：静默之室 ===== */
+(function(){
+  var room=$('silRoom'),num=$('silNum'),msg=$('silMsg');
+  if(!room||!num)return;
+  var left=8,timer=null,over=false;
+  function stop(){ if(timer){clearInterval(timer);timer=null;} }
+  function reset(m){
+    stop(); left=8; over=false;
+    num.textContent='8';
+    room.classList.remove('calm');
+    if(m)msg.textContent=m;
+  }
+  function start(){
+    if(timer||over)return;
+    timer=setInterval(function(){
+      left--;
+      num.textContent=left;
+      if(left<=0){
+        stop(); over=true;
+        room.classList.add('calm');
+        num.textContent='静';
+        msg.textContent='🌟 房间静了下来。念头没有消失——是你不再需要它们。这就是"放下"。';
+        ACH.got('ch7');
+        if(typeof showToast==='function')showToast('🏅 成就解锁：静默 8 秒');
+      }
+    },1000);
+  }
+  $('silGrab').addEventListener('click',function(){
+    if(over)return;
+    stop();
+    msg.textContent='🙋 你抓住了一个念头，跟着它跑出去了。没关系——静默不是赶走念头，是练习"不抓"。再试一次。';
+    room.classList.remove('calm');
+    num.textContent='✋';
+    setTimeout(function(){ if(!timer&&!over)num.textContent=left; },1200);
+  });
+  $('silReset').addEventListener('click',function(){
+    reset('重新开始。念头还会来，但你可以不抓。');
+    start();
+  });
+  start();
+})();
+
+/* 第七章测验 */
+(function(){
+  var body=$('quizBody7'); if(!body)return;
+  var qs=[
+    {q:'无梦之眠说明了什么？',opts:['大脑休息很重要','没有念头时你依然"在"','做梦才有意义','睡眠是浪费时间'],a:1,fb:'深睡无梦时你仍在——那个知道"睡得好"的，就是本体。'},
+    {q:'以下哪个是临在的入口？',opts:['想得更深','静默与接纳','收集更多信息','加快速度'],a:1,fb:'冥想、静默、接纳、空间——都是同一扇门的把手。'},
+    {q:'"气场"指什么？',opts:['神秘光环','视自己为纯意识而非名相','磁场','气质'],a:1,fb:'把"我是谁"从名字、经历、角色中解开，回到纯意识。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar7').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q7');
+            if(typeof showToast==='function')showToast('🏅 第七章闯关全对 · 成就：找到门');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+/* ===== 第八章：关系之镜 ===== */
+(function(){
+  var bubble=$('relBubble'),heart=$('relHeart'),stage=$('relStage'),opts=$('relOpts'),msg=$('relMsg'),cntEl=$('relCnt');
+  if(!bubble||!opts)return;
+  var scenes=[
+    {t:'"你最近是不是不爱我了？"',opts:[
+      {t:'我爱你，也想听听你怎么了',l:true},
+      {t:'我天天加班不就是为了这个家？',l:false},
+      {t:'你怎么又胡思乱想',l:false}]},
+    {t:'"你为什么总是迟到？"',opts:[
+      {t:'你说得对，我迟到了。让你等了，对不起',l:true},
+      {t:'堵车能怪我吗？',l:false},
+      {t:'你怎么不说你自己？',l:false}]},
+    {t:'"我觉得你根本不懂我。"',opts:[
+      {t:'那你愿意多告诉我一点吗？',l:true},
+      {t:'我还不懂你？我太懂你了',l:false},
+      {t:'那你懂我吗？',l:false}]},
+    {t:'"我好累，什么都不想做。"',opts:[
+      {t:'那就靠着我歇一会儿',l:true},
+      {t:'我也很累啊',l:false},
+      {t:'你这算什么，我比你累多了',l:false}]},
+    {t:'"我们还能回到从前吗？"',opts:[
+      {t:'回不到从前，但我们可以有现在',l:true},
+      {t:'都是你变了',l:false},
+      {t:'你想怎样就怎样吧',l:false}]},
+    {t:'"我今天想一个人待着。"',opts:[
+      {t:'好，我在这儿。你需要时我都在',l:true},
+      {t:'你又怎么了？',l:false},
+      {t:'你总是忽冷忽热',l:false}]}
+  ];
+  var idx=0,done=0;
+  var loveMsgs=['你把焦点从"我"移开，停在她身上。爱开始流动。','你没有辩解，只是接住。这一刻，你给了她最缺的东西：被看见。','你放下了"赢"，选择了"在"。','你没有比较谁更累——你只是和她在一起。','你没有抓住过去，也没有推开现在。','你给了她空间，也给了她确定。这就是临在之爱。'];
+  var egoMsgs=['小我接管：你开始防御。她听见的不是爱，是辩解。','小我接管：你找借口、开战场。赢了道理，输了人。','小我接管：你在反击。对话变成了比赛，没有赢家。','小我接管：你在比较痛苦。她更孤独了。','小我接管：你在指责。她听见的是"都是你的错"。','小我接管：你在否定她。她更想逃了。'];
+  function render(){
+    if(idx>=scenes.length){
+      bubble.textContent='💞 六个场景走完';
+      heart.textContent='💗';
+      msg.textContent='你体验了两种关系：一种在要，一种在给。真正的爱，是后一种。';
+      ACH.got('ch8');
+      if(typeof showToast==='function')showToast('🏅 成就解锁：看见即自由');
+      return;
+    }
+    var s=scenes[idx];
+    bubble.textContent=s.t;
+    stage.classList.remove('love','ego');
+    heart.textContent='💗';
+    opts.innerHTML='';
+    s.opts.forEach(function(o){
+      var b=document.createElement('button'); b.className='rel-opt'; b.textContent=o.t;
+      b.addEventListener('click',function(){
+        opts.querySelectorAll('.rel-opt').forEach(function(x){x.disabled=true;});
+        if(o.l){
+          b.classList.add('love'); stage.classList.add('love'); heart.textContent='💖';
+          msg.textContent='✨ '+loveMsgs[idx];
+          if(window.__sfx)window.__sfx.right();
+          done++; cntEl.textContent=done;
+        }else{
+          b.classList.add('ego'); stage.classList.add('ego'); heart.textContent='💔';
+          msg.textContent='🌀 '+egoMsgs[idx];
+          if(window.__sfx)window.__sfx.wrong();
+          var rb=[].slice.call(opts.querySelectorAll('.rel-opt')).filter(function(x){return x!==b&&s.opts[opts.querySelectorAll('.rel-opt').length?0:0];});
+          var good=[].slice.call(opts.querySelectorAll('.rel-opt')).find(function(x){return x.textContent===s.opts.filter(function(o2){return o2.l;})[0].t;});
+          if(good)good.classList.add('love');
+        }
+        idx++;
+        setTimeout(render,1400);
+      });
+      opts.appendChild(b);
+    });
+  }
+  render();
+})();
+
+/* 第八章测验 */
+(function(){
+  var body=$('quizBody8'); if(!body)return;
+  var qs=[
+    {q:'亲密关系的本质功能是？',opts:['让人生完整','照出你内在的坑洞','解决孤独','提供安全感'],a:1,fb:'它是一面镜子——照出你的坑洞，而不是替你填坑。'},
+    {q:'"把伴侣当圆满来源"属于？',opts:['真爱的标志','一种瘾','健康依赖','浪漫'],a:1,fb:'上瘾永远饥饿。圆满先在自己之内，才能分享。'},
+    {q:'冲突时最有力的做法是？',opts:['证明自己有理','停止评判对方，回到临在','冷战','找朋友评理'],a:1,fb:'看见自己的反应，选择临在——从审判席下来，双方才自由。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar8').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q8');
+            if(typeof showToast==='function')showToast('🏅 第八章闯关全对 · 成就：爱的修行者');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+/* ===== 第九章：无常之流 ===== */
+(function(){
+  var card=$('flCard'),stage=$('flStage'),msg=$('flMsg'),cntEl=$('flCnt');
+  if(!card||!msg)return;
+  var pool=[
+    {t:'升职加薪了 🎉',good:true},
+    {t:'失恋了 💔',good:false},
+    {t:'彩票中了五百 🎫',good:true},
+    {t:'至亲离开了 🌫️',good:false},
+    {t:'当众被表扬 🌟',good:true},
+    {t:'被当众批评 😔',good:false},
+    {t:'孩子考了满分 📚',good:true},
+    {t:'生意亏了本 📉',good:false}
+  ];
+  var idx=0,done=0;
+  var letMsgs=[
+    '你不抓住快乐，快乐才不会被"会失去"的恐惧污染。',
+    '你不抵抗痛，痛才会流过去，而不是沉淀成苦。',
+    '好事来了又走，你依然完整——你本来就不是靠它组成的。',
+    '放手不是冷漠，是把悲伤还给时间，把自己还给自己。',
+    '表扬会过去，但那个"此刻的满足"已经发生过了。',
+    '批评会流走，你不需要把它捡起来背在身上。',
+    '喜悦不被占有，才能不被比较磨损。',
+    '损失已成事实，抗拒只是给它续命。放手，损失才真正结束。'
+  ];
+  var holdMsgs=[
+    '你紧紧抓住它，开始害怕失去——快乐已经变成了焦虑。',
+    '你反复咀嚼这件事，痛变成了苦，并且开始喂养痛苦之身。',
+    '你想着"万一没了怎么办"，这笔钱已经开始消耗你。',
+    '你拒绝接受，悲伤被卡住，变成了长久的压抑。',
+    '你在回味中一遍遍重放，满足感却越来越淡。',
+    '你反复解释、辩解，那句批评反而住进了你心里。',
+    '你把喜悦变成了攀比的本钱——它从此不再纯粹。',
+    '你抓住损失不放，损失就真的定义了你。'
+  ];
+  function render(){
+    if(idx>=pool.length){
+      card.textContent='🌊 八件事都流过了';
+      msg.textContent='你体会到了：无论好坏，都会过去。而你，一直在岸上。这就是超越快乐与不快乐的自由。';
+      ACH.got('ch9');
+      if(typeof showToast==='function')showToast('🏅 成就解锁：顺流而下');
+      return;
+    }
+    var it=pool[idx];
+    card.textContent=it.t;
+    card.className='fl-card';
+  }
+  $('flLet').addEventListener('click',function(){
+    if(idx>=pool.length)return;
+    card.classList.add('gone');
+    msg.textContent='🌊 你放手了：'+letMsgs[idx];
+    if(window.__sfx)window.__sfx.right();
+    done++; cntEl.textContent=done;
+    idx++;
+    setTimeout(render,650);
+  });
+  $('flHold').addEventListener('click',function(){
+    if(idx>=pool.length)return;
+    card.classList.add('hold');
+    msg.textContent='🤲 你抓住了：'+holdMsgs[idx];
+    if(window.__sfx)window.__sfx.wrong();
+  });
+  render();
+})();
+
+/* 第九章测验 */
+(function(){
+  var body=$('quizBody9'); if(!body)return;
+  var qs=[
+    {q:'快乐与不快乐的关系是？',opts:['毫无关系','一体两面，执着其一必得其二','快乐更真实','不快乐更真实'],a:1,fb:'它们是同一枚硬币——执着于一面，另一面就会翻上来。'},
+    {q:'面对无常与循环，最智慧的姿态？',opts:['拼命对抗','顺应而非对抗','假装看不见','只保留好的'],a:1,fb:'对抗循环就是对抗生命；顺着它，你就站在潮头。'},
+    {q:'慈悲的本质是？',opts:['拯救弱者','承认"我们都在同一艘船上"','施舍','同情'],a:1,fb:'慈悲不是居高临下，是看见彼此相同。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar9').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q9');
+            if(typeof showToast==='function')showToast('🏅 第九章闯关全对 · 成就：超越好坏');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+/* ===== 第十章：顺流之舟 ===== */
+(function(){
+  var boat=$('btBoat'),ev=$('btEv'),msg=$('btMsg'),cntEl=$('btCnt');
+  if(!boat||!ev)return;
+  var pool=[
+    '✈️ 航班取消，改签要等 6 小时',
+    '📋 精心准备的方案被否了',
+    '🌧️ 下大雨，周末计划全泡汤',
+    '🥛 孩子把牛奶打翻在地',
+    '🚗 堵车，眼看要迟到',
+    '🤒 身体突然不舒服',
+    '🕐 被人放鸽子，白等一小时',
+    '📝 写好的稿子要全部重写'
+  ];
+  var idx=0,pos=0,res=0;
+  var surMsgs=['你接受现状，能量没被消耗。河水自己会把船送过去。','你没有和事实争吵。争吵赢了也不改变事实，但会消耗你。','你顺流了——事情没有变好，但你的心变轻了。','你停止了"不应该这样"的念头。船，立刻稳了。','臣服不是放弃，是腾出手来处理真正的局面。','你与当下讲和。和平从不远处开始。','你没有把别人的错变成自己的内耗。','你接纳重来，反而比对抗多了一次机会。'];
+  var resMsgs=['你愤怒、抱怨、试图重来。船晃得厉害——消耗的只有你自己。','你在心里骂了十分钟。河，一点没变；你，累了。','你死死顶住浪，肌肉紧绷，呼吸变浅——这就是内在抗拒的体征。','你拒绝接受，情绪接管，理性下线。','你和事实作战，而事实从不退让。','你的抗拒在喂痛苦之身，它现在更大了。','你把失望攒着，变成了下一次爆发的燃料。','你拖着重写的怨气，写得比上次还差。'];
+  function render(){
+    if(idx>=pool.length){
+      ev.textContent='🏁 你抵达了对岸';
+      msg.textContent='你不是靠用力划到这里的，是靠不再逆流。臣服，是最高级的顺流。全书完。';
+      ACH.got('ch10');
+      ACH.got('all');
+      if(typeof showToast==='function')showToast('🏅 成就解锁：抵达对岸');
+      return;
+    }
+    ev.textContent=pool[idx];
+    boat.style.left=(2+idx*10)+'%';
+  }
+  $('btSur').addEventListener('click',function(){
+    if(idx>=pool.length)return;
+    msg.textContent='🌊 你选择臣服：'+surMsgs[idx];
+    if(window.__sfx)window.__sfx.right();
+    cntEl.textContent=++pos;
+    idx++;
+    setTimeout(render,700);
+  });
+  $('btRes').addEventListener('click',function(){
+    if(idx>=pool.length)return;
+    msg.textContent='⛔ 你选择抗拒：'+resMsgs[idx];
+    if(window.__sfx)window.__sfx.wrong();
+    boat.style.transform='translateY(-50%) rotate('+(res%2?6:-6)+'deg)';
+    res++;
+  });
+  render();
+})();
+
+/* 第十章测验 */
+(function(){
+  var body=$('quizBody10'); if(!body)return;
+  var qs=[
+    {q:'臣服的本质是？',opts:['认命躺平','停止无用的内在抵抗','妥协投降','放弃目标'],a:1,fb:'臣服是停止内在抵抗——它是力量，不是软弱。'},
+    {q:'臣服于当下意味着？',opts:['一辈子认了','接受此刻事实，再采取行动','什么都不做','接受别人安排'],a:1,fb:'接受"此时此地"，不是接受一辈子如此。接纳后行动才有力量。'},
+    {q:'痛苦如何变成苦难？',opts:['加上时间','加上抗拒','加上回忆','加上别人'],a:1,fb:'痛苦×抗拒=苦难。拿掉抗拒，痛就只是痛，会自己过去。'}
+  ];
+  var done=0,total=qs.length;
+  qs.forEach(function(item,i){
+    var box=document.createElement('div'); box.className='q-item';
+    var qh=document.createElement('div'); qh.className='q-q'; qh.textContent=(i+1)+'. '+item.q;
+    var ops=document.createElement('div'); ops.className='q-opts';
+    item.opts.forEach(function(op,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=op;
+      b.addEventListener('click',function(){
+        if(b.classList.contains('right')||b.classList.contains('wrong'))return;
+        var fb=box.querySelector('.q-fb');
+        if(oi===item.a){
+          box.classList.add('right');
+          if(window.__sfx)window.__sfx.right();
+          b.classList.add('right');
+          fb.textContent='✓ '+item.fb; fb.className='q-fb show ok';
+          done++;
+          $('quizBar10').style.width=(done/total*100).toFixed(0)+'%';
+          if(done===total){
+            ACH.got('q10');
+            if(typeof showToast==='function')showToast('🏅 第十章闯关全对 · 成就：和平的开端');
+          }
+        }else{
+          box.classList.add('wrong');
+          if(window.__sfx)window.__sfx.wrong();
+          b.classList.add('wrong');
+          var rb=ops.querySelectorAll('.q-opt')[item.a];
+          if(rb)rb.classList.add('right');
+          fb.textContent='✗ 回看正文：'+item.fb; fb.className='q-fb show no';
+        }
+      });
+      ops.appendChild(b);
+    });
+    var fb=document.createElement('div'); fb.className='q-fb';
+    box.appendChild(qh); box.appendChild(ops); box.appendChild(fb);
+    body.appendChild(box);
+  });
+})();
+})();
+</script>
+<!-- 页脚 -->
+    <footer class="footer">
+      <p>《当下的力量》第一章 · 多媒体书样章 · 文本依据：埃克哈特·托利《当下的力量》（精校版）第一章</p>
+      <p>插画与动画为 AI 生成；实景照片来自网络图库（StockCake / 图虫创意 / 我图网等，仅供学习交流，请勿商用）；延伸视频来自哔哩哔哩 UP 主，版权归原作者所有。</p>
+    </footer>
+</body>
+</html>
