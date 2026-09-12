@@ -550,7 +550,7 @@ body.night .toast{background:var(--gold);color:#1a1a1a}
 
   <div class="game-card">
     <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">听歌 · 摘虎耳草</span></div>
-    <div class="game-sub">歌声来了——5 次"歌声"里，点中节奏最准的那一次，替翠翠摘回虎耳草。</div>
+    <div class="game-sub">戴上耳机，听二老的山歌——歌声飘起来时，等它到最甜处再摘，替翠翠摘回 5 把虎耳草。</div>
     <div class="game-zone" id="songZone" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:170px;background:linear-gradient(180deg,#1b2430,#20293a)">
       <div id="songMoon" style="font-size:40px;animation:hint 3s ease-in-out infinite">🌕</div>
       <div id="songText" style="color:#e8dcc0;font-size:15px;letter-spacing:2px">月光如银子，等待歌声……</div>
@@ -891,28 +891,61 @@ var ROAD={car:"🐴 你选了车路——请媒提亲，光明正大。书里的
 document.getElementById("roadCar").onclick=function(){roadMsg.textContent=ROAD.car;S.games.road=1;save();gotAch("road");};
 document.getElementById("roadHorse").onclick=function(){roadMsg.textContent=ROAD.horse;S.games.road=1;save();gotAch("road");};
 
-var songN=0,songReady=false;
+var songN=0,songReady=false,songStarted=false,songAudio=null,songAC=null;
 var songText=document.getElementById("songText"),songStat=document.getElementById("songStat"),songMsg=document.getElementById("songMsg"),songBtn=document.getElementById("songBtn");
 var SONG_LINES=["月光如银子，无处不可照及……","歌声软软地、甜甜地飘过来……","翠翠的梦，被歌声轻轻托起……","过了白塔，下了菜园，上了船……","飞过悬崖半腰——去摘虎耳草！"];
+function songCtx(){try{if(!songAC){songAC=new (window.AudioContext||window.webkitAudioContext)();}if(songAC.state==="suspended"){songAC.resume();}return songAC;}catch(e){return null;}}
+function toneAt(freq,start,dur,vol,type){
+  var c=songCtx();if(!c)return;
+  try{
+    var o=c.createOscillator(),g=c.createGain();
+    o.type=type||"sine";o.frequency.value=freq;
+    g.gain.setValueAtTime(0,c.currentTime+start);
+    g.gain.linearRampToValueAtTime(vol,c.currentTime+start+0.05);
+    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+start+dur);
+    o.connect(g);g.connect(c.destination);
+    o.start(c.currentTime+start);o.stop(c.currentTime+start+dur+0.1);
+  }catch(e){}
+}
+var SONG_SCALE=[587.33,659.25,739.99,880.0,987.77,880.0,739.99,659.25];
+function playSongMelody(){
+  var c=songCtx();if(!c)return;
+  var t=c.currentTime+0.05;
+  var seq=[0,1,2,4,3,2,1,0,0,2,4,4,3,2,1,0];
+  for(var i=0;i<seq.length;i++){toneAt(SONG_SCALE[seq[i]],t,0.42,0.09,"sine");t+=0.45;}
+  toneAt(SONG_SCALE[4],t,1.2,0.09,"sine");
+}
+function startSongAudio(){var c=songCtx();if(!c)return;playSongMelody();songAudio=setInterval(playSongMelody,9200);}
+function stopSongAudio(){if(songAudio){clearInterval(songAudio);songAudio=null;}}
 function nextSong(){
-  if(songN>=5){songText.textContent="🌿 虎耳草摘满了。翠翠抱着草，梦里都在笑。";songBtn.disabled=true;songBtn.textContent="✓ 摘满 5 把";songMsg.textContent="🎉 你听见了翠翠听见的歌声。";gotAch("song");S.games.song=1;save();return;}
+  if(songN>=5){stopSongAudio();songText.textContent="🌿 虎耳草摘满了。翠翠抱着草，梦里都在笑。";songBtn.disabled=true;songBtn.textContent="✓ 摘满 5 把";songMsg.textContent="🎉 你听见了翠翠听见的歌声。";gotAch("song");S.games.song=1;save();return;}
   songText.textContent=SONG_LINES[songN];
   songReady=false;
-  setTimeout(function(){songReady=true;songText.textContent="🌙 歌声到最甜处了……摘！";},500+Math.random()*900);
+  setTimeout(function(){songReady=true;songText.textContent="🌙 歌声到最甜处了……摘！";toneAt(SONG_SCALE[4],0,0.5,0.13,"triangle");},500+Math.random()*900);
 }
 songBtn.onclick=function(){
+  if(songN>=5)return;
+  if(!songStarted){
+    songStarted=true;startSongAudio();nextSong();
+    songMsg.textContent="听，二老的山歌从对岸飘来了……";songBtn.textContent="🌿 摘虎耳草";
+    return;
+  }
   if(!songReady){songMsg.textContent="太急了。歌声还没到最甜的地方，等等再摘。";return;}
   songN++;songStat.textContent="已摘 "+songN+" / 5";
   songMsg.textContent="🌿 摘到一把虎耳草，草叶上还沾着月光。";
+  toneAt(1318.51,0,0.22,0.12,"sine");toneAt(1975.53,0.12,0.35,0.10,"sine");
   setTimeout(nextSong,700);
 };
 if(S.games.song){songN=5;songStat.textContent="已摘 5 / 5";songText.textContent="🌿 虎耳草摘满了。";songBtn.disabled=true;songBtn.textContent="✓ 摘满 5 把";}
 
-var fateN=0;var fateLines=[];
+var fateN=0;var fateLines=[],fateUsed=[];
 var fateDie=document.getElementById("fateDie"),fateLine=document.getElementById("fateLine"),fateMsg=document.getElementById("fateMsg"),fateBtn=document.getElementById("fateBtn");
 fateBtn.onclick=function(){
+  if(fateN>=3)return;
+  var avail=[];for(var fi=0;fi<FATES.length;fi++){if(fateUsed.indexOf(fi)===-1)avail.push(fi);}
+  var r=avail[Math.floor(Math.random()*avail.length)];
+  fateUsed.push(r);
   fateN++;
-  var r=Math.floor(Math.random()*6);
   fateLines.push(FATES[r]);
   fateDie.style.transform="rotate("+(360+Math.random()*360)+"deg)";
   fateLine.textContent="第 "+fateN+" 次天意："+FATES[r];
