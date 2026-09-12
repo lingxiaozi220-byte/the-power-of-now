@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《边城》多媒体书 · 沈从文</title>
+<style>
+:root{
+  --paper:#f6f1e6; --paper2:#ece2cc; --ink:#2b2419; --ink2:#776a51;
+  --green:#3f7d5c; --teal:#2f7d7d; --clay:#b05b36; --gold:#a08020; --red:#a8442e;
+  --card:#fffcf3; --line:#e0d3b6; --nightbg:#141a1c; --nightbg2:#1b2326;
+  --nightink:#e8e0cc; --nightink2:#a89e88; --nightcard:#1f282b; --nightline:#33403f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Songti SC","STSong","Noto Serif SC","SimSun",serif;
+  background:var(--paper); color:var(--ink); font-size:17px; line-height:1.85;
+  transition:background .4s,color .4s;
+}
+body.night{background:var(--nightbg);color:var(--nightink)}
+img,video{max-width:100%;display:block}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+#progressBar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:100;transition:width .15s}
+#topbar{position:sticky;top:0;z-index:90;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(246,241,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:background .4s}
+body.night #topbar{background:rgba(20,26,28,.93);border-color:var(--nightline)}
+#topbar .brand{font-size:15px;font-weight:700;letter-spacing:2px;margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#topbar .brand em{font-style:normal;color:var(--gold)}
+#topbar button{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;color:var(--ink);cursor:pointer;font-family:inherit;transition:all .2s}
+body.night #topbar button{background:var(--nightcard);color:var(--nightink);border-color:var(--nightline)}
+#topbar button:hover{border-color:var(--teal);color:var(--teal)}
+#menuBtn{display:none}
+#toc{position:fixed;top:0;left:0;height:100%;width:290px;background:var(--card);z-index:120;transform:translateX(-102%);transition:transform .3s;padding:24px 16px;overflow-y:auto;border-right:1px solid var(--line)}
+body.night #toc{background:var(--nightcard);border-color:var(--nightline)}
+#toc.open{transform:none}
+#toc h3{font-size:14px;letter-spacing:4px;color:var(--gold);margin-bottom:12px}
+.toc-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:none;border:none;font-family:inherit;font-size:14px;color:var(--ink);padding:9px 10px;cursor:pointer;border-radius:8px;transition:background .2s}
+body.night .toc-item{color:var(--nightink)}
+.toc-item:hover{background:var(--paper2)}
+body.night .toc-item:hover{background:var(--nightbg2)}
+.toc-item .no{flex:none;font-size:10.5px;color:var(--gold);letter-spacing:1px;width:34px}
+.toc-item .dot{width:6px;height:6px;border-radius:50%;background:var(--line);flex:none}
+body.night .toc-item .dot{background:var(--nightline)}
+.toc-item.done .dot{background:var(--teal)}
+.toc-note{margin-top:16px;font-size:11.5px;color:var(--ink2);line-height:1.7;border-top:1px dashed var(--line);padding-top:10px}
+body.night .toc-note{color:var(--nightink2)}
+#tocBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:110;opacity:0;pointer-events:none;transition:opacity .3s}
+#tocBackdrop.show{opacity:1;pointer-events:auto}
+#cover{position:relative;min-height:94vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#cover .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:slowzoom 24s ease-in-out infinite alternate}
+@keyframes slowzoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+#cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,20,14,.3),rgba(18,20,14,.62))}
+.cover-inner{position:relative;z-index:2;text-align:center;color:#faf3e2;padding:30px 20px;max-width:760px}
+.cover-kicker{letter-spacing:8px;font-size:13px;color:#e6d7ae;margin-bottom:26px}
+.cover-title{font-size:clamp(46px,9vw,84px);font-weight:900;letter-spacing:14px;line-height:1.15;margin-bottom:14px;text-shadow:0 6px 30px rgba(0,0,0,.55)}
+.cover-sub{font-size:16px;letter-spacing:6px;color:#e6d7ae;margin-bottom:10px}
+.cover-verse{font-size:14px;letter-spacing:2px;color:#d9cdab;margin-bottom:30px;font-style:italic}
+.cover-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:7px 15px;font-size:12px;letter-spacing:1px}
+.scroll-hint{margin-top:46px;font-size:12.5px;letter-spacing:4px;color:#d9cdab;animation:hint 2.2s ease-in-out infinite}
+@keyframes hint{0%,100%{transform:translateY(0);opacity:.65}50%{transform:translateY(8px);opacity:1}}
+.act{margin:44px 0 10px;scroll-margin-top:64px}
+.act-head{margin-bottom:18px}
+.act-no{font-size:12.5px;letter-spacing:6px;color:var(--clay);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.act-no::before,.act-no::after{content:"";height:1px;width:34px;background:var(--line)}
+body.night .act-no::before,body.night .act-no::after{background:var(--nightline)}
+.act-title{font-size:clamp(28px,5vw,40px);font-weight:900;letter-spacing:4px;margin-bottom:10px}
+.act-lead{color:var(--ink2);font-size:15.5px;line-height:1.9}
+body.night .act-lead{color:var(--nightink2)}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:40px 0}
+body.night .divider{background:linear-gradient(90deg,transparent,var(--nightline),transparent)}
+.map{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:10px 0}
+body.night .map{background:var(--nightcard);border-color:var(--nightline)}
+.map-head{font-size:15px;font-weight:700;color:var(--teal);letter-spacing:3px;margin-bottom:14px;text-align:center}
+.map-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.map-card{background:var(--paper2);border-radius:12px;padding:12px 14px;cursor:pointer;transition:transform .2s,border-color .2s;border:1px solid transparent}
+body.night .map-card{background:var(--nightbg2)}
+.map-card:hover{transform:translateY(-2px);border-color:var(--teal)}
+.map-card .no{font-size:10.5px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+.map-card .t{font-size:14px;font-weight:700;line-height:1.5}
+.map-card .s{font-size:11.5px;color:var(--ink2);margin-top:3px}
+body.night .map-card .s{color:var(--nightink2)}
+.quote-card{position:relative;background:var(--card);border-left:4px solid var(--gold);border-radius:14px;padding:18px 20px 14px;margin:22px 0}
+body.night .quote-card{background:var(--nightcard)}
+.qm{position:absolute;top:-4px;left:14px;font-size:50px;color:var(--gold);font-family:Georgia,serif;line-height:1;opacity:.3}
+.q{font-size:16.5px;font-weight:700;line-height:1.8;padding-left:10px}
+.src{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);margin-top:10px;padding-left:10px}
+body.night .src{color:var(--nightink2)}
+.src .line{width:22px;height:1px;background:var(--gold)}
+figure{margin:20px 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+body.night figure{border-color:var(--nightline);background:var(--nightcard)}
+figure img{width:100%;height:340px;object-fit:cover;transition:transform .6s}
+figure:hover img{transform:scale(1.02)}
+figcaption{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:12.5px;color:var(--ink2);line-height:1.6}
+body.night figcaption{color:var(--nightink2)}
+.media-tag{flex:none;font-size:10.5px;letter-spacing:1px;border-radius:6px;padding:2px 8px;color:#fff}
+.tag-img{background:var(--teal)}
+.tag-audio{background:#3f6fa8}
+.tag-video{background:var(--clay)}
+.tag-quote{background:var(--gold)}
+.tag-game{background:#7a6ba8}
+.audio-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:20px 0}
+body.night .audio-card{background:var(--nightcard);border-color:var(--nightline)}
+.audio-head{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.audio-icon{width:40px;height:40px;flex:none;border-radius:12px;background:rgba(63,111,168,.12);display:flex;align-items:center;justify-content:center;font-size:19px}
+.audio-title{font-size:14.5px;font-weight:700}
+.audio-desc{font-size:12px;color:var(--ink2)}
+body.night .audio-desc{color:var(--nightink2)}
+audio{width:100%;height:40px}
+.video-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:20px 0}
+body.night .video-card{background:var(--nightcard);border-color:var(--nightline)}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#0d0d0d}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-foot{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:12.5px;color:var(--ink2);flex-wrap:wrap}
+body.night .video-foot{color:var(--nightink2)}
+.video-foot a{color:var(--clay);text-decoration:none}
+.video-foot a:hover{text-decoration:underline}
+.game-card{background:linear-gradient(160deg,var(--paper2),var(--card));border:1px solid var(--line);border-radius:18px;padding:20px;margin:22px 0}
+body.night .game-card{background:linear-gradient(160deg,var(--nightbg2),var(--nightcard));border-color:var(--nightline)}
+.game-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.game-title{font-size:16px;font-weight:900;letter-spacing:2px;color:#8a6d3b}
+body.night .game-title{color:#c9b07f}
+.game-sub{font-size:12.5px;color:var(--ink2);margin-bottom:14px}
+body.night .game-sub{color:var(--nightink2)}
+.game-zone{position:relative;overflow:hidden;border-radius:14px;background:#dfe7dc;min-height:180px}
+body.night .game-zone{background:#20292b}
+.game-zone .water{position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(63,125,92,.15),rgba(63,125,92,.4))}
+.game-zone .shore{position:absolute;top:0;bottom:0;width:14px;background:#8a6d3b}
+.game-zone .shore.l{left:0}.game-zone .shore.r{right:0}
+.game-msg{margin-top:12px;font-size:13px;color:var(--ink2);min-height:22px}
+body.night .game-msg{color:var(--nightink2)}
+.game-btn{display:inline-block;background:var(--teal);color:#fff;border:none;border-radius:999px;padding:9px 22px;font-size:14px;cursor:pointer;font-family:inherit;letter-spacing:2px;transition:all .2s;margin-top:10px}
+.game-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.game-btn.alt{background:var(--clay)}
+.game-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.game-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.game-stat{font-size:12.5px;color:var(--gold);font-weight:700}
+.quiz-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:22px 0}
+body.night .quiz-card{background:var(--nightcard);border-color:var(--nightline)}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:15px;font-weight:900;letter-spacing:2px;color:var(--teal)}
+.qz{background:var(--paper2);border-radius:14px;padding:16px;margin:12px 0}
+body.night .qz{background:var(--nightbg2)}
+.qz-t{font-size:15px;font-weight:700;margin-bottom:10px}
+.qz-opt{display:block;width:100%;text-align:left;background:none;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:13.5px;font-family:inherit;color:var(--ink);cursor:pointer;margin:6px 0;transition:all .2s}
+body.night .qz-opt{color:var(--nightink);border-color:var(--nightline)}
+.qz-opt:hover{border-color:var(--teal)}
+.qz-opt.ok{border-color:var(--teal);background:rgba(63,125,92,.14);color:var(--teal);font-weight:700}
+.qz-opt.bad{border-color:var(--red);background:rgba(168,68,46,.12);color:var(--red)}
+.qz-fb{font-size:13px;color:var(--ink2);margin-top:8px;min-height:20px}
+body.night .qz-fb{color:var(--nightink2)}
+.quotes{overflow-x:auto;scroll-snap-type:x mandatory;display:flex;gap:14px;padding:6px 2px 14px;margin:22px 0}
+.quotes .qt{flex:0 0 260px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+body.night .quotes .qt{background:var(--nightcard);border-color:var(--nightline)}
+.quotes .qt p{font-size:15px;font-weight:700;line-height:1.75}
+.quotes .qt span{font-size:11.5px;color:var(--gold);margin-top:12px;letter-spacing:1px}
+#finish{text-align:center;padding:60px 0 40px}
+#finish .big{font-size:clamp(30px,6vw,50px);font-weight:900;letter-spacing:6px;line-height:1.4;margin-bottom:16px}
+.ach-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;text-align:left;margin:20px 0}
+.ach{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;opacity:.45;transition:opacity .3s;display:flex;gap:10px;align-items:center}
+body.night .ach{background:var(--nightcard);border-color:var(--nightline)}
+.ach.on{opacity:1;border-color:var(--gold)}
+.ach .ic{font-size:22px;flex:none}
+.ach .nm{font-size:13px;font-weight:700;line-height:1.4}
+.ach .ds{font-size:11px;color:var(--ink2);margin-top:2px}
+body.night .ach .ds{color:var(--nightink2)}
+.rate-bar{height:8px;border-radius:99px;background:var(--paper2);overflow:hidden;margin:8px 0 4px}
+body.night .rate-bar{background:var(--nightbg2)}
+.rate-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .6s}
+.fact-box{background:rgba(63,125,92,.08);border:1px dashed rgba(63,125,92,.4);border-radius:12px;padding:12px 16px;font-size:13.5px;color:var(--ink2);margin:16px 0}
+body.night .fact-box{color:var(--nightink2)}
+footer{text-align:center;font-size:12px;color:var(--ink2);padding:30px 0 46px;letter-spacing:1px}
+body.night footer{color:var(--nightink2)}
+.toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:11px 22px;border-radius:999px;font-size:14px;letter-spacing:1px;opacity:0;pointer-events:none;transition:all .35s;z-index:200}
+body.night .toast{background:var(--gold);color:#1a1a1a}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:640px){
+  #menuBtn{display:inline-block}
+  #nightBtn{display:none}
+  figure img{height:230px}
+}
+</style>
+</head><body>
+<div id="progressBar"></div>
+<div id="topbar">
+  <button id="menuBtn">☰ 目录</button>
+  <div class="brand">《边城》<em>·</em> 多媒体书</div>
+  <button id="tocBtn">目录</button>
+  <button id="nightBtn">🌙 夜间</button>
+  <button id="resetBtn">↺ 重置</button>
+</div>
+
+<nav id="toc">
+  <h3>目 录</h3>
+  <button class="toc-item" data-to="#prologue"><span class="no">序</span>走近边城<span class="dot"></span></button>
+  <button class="toc-item" data-to="#act1"><span class="no">一</span>渡口与白塔<span class="dot"></span></button>
+  <button class="toc-item" data-to="#act2"><span class="no">二</span>河街与吊脚楼<span class="dot"></span></button>
+  <button class="toc-item" data-to="#act3"><span class="no">三</span>端午 · 初见<span class="dot"></span></button>
+  <button class="toc-item" data-to="#act4"><span class="no">四</span>少女心事<span class="dot"></span></button>
+  <button class="toc-item" data-to="#act5"><span class="no">五</span>车路与马路<span class="dot"></span></button>
+  <button class="toc-item" data-to="#act6"><span class="no">六</span>月下情歌<span class="dot"></span></button>
+  <button class="toc-item" data-to="#act7"><span class="no">七</span>天意 · 离殇<span class="dot"></span></button>
+  <button class="toc-item" data-to="#act8"><span class="no">八</span>永远的等待<span class="dot"></span></button>
+  <button class="toc-item" data-to="#wall"><span class="no">·</span>金句墙<span class="dot"></span></button>
+  <button class="toc-item" data-to="#finish"><span class="no">·</span>成就与完读<span class="dot"></span></button>
+  <div class="toc-note">沈从文《边城》多媒体书<br>插画 / 实景 / 朗读 / 电影 / 游戏<br>多媒体密度 × 沉浸阅读</div>
+</nav>
+<div id="tocBackdrop"></div>
+
+<header id="cover">
+  <img class="bg" src="media/art_cover.jpg" alt="边城水墨封面">
+  <div class="veil"></div>
+  <div class="cover-inner">
+    <div class="cover-kicker">沈从文 · 一九三四 · 湘西</div>
+    <h1 class="cover-title">边 城</h1>
+    <div class="cover-sub">多媒体书</div>
+    <div class="cover-verse">"这个人也许永远不回来了，也许明天回来！"</div>
+    <div class="cover-badges">
+      <span class="badge">8 幕叙事</span><span class="badge">10 幅插画</span><span class="badge">7 张实景</span>
+      <span class="badge">2 段朗读</span><span class="badge">2 部电影切片</span><span class="badge">8 个互动游戏</span><span class="badge">20 题闯关</span>
+    </div>
+    <div class="scroll-hint">▼ 顺流而下 · 走进茶峒</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="act" id="prologue">
+  <div class="act-head">
+    <div class="act-no">序 章</div>
+    <h2 class="act-title">走近边城</h2>
+    <p class="act-lead">这是沈从文笔下最温柔的地方。一条溪，一座白塔，一个老人，一个女孩，一只黄狗。故事很慢，慢得像湘西的溪水，可读完之后，你会记住一辈子。</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">由四川过湖南去，靠东有一条官路。这官路将近湘西边境，到了一个地方名叫"茶峒"的小山城时，有一小溪，溪边有座白色小塔，塔下住了一户单独的人家。这人家只一个老人，一个女孩子，一只黄狗。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第一章</div>
+  </div>
+
+  <div class="audio-card">
+    <div class="audio-head"><div class="audio-icon">🎙️</div>
+      <div><div class="audio-title">开篇 · 朗读</div><div class="audio-desc">溪流如弓背，山路如弓弦——听老人讲故事的调子</div></div>
+    </div>
+    <audio controls preload="none" src="media/audio_opening.wav"></audio>
+  </div>
+
+  <figure>
+    <img src="media/photo_valley_aerial.jpg" alt="茶峒全景">
+    <figcaption><span class="media-tag tag-img">实景</span>今天的湘西茶峒——沈从文笔下"边城"的原型地，一脚踏三省</figcaption>
+  </figure>
+
+  <div class="fact-box">📖 <b>关于这本书</b>：沈从文（1902—1988）1934 年写成《边城》。小说没有大起大落的情节，写的只是茶峒渡口一年半载的日子：端午、中秋、过年，唱歌、划船、捉鸭。可正是这些平凡的日子，藏着中国文学里最深沉的等待与最干净的遗憾。它被翻译成四十多种文字，是"中国乡土文学的巅峰"。</div>
+
+  <div class="map">
+    <div class="map-head">🛶 全书地图 · 八幕顺流而下</div>
+    <div class="map-grid" id="mapGrid"></div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<section class="act" id="act1">
+  <div class="act-head">
+    <div class="act-no">第一幕</div>
+    <h2 class="act-title">渡口与白塔</h2>
+    <p class="act-lead">一个人，一只狗，一只船。日子像溪水一样流。老人把船渡了五十年，唯一的亲人，是那个在风日里长大的女孩子——翠翠。</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">溪流如弓背，山路如弓弦……管理这渡船的，就是住在塔下的那个老人。活了七十年，从二十岁起便守在这小溪边，五十年来不知把船来去渡了若干人。他唯一的伙伴是一只渡船和一只黄狗，唯一的亲人，便只那个女孩子。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第一章</div>
+  </div>
+
+  <figure>
+    <img src="media/art_ferry.jpg" alt="渡船插画">
+    <figcaption><span class="media-tag tag-img">插画</span>清晨薄雾，老人牵拉竹缆，渡船缓缓划过清可见底的小溪</figcaption>
+  </figure>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">翠翠在风日里长养着，把皮肤变得黑黑的，触目为青山绿水，一对眸子清明如水晶。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第一章</div>
+  </div>
+
+  <figure>
+    <img src="media/photo_tower.jpg" alt="沱江白塔实景">
+    <figcaption><span class="media-tag tag-img">实景</span>沱江边的白塔——让人想起《边城》里塔下住着的那户人家</figcaption>
+  </figure>
+
+  <div class="game-card">
+    <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">拉拉渡</span></div>
+    <div class="game-sub">老船夫每天做的，就是拽着缆绳，把船从这岸拉到那岸。你也来当一回摆渡人——连点"拉缆"，把翠翠和爷爷送到对岸。</div>
+    <div class="game-zone" id="ferryZone">
+      <div class="shore l"></div><div class="shore r"></div>
+      <div class="water"></div>
+      <div id="ferryBoat" style="position:absolute;left:6%;top:58%;font-size:44px;transition:left .25s">⛵</div>
+      <div id="ferryTower" style="position:absolute;right:3%;top:8%;font-size:34px">🗼</div>
+    </div>
+    <div class="game-row"><span class="game-stat" id="ferryStat">已拉缆 0 次</span>
+      <button class="game-btn" id="ferryBtn">拉缆 →</button></div>
+    <div class="game-msg" id="ferryMsg">点击拉缆，把船拉过溪去。</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 闯关 · 第一幕</div>
+    <div class="qz" data-q="1"><div class="qz-t">Q1. 塔下住着几个人？</div>
+      <button class="qz-opt">一个老人，一个女孩子，一只黄狗</button>
+      <button class="qz-opt">两个老人和一个孩子</button>
+      <button class="qz-opt">一家人和一条船</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="2"><div class="qz-t">Q2. 翠翠的母亲是怎么死的？</div>
+      <button class="qz-opt">病死的</button>
+      <button class="qz-opt">生下翠翠后，喝了溪水死去</button>
+      <button class="qz-opt">随军远行，再没回来</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<section class="act" id="act2">
+  <div class="act-head">
+    <div class="act-no">第二幕</div>
+    <h2 class="act-title">河街与吊脚楼</h2>
+    <p class="act-lead">顺水再走一里，就是茶峒城。凭水依山筑成的城，沿河一条街，房子一半着陆、一半在水——那便是吊脚楼。河街上有船总顺顺，和两个儿子：天保、傩送。</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">贯串各个码头有一条河街，人家房子多一半着陆，一半在水，因为余地有限，那些房子莫不设有吊脚楼。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第二章</div>
+  </div>
+
+  <figure>
+    <img src="media/art_street.jpg" alt="河街吊脚楼插画">
+    <figcaption><span class="media-tag tag-img">插画</span>临水一面吊脚楼，一半着陆一半在水，长长木梯搭到水面</figcaption>
+  </figure>
+
+  <figure>
+    <img src="media/photo_stilt_houses.jpg" alt="吊脚楼实景">
+    <figcaption><span class="media-tag tag-img">实景</span>湘西吊脚楼——"细脚伶仃"地立在江里</figcaption>
+  </figure>
+
+  <div class="fact-box">🧭 <b>风物速记</b>：船总顺顺，是茶峒最有威望的人，仗义疏财。大老天保，像他爹，憨直沉稳；二老傩送，却像妈——茶峒人叫他"岳云"，因为他眉清目秀，像戏台上唱《岳云》的小生。</div>
+
+  <div class="game-card">
+    <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">河街寻宝</span></div>
+    <div class="game-sub">茶峒的河街什么都有。把这 6 样风物都认出来，你就成了半个茶峒人。</div>
+    <div class="game-zone" id="streetZone" style="display:flex;flex-wrap:wrap;gap:10px;padding:14px;min-height:140px;background:linear-gradient(180deg,#dfe7dc,#e8dcc0)">
+      <button class="game-btn alt" data-s="吊脚楼：一半着陆，一半在水，茶峒人把日子架在水上">🏠 吊脚楼</button>
+      <button class="game-btn alt" data-s="篷船：沿河做买卖的小船，船头插着小旗">⛵ 篷船</button>
+      <button class="game-btn alt" data-s="酒旗：河街上的酒铺，飘着湘西的米酒香">🏮 酒旗</button>
+      <button class="game-btn alt" data-s="石阶：从河街一直搭到水边的长梯">🪜 石阶</button>
+      <button class="game-btn alt" data-s="码头：船总顺顺的商号就在这码头边">⚓ 码头</button>
+      <button class="game-btn alt" data-s="黄狗：翠翠的伙伴，整天守在渡船上">🐕 黄狗</button>
+    </div>
+    <div class="game-row"><span class="game-stat" id="streetStat">找到 0 / 6</span></div>
+    <div class="game-msg" id="streetMsg">点一点河街上的风物，听听它们的来历。</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 闯关 · 第二幕</div>
+    <div class="qz" data-q="3"><div class="qz-t">Q3. 茶峒的房子为什么多设吊脚楼？</div>
+      <button class="qz-opt">为了好看</button>
+      <button class="qz-opt">余地有限，只好一半着陆一半在水</button>
+      <button class="qz-opt">怕洪水淹了整座屋</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="4"><div class="qz-t">Q4. 顺顺的两个儿子，大老叫什么？</div>
+      <button class="qz-opt">傩送</button>
+      <button class="qz-opt">岳云</button>
+      <button class="qz-opt">天保</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="divider"></div>
+</section><section class="act" id="act3">
+  <div class="act-head">
+    <div class="act-no">第三幕</div>
+    <h2 class="act-title">端午 · 初见</h2>
+    <p class="act-lead">端午节，茶峒人最热闹的日子。龙船下水，锣鼓喧天；水手们光着膀子捉鸭子。也就在这个端午，翠翠第一次见到二老傩送——那句"大鱼来咬了你"，从此钻进她梦里。</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">桨手每人持一支短桨，随了鼓声缓促为节拍，把船向前划去。两岸人呐喊助威，龙船如飞。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第三章</div>
+  </div>
+
+  <figure>
+    <img src="media/art_dragonboat.jpg" alt="端午龙舟插画">
+    <figcaption><span class="media-tag tag-img">插画</span>龙舟竞渡——端午是茶峒一年里最响亮的日子</figcaption>
+  </figure>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">"大鱼来咬了你，可不要喊救命！"——那晚翠翠等爷爷，等来的是二老。一句玩笑话，她记了一辈子。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第四章</div>
+  </div>
+
+  <figure>
+    <img src="media/photo_ferry_dusk.jpg" alt="茶峒渡船实景">
+    <figcaption><span class="media-tag tag-img">实景</span>黄昏的渡口，船靠岸，灯初上——像翠翠守船等爷爷的那个晚上</figcaption>
+  </figure>
+
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1ma7azaEU2&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="video-foot"><span class="media-tag tag-video">电影切片</span>1984 版《边城》· 以翠翠的视角重走初见（B站）<a href="https://www.bilibili.com/video/BV1ma7azaEU2/" target="_blank" rel="noopener">去 B站看 ↗</a></div>
+  </div>
+
+  <div class="game-card">
+    <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">捉鸭子</span></div>
+    <div class="game-sub">端午的保留节目：船总把鸭子放进河里，水手们下水去捉。30 秒内，点中 3 只鸭子就算捉鸭高手！</div>
+    <div class="game-zone" id="duckZone" style="min-height:190px">
+      <div class="water" style="height:70%"></div>
+    </div>
+    <div class="game-row"><span class="game-stat" id="duckStat">得分 0 · 时间 30</span>
+      <button class="game-btn" id="duckBtn">开始捉鸭</button></div>
+    <div class="game-msg" id="duckMsg">鸭子会从水面钻出来，快点它！</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 闯关 · 第三幕</div>
+    <div class="qz" data-q="5"><div class="qz-t">Q5. 翠翠初次见到二老时，他说的那句玩笑话是？</div>
+      <button class="qz-opt">"大鱼来咬了你，可不要喊救命！"</button>
+      <button class="qz-opt">"明天带你去捉鸭子。"</button>
+      <button class="qz-opt">"你爷爷回不来了。"</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="6"><div class="qz-t">Q6. 端午捉鸭子，是茶峒的什么习俗？</div>
+      <button class="qz-opt">祭河神</button>
+      <button class="qz-opt">船总把鸭子放河里，水手下水去捉</button>
+      <button class="qz-opt">家家户户吃鸭子</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<section class="act" id="act4">
+  <div class="act-head">
+    <div class="act-no">第四幕</div>
+    <h2 class="act-title">少女心事</h2>
+    <p class="act-lead">翠翠十五岁了。从前听歌就听歌，看龙船就看龙船；如今黄昏里会有一点薄薄的凄凉，心里会无缘无故地柔软起来。祖父看在眼里，心里却想起了翠翠她娘。</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">黄昏照样的温柔、美丽和平静。但一个人若体念到这个当前一切时，也就照样地在这黄昏中会有点儿薄薄的凄凉。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第十三章</div>
+  </div>
+
+  <figure>
+    <img src="media/art_dusk.jpg" alt="黄昏心事插画">
+    <figcaption><span class="media-tag tag-img">插画</span>黄昏的白塔下，翠翠看天上被夕阳烘成桃花色的薄云</figcaption>
+  </figure>
+
+  <figure>
+    <img src="media/photo_misty_river.jpg" alt="晨雾沱江实景">
+    <figcaption><span class="media-tag tag-img">实景</span>雾气氤氲的江面——少女的心事，也像这雾一样朦胧</figcaption>
+  </figure>
+
+  <div class="game-card">
+    <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">心事卡牌</span></div>
+    <div class="game-sub">翠翠把心事藏得很深。翻开心事卡，听一听这个十五岁少女心里的话。</div>
+    <div class="game-zone" id="heartZone" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px;min-height:150px;background:linear-gradient(160deg,#e8dcc0,#dfe7dc)">
+    </div>
+    <div class="game-row"><span class="game-stat" id="heartStat">翻开 0 / 6</span></div>
+    <div class="game-msg" id="heartMsg">每张牌后面，都是一句翠翠没说出口的话。</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 闯关 · 第四幕</div>
+    <div class="qz" data-q="7"><div class="qz-t">Q7. 先来提亲的是谁？</div>
+      <button class="qz-opt">二老傩送</button>
+      <button class="qz-opt">大老天保</button>
+      <button class="qz-opt">顺顺</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="8"><div class="qz-t">Q8. 黄昏里的翠翠，心里是什么感觉？</div>
+      <button class="qz-opt">热闹又开心</button>
+      <button class="qz-opt">一点薄薄的凄凉</button>
+      <button class="qz-opt">害怕天黑</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<section class="act" id="act5">
+  <div class="act-head">
+    <div class="act-no">第五幕</div>
+    <h2 class="act-title">车路与马路</h2>
+    <p class="act-lead">湘西求亲有两条路：走车路，是请媒人正经提亲；走马路，是当夜到对岸唱三年六个月的情歌。大老走车路，二老却唱了歌。祖父犯难了——翠翠的心，到底在哪边？</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">"大老走车路，应当由大老爹爹做主，请了媒人来正正经经同我说。走马路，应当自己做主，站在渡口对溪高崖上，为翠翠唱三年六个月的歌。"</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第十一章</div>
+  </div>
+
+  <figure>
+    <img src="media/art_mill.jpg" alt="碾坊与渡船插画">
+    <figcaption><span class="media-tag tag-img">插画</span>中寨人要把一座碾坊作陪嫁，二老却摆手："我打量要那只渡船。"</figcaption>
+  </figure>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">"我不要碾坊！"二老说。"我打量要那只渡船。"</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第十一章</div>
+  </div>
+
+  <figure>
+    <img src="media/photo_fog_boat.jpg" alt="晨雾渡船实景">
+    <figcaption><span class="media-tag tag-img">实景</span>晨雾里的渡船——碾坊是实的，渡船是飘的；二老偏偏选了个"飘"的</figcaption>
+  </figure>
+
+  <div class="game-card">
+    <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">车路 or 马路</span></div>
+    <div class="game-sub">如果你是二老，面对翠翠，你走哪条路？选完看看书里怎么走。</div>
+    <div class="game-row">
+      <button class="game-btn" id="roadCar">🐴 走车路 · 请媒提亲</button>
+      <button class="game-btn alt" id="roadHorse">🎵 走马路 · 月下唱歌</button>
+    </div>
+    <div class="game-msg" id="roadMsg">两条路，都是湘西人求爱的方式。你选哪一条？</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 闯关 · 第五幕</div>
+    <div class="qz" data-q="9"><div class="qz-t">Q9. "车路"指的是什么？</div>
+      <button class="qz-opt">请媒人正经提亲</button>
+      <button class="qz-opt">租马车去接亲</button>
+      <button class="qz-opt">写情书</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="10"><div class="qz-t">Q10. 中寨人要给二老陪嫁一座什么？二老怎么说？</div>
+      <button class="qz-opt">一座水碾坊——"我不要碾坊，我要那只渡船"</button>
+      <button class="qz-opt">一船盐——"我只要盐"</button>
+      <button class="qz-opt">一箱银元——"我不缺钱"</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="divider"></div>
+</section><section class="act" id="act6">
+  <div class="act-head">
+    <div class="act-no">第六幕</div>
+    <h2 class="act-title">月下情歌</h2>
+    <p class="act-lead">那一夜，月光如银子，无处不可照及。歌声从对岸高崖上飘下来，软软、甜甜。翠翠在梦里，灵魂被歌声轻轻托起，还摘了一大把虎耳草。</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">翠翠梦中灵魂为一种美妙歌声浮起来了，仿佛轻轻地各处飘着，上了白塔，下了菜园，到了船上，又复飞窜过悬崖半腰——去做什么呢？摘虎耳草！</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第十四章</div>
+  </div>
+
+  <figure>
+    <img src="media/art_moonsong.jpg" alt="月下情歌插画">
+    <figcaption><span class="media-tag tag-img">插画</span>月光如银子，歌声浮起少女的梦——中国文学里最美的情歌场面之一</figcaption>
+  </figure>
+
+  <figure>
+    <img src="media/photo_night_bridge.jpg" alt="虹桥夜景实景">
+    <figcaption><span class="media-tag tag-img">实景</span>夜里的沱江灯火摇曳——像歌声停过的地方</figcaption>
+  </figure>
+
+  <div class="game-card">
+    <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">听歌 · 摘虎耳草</span></div>
+    <div class="game-sub">歌声来了——5 次"歌声"里，点中节奏最准的那一次，替翠翠摘回虎耳草。</div>
+    <div class="game-zone" id="songZone" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:170px;background:linear-gradient(180deg,#1b2430,#20293a)">
+      <div id="songMoon" style="font-size:40px;animation:hint 3s ease-in-out infinite">🌕</div>
+      <div id="songText" style="color:#e8dcc0;font-size:15px;letter-spacing:2px">月光如银子，等待歌声……</div>
+      <div class="game-row"><button class="game-btn" id="songBtn">🎶 摘虎耳草</button></div>
+    </div>
+    <div class="game-row"><span class="game-stat" id="songStat">已摘 0 / 5</span></div>
+    <div class="game-msg" id="songMsg">跟着月光与歌声的节奏，点击摘草。</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 闯关 · 第六幕</div>
+    <div class="qz" data-q="11"><div class="qz-t">Q11. 翠翠在梦里，被歌声托起来去做什么？</div>
+      <button class="qz-opt">摘虎耳草</button>
+      <button class="qz-opt">摘桃子</button>
+      <button class="qz-opt">采蘑菇</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="12"><div class="qz-t">Q12. 那晚在月下唱歌的，其实是？</div>
+      <button class="qz-opt">大老天保</button>
+      <button class="qz-opt">二老傩送</button>
+      <button class="qz-opt">祖父</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<section class="act" id="act7">
+  <div class="act-head">
+    <div class="act-no">第七幕</div>
+    <h2 class="act-title">天意 · 离殇</h2>
+    <p class="act-lead">哥哥先唱了歌，自知不如弟弟，便驾船下河做生意去了。谁知在茨滩，船翻了，人再没回来。茶峒人说：这是天意。可天意之后，二老的心也关了门。</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">天保佑的在茨滩，为水淹坏，死了。老船夫一到晚上，总把钱拿来数了又数，日子过得凄凄凉凉的。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第十六章</div>
+  </div>
+
+  <figure>
+    <img src="media/art_fate.jpg" alt="茨滩急流插画">
+    <figcaption><span class="media-tag tag-img">插画</span>茨滩的急流乱石——天保的生命，就断在这里</figcaption>
+  </figure>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">二老他记着哥哥的死亡，他不愿同翠翠再有纠缠。他不再唱歌了，也不再提起提亲的事。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第十七章</div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1sKyrBiEdn&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="video-foot"><span class="media-tag tag-video">电影切片</span>经典电影《边城》解说 · 一部被选入语文教材、让人隐隐作痛的作品（B站）<a href="https://www.bilibili.com/video/BV1sKyrBiEdn/" target="_blank" rel="noopener">去 B站看 ↗</a></div>
+  </div>
+
+  <div class="game-card">
+    <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">天意骰子</span></div>
+    <div class="game-sub">茶峒人把说不清的变故都叫"天意"。掷三次骰子，拼出你的"天意三行诗"。</div>
+    <div class="game-zone" id="fateZone" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:190px;background:linear-gradient(180deg,#232b26,#1c2422)">
+      <div id="fateDie" style="font-size:58px;transition:transform .4s">🎲</div>
+      <div id="fateLine" style="color:#d9cfae;font-size:14.5px;letter-spacing:1px;text-align:center;min-height:44px;line-height:1.8">点击骰子，看看天意怎么说。</div>
+      <div class="game-row"><button class="game-btn" id="fateBtn">掷骰 · 第 1 次</button></div>
+    </div>
+    <div class="game-msg" id="fateMsg">三次天意，拼成一句命运的诗。</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 闯关 · 第七幕</div>
+    <div class="qz" data-q="13"><div class="qz-t">Q13. 大老天保是怎么死的？</div>
+      <button class="qz-opt">病死的</button>
+      <button class="qz-opt">在茨滩翻船，被水淹坏</button>
+      <button class="qz-opt">与人打架受伤</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="14"><div class="qz-t">Q14. 哥哥死后，二老做了什么？</div>
+      <button class="qz-opt">照常来提亲</button>
+      <button class="qz-opt">不再唱歌，不愿再提翠翠</button>
+      <button class="qz-opt">离开茶峒去了远方</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="divider"></div>
+</section><section class="act" id="act8">
+  <div class="act-head">
+    <div class="act-no">第八幕</div>
+    <h2 class="act-title">永远的等待</h2>
+    <p class="act-lead">雷雨夜，溪水漫上码头，白塔在风雨里坍了。祖父也在这个夜里，永远闭上了眼睛。翠翠哭了，可她还是守着渡船——因为有人说，二老也许明天回来。</p>
+  </div>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">夜间果然落了大雨，夹以吓人的雷声。电光从屋脊上掠过时，接着就是訇的一个炸雷……溪中涨了大水，已漫上了码头。</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第二十章</div>
+  </div>
+
+  <figure>
+    <img src="media/art_storm.jpg" alt="雷雨白塔倾插画">
+    <figcaption><span class="media-tag tag-img">插画</span>雷雨夜，白塔倾圮，渡船被水冲走——仿佛天地也在为一辈子摆渡的老人送行</figcaption>
+  </figure>
+
+  <div class="quote-card"><span class="qm">"</span>
+    <p class="q">到了冬天，那个圮坍了的白塔，又重新修好了。那个在月下唱歌，使翠翠在睡梦里为歌声把灵魂轻轻浮起的年青人，还不曾回到茶峒来。这个人也许永远不回来了，也许明天回来！</p>
+    <div class="src"><span class="line"></span>沈从文《边城》第二十一章 · 全书结尾</div>
+  </div>
+
+  <div class="audio-card">
+    <div class="audio-head"><div class="audio-icon">🎙️</div>
+      <div><div class="audio-title">结尾 · 朗读</div><div class="audio-desc">"这个人也许永远不回来了，也许明天回来！"</div></div>
+    </div>
+    <audio controls preload="none" src="media/audio_ending.wav"></audio>
+  </div>
+
+  <figure>
+    <img src="media/art_waiting.jpg" alt="永远的等待插画">
+    <figcaption><span class="media-tag tag-img">插画</span>冬天，白塔重修好了。翠翠守着渡船，望着远方——等待一个"也许明天回来"的人</figcaption>
+  </figure>
+
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1ma7azaEU2&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="video-foot"><span class="media-tag tag-video">电影切片</span>翠翠视角 · "这个人永远不回来了，也许明天就回来"（B站）<a href="https://www.bilibili.com/video/BV1ma7azaEU2/" target="_blank" rel="noopener">去 B站看 ↗</a></div>
+  </div>
+
+  <div class="game-card">
+    <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">等待之问</span></div>
+    <div class="game-sub">故事到这里就结束了。没有答案，只有等待。你觉得，二老还会回来吗？</div>
+    <div class="game-row">
+      <button class="game-btn" id="waitYes">🌅 也许明天回来</button>
+      <button class="game-btn alt" id="waitNo">🌧️ 也许永远不回来</button>
+    </div>
+    <div class="game-msg" id="waitMsg">沈从文把答案留给了每一个读者。你相信哪一个？</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 闯关 · 第八幕</div>
+    <div class="qz" data-q="15"><div class="qz-t">Q15. 雷雨夜里，谁去世了？</div>
+      <button class="qz-opt">顺顺</button>
+      <button class="qz-opt">祖父（老船夫）</button>
+      <button class="qz-opt">杨马兵</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="16"><div class="qz-t">Q16. 全书结尾，白塔怎么样了？</div>
+      <button class="qz-opt">一直坍着没人管</button>
+      <button class="qz-opt">冬天又重修好了</button>
+      <button class="qz-opt">被水冲走了</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<section class="act" id="wall">
+  <div class="act-head">
+    <div class="act-no">终 章</div>
+    <h2 class="act-title">金句墙</h2>
+    <p class="act-lead">把《边城》最戳人心的话，都留在这一面墙上。左右滑动，慢慢读。</p>
+  </div>
+  <div class="quotes">
+    <div class="qt"><p>"这个人也许永远不回来了，也许明天回来！"</p><span>《边城》· 结尾</span></div>
+    <div class="qt"><p>"火是各处可烧的，水是各处可流的，日月是各处可照的，爱情是各处可到的。"</p><span>《边城》· 第十四章</span></div>
+    <div class="qt"><p>"每一只船总要有个码头，每一只雀儿得有个窠。"</p><span>《边城》· 第十七章</span></div>
+    <div class="qt"><p>"要硬扎一点，结实一点，才配活到这块土地上！"</p><span>《边城》· 第十三章</span></div>
+    <div class="qt"><p>"不许哭，做一个大人，不管有什么事都不许哭。"</p><span>《边城》· 第二十一章</span></div>
+    <div class="qt"><p>"日头不辜负你们，你们也莫辜负日头！"</p><span>《边城》· 杨马兵</span></div>
+    <div class="qt"><p>"月光如银子，无处不可照及。"</p><span>《边城》· 第十四章</span></div>
+    <div class="qt"><p>"翠翠在风日里长养着，把皮肤变得黑黑的，触目为青山绿水，一对眸子清明如水晶。"</p><span>《边城》· 第一章</span></div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<section class="act" id="finalQuiz">
+  <div class="act-head">
+    <div class="act-no">终 局</div>
+    <h2 class="act-title">大考 · 边城知多少</h2>
+    <p class="act-lead">四道终局题。全对，你就是真正的"边城读者"。</p>
+  </div>
+  <div class="quiz-card">
+    <div class="quiz-head">🎯 终局闯关</div>
+    <div class="qz" data-q="17"><div class="qz-t">Q17. 全书最后一句话是？</div>
+      <button class="qz-opt">"边城的故事结束了。"</button>
+      <button class="qz-opt">"这个人也许永远不回来了，也许明天回来！"</button>
+      <button class="qz-opt">"翠翠终于等到了二老。"</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="18"><div class="qz-t">Q18. 《边城》的作者是？</div>
+      <button class="qz-opt">鲁迅</button>
+      <button class="qz-opt">沈从文</button>
+      <button class="qz-opt">汪曾祺</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="19"><div class="qz-t">Q19. 翠翠守着渡船，一直在等谁？</div>
+      <button class="qz-opt">大老天保</button>
+      <button class="qz-opt">二老傩送</button>
+      <button class="qz-opt">顺顺</button>
+      <div class="qz-fb"></div></div>
+    <div class="qz" data-q="20"><div class="qz-t">Q20. "边城"茶峒，大致在什么位置？</div>
+      <button class="qz-opt">湘西边境，一脚踏三省的地方</button>
+      <button class="qz-opt">长江边上</button>
+      <button class="qz-opt">洞庭湖中央</button>
+      <div class="qz-fb"></div></div>
+  </div>
+  <div class="fact-box">📊 你的闯关战绩：<b id="qzScore">0 / 20</b>。答对 16 题以上，解锁「边城读者」称号。</div>
+  <div class="divider"></div>
+</section>
+
+<section id="finish">
+  <div class="big">船到岸了</div>
+  <p class="act-lead" style="max-width:620px;margin:0 auto 10px">故事没有结局，就像茶峒的溪水还在流。但你已经陪翠翠走完了一个夏天、一个秋天和一个冬天。</p>
+  <p class="act-lead" style="max-width:620px;margin:0 auto 26px;color:var(--gold)">愿你我都能等到，那个"也许明天回来"的人。</p>
+  <div class="map">
+    <div class="map-head">🏅 你的边城之旅 · 成就墙</div>
+    <div class="ach-wrap" id="achWrap"></div>
+  </div>
+  <div class="map" style="margin-top:14px">
+    <div class="map-head">📖 完读进度</div>
+    <div class="rate-bar"><i id="rateFill"></i></div>
+    <div class="game-row" style="justify-content:center;margin-top:6px"><span class="game-stat" id="rateText">0%</span></div>
+  </div>
+  <div class="map" style="margin-top:14px">
+    <div class="map-head">🎬 想看完整电影？</div>
+    <div class="game-row" style="justify-content:center;margin-top:8px">
+      <a class="game-btn" href="https://www.bilibili.com/bangumi/play/ep688371" target="_blank" rel="noopener" style="text-decoration:none">B站 · 1984版《边城》正片</a>
+      <a class="game-btn alt" href="https://www.iqiyi.com/v_19rr7r81z8.html" target="_blank" rel="noopener" style="text-decoration:none">爱奇艺 · 《边城》</a>
+    </div>
+  </div>
+</section>
+
+<footer>《边城》· 沈从文原著 · 多媒体书<br>AI 插画 / 实景摄影 / 朗读音频 / 电影切片 / 互动游戏<br>为让"书"重新被看见 —— 与短视频争时间的阅读实验</footer>
+
+</div>
+<div class="toast" id="toast"></div><script>
+var QUIZ={1:{a:0,f:"对！一个老人，一个女孩子，一只黄狗——全书就是这三口之家。"},2:{a:1,f:"是。翠翠的母亲与军士相爱，生下孩子后，喝了溪水死去。祖父总怕翠翠重走她娘的路。"},3:{a:1,f:"对。余地有限，一半着陆一半在水，就有了吊脚楼。"},4:{a:2,f:"对。大老天保，二老傩送。"},5:{a:0,f:"就是这句！二老一句玩笑，翠翠记了一辈子。"},6:{a:1,f:"对。船总把鸭子放到河里，水手下水去捉，谁捉到归谁。"},7:{a:1,f:"对。大老天保先来提亲，走的是车路。"},8:{a:1,f:"对。黄昏照样的温柔美丽，可翠翠心里，有点薄薄的凄凉。"},9:{a:0,f:"对。车路=请媒提亲，马路=唱三年六个月的情歌。"},10:{a:0,f:"对！'我不要碾坊，我打量要那只渡船。'"},11:{a:0,f:"对。虎耳草——那是她梦里爱情的样子。"},12:{a:1,f:"对。那晚唱歌的其实是二老傩送（大老走的是车路）。"},13:{a:1,f:"对。茨滩水急，船翻了，天保再没回来。茶峒人说：这是天意。"},14:{a:1,f:"对。他记着哥哥的死，不愿再提翠翠，也再没唱过歌。"},15:{a:1,f:"对。雷雨夜，祖父握着翠翠的手，永远闭上了眼睛。"},16:{a:1,f:"对。冬天，白塔又重新修好了——仿佛天地也在替翠翠等一个人。"},17:{a:1,f:"对！'这个人也许永远不回来了，也许明天回来！'"},18:{a:1,f:"对。沈从文，中国乡土文学的大师。"},19:{a:1,f:"对。翠翠等的，是那个在月下唱歌的二老傩送。"},20:{a:0,f:"对。茶峒在湘西边境，一脚踏三省的地方。"}};
+var ACH=[{id:"open",ic:"🚪",nm:"踏进边城",ds:"打开这本多媒体书"},{id:"ferry",ic:"⛵",nm:"摆渡人",ds:"完成拉拉渡小游戏"},{id:"street",ic:"🏠",nm:"茶峒通",ds:"认全河街 6 样风物"},{id:"duck",ic:"🦆",nm:"捉鸭高手",ds:"30 秒捉到 3 只鸭子"},{id:"heart",ic:"💌",nm:"读心人",ds:"翻完 6 张心事卡"},{id:"road",ic:"🐴",nm:"抉择者",ds:"做出车路/马路的选择"},{id:"song",ic:"🌿",nm:"摘草人",ds:"听完歌，摘满 5 把虎耳草"},{id:"fate",ic:"🎲",nm:"知天命",ds:"掷完三次天意骰子"},{id:"wait",ic:"🌅",nm:"守渡人",ds:"回答等待之问"},{id:"reader",ic:"📖",nm:"边城读者",ds:"20 题闯关答对 ≥16"}];
+var HEARTS=["“我记起二老那天说的话了，他说大鱼会来咬我。”","“爷爷老了，我想一直陪着他，又怕他担心我。”","“梦里有个声音唱歌，唱得我心头软软的。”","“大老来提亲，可我心里想的，怎么是另外一个人？”","“茶峒这么大，怎么偏偏是他，让我忘不掉？”","“我不哭。祖父说，做个大人，不许哭。”"];
+var FATES=["天意是渡船起雾，看不清对岸的人。","天意是端午的雨，说来就来，从不商量。","天意是茨滩的水，再好的水性也拗不过。","天意是歌声飘进梦里，醒来人已走远。","天意是白塔倒了又修，等人的人还在等。","天意是那条溪，永远流着，永远没有答案。"];
+
+var S={};try{S=JSON.parse(localStorage.getItem("bc_state")||"{}");}catch(e){S={};}
+S.readActs=S.readActs||{};S.games=S.games||{};S.quiz=S.quiz||{};S.ach=S.ach||{};
+if(S.open!==1){S.open=1;S.ach.open=1;save();}
+function save(){localStorage.setItem("bc_state",JSON.stringify(S));}
+function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove("show");},2400);}
+function gotAch(id){if(!S.ach[id]){S.ach[id]=1;save();var a=ACH.find(function(x){return x.id===id;});toast("🏅 成就解锁："+a.nm);renderAch();}}
+
+var toc=document.getElementById("toc"),back=document.getElementById("tocBackdrop");
+function openToc(){toc.classList.add("open");back.classList.add("show");}
+function closeToc(){toc.classList.remove("open");back.classList.remove("show");}
+document.getElementById("tocBtn").onclick=openToc;
+document.getElementById("menuBtn").onclick=openToc;
+back.onclick=closeToc;
+var tocItems=document.querySelectorAll(".toc-item");
+for(var ti=0;ti<tocItems.length;ti++){(function(b){b.onclick=function(){closeToc();document.querySelector(b.getAttribute("data-to")).scrollIntoView();};})(tocItems[ti]);}
+function renderToc(){var items=document.querySelectorAll(".toc-item");for(var i=0;i<items.length;i++){var id=items[i].getAttribute("data-to").slice(1);if(id!=="prologue"&&id!=="wall"&&id!=="finish"&&S.readActs[id])items[i].classList.add("done");}}
+
+var MAP=[["一","渡口与白塔","一个人，一只狗，一只船"],["二","河街与吊脚楼","一半着陆，一半在水"],["三","端午 · 初见","大鱼来咬了你"],["四","少女心事","黄昏的薄薄凄凉"],["五","车路与马路","我不要碾坊，要渡船"],["六","月下情歌","梦里的虎耳草"],["七","天意 · 离殇","茨滩的水，天意难违"],["八","永远的等待","也许明天回来"]];
+document.getElementById("mapGrid").innerHTML=MAP.map(function(m,i){return '<div class="map-card" data-goto="act'+(i+1)+'"><div class="no">第'+m[0]+'幕</div><div class="t">'+m[1]+'</div><div class="s">'+m[2]+'</div></div>';}).join("");
+var mapCards=document.querySelectorAll(".map-card");
+for(var mi=0;mi<mapCards.length;mi++){(function(c){c.onclick=function(){document.getElementById(c.getAttribute("data-goto")).scrollIntoView();};})(mapCards[mi]);}
+
+var nightBtn=document.getElementById("nightBtn");
+if(S.night)document.body.classList.add("night");
+nightBtn.onclick=function(){document.body.classList.toggle("night");S.night=document.body.classList.contains("night");save();nightBtn.textContent=S.night?"☀️ 日间":"🌙 夜间";};
+nightBtn.textContent=S.night?"☀️ 日间":"🌙 夜间";
+document.getElementById("resetBtn").onclick=function(){if(confirm("确定重置所有进度与成就吗？")){localStorage.removeItem("bc_state");location.reload();}};
+
+function renderRate(){
+  var total=8,done=0;for(var i=1;i<=8;i++)if(S.readActs["act"+i])done++;
+  var p=Math.round(done/total*100);
+  document.getElementById("rateFill").style.width=p+"%";
+  document.getElementById("rateText").textContent=p+"% · 已读 "+done+"/8 幕";
+}
+window.addEventListener("scroll",function(){
+  var h=document.documentElement;
+  var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById("progressBar").style.width=p+"%";
+  var acts=document.querySelectorAll(".act");var cur=null;
+  for(var i=0;i<acts.length;i++){if(acts[i].getBoundingClientRect().top<innerHeight*0.5)cur=acts[i].id;}
+  if(cur&&!S.readActs[cur]){S.readActs[cur]=1;save();renderToc();renderRate();}
+},{passive:true});
+
+var ferryN=0;
+var ferryBtn=document.getElementById("ferryBtn"),ferryBoat=document.getElementById("ferryBoat"),ferryMsg=document.getElementById("ferryMsg"),ferryStat=document.getElementById("ferryStat");
+ferryBtn.onclick=function(){
+  ferryN++;ferryStat.textContent="已拉缆 "+ferryN+" 次";
+  var cur=parseFloat(ferryBoat.style.left)||6;
+  var step=7+Math.random()*8;
+  var nx=Math.min(88,cur+step);
+  ferryBoat.style.left=nx+"%";
+  if(ferryN===1)ferryMsg.textContent="爷爷摆渡五十年，靠的就是这一下一下地拉。";
+  else if(ferryN===3)ferryMsg.textContent="船到中流了。翠翠蹲在船头看水里的鱼。";
+  else if(ferryN===5)ferryMsg.textContent="快了快了，对岸的白塔越来越近。";
+  if(nx>=88){ferryMsg.textContent="🎉 到岸了！渡船稳稳靠上码头——你也学会摆渡了。";ferryBtn.disabled=true;ferryBtn.textContent="✓ 已到岸";gotAch("ferry");S.games.ferry=1;save();}
+};
+if(S.games.ferry){ferryBtn.disabled=true;ferryBtn.textContent="✓ 已到岸";ferryBoat.style.left="88%";ferryMsg.textContent="你早已把这一船人渡到对岸了。";}
+
+var streetN=0;
+var streetZone=document.getElementById("streetZone"),streetMsg=document.getElementById("streetMsg"),streetStat=document.getElementById("streetStat");
+var streetBtns=streetZone.querySelectorAll("button");
+for(var si=0;si<streetBtns.length;si++){(function(b){
+  b.style.width="calc(33.33% - 8px)";b.style.margin="0";
+  b.onclick=function(){
+    if(b.getAttribute("data-done"))return;
+    b.setAttribute("data-done","1");b.style.opacity=".55";streetN++;streetStat.textContent="找到 "+streetN+" / 6";
+    streetMsg.textContent="🔍 "+b.getAttribute("data-s");
+    if(streetN===6){streetMsg.textContent="🎉 河街的风物你都认全了——茶峒通！";gotAch("street");S.games.street=1;save();}
+  };
+})(streetBtns[si]);}
+if(S.games.street){for(var sj=0;sj<streetBtns.length;sj++){streetBtns[sj].setAttribute("data-done","1");streetBtns[sj].style.opacity=".55";}streetN=6;streetStat.textContent="找到 6 / 6";}var duckScore=0,duckTime=30,duckTimer=null,duckSpawn=null;
+var duckZone=document.getElementById("duckZone"),duckBtn=document.getElementById("duckBtn"),duckMsg=document.getElementById("duckMsg"),duckStat=document.getElementById("duckStat");
+function spawnDuck(){
+  var d=document.createElement("div");
+  d.textContent="🦆";
+  d.style.cssText="position:absolute;left:"+(8+Math.random()*78)+"%;top:"+(20+Math.random()*55)+"%;font-size:"+(30+Math.random()*16)+"px;cursor:pointer;transition:all .3s;animation:duckbob 1s ease-in-out infinite";
+  d.onclick=function(){duckScore++;duckStat.textContent="得分 "+duckScore+" · 时间 "+duckTime;d.remove();if(duckScore>=3){duckMsg.textContent="🎉 捉鸭高手！翠翠在岸上看得直拍手。";gotAch("duck");S.games.duck=1;save();endDuck();}};
+  duckZone.appendChild(d);
+  setTimeout(function(){d.remove();},1800);
+}
+function endDuck(){clearInterval(duckTimer);clearInterval(duckSpawn);duckBtn.disabled=false;duckBtn.textContent="再来一局";duckTimer=null;}
+duckBtn.onclick=function(){
+  if(duckTimer){endDuck();duckMsg.textContent="你捉到了 "+duckScore+" 只鸭子。"+(duckScore>=3?" 好样的！":" 再试试？");return;}
+  duckScore=0;duckTime=30;duckStat.textContent="得分 0 · 时间 30";duckMsg.textContent="鸭子来了！快点点它！";
+  duckTimer=setInterval(function(){duckTime--;duckStat.textContent="得分 "+duckScore+" · 时间 "+duckTime;if(duckTime<=0){endDuck();duckMsg.textContent="时间到！你捉到了 "+duckScore+" 只鸭子。"+(duckScore>=3?" 🎉 捉鸭高手！":" 翠翠说：捉不到也没关系，明年再来。");}},1000);
+  duckSpawn=setInterval(spawnDuck,600);
+  duckBtn.textContent="结束";
+};
+var styleDuck=document.createElement("style");styleDuck.textContent="@keyframes duckbob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-7px) rotate(3deg)}}";document.head.appendChild(styleDuck);
+
+var heartN=0;
+var heartZone=document.getElementById("heartZone"),heartMsg=document.getElementById("heartMsg"),heartStat=document.getElementById("heartStat");
+heartZone.innerHTML=HEARTS.map(function(h,i){return '<div class="heart-card" data-i="'+i+'" style="background:linear-gradient(160deg,#c96a4a,#a8442e);border-radius:12px;display:flex;align-items:center;justify-content:center;min-height:84px;font-size:26px;cursor:pointer;color:#fff;transition:all .3s">💌</div>';}).join("");
+var heartCards=heartZone.querySelectorAll(".heart-card");
+for(var hi=0;hi<heartCards.length;hi++){(function(c){
+  c.onclick=function(){
+    if(c.getAttribute("data-open"))return;c.setAttribute("data-open","1");heartN++;
+    c.style.background="linear-gradient(160deg,#f6f1e6,#fffcf3)";c.style.color="#2b2419";c.style.fontSize="11.5px";c.style.padding="8px";c.style.lineHeight="1.6";c.style.fontFamily="inherit";
+    c.textContent=HEARTS[+c.getAttribute("data-i")];
+    heartStat.textContent="翻开 "+heartN+" / 6";
+    heartMsg.textContent="这是翠翠没有说出口的心事。";
+    if(heartN===6){heartMsg.textContent="🎉 六张牌都翻开了——你听见了翠翠的心跳。";gotAch("heart");S.games.heart=1;save();}
+  };
+})(heartCards[hi]);}
+if(S.games.heart){for(var hj=0;hj<heartCards.length;hj++){(function(c){c.setAttribute("data-open","1");c.style.background="linear-gradient(160deg,#f6f1e6,#fffcf3)";c.style.color="#2b2419";c.style.fontSize="11.5px";c.style.padding="8px";c.style.lineHeight="1.6";c.style.fontFamily="inherit";c.textContent=HEARTS[+c.getAttribute("data-i")];})(heartCards[hj]);}heartN=6;heartStat.textContent="翻开 6 / 6";}
+
+var roadMsg=document.getElementById("roadMsg");
+var ROAD={car:"🐴 你选了车路——请媒提亲，光明正大。书里的大老也走了这条路，可翠翠的心，并不在这条路上。",horse:"🎵 你选了马路——月下唱歌，用情歌打动她。书里的二老走了这条路，歌声确实飘进了翠翠的梦里。可是命运，偏偏没有让这条路走完。"};
+document.getElementById("roadCar").onclick=function(){roadMsg.textContent=ROAD.car;S.games.road=1;save();gotAch("road");};
+document.getElementById("roadHorse").onclick=function(){roadMsg.textContent=ROAD.horse;S.games.road=1;save();gotAch("road");};
+
+var songN=0,songReady=false;
+var songText=document.getElementById("songText"),songStat=document.getElementById("songStat"),songMsg=document.getElementById("songMsg"),songBtn=document.getElementById("songBtn");
+var SONG_LINES=["月光如银子，无处不可照及……","歌声软软地、甜甜地飘过来……","翠翠的梦，被歌声轻轻托起……","过了白塔，下了菜园，上了船……","飞过悬崖半腰——去摘虎耳草！"];
+function nextSong(){
+  if(songN>=5){songText.textContent="🌿 虎耳草摘满了。翠翠抱着草，梦里都在笑。";songBtn.disabled=true;songBtn.textContent="✓ 摘满 5 把";songMsg.textContent="🎉 你听见了翠翠听见的歌声。";gotAch("song");S.games.song=1;save();return;}
+  songText.textContent=SONG_LINES[songN];
+  songReady=false;
+  setTimeout(function(){songReady=true;songText.textContent="🌙 歌声到最甜处了……摘！";},500+Math.random()*900);
+}
+songBtn.onclick=function(){
+  if(!songReady){songMsg.textContent="太急了。歌声还没到最甜的地方，等等再摘。";return;}
+  songN++;songStat.textContent="已摘 "+songN+" / 5";
+  songMsg.textContent="🌿 摘到一把虎耳草，草叶上还沾着月光。";
+  setTimeout(nextSong,700);
+};
+if(S.games.song){songN=5;songStat.textContent="已摘 5 / 5";songText.textContent="🌿 虎耳草摘满了。";songBtn.disabled=true;songBtn.textContent="✓ 摘满 5 把";}
+
+var fateN=0;var fateLines=[];
+var fateDie=document.getElementById("fateDie"),fateLine=document.getElementById("fateLine"),fateMsg=document.getElementById("fateMsg"),fateBtn=document.getElementById("fateBtn");
+fateBtn.onclick=function(){
+  fateN++;
+  var r=Math.floor(Math.random()*6);
+  fateLines.push(FATES[r]);
+  fateDie.style.transform="rotate("+(360+Math.random()*360)+"deg)";
+  fateLine.textContent="第 "+fateN+" 次天意："+FATES[r];
+  fateBtn.textContent="掷骰 · 第 "+(fateN+1)+" 次";
+  if(fateN>=3){fateBtn.disabled=true;fateBtn.textContent="✓ 天意已定";
+    fateMsg.innerHTML="<b>你的天意三行诗：</b><br>"+fateLines.join("<br>")+"<br><span style='color:var(--gold)'>茶峒人说：天意难测，可日子还得过下去。</span>";
+    gotAch("fate");S.games.fate=1;save();}
+};
+if(S.games.fate){fateBtn.disabled=true;fateBtn.textContent="✓ 天意已定";fateLine.textContent="你已听过了三次天意。";}
+
+var waitMsg=document.getElementById("waitMsg");
+document.getElementById("waitYes").onclick=function(){waitMsg.textContent="🌅 你选择相信。那么这个故事就没有结束——翠翠的渡船，明天还会等到一个人。也许一切遗憾，都是为了久别重逢。书里没有答案，但选择相信的人，心里会好受一点。";S.games.wait=1;save();gotAch("wait");};
+document.getElementById("waitNo").onclick=function(){waitMsg.textContent="🌧️ 你选择接受。那么这就是一个关于失去的故事——有些等待注定没有结果，可翠翠还是守着渡船，把日子一天天渡下去。这份守候本身，就是边城最动人的地方。书里没有答案，但读懂了遗憾的人，也读懂了人生。";S.games.wait=1;save();gotAch("wait");};
+
+var qzDone=0;
+var qzs=document.querySelectorAll(".qz");
+for(var qi=0;qi<qzs.length;qi++){(function(qz){
+  var q=+qz.getAttribute("data-q"),key="q"+q;
+  if(S.quiz[key]){lockQz(qz,q);return;}
+  var opts=qz.querySelectorAll(".qz-opt"),fb=qz.querySelector(".qz-fb");
+  for(var oi=0;oi<opts.length;oi++){(function(o,i){
+    o.onclick=function(){
+      var info=QUIZ[q];
+      for(var x=0;x<opts.length;x++)opts[x].disabled=true;
+      if(i===info.a){o.classList.add("ok");fb.textContent="✅ "+info.f;S.quiz[key]=1;toast("答对啦！");}
+      else{o.classList.add("bad");opts[info.a].classList.add("ok");fb.textContent="❌ "+info.f;S.quiz[key]=0;}
+      save();updateQuizScore();
+      if(q===20)finishReader();
+    };
+  })(opts[oi],oi);}
+})(qzs[qi]);}
+function lockQz(qz,q){
+  qzDone++;
+  var opts=qz.querySelectorAll(".qz-opt"),fb=qz.querySelector(".qz-fb");
+  var info=QUIZ[q];
+  for(var i=0;i<opts.length;i++){opts[i].disabled=true;if(i===info.a)opts[i].classList.add("ok");}
+  fb.textContent=(S.quiz["q"+q]===1?"✅ ":"❌ ")+info.f;
+}
+function updateQuizScore(){
+  var n=0;for(var i=1;i<=20;i++)if(S.quiz["q"+i]===1)n++;
+  document.getElementById("qzScore").textContent=n+" / 20";
+  return n;
+}
+function finishReader(){
+  var n=updateQuizScore();
+  if(n>=16)gotAch("reader");
+}
+gotAch("open");
+
+function renderAch(){
+  document.getElementById("achWrap").innerHTML=ACH.map(function(a){return '<div class="ach '+(S.ach[a.id]?"on":"")+'"><div class="ic">'+a.ic+'</div><div><div class="nm">'+a.nm+'</div><div class="ds">'+a.ds+'</div></div></div>';}).join("");
+}
+renderAch();renderToc();renderRate();updateQuizScore();
+
+setTimeout(function(){toast("欢迎来到茶峒。顺流而下，开始阅读。");},800);
+</script>
+</body>
+</html>
