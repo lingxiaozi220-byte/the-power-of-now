@@ -127,6 +127,7 @@ body.night .game-zone{background:#20292b}
 .game-zone .water{position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(63,125,92,.15),rgba(63,125,92,.4))}
 .game-zone .shore{position:absolute;top:0;bottom:0;width:14px;background:#8a6d3b}
 .game-zone .shore.l{left:0}.game-zone .shore.r{right:0}
+#ferryCanvas{width:100%;display:block;border-radius:14px;background:#dfe7dc}
 .game-msg{margin-top:12px;font-size:13px;color:var(--ink2);min-height:22px}
 body.night .game-msg{color:var(--nightink2)}
 .game-btn{display:inline-block;background:var(--teal);color:#fff;border:none;border-radius:999px;padding:9px 22px;font-size:14px;cursor:pointer;font-family:inherit;letter-spacing:2px;transition:all .2s;margin-top:10px}
@@ -288,10 +289,7 @@ body.night .toast{background:var(--gold);color:#1a1a1a}
     <div class="game-head"><span class="media-tag tag-game">互动</span><span class="game-title">拉拉渡</span></div>
     <div class="game-sub">老船夫每天做的，就是拽着缆绳，把船从这岸拉到那岸。你也来当一回摆渡人——连点"拉缆"，把翠翠和爷爷送到对岸。</div>
     <div class="game-zone" id="ferryZone">
-      <div class="shore l"></div><div class="shore r"></div>
-      <div class="water"></div>
-      <div id="ferryBoat" style="position:absolute;left:6%;top:58%;font-size:44px;transition:left .25s">⛵</div>
-      <div id="ferryTower" style="position:absolute;right:3%;top:8%;font-size:34px">🗼</div>
+      <canvas id="ferryCanvas" width="560" height="240"></canvas>
     </div>
     <div class="game-row"><span class="game-stat" id="ferryStat">已拉缆 0 次</span>
       <button class="game-btn" id="ferryBtn">拉缆 →</button></div>
@@ -824,19 +822,99 @@ window.addEventListener("scroll",function(){
 },{passive:true});
 
 var ferryN=0;
-var ferryBtn=document.getElementById("ferryBtn"),ferryBoat=document.getElementById("ferryBoat"),ferryMsg=document.getElementById("ferryMsg"),ferryStat=document.getElementById("ferryStat");
+var ferryBtn=document.getElementById("ferryBtn"),ferryMsg=document.getElementById("ferryMsg"),ferryStat=document.getElementById("ferryStat");
+var fcv=document.getElementById("ferryCanvas"),fctx=fcv.getContext("2d");
+var FW=fcv.width,FH=fcv.height;
+var boatX=0.055,shake=0,waveT=0;
+function ropeYAt(x){var t=(x-0.5)*2;return FH*0.20+FH*0.13*t*t;}
+function drawTower(x,b){
+  fctx.fillStyle="#e8e4da";fctx.fillRect(x-11,b+8,22,7);
+  fctx.beginPath();fctx.moveTo(x-10,b+8);fctx.lineTo(x-6,b-24);fctx.lineTo(x+6,b-24);fctx.lineTo(x+10,b+8);fctx.closePath();fctx.fill();
+  fctx.strokeStyle="#b8b2a2";fctx.lineWidth=1;fctx.stroke();
+  for(var i=0;i<3;i++){var yy=b-26-i*13,ww=11+i*2;
+    fctx.fillStyle="#cfc8b6";
+    fctx.beginPath();fctx.moveTo(x-ww/2-4,yy);fctx.lineTo(x+ww/2+4,yy);fctx.lineTo(x+ww/2,yy+3.5);fctx.lineTo(x-ww/2,yy+3.5);fctx.closePath();fctx.fill();
+    fctx.fillStyle="#e8e4da";fctx.fillRect(x-5,yy+3.5,10,9.5);}
+  fctx.fillStyle="#efece3";fctx.beginPath();fctx.arc(x,b-62,2.6,0,Math.PI*2);fctx.fill();
+  fctx.beginPath();fctx.arc(x,b-67,1.4,0,Math.PI*2);fctx.fill();
+}
+function drawFerry(){
+  fctx.clearRect(0,0,FW,FH);
+  var sky=fctx.createLinearGradient(0,0,0,FH*0.5);
+  sky.addColorStop(0,"#ece7d8");sky.addColorStop(1,"#d6d2be");
+  fctx.fillStyle=sky;fctx.fillRect(0,0,FW,FH*0.5);
+  fctx.fillStyle="rgba(98,116,102,0.28)";
+  fctx.beginPath();fctx.moveTo(0,FH*0.44);fctx.quadraticCurveTo(FW*0.2,FH*0.24,FW*0.42,FH*0.40);
+  fctx.quadraticCurveTo(FW*0.62,FH*0.22,FW*0.8,FH*0.38);fctx.quadraticCurveTo(FW*0.92,FH*0.30,FW,FH*0.40);
+  fctx.lineTo(FW,FH*0.5);fctx.lineTo(0,FH*0.5);fctx.closePath();fctx.fill();
+  fctx.fillStyle="rgba(84,102,88,0.42)";
+  fctx.beginPath();fctx.moveTo(0,FH*0.55);fctx.quadraticCurveTo(FW*0.25,FH*0.42,FW*0.5,FH*0.52);
+  fctx.quadraticCurveTo(FW*0.75,FH*0.40,FW,FH*0.50);fctx.lineTo(FW,FH*0.6);fctx.lineTo(0,FH*0.6);fctx.closePath();fctx.fill();
+  var wat=fctx.createLinearGradient(0,FH*0.44,0,FH);
+  wat.addColorStop(0,"#a5c6bf");wat.addColorStop(1,"#7aa29e");
+  fctx.fillStyle=wat;fctx.fillRect(0,FH*0.44,FW,FH*0.56);
+  fctx.strokeStyle="rgba(255,255,255,0.35)";fctx.lineWidth=1.2;
+  for(var r=0;r<4;r++){fctx.beginPath();var y0=FH*(0.50+r*0.11);
+    for(var x=0;x<=FW;x+=8){var y=y0+Math.sin((x+waveT*30)*0.02+r*2.1)*3;if(x===0)fctx.moveTo(x,y);else fctx.lineTo(x,y);}
+    fctx.stroke();}
+  fctx.fillStyle="#87704a";
+  fctx.beginPath();fctx.moveTo(0,FH*0.26);fctx.quadraticCurveTo(FW*0.05,FH*0.26,FW*0.08,FH*0.42);
+  fctx.lineTo(FW*0.08,FH);fctx.lineTo(0,FH);fctx.closePath();fctx.fill();
+  fctx.fillStyle="rgba(96,122,74,0.8)";
+  fctx.beginPath();fctx.moveTo(0,FH*0.28);fctx.quadraticCurveTo(FW*0.045,FH*0.28,FW*0.075,FH*0.44);
+  fctx.quadraticCurveTo(FW*0.035,FH*0.42,0,FH*0.40);fctx.closePath();fctx.fill();
+  fctx.fillStyle="#87704a";
+  fctx.beginPath();fctx.moveTo(FW,FH*0.27);fctx.quadraticCurveTo(FW*0.95,FH*0.27,FW*0.918,FH*0.42);
+  fctx.lineTo(FW*0.918,FH);fctx.lineTo(FW,FH);fctx.closePath();fctx.fill();
+  fctx.fillStyle="rgba(96,122,74,0.8)";
+  fctx.beginPath();fctx.moveTo(FW,FH*0.29);fctx.quadraticCurveTo(FW*0.952,FH*0.29,FW*0.925,FH*0.45);
+  fctx.quadraticCurveTo(FW*0.968,FH*0.43,FW,FH*0.42);fctx.closePath();fctx.fill();
+  drawTower(FW*0.925,FH*0.30);
+  var py=ropeYAt(0.05);
+  fctx.fillStyle="#5f4a2e";
+  fctx.fillRect(FW*0.05-3,py-3,6,FH*0.30);
+  fctx.fillRect(FW*0.955-3,py-3,6,FH*0.30);
+  var sh=shake>0?Math.sin(shake*0.9)*2.5:0;
+  fctx.strokeStyle="#5d4526";fctx.lineWidth=3.5;
+  fctx.beginPath();
+  for(var px=0;px<=1.0001;px+=0.02){fctx.lineTo(FW*(0.05+px*0.9),ropeYAt(0.05+px*0.9)+sh*Math.sin(px*Math.PI));}
+  fctx.stroke();
+  fctx.strokeStyle="rgba(255,224,180,0.55)";fctx.lineWidth=1.1;
+  fctx.beginPath();
+  for(var p2=0;p2<=1.0001;p2+=0.02){fctx.lineTo(FW*(0.05+p2*0.9),ropeYAt(0.05+p2*0.9)+sh*Math.sin(p2*Math.PI)+1.5);}
+  fctx.stroke();
+  var cx=boatX*FW,cy=FH*0.535+Math.sin(waveT*2)*1.5;
+  fctx.fillStyle="#8a5a2b";
+  fctx.beginPath();fctx.moveTo(cx-36,cy+10);fctx.quadraticCurveTo(cx-22,cy+2,cx,cy+4);
+  fctx.quadraticCurveTo(cx+22,cy+2,cx+36,cy+10);fctx.quadraticCurveTo(cx+18,cy+21,cx-18,cy+21);
+  fctx.quadraticCurveTo(cx-30,cy+19,cx-36,cy+10);fctx.closePath();fctx.fill();
+  fctx.fillStyle="#6d4520";fctx.fillRect(cx-34,cy+7,68,3);
+  fctx.fillStyle="#c9b98a";
+  fctx.beginPath();fctx.moveTo(cx-20,cy+3);fctx.quadraticCurveTo(cx-10,cy-17,cx+8,cy-15);
+  fctx.lineTo(cx+13,cy+3);fctx.closePath();fctx.fill();
+  fctx.strokeStyle="#8a7448";fctx.lineWidth=1;fctx.stroke();
+  fctx.fillStyle="#e07050";
+  fctx.beginPath();fctx.arc(cx+21,cy-7,4.6,0,Math.PI*2);fctx.fill();
+  fctx.fillRect(cx+18,cy-3,6,11);
+  fctx.fillStyle="#5c5148";
+  fctx.beginPath();fctx.arc(cx-22,cy-5,4.6,0,Math.PI*2);fctx.fill();
+  fctx.fillRect(cx-25,cy-1,6,11);
+  var ry=ropeYAt(boatX)+sh*Math.sin((boatX-0.05)/0.9*Math.PI);
+  fctx.strokeStyle="#5d4526";fctx.lineWidth=2.2;
+  fctx.beginPath();fctx.moveTo(cx+23,cy+3);fctx.lineTo(cx+23,ry);fctx.stroke();
+  fctx.fillStyle="#6d5533";fctx.fillRect(cx+17,ry-2,12,4);
+}
+function ferryLoop(){waveT+=0.03;if(shake>0)shake-=0.15;drawFerry();requestAnimationFrame(ferryLoop);}
 ferryBtn.onclick=function(){
   ferryN++;ferryStat.textContent="已拉缆 "+ferryN+" 次";
-  var cur=parseFloat(ferryBoat.style.left)||6;
-  var step=7+Math.random()*8;
-  var nx=Math.min(88,cur+step);
-  ferryBoat.style.left=nx+"%";
+  boatX=Math.min(0.88,boatX+0.085);shake=6;
   if(ferryN===1)ferryMsg.textContent="爷爷摆渡五十年，靠的就是这一下一下地拉。";
   else if(ferryN===3)ferryMsg.textContent="船到中流了。翠翠蹲在船头看水里的鱼。";
   else if(ferryN===5)ferryMsg.textContent="快了快了，对岸的白塔越来越近。";
-  if(nx>=88){ferryMsg.textContent="🎉 到岸了！渡船稳稳靠上码头——你也学会摆渡了。";ferryBtn.disabled=true;ferryBtn.textContent="✓ 已到岸";gotAch("ferry");S.games.ferry=1;save();}
+  if(boatX>=0.88){ferryMsg.textContent="🎉 到岸了！渡船稳稳靠上码头——你也学会摆渡了。";ferryBtn.disabled=true;ferryBtn.textContent="✓ 已到岸";gotAch("ferry");S.games.ferry=1;save();}
 };
-if(S.games.ferry){ferryBtn.disabled=true;ferryBtn.textContent="✓ 已到岸";ferryBoat.style.left="88%";ferryMsg.textContent="你早已把这一船人渡到对岸了。";}
+if(S.games.ferry){ferryBtn.disabled=true;ferryBtn.textContent="✓ 已到岸";boatX=0.88;ferryMsg.textContent="你早已把这一船人渡到对岸了。";}
+ferryLoop();
 
 var streetN=0;
 var streetZone=document.getElementById("streetZone"),streetMsg=document.getElementById("streetMsg"),streetStat=document.getElementById("streetStat");
