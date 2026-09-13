@@ -179,6 +179,31 @@ body.night .toast{background:var(--gold);color:#1a1a1a}
   #nightBtn{display:none}
   figure img{height:230px}
 }
+
+.act.locked{position:relative}
+.lock-cover{position:absolute;inset:0;background:rgba(24,20,14,.8);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:20;cursor:pointer}
+.lc-in{text-align:center;color:#f4ead8;padding:24px;max-width:420px}
+.lc-ic{font-size:44px}
+.lc-t{font-size:20px;font-weight:900;margin-top:8px;letter-spacing:2px}
+.lc-s{font-size:13.5px;color:#cfc3ad;margin-top:10px;line-height:1.8}
+.lc-p{font-size:22px;font-weight:900;color:#e6b653;margin-top:12px}
+.lc-p small{font-size:12px;color:#b7a98d;font-weight:400}
+.lc-b{margin-top:14px;border:none;border-radius:999px;padding:12px 34px;font-size:15px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#c94b3c,#8f2d22);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.pw{position:fixed;inset:0;background:rgba(20,16,8,.72);z-index:300;display:none;align-items:center;justify-content:center;padding:18px}
+.pw.on{display:flex}
+.pw-box{background:#fffdf6;border-radius:20px;max-width:400px;width:100%;padding:24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.pw-box .w-ic{font-size:40px}
+.pw-box .w-t{font-size:20px;font-weight:900;color:#8f2d22;margin-top:8px}
+.pw-box .w-d{font-size:13.5px;color:#7a7160;margin-top:8px;line-height:1.8}
+.pw-box .w-price{font-size:30px;font-weight:900;color:#b8860b;margin:12px 0 2px}
+.pw-box .w-price small{font-size:12px;color:#7a7160;font-weight:400}
+.pw-box .w-btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:16px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#c94b3c,#8f2d22);color:#fff;margin-top:14px;box-shadow:0 6px 18px rgba(143,45,34,.3)}
+.pw-box .w-code{margin-top:12px;text-align:left;border-top:1px dashed #e6dfcd;padding-top:12px}
+.pw-box .w-code label{font-size:12px;color:#7a7160;display:block;margin-bottom:6px}
+.pw-box .w-code input{width:100%;border:1px solid #e6dfcd;border-radius:10px;padding:11px 12px;font-size:15px;letter-spacing:2px;text-transform:uppercase;box-sizing:border-box}
+.pw-box .w-code button{width:100%;border:none;border-radius:10px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;background:#4a6b4a;color:#fff;margin-top:8px}
+.pw-box .w-x{background:none;border:none;color:#7a7160;font-size:13px;cursor:pointer;margin-top:14px;text-decoration:underline}
+.w-ok{font-size:13px;font-weight:700;margin-top:8px;min-height:20px;text-align:center}
 </style>
 </head><body>
 <div id="progressBar"></div>
@@ -187,7 +212,7 @@ body.night .toast{background:var(--gold);color:#1a1a1a}
   <div class="brand">《边城》<em>·</em> 多媒体书</div>
   <button id="tocBtn">目录</button>
   <button id="nightBtn">🌙 夜间</button>
-  <button id="resetBtn">↺ 重置</button>
+  <button id="unlockBtn">🔓 解锁</button><button id="resetBtn">↺ 重置</button>
 </div>
 
 <nav id="toc">
@@ -772,7 +797,15 @@ body.night .toast{background:var(--gold);color:#1a1a1a}
 <footer>《边城》· 沈从文原著 · 多媒体书<br>AI 插画 / 实景摄影 / 朗读音频 / 电影切片 / 互动游戏<br>为让"书"重新被看见 —— 与短视频争时间的阅读实验</footer>
 
 </div>
-<div class="toast" id="toast"></div><script>
+<div class="toast" id="toast"></div>
+<div class="pw" id="pw"><div class="pw-box">
+  <div class="w-ic">🔒</div><div class="w-t">此幕为 VIP 内容</div>
+  <div class="w-d">免费试读序章 + 前 3 幕，解锁后畅读全 8 幕 · 含全部 AI 插画、实景摄影、朗读音频与电影切片</div>
+  <div class="w-price">¥9.9<small>　单本解锁 · 一次购买永久畅读</small></div>
+  <button class="w-btn" onclick="closeWall()">📱 前往熙祺智书解锁</button>
+  <div class="w-code"><label>已有激活码？在这里输入解锁</label><input id="wcode" placeholder="BC-XXXXXXXX-XXXXXX" maxlength="23" autocomplete="off"><button onclick="tryCode()">🔓 输入激活码解锁</button><div class="w-ok" id="wok"></div></div>
+  <button class="w-x" onclick="closeWall()">暂不解锁，先看免费内容</button>
+</div></div><script>
 var QUIZ={1:{a:0,f:"对！一个老人，一个女孩子，一只黄狗——全书就是这三口之家。"},2:{a:1,f:"是。翠翠的母亲与军士相爱，生下孩子后，喝了溪水死去。祖父总怕翠翠重走她娘的路。"},3:{a:1,f:"对。余地有限，一半着陆一半在水，就有了吊脚楼。"},4:{a:2,f:"对。大老天保，二老傩送。"},5:{a:0,f:"就是这句！二老一句玩笑，翠翠记了一辈子。"},6:{a:1,f:"对。船总把鸭子放到河里，水手下水去捉，谁捉到归谁。"},7:{a:1,f:"对。大老天保先来提亲，走的是车路。"},8:{a:1,f:"对。黄昏照样的温柔美丽，可翠翠心里，有点薄薄的凄凉。"},9:{a:0,f:"对。车路=请媒提亲，马路=唱三年六个月的情歌。"},10:{a:0,f:"对！'假若我不想得到这座碾坊，却打量要那只渡船，而且这念头也是两年前的事。'"},11:{a:0,f:"对。虎耳草——那是她梦里爱情的样子。"},12:{a:1,f:"对。那晚唱歌的其实是二老傩送（大老走的是车路）。"},13:{a:1,f:"对。茨滩水急，船翻了，天保再没回来。茶峒人说：这是天意。"},14:{a:1,f:"对。二老记忆着哥哥的死亡，又被逼着接受碾坊，意思还在渡船，因此赌气下行。"},15:{a:1,f:"对。雷雨夜，祖父握着翠翠的手，永远闭上了眼睛。"},16:{a:1,f:"对。冬天，白塔又重新修好了——仿佛天地也在替翠翠等一个人。"},17:{a:1,f:"对！'这个人也许永远不回来了，也许明天回来！'"},18:{a:1,f:"对。沈从文，中国乡土文学的大师。"},19:{a:1,f:"对。翠翠等的，是那个在月下唱歌的二老傩送。"},20:{a:0,f:"对。茶峒在湘西边境，一脚踏三省的地方。"}};
 var ACH=[{id:"open",ic:"🚪",nm:"踏进边城",ds:"打开这本多媒体书"},{id:"ferry",ic:"⛵",nm:"摆渡人",ds:"完成拉拉渡小游戏"},{id:"street",ic:"🏠",nm:"茶峒通",ds:"认全河街 6 样风物"},{id:"duck",ic:"🦆",nm:"捉鸭高手",ds:"30 秒捉到 3 只鸭子"},{id:"heart",ic:"💌",nm:"读心人",ds:"翻完 6 张心事卡"},{id:"road",ic:"🐴",nm:"抉择者",ds:"做出车路/马路的选择"},{id:"song",ic:"🌿",nm:"摘草人",ds:"听完歌，摘满 5 把虎耳草"},{id:"fate",ic:"🎲",nm:"知天命",ds:"掷完三次天意骰子"},{id:"wait",ic:"🌅",nm:"守渡人",ds:"回答等待之问"},{id:"reader",ic:"📖",nm:"边城读者",ds:"20 题闯关答对 ≥16"}];
 var HEARTS=["“我记起二老那天说的话了，他说大鱼会来咬我。”","“爷爷老了，我想一直陪着他，又怕他担心我。”","“梦里有个声音唱歌，唱得我心头软软的。”","“大老来提亲，可我心里想的，怎么是另外一个人？”","“茶峒这么大，怎么偏偏是他，让我忘不掉？”","“我不哭。祖父说，做个大人，不许哭。”"];
@@ -780,6 +813,15 @@ var FATES=["天意是渡船起雾，看不清对岸的人。","天意是端午�
 
 var S={};try{S=JSON.parse(localStorage.getItem("bc_state")||"{}");}catch(e){S={};}
 S.readActs=S.readActs||{};S.games=S.games||{};S.quiz=S.quiz||{};S.ach=S.ach||{};
+var BCU={free:3,unlocked:false,secret:'xiqi_biancheng_2026_sw'};
+(function(){try{var u=JSON.parse(localStorage.getItem('bc_unlock')||'{}');if(u&&u.unlocked)BCU.unlocked=true;}catch(e){}})();
+function bcIsLocked(id){if(BCU.unlocked)return false;if(id==='prologue')return false;var n=parseInt(id.replace('act',''),10);if(!isNaN(n))return n>BCU.free;return true;}
+function applyLocks(){var ids=['act4','act5','act6','act7','act8','wall','finish'];ids.forEach(function(id){var sec=document.getElementById(id);if(!sec)return;if(!bcIsLocked(id)){sec.classList.remove('locked');var cv=sec.querySelector('.lock-cover');if(cv)cv.remove();return;}if(!sec.querySelector('.lock-cover')){sec.classList.add('locked');var d=document.createElement('div');d.className='lock-cover';d.innerHTML='<div class="lc-in"><div class="lc-ic">🔒</div><div class="lc-t">此幕为 VIP 内容</div><div class="lc-s">免费试读序章 + 前 3 幕，解锁后畅读全 8 幕</div><div class="lc-p">¥9.9<small>　单本解锁 · 永久畅读</small></div><button class="lc-b" onclick="openWall()">🔓 解锁全部</button></div>';d.onclick=openWall;sec.appendChild(d);}});}
+function openWall(){var w=document.getElementById('pw');if(w)w.classList.add('on');}
+function closeWall(){var w=document.getElementById('pw');if(w)w.classList.remove('on');}
+function unlockAll(){BCU.unlocked=true;try{localStorage.setItem('bc_unlock',JSON.stringify({unlocked:true,t:Date.now()}));}catch(e){}closeWall();applyLocks();toast('🎉 已解锁全部 8 幕，尽情阅读！');}
+async function sha6(t){try{var b=new TextEncoder().encode(t);var d=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(d)).map(function(x){return x.toString(16).padStart(2,'0')}).join('').slice(0,6).toUpperCase();}catch(e){return '';}}
+async function tryCode(){var c=(document.getElementById('wcode').value||'').trim().toUpperCase();var m=c.match(/^BC-([A-Z0-9]{8})-([A-Z0-9]{6})$/);if(!m){document.getElementById('wok').textContent='❌ 格式应为 BC-XXXXXXXX-XXXXXX';return;}var sig=await sha6(m[1]+BCU.secret);if(sig&&sig===m[2]){unlockAll();}else{document.getElementById('wok').textContent='❌ 激活码不正确，请检查后重试';}}
 if(S.open!==1){S.open=1;S.ach.open=1;save();}
 function save(){localStorage.setItem("bc_state",JSON.stringify(S));}
 function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove("show");},2400);}
@@ -1076,7 +1118,8 @@ gotAch("open");
 function renderAch(){
   document.getElementById("achWrap").innerHTML=ACH.map(function(a){return '<div class="ach '+(S.ach[a.id]?"on":"")+'"><div class="ic">'+a.ic+'</div><div><div class="nm">'+a.nm+'</div><div class="ds">'+a.ds+'</div></div></div>';}).join("");
 }
-renderAch();renderToc();renderRate();updateQuizScore();
+document.getElementById("unlockBtn").onclick=openWall;
+renderAch();renderToc();renderRate();updateQuizScore();applyLocks();
 
 setTimeout(function(){toast("欢迎来到茶峒。顺流而下，开始阅读。");},800);
 </script>
