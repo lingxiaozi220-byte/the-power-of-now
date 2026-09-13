@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>人教语文·唐诗多媒体书（三上·五上）</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--paper:#faf6ec;--card:#fffdf6;--ink:#3a342a;--ink2:#7a7160;--line:#e6dfcd;--red:#b03a2e;--redd:#8f2d22;--gold:#b8860b;--green:#4a6b4a}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 14px 90px}
+header{position:sticky;top:0;z-index:50;background:rgba(250,246,236,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.hd{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 14px}
+.hd .logo{font-size:17px;font-weight:800;color:var(--red);white-space:nowrap}
+.hd .logo small{display:block;font-size:10px;color:var(--ink2);font-weight:400}
+.nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.nav button{background:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--ink2);cursor:pointer}
+.nav button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.sec{display:none;padding-top:16px}
+.sec.on{display:block}
+.hero{text-align:center;padding:34px 10px 26px}
+.hero .t1{font-size:30px;font-weight:900;color:var(--red);letter-spacing:2px}
+.hero .t2{font-size:14px;color:var(--ink2);margin-top:6px}
+.hero .t3{margin-top:14px;font-size:13px;color:var(--gold)}
+.progress{max-width:420px;margin:16px auto 0;background:#eee7d8;border-radius:999px;height:12px;overflow:hidden}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red));border-radius:999px;transition:width .4s}
+.cta{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.cta button{border:none;border-radius:14px;padding:14px 26px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(176,58,46,.25)}
+.cta .g3{background:var(--red);color:#fff}
+.cta .g5{background:#3f5d3f;color:#fff}
+.section-title{font-size:20px;font-weight:800;margin:18px 0 4px;display:flex;align-items:center;gap:8px}
+.section-sub{font-size:12.5px;color:var(--ink2);margin-bottom:14px}
+.unit{margin:18px 0 6px;font-size:14px;font-weight:700;color:var(--redd);border-left:3px solid var(--red);padding-left:8px}
+.poem-list{display:flex;flex-wrap:wrap;gap:10px}
+.poem-item{flex:1 1 200px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.15s}
+.poem-item:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(58,52,42,.12)}
+.poem-item img{width:100%;height:110px;object-fit:cover;display:block}
+.poem-item .pi{padding:10px 12px}
+.poem-item .pt{font-size:15px;font-weight:700}
+.poem-item .pa{font-size:12px;color:var(--ink2)}
+.poem-item .done{float:right;color:var(--red);font-size:13px}
+.back{background:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;color:var(--ink2);cursor:pointer;margin-bottom:10px}
+.art{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(58,52,42,.18)}
+.art img{width:100%;display:block}
+.art .art-tag{position:absolute;left:10px;top:10px;background:rgba(0,0,0,.45);color:#fff;font-size:12px;padding:4px 10px;border-radius:999px}
+.art .play-ov{position:absolute;right:12px;bottom:12px;background:rgba(176,58,46,.92);color:#fff;border:none;border-radius:12px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer}
+.poem-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px}
+.poem-title{text-align:center;font-size:22px;font-weight:900;letter-spacing:2px}
+.poem-auth{text-align:center;font-size:13px;color:var(--ink2);margin-top:2px}
+.poem-lines{text-align:center;font-size:20px;font-weight:700;line-height:2.1;letter-spacing:3px;margin-top:10px;color:#2f2a22}
+.meaning{background:#f4eee0;border-radius:12px;padding:12px 14px;font-size:14px;color:#4c443a;margin-top:12px}
+.meaning b{color:var(--red)}
+.notes{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.notes span{background:#f0e9d8;border-radius:999px;padding:3px 10px;font-size:12px;color:#6b614c}
+.poet{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:13px;color:#5c5446;background:#fff;border:1px dashed var(--line);border-radius:12px;padding:10px 12px}
+.poet b{color:var(--gold);white-space:nowrap}
+audio{width:100%;height:38px;margin-top:10px}
+.game-box{background:#2c3a3a;border-radius:16px;padding:16px;margin-top:12px;color:#e8e2d2}
+.game-box .gq{font-size:14.5px;font-weight:700;color:#f4d58a;margin-bottom:10px}
+.gopts{display:flex;flex-wrap:wrap;gap:8px}
+.gopts button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#e8e2d2;border-radius:10px;padding:9px 14px;font-size:13.5px;cursor:pointer;transition:.12s}
+.gopts button:hover{background:rgba(255,255,255,.2)}
+.gopts button.ok{background:#3f8f5f;border-color:#3f8f5f}
+.gopts button.bad{background:#a04030;border-color:#a04030}
+.gf{font-size:13px;margin-top:10px;min-height:20px;color:#cdc4ae}
+.game-box.ord .gq{font-size:13px}
+.order-slots{display:flex;flex-wrap:wrap;gap:6px;min-height:38px;margin-top:8px;border:1px dashed rgba(255,255,255,.3);border-radius:10px;padding:6px}
+.order-slots span{background:#3f5d3f;color:#fff;border-radius:8px;padding:4px 10px;font-size:13px}
+.order-pool{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.order-pool button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#e8e2d2;border-radius:8px;padding:4px 10px;font-size:13px;cursor:pointer}
+.order-pool button:disabled{opacity:.35;cursor:default}
+.daka{display:flex;align-items:center;gap:10px;margin-top:14px}
+.daka button{flex:1;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#d4a24c,#b8860b);color:#fff;box-shadow:0 4px 12px rgba(184,134,11,.3)}
+.daka button.on{background:linear-gradient(135deg,#4a8f5f,#3a7a50)}
+.daka .pts{font-size:13px;color:var(--ink2)}
+.quiz-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px}
+.quiz-card .qt{font-size:15px;font-weight:700;margin-bottom:10px}
+.quiz-card .qt i{font-style:normal;color:var(--red)}
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.ach{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;opacity:.45;filter:grayscale(1)}
+.ach.on{opacity:1;filter:none;box-shadow:0 4px 14px rgba(184,134,11,.2)}
+.ach .ic{font-size:28px}
+.ach .nm{font-size:13px;font-weight:700;margin-top:4px}
+.ach .ds{font-size:11px;color:var(--ink2);margin-top:2px}
+.pts-top{text-align:center;font-size:13px;color:var(--ink2);margin:10px 0}
+.pts-top b{color:var(--red);font-size:18px}
+.overlay{position:fixed;inset:0;background:#111;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center}
+.overlay.on{display:flex}
+.ov-stage{position:relative;width:100%;max-width:560px;aspect-ratio:16/9;overflow:hidden;border-radius:14px}
+.ov-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ov-stage .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.62))}
+.ov-line{position:absolute;left:0;right:0;bottom:18%;text-align:center;color:#fff;font-size:22px;font-weight:800;letter-spacing:4px;text-shadow:0 2px 12px rgba(0,0,0,.8);padding:0 14px;opacity:0;transform:translateY(10px);transition:.4s}
+.ov-line.show{opacity:1;transform:none}
+.ov-bar{width:100%;max-width:560px;height:4px;background:rgba(255,255,255,.2);border-radius:4px;margin-top:14px;overflow:hidden}
+.ov-bar i{display:block;height:100%;width:0;background:var(--gold);border-radius:4px}
+.ov-ctl{display:flex;gap:12px;margin-top:14px}
+.ov-ctl button{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 18px;font-size:14px;cursor:pointer}
+.ov-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:999px;width:36px;height:36px;font-size:18px;cursor:pointer;z-index:10}
+.toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:rgba(30,28,22,.92);color:#fff;padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:.3s;pointer-events:none}
+.toast.on{opacity:1}
+.foot{text-align:center;font-size:12px;color:#a59c89;margin-top:30px}
+@media(max-width:480px){.poem-lines{font-size:17px}.hero .t1{font-size:24px}}
+</style>
+</head>
+<body>
+<header><div class="hd">
+  <div class="logo">📜 唐诗多媒体书<small>人教语文 · 三年级上 · 五年级上</small></div>
+  <div class="nav">
+    <button data-s="home" class="on">首页</button>
+    <button data-s="g3">三上</button>
+    <button data-s="g5">五上</button>
+    <button data-s="quiz">闯关</button>
+    <button data-s="ach">成就</button>
+  </div>
+</div></header>
+<div class="wrap" id="app"></div>
+<div class="overlay" id="ov"><button class="ov-close" onclick="ovClose()">✕</button>
+  <div class="ov-stage" id="ovStage"></div>
+  <div class="ov-bar"><i id="ovBar"></i></div>
+  <div class="ov-ctl"><button onclick="ovToggle()" id="ovBtn">⏸ 暂停</button><button onclick="ovClose()">完成</button></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var P=[{"id": 1, "grade": "三上", "unit": "日积月累一", "title": "所见", "dyn": "清", "author": "袁枚", "lines": ["牧童骑黄牛", "歌声振林樾", "意欲捕鸣蝉", "忽然闭口立"], "meaning": "牧童骑在牛背上唱歌，忽然想捉树上的蝉，马上闭嘴站住不动。", "notes": [["林樾", "道旁成荫的树"], ["欲", "想要"], ["闭口立", "闭嘴站住不动"]], "poet": "清代诗人袁枚，爱吃爱玩，晚年住在随园，写诗像说话一样自然。", "game": {"type": "quiz", "q": "牧童为什么\"忽然闭口立\"？", "opts": ["听见妈妈叫他", "想捉树上的蝉", "被歌声吓到", "黄牛不肯走了"], "a": 1, "hint": "他想捕捉正在鸣叫的蝉"}, "img": "img_01.jpg", "audio": "audio_01.wav"}, {"id": 2, "grade": "三上", "unit": "第4课 古诗三首", "title": "山行", "dyn": "唐", "author": "杜牧", "lines": ["远上寒山石径斜", "白云生处有人家", "停车坐爱枫林晚", "霜叶红于二月花"], "meaning": "深秋的山路弯弯曲曲，白云生起的地方有人家；停下车来爱这枫林晚景，霜打的红叶比二月的花还艳。", "notes": [["寒山", "深秋的山"], ["坐", "因为"], ["红于", "比…更红"]], "poet": "唐代\"小李杜\"之一的杜牧，在山路上停车赏枫，写下了这幅秋天名画。", "game": {"type": "fill", "q": "停车(   )爱枫林晚", "opts": ["坐", "做", "座", "作"], "a": 0, "hint": "\"坐\"在这里是\"因为\"的意思"}, "img": "img_02.jpg", "audio": "audio_02.wav"}, {"id": 3, "grade": "三上", "unit": "第4课 古诗三首", "title": "赠刘景文", "dyn": "宋", "author": "苏轼", "lines": ["荷尽已无擎雨盖", "菊残犹有傲霜枝", "一年好景君须记", "最是橙黄橘绿时"], "meaning": "荷花谢了，菊花还傲霜挺立；一年中最好的景致，是橙黄橘绿的秋末冬初。", "notes": [["擎雨盖", "荷叶"], ["傲霜", "不怕霜冻"], ["橙黄橘绿", "秋末冬初"]], "poet": "苏轼是北宋全才，这首诗写给朋友刘景文，鼓励他秋景同样壮美。", "game": {"type": "quiz", "q": "诗人说\"一年好景\"最值得记的是什么时候？", "opts": ["春天", "夏天", "橙黄橘绿的深秋", "冬天"], "a": 2, "hint": "答案藏在最后一句里"}, "img": "img_03.jpg", "audio": "audio_03.wav"}, {"id": 4, "grade": "三上", "unit": "第4课 古诗三首", "title": "夜书所见", "dyn": "宋", "author": "叶绍翁", "lines": ["萧萧梧叶送寒声", "江上秋风动客情", "知有儿童挑促织", "夜深篱落一灯明"], "meaning": "秋风吹动梧叶送来寒意，勾起旅人的思乡之情；知道有孩子在捉蟋蟀，夜深了篱笆下还亮着一盏灯。", "notes": [["萧萧", "风声"], ["客情", "思乡之情"], ["促织", "蟋蟀"], ["篱落", "篱笆"]], "poet": "南宋诗人叶绍翁，最爱写田园小景，秋夜看见孩童捉蟋蟀，想起远方的家。", "game": {"type": "fill", "q": "江上秋风动(   )情", "opts": ["客", "各", "额", "克"], "a": 0, "hint": "思乡之情就是\"客情\""}, "img": "img_04.jpg", "audio": "audio_04.wav"}, {"id": 5, "grade": "三上", "unit": "第17课 古诗三首", "title": "望天门山", "dyn": "唐", "author": "李白", "lines": ["天门中断楚江开", "碧水东流至此回", "两岸青山相对出", "孤帆一片日边来"], "meaning": "天门山被长江拦腰劈开，碧绿的江水东流到这里回旋；两岸青山相对耸立，一叶孤帆从天边驶来。", "notes": [["中断", "从中间断开"], ["楚江", "长江"], ["回", "回旋"]], "poet": "诗仙李白乘船过天门山，江水、青山、孤帆，一望就成了诗。", "game": {"type": "order", "q": "把诗句按正确顺序排好", "a": [0, 1, 2, 3], "hint": "按照\"天门-碧水-青山-孤帆\"的顺序"}, "img": "img_05.jpg", "audio": "audio_05.wav"}, {"id": 6, "grade": "三上", "unit": "第17课 古诗三首", "title": "饮湖上初晴后雨", "dyn": "宋", "author": "苏轼", "lines": ["水光潋滟晴方好", "山色空蒙雨亦奇", "欲把西湖比西子", "淡妆浓抹总相宜"], "meaning": "晴天的西湖波光闪动，雨天的山色迷迷蒙蒙；把西湖比作西施，淡妆浓抹都那么美。", "notes": [["潋滟", "水光闪动"], ["空蒙", "雨雾迷蒙"], ["西子", "西施"], ["相宜", "合适"]], "poet": "苏轼在杭州做官，一场晴雨变化的西湖，让他想出了最妙的一个比喻。", "game": {"type": "quiz", "q": "\"欲把西湖比西子\"中\"西子\"指的是谁？", "opts": ["一个姑娘", "西施", "西边的孩子", "西湖"], "a": 1, "hint": "西子是春秋时期的美女西施"}, "img": "img_06.jpg", "audio": "audio_06.wav"}, {"id": 7, "grade": "三上", "unit": "第17课 古诗三首", "title": "望洞庭", "dyn": "唐", "author": "刘禹锡", "lines": ["湖光秋月两相和", "潭面无风镜未磨", "遥望洞庭山水翠", "白银盘里一青螺"], "meaning": "洞庭湖的秋月与湖光交融，湖面平静得像未磨的铜镜；远望君山如一枚青螺，静卧在白银盘里。", "notes": [["和", "交融"], ["镜未磨", "像没磨的铜镜"], ["青螺", "指湖中君山"]], "poet": "\"诗豪\"刘禹锡被贬到洞庭一带，秋夜看湖，把洞庭写成了白银盘。", "game": {"type": "fill", "q": "白银盘里一(   )(   )", "opts": ["青螺", "青蛙", "清泉", "黄鱼"], "a": 0, "hint": "湖中的君山像一枚青色的田螺"}, "img": "img_07.jpg", "audio": "audio_07.wav"}, {"id": 8, "grade": "三上", "unit": "日积月累六", "title": "早发白帝城", "dyn": "唐", "author": "李白", "lines": ["朝辞白帝彩云间", "千里江陵一日还", "两岸猿声啼不住", "轻舟已过万重山"], "meaning": "清晨告别云霞里的白帝城，千里之外的江陵一天就到；两岸猿声还没停，轻舟已飞过万重山。", "notes": [["辞", "告别"], ["彩云间", "高耸入云"], ["还", "返回"], ["万重山", "层层叠叠的山"]], "poet": "李白流放途中遇赦，从白帝城顺江而下，轻舟快得连猿声都追不上。", "game": {"type": "order", "q": "把诗句按正确顺序排好", "a": [0, 1, 2, 3], "hint": "按\"清晨-千里-猿声-轻舟\"的时间顺序"}, "img": "img_08.jpg", "audio": "audio_08.wav"}, {"id": 9, "grade": "三上", "unit": "日积月累七", "title": "采莲曲", "dyn": "唐", "author": "王昌龄", "lines": ["荷叶罗裙一色裁", "芙蓉向脸两边开", "乱入池中看不见", "闻歌始觉有人来"], "meaning": "荷叶与罗裙同一颜色，荷花开得像少女的脸；少女混进荷塘看不见，听到歌声才知道有人。", "notes": [["罗裙", "丝绸裙子"], ["芙蓉", "荷花"], ["乱入", "混入"]], "poet": "\"七绝圣手\"王昌龄，把采莲少女写进了满池荷花里。", "game": {"type": "quiz", "q": "为什么\"乱入池中看不见\"采莲人？", "opts": ["她躲起来了", "荷叶和裙子颜色一样", "荷花太高了", "她回家了"], "a": 1, "hint": "\"荷叶罗裙一色裁\"——裙子与荷叶同色"}, "img": "img_09.jpg", "audio": "audio_09.wav"}, {"id": 10, "grade": "五上", "unit": "语文园地一", "title": "黄鹤楼送孟浩然之广陵", "dyn": "唐", "author": "李白", "lines": ["故人西辞黄鹤楼", "烟花三月下扬州", "孤帆远影碧空尽", "唯见长江天际流"], "meaning": "在黄鹤楼送别好友，三月的烟花中他东下扬州；孤帆远去消失在碧空尽头，只有长江向天边奔流。", "notes": [["西辞", "从西边告别"], ["烟花", "繁华春景"], ["尽", "消失"]], "poet": "李白在黄鹤楼送好友孟浩然，看着孤帆消失在天际，写下了这首送别名篇。", "game": {"type": "fill", "q": "(   )三月下扬州", "opts": ["烟花", "柳花", "雪花", "梅花"], "a": 0, "hint": "写的是三月繁花似锦的春景"}, "img": "img_10.jpg", "audio": "audio_10.wav"}, {"id": 11, "grade": "五上", "unit": "语文园地三", "title": "乞巧", "dyn": "唐", "author": "林杰", "lines": ["七夕今宵看碧霄", "牵牛织女渡河桥", "家家乞巧望秋月", "穿尽红丝几万条"], "meaning": "七夕夜里仰望青天，牛郎织女正渡过河桥；家家对着秋月乞巧，红丝线穿了几万条。", "notes": [["碧霄", "青天"], ["乞巧", "向织女乞求巧手"], ["穿尽", "穿完"]], "poet": "林杰是唐代神童，七岁能写诗，这首《乞巧》写七夕夜穿针乞巧的风俗。", "game": {"type": "quiz", "q": "\"乞巧\"是七夕夜人们向谁祈求巧手？", "opts": ["月亮", "织女", "嫦娥", "西施"], "a": 1, "hint": "牵牛织女渡河桥——向织女乞巧"}, "img": "img_11.jpg", "audio": "audio_11.wav"}, {"id": 12, "grade": "五上", "unit": "第12课 古诗三首", "title": "示儿", "dyn": "宋", "author": "陆游", "lines": ["死去元知万事空", "但悲不见九州同", "王师北定中原日", "家祭无忘告乃翁"], "meaning": "本来知道死后万事皆空，只悲伤国家还没统一；朝廷大军收复中原那天，家祭时别忘了告诉父亲。", "notes": [["元知", "本来知道"], ["九州", "中国"], ["王师", "朝廷军队"], ["乃翁", "你们的父亲"]], "poet": "南宋爱国诗人陆游，临终前最放不下的，是祖国还没有统一。", "game": {"type": "fill", "q": "但悲不见(   )(   )同", "opts": ["九州", "四海", "神州", "八荒"], "a": 0, "hint": "\"九州\"指中国"}, "img": "img_12.jpg", "audio": "audio_12.wav"}, {"id": 13, "grade": "五上", "unit": "第12课 古诗三首", "title": "题临安邸", "dyn": "宋", "author": "林升", "lines": ["山外青山楼外楼", "西湖歌舞几时休", "暖风熏得游人醉", "直把杭州作汴州"], "meaning": "青山之外还有青山，楼阁之外还有楼阁，西湖的歌舞几时能停？暖风把游人熏醉，简直把杭州当成了汴州。", "notes": [["邸", "旅店"], ["休", "停止"], ["直", "简直"], ["汴州", "北宋都城开封"]], "poet": "林升把诗题在临安旅店墙上，讽刺权贵们沉醉歌舞，忘了国破家亡。", "game": {"type": "quiz", "q": "诗人讽刺的是谁？", "opts": ["游山玩水的百姓", "西湖的船夫", "沉醉享乐忘了国耻的权贵", "写诗的自己"], "a": 2, "hint": "\"直把杭州作汴州\"——忘了收复汴州"}, "img": "img_13.jpg", "audio": "audio_13.wav"}, {"id": 14, "grade": "五上", "unit": "第12课 古诗三首", "title": "己亥杂诗", "dyn": "清", "author": "龚自珍", "lines": ["九州生气恃风雷", "万马齐喑究可哀", "我劝天公重抖擞", "不拘一格降人才"], "meaning": "国家的生气要靠风雷激荡，万马齐喑实在可悲；我劝天公重新振作，不拘一格降下人才。", "notes": [["恃", "依靠"], ["喑", "沉默"], ["抖擞", "振作"], ["不拘一格", "不限于一种方式"]], "poet": "清代思想家龚自珍，用\"落红化春泥\"的深情，呼唤国家振作、人才辈出。", "game": {"type": "fill", "q": "我劝天公重(   )(   )", "opts": ["抖擞", "打鼓", "抬头", "出招"], "a": 0, "hint": "意思是重新振作精神"}, "img": "img_14.jpg", "audio": "audio_14.wav"}, {"id": 15, "grade": "五上", "unit": "第20课 古诗词三首", "title": "山居秋暝", "dyn": "唐", "author": "王维", "lines": ["空山新雨后", "天气晚来秋", "明月松间照", "清泉石上流", "竹喧归浣女", "莲动下渔舟", "随意春芳歇", "王孙自可留"], "meaning": "空山新雨过后，秋晚天气凉爽；明月照着松林，清泉在石上流淌；竹林喧闹是浣女归来，莲叶摇动是渔舟下水。", "notes": [["暝", "傍晚"], ["喧", "喧闹"], ["浣女", "洗衣女子"], ["王孙", "指诗人自己"]], "poet": "\"诗佛\"王维诗中有画，这一首《山居秋暝》就是一幅会动的山水画。", "game": {"type": "order", "q": "把诗句按正确顺序排好", "a": [0, 1, 2, 3], "hint": "按\"空山-天气-明月-清泉\"对仗的顺序"}, "img": "img_15.jpg", "audio": "audio_15.wav"}, {"id": 16, "grade": "五上", "unit": "第20课 古诗词三首", "title": "枫桥夜泊", "dyn": "唐", "author": "张继", "lines": ["月落乌啼霜满天", "江枫渔火对愁眠", "姑苏城外寒山寺", "夜半钟声到客船"], "meaning": "月落乌啼霜满天，江枫渔火对着愁眠；姑苏城外的寒山寺，夜半钟声传到客船。", "notes": [["乌啼", "乌鸦啼叫"], ["江枫", "江边枫树"], ["渔火", "渔船灯火"], ["姑苏", "苏州"]], "poet": "张继落第之夜泊船枫桥，夜半钟声，把旅愁写进了中国文学史。", "game": {"type": "fill", "q": "夜半(   )声到客船", "opts": ["钟", "琴", "鼓", "锣"], "a": 0, "hint": "寒山寺的夜半钟声"}, "img": "img_16.jpg", "audio": "audio_16.wav"}, {"id": 17, "grade": "五上", "unit": "第20课 古诗词三首", "title": "长相思", "dyn": "清", "author": "纳兰性德", "lines": ["山一程", "水一程", "身向榆关那畔行", "夜深千帐灯", "风一更", "雪一更", "聒碎乡心梦不成", "故园无此声"], "meaning": "山一程水一程，向山海关那边行进，夜深了千帐灯火；风一更雪一更，风雪声搅碎乡心梦不成，故乡没有这样的声音。", "notes": [["榆关", "山海关"], ["那畔", "那边"], ["聒", "声音嘈杂"], ["故园", "家乡"]], "poet": "纳兰性德随军出塞，风雪夜里，千帐灯火下想念温暖的家。", "game": {"type": "quiz", "q": "\"聒碎乡心梦不成\"是因为什么？", "opts": ["床太硬", "风雪声太吵，思念故乡难成眠", "灯太亮", "想听故事"], "a": 1, "hint": "风一更，雪一更，聒碎乡心"}, "img": "img_17.jpg", "audio": "audio_17.wav"}, {"id": 18, "grade": "五上", "unit": "语文园地七", "title": "渔歌子", "dyn": "唐", "author": "张志和", "lines": ["西塞山前白鹭飞", "桃花流水鳜鱼肥", "青箬笠", "绿蓑衣", "斜风细雨不须归"], "meaning": "西塞山前白鹭飞，桃花流水鳜鱼肥；头戴青斗笠身披绿蓑衣，斜风细雨也不回去。", "notes": [["西塞山", "山名"], ["鳜鱼", "一种味美的鱼"], ["箬笠", "竹编斗笠"], ["蓑衣", "草编雨衣"]], "poet": "张志和自称\"烟波钓徒\"，写渔翁在斜风细雨中自在垂钓，乐而忘归。", "game": {"type": "fill", "q": "桃花流水(   )(   )肥", "opts": ["鳜鱼", "鲤鱼", "鲫鱼", "鲈鱼"], "a": 0, "hint": "一种味美的淡水鱼"}, "img": "img_18.jpg", "audio": "audio_18.wav"}, {"id": 19, "grade": "五上", "unit": "语文园地八", "title": "观书有感（其一）", "dyn": "宋", "author": "朱熹", "lines": ["半亩方塘一鉴开", "天光云影共徘徊", "问渠那得清如许", "为有源头活水来"], "meaning": "半亩方塘像一面镜子，天光云影在水里徘徊；问它为什么这样清，因为有源头活水来。", "notes": [["鉴", "镜子"], ["渠", "它，指方塘"], ["那得", "怎么会"], ["活水", "流动的水"]], "poet": "朱熹是南宋大儒，用\"源头活水\"讲读书的道理——不断学习，思想才不会陈旧。", "game": {"type": "quiz", "q": "方塘的水为什么这样清？", "opts": ["有人清洗", "源头有活水不断流入", "下雨了", "塘底铺了石头"], "a": 1, "hint": "为有源头活水来"}, "img": "img_19.jpg", "audio": "audio_19.wav"}, {"id": 20, "grade": "五上", "unit": "语文园地八", "title": "观书有感（其二）", "dyn": "宋", "author": "朱熹", "lines": ["昨夜江边春水生", "艨艟巨舰一毛轻", "向来枉费推移力", "此日中流自在行"], "meaning": "昨夜江边春水涨，大船轻得像一根羽毛；以前白费力气推不动，如今在水流中自在航行。", "notes": [["艨艟", "古代大战船"], ["一毛轻", "像羽毛一样轻"], ["枉费", "白费"], ["中流", "水流中间"]], "poet": "朱熹又说读书：积累够了，就像春水涨起，大船自然浮起来。", "game": {"type": "order", "q": "把诗句按正确顺序排好", "a": [0, 1, 2, 3], "hint": "按\"春水-巨舰-枉费-此日\"的因果顺序"}, "img": "img_20.jpg", "audio": "audio_20.wav"}],QG3=[["《山行》的作者是谁？", ["杜甫", "杜牧", "李白", "苏轼"], 1], ["\"荷尽已无擎雨盖\"描写的是什么时节？", ["春天", "夏天", "深秋", "隆冬"], 2], ["《望天门山》中\"天门\"指的是什么？", ["天上的门", "两岸青山对峙如门", "城门", "山名"], 1], ["《早发白帝城》写的是哪种情景？", ["逆流而上很慢", "顺流而下轻舟如飞", "山中徒步", "江边垂钓"], 1], ["\"水光潋滟晴方好\"写的是哪里？", ["洞庭湖", "太湖", "西湖", "鄱阳湖"], 2]],QG5=[["《示儿》表达了诗人怎样的情感？", ["悲伤于自己老去", "至死不忘收复中原的爱国情", "想念朋友", "喜欢秋天"], 1], ["\"姑苏城外寒山寺\"中的\"姑苏\"指现在的哪里？", ["杭州", "苏州", "南京", "扬州"], 1], ["\"山一程，水一程\"出自哪首词？", ["《渔歌子》", "《长相思》", "《如梦令》", "《西江月》"], 1], ["《渔歌子》中的渔翁在做什么？", ["捕鱼卖钱", "斜风细雨中垂钓", "摆渡", "等朋友"], 1], ["《观书有感》中的\"源头活水\"比喻什么？", ["山泉水", "不断学习新知识", "长江水", "活鱼"], 1]];
+var S=JSON.parse(localStorage.getItem('tang')||'{"done":[],"pts":0,"games":[],"quiz":[],"daka":0}');
+function save(){localStorage.setItem('tang',JSON.stringify(S));}
+function $(id){return document.getElementById(id);}
+function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._x);t._x=setTimeout(function(){t.classList.remove('on')},1600);}
+function tab(s){document.querySelectorAll('.nav button').forEach(function(b){b.classList.toggle('on',b.dataset.s===s)});if(s==='home'){renderHome();}else if(s==='g3'){listSec('三上');}else if(s==='g5'){listSec('五上');}else if(s==='quiz'){renderQuiz();}else if(s==='ach'){renderAch();}window.scrollTo(0,0);}
+document.querySelectorAll('.nav button').forEach(function(b){b.onclick=function(){tab(b.dataset.s)}});
+function esc(t){return t;}
+function renderHome(){var done=S.done.length,pct=Math.round(done/P.length*100);
+ $('app').innerHTML='<div class="hero"><div class="t1">📜 唐诗多媒体书</div><div class="t2">人教语文 · 三年级上册 · 五年级上册 ｜ 课本全部古诗词</div><div class="t3">看画 · 听读 · 背诗 · 闯关 · 攒成就</div><div class="progress"><i style="width:'+pct+'%"></i></div><div class="pts-top">已背诵 <b>'+done+'</b> / '+P.length+' 首 ｜ 积分 <b>'+S.pts+'</b></div><div class="cta"><button class="g3" onclick="tab(&quot;g3&quot;)">📖 三年级上册 · 9 首</button><button class="g5" onclick="tab(&quot;g5&quot;)">📗 五年级上册 · 11 首</button></div></div><div class="section-title">🗂 今天学什么？</div><div class="section-sub">两册课本全部古诗词，一课一画一朗读，还有 20 个互动游戏等你解锁。</div>'+renderPoemMini();
+}
+function renderPoemMini(){var h='<div class="poem-list">';P.forEach(function(p){var d=S.done.indexOf(p.id)>=0;h+='<div class="poem-item" onclick="openPoem('+p.id+')"><img src="'+p.img+'" alt=""><div class="pi"><div class="pt">'+p.title+(d?'<span class="done">✓</span>':'')+'</div><div class="pa">['+p.dyn+']'+p.author+' · '+p.grade+'</div></div></div>';});return h+'</div>';}
+function listSec(g){var units={};P.filter(function(p){return p.grade===g}).forEach(function(p){if(!units[p.unit])units[p.unit]=[];units[p.unit].push(p)});
+ var h='<button class="back" onclick="tab(&quot;home&quot;)">← 返回首页</button><div class="section-title">'+(g==='三上'?'📖 三年级上册':'📗 五年级上册')+'</div><div class="section-sub">课本收录古诗词 '+P.filter(function(p){return p.grade===g}).length+' 首 · 点开任意一首开始学习</div>';
+ for(var u in units){h+='<div class="unit">'+u+'</div><div class="poem-list">';units[u].forEach(function(p){var d=S.done.indexOf(p.id)>=0;h+='<div class="poem-item" onclick="openPoem('+p.id+')"><img src="'+p.img+'" alt=""><div class="pi"><div class="pt">'+p.title+(d?'<span class="done">✓</span>':'')+'</div><div class="pa">['+p.dyn+']'+p.author+'</div></div></div>';});h+='</div>';}
+ $('app').innerHTML=h;
+}
+function openPoem(id){var p=P.find(function(x){return x.id===id});var done=S.done.indexOf(id)>=0;
+ var g='';
+ if(p.game.type==='fill'){g='<div class="game-box fill" id="g'+p.id+'"><div class="gq">✏️ 背诗填空：'+p.game.q+'</div><div class="gopts">'+p.game.opts.map(function(o,i){return '<button onclick="fillA('+p.id+','+i+')">'+o+'</button>'}).join('')+'</div><div class="gf" id="gf'+p.id+'">选一选，填进空里。</div></div>';}
+ if(p.game.type==='quiz'){g='<div class="game-box quiz" id="g'+p.id+'"><div class="gq">💡 诗意小考：'+p.game.q+'</div><div class="gopts">'+p.game.opts.map(function(o,i){return '<button onclick="fillA('+p.id+','+i+')">'+o+'</button>'}).join('')+'</div><div class="gf" id="gf'+p.id+'">想一想，再回答。</div></div>';}
+ if(p.game.type==='order'){g='<div class="game-box ord" id="g'+p.id+'"><div class="gq">🧩 诗句排序：'+p.game.q+'</div><div class="order-pool" id="op'+p.id+'">'+p.lines.slice(0,4).map(function(l,i){return '<button data-i="'+i+'" onclick="ordPick('+p.id+','+i+')">'+l+'</button>'}).join('')+'</div><div class="order-slots" id="os'+p.id+'"></div><div class="gf" id="gf'+p.id+'">点诗句，按正确顺序排到下面。</div></div>';}
+ $('app').innerHTML='<button class="back" onclick="tab(&quot;'+p.grade+'&quot;)">← 返回'+p.grade+'</button>'
+ +'<div class="art"><img src="'+p.img+'" alt=""><span class="art-tag">'+p.title+' · ['+p.dyn+']'+p.author+'</span><button class="play-ov" onclick="ovOpen('+p.id+')">▶ 观诗 · 听读</button></div>'
+ +'<div class="poem-card"><div class="poem-title">'+p.title+'</div><div class="poem-auth">['+p.dyn+'] '+p.author+' · 人教'+p.grade+'</div><div class="poem-lines">'+p.lines.join('<br>')+'</div>'
+ +'<div class="meaning"><b>诗意</b>　'+p.meaning+'</div>'
+ +'<div class="notes">'+p.notes.map(function(n){return '<span>'+n[0]+'：'+n[1]+'</span>'}).join('')+'</div>'
+ +'<div class="poet"><b>📖 诗人</b>'+p.poet+'</div>'
+ +'<audio controls preload="none" src="'+p.audio+'"></audio>'
+ +g
+ +'<div class="daka"><button id="dk'+p.id+'" class="'+(done?'on':'')+'" onclick="daka('+p.id+')">'+(done?'✓ 已会背，太棒了':'📖 我已会背这首诗')+'</button><span class="pts">+10 分</span></div>'
+ +'</div>';
+}
+function daka(id){var i=S.done.indexOf(id);if(i>=0){S.done.splice(i,1);S.pts=Math.max(0,S.pts-10);}else{S.done.push(id);S.pts+=10;}
+ save();updateAch();var p=P.find(function(x){return x.id===id});var b=$('dk'+id);if(b){b.classList.toggle('on');b.textContent=S.done.indexOf(id)>=0?'✓ 已会背，太棒了':'📖 我已会背这首诗';}toast(S.done.indexOf(id)>=0?'🎉 背下一首！+10 分':'已取消背诵');}
+function fillA(id,oi){var p=P.find(function(x){return x.id===id});if(S.games.indexOf(id)>=0)return;var g=$('g'+id),f=$('gf'+id);if(!g)return;var btns=g.querySelectorAll('.gopts button');if(!btns.length)return;
+ btns.forEach(function(b){b.disabled=true});if(oi===p.game.a){btns[oi].classList.add('ok');f.innerHTML='✅ 答对啦！'+p.game.hint+'　+5 分';S.games.push(id);S.pts+=5;save();updateAch();}else{btns[oi].classList.add('bad');f.innerHTML='❌ 再想想：'+p.game.hint;}
+ if(S.games.indexOf(id)>=0)setTimeout(function(){updateAch()},100);}
+var ordPos={};
+function ordPick(id,li){var p=P.find(function(x){return x.id===id});if(!ordPos[id])ordPos[id]=0;if(S.games.indexOf(id)>=0)return;
+ var btn=document.querySelector('#op'+id+' button[data-i="'+li+'"]');if(!btn||btn.disabled)return;
+ var exp=p.game.a[ordPos[id]];
+ if(li===exp){btn.disabled=true;var slot=document.createElement('span');slot.textContent=p.lines[li];$('os'+id).appendChild(slot);ordPos[id]++;
+  if(ordPos[id]===4){S.games.push(id);S.pts+=5;save();updateAch();$('gf'+id).innerHTML='✅ 排对啦！'+p.game.hint+'　+5 分';}
+ }else{$('gf'+id).textContent='❌ 顺序不对，再试试～'+p.game.hint;}
+}
+var AC=[{ic:'📜',nm:'初入诗林',ds:'打开这本唐诗书'},{ic:'🖌',nm:'小小画家',ds:'看完任意 5 幅画'},{ic:'🎧',nm:'听读之星',ds:'听完任意 5 首朗读'},{ic:'🧩',nm:'游戏达人',ds:'完成 5 个互动游戏'},{ic:'🌟',nm:'三上小诗仙',ds:'背完三年级 9 首'},{ic:'🌙',nm:'五上小词人',ds:'背完五年级 11 首'},{ic:'🔥',nm:'背书达人',ds:'累计背满 10 首'},{ic:'🏆',nm:'满腹诗书',ds:'20 首全部会背'},{ic:'🎯',nm:'闯关王',ds:'两套测验全部答对'}];
+function updateAch(){var lv=0;AC.forEach(function(a,i){var on=false;
+ if(i===0)on=true;
+ if(i===1)on=(S.games.length>=5||S.done.length>=5);
+ if(i===2)on=(S.done.length>=5);
+ if(i===3)on=S.games.length>=5;
+ if(i===4)on=P.filter(function(p){return p.grade==='三上'&&S.done.indexOf(p.id)>=0}).length>=9;
+ if(i===5)on=P.filter(function(p){return p.grade==='五上'&&S.done.indexOf(p.id)>=0}).length>=11;
+ if(i===6)on=S.done.length>=10;
+ if(i===7)on=S.done.length>=20;
+ if(i===8)on=S.quiz.length>=10;
+ if(on)lv++;
+});S.lv=lv;save();}
+function renderAch(){var h='<button class="back" onclick="tab(&quot;home&quot;)">← 返回首页</button><div class="section-title">🏅 我的成就墙</div><div class="section-sub">已点亮 <b style="color:var(--red)">'+S.lv+'</b> / '+AC.length+' 枚徽章 · 当前积分 <b style="color:var(--red)">'+S.pts+'</b></div><div class="ach-grid">';
+ AC.forEach(function(a,i){var on=false;
+ if(i===0)on=true;
+ if(i===1)on=(S.games.length>=5||S.done.length>=5);
+ if(i===2)on=(S.done.length>=5);
+ if(i===3)on=S.games.length>=5;
+ if(i===4)on=P.filter(function(p){return p.grade==='三上'&&S.done.indexOf(p.id)>=0}).length>=9;
+ if(i===5)on=P.filter(function(p){return p.grade==='五上'&&S.done.indexOf(p.id)>=0}).length>=11;
+ if(i===6)on=S.done.length>=10;
+ if(i===7)on=S.done.length>=20;
+ if(i===8)on=S.quiz.length>=10;
+ h+='<div class="ach'+(on?' on':'')+'"><div class="ic">'+a.ic+'</div><div class="nm">'+a.nm+'</div><div class="ds">'+a.ds+'</div></div>';});
+ $('app').innerHTML=h+'</div><div class="foot">熙祺智书 · 唐诗多媒体书 ｜ 每首诗原创插画与朗读，课文为公版经典，可放心学习</div>';}
+function renderQuiz(){var h='<button class="back" onclick="tab(&quot;home&quot;)">← 返回首页</button><div class="section-title">🎯 闯关测验</div><div class="section-sub">每册 5 题，每题 10 分 · 全部答对点亮"闯关王"</div><div class="section-title" style="font-size:17px">📖 三年级上册 · 小测验</div>';
+ QG3.forEach(function(q,i){var key='g3-'+i;var done=S.quiz.indexOf(key)>=0;h+='<div class="quiz-card"><div class="qt"><i>Q'+(i+1)+'.</i> '+q[0]+'</div><div class="gopts">'+q[1].map(function(o,j){var cls='';if(done&&j===q[2])cls=' ok';if(done&&S.quiz.indexOf(key)>=0&&S.quizR&&S.quizR.indexOf(key+'-'+j)>=0)cls=' bad';return '<button id="qk'+key+'-'+j+'" class="'+cls+'" onclick="quizA(&quot;'+key+'&quot;,'+j+','+q[2]+')">'+o+'</button>'}).join('')+'</div></div>';});
+ h+='<div class="section-title" style="font-size:17px">📗 五年级上册 · 小测验</div>';
+ QG5.forEach(function(q,i){var key='g5-'+i;var done=S.quiz.indexOf(key)>=0;h+='<div class="quiz-card"><div class="qt"><i>Q'+(i+1)+'.</i> '+q[0]+'</div><div class="gopts">'+q[1].map(function(o,j){var cls='';if(done&&j===q[2])cls=' ok';return '<button id="qk'+key+'-'+j+'" class="'+cls+'" onclick="quizA(&quot;'+key+'&quot;,'+j+','+q[2]+')">'+o+'</button>'}).join('')+'</div></div>';});
+ $('app').innerHTML=h;}
+function quizA(key,oi,ans){if(S.quiz.indexOf(key)>=0)return;var btns=document.querySelectorAll('#qk'+key+'-'+(0)+',#qk'+key+'-1,#qk'+key+'-2,#qk'+key+'-3');btns.forEach(function(b){b.disabled=true});
+ if(oi===ans){$('qk'+key+'-'+oi).classList.add('ok');S.quiz.push(key);S.pts+=10;toast('✅ 答对！+10 分');}else{$('qk'+key+'-'+oi).classList.add('bad');$('qk'+key+'-'+ans).classList.add('ok');toast('正确答案已标出');}
+ save();updateAch();}
+var ovId=null,ovT=null,ovInt=null,ovLine=0;
+function ovOpen(id){var p=P.find(function(x){return x.id===id});ovId=id;ovLine=0;
+ var stage=$('ovStage');stage.innerHTML='<img src="'+p.img+'"><div class="shade"></div>'+p.lines.map(function(l){return '<div class="ov-line">'+l+'</div>'}).join('');
+ $('ovBar').style.width='0';$('ov').classList.add('on');$('ovBtn').textContent='⏸ 暂停';
+ var aud=new Audio(''+p.audio);ovT=aud;
+ aud.ontimeupdate=function(){var d=aud.duration||1;$('ovBar').style.width=(aud.currentTime/d*100)+'%';
+  var seg=Math.floor(aud.currentTime/(d/p.lines.length));if(seg>=p.lines.length)seg=p.lines.length-1;
+  if(seg!==ovLine){ovLine=seg;var ls=stage.querySelectorAll('.ov-line');ls.forEach(function(x,i){x.classList.toggle('show',i===ovLine)})}};
+ aud.onended=function(){ovClose();toast('🎉 听完了，试试背诵吧！');};
+ aud.play().then(function(){ovInt=setInterval(function(){var ls=stage.querySelectorAll('.ov-line');if(ovLine<ls.length)ls[ovLine].classList.add('show')},150)}).catch(function(){toast('点击屏幕上的播放按钮开启声音')});}
+function ovToggle(){if(!ovT)return;if(ovT.paused){ovT.play();$('ovBtn').textContent='⏸ 暂停';}else{ovT.pause();$('ovBtn').textContent='▶ 继续';}}
+function ovClose(){if(ovT){ovT.pause();ovT=null;}clearInterval(ovInt);$('ov').classList.remove('on');toast('已回到诗文页，试着背一背吧');}
+function boot(){if(!S.done)S.done=[];if(!S.games)S.games=[];if(!S.quiz)S.quiz=[];if(!S.quizR)S.quizR=[];updateAch();renderHome();}
+document.addEventListener('DOMContentLoaded',boot);
+</script>
+</body>
+</html>
