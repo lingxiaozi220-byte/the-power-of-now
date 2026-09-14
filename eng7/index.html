@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外研版英语七上 Unit 1 · A New Start! 多媒体课</title>
+<style>
+:root{
+  --green:#2f8f6b; --green-d:#1e6b4f; --blue:#3a7bd5; --blue-d:#2a5aa8;
+  --gold:#ffb400; --gold-d:#e09a00; --red:#e85d5d; --ink:#2c3540;
+  --ink2:#5d6b7a; --bg:#f2f7f5; --card:#ffffff; --line:#dde8e2;
+  --nightbg:#141b26; --nightcard:#1e2836; --nightink:#dce6f0; --nightink2:#93a3b5; --nightline:#2a3748;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+body.night{background:var(--nightbg);color:var(--nightink)}
+img,video{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+#progressBar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--green),var(--gold));width:0;z-index:500;transition:width .3s}
+#topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+body.night #topbar{background:rgba(20,27,38,.92);border-color:var(--nightline)}
+#topbar .brand{font-weight:900;font-size:15px;margin-right:auto}
+#topbar .brand em{color:var(--green);font-style:normal}
+#topbar button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700}
+body.night #topbar button{background:var(--nightcard);color:var(--nightink);border-color:var(--nightline)}
+#topbar .chip{background:linear-gradient(135deg,var(--gold),#ffd24d);color:#5c4300;border-radius:999px;padding:4px 11px;font-size:12.5px;font-weight:900;border:none}
+.wrap{max-width:820px;margin:0 auto;padding:0 14px 60px}
+section.hero{min-height:78vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px 16px 20px}
+.hero img.cover{border-radius:22px;box-shadow:0 18px 50px rgba(30,80,60,.22);max-height:46vh;width:auto}
+.hero .kicker{margin-top:22px;font-size:13px;font-weight:800;letter-spacing:3px;color:var(--green)}
+.hero h1{font-size:clamp(30px,6vw,52px);font-weight:900;letter-spacing:1px;margin:6px 0 2px}
+.hero h1 span{color:var(--green)}
+.hero .sub{font-size:15px;color:var(--ink2);margin-top:4px}
+body.night .hero .sub{color:var(--nightink2)}
+.hero .cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;border:none;border-radius:999px;padding:13px 30px;font-size:15px;font-weight:800;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;box-shadow:0 8px 20px rgba(47,143,107,.35);transition:transform .15s}
+.btn:active{transform:scale(.96)}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#5c4300;box-shadow:0 8px 20px rgba(255,180,0,.3)}
+.btn.blue{background:linear-gradient(135deg,var(--blue),var(--blue-d));box-shadow:0 8px 20px rgba(58,123,213,.35)}
+.hero .hint{margin-top:26px;font-size:12px;color:var(--ink2);animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.act{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px 22px;margin:26px 0;position:relative;box-shadow:0 6px 24px rgba(30,60,50,.06)}
+body.night .act{background:var(--nightcard);border-color:var(--nightline)}
+.act-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.act-no{font-size:12px;font-weight:900;letter-spacing:2px;color:var(--green);background:rgba(47,143,107,.12);padding:5px 12px;border-radius:999px;white-space:nowrap}
+.act-title{font-size:22px;font-weight:900}
+.act-lead{font-size:14px;color:var(--ink2);margin:8px 0 16px}
+body.night .act-lead{color:var(--nightink2)}
+.act.locked{position:relative}
+.lock-cover{position:absolute;inset:0;background:rgba(20,27,38,.82);backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;z-index:30;cursor:pointer;border-radius:22px}
+.lc-in{text-align:center;color:#f2f7f5;padding:22px;max-width:420px}
+.lc-ic{font-size:42px}
+.lc-t{font-size:19px;font-weight:900;margin-top:6px;letter-spacing:1px}
+.lc-s{font-size:13px;color:#b8c6d4;margin-top:8px;line-height:1.8}
+.lc-p{font-size:22px;font-weight:900;color:#ffc94d;margin-top:10px}
+.lc-p small{font-size:12px;color:#9fb0c2;font-weight:400}
+.lc-b{margin-top:14px;border:none;border-radius:999px;padding:12px 32px;font-size:15px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#ffb400,#e09a00);color:#5c4300;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
+body.night .card{background:var(--nightbg);border-color:var(--nightline)}
+.quote{background:linear-gradient(135deg,rgba(255,180,0,.12),rgba(255,180,0,.05));border-left:4px solid var(--gold);border-radius:12px;padding:16px 18px;margin:14px 0;font-size:15px}
+.quote b.en{display:block;font-size:18px;color:var(--green)}
+.tip{background:rgba(58,123,213,.1);border-radius:12px;padding:12px 16px;font-size:13.5px;color:var(--blue-d);margin:10px 0}
+body.night .tip{color:#8ab6f2}
+.art{border-radius:16px;overflow:hidden;margin:14px 0;box-shadow:0 8px 24px rgba(30,60,50,.12)}
+.video-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:16px 0;box-shadow:0 8px 24px rgba(30,60,50,.1)}
+body.night .video-card{background:var(--nightcard);border-color:var(--nightline)}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#0d0d0d}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-cap{padding:10px 14px;font-size:13px;color:var(--ink2)}
+audio{width:100%;height:42px;margin:8px 0}
+h3.sec{font-size:16px;font-weight:900;margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+h3.sec::before{content:"";width:6px;height:18px;background:var(--green);border-radius:3px}
+.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0}
+.word{background:linear-gradient(160deg,#fff, #f4faf7);border:1px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;text-align:center;transition:transform .15s, box-shadow .15s;user-select:none}
+body.night .word{background:linear-gradient(160deg,var(--nightcard),#1a2533)}
+.word:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(47,143,107,.18)}
+.word .en{font-size:17px;font-weight:900;color:var(--green)}
+.word .ph{font-size:11px;color:var(--ink2)}
+.word .cn{font-size:13px;margin-top:2px;color:var(--ink)}
+.word.speaking{animation:pop .4s}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+.pair{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.pair-row{display:flex;gap:10px;align-items:stretch}
+.pair-left,.pair-right{flex:1;display:flex;flex-direction:column;gap:8px}
+.pair-item{border:2px solid var(--line);border-radius:12px;padding:11px 12px;font-size:14px;font-weight:700;cursor:pointer;background:#fff;transition:all .15s;text-align:center}
+body.night .pair-item{background:var(--nightcard)}
+.pair-item.sel{border-color:var(--green);background:rgba(47,143,107,.12)}
+.pair-item.done{border-color:#cfe8dd;background:rgba(47,143,107,.06);cursor:default;opacity:.75}
+.pair-item.ok{border-color:var(--green);background:rgba(47,143,107,.15)}
+.pair-item.bad{border-color:var(--red);background:rgba(232,93,93,.1);animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.quiz{display:flex;flex-direction:column;gap:12px;margin:12px 0}
+.q-item{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+body.night .q-item{background:var(--nightcard)}
+.q-item .q-en{font-size:15.5px;font-weight:800;color:var(--green)}
+.q-item .q-cn{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.q-op{background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:10px;font-size:13.5px;font-weight:700;text-align:center;cursor:pointer;transition:all .15s}
+body.night .q-op{background:var(--nightbg)}
+.q-op.sel{border-color:var(--blue);background:rgba(58,123,213,.12)}
+.q-op.ok{border-color:var(--green);background:rgba(47,143,107,.15)}
+.q-op.bad{border-color:var(--red);background:rgba(232,93,93,.12)}
+.q-fb{font-size:12.5px;font-weight:700;margin-top:8px;min-height:18px}
+.fill{display:flex;flex-direction:column;gap:10px;margin:12px 0}
+.fill-item{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;font-size:15px}
+body.night .fill-item{background:var(--nightcard)}
+.fill-item b{color:var(--green);font-weight:900}
+.fill-item select{border:2px solid var(--line);border-radius:8px;padding:6px 8px;font-size:14px;font-weight:700;background:#fff;color:var(--ink)}
+body.night .fill-item select{background:var(--nightcard);color:var(--nightink)}
+.memory{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+@media(max-width:560px){.memory{grid-template-columns:repeat(3,1fr)}}
+.mcard{aspect-ratio:4/5;border-radius:12px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform .35s;user-select:none}
+.mcard.flip{transform:rotateY(180deg)}
+.mcard .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font-size:14px;font-weight:900}
+.mcard .front{background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff}
+.mcard .back{background:#fff;border:2px solid var(--green);color:var(--green);transform:rotateY(180deg)}
+body.night .mcard .back{background:var(--nightcard)}
+.mcard.matched .back{background:rgba(47,143,107,.15);border-color:var(--green)}
+.boss-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.boss-head .score{font-size:15px;font-weight:900;color:var(--gold-d)}
+.boss-head .combo{font-size:13px;font-weight:800;color:var(--red)}
+.boss-res{display:none;text-align:center;padding:22px}
+.boss-res.on{display:block}
+.boss-res .big{font-size:44px}
+.boss-res .stars{font-size:30px;color:var(--gold);margin:6px 0}
+.boss-res h4{font-size:20px;font-weight:900}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:rgba(30,40,52,.94);color:#fff;padding:11px 22px;border-radius:999px;font-size:13.5px;font-weight:700;z-index:600;opacity:0;transition:opacity .3s;pointer-events:none;max-width:88vw;text-align:center}
+.toast.on{opacity:1}
+footer{text-align:center;padding:30px 14px;font-size:12px;color:var(--ink2)}
+.ach{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0}
+.ach-item{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;filter:grayscale(1);opacity:.45}
+body.night .ach-item{background:var(--nightbg)}
+.ach-item.on{filter:none;opacity:1;box-shadow:0 6px 16px rgba(255,180,0,.2)}
+.ach-item .ic{font-size:28px}
+.ach-item .nm{font-size:13px;font-weight:900;margin-top:4px}
+.ach-item .ds{font-size:11px;color:var(--ink2)}
+.pw{position:fixed;inset:0;background:rgba(20,27,38,.75);z-index:700;display:none;align-items:center;justify-content:center;padding:18px}
+.pw.on{display:flex}
+.pw-box{background:#fffdf6;border-radius:20px;max-width:400px;width:100%;padding:24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.pw-box .w-ic{font-size:40px}
+.pw-box .w-t{font-size:20px;font-weight:900;color:#1e6b4f;margin-top:8px}
+.pw-box .w-d{font-size:13.5px;color:#6b7a6f;margin-top:8px;line-height:1.8}
+.pw-box .w-price{font-size:28px;font-weight:900;color:#b8860b;margin:12px 0 2px}
+.pw-box .w-price small{font-size:12px;color:#6b7a6f;font-weight:400}
+.pw-box .w-btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:16px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;margin-top:14px}
+.pw-box .w-code{margin-top:12px;text-align:left;border-top:1px dashed #ddd;padding-top:12px}
+.pw-box .w-code label{font-size:12px;color:#6b7a6f;display:block;margin-bottom:6px}
+.pw-box .w-code input{width:100%;border:1px solid #ddd;border-radius:10px;padding:11px 12px;font-size:15px;letter-spacing:2px;text-transform:uppercase;box-sizing:border-box}
+.pw-box .w-code button{width:100%;border:none;border-radius:10px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;margin-top:8px}
+.pw-box .w-x{background:none;border:none;color:#6b7a6f;font-size:13px;cursor:pointer;margin-top:14px;text-decoration:underline}
+.w-ok{font-size:13px;font-weight:700;margin-top:8px;min-height:20px;text-align:center}
+.read{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.read-line{display:flex;gap:8px;align-items:flex-start;font-size:14.5px}
+.read-line .num{font-size:11px;font-weight:900;color:var(--gold-d);margin-top:4px;min-width:20px}
+.read-line p.en{font-weight:800;color:var(--ink)}
+.read-line p.cn{font-size:12.5px;color:var(--ink2)}
+body.night .read-line p.cn{color:var(--nightink2)}
+.record{display:flex;align-items:center;gap:10px;margin:10px 0;flex-wrap:wrap}
+.record button{border:none;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--red),#c94040)}
+.record .st{font-size:12.5px;color:var(--ink2)}
+.confetti{position:fixed;top:-10px;z-index:800;width:10px;height:14px;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
+.banner-line{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(47,143,107,.14),rgba(255,180,0,.1));border:1px dashed var(--green);border-radius:14px;padding:12px 16px;margin:14px 0;font-size:14.5px;font-weight:800}
+.banner-line .ic{font-size:22px}
+@media(max-width:640px){
+  #nightBtn{display:none}
+  .pair-row{flex-direction:column}
+  .q-opts{grid-template-columns:1fr}
+  .hero img.cover{max-height:34vh}
+}
+</style>
+</head>
+<body>
+<div id="progressBar"></div>
+<div id="topbar">
+  <button id="tocBtn">☰ 目录</button>
+  <div class="brand">《A New Start!》<em>·</em> 外研七上 U1</div>
+  <span class="chip" id="coinChip">⭐ 0</span>
+  <button id="nightBtn">🌙 夜间</button>
+  <button id="unlockBtn">🔓 解锁</button>
+</div>
+
+<nav id="toc" style="display:none;position:fixed;top:52px;left:0;right:0;background:#fff;z-index:200;border-bottom:1px solid var(--line);max-height:70vh;overflow:auto;padding:14px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">
+    <button class="toc-i" data-to="#m1">1️⃣ Welcome to Junior High</button>
+    <button class="toc-i" data-to="#m2">2️⃣ Meet Your Classmates</button>
+    <button class="toc-i" data-to="#m3">3️⃣ The First Lesson 🔒</button>
+    <button class="toc-i" data-to="#m4">4️⃣ My New School 🔒</button>
+    <button class="toc-i" data-to="#m5">5️⃣ Grammar Lab 🔒</button>
+    <button class="toc-i" data-to="#m6">6️⃣ Boss Mission 🔒</button>
+  </div>
+</nav>
+
+<div class="wrap">
+<section class="hero" id="hero">
+  <img class="cover" src="media/art_gate.jpg" alt="校园晨曦">
+  <div class="kicker">外研版英语 · 七年级上册 · Unit 1</div>
+  <h1>A <span>New</span> Start!</h1>
+  <div class="sub">多媒体互动课 · 游戏化闯关 · 跟着王涵开启初中第一课</div>
+  <div class="cta">
+    <button class="btn" onclick="goM('m1')">🚀 开始冒险</button>
+    <button class="btn gold" onclick="showAch()">🏅 成就墙</button>
+  </div>
+  <div class="hint">▼ 向下滑动 · 进入初中校园</div>
+</section>
+
+<section class="act" id="m1">
+  <div class="act-head"><span class="act-no">幕 1 · FREE</span><h2 class="act-title">Welcome to Junior High</h2></div>
+  <p class="act-lead">欢迎来到初中！新学校、新老师、新朋友——你准备好了吗？先跟着歌谣热热身！</p>
+
+  <div class="banner-line"><span class="ic">🎒</span>核心主题句：<b style="color:var(--green)">Welcome to junior high! Are you ready for a new start?</b></div>
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Dw411u7Jf&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen></iframe></div>
+    <div class="video-cap">🎵 Hello Song · 见面问候热身歌（跟着唱，认识新同学的第一步）</div>
+  </div>
+
+  <h3 class="sec">单词点读卡 · 点击卡片听发音</h3>
+  <div class="words" id="w1"></div>
+
+  <div class="card">
+    <h3 class="sec">🎤 单元热身歌谣</h3>
+    <audio controls preload="none" src="media/chant_hello.wav"></audio>
+    <p style="font-size:12.5px;color:var(--ink2)">Hello, hello! Welcome to junior high! / New friends, new books, learning is fun! / Wave your hand and say hello! / I am ready, ready for a brand new start!</p>
+  </div>
+
+  <div class="quiz" id="q1"></div>
+  <button class="btn" style="width:100%;margin-top:8px" onclick="goM('m2')">下一幕：认识新同学 →</button>
+</section>
+
+<section class="act" id="m2">
+  <div class="act-head"><span class="act-no">幕 2 · FREE</span><h2 class="act-title">Meet Your Classmates</h2></div>
+  <p class="act-lead">What's your name? 我叫王涵！认识新朋友，从一句 Hello 开始。</p>
+
+  <img class="art" src="media/art_hello.jpg" alt="打招呼">
+  <div class="quote"><b class="en">Hello! Nice to meet you! / Nice to meet you, too!</b>你好！很高兴认识你！/ 我也很高兴认识你！</div>
+
+  <h3 class="sec">🗣 跟读挑战 · 录音回听</h3>
+  <div class="card">
+    <div class="record">
+      <button id="recBtn" onclick="recToggle()">🎙 跟读录音</button>
+      <span class="st" id="recSt">读这句：Hello! My name is Wang Han. Nice to meet you!</span>
+    </div>
+    <audio id="recPlay" controls style="display:none"></audio>
+    <p style="font-size:12px;color:var(--ink2)">用麦克风朗读上面的句子，录完自动回放，听听自己的发音吧！</p>
+  </div>
+
+  <h3 class="sec">🔗 连一连 · 问句与答句</h3>
+  <div class="pair" id="pair1"></div>
+  <div id="pairFb" style="font-size:13px;font-weight:800;min-height:20px;color:var(--green)"></div>
+
+  <img class="art" src="media/art_bench.jpg" alt="长椅聊天">
+  <button class="btn blue" style="width:100%;margin-top:10px" onclick="goM('m3')">下一幕：第一课（VIP）→</button>
+</section>
+
+<section class="act locked" id="m3">
+  <div class="act-head"><span class="act-no">幕 3 · VIP</span><h2 class="act-title">The First Lesson</h2></div>
+  <p class="act-lead">开学第一课，陈老师在黑板上写下了一句话……它改变了对王涵很重要的一件事。</p>
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://player.bilibili.com/player.html?bvid=BV1idud6yE7f&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen></iframe></div>
+    <div class="video-cap">🎬 课文《The First Lesson》AI 动画双语字幕（新外研版七上 Unit 1）</div>
+  </div>
+
+  <div class="card">
+    <h3 class="sec">📖 课文朗读 · 跟读</h3>
+    <audio controls preload="none" src="media/reading_firstlesson.wav"></audio>
+    <div class="read">
+      <div class="read-line"><span class="num">1</span><div><p class="en">Learning without thinking is of no use.</p><p class="cn">学而不思则罔。（孔子）</p></div></div>
+      <div class="read-line"><span class="num">2</span><div><p class="en">It is a new start. I am excited about my new school.</p><p class="cn">这是一个新的开始。我对新学校感到兴奋。</p></div></div>
+      <div class="read-line"><span class="num">3</span><div><p class="en">I will meet new teachers and classmates. I will learn new subjects.</p><p class="cn">我会遇见新老师和新同学。我会学习新科目。</p></div></div>
+      <div class="read-line"><span class="num">4</span><div><p class="en">I will make good plans. Are you ready? Let's start!</p><p class="cn">我会制定好计划。你准备好了吗？我们开始吧！</p></div></div>
+    </div>
+  </div>
+
+  <div class="quote"><b class="en">"Learning without thinking is of no use."</b>——Confucius（孔子）。王涵发现老师把这句话的出处记错了，他该不该举手指出呢？</div>
+
+  <h3 class="sec">🧠 故事理解闯关</h3>
+  <div class="quiz" id="q3"></div>
+  <button class="btn" style="width:100%;margin-top:8px" onclick="goM('m4')">下一幕：我的新学校 →</button>
+</section>
+
+<section class="act locked" id="m4">
+  <div class="act-head"><span class="act-no">幕 4 · VIP</span><h2 class="act-title">My New School</h2></div>
+  <p class="act-lead">教学楼、图书馆、操场、食堂……把新学校的每个角落都记住！</p>
+
+  <img class="art" src="media/art_campus.jpg" alt="校园全景">
+  <img class="art" src="media/art_classroom.jpg" alt="教室">
+
+  <div class="card">
+    <h3 class="sec">🎵 单词说唱</h3>
+    <audio controls preload="none" src="media/chant_vocab.wav"></audio>
+  </div>
+
+  <h3 class="sec">🃏 翻牌记忆 · 单词 ↔ 中文</h3>
+  <div class="memory" id="mem1"></div>
+  <div id="memSt" style="font-size:13px;font-weight:800;color:var(--blue-d);min-height:20px"></div>
+
+  <h3 class="sec">👂 听力小测 · 听音选图</h3>
+  <div class="quiz" id="q4"></div>
+  <button class="btn" style="width:100%;margin-top:8px" onclick="goM('m5')">下一幕：语法实验室 →</button>
+</section>
+
+<section class="act locked" id="m5">
+  <div class="act-head"><span class="act-no">幕 5 · VIP</span><h2 class="act-title">Grammar Lab</h2></div>
+  <p class="act-lead">语法实验室：I am, You are, He is…… 用对 be 动词，句子才漂亮！</p>
+
+  <div class="card">
+    <h3 class="sec">⚡ be 动词变变变</h3>
+    <div class="banner-line"><span class="ic">🔤</span>
+      <span style="font-size:14px">I <b style="color:var(--green)">am</b> · You/We/They <b style="color:var(--green)">are</b> · He/She/It <b style="color:var(--green)">is</b></span>
+    </div>
+    <div class="tip">口诀：我 am，你 are，is 用于他她它；复数我们你们他们全用 are！</div>
+  </div>
+
+  <h3 class="sec">✍️ 语法填空闯关</h3>
+  <div class="fill" id="f1"></div>
+  <div id="f1fb" style="font-size:13px;font-weight:800;min-height:20px"></div>
+
+  <h3 class="sec">🃏 翻牌记忆 · 校园单词</h3>
+  <div class="memory" id="mem2"></div>
+  <div id="memSt2" style="font-size:13px;font-weight:800;color:var(--blue-d);min-height:20px"></div>
+  <button class="btn" style="width:100%;margin-top:8px" onclick="goM('m6')">下一幕：终极挑战 →</button>
+</section>
+
+<section class="act locked" id="m6">
+  <div class="act-head"><span class="act-no">幕 6 · BOSS</span><h2 class="act-title">Boss Mission · 终极挑战</h2></div>
+  <p class="act-lead">10 道题，综合全单元！答对越多，星星越多，连击不断还有彩蛋！</p>
+
+  <div class="card">
+    <div class="boss-head">
+      <span class="score" id="bScore">得分 0</span>
+      <span class="combo" id="bCombo"></span>
+      <span style="margin-left:auto;font-size:13px;font-weight:800" id="bQ">第 1/10 题</span>
+    </div>
+    <div id="bBody"></div>
+    <div class="boss-res" id="bRes">
+      <div class="big">🎉</div>
+      <div class="stars" id="bStars">☆☆☆</div>
+      <h4 id="bTitle">挑战完成！</h4>
+      <p id="bMsg" style="font-size:13.5px;color:var(--ink2);margin:8px 0"></p>
+      <button class="btn gold" onclick="finishCourse()">🏁 领取结业成就</button>
+    </div>
+  </div>
+</section>
+
+<section class="act locked" id="fin">
+  <div class="act-head"><span class="act-no">结 业</span><h2 class="act-title">Unit 1 结业证书</h2></div>
+  <div style="text-align:center;padding:10px 0">
+    <div style="font-size:52px">🏆</div>
+    <h3 style="font-size:22px;font-weight:900;margin-top:6px">A New Start 冒险家</h3>
+    <p style="font-size:13.5px;color:var(--ink2)">你已经完成外研版七上 Unit 1 全部多媒体课程！</p>
+  </div>
+  <h3 class="sec">🏅 成就墙</h3>
+  <div class="ach" id="achWrap"></div>
+  <div class="quote"><b class="en">Learning without thinking is of no use.</b>学而不思则罔 —— 带着思考去学习，这是初中第一课教会我们的事。</div>
+  <div style="text-align:center;margin-top:14px">
+    <button class="btn blue" onclick="shareCard()">📤 生成分享卡片</button>
+    <div id="shareOut" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<footer>
+  《A New Start!》外研版英语七年级上册 Unit 1 多媒体互动课 · 熙祺智书出品<br>
+  AI 插画 / 朗读音频 / 课文动画 / 互动游戏 · 让课本重新变得有趣
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="pw" id="pw"><div class="pw-box">
+  <div class="w-ic">🔒</div><div class="w-t">本幕为 VIP 内容</div>
+  <div class="w-d">免费试读幕 1-2，解锁后畅学全单元：课文动画、朗读跟读、语法实验室、终极闯关</div>
+  <div class="w-price">¥9.9<small>　单课解锁 · 永久畅学</small></div>
+  <button class="w-btn" onclick="closeWall()">📱 前往熙祺智书解锁</button>
+  <div class="w-code"><label>已有激活码？在这里输入解锁</label><input id="wcode" placeholder="ENG7-XXXXXXXX-XXXXXX" maxlength="23" autocomplete="off"><button onclick="tryCode()">🔓 输入激活码解锁</button><div class="w-ok" id="wok"></div></div>
+  <button class="w-x" onclick="closeWall()">暂不解锁，先看免费内容</button>
+</div></div>
+
+<script>
+var S={};
+try{S=JSON.parse(localStorage.getItem("eng7_state")||"{}");}catch(e){}
+S.coins=S.coins||0;S.ach=S.ach||{};S.quiz=S.quiz||{};
+var UNLOCK={free:2,unlocked:false,secret:"xiqi_eng7u1_2026_sw"};
+(function(){try{var u=JSON.parse(localStorage.getItem("eng7_unlock")||"{}");if(u&&u.unlocked)UNLOCK.unlocked=true;}catch(e){}})();
+function save(){try{localStorage.setItem("eng7_state",JSON.stringify(S));}catch(e){}}
+function toast(t){var e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(function(){e.classList.remove("on");},2200);}
+function coin(n,why){S.coins+=n;save();document.getElementById("coinChip").textContent="⭐ "+S.coins;if(why)toast("+"+n+" ⭐ "+why);}
+function gotAch(id){if(S.ach[id])return;S.ach[id]=1;save();var a=ACH.filter(function(x){return x.id===id;})[0];if(a)toast("🏅 解锁成就："+a.nm);renderAch();}
+function speak(txt,rate){try{var u=new SpeechSynthesisUtterance(txt);u.lang="en-US";u.rate=rate||0.9;u.pitch=1.05;var vs=speechSynthesis.getVoices().filter(function(v){return /en(-|_)?US/i.test(v.lang);});if(vs.length)u.voice=vs[0];speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
+function goM(id){document.getElementById(id).scrollIntoView({behavior:"smooth"});document.getElementById("toc").style.display="none";}
+document.getElementById("tocBtn").onclick=function(){var t=document.getElementById("toc");t.style.display=t.style.display==="none"?"block":"none";};
+Array.prototype.forEach.call(document.querySelectorAll(".toc-i"),function(b){b.onclick=function(){goM(b.dataset.to);};});
+document.getElementById("nightBtn").onclick=function(){var n=!document.body.classList.contains("night");document.body.classList.toggle("night",n);try{localStorage.setItem("eng7_night",n?"1":"0");}catch(e){}this.textContent=n?"☀️ 日间":"🌙 夜间";};
+(function(){try{if(localStorage.getItem("eng7_night")==="1"){document.body.classList.add("night");document.getElementById("nightBtn").textContent="☀️ 日间";}}catch(e){}})();
+window.onscroll=function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;document.getElementById("progressBar").style.width=p+"%";};
+
+var ACH=[
+ {id:"open",ic:"🎒",nm:"新同学",ds:"开启课程"},
+ {id:"hello",ic:"👋",nm:"社交达人",ds:"完成幕2配对游戏"},
+ {id:"reader",ic:"📖",nm:"小翻译官",ds:"故事理解全对"},
+ {id:"listener",ic:"👂",nm:"听力小达人",ds:"听力小测全对"},
+ {id:"grammar",ic:"⚡",nm:"语法大师",ds:"语法填空全对"},
+ {id:"memory",ic:"🧠",nm:"记忆王",ds:"两次翻牌全部成功"},
+ {id:"boss",ic:"🏆",nm:"通关勇者",ds:"完成终极挑战"},
+ {id:"finish",ic:"🎓",nm:"A New Start 冒险家",ds:"领取结业成就"}
+];
+function renderAch(){var el=document.getElementById("achWrap");if(!el)return;el.innerHTML=ACH.map(function(a){return '<div class="ach-item '+(S.ach[a.id]?"on":"")+'"><div class="ic">'+a.ic+'</div><div class="nm">'+a.nm+'</div><div class="ds">'+a.ds+'</div></div>';}).join("");}
+function showAch(){goM("fin");setTimeout(renderAch,300);}
+
+var W1=[
+ {en:"junior high",ph:"/ˈdʒuːniər haɪ/",cn:"初中"},
+ {en:"start",ph:"/stɑːrt/",cn:"开始"},
+ {en:"new",ph:"/njuː/",cn:"新的"},
+ {en:"school",ph:"/skuːl/",cn:"学校"},
+ {en:"teacher",ph:"/ˈtiːtʃər/",cn:"老师"},
+ {en:"classmate",ph:"/ˈklɑːsmeɪt/",cn:"同学"},
+ {en:"friend",ph:"/frend/",cn:"朋友"},
+ {en:"subject",ph:"/ˈsʌbdʒɪkt/",cn:"科目"}
+];
+function renderW1(){document.getElementById("w1").innerHTML=W1.map(function(w,i){return '<div class="word" id="wd'+i+'" onclick="speakWord('+i+')"><div class="en">'+w.en+'</div><div class="ph">'+w.ph+'</div><div class="cn">'+w.cn+'</div></div>';}).join("");}
+function speakWord(i){var el=document.getElementById("wd"+i);el.classList.remove("speaking");void el.offsetWidth;el.classList.add("speaking");speak(W1[i].en,0.8);}
+
+var Q1=[
+ {en:"Welcome to ______ high!",cn:"欢迎来到初中！",a:0,ops:["junior","primary","senior"]},
+ {en:"I am ready for a new ______.",cn:"我为新的开始准备好了。",a:1,ops:["book","start","bag"]},
+ {en:"We will learn new ______.",cn:"我们会学习新的科目。",a:2,ops:["teachers","friends","subjects"]}
+];
+function renderQ1(){document.getElementById("q1").innerHTML='<h3 class="sec">🧩 快问快答</h3>'+Q1.map(function(q,qi){return '<div class="q-item"><div class="q-en">'+q.en+'</div><div class="q-cn">'+q.cn+'</div><div class="q-opts">'+q.ops.map(function(op,oi){return '<div class="q-op" id="q1_'+qi+'_'+oi+'" onclick="pickQ(1,'+qi+','+oi+')">'+op+'</div>';}).join("")+'</div><div class="q-fb" id="q1fb_'+qi+'"></div></div>';}).join("");}
+function pickQ(sec,qi,oi){var Q=sec===1?Q1:(sec===3?Q3:(sec===4?Q4:null));if(!Q)return;var q=Q[qi];if(S.quiz["q"+sec+"_"+qi])return;var el=document.getElementById("q"+sec+"_"+qi+"_"+oi);el.classList.add("sel");var fb=document.getElementById("q"+sec+"fb_"+qi);if(oi===q.a){el.classList.add("ok");fb.textContent="✅ 正确！+"+5+" ⭐";fb.style.color="var(--green)";S.quiz["q"+sec+"_"+qi]=1;coin(5);speak(q.en);if(sec===1&&qi===Q1.length-1)gotAch("open");}else{el.classList.add("bad");fb.textContent="❌ 再想想："+q.ops[q.a];fb.style.color="var(--red)";}}
+
+var P1=[
+ {l:"Hello!",r:"Hi! / Hello!"},
+ {l:"What's your name?",r:"My name is Wang Han."},
+ {l:"Nice to meet you!",r:"Nice to meet you, too!"},
+ {l:"How are you?",r:"I'm fine, thank you."}
+];
+var pSel={l:-1,r:-1},pDone=0;
+function renderP1(){var lc=P1.map(function(p,i){return '<div class="pair-item" id="pl'+i+'" onclick="pickPair(\'l\','+i+')">'+p.l+'</div>';}).join("");
+ var shuffled=P1.slice().sort(function(){return .5-Math.random();});
+ var rc=shuffled.map(function(p,i){return '<div class="pair-item" id="pr'+i+'" onclick="pickPair(\'r\','+i+')" data-q="'+P1.indexOf(p)+'">'+p.r+'</div>';}).join("");
+ document.getElementById("pair1").innerHTML='<div class="pair-row"><div class="pair-left">'+lc+'</div><div class="pair-right">'+rc+'</div></div>';}
+function pickPair(side,i){if(pDone===P1.length)return;var el=document.getElementById((side==="l"?"pl":"pr")+i);if(el.classList.contains("done"))return;
+ var id=side==="l"?i:parseInt(el.dataset.q,10);
+ if(side==="l"){pSel.l=i;Array.prototype.forEach.call(document.querySelectorAll(".pair-left .pair-item"),function(o){o.classList.remove("sel");});el.classList.add("sel");}
+ else{pSel.r=id;Array.prototype.forEach.call(document.querySelectorAll(".pair-right .pair-item"),function(o){o.classList.remove("sel");});el.classList.add("sel");}
+ if(pSel.l>-1&&pSel.r>-1){var le=document.getElementById("pl"+pSel.l),re=null;Array.prototype.forEach.call(document.querySelectorAll(".pair-right .pair-item"),function(o){if(parseInt(o.dataset.q,10)===pSel.r)re=o;});var ok=P1[pSel.l].r===P1[pSel.r].r;setTimeout(function(){
+   if(ok){le.classList.add("done");re.classList.add("ok");re.classList.add("done");pDone++;coin(6,"配对成功");speak(P1[pSel.l].l);if(pDone===P1.length){document.getElementById("pairFb").textContent="🎉 全部配对成功！你已经是社交达人了！";gotAch("hello");confetti();}}
+   else{le.classList.add("bad");re.classList.add("bad");document.getElementById("pairFb").textContent="💡 再试试："+P1[pSel.l].l+" → "+P1[pSel.l].r;setTimeout(function(){le.classList.remove("bad");re.classList.remove("bad");},500);}
+   pSel={l:-1,r:-1};},220);}}
+
+var rec=null,recChunks=[],recStream=null;
+function recToggle(){var b=document.getElementById("recBtn");
+ if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+  if(!rec||rec.state!=="recording"){navigator.mediaDevices.getUserMedia({audio:true}).then(function(st){recStream=st;recChunks=[];rec=new MediaRecorder(st);rec.ondataavailable=function(e){if(e.data&&e.data.size)recChunks.push(e.data);};rec.onstop=function(){var blob=new Blob(recChunks,{type:"audio/webm"});var a=document.getElementById("recPlay");a.src=URL.createObjectURL(blob);a.style.display="block";a.play();document.getElementById("recSt").textContent="✅ 录音完成！回听自己的发音，然后大声再读一遍吧！";coin(8,"跟读挑战");try{recStream.getTracks().forEach(function(t){t.stop();});}catch(e){}};rec.start();b.textContent="⏹ 停止录音";document.getElementById("recSt").textContent="🔴 正在录音……请朗读上面的句子";}).catch(function(){toast("需要麦克风权限才能跟读");});}
+  else{rec.stop();b.textContent="🎙 跟读录音";}}
+ else{toast("当前浏览器不支持录音，请用 Chrome");}}
+
+var Q3=[
+ {en:"What did Ms Chen write on the blackboard?",cn:"陈老师在黑板上写了什么？",a:0,ops:["Learning without thinking is of no use.","Welcome to junior high!","Please write this down."]},
+ {en:"Where did Ms Chen say the sentence was from (at first)?",cn:"陈老师一开始说这句话出自哪里？",a:1,ops:["Confucius","Mencius","Li Bai"]},
+ {en:"How did Wang Han feel when he wanted to point it out?",cn:"王涵想指出错误时感觉怎样？",a:2,ops:["excited","happy","nervous and dry-mouthed"]},
+ {en:"What did Wang Han do in the end?",cn:"最后王涵做了什么？",a:0,ops:["He put up his hand and told the teacher.","He said nothing.","He left the classroom."]},
+ {en:"What is the real lesson for everyone?",cn:"这堂课的真正意义是什么？",a:1,ops:["Always obey the teacher.","Learning needs thinking.","Never speak in class."]}
+];
+function renderQ3(){document.getElementById("q3").innerHTML=Q3.map(function(q,qi){return '<div class="q-item"><div class="q-en">'+q.en+'</div><div class="q-cn">'+q.cn+'</div><div class="q-opts">'+q.ops.map(function(op,oi){return '<div class="q-op" id="q3_'+qi+'_'+oi+'" onclick="pickQ(3,'+qi+','+oi+')">'+op+'</div>';}).join("")+'</div><div class="q-fb" id="q3fb_'+qi+'"></div></div>';}).join("");}
+
+var MEM1=[{en:"teaching building",cn:"教学楼",ic:"🏫"},{en:"library",cn:"图书馆",ic:"📚"},{en:"playground",cn:"操场",ic:"⚽"},{en:"dining hall",cn:"食堂",ic:"🍚"},{en:"classroom",cn:"教室",ic:"🪑"},{en:"blackboard",cn:"黑板",ic:"🖤"}];
+var memState={cards:[],open:[],matched:0,lock:false},memState2={cards:[],open:[],matched:0,lock:false};
+function buildMem(id,list){var cards=list.map(function(x,i){return {i:i,en:x.en,cn:x.cn,ic:x.ic,s:false};});var arr=[];cards.forEach(function(c){arr.push({i:c.i,en:c.en,cn:c.cn,ic:c.ic,s:false});arr.push({i:c.i,en:c.en,cn:c.cn,ic:c.ic,s:true});});for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=arr[i];arr[i]=arr[j];arr[j]=t;}
+ var st=id==="mem1"?memState:memState2;st.cards=arr;st.open=[];st.matched=0;st.lock=false;
+ document.getElementById(id).innerHTML=arr.map(function(c,ci){return '<div class="mcard" id="'+id+'_'+ci+'" onclick="flipCard(\''+id+'\','+ci+')"><div class="face front">?</div><div class="face back">'+(c.s?c.ic+'<br>'+c.en:c.cn)+'</div></div>';}).join("");document.getElementById(id==="mem1"?"memSt":"memSt2").textContent="翻开两张卡片，找出 英文 ↔ 中文 配对吧！";}
+function flipCard(id,ci){var st=id==="mem1"?memState:memState2;if(st.lock||st.open.length>=2)return;var el=document.getElementById(id+"_"+ci);if(el.classList.contains("flip")||el.classList.contains("matched"))return;el.classList.add("flip");st.open.push(ci);if(st.open.length===2){st.lock=true;var a=st.cards[st.open[0]],b=st.cards[st.open[1]];var elA=document.getElementById(id+"_"+st.open[0]),elB=document.getElementById(id+"_"+st.open[1]);setTimeout(function(){if(a.i===b.i&&a.s!==b.s){elA.classList.add("matched");elB.classList.add("matched");st.matched++;coin(5,"翻牌配对");speak(a.en);if(st.matched===6){document.getElementById(id==="mem1"?"memSt":"memSt2").textContent="🎉 全部找到！你是记忆王！";gotAch("memory");confetti();}}else{elA.classList.remove("flip");elB.classList.remove("flip");}st.open=[];st.lock=false;},650);}}
+
+var Q4=[
+ {en:"I am reading in the library.",cn:"选择听到的场所",a:1,ops:["🏫 教学楼","📚 图书馆","⚽ 操场"]},
+ {en:"Let's play football on the playground.",cn:"选择听到的场所",a:2,ops:["🍚 食堂","📚 图书馆","⚽ 操场"]},
+ {en:"We have lunch in the dining hall.",cn:"选择听到的场所",a:0,ops:["🍚 食堂","🪑 教室","🏫 教学楼"]},
+ {en:"The teacher is writing on the blackboard.",cn:"选择听到的场所",a:1,ops:["📚 图书馆","🪑 教室","⚽ 操场"]}
+];
+function renderQ4(){document.getElementById("q4").innerHTML=Q4.map(function(q,qi){return '<div class="q-item"><div style="display:flex;align-items:center;gap:8px"><button class="btn blue" style="padding:6px 14px;font-size:13px" onclick="speak(Q4['+qi+'].en,0.85)">🔊 播放</button><span style="font-size:12px;color:var(--ink2)">先听录音，再选对应图片</span></div><div class="q-opts">'+q.ops.map(function(op,oi){return '<div class="q-op" id="q4_'+qi+'_'+oi+'" onclick="pickQ(4,'+qi+','+oi+')">'+op+'</div>';}).join("")+'</div><div class="q-fb" id="q4fb_'+qi+'"></div></div>';}).join("");}
+
+var F1=[
+ {t:"I <b>____</b> a new student.",a:"am"},
+ {t:"She <b>____</b> my English teacher.",a:"is"},
+ {t:"We <b>____</b> classmates.",a:"are"},
+ {t:"He <b>____</b> excited about the new start.",a:"is"},
+ {t:"You and I <b>____</b> friends.",a:"are"},
+ {t:"It <b>____</b> a new school.",a:"is"},
+ {t:"They <b>____</b> from Beijing.",a:"are"},
+ {t:"I <b>____</b> ready for junior high!",a:"am"}
+];
+var fDone=0;
+function renderF1(){document.getElementById("f1").innerHTML=F1.map(function(f,fi){return '<div class="fill-item"><span>'+(fi+1)+'.</span><span style="flex:1">'+f.t+'</span><select id="f1s'+fi+'" onchange="checkFill('+fi+')">'+["请选择","am","is","are"].map(function(o){return '<option>'+o+'</option>';}).join("")+'</select></div>';}).join("");}
+function checkFill(fi){var f=F1[fi];var v=document.getElementById("f1s"+fi).value;if(S.quiz["f1_"+fi])return;if(v===f.a){S.quiz["f1_"+fi]=1;coin(5);speak(f.t.replace(/<[^>]+>/g,"").replace("____",f.a));var fb=document.getElementById("f1fb");fb.textContent="✅ 正确！句子："+f.t.replace(/<[^>]+>/g,"").replace("____",f.a);fb.style.color="var(--green)";fDone++;if(fDone===F1.length){gotAch("grammar");confetti();}}else{document.getElementById("f1fb").textContent="💡 口诀：我 am，你 are，他她它是 is";document.getElementById("f1fb").style.color="var(--red)";}}
+
+var BOSS=[
+ {en:"Welcome to ______ high!",a:0,ops:["junior","middle","high"]},
+ {en:"______ name is Wang Han.",a:1,ops:["I","My","Me"]},
+ {en:"Nice to ______ you!",a:2,ops:["meet","meeting","met"]},
+ {en:"She ______ my teacher.",a:0,ops:["is","am","are"]},
+ {en:"We ______ new students.",a:2,ops:["is","am","are"]},
+ {en:"Learning without ______ is of no use.",a:1,ops:["thinking","crying","running"]},
+ {en:"I go to the ______ to borrow books.",a:2,ops:["playground","dining hall","library"]},
+ {en:"The students play football on the ______.",a:0,ops:["playground","classroom","blackboard"]},
+ {en:"\"Learning without thinking\" is from ______.",a:1,ops:["Mencius","Confucius","Li Bai"]},
+ {en:"Are you ready ______ a new start?",a:1,ops:["to","for","at"]}
+];
+var boss={i:0,score:0,combo:0,maxCombo:0,over:false};
+function renderBoss(){boss={i:0,score:0,combo:0,maxCombo:0,over:false};document.getElementById("bRes").classList.remove("on");document.getElementById("bBody").style.display="block";showBossQ();}
+function showBossQ(){if(boss.over)return;var q=BOSS[boss.i];document.getElementById("bQ").textContent="第 "+(boss.i+1)+"/10 题";document.getElementById("bScore").textContent="得分 "+boss.score;document.getElementById("bCombo").textContent=boss.combo>1?"🔥 连击 x"+boss.combo:"";
+ document.getElementById("bBody").innerHTML='<div class="q-item"><div class="q-en">'+q.en+'</div><div class="q-opts">'+q.ops.map(function(op,oi){return '<div class="q-op" onclick="pickBoss('+oi+')">'+op+'</div>';}).join("")+'</div><div class="q-fb" id="bFb"></div></div>';}
+function pickBoss(oi){if(boss.over)return;var q=BOSS[boss.i];var fb=document.getElementById("bFb");var opts=document.querySelectorAll("#bBody .q-op");if(oi===q.a){boss.score+=10+boss.combo*2;boss.combo++;boss.maxCombo=Math.max(boss.maxCombo,boss.combo);coin(2);Array.prototype.forEach.call(opts,function(o){o.classList.remove("sel");});opts[oi].classList.add("ok");fb.textContent="✅ +"+(10+boss.combo*2)+" 分";fb.style.color="var(--green)";speak(q.en);}else{boss.combo=0;opts[oi].classList.add("bad");opts[q.a].classList.add("ok");fb.textContent="❌ 正确答案："+q.ops[q.a];fb.style.color="var(--red)";}
+ document.getElementById("bScore").textContent="得分 "+boss.score;document.getElementById("bCombo").textContent=boss.combo>1?"🔥 连击 x"+boss.combo:"";
+ setTimeout(function(){boss.i++;if(boss.i>=BOSS.length){bossOver();}else{showBossQ();}},1100);}
+function bossOver(){boss.over=true;document.getElementById("bBody").style.display="none";document.getElementById("bRes").classList.add("on");var stars=boss.score>=85?3:(boss.score>=60?2:1);document.getElementById("bStars").textContent=new Array(stars+1).join("★")+new Array(4-stars).join("☆");document.getElementById("bTitle").textContent=stars===3?"🏆 完美通关！":(stars===2?"👏 干得漂亮！":"💪 继续加油！");document.getElementById("bMsg").textContent="得分 "+boss.score+" 分 · 最高连击 x"+boss.maxCombo+" · 获得 "+(stars*10)+" ⭐ 星币";coin(stars*10);if(stars>=2)gotAch("boss");if(stars===3)confetti();}
+function finishCourse(){gotAch("finish");renderAch();goM("fin");confetti();toast("🎓 恭喜毕业！你是 A New Start 冒险家！");}
+function shareCard(){var el=document.getElementById("shareOut");el.innerHTML='<div style="border:2px dashed var(--green);border-radius:16px;padding:16px;background:linear-gradient(135deg,#fff,#f0faf5)"><div style="font-size:24px">🎓</div><div style="font-weight:900;font-size:17px">A New Start 冒险家</div><div style="font-size:13px;color:var(--ink2)">我完成了外研版七上 Unit 1 多媒体课！<br>⭐ '+S.coins+' 星币 · '+Object.keys(S.ach).length+'/'+ACH.length+' 成就<br>Learning without thinking is of no use.</div></div>';toast("📤 截图这张卡片分享到朋友圈吧！");}
+
+function isLocked(id){if(UNLOCK.unlocked)return false;var n=parseInt(id.replace("m",""),10);if(!isNaN(n))return n>UNLOCK.free;return true;}
+function applyLocks(){var ids=["m3","m4","m5","m6","fin"];ids.forEach(function(id){var sec=document.getElementById(id);if(!sec)return;if(!isLocked(id)){sec.classList.remove("locked");var cv=sec.querySelector(".lock-cover");if(cv)cv.remove();return;}if(!sec.querySelector(".lock-cover")){sec.classList.add("locked");var d=document.createElement("div");d.className="lock-cover";d.innerHTML='<div class="lc-in"><div class="lc-ic">🔒</div><div class="lc-t">本幕为 VIP 内容</div><div class="lc-s">免费试读幕 1-2，解锁后畅学全单元：课文动画、朗读跟读、语法实验室、终极闯关</div><div class="lc-p">¥9.9<small>　单课解锁 · 永久畅学</small></div><button class="lc-b" onclick="openWall()">🔓 解锁全部</button></div>';d.onclick=openWall;sec.appendChild(d);}});}
+function openWall(){document.getElementById("pw").classList.add("on");}
+function closeWall(){document.getElementById("pw").classList.remove("on");}
+function unlockAll(){UNLOCK.unlocked=true;try{localStorage.setItem("eng7_unlock",JSON.stringify({unlocked:true,t:Date.now()}));}catch(e){}closeWall();applyLocks();toast("🎉 已解锁全部幕次，畅学 Unit 1！");}
+function sha6(t){try{var b=new TextEncoder().encode(t);return crypto.subtle.digest("SHA-256",b).then(function(d){return Array.from(new Uint8Array(d)).map(function(x){return x.toString(16).padStart(2,"0");}).join("").slice(0,6).toUpperCase();});}catch(e){return Promise.resolve("");}}
+async function tryCode(){var c=(document.getElementById("wcode").value||"").trim().toUpperCase();var m=c.match(/^ENG7-([A-Z0-9]{8})-([A-Z0-9]{6})$/);if(!m){document.getElementById("wok").textContent="❌ 格式应为 ENG7-XXXXXXXX-XXXXXX";return;}var sig=await sha6(m[1]+UNLOCK.secret);if(sig&&sig===m[2]){unlockAll();}else{document.getElementById("wok").textContent="❌ 激活码不正确，请检查后重试";}}
+document.getElementById("unlockBtn").onclick=openWall;
+
+function confetti(){for(var i=0;i<36;i++){var c=document.createElement("div");c.className="confetti";c.style.left=Math.random()*100+"vw";c.style.background=["#ffb400","#2f8f6b","#3a7bd5","#e85d5d","#8e6bc9"][i%5];c.style.animationDuration=(1.6+Math.random()*1.4)+"s";c.style.animationDelay=(Math.random()*.4)+"s";c.style.width=(6+Math.random()*8)+"px";c.style.height=(10+Math.random()*8)+"px";document.body.appendChild(c);setTimeout(function(){c.remove();},3400);}}
+
+renderW1();renderQ1();renderP1();renderQ3();renderQ4();renderF1();buildMem("mem1",MEM1);buildMem("mem2",MEM1);renderAch();applyLocks();renderBoss();
+document.getElementById("coinChip").textContent="⭐ "+S.coins;
+gotAch("open");
+setTimeout(function(){toast("👋 欢迎来到初中！开始你的 A New Start 冒险吧");},700);
+</script>
+</body>
+</html>
