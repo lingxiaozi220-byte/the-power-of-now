@@ -1127,5 +1127,37 @@ renderAch();renderToc();renderRate();updateQuizScore();applyLocks();
 
 setTimeout(function(){toast("欢迎来到茶峒。顺流而下，开始阅读。");},800);
 </script>
+
+<script>
+/* 熙祺智书 · 阅读埋点（view/chapter_read/finish） */
+(function(){try{
+var BK='biancheng',SEL='section[id^="act"],section#finish',FIN='section#finish';
+var API='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track';
+var vid=localStorage.getItem('xiqi_vid');
+if(!vid){vid='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;return (c==='x'?r:(r&0x3|0x8)).toString(16);});try{localStorage.setItem('xiqi_vid',vid);}catch(e){}}
+var last=0;
+function track(ev,ch){var n=Date.now();if(n-last<5000)return;last=n;try{fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:BK,eventType:ev,chapterId:ch||'',visitorId:vid}),keepalive:true}).catch(function(){});}catch(e){}}
+track('view');
+setInterval(function(){track('view');},30000);
+function hook(){
+  var els=[].slice.call(document.querySelectorAll(SEL));
+  var done={},firedFin=false;
+  if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(!en.isIntersecting)return;
+      var el=en.target,id=el.id||'';
+      if(id&&!done[id]&&!id.match(/^(wall|finalQuiz|finalQuiz2|fin)$/)){done[id]=1;track('chapter_read',id);}
+      var isLast=(FIN==='last')&&(el===els[els.length-1]);
+      var isFin=(FIN!=='last')&&el.matches(FIN);
+      if((isLast||isFin)&&!firedFin){firedFin=true;track('finish');}
+    });
+  },{threshold:0.25});
+  els.forEach(function(el){io.observe(el);});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hook);else hook();
+}catch(e){}})();
+</script>
+
 </body>
 </html>
