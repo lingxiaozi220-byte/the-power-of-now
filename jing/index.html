@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《静》多媒体书 · 沈从文 | 熙祺智书</title>
+<style>
+:root{
+  --paper:#f5efe2; --paper2:#efe6d2; --ink:#2a241c; --ink2:#6b6153;
+  --red:#a43a2a; --green:#4e6350; --gold:#b98a3e; --line:#d8cbb0;
+  --shadow:0 10px 30px rgba(60,50,30,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:"Songti SC","Noto Serif SC","STSong","SimSun",serif;background:var(--paper);color:var(--ink);line-height:1.8}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+img{max-width:100%;display:block}
+
+/* ===== 顶栏 ===== */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(245,239,226,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.brand{font-weight:700;letter-spacing:2px;font-size:16px}
+.brand small{color:var(--red);font-size:11px;margin-left:4px}
+.topbtns{display:flex;gap:8px;align-items:center}
+.iconbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.iconbtn:hover{background:var(--paper2)}
+.iconbtn.on{background:var(--red);color:#fff;border-color:var(--red)}
+#coinChip{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:4px 10px}
+
+/* ===== Hero ===== */
+.hero{text-align:center;padding:34px 18px 26px;position:relative}
+.hero-tag{display:inline-block;font-size:11px;letter-spacing:3px;color:var(--red);border:1px solid var(--red);border-radius:20px;padding:3px 12px;margin-bottom:16px;background:#fff}
+.hero-cover{width:212px;height:283px;border-radius:10px;box-shadow:0 14px 34px rgba(60,50,30,.25);border:5px solid #fff;margin:0 auto 18px;object-fit:cover}
+.hero h1{font-size:42px;letter-spacing:14px;text-indent:14px;margin-bottom:6px}
+.hero .author{font-size:14px;color:var(--ink2);letter-spacing:4px}
+.hero .meta{font-size:12px;color:var(--ink2);margin-top:10px;letter-spacing:1px}
+.stars{color:#d9a03f;letter-spacing:4px;font-size:16px;margin-top:8px}
+.hero-actions{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 26px;border-radius:30px;font-size:15px;cursor:pointer;border:none;font-family:inherit;letter-spacing:1px;transition:.2s}
+.btn-main{background:var(--red);color:#fff;box-shadow:0 6px 18px rgba(164,58,42,.3)}
+.btn-main:hover{transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--paper2)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* ===== 导读 ===== */
+.lead{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:8px 0 26px;box-shadow:var(--shadow)}
+.lead h3{font-size:13px;color:var(--red);letter-spacing:3px;margin-bottom:10px}
+.lead p{font-size:15px;color:var(--ink2)}
+.lead-audio{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.playbtn{width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;border:none;cursor:pointer;font-size:16px;flex-shrink:0}
+.audio-bar{flex:1;height:5px;background:var(--line);border-radius:3px;position:relative;overflow:hidden}
+.audio-fill{height:100%;background:var(--green);width:0}
+.audio-time{font-size:11px;color:var(--ink2);min-width:90px;text-align:right}
+
+/* ===== 目录 ===== */
+.toc-title{font-size:15px;letter-spacing:4px;text-align:center;margin:30px 0 14px;color:var(--ink)}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+.toc-item{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;transition:.2s;position:relative}
+.toc-item:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.toc-item .no{font-size:11px;color:var(--red);letter-spacing:2px}
+.toc-item .tt{font-size:14px;margin-top:2px}
+.toc-item .sub{font-size:11px;color:var(--ink2);margin-top:2px}
+.toc-item.locked .tt::after{content:" 🔒";font-size:12px}
+.toc-item.locked{background:repeating-linear-gradient(45deg,#fff,#fff 8px,#f7f0e0 8px,#f7f0e0 16px)}
+
+/* ===== 幕 ===== */
+.act{padding:26px 0 8px;border-top:1px dashed var(--line);margin-top:8px}
+.act-head{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.act-no{font-size:12px;color:var(--red);letter-spacing:2px;white-space:nowrap}
+.act-title{font-size:24px;letter-spacing:3px}
+.act-sub{font-size:12px;color:var(--ink2)}
+.quote{font-size:16px;line-height:2;color:var(--ink);padding:12px 16px;border-left:3px solid var(--gold);background:rgba(255,255,255,.7);border-radius:0 10px 10px 0;margin:12px 0}
+.quote em{font-style:normal;color:var(--red)}
+.quote .q{color:var(--red)}
+.art{border-radius:12px;box-shadow:var(--shadow);margin:14px 0;border:4px solid #fff}
+.cap{font-size:11px;color:var(--ink2);text-align:center;margin:-8px 0 14px}
+.video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:#111;margin:14px 0}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.dialogue{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+.dialogue .d-line{margin:6px 0;font-size:15px}
+.dialogue .d-name{color:var(--red);font-weight:700;margin-right:8px}
+
+/* ===== 游戏卡 ===== */
+.game{background:linear-gradient(160deg,#fff,#f9f3e5);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;box-shadow:var(--shadow)}
+.game-title{font-size:15px;letter-spacing:2px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.game-title .ic{font-size:20px}
+.game-desc{font-size:12px;color:var(--ink2);margin-bottom:12px}
+.game-stage{position:relative;height:220px;background:linear-gradient(180deg,#dcebe3,#e9f0e0 60%,#efe4cc);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.g-flag{position:absolute;bottom:0;left:0;right:0;height:34px;background:linear-gradient(180deg,#cfd8ae,#a8b98a)}
+.bird{position:absolute;font-size:22px;animation:fly 14s linear infinite}
+@keyframes fly{0%{left:-6%}100%{left:106%}}
+.kite{position:absolute;font-size:46px;transition:transform 1.2s ease;cursor:pointer}
+.kite-str{position:absolute;width:2px;background:rgba(164,58,42,.5);transform-origin:top;transition:height .3s}
+.skyline{position:absolute;bottom:34px;left:0;right:0;height:90px;background:linear-gradient(180deg,#b7c9ad,#8fa380);clip-path:polygon(0 100%,0 40%,8% 60%,14% 30%,22% 55%,30% 25%,40% 50%,48% 20%,58% 45%,66% 30%,76% 50%,86% 28%,94% 55%,100% 40%,100% 100%)}
+.g-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.g-btn{padding:9px 20px;border-radius:24px;border:none;cursor:pointer;font-size:13px;font-family:inherit;background:var(--green);color:#fff;transition:.2s}
+.g-btn:hover{filter:brightness(1.1)}
+.g-btn.g2{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.g-msg{font-size:13px;color:var(--green);margin-top:10px;min-height:20px}
+.badge{display:inline-block;background:linear-gradient(135deg,#e8c97a,#d9a03f);color:#fff;font-size:11px;padding:3px 10px;border-radius:20px;margin-left:8px;vertical-align:middle}
+
+/* 瞭望热区 */
+.spot-wrap{position:relative;border-radius:12px;overflow:hidden;margin:14px 0;border:4px solid #fff;box-shadow:var(--shadow)}
+.spot-wrap img{width:100%}
+.spot{position:absolute;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);border:2px solid var(--red);color:var(--red);font-size:13px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;font-family:inherit}
+.spot:hover{background:var(--red);color:#fff;transform:scale(1.15)}
+.spot-pop{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;width:88%;background:rgba(42,36,28,.9);color:#f5efe2;font-size:13px;line-height:1.7;padding:12px 14px;border-radius:10px;display:none;z-index:5}
+
+/* 回声 */
+.echo-stage{height:150px;background:linear-gradient(180deg,#cfe0ea,#d9e8e8 55%,#a9c4b8);border-radius:10px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.echo-palace{position:absolute;right:12px;top:40px;font-size:60px;opacity:.85}
+.echo-mount{position:absolute;left:14px;bottom:0;font-size:44px}
+.echo-word{position:absolute;font-size:18px;color:var(--ink);letter-spacing:3px;opacity:0;white-space:nowrap;font-weight:700}
+.echo-nun{position:absolute;left:14px;top:34px;font-size:38px;transition:transform .4s}
+@keyframes echoFly{0%{opacity:0;transform:translateX(0) scale(.7)}15%{opacity:1}70%{opacity:.7}100%{opacity:0;transform:translateX(180px) scale(1.15)}}
+.echo-word.anim{animation:echoFly 2.6s ease forwards}
+
+/* 意象配对 */
+.pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair-item{padding:10px;text-align:center;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-size:13px;transition:.2s}
+.pair-item:hover{border-color:var(--red)}
+.pair-item.sel{border-color:var(--red);background:#fdf3ec}
+.pair-item.ok{background:#e4efe2;border-color:var(--green);cursor:default}
+.pair-item.bad{background:#fbe9e5;border-color:var(--red);animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* 小测 */
+.quiz-q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.quiz-q .qq{font-size:15px;margin-bottom:10px;font-weight:700}
+.quiz-opts{display:grid;gap:8px}
+.qopt{padding:10px 14px;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;background:#fdfbf5;transition:.2s}
+.qopt:hover{border-color:var(--gold)}
+.qopt.right{background:#e4efe2;border-color:var(--green)}
+.qopt.wrong{background:#fbe9e5;border-color:var(--red)}
+.q-fb{font-size:12px;color:var(--ink2);margin-top:8px;min-height:18px}
+
+/* 解锁墙 */
+.wall{position:fixed;inset:0;background:rgba(42,36,28,.78);backdrop-filter:blur(6px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.wall.on{display:flex}
+.wall-card{background:var(--paper);max-width:420px;width:100%;border-radius:18px;padding:26px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.wall-card h3{font-size:20px;letter-spacing:3px;margin-bottom:6px}
+.wall-card .wsub{font-size:12px;color:var(--ink2);margin-bottom:18px}
+.w-input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;margin-bottom:12px;background:#fff}
+.w-ok{font-size:12px;color:var(--green);min-height:18px;margin-bottom:8px}
+.w-err{font-size:12px;color:var(--red);min-height:18px;margin-bottom:8px}
+.w-x{background:none;border:none;color:var(--ink2);cursor:pointer;font-size:13px;margin-top:8px;text-decoration:underline}
+
+/* 成就/Toast */
+#toast{position:fixed;left:50%;top:70px;transform:translateX(-50%) translateY(-20px);background:var(--ink);color:#f5efe2;padding:10px 22px;border-radius:30px;font-size:13px;z-index:200;opacity:0;transition:.35s;pointer-events:none;letter-spacing:1px;white-space:nowrap}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.ach-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.ach{width:56px;height:56px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px;position:relative;transition:.3s}
+.ach span{font-size:9px;color:var(--ink2);margin-top:1px}
+.ach.got{border-color:var(--gold);background:linear-gradient(135deg,#fdf3dc,#f6e3b4)}
+.ach.lock{filter:grayscale(1);opacity:.4}
+
+/* 结尾 */
+.end-verse{background:var(--ink);color:#f5efe2;border-radius:14px;padding:26px;text-align:center;margin:20px 0}
+.end-verse p{font-size:15px;line-height:2.2;letter-spacing:1px}
+.end-verse .en{font-size:11px;color:#c9b98f;margin-top:10px;letter-spacing:2px}
+.footer{text-align:center;padding:26px 0 34px;font-size:12px;color:var(--ink2)}
+.footer b{color:var(--red)}
+.lock-cover{position:relative}
+.lock-cover::after{content:"🔒";position:absolute;inset:0;background:rgba(245,239,226,.82);display:flex;align-items:center;justify-content:center;font-size:34px;backdrop-filter:blur(2px)}
+.lock-cover{filter:saturate(.4)}
+.locked-section{filter:blur(6px);pointer-events:none;user-select:none;opacity:.6}
+/* 进度条 */
+.progress{position:fixed;top:52px;left:0;right:0;height:3px;background:transparent;z-index:55}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--red));transition:width .4s}
+@media(max-width:560px){
+  .hero h1{font-size:34px;letter-spacing:10px;text-indent:10px}
+  .hero-cover{width:180px;height:240px}
+  .toc{grid-template-columns:1fr 1fr}
+  .act-title{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">静 <small>· 沈从文</small></div>
+    <div class="topbtns">
+      <span id="coinChip">⭐ 0</span>
+      <button class="iconbtn" id="musicBtn" title="背景音乐">🎵</button>
+    </div>
+  </div>
+</div>
+<div class="progress"><i id="progBar"></i></div>
+
+<div class="hero">
+  <span class="hero-tag">熙祺智书 · 经典文学</span>
+  <img class="hero-cover" src="art_cover.jpg" alt="《静》封面">
+  <h1>静</h1>
+  <div class="author">沈 从 文</div>
+  <div class="stars">★★★★★</div>
+  <div class="meta">一九三二年三月三十日作 · 短篇小说 · 约三千三百字</div>
+  <div class="hero-actions">
+    <button class="btn btn-main" id="startBtn">开始阅读</button>
+    <button class="btn btn-ghost" id="quizBtn">先测一测</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="lead">
+    <h3>导 读</h3>
+    <p>战乱中，十四岁的岳珉与病中的母亲、嫂嫂、姊姊避居小城，等一封永远不会来的信。<br>
+    晒楼上有风筝、小河、渡船与桃花——一切都那么静，静得让人心碎。<br>
+    点击播放开篇朗读，走进这个"静"的世界。</p>
+    <div class="lead-audio">
+      <button class="playbtn" id="openPlay">▶</button>
+      <div class="audio-bar"><div class="audio-fill" id="openFill"></div></div>
+      <span class="audio-time" id="openTime">0:00 / 0:42</span>
+    </div>
+  </div>
+
+  <div class="toc-title">目 录 · 八 幕</div>
+  <div class="toc" id="toc"></div>
+
+  <!-- 幕1 春天与风筝 -->
+  <section class="act" id="m1">
+    <div class="act-head"><span class="act-no">第 一 幕</span><h2 class="act-title">春天与风筝</h2></div>
+    <p class="quote">春天日子是长极了的。长长的白日，一个小城中，老年人不向太阳取暖就是打瞌睡，少年人无事作时皆在晒楼或空坪里放风筝。</p>
+    <p class="quote"><em>天上白白的日头慢慢的移着，云影慢慢的移着，什么人家的风筝脱线了，各处便皆有人仰了头望到天空，小孩子皆大声乱嚷，手脚齐动，盼望到这无主风筝，落在自己家中的天井里。</em></p>
+    <img class="art" src="art_1.jpg" alt="春天与风筝">
+    <p class="cap">小城春日 · 谁家的风筝脱了线</p>
+    <p class="quote">女孩子岳珉年纪约十四岁左右，有一张营养不良的小小白脸，穿着新上身不久长可齐膝的蓝布袍子，正在后楼屋顶晒台上，<span class="q">望到一个从城里不知谁处飏来的脱线风筝，在头上高空里斜斜的溜过去</span>，眼看到那线脚曳在屋瓦上……</p>
+
+    <div class="game">
+      <div class="game-title"><span class="ic">🪁</span>放风筝 <span class="badge" id="kiteBadge">未完成</span></div>
+      <div class="game-desc">日头温暖，风刚好。按住"放线"，把脱线的风筝接住；接住了，就替岳珉接住一点希望。</div>
+      <div class="game-stage" id="kiteStage">
+        <div class="skyline"></div>
+        <div class="bird">🐦</div>
+        <div class="kite" id="kiteEl" style="left:60%;top:60%">🪁</div>
+      </div>
+      <div class="g-cta">
+        <button class="g-btn" id="kiteUp">放线 ↑</button>
+        <button class="g-btn g2" id="kiteDown">收线 ↓</button>
+        <button class="g-btn g2" id="kiteReset">重新来</button>
+      </div>
+      <div class="g-msg" id="kiteMsg">点击放线，让风筝升到云端</div>
+    </div>
+  </section>
+
+  <!-- 幕2 晒楼 -->
+  <section class="act" id="m2">
+    <div class="act-head"><span class="act-no">第 二 幕</span><h2 class="act-title">晒 楼</h2></div>
+    <p class="quote">这晒楼原如这小城里所有平常晒楼一样，是用一些木枋，疏疏的排列到一个木架上，且多数是上了点年纪的。</p>
+    <p class="quote"><em>晒楼前面是石头城墙，可以望到城墙上石罅里植根新发芽的葡萄藤。晒楼后面是一道小河，河水又清又软，很温柔的流着。</em></p>
+
+    <div class="spot-wrap">
+      <img src="art_2.jpg" alt="晒楼风景">
+      <div class="spot" style="left:22%;top:26%" data-i="0">1</div>
+      <div class="spot" style="left:52%;top:34%" data-i="1">2</div>
+      <div class="spot" style="left:76%;top:22%" data-i="2">3</div>
+      <div class="spot" style="left:38%;top:58%" data-i="3">4</div>
+      <div class="spot-pop" id="spotPop"></div>
+    </div>
+    <p class="cap">点一点晒楼外的风景，看岳珉看见了什么</p>
+
+    <p class="quote">日头十分温暖，景象极其沉静，两个人一句话不说，望了一会天上，又望了一会河水。<span class="q">河水不像早晚那么绿，有些地方似乎是蓝色，有些地方又为日光照成一片银色。</span></p>
+    <p class="quote">两个人望到马，望到青草，望到一切，<em>小孩子快乐得如痴，女孩子似乎想到很远的一些别的东西。</em></p>
+    <div class="dialogue">
+      <div class="d-line"><span class="d-name">北生</span>"小姨，小姨，你看！"</div>
+      <div class="d-line"><span class="d-name">小姨</span>（用手指指楼下，孩子懂事，忙把小手掩到自己的嘴唇，摇一摇那颗小小的头颅，意思像在说——）"莫说，莫说。"</div>
+    </div>
+  </section>
+
+  <!-- 幕3 逃难 -->
+  <section class="act" id="m3">
+    <div class="act-head"><span class="act-no">第 三 幕</span><h2 class="act-title">逃 难</h2></div>
+    <p class="quote">他们是逃难来的，<em>这地方并不是家乡，也不是所要到的地方</em>。母亲，大嫂，姊姊，姊姊的儿子北生，小丫头翠云一群人中就只五岁大的北生是男子。</p>
+    <p class="quote"><span class="q">糊糊涂涂坐了十四天小小篷船</span>，船到了这里以后，应当换轮船了，一打听各处，才知道××城还在被围，过上海或过南京的船车全已不能开行。</p>
+    <img class="art" src="art_3.jpg" alt="篷船江上">
+    <p class="cap">十四天小小篷船 · 前途茫茫</p>
+    <p class="quote">几个人住此已经有四十天了……母亲原是一个多病的人，<span class="q">到此一月来各处还无回信，路费剩下来的已有限得很</span>，身体原来就很坏，加之路上又十分辛苦，自然就更坏了。</p>
+    <div class="video-frame">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1Dw411d76K&page=1&high_quality=1&danmaku=0" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="cap">走进沈从文的湘西 · 凤凰古城（航拍中国）</p>
+  </section>
+
+  <!-- 幕4 渡口·四林 -->
+  <section class="act" id="m4">
+    <div class="act-head"><span class="act-no">第 四 幕</span><h2 class="act-title">渡口 · 四林</h2></div>
+    <p class="quote">这河中因为去桥较远，为了方便，还有一只渡船，<span class="q">这渡船宽宽的如一条板凳，懒懒的搁在滩上</span>。……守渡船的人，这时正躺在大坪中大石块上睡觉。</p>
+    <img class="art" src="art_4.jpg" alt="河边渡口">
+    <p class="cap">渡船 · 守渡人 · 小尼姑四林</p>
+    <p class="quote"><em>"为什么这样清静？"</em>女孩岳珉心里想着。</p>
+    <p class="quote">这小尼姑走到河边……从提篮里取出一大束青菜，一一的拿到面前，在流水里乱摇乱摆。<span class="q">因此一来，河水便发亮的滑动不止。</span></p>
+    <p class="quote">这尼姑到后大约也觉得这回声很有趣了，就停顿了工作，尖锐的喊叫<span class="q">"四林，四林"</span>，那边也便应着<span class="q">"四林，四林"</span>。</p>
+
+    <div class="game">
+      <div class="game-title"><span class="ic">🏯</span>回声游戏 <span class="badge" id="echoBadge">未完成</span></div>
+      <div class="game-desc">学小尼姑四林，对城墙喊一声，听自己的名字在山水间荡回来。</div>
+      <div class="echo-stage" id="echoStage">
+        <div class="echo-nun" id="echoNun">🙏</div>
+        <div class="echo-mount">🏞️</div>
+        <div class="echo-palace">🏯</div>
+        <div class="echo-word" id="echoWord">四 林 —— 四 林</div>
+      </div>
+      <div class="g-cta">
+        <button class="g-btn" id="echoBtn">喊 "四林 —— 四林"</button>
+      </div>
+      <div class="g-msg" id="echoMsg">对着城墙喊一声吧</div>
+    </div>
+
+    <p class="quote"><em>想起这小尼姑的快乐，想起河里的水，远处的花，天上的云，以及屋里母亲的病，这女孩子，不知不觉又有点寂寞起来了。</em></p>
+  </section>
+
+  <!-- 幕5 楼下·母亲的病 (锁定) -->
+  <section class="act" id="m5" data-lock="1">
+    <div class="act-head"><span class="act-no">第 五 幕</span><h2 class="act-title">楼下 · 母亲的病</h2></div>
+    <p class="quote"><em>到房里去时，看到躺在床上的母亲，静静的如一个死人，很柔弱很安静的呼吸着，又瘦又狭的脸上，为一种疲劳忧愁所笼罩。</em></p>
+    <img class="art" src="art_5.jpg" alt="母亲的病">
+    <p class="cap">静静如一个死人 · 又瘦又狭的脸</p>
+    <div class="dialogue">
+      <div class="d-line"><span class="d-name">母亲</span>"珉珉你站着莫动，我看看，这个月你又长高了！"</div>
+      <div class="d-line"><span class="d-name">岳珉</span>"我不像竹子罢，妈妈。我担心得很，人太长高了要笑人的！"</div>
+      <div class="d-line"><span class="d-name">母亲</span>"珉珉我作了个好梦，梦到我们已经上了船，三等舱里人挤得不成样子。"</div>
+      <div class="d-line"><span class="d-name">（其实）</span>这梦还是病人捏造的，因为记忆力乱乱的，故第二次又来说着。</div>
+    </div>
+    <p class="quote">两人故意这样乐观的说着，互相哄着对面那一个人，口上虽那么说着，<span class="q">女孩岳珉心里却那么想着："妈妈病怎么办？"</span></p>
+  </section>
+
+  <!-- 幕6 天井 -->
+  <section class="act" id="m6" data-lock="1">
+    <div class="act-head"><span class="act-no">第 六 幕</span><h2 class="act-title">天 井</h2></div>
+    <p class="quote">姊姊说："<span class="q">北生你一定又同小姨上晒楼了，不小心，把脚摔断，将来成跛子！</span>"</p>
+    <p class="quote">小孩走过身边来，把两只手围抱着他母亲："<em>娘，娘，大婆又咯咯的吐了，她收到枕头下！</em>"</p>
+    <img class="art" src="art_6.jpg" alt="天井日影">
+    <p class="cap">天井 · 日影 · 断线的风筝</p>
+    <p class="quote">只见到大嫂正在裁纸，大姊姊坐在床边，想检察那小痰盂，母亲先是不允许，用手拦阻，后来大姊仍然见到了，只是摇头。……<span class="q">女孩岳珉不知为什么，心里尽是酸酸的，站在天井里，同谁生气似的，红了眼睛，咬着嘴唇。</span></p>
+  </section>
+
+  <!-- 幕7 晒楼·三眺 -->
+  <section class="act" id="m7" data-lock="1">
+    <div class="act-head"><span class="act-no">第 七 幕</span><h2 class="act-title">晒楼 · 三眺</h2></div>
+    <p class="quote">翠云丫头于是又说："<span class="q">看呀，看呀，快来看呀，一个一块瓦的大风筝跑了，快来，快来，就在头上，我们捉它！</span>"</p>
+    <p class="quote"><em>女孩岳珉抬起来了头，果然从天井里也可以望到一个高高的风筝，如同一个吃醉了酒的巡警神气，偏偏斜斜的滑过去，隐隐约约还看到一截白线，很长的在空中摇摆。</em></p>
+    <p class="quote">也不是为看风筝，也不是为看新娘子……上了晒楼，仍然在栏干边傍着，<span class="q">眺望到一切远处近处，心里慢慢的就平静了</span>。</p>
+    <img class="art" src="art_7.jpg" alt="黄昏晒楼">
+    <p class="cap">黄昏 · 炊烟 · 晒楼三眺</p>
+    <div class="video-frame">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1J45yzCEoM&page=1&high_quality=1&danmaku=0" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="cap">沈从文《静》：催人泪下的超短篇小说（有声朗读）</p>
+  </section>
+
+  <!-- 幕8 尾声·旗帜 -->
+  <section class="act" id="m8" data-lock="1">
+    <div class="act-head"><span class="act-no">第 八 幕</span><h2 class="act-title">尾声 · 旗帜</h2></div>
+    <p class="quote">这时听到隔壁有人拍门，有人互相问答说话。女孩岳珉心里很希奇的想到："<em>谁在问谁？莫非爸爸同哥哥来了，在门前问门牌号数罢？</em>"这样想到，<span class="q">心便骤然跳跃起来</span>，忙匆匆的走到二门边去，只等候有什么人拍门拉铃子，就一定是远处来的人了。</p>
+    <p class="quote">可是，过一会儿，一切又都寂静了。</p>
+    <img class="art" src="art_8.jpg" alt="日影纸旗">
+    <p class="cap">日影如旗</p>
+    <p class="quote"><em>女孩岳珉便不知所谓的微微的笑着。日影斜斜的，把屋角同晒楼柱头的影子，映到天井角上，恰恰如另外一个地方，竖立在她们所等候的那个爸爸坟上一面纸制的旗帜。</em></p>
+
+    <div class="lead-audio" style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0">
+      <button class="playbtn" id="endPlay" style="background:var(--red)">▶</button>
+      <div class="audio-bar"><div class="audio-fill" id="endFill"></div></div>
+      <span class="audio-time" id="endTime">0:00 / 0:55</span>
+    </div>
+
+    <div class="game">
+      <div class="game-title"><span class="ic">🎐</span>意象配对 <span class="badge" id="pairBadge">未完成</span></div>
+      <div class="game-desc">《静》里每一样东西都有心事。把意象与它的含义配成对。</div>
+      <div class="pair-grid" id="pairGrid"></div>
+      <div class="g-msg" id="pairMsg" style="margin-top:10px"></div>
+    </div>
+
+    <div class="game">
+      <div class="game-title"><span class="ic">📝</span>读后小测 <span class="badge" id="quizBadge">未完成</span></div>
+      <div class="game-desc">四道题，读懂《静》，就全对。</div>
+      <div id="quizBox"></div>
+      <div class="g-msg" id="quizMsg"></div>
+    </div>
+
+    <div class="end-verse">
+      <p>一九三二年三月三十日作<br><br>
+      <b style="color:#d9a03f">（萌妹述，为纪念姊姊亡儿北生而作。）</b><br><br>
+      <span style="font-size:12px;color:#c9b98f">愿每个等待的人，都能等到他的信。</span></p>
+    </div>
+  </section>
+
+  <div class="ach-row" id="achRow"></div>
+
+  <div class="footer">
+    熙祺智书 · 多媒体书平台 · <b>静</b>（沈从文）<br>
+    原文据一九三二年十一月小说集《都市一妇人》初版本 · 多媒体化创作<br>
+    音乐 / 朗读 / 插画 / 游戏 · 让经典更好读
+  </div>
+</div>
+
+<!-- 解锁墙 -->
+<div class="wall" id="wall">
+  <div class="wall-card">
+    <h3>🔒 解锁《静》全部八幕</h3>
+    <div class="wsub">前四幕免费 · 后四幕需要解锁 · 系统管理员可直接阅读全部</div>
+    <input class="w-input" id="pwInput" type="text" placeholder="输入激活码或管理员口令" autocomplete="off">
+    <button class="btn btn-main" style="width:100%;justify-content:center" id="unlockBtn2">解锁</button>
+    <div class="w-err" id="wErr"></div>
+    <div class="w-ok" id="wOk"></div>
+    <details style="text-align:left;margin-top:10px;font-size:12px;color:var(--ink2)">
+      <summary>🛡 管理员解锁</summary>
+      <input class="w-input" id="adminInput" type="password" placeholder="输入管理员口令" autocomplete="off" style="margin-top:8px">
+      <button class="btn btn-ghost" style="width:100%;justify-content:center" id="adminBtn">管理员免解锁</button>
+      <div class="w-ok" id="aOk"></div>
+    </details>
+    <button class="w-x" id="wallClose">暂不解锁，先看免费内容</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ============ 数据 ============ */
+var S={};
+try{S=JSON.parse(localStorage.getItem("jing_state")||"{}");}catch(e){}
+S.coins=S.coins||0;S.ach=S.ach||{};S.quiz=S.quiz||{};S.readActs=S.readActs||{};
+var JINGU={free:4,unlocked:false,secret:'xiqi_jing_2026_sw'};
+(function(){try{var u=JSON.parse(localStorage.getItem('jing_unlock')||'{}');if(u&&u.unlocked)JINGU.unlocked=true;}catch(e){}})();
+/* 全局管理员最高权限：URL ?admin=1 或本地标记 xz_admin=1 → 直接解锁全书 */
+(function(){try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('xz_admin','1')}}catch(e){}try{if(localStorage.getItem('xz_admin')==='1'){JINGU.unlocked=true;localStorage.setItem('jing_unlock',JSON.stringify({unlocked:true,t:Date.now()}))}}catch(e){}})();
+
+function save(){try{localStorage.setItem("jing_state",JSON.stringify(S));}catch(e){}}
+function toast(t){var e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(function(){e.classList.remove("on")},2600);}
+function $id(i){return document.getElementById(i)}
+function addCoins(n){S.coins+=n;save();$id("coinChip").textContent="⭐ "+S.coins;toast("+⭐"+n);}
+function gotAch(k){if(!S.ach[k]){S.ach[k]=1;save();renderAch();toast("🎖 获得成就："+ACH[k].n);}}
+function isLocked(id){if(JINGU.unlocked)return false;var n=parseInt(id.replace("m",""),10);if(!isNaN(n))return n>JINGU.free;return true;}
+function applyLocks(){
+  ["m5","m6","m7","m8"].forEach(function(id){
+    var sec=document.getElementById(id);if(!sec)return;
+    if(!isLocked(id)){sec.classList.remove("locked-section");var cv=sec.querySelector(".lock-cover");if(cv)cv.remove();return;}
+    sec.classList.add("locked-section");
+  });
+  renderToc();
+}
+
+/* ============ 成就 ============ */
+var ACH={open:{n:"打开书卷",i:"📖"},kite:{n:"接住风筝",i:"🪁"},echo:{n:"回声四林",i:"🏯"},pair:{n:"意象通晓",i:"🎐"},quiz:{n:"读懂《静》",i:"📝"},read:{n:"读完八幕",i:"🏆"}};
+function renderAch(){
+  var h="";for(var k in ACH){h+='<div class="ach '+(S.ach[k]?"got":"lock")+'">'+ACH[k].i+'<span>'+ACH[k].n+'</span></div>';}
+  $id("achRow").innerHTML=h;
+}
+
+/* ============ 目录 ============ */
+var TOC=[
+  {id:"m1",no:"第一幕",tt:"春天与风筝",sub:"脱线的风筝"},
+  {id:"m2",no:"第二幕",tt:"晒楼",sub:"两个人的静"},
+  {id:"m3",no:"第三幕",tt:"逃难",sub:"十四天篷船"},
+  {id:"m4",no:"第四幕",tt:"渡口 · 四林",sub:"回声"},
+  {id:"m5",no:"第五幕",tt:"楼下 · 母亲的病",sub:"好梦是捏造的"},
+  {id:"m6",no:"第六幕",tt:"天井",sub:"红了眼睛"},
+  {id:"m7",no:"第七幕",tt:"晒楼 · 三眺",sub:"吃醉酒的风筝"},
+  {id:"m8",no:"第八幕",tt:"尾声 · 旗帜",sub:"纸制的旗帜"}
+];
+function renderToc(){
+  var h="";
+  TOC.forEach(function(t){
+    var lk=isLocked(t.id);
+    h+='<div class="toc-item'+(lk?" locked":"")+'" data-id="'+t.id+'"><div class="no">'+t.no+'</div><div class="tt">'+t.tt+'</div><div class="sub">'+t.sub+'</div></div>';
+  });
+  $id("toc").innerHTML=h;
+  document.querySelectorAll(".toc-item").forEach(function(el){
+    el.onclick=function(){
+      var id=el.getAttribute("data-id");
+      if(isLocked(id)){openWall();return;}
+      document.getElementById(id).scrollIntoView({behavior:"smooth"});
+      track("chapter_read",id);
+    };
+  });
+}
+
+/* ============ 解锁 ============ */
+function openWall(){$id("wall").classList.add("on");}
+function closeWall(){$id("wall").classList.remove("on");}
+function unlockAll(){
+  JINGU.unlocked=true;
+  try{localStorage.setItem('jing_unlock',JSON.stringify({unlocked:true,t:Date.now()}));}catch(e){}
+  closeWall();applyLocks();toast('🎉 已解锁全部八幕，尽情阅读！');
+  gotAch("read");
+}
+var sha256Sync=function(ascii){
+  function rightRotate(v,a){return (v>>>a)|(v<<(32-a));}
+  var mathPow=Math.pow,maxWord=mathPow(2,32),result="",words=[],asciiBitLength=ascii.length*8;
+  var hash=sha256Sync.h=sha256Sync.h||[];
+  var k=sha256Sync.k=sha256Sync.k||[];
+  var primeCounter=0,isComposite={};
+  for(var candidate=2;primeCounter<64;candidate++){
+    if(!isComposite[candidate]){
+      for(var i=0;i<313;i+=candidate){isComposite[i]=candidate;}
+      hash[primeCounter]=(mathPow(candidate,.5)*maxWord)|0;
+      k[primeCounter++]=(mathPow(candidate,1/3)*maxWord)|0;
+    }
+  }
+  ascii+="\x80";
+  while(ascii.length%64-56)ascii+="\x00";
+  for(i=0;i<ascii.length;i++){var j=ascii.charCodeAt(i);if(j>>8)return;words[i>>2]|=j<<((3-i)%4)*8;}
+  words[words.length]=(asciiBitLength/maxWord)|0;
+  words[words.length]=asciiBitLength;
+  for(j=0;j<words.length;){
+    var w=words.slice(j,j+=16),oldHash=hash;
+    hash=hash.slice(0,8);
+    for(i=0;i<64;i++){
+      var w15=w[i-15],w2=w[i-2];
+      var a=hash[0],e=hash[4];
+      var temp1=hash[7]+(rightRotate(e,6)^rightRotate(e,11)^rightRotate(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=i<16?w[i]:(w[i-16]+(rightRotate(w15,7)^rightRotate(w15,18)^(w15>>>3))+w[i-7]+(rightRotate(w2,17)^rightRotate(w2,19)^(w2>>>10)))|0);
+      var temp2=(rightRotate(a,2)^rightRotate(a,13)^rightRotate(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+      hash=[(temp1+temp2)|0].concat(hash);
+      hash[4]=(hash[4]+temp1)|0;
+    }
+    for(i=0;i<8;i++){hash[i]=(hash[i]+oldHash[i])|0;}
+  }
+  for(i=0;i<8;i++){
+    for(j=3;j+1;j--){
+      var b=(hash[i]>>(j*8))&255;
+      result+=((b<16)?0:"")+b.toString(16);
+    }
+  }
+  return result;
+};
+$id("unlockBtn2").onclick=function(){
+  var v=$id("pwInput").value.trim();
+  var h=sha256Sync(v).toUpperCase();
+  if(h.indexOf(JINGU.secret)!==-1){
+    $id("wOk").textContent="✅ 激活成功，八幕已全部解锁！";$id("wErr").textContent="";
+    setTimeout(unlockAll,600);
+  }else{
+    $id("wErr").textContent="激活码不正确，请检查后重试";$id("wOk").textContent="";
+  }
+};
+$id("adminBtn").onclick=function(){
+  var v=$id("adminInput").value.trim();
+  var h=sha256Sync(v).toUpperCase();
+  if(h.slice(0,8)==="325FA149"){
+    localStorage.setItem('xz_admin','1');
+    $id("aOk").textContent="✅ 管理员免解锁成功（已记住最高权限）";
+    setTimeout(unlockAll,600);
+  }else{
+    $id("aOk").textContent="口令错误";
+  }
+};
+$id("wallClose").onclick=closeWall;
+
+/* ============ 顶部按钮 ============ */
+$id("startBtn").onclick=function(){
+  var t=isLocked("m1")?$id("m1"):$id("m1");
+  t.scrollIntoView({behavior:"smooth"});
+  track("view","jing");
+};
+$id("quizBtn").onclick=function(){
+  var target=isLocked("m8")?"m1":"m8";
+  document.getElementById(target).scrollIntoView({behavior:"smooth"});
+};
+
+/* ============ 音频 ============ */
+var openA=new Audio("voice_open.wav");
+var endA=new Audio("voice_end.wav");
+var bgm=new Audio("bgm.wav");bgm.loop=true;bgm.volume=.5;
+var musicOn=false;
+$id("musicBtn").onclick=function(){
+  musicOn=!musicOn;
+  $id("musicBtn").classList.toggle("on",musicOn);
+  if(musicOn){bgm.play().catch(function(){});toast("🎵 背景音乐播放中");}
+  else{bgm.pause();toast("音乐已暂停");}
+};
+function bindAudio(btn,fill,timeEl,a){
+  btn.onclick=function(){
+    if(a.paused){a.play().then(function(){btn.textContent="⏸"}).catch(function(){toast("浏览器拦截了自动播放，请再点一次");a.play();});}
+    else{a.pause();btn.textContent="▶";}
+  };
+  a.addEventListener("timeupdate",function(){
+    fill.style.width=(a.currentTime/a.duration*100)+"%";
+    timeEl.textContent=fmt(a.currentTime)+" / "+fmt(a.duration||0);
+  });
+  a.addEventListener("ended",function(){btn.textContent="▶";fill.style.width="0";});
+}
+function fmt(s){if(!isFinite(s))s=0;var m=Math.floor(s/60),ss=Math.floor(s%60);return m+":"+(ss<10?"0":"")+ss;}
+bindAudio($id("openPlay"),$id("openFill"),$id("openTime"),openA);
+bindAudio($id("endPlay"),$id("endFill"),$id("endTime"),endA);
+
+/* ============ 风筝游戏 ============ */
+var kiteH=60,kiteUpTimer=null,kiteOk=false;
+function kiteRender(){
+  var el=$id("kiteEl");
+  el.style.top=(60-kiteH)+"%";
+  el.style.left=(60+(Math.sin(kiteH/9)*6))+"%";
+  el.style.transform="rotate("+Math.sin(kiteH/5)*8+"deg)";
+}
+$id("kiteUp").onmousedown=function(){clearInterval(kiteUpTimer);kiteUpTimer=setInterval(function(){kiteH=Math.min(100,kiteH+1.4);kiteRender();if(kiteH>=100&&!kiteOk){kiteOk=true;clearInterval(kiteUpTimer);$id("kiteMsg").textContent="🎉 风筝飞上云端，线稳了！好像把脱线的风筝接住了。";$id("kiteBadge").textContent="已完成";$id("kiteBadge").style.background="var(--green)";gotAch("kite");addCoins(5);}},50);};
+$id("kiteUp").onmouseup=function(){clearInterval(kiteUpTimer);if(!kiteOk)$id("kiteMsg").textContent="风筝停在半空，继续放线吧";};
+$id("kiteUp").ontouchend=$id("kiteUp").onmouseup;
+$id("kiteDown").onclick=function(){clearInterval(kiteUpTimer);kiteH=Math.max(0,kiteH-20);kiteRender();$id("kiteMsg").textContent="收线……风还很大";};
+$id("kiteReset").onclick=function(){kiteH=60;kiteOk=false;kiteRender();$id("kiteMsg").textContent="重新开始放风筝";$id("kiteBadge").textContent="未完成";$id("kiteBadge").style.background="";};
+kiteRender();
+
+/* ============ 晒楼瞭望 ============ */
+var SPOTS=[
+  "河水又清又软，很温柔的流着。",
+  "河对面有一个大坪，绿得同一块大毡茵一样，上面还绣得有各样颜色的花朵。",
+  "菜园篱笆旁的桃花，同庵堂里几株桃花，正开得十分热闹。",
+  "有从城里染坊中人晒得许多白布，长长的卧着，用大石块压着两端。",
+  "另外还有三匹白马，两匹黄马，没有人照料，在那里吃草，从从容容。"
+];
+document.querySelectorAll(".spot").forEach(function(sp){
+  sp.onclick=function(){
+    document.querySelectorAll(".spot").forEach(function(x){x.style.background="rgba(255,255,255,.85)";x.style.color="var(--red)";});
+    sp.style.background="var(--red)";sp.style.color="#fff";
+    var pop=$id("spotPop");
+    pop.style.display="block";
+    pop.textContent="「"+SPOTS[parseInt(sp.getAttribute("data-i"))]+"」——岳珉看见的，也是她心里的";
+    clearTimeout(sp._t);sp._t=setTimeout(function(){pop.style.display="none";},3500);
+  };
+});
+
+/* ============ 回声游戏 ============ */
+$id("echoBtn").onclick=function(){
+  var w=$id("echoWord"),n=$id("echoNun");
+  w.classList.remove("anim");void w.offsetWidth;w.classList.add("anim");
+  n.style.transform="translateX(24px)";
+  setTimeout(function(){n.style.transform="";},900);
+  $id("echoMsg").textContent="四林 —— 四林 —— 城墙把名字还回来了";
+  $id("echoBadge").textContent="已听见";$id("echoBadge").style.background="var(--green)";
+  gotAch("echo");addCoins(3);
+};
+
+/* ============ 意象配对 ============ */
+var PAIRS=[
+  {l:"断线的风筝",r:"命运无法自主",lc:"🪁",rc:"🎭"},
+  {l:"渡船",r:"漫长的等待",lc:"⛵",rc:"⏳"},
+  {l:"桃花",r:"片刻的春意",lc:"🌸",rc:"🌤️"},
+  {l:"纸制的旗帜",r:"等不到的爸爸",lc:"🚩",rc:"🕊️"}
+];
+var pairSel=null,pairDone={};
+function renderPairs(){
+  var items=[];PAIRS.forEach(function(p,i){items.push({t:p.l,key:"l"+i,p:i,c:p.lc,ok:pairDone["l"+i]});items.push({t:p.r,key:"r"+i,p:i,c:p.rc,ok:pairDone["r"+i]});});
+  items.sort(function(){return Math.random()-.5;});
+  var h="";
+  items.forEach(function(it){h+='<div class="pair-item'+(it.ok?" ok":"")+'" data-key="'+it.key+'" data-p="'+it.p+'">'+it.c+' '+it.t+'</div>';});
+  $id("pairGrid").innerHTML=h;
+  document.querySelectorAll("#pairGrid .pair-item").forEach(function(el){
+    el.onclick=function(){
+      if(el.classList.contains("ok"))return;
+      if(pairSel===null){pairSel=el.getAttribute("data-key");el.classList.add("sel");return;}
+      var a=pairSel,b=el.getAttribute("data-key");
+      var pa=document.querySelector('[data-key="'+a+'"]');
+      if(a.slice(0,1)!==b.slice(0,1)){
+        el.classList.add("bad");setTimeout(function(){el.classList.remove("bad")},400);
+        $id("pairMsg").textContent="不对——再想想风筝、渡船、桃花与旗帜";
+        pairSel=null;pa.classList.remove("sel");return;
+      }
+      if(a.slice(1)===b.slice(1)){pairDone["l"+b.slice(1)]=pairDone["r"+b.slice(1)]=true;}
+      pairSel=null;renderPairs();
+      var n=0;for(var k in pairDone)n++;
+      if(n===PAIRS.length*2){
+        $id("pairMsg").textContent="🎉 四对全部配成——你读懂了《静》的意象！";
+        $id("pairBadge").textContent="已完成";$id("pairBadge").style.background="var(--green)";
+        gotAch("pair");addCoins(6);
+      }else{$id("pairMsg").textContent="配成 "+(n/2)+" 对 / "+PAIRS.length+" 对";}
+    };
+  });
+}
+renderPairs();
+
+/* ============ 读后小测 ============ */
+var QUIZ=[
+  {q:"《静》里反复出现的核心意象是什么？",opts:["风筝","渡船","桃花","炊烟"],a:0,fb:"断线的风筝贯穿全篇：脱线、无主、飘摇——正是战乱中无法自主的命运。"},
+  {q:"“为什么这样清静？”反复出现，最贴切的理解是？",opts:["女孩在赞美乡村安静","表面的静，衬出内心的不平静","她在问小尼姑","她不喜欢吵闹"],a:1,fb:"风景越静，等信的焦灼与母亲的病就越沉重。静是表象，痛是暗流。"},
+  {q:"结尾“爸爸坟上一面纸制的旗帜”暗示了什么？",opts:["爸爸要回来了","家里办喜事","爸爸已经死了，等待是徒劳的","一面普通的旗子"],a:2,fb:"日影如坟上的纸旗——等待的人，其实早已等不到。悲剧在最后一句揭开。"},
+  {q:"小说“三个静的世界”指哪三层？",opts:["乡村的静、逃难的死静、岳珉内心的寂寥","河水的静、风的静、云的静","晒楼的静、天井的静、厨房的静","声音、画面、色彩"],a:0,fb:"评论家认为：和平静穆的乡村世界、逃难家庭的死静、岳珉心中的寂寞世界，层层叠加。"}
+];
+function renderQuiz(){
+  var h="";
+  QUIZ.forEach(function(q,i){
+    if(S.quiz[i]){h+='<div class="quiz-q"><div class="qq">✅ '+q.q+'</div><div class="q-fb">'+q.fb+'</div></div>';return;}
+    h+='<div class="quiz-q"><div class="qq">'+(i+1)+'. '+q.q+'</div><div class="quiz-opts">';
+    q.opts.forEach(function(o,j){h+='<div class="qopt" data-q="'+i+'" data-o="'+j+'">'+o+'</div>';});
+    h+='</div><div class="q-fb"></div></div>';
+  });
+  $id("quizBox").innerHTML=h;
+  document.querySelectorAll("#quizBox .qopt").forEach(function(el){
+    el.onclick=function(){
+      var qi=parseInt(el.getAttribute("data-q")),oi=parseInt(el.getAttribute("data-o"));
+      var q=QUIZ[qi],box=el.parentElement.parentElement;
+      box.querySelectorAll(".qopt").forEach(function(x){x.style.pointerEvents="none";});
+      if(oi===q.a){el.classList.add("right");box.querySelector(".q-fb").textContent="✓ "+q.fb;S.quiz[qi]=1;save();}
+      else{el.classList.add("wrong");box.querySelector(".q-fb").textContent="✗ "+q.fb;S.quiz[qi]=1;save();}
+      var n=0;for(var k in S.quiz)n++;
+      if(n===QUIZ.length){
+        $id("quizMsg").textContent="🎉 四题作答完毕——你已经读懂了《静》！";
+        $id("quizBadge").textContent="已完成";$id("quizBadge").style.background="var(--green)";
+        gotAch("quiz");addCoins(8);
+      }else{$id("quizMsg").textContent="答完 "+(n)+" / "+QUIZ.length+" 题";}
+      setTimeout(function(){renderQuiz()},900);
+    };
+  });
+}
+renderQuiz();
+
+/* ============ 埋点 v2 ============ */
+(function(){
+  var BK='jing',SEL='section.act[id^="m"]',FIN='section#m8';
+  var API='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track';
+  var vid=localStorage.getItem('xiqi_vid');
+  if(!vid){vid='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;return (c==='x'?r:(r&0x3|0x8)).toString(16);});localStorage.setItem('xiqi_vid',vid);}
+  function track(ev,ch){
+    var p={book:BK,ev:ev,ch:ch||'',vid:vid,t:Date.now(),url:location.href.split('?')[0]};
+    try{
+      if(navigator.sendBeacon){navigator.sendBeacon(API+'?d='+encodeURIComponent(JSON.stringify(p)),'');}
+      else{var img=new Image();img.src=API+'?d='+encodeURIComponent(JSON.stringify(p));}
+    }catch(e){}
+    try{
+      var ls=JSON.parse(localStorage.getItem('xiqi_tq')||'[]');ls.push(p);if(ls.length>200)ls=ls.slice(-200);localStorage.setItem('xiqi_tq',JSON.stringify(ls));
+    }catch(e){}
+  }
+  window.track=track;
+  track('view','');
+  var done={},firedFin=false,els=[].slice.call(document.querySelectorAll(SEL));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(!en.isIntersecting)return;
+        var el=en.target,id=el.id||'';
+        if(id&&!done[id]&&!id.match(/^(wall)$/)){done[id]=1;track('chapter_read',id);S.readActs[id]=1;save();}
+        var isLast=(FIN==='last')&&(el===els[els.length-1]);
+        var isFin=(FIN!=='last')&&el.matches(FIN);
+        if((isLast||isFin)&&!firedFin){firedFin=true;track('finish');gotAch('read');}
+      });
+    },{threshold:0.25});
+    els.forEach(function(el){io.observe(el);});
+  }
+})();
+
+/* ============ 进度条 ============ */
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+  $id("progBar").style.width=(max>0?(window.scrollY/max*100):0)+"%";
+});
+
+/* ============ 初始化 ============ */
+(function(){
+  addCoins(0);
+  if(!localStorage.getItem('jing_visited')){localStorage.setItem('jing_visited','1');addCoins(10);toast("欢迎来到《静》· 新读者见面礼 ⭐10");}
+  if(isUnlockedAny()){unlockAll();}
+  applyLocks();renderAch();
+  setTimeout(function(){toast("欢迎来到小城。顺流而下，开始阅读。");},800);
+  if(JINGU.unlocked)gotAch('read');
+})();
+function isUnlockedAny(){return JINGU.unlocked;}
+</script>
+</body>
+</html>
