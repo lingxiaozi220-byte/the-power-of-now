@@ -43,10 +43,10 @@ a{color:var(--gold)}
 .toc-i.lock::after{content:"🔒";font-size:11px;margin-left:auto;opacity:.7}
 
 /* Hero */
-.hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:110px 20px 60px}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
-.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,15,28,.15) 0%,rgba(10,15,28,.55) 55%,var(--bg) 100%)}
+.hero{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:118px 20px 56px}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(1100px 520px at 50% -8%,rgba(232,185,74,.15),transparent 62%),radial-gradient(760px 480px at 88% 112%,rgba(64,120,255,.12),transparent 60%),linear-gradient(180deg,#0d1424 0%,#0a0f1c 55%,var(--bg) 100%)}
+.hero-cover{width:min(236px,58vw);aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:1px solid rgba(232,185,74,.5);box-shadow:0 26px 60px rgba(0,0,0,.6),0 0 0 6px rgba(232,185,74,.08);margin:0 auto 26px;position:relative;z-index:2}
+.hero-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-in{position:relative;z-index:2;max-width:860px;text-align:center}
 .hero-kicker{display:inline-block;color:var(--gold);border:1px solid var(--gold);padding:5px 16px;border-radius:999px;font-size:13px;letter-spacing:3px;margin-bottom:22px;background:rgba(232,185,74,.08)}
 .hero h1{font-size:clamp(34px,6vw,64px);font-weight:900;margin-bottom:12px;background:linear-gradient(120deg,#fff,var(--gold2) 60%,var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -277,8 +277,9 @@ footer b{color:var(--gold2)}
 <main>
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
-  <div class="hero-bg"><img src="art_cover.jpg" alt="市场的金色之海"></div>
+  <div class="hero-bg"></div>
   <div class="hero-in">
+    <div class="hero-cover"><img src="art_cover.jpg" alt="《交易心理分析》封面"></div>
     <span class="hero-kicker">熙祺智书 · 投资心理专题</span>
     <h1>交易心理分析</h1>
     <p class="sub">用自信、自律和赢家心态掌控市场</p>
