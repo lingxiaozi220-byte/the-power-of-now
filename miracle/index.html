@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《早起的奇迹》多媒体书 · 哈尔·埃尔罗德 | 熙祺智书</title>
+<style>
+:root{
+  --night:#1f3a5f; --dawn:#e8a33d; --gold:#f0b95a; --cream:#fdf7ec;
+  --ink:#2b2a26; --ink2:#6d6557; --red:#c2543d; --green:#3f7d5c; --line:#e5d8bf;
+  --shadow:0 10px 30px rgba(31,58,95,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;background:var(--cream);color:var(--ink);line-height:1.8}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+img{max-width:100%;display:block}
+
+/* 顶栏 */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(253,247,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.brand{font-weight:700;letter-spacing:2px;font-size:16px;color:var(--night)}
+.brand small{color:var(--red);font-size:11px;margin-left:4px}
+.topbtns{display:flex;gap:8px;align-items:center}
+.iconbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.iconbtn:hover{background:#f3ead7}
+.iconbtn.on{background:var(--night);color:#fff;border-color:var(--night)}
+#coinChip{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:4px 10px;color:var(--night)}
+
+/* Hero 日出渐变 */
+.hero{position:relative;text-align:center;padding:46px 18px 34px;color:#fff;background:linear-gradient(180deg,#16283f 0%,#1f3a5f 38%,#3c5f8a 62%,#d98e3f 100%);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 92%,rgba(255,200,110,.55),transparent 55%)}
+.hero .sun{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,#ffe9b8,#f0a63d 70%);box-shadow:0 0 60px 26px rgba(255,190,90,.55);animation:sunGlow 4s ease-in-out infinite}
+@keyframes sunGlow{0%,100%{box-shadow:0 0 50px 20px rgba(255,190,90,.45)}50%{box-shadow:0 0 80px 34px rgba(255,200,110,.65)}}
+.hero .inner{position:relative;z-index:2}
+.hero-tag{display:inline-block;font-size:11px;letter-spacing:3px;border:1px solid rgba(255,255,255,.6);border-radius:20px;padding:3px 14px;margin-bottom:16px;background:rgba(255,255,255,.12);backdrop-filter:blur(4px)}
+.hero-cover{width:196px;height:262px;border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.35);border:4px solid rgba(255,255,255,.85);margin:0 auto 16px;object-fit:cover}
+.hero h1{font-size:38px;letter-spacing:10px;text-indent:10px;margin-bottom:4px;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.hero .author{font-size:14px;letter-spacing:3px;opacity:.92}
+.hero .meta{font-size:12px;opacity:.85;margin-top:8px;letter-spacing:1px}
+.stars{color:#ffd98a;letter-spacing:4px;font-size:16px;margin-top:8px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.hero-actions{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 26px;border-radius:30px;font-size:15px;cursor:pointer;border:none;font-family:inherit;letter-spacing:1px;transition:.2s}
+.btn-main{background:var(--gold);color:#3a2a10;font-weight:700;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.btn-main:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn-ghost{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.5);backdrop-filter:blur(4px)}
+.btn-ghost:hover{background:rgba(255,255,255,.28)}
+
+/* 导读 */
+.lead{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:8px 0 26px;box-shadow:var(--shadow)}
+.lead h3{font-size:13px;color:var(--red);letter-spacing:3px;margin-bottom:10px}
+.lead p{font-size:15px;color:var(--ink2)}
+.lead-audio{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.playbtn{width:42px;height:42px;border-radius:50%;background:var(--night);color:#fff;border:none;cursor:pointer;font-size:16px;flex-shrink:0}
+.audio-bar{flex:1;height:5px;background:var(--line);border-radius:3px;position:relative;overflow:hidden}
+.audio-fill{height:100%;background:var(--gold);width:0}
+.audio-time{font-size:11px;color:var(--ink2);min-width:90px;text-align:right}
+
+/* 目录 */
+.toc-title{font-size:15px;letter-spacing:4px;text-align:center;margin:30px 0 14px;color:var(--night)}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+.toc-item{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;transition:.2s;position:relative}
+.toc-item:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.toc-item .no{font-size:11px;color:var(--red);letter-spacing:2px}
+.toc-item .tt{font-size:14px;margin-top:2px;color:var(--night);font-weight:600}
+.toc-item .sub{font-size:11px;color:var(--ink2);margin-top:2px}
+.toc-item.locked .tt::after{content:" 🔒";font-size:12px}
+.toc-item.locked{background:repeating-linear-gradient(45deg,#fff,#fff 8px,#f7f0df 8px,#f7f0df 16px)}
+
+/* 幕 */
+.act{padding:26px 0 8px;border-top:1px dashed var(--line);margin-top:8px}
+.act-head{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.act-no{font-size:12px;color:var(--red);letter-spacing:2px;white-space:nowrap;background:#fdf0e6;padding:2px 10px;border-radius:12px}
+.act-title{font-size:24px;letter-spacing:2px;color:var(--night)}
+.act-sub{font-size:12px;color:var(--ink2)}
+.quote{font-size:16px;line-height:2;color:var(--ink);padding:12px 16px;border-left:3px solid var(--gold);background:rgba(255,255,255,.85);border-radius:0 10px 10px 0;margin:12px 0}
+.quote em{font-style:normal;color:var(--red);font-weight:600}
+.quote .q{color:var(--red)}
+.art{border-radius:12px;box-shadow:var(--shadow);margin:14px 0;border:4px solid #fff}
+.cap{font-size:11px;color:var(--ink2);text-align:center;margin:-8px 0 14px}
+.video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:#111;margin:14px 0}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.grid2 img{margin:0;border:4px solid #fff;border-radius:12px;box-shadow:var(--shadow);height:100%;object-fit:cover}
+
+/* 游戏卡 */
+.game{background:linear-gradient(160deg,#fff,#fbf3e2);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;box-shadow:var(--shadow)}
+.game-title{font-size:15px;letter-spacing:2px;margin-bottom:4px;display:flex;align-items:center;gap:8px;color:var(--night);font-weight:700}
+.game-title .ic{font-size:20px}
+.game-desc{font-size:12px;color:var(--ink2);margin-bottom:12px}
+.badge{display:inline-block;background:linear-gradient(135deg,#f0b95a,#e08a2e);color:#fff;font-size:11px;padding:3px 10px;border-radius:20px;margin-left:8px;vertical-align:middle}
+.g-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.g-btn{padding:9px 20px;border-radius:24px;border:none;cursor:pointer;font-size:13px;font-family:inherit;background:var(--night);color:#fff;transition:.2s}
+.g-btn:hover{filter:brightness(1.15)}
+.g-btn.g2{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.g-btn.ok{background:var(--green)}
+.g-btn.warn{background:var(--red)}
+.g-msg{font-size:13px;color:var(--green);margin-top:10px;min-height:20px}
+.g-step{font-size:13px;color:var(--ink2);margin-bottom:8px;min-height:20px}
+
+/* 时间线 */
+.timeline{margin:14px 0;padding:0 4px}
+.tl-item{display:flex;gap:12px;margin:0 0 14px;position:relative}
+.tl-item::before{content:"";position:absolute;left:15px;top:30px;bottom:-14px;width:2px;background:var(--line)}
+.tl-item:last-child::before{display:none}
+.tl-dot{width:32px;height:32px;border-radius:50%;background:var(--night);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+.tl-body{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;flex:1}
+.tl-year{font-size:12px;color:var(--red);font-weight:700}
+.tl-text{font-size:14px;margin-top:2px}
+
+/* 测试 */
+.q-opt{padding:11px 14px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-size:14px;background:#fff;margin:7px 0;transition:.2s}
+.q-opt:hover{border-color:var(--gold)}
+.q-opt.sel{border-color:var(--night);background:#f1f6fd}
+.q-opt.right{background:#e2efe6;border-color:var(--green)}
+.q-opt.wrong{background:#fbe9e2;border-color:var(--red)}
+.q-fb{font-size:12px;color:var(--ink2);margin-top:8px;min-height:18px}
+
+/* 呼吸 */
+.breath-wrap{display:flex;align-items:center;justify-content:center;flex-direction:column;padding:14px 0}
+.breath-circle{width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,#ffe9b8,#e8a33d);display:flex;align-items:center;justify-content:center;color:#3a2a10;font-weight:700;font-size:18px;transition:transform 4s ease-in-out;box-shadow:0 0 40px rgba(232,163,61,.4)}
+.breath-circle.in{transform:scale(1.25)}
+.breath-circle.out{transform:scale(.85)}
+.breath-num{font-size:34px;color:var(--night);font-weight:700;margin-top:8px}
+.breath-txt{font-size:13px;color:var(--ink2);margin-top:2px;min-height:20px}
+
+/* 宣言生成 */
+.decl-preview{background:linear-gradient(150deg,#1f3a5f,#3c5f8a);color:#fff;border-radius:14px;padding:22px;font-size:16px;line-height:2.1;margin:12px 0;min-height:150px;letter-spacing:.5px}
+.decl-preview b{color:var(--gold)}
+.w-input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;margin-bottom:10px;background:#fff}
+.w-select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;font-family:inherit;margin-bottom:10px;background:#fff;color:var(--ink)}
+
+/* 想象场景 */
+.viz-scenes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
+.viz-scene{padding:10px 4px;text-align:center;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-size:12px;background:#fff;transition:.2s}
+.viz-scene:hover{border-color:var(--gold)}
+.viz-scene.sel{border-color:var(--night);background:#f1f6fd}
+.viz-panel{background:linear-gradient(160deg,#16283f,#2e5283);color:#fdf3e0;border-radius:14px;padding:20px;min-height:130px;font-size:15px;line-height:2.1;transition:all .5s}
+
+/* 运动计数 */
+.move-count{font-size:60px;color:var(--night);font-weight:800;text-align:center;line-height:1}
+.move-bar{height:10px;background:var(--line);border-radius:6px;margin:10px 0;overflow:hidden}
+.move-fill{height:100%;width:0;background:linear-gradient(90deg,#f0b95a,#e08a2e);transition:width .3s}
+.move-emoji{font-size:44px;text-align:center;transition:transform .3s}
+
+/* 阅读翻页 */
+.book-flip{position:relative;background:#fdf3e0;border:1px solid var(--line);border-radius:12px;padding:18px;margin:12px 0;min-height:150px;text-align:center}
+.book-flip .bf-t{font-size:16px;color:var(--night);font-weight:700;margin-bottom:8px}
+.book-flip .bf-d{font-size:13px;color:var(--ink2);line-height:2}
+
+/* 配对 */
+.pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair-item{padding:9px;text-align:center;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-size:12px;transition:.2s;line-height:1.6}
+.pair-item:hover{border-color:var(--red)}
+.pair-item.sel{border-color:var(--night);background:#f1f6fd}
+.pair-item.ok{background:#e2efe6;border-color:var(--green);cursor:default}
+.pair-item.bad{background:#fbe9e2;border-color:var(--red);animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* 30天挑战 */
+.ch30-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0}
+.ch30-cell{aspect-ratio:1;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;background:#fff;cursor:pointer;transition:.2s;color:var(--ink2)}
+.ch30-cell.done{background:linear-gradient(135deg,#f0b95a,#e08a2e);color:#fff;border-color:#d98a2b;font-weight:700}
+.ch30-cell:hover{border-color:var(--gold)}
+
+/* 解锁墙 */
+.wall{position:fixed;inset:0;background:rgba(22,40,63,.8);backdrop-filter:blur(6px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.wall.on{display:flex}
+.wall-card{background:var(--cream);max-width:420px;width:100%;border-radius:18px;padding:26px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.wall-card h3{font-size:20px;letter-spacing:3px;margin-bottom:6px;color:var(--night)}
+.wall-card .wsub{font-size:12px;color:var(--ink2);margin-bottom:18px}
+.w-ok{font-size:12px;color:var(--green);min-height:18px;margin-bottom:8px}
+.w-err{font-size:12px;color:var(--red);min-height:18px;margin-bottom:8px}
+.w-x{background:none;border:none;color:var(--ink2);cursor:pointer;font-size:13px;margin-top:8px;text-decoration:underline}
+
+/* 成就/Toast/进度 */
+#toast{position:fixed;left:50%;top:70px;transform:translateX(-50%) translateY(-20px);background:var(--night);color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;z-index:200;opacity:0;transition:.35s;pointer-events:none;letter-spacing:1px;white-space:nowrap}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.ach-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.ach{width:56px;height:56px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px;transition:.3s}
+.ach span{font-size:9px;color:var(--ink2);margin-top:1px}
+.ach.got{border-color:var(--gold);background:linear-gradient(135deg,#fdf3dc,#f8e5b8)}
+.ach.lock{filter:grayscale(1);opacity:.4}
+.locked-section{filter:blur(6px);pointer-events:none;user-select:none;opacity:.6}
+.progress{position:fixed;top:52px;left:0;right:0;height:3px;background:transparent;z-index:55}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--night));transition:width .4s}
+.end-verse{background:linear-gradient(160deg,#1f3a5f,#3c5f8a);color:#fdf3e0;border-radius:14px;padding:26px;text-align:center;margin:20px 0}
+.end-verse p{font-size:15px;line-height:2.2;letter-spacing:1px}
+.footer{text-align:center;padding:26px 0 34px;font-size:12px;color:var(--ink2)}
+.footer b{color:var(--red)}
+@media(max-width:560px){
+  .hero h1{font-size:30px;letter-spacing:8px;text-indent:8px}
+  .hero-cover{width:170px;height:228px}
+  .toc{grid-template-columns:1fr 1fr}
+  .act-title{font-size:20px}
+  .viz-scenes{grid-template-columns:repeat(2,1fr)}
+  .ch30-grid{grid-template-columns:repeat(5,1fr)}
+  .grid2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">早起的奇迹 <small>· 哈尔·埃尔罗德</small></div>
+    <div class="topbtns">
+      <span id="coinChip">⭐ 0</span>
+      <button class="iconbtn" id="musicBtn" title="背景音乐">🎵</button>
+    </div>
+  </div>
+</div>
+<div class="progress"><i id="progBar"></i></div>
+
+<div class="hero">
+  <div class="sun"></div>
+  <div class="inner">
+    <span class="hero-tag">熙祺智书 · 自我成长经典</span>
+    <img class="hero-cover" src="art_cover.jpg" alt="《早起的奇迹》封面">
+    <h1>早起的奇迹</h1>
+    <div class="author">哈尔 · 埃尔罗德</div>
+    <div class="stars">★★★★★</div>
+    <div class="meta">全球畅销500万册 · S.A.V.E.R.S. 人生拯救计划 · 连续8年亚马逊畅销榜</div>
+    <div class="hero-actions">
+      <button class="btn btn-main" id="startBtn">☀️ 开启奇迹早晨</button>
+      <button class="btn btn-ghost" id="quizBtn">先测一测</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="lead">
+    <h3>导 读</h3>
+    <p>一个"死过两次"的人，用每天清晨一小时，从谷底爬回人生巅峰。<br>
+    你将收获：S.A.V.E.R.S. 六步法、五步防赖床、6分钟快速版、30天挑战计划——<br>
+    读完就能上手，明天早上就能用。</p>
+    <div class="lead-audio">
+      <button class="playbtn" id="openPlay">▶</button>
+      <div class="audio-bar"><div class="audio-fill" id="openFill"></div></div>
+      <span class="audio-time" id="openTime">0:00 / 0:45</span>
+    </div>
+  </div>
+
+  <div class="toc-title">目 录 · 十 幕</div>
+  <div class="toc" id="toc"></div>
+
+  <!-- m1 序章 -->
+  <section class="act" id="m1">
+    <div class="act-head"><span class="act-no">第 一 幕</span><h2 class="act-title">死过两次的人生</h2></div>
+    <p class="quote"><em>"人生最大的奇迹，就是成为梦想中的自己。"</em>——《早起的奇迹》开篇第一句。</p>
+    <p class="quote">哈尔·埃尔罗德，15岁拥有个人电台节目；20岁成为市值2亿美元公司的顶尖销售员；同年遭遇严重车祸，<span class="q">"临床死亡"6分钟，11根骨头骨折，医生判定他可能再也无法行走</span>。</p>
+    <img class="art" src="art_story.jpg" alt="哈尔拄拐晨跑">
+    <p class="cap">被判定无法行走的人，在晨光中重新奔跑</p>
+    <p class="quote">他不仅重新站了起来，重回公司后还在6万名销售人员中业绩位列第6；28岁又遭遇金融危机，负债287万，陷入深度抑郁；29岁开发"神奇的早起"计划，人生从此改变；33岁出版《早起的奇迹》，连续5年占据英文亚马逊畅销榜首。</p>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot">15</div><div class="tl-body"><div class="tl-year">15岁</div><div class="tl-text">拥有个人电台节目，少年成名</div></div></div>
+      <div class="tl-item"><div class="tl-dot">20</div><div class="tl-body"><div class="tl-year">20岁</div><div class="tl-text">市值2亿美元公司顶尖销售员；车祸"临床死亡"6分钟，11处骨折，被判可能终身无法行走</div></div></div>
+      <div class="tl-item"><div class="tl-dot">21</div><div class="tl-body"><div class="tl-year">奇迹康复</div><div class="tl-text">重新站上运动场，6万销售中业绩第6，跑完84公里超级马拉松</div></div></div>
+      <div class="tl-item"><div class="tl-dot">28</div><div class="tl-body"><div class="tl-year">28岁</div><div class="tl-text">金融危机，负债287万，一度患上抑郁症，人生跌入谷底</div></div></div>
+      <div class="tl-item"><div class="tl-dot">29</div><div class="tl-body"><div class="tl-year">29岁</div><div class="tl-text">开发"神奇的早起"计划，人生从此逆转</div></div></div>
+      <div class="tl-item"><div class="tl-dot">33</div><div class="tl-body"><div class="tl-year">33岁</div><div class="tl-text">出版《早起的奇迹》，连续5年（8年）英文亚马逊畅销榜首</div></div></div>
+    </div>
+    <p class="quote">他用自己的人生证明：<em>改变人生的，不是什么玄学，就是每天清晨那一个小时。</em></p>
+  </section>
+
+  <!-- m2 核心思维 -->
+  <section class="act" id="m2">
+    <div class="act-head"><span class="act-no">第 二 幕</span><h2 class="act-title">早起是人生的杠杆</h2></div>
+    <p class="quote"><span class="q">"你怎样过早晨，就怎样过一生。"</span>你如何度过早晨，就将如何度过一生。</p>
+    <p class="quote">三个底层思维，是这本书的灵魂：<br>
+    <em>① 外在世界，是内在世界的反映</em>——每天向内修炼，生活就会向外变好；<br>
+    <em>② 早晨一小时是"暗时间"</em>——每天早起一小时，一年就是365小时，相当于15个完整的24小时；<br>
+    <em>③ 拉开差距的不是天赋</em>——而是早晨起床后那1-2小时，你把它投给了谁。</p>
+    <p class="quote">书中警句："<span class="q">不想起床，并不是因为没睡醒，重要的不是睡多久，而是你以为自己睡了多久。</span>" "你如果不能出众，就可能出局。" "这是你自己的人生，怎能不全力以赴？"</p>
+
+    <div class="game">
+      <div class="game-title"><span class="ic">🌅</span>晨型人测试 <span class="badge" id="testBadge">未测</span></div>
+      <div class="game-desc">5 道题，测出你的"晨间人格"，并获得专属早起建议。</div>
+      <div id="testBox"></div>
+      <div class="g-msg" id="testMsg"></div>
+    </div>
+  </section>
+
+  <!-- m3 五步防赖床 -->
+  <section class="act" id="m3">
+    <div class="act-head"><span class="act-no">第 三 幕</span><h2 class="act-title">五步防赖床法</h2></div>
+    <p class="quote">哈尔说：早起靠的不是意志力，是方法。书中给出"傻瓜式"五步——<br>
+    ① 睡前积极自我暗示；② 把闹钟放到必须下床才能关掉的地方；③ 关掉闹钟直接去洗手间刷牙；④ 喝下一大杯水；⑤ 换上晨练服，动起来。</p>
+    <div class="game">
+      <div class="game-title"><span class="ic">⏰</span>早晨闯关 · 别按掉闹钟 <span class="badge" id="wakeBadge">未通关</span></div>
+      <div class="game-desc">闹钟响了。你只有一条路：按对顺序完成五步，成功起床！点错一步，就会被"再睡5分钟"拉回被窝。</div>
+      <div class="g-step" id="wakeStep">⏰ 闹钟响了——你该做什么？（点错会被拉回被窝哦）</div>
+      <div class="g-cta" id="wakeBtns"></div>
+      <div class="g-msg" id="wakeMsg"></div>
+    </div>
+  </section>
+
+  <!-- m4 SAVERS 总览 -->
+  <section class="act" id="m4">
+    <div class="act-head"><span class="act-no">第 四 幕</span><h2 class="act-title">S.A.V.E.R.S. 总览</h2></div>
+    <p class="quote">全书核心——<em>"S.A.V.E.R.S. 人生拯救计划"</em>，每天早起后用6件事，把人生从谷底拉回巅峰：</p>
+    <img class="art" src="art_clock.jpg" alt="SAVERS时钟">
+    <p class="cap">S.A.V.E.R.S. 六步法 · 每步5-10分钟</p>
+    <div class="lead-audio" style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0">
+      <button class="playbtn" id="saversPlay" style="background:var(--gold)">▶</button>
+      <div class="audio-bar"><div class="audio-fill" id="saversFill"></div></div>
+      <span class="audio-time" id="saversTime">0:00 / 0:50</span>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1wmEm6HETw&page=1&high_quality=1&danmaku=0" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="cap">《早起的奇迹》深度拆解：你不是起不来，是缺一套"起床程序"</p>
+  </section>
+
+  <!-- m5 S 静心 -->
+  <section class="act" id="m5">
+    <div class="act-head"><span class="act-no">第 五 幕</span><h2 class="act-title">S · 心静 Silence</h2></div>
+    <p class="quote"><em>Silence 心静——控制"思想多动症"。</em>冥想、感恩、深呼吸，目的不是追求虚无，而是在一天开始前清空杂念、稳住心态。</p>
+    <img class="art" src="art_s.jpg" alt="静心冥想">
+    <p class="cap">5分钟心静 · 让大脑强制重启</p>
+    <p class="quote">做法：醒来别碰手机，找一个安静的地方，冥想、感恩或祈祷，从5分钟开始，慢慢加长。科学上，它能降低皮质醇、提升情绪稳定性与专注力。</p>
+    <div class="game">
+      <div class="game-title"><span class="ic">🧘</span>60秒呼吸练习 <span class="badge" id="breathBadge">未完成</span></div>
+      <div class="game-desc">跟着节奏：吸气4秒 → 屏息4秒 → 呼气6秒。完成一轮60秒，你的早晨就赢了。</div>
+      <div class="breath-wrap">
+        <div class="breath-circle" id="breathCircle">准备</div>
+        <div class="breath-num" id="breathNum">60</div>
+        <div class="breath-txt" id="breathTxt">点击"开始呼吸"</div>
+      </div>
+      <div class="g-cta">
+        <button class="g-btn" id="breathBtn">开始呼吸</button>
+        <button class="g-btn g2" id="breathReset">重新来</button>
+      </div>
+      <div class="g-msg" id="breathMsg"></div>
+    </div>
+  </section>
+
+  <!-- m6 A 自我肯定 (锁定) -->
+  <section class="act" id="m6" data-lock="1">
+    <div class="act-head"><span class="act-no">第 六 幕</span><h2 class="act-title">A · 自我肯定 Affirmations</h2></div>
+    <p class="quote"><em>Affirmations 自我肯定——对潜意识积极编程。</em>写下你的宣言并大声朗诵，把目标和信念深植于心。"I am the greatest!"穆罕默德·阿里反复肯定，然后他真的成为了最伟大的。</p>
+    <img class="art" src="art_a.jpg" alt="自我肯定">
+    <p class="cap">对着镜子，大声说出你的宣言</p>
+    <p class="quote">写宣言四步公式：<br>
+    <span class="q">① 你真正想要什么？② 为什么想要？③ 你必须成为什么样的人，才能得到？④ 你必须做什么，才能得到？</span></p>
+    <div class="game">
+      <div class="game-title"><span class="ic">🗣️</span>我的自我肯定宣言生成器 <span class="badge" id="declBadge">未生成</span></div>
+      <div class="game-desc">输入你的名字与目标，生成属于你的晨间宣言，还可以点击播放，让它"说"出来。</div>
+      <input class="w-input" id="declName" placeholder="你的名字（如：小明）">
+      <select class="w-select" id="declGoal">
+        <option value="事业">事业 —— 我要成为顶尖的人</option>
+        <option value="健康">健康 —— 我要精力充沛</option>
+        <option value="学习">学习 —— 我要持续成长</option>
+        <option value="关系">关系 —— 我要更幸福</option>
+      </select>
+      <div class="g-cta">
+        <button class="g-btn" id="declBtn">生成我的宣言</button>
+        <button class="g-btn g2" id="declSpeak">🔊 大声朗读</button>
+      </div>
+      <div class="decl-preview" id="declPreview">填写名字与目标，点"生成我的宣言"。</div>
+      <div class="g-msg" id="declMsg"></div>
+    </div>
+  </section>
+
+  <!-- m7 V 具象化 (锁定) -->
+  <section class="act" id="m7" data-lock="1">
+    <div class="act-head"><span class="act-no">第 七 幕</span><h2 class="act-title">V · 具象化 Visualization</h2></div>
+    <p class="quote"><em>Visualization 具象化——预演每一种可能。</em>闭上眼睛，在脑中详细描绘今天顺利完成工作的画面、实现长远梦想的情景，细节越丰富越好。大脑分不清想象与现实，预演即练习。</p>
+    <img class="art" src="art_v.jpg" alt="具象化">
+    <p class="cap">在心里先活一遍你想要的人生</p>
+    <div class="game">
+      <div class="game-title"><span class="ic">🌈</span>3分钟想象引导 <span class="badge" id="vizBadge">未完成</span></div>
+      <div class="game-desc">选一个你最想改变的方向，闭上眼睛，跟我走进这段想象。</div>
+      <div class="viz-scenes" id="vizScenes"></div>
+      <div class="viz-panel" id="vizPanel">选择一个场景，开始想象。</div>
+      <div class="g-msg" id="vizMsg"></div>
+    </div>
+  </section>
+
+  <!-- m8 E运动 & R阅读 (锁定) -->
+  <section class="act" id="m8" data-lock="1">
+    <div class="act-head"><span class="act-no">第 八 幕</span><h2 class="act-title">E · 运动 & R · 阅读</h2></div>
+    <p class="quote"><em>Exercise 运动——让身体和精神更清醒。</em>早晨锻炼10-20分钟，唤醒身体、释放内啡肽，让你全天精力充沛、专注力更强。</p>
+    <div class="grid2">
+      <img class="art" src="art_e.jpg" alt="晨跑">
+      <img class="art" src="art_r.jpg" alt="晨读">
+    </div>
+    <div class="game">
+      <div class="game-title"><span class="ic">🏃</span>20个早安伸展 <span class="badge" id="moveBadge">未完成</span></div>
+      <div class="game-desc">跟着节奏，点击完成 20 个早安伸展。运动不需要多，动起来就赢了。</div>
+      <div class="move-emoji" id="moveEmoji">🧍</div>
+      <div class="move-count" id="moveCount">0 / 20</div>
+      <div class="move-bar"><div class="move-fill" id="moveFill"></div></div>
+      <div class="g-cta"><button class="g-btn" id="moveBtn">伸展一次 🙆</button></div>
+      <div class="g-msg" id="moveMsg"></div>
+    </div>
+    <p class="quote"><em>Reading 阅读——从成功人士身上汲取知识。</em>每天读10页成长类书籍，一年就是约18本200页的书。别重新发明轮子，直接向已经做到的人学习。</p>
+    <div class="book-flip">
+      <div class="bf-t" id="bfTitle">📖 哈尔推荐书单 · 第 1 页</div>
+      <div class="bf-d" id="bfDesc">《早起的奇迹》作者推荐从个人成长类书籍读起：先读"励志+习惯养成"，再进入理财与创业领域。</div>
+      <div class="g-cta" style="justify-content:center;margin-top:10px"><button class="g-btn g2" id="flipBtn">翻到下一页 →</button></div>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1NhhGzzE8u&page=1&high_quality=1&danmaku=0" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="cap">《早起的奇迹》5分钟解读：撕开99%人不知道的真相</p>
+  </section>
+
+  <!-- m9 S书写 & 6分钟 (锁定) -->
+  <section class="act" id="m9" data-lock="1">
+    <div class="act-head"><span class="act-no">第 九 幕</span><h2 class="act-title">S · 书写 & 6分钟版</h2></div>
+    <p class="quote"><em>Scribing 书写——不放过任何反思的机会。</em>写日记：梳理思绪，记录洞见、感恩之事与待办目标，把想法落地为文字。写下目标的人，实现率提高80%。</p>
+    <img class="art" src="art_s2.jpg" alt="书写">
+    <p class="cap">晨间三行：感恩、目标、待办</p>
+    <div class="game">
+      <div class="game-title"><span class="ic">✍️</span>晨间三行书写 <span class="badge" id="scribBadge">未完成</span></div>
+      <div class="game-desc">写下今天感恩的3件小事，哪怕微不足道。</div>
+      <textarea class="w-input" id="scribInput" rows="3" placeholder="例：1. 睡了个好觉 2. 清晨的阳光 3. 一杯热咖啡"></textarea>
+      <div class="g-cta"><button class="g-btn" id="scribBtn">写进今天的日记 ✍️</button></div>
+      <div class="g-msg" id="scribMsg"></div>
+    </div>
+    <div class="quote" style="background:linear-gradient(150deg,#1f3a5f,#3c5f8a);color:#fff;border-left-color:var(--gold)">
+      ⚡ <b>送给忙碌人士的"6分钟神奇早起"：</b><br>
+      第1分钟：心静 / 冥想 / 感恩<br>
+      第2分钟：大声朗诵自我肯定宣言<br>
+      第3分钟：尽情地想象未来<br>
+      第4分钟：写下让自己感激的事情<br>
+      第5分钟：静静地读一页书<br>
+      第6分钟：动起来
+    </div>
+    <div class="lead-audio" style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0">
+      <button class="playbtn" id="sixPlay" style="background:var(--green)">▶</button>
+      <div class="audio-bar"><div class="audio-fill" id="sixFill"></div></div>
+      <span class="audio-time" id="sixTime">0:00 / 0:55</span>
+    </div>
+    <p class="cap">跟着引导，现在就来一遍6分钟神奇早起</p>
+  </section>
+
+  <!-- m10 30天挑战 (锁定) -->
+  <section class="act" id="m10" data-lock="1">
+    <div class="act-head"><span class="act-no">第 十 幕</span><h2 class="act-title">30天挑战 · 行动开始</h2></div>
+    <p class="quote">作者设计的"奇迹早起30天挑战"分三个阶段：<br>
+    <span class="q">第1-7天</span>：适应生理时钟，重点克服"再睡5分钟"的诱惑；<br>
+    <span class="q">第8-14天</span>：建立心流节奏，找到最适合自己的晨间组合；<br>
+    <span class="q">第15-30天</span>：形成自动习惯，不靠意志力也能自然清醒。<br>
+    某天没起来？用"10分钟微仪式"（冥想+计划）兜底，别破罐破摔。</p>
+    <img class="art" src="art_30.jpg" alt="30天挑战">
+    <p class="cap">每天打卡一格 · 30天后你已脱胎换骨</p>
+    <div class="game">
+      <div class="game-title"><span class="ic">📅</span>我的30天挑战规划器 <span class="badge" id="ch30Badge">未创建</span></div>
+      <div class="game-desc">设定你的目标起床时间与挑战目标，生成专属30天打卡表。打卡记录保存在本机。</div>
+      <div class="grid2" style="grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px">
+        <input class="w-input" id="ch30Time" placeholder="目标起床时间，如 6:00">
+        <input class="w-input" id="ch30Goal" placeholder="挑战目标，如：晨读10页">
+      </div>
+      <div class="g-cta">
+        <button class="g-btn" id="ch30Create">生成30天计划</button>
+        <button class="g-btn g2" id="ch30Reset">重置</button>
+      </div>
+      <div class="g-step" id="ch30Info"></div>
+      <div class="ch30-grid" id="ch30Grid"></div>
+      <div class="g-msg" id="ch30Msg"></div>
+    </div>
+    <div class="game">
+      <div class="game-title"><span class="ic">🎯</span>金句配对 <span class="badge" id="pairBadge">未完成</span></div>
+      <div class="game-desc">把《早起的奇迹》金句与它的含义配成对。</div>
+      <div class="pair-grid" id="pairGrid"></div>
+      <div class="g-msg" id="pairMsg" style="margin-top:10px"></div>
+    </div>
+    <div class="game">
+      <div class="game-title"><span class="ic">📝</span>读后小测 <span class="badge" id="quizBadge">未完成</span></div>
+      <div class="game-desc">五道题，确认你真的带走了这本书的核心。</div>
+      <div id="quizBox"></div>
+      <div class="g-msg" id="quizMsg"></div>
+    </div>
+    <div class="end-verse">
+      <p>明早的闹钟响起时，<br>你会选择按掉它，还是起身？<br><br>
+      <b style="color:var(--gold)">"你怎样过早晨，就怎样过一生。"</b><br><br>
+      <span style="font-size:12px;opacity:.8">从现在起，把清晨还给自己。明天见。</span></p>
+    </div>
+  </section>
+
+  <div class="ach-row" id="achRow"></div>
+
+  <div class="footer">
+    熙祺智书 · 多媒体书平台 · <b>早起的奇迹</b>（哈尔·埃尔罗德）<br>
+    内容据2018年广东人民出版社中文版整理 · 多媒体化创作<br>
+    音乐 / 朗读 / 插画 / 游戏 / 挑战 · 让经典更好读
+  </div>
+</div>
+
+<!-- 解锁墙 -->
+<div class="wall" id="wall">
+  <div class="wall-card">
+    <h3>🔒 解锁全部十幕</h3>
+    <div class="wsub">前五幕免费 · 后五幕需要解锁 · 系统管理员可直接阅读全部</div>
+    <input class="w-input" id="pwInput" type="text" placeholder="输入激活码或管理员口令" autocomplete="off">
+    <button class="btn btn-main" style="width:100%;justify-content:center" id="unlockBtn2">解锁</button>
+    <div class="w-err" id="wErr"></div>
+    <div class="w-ok" id="wOk"></div>
+    <details style="text-align:left;margin-top:10px;font-size:12px;color:var(--ink2)">
+      <summary>🛡 管理员解锁</summary>
+      <input class="w-input" id="adminInput" type="password" placeholder="输入管理员口令" autocomplete="off" style="margin-top:8px">
+      <button class="btn btn-ghost" style="width:100%;justify-content:center" id="adminBtn">管理员免解锁</button>
+      <div class="w-ok" id="aOk"></div>
+    </details>
+    <button class="w-x" id="wallClose">暂不解锁，先看免费内容</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ============ 数据 ============ */
+var S={};
+try{S=JSON.parse(localStorage.getItem("miracle_state")||"{}");}catch(e){}
+S.coins=S.coins||0;S.ach=S.ach||{};S.quiz=S.quiz||{};S.test=S.test||{};S.ch30=S.ch30||{};
+var UN={free:5,unlocked:false,secret:'xiqi_miracle_2026_sa'};
+(function(){try{var u=JSON.parse(localStorage.getItem('miracle_unlock')||'{}');if(u&&u.unlocked)UN.unlocked=true;}catch(e){}})();
+(function(){try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('xz_admin','1')}}catch(e){}try{if(localStorage.getItem('xz_admin')==='1'){UN.unlocked=true;localStorage.setItem('miracle_unlock',JSON.stringify({unlocked:true,t:Date.now()}))}}catch(e){}})();
+function save(){try{localStorage.setItem("miracle_state",JSON.stringify(S));}catch(e){}}
+function toast(t){var e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(function(){e.classList.remove("on")},2600);}
+function $id(i){return document.getElementById(i)}
+function addCoins(n){S.coins+=n;save();$id("coinChip").textContent="⭐ "+S.coins;if(n>0)toast("+⭐"+n);}
+function gotAch(k){if(!S.ach[k]){S.ach[k]=1;save();renderAch();toast("🎖 获得成就："+ACH[k].n);}}
+function isLocked(id){if(UN.unlocked)return false;var n=parseInt(id.replace("m",""),10);if(!isNaN(n))return n>UN.free;return true;}
+function applyLocks(){
+  ["m6","m7","m8","m9","m10"].forEach(function(id){
+    var sec=document.getElementById(id);if(!sec)return;
+    if(!isLocked(id)){sec.classList.remove("locked-section");return;}
+    sec.classList.add("locked-section");
+  });
+  renderToc();
+}
+
+/* ============ 成就 ============ */
+var ACH={open:{n:"打开书卷",i:"📖"},test:{n:"认识自己",i:"🌅"},wake:{n:"早起闯关",i:"⏰"},breath:{n:"静心一分钟",i:"🧘"},decl:{n:"我的宣言",i:"🗣️"},viz:{n:"预演人生",i:"🌈"},move:{n:"动起来",i:"🏃"},scrib:{n:"写下感恩",i:"✍️"},ch30:{n:"挑战开始",i:"📅"},pair:{n:"金句通晓",i:"🎯"},quiz:{n:"读懂奇迹",i:"📝"},read:{n:"读完十幕",i:"🏆"}};
+function renderAch(){
+  var h="";for(var k in ACH){h+='<div class="ach '+(S.ach[k]?"got":"lock")+'">'+ACH[k].i+'<span>'+ACH[k].n+'</span></div>';}
+  $id("achRow").innerHTML=h;
+}
+
+/* ============ 目录 ============ */
+var TOC=[
+  {id:"m1",no:"第一幕",tt:"死过两次的人生",sub:"哈尔的故事"},
+  {id:"m2",no:"第二幕",tt:"早起是人生的杠杆",sub:"三个底层思维"},
+  {id:"m3",no:"第三幕",tt:"五步防赖床法",sub:"起床闯关"},
+  {id:"m4",no:"第四幕",tt:"S.A.V.E.R.S. 总览",sub:"人生拯救计划"},
+  {id:"m5",no:"第五幕",tt:"S · 心静",sub:"60秒呼吸"},
+  {id:"m6",no:"第六幕",tt:"A · 自我肯定",sub:"宣言生成器"},
+  {id:"m7",no:"第七幕",tt:"V · 具象化",sub:"3分钟想象"},
+  {id:"m8",no:"第八幕",tt:"E · 运动 & R · 阅读",sub:"动起来 · 读起来"},
+  {id:"m9",no:"第九幕",tt:"S · 书写 & 6分钟版",sub:"晨间三行"},
+  {id:"m10",no:"第十幕",tt:"30天挑战 · 行动",sub:"改变从现在开始"}
+];
+function renderToc(){
+  var h="";
+  TOC.forEach(function(t){
+    var lk=isLocked(t.id);
+    h+='<div class="toc-item'+(lk?" locked":"")+'" data-id="'+t.id+'"><div class="no">'+t.no+'</div><div class="tt">'+t.tt+'</div><div class="sub">'+t.sub+'</div></div>';
+  });
+  $id("toc").innerHTML=h;
+  document.querySelectorAll(".toc-item").forEach(function(el){
+    el.onclick=function(){
+      var id=el.getAttribute("data-id");
+      if(isLocked(id)){openWall();return;}
+      document.getElementById(id).scrollIntoView({behavior:"smooth"});
+      track("chapter_read",id);
+    };
+  });
+}
+
+/* ============ 解锁 ============ */
+function openWall(){$id("wall").classList.add("on");}
+function closeWall(){$id("wall").classList.remove("on");}
+function unlockAll(){
+  UN.unlocked=true;
+  try{localStorage.setItem('miracle_unlock',JSON.stringify({unlocked:true,t:Date.now()}));}catch(e){}
+  closeWall();applyLocks();toast('🎉 已解锁全部十幕，开始你的奇迹早晨！');
+  gotAch("read");
+}
+var sha256Sync=function(ascii){
+  function rightRotate(v,a){return (v>>>a)|(v<<(32-a));}
+  var mathPow=Math.pow,maxWord=mathPow(2,32),result="",words=[],asciiBitLength=ascii.length*8;
+  var hash=sha256Sync.h=sha256Sync.h||[];
+  var k=sha256Sync.k=sha256Sync.k||[];
+  var primeCounter=0,isComposite={};
+  for(var candidate=2;primeCounter<64;candidate++){
+    if(!isComposite[candidate]){
+      for(var i=0;i<313;i+=candidate){isComposite[i]=candidate;}
+      hash[primeCounter]=(mathPow(candidate,.5)*maxWord)|0;
+      k[primeCounter++]=(mathPow(candidate,1/3)*maxWord)|0;
+    }
+  }
+  ascii+="\x80";
+  while(ascii.length%64-56)ascii+="\x00";
+  for(i=0;i<ascii.length;i++){var j=ascii.charCodeAt(i);if(j>>8)return;words[i>>2]|=j<<((3-i)%4)*8;}
+  words[words.length]=(asciiBitLength/maxWord)|0;
+  words[words.length]=asciiBitLength;
+  for(j=0;j<words.length;){
+    var w=words.slice(j,j+=16),oldHash=hash;
+    hash=hash.slice(0,8);
+    for(i=0;i<64;i++){
+      var w15=w[i-15],w2=w[i-2];
+      var a=hash[0],e=hash[4];
+      var temp1=hash[7]+(rightRotate(e,6)^rightRotate(e,11)^rightRotate(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=i<16?w[i]:(w[i-16]+(rightRotate(w15,7)^rightRotate(w15,18)^(w15>>>3))+w[i-7]+(rightRotate(w2,17)^rightRotate(w2,19)^(w2>>>10)))|0);
+      var temp2=(rightRotate(a,2)^rightRotate(a,13)^rightRotate(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+      hash=[(temp1+temp2)|0].concat(hash);
+      hash[4]=(hash[4]+temp1)|0;
+    }
+    for(i=0;i<8;i++){hash[i]=(hash[i]+oldHash[i])|0;}
+  }
+  for(i=0;i<8;i++){
+    for(j=3;j+1;j--){
+      var b=(hash[i]>>(j*8))&255;
+      result+=((b<16)?0:"")+b.toString(16);
+    }
+  }
+  return result;
+};
+$id("unlockBtn2").onclick=function(){
+  var v=$id("pwInput").value.trim();
+  var h=sha256Sync(v).toUpperCase();
+  if(h.indexOf(UN.secret)!==-1){
+    $id("wOk").textContent="✅ 激活成功，十幕已全部解锁！";$id("wErr").textContent="";
+    setTimeout(unlockAll,600);
+  }else{
+    $id("wErr").textContent="激活码不正确，请检查后重试";$id("wOk").textContent="";
+  }
+};
+$id("adminBtn").onclick=function(){
+  var v=$id("adminInput").value.trim();
+  var h=sha256Sync(v).toUpperCase();
+  if(h.slice(0,8)==="325FA149"){
+    localStorage.setItem('xz_admin','1');
+    $id("aOk").textContent="✅ 管理员免解锁成功（已记住最高权限）";
+    setTimeout(unlockAll,600);
+  }else{
+    $id("aOk").textContent="口令错误";
+  }
+};
+$id("wallClose").onclick=closeWall;
+
+/* ============ 顶部按钮 ============ */
+$id("startBtn").onclick=function(){$id("m1").scrollIntoView({behavior:"smooth"});track("view","miracle");};
+$id("quizBtn").onclick=function(){var t=isLocked("m10")?"m2":"m10";document.getElementById(t).scrollIntoView({behavior:"smooth"});};
+
+/* ============ 音频 ============ */
+var openA=new Audio("voice_open.wav"),saversA=new Audio("voice_savers.wav"),sixA=new Audio("voice_6min.wav");
+var bgm=new Audio("bgm.wav");bgm.loop=true;bgm.volume=.45;
+var musicOn=false;
+$id("musicBtn").onclick=function(){
+  musicOn=!musicOn;
+  $id("musicBtn").classList.toggle("on",musicOn);
+  if(musicOn){bgm.play().catch(function(){});toast("🎵 晨光音乐播放中");}
+  else{bgm.pause();toast("音乐已暂停");}
+};
+function bindAudio(btn,fill,timeEl,a){
+  btn.onclick=function(){
+    if(a.paused){a.play().then(function(){btn.textContent="⏸"}).catch(function(){toast("浏览器拦截了自动播放，请再点一次");a.play();});}
+    else{a.pause();btn.textContent="▶";}
+  };
+  a.addEventListener("timeupdate",function(){
+    fill.style.width=(a.currentTime/a.duration*100)+"%";
+    timeEl.textContent=fmt(a.currentTime)+" / "+fmt(a.duration||0);
+  });
+  a.addEventListener("ended",function(){btn.textContent="▶";fill.style.width="0";});
+}
+function fmt(s){if(!isFinite(s))s=0;var m=Math.floor(s/60),ss=Math.floor(s%60);return m+":"+(ss<10?"0":"")+ss;}
+bindAudio($id("openPlay"),$id("openFill"),$id("openTime"),openA);
+bindAudio($id("saversPlay"),$id("saversFill"),$id("saversTime"),saversA);
+bindAudio($id("sixPlay"),$id("sixFill"),$id("sixTime"),sixA);
+
+/* ============ 晨型人测试 ============ */
+var TEST=[
+  {q:"闹钟响起时，你的第一反应是？",opts:["关掉继续睡，还要再睡会儿","立刻坐起来，深呼吸三次","挣扎五分钟，然后起床","直接无视，睡到自然醒"],p:[2,4,3,1]},
+  {q:"你最喜欢什么时候的自己？",opts:["深夜，安静没人打扰","清晨，头脑最清醒","下午，状态最稳定","傍晚，放松的时刻"],p:[2,4,3,1]},
+  {q:"如果明天可以完全自由，你会在几点醒来？",opts:["9点以后","5-7点","7-9点","中午"],p:[1,4,3,0]},
+  {q:"早晨的你通常是什么状态？",opts:["浑浑噩噩，半天才清醒","精力充沛，效率最高","还行，需要一杯咖啡","压根起不来"],p:[2,4,3,1]},
+  {q:"你相信“早起改变人生”这句话吗？",opts:["不信，我就是夜猫子","想信，但起不来","已经在尝试","信，我见过有人做到"],p:[1,3,2,4]}
+];
+var testIdx=0,testScore=0,testSel=null;
+function renderTest(){
+  var q=TEST[testIdx];
+  var h='<div class="qq" style="font-size:15px;font-weight:700;margin-bottom:8px">第 '+(testIdx+1)+' 题 / 5 · '+q.q+'</div>';
+  q.opts.forEach(function(o,i){h+='<div class="q-opt" data-i="'+i+'">'+o+'</div>';});
+  $id("testBox").innerHTML=h;
+  document.querySelectorAll("#testBox .q-opt").forEach(function(el){
+    el.onclick=function(){
+      document.querySelectorAll("#testBox .q-opt").forEach(function(x){x.classList.remove("sel");});
+      el.classList.add("sel");testSel=parseInt(el.getAttribute("data-i"));
+      setTimeout(function(){
+        testScore+=q.p[testSel];
+        testIdx++;
+        if(testIdx<TEST.length){renderTest();}else{testDone();}
+      },350);
+    };
+  });
+}
+function testDone(){
+  var type,adv;
+  if(testScore>=18){type="🌅 早起鸟";adv="你已经站在奇迹的门口——直接开始30天挑战，把优势变成习惯！";}
+  else if(testScore>=13){type="🕊️ 半晨型人";adv="你有早起的潜质，用五步防赖床法+6分钟快速版，先征服第一个早晨！";}
+  else if(testScore>=8){type="🦉 晚起鸟";adv="别急，从6分钟版本开始，把闹钟放远一点，先赢下第一个早晨再说！";}
+  else{type="🦇 夜猫子";adv="你最需要这本书——你的深夜不是天赋，是习惯。先从睡前暗示开始改变。";}
+  $id("testBox").innerHTML='<div class="decl-preview" style="background:linear-gradient(150deg,#1f3a5f,#3c5f8a)">你的晨间人格：<b style="color:var(--gold)">'+type+'</b><br>'+adv+'</div>';
+  $id("testMsg").textContent="🎉 测试完成！答案没有对错，只有方向。";
+  $id("testBadge").textContent="已测出";$id("testBadge").style.background="var(--green)";
+  gotAch("test");addCoins(4);
+}
+renderTest();
+
+/* ============ 防赖床闯关 ============ */
+var WAKE=[
+  {t:"🌙 睡前积极自我暗示：告诉自己明天几点起床",say:"做得好——睡前给潜意识下指令"},
+  {t:"⏰ 把闹钟放到必须下床才能关掉的地方",say:"对，逼自己起身就赢了一半"},
+  {t:"🪥 关掉闹钟后，直接去洗手间刷牙",say:"正确！别回床上，直接去洗手间"},
+  {t:"💧 喝下一大杯水，快速补充水分",say:"好！一杯水让身体快速开机"},
+  {t:"👟 换上晨练服，动起来",say:"完美！你已经成功起床，去创造你的早晨！"}
+];
+var wakeIdx=0;
+function renderWake(){
+  if(wakeIdx>=WAKE.length){
+    $id("wakeStep").textContent="🎉 恭喜！你成功起床了——这就是奇迹早晨的开始！";
+    $id("wakeBadge").textContent="已通关";$id("wakeBadge").style.background="var(--green)";
+    gotAch("wake");addCoins(6);
+    $id("wakeBtns").innerHTML="";
+    return;
+  }
+  $id("wakeStep").textContent="第 "+(wakeIdx+1)+" 步 · "+WAKE[wakeIdx].t;
+  var wrong=["😴 再睡五分钟…","📱 刷会儿手机…","🙈 蒙头继续睡…"];
+  var right=WAKE[wakeIdx];
+  var opts=[right.t];
+  var wrongPick=wrong[Math.floor(Math.random()*wrong.length)];
+  opts.push(wrongPick);
+  opts.sort(function(){return Math.random()-.5;});
+  var h="";
+  opts.forEach(function(o){
+    var isR=(o===right.t);
+    h+='<button class="g-btn'+(isR?"":" g2")+'" data-r="'+isR+'">'+o+'</button>';
+  });
+  $id("wakeBtns").innerHTML=h;
+  document.querySelectorAll("#wakeBtns .g-btn").forEach(function(b){
+    b.onclick=function(){
+      if(b.getAttribute("data-r")==="true"){
+        toast(WAKE[wakeIdx].say);wakeIdx++;renderWake();
+      }else{
+        $id("wakeMsg").textContent="❌ 你又躺回去了……闹钟重响，从头再来（这才是真实的人生）";
+        wakeIdx=0;setTimeout(renderWake,600);
+      }
+    };
+  });
+}
+renderWake();
+
+/* ============ 呼吸练习 ============ */
+var breathTimer=null,breathLeft=60,breathPhase=0,breathRunning=false;
+function breathTick(){
+  breathLeft--;
+  $id("breathNum").textContent=breathLeft;
+  var c=$id("breathCircle");
+  if(breathLeft<=0){
+    clearInterval(breathTimer);breathRunning=false;
+    c.textContent="完成";c.classList.remove("in","out");
+    $id("breathTxt").textContent="一分钟静心完成——你赢了！";
+    $id("breathMsg").textContent="🎉 完成60秒呼吸，把这份平静带进今天。";
+    $id("breathBadge").textContent="已完成";$id("breathBadge").style.background="var(--green)";
+    gotAch("breath");addCoins(5);
+    return;
+  }
+  breathPhase=(breathPhase+1)%14;
+  if(breathPhase<4){c.classList.add("in");c.classList.remove("out");c.textContent="吸气";$id("breathTxt").textContent="吸气 4 秒…";}
+  else if(breathPhase<8){c.textContent="屏息";$id("breathTxt").textContent="屏息 4 秒…";}
+  else{c.classList.remove("in");c.classList.add("out");c.textContent="呼气";$id("breathTxt").textContent="呼气 6 秒…";}
+}
+$id("breathBtn").onclick=function(){
+  if(breathRunning)return;
+  breathRunning=true;breathLeft=60;breathPhase=0;
+  $id("breathNum").textContent="60";
+  $id("breathBtn").textContent="呼吸中…";
+  breathTimer=setInterval(breathTick,1000);
+};
+$id("breathReset").onclick=function(){
+  clearInterval(breathTimer);breathRunning=false;
+  breathLeft=60;breathPhase=0;
+  $id("breathNum").textContent="60";
+  $id("breathCircle").textContent="准备";$id("breathCircle").classList.remove("in","out");
+  $id("breathTxt").textContent="点击开始呼吸";
+  $id("breathBtn").textContent="开始呼吸";
+};
+
+/* ============ 宣言生成器 ============ */
+var DECL_T={
+  "事业":"我，{N}，是注定要成功的人。我拥有顶尖的能力与不可阻挡的行动力，我的每一天都在朝着事业高峰前进，我值得拥有非凡的成就。",
+  "健康":"我，{N}，是精力充沛的人。我的身体一天比一天强壮，我的内心一天比一天平静，我选择健康，我拥有活力。",
+  "学习":"我，{N}，是持续成长的人。我每天阅读、思考、行动，我比昨天更聪明，一年后的我，将感谢今天早起的自己。",
+  "关系":"我，{N}，是值得被爱的人。我真诚、温暖、包容，我经营好每一段关系，我的生活充满爱与幸福。"
+};
+$id("declBtn").onclick=function(){
+  var n=$id("declName").value.trim()||"我";
+  var g=$id("declGoal").value;
+  var txt=DECL_T[g].replace("{N}",n);
+  $id("declPreview").innerHTML=txt.replace(/。/g,"。<br>");
+  $id("declMsg").textContent="✅ 你的专属宣言已生成——明天早上，对着镜子大声读出来！";
+  $id("declBadge").textContent="已生成";$id("declBadge").style.background="var(--green)";
+  gotAch("decl");addCoins(5);
+};
+$id("declSpeak").onclick=function(){
+  var t=$id("declPreview").textContent;
+  if(!t||t.indexOf("填写名字")>-1){toast("请先生成宣言");return;}
+  try{
+    if('speechSynthesis' in window){
+      var u=new SpeechSynthesisUtterance(t);u.lang="zh-CN";u.rate=.95;
+      speechSynthesis.cancel();speechSynthesis.speak(u);
+      toast("🔊 正在朗读你的宣言");
+    }else{toast("此浏览器不支持语音朗读");}
+  }catch(e){toast("朗读失败，请手动朗读");}
+};
+
+/* ============ 想象引导 ============ */
+var VIZ={
+  "健康":["想象五年后的清晨：你站在镜前，容光焕发","你轻松跑完五公里，心脏强健有力","你精力充沛地开启一整天，毫无疲惫","这就是健康的你——现在，睁开眼睛，去成为他"],
+  "事业":["想象你在自己的办公室里，意气风发","你签下一份重要的合作，同事为你鼓掌","你的名字被行业记住，你影响了很多人","这就是成功的你——现在，睁开眼睛，去成为他"],
+  "学习":["想象你坐在晨光中，翻开一本书","你记住每一个知识，思维越来越清晰","一年后的你，比现在博学十倍","这就是成长的你——现在，睁开眼睛，去成为他"],
+  "关系":["想象你与家人共进晚餐，笑声不断","你拥抱最好的朋友，彼此信任","你的爱与被爱，都如此真实","这就是幸福的你——现在，睁开眼睛，去成为他"]
+};
+var vizIdx=0,vizKey="健康";
+function renderViz(){
+  var h="";for(var k in VIZ){h+='<div class="viz-scene'+(k===vizKey?" sel":"")+'" data-k="'+k+'">'+k+'</div>';}
+  $id("vizScenes").innerHTML=h;
+  document.querySelectorAll(".viz-scene").forEach(function(el){
+    el.onclick=function(){
+      vizKey=el.getAttribute("data-k");vizIdx=0;renderViz();showVizLine();
+    };
+  });
+  showVizLine();
+}
+function showVizLine(){
+  $id("vizPanel").textContent="✦ "+VIZ[vizKey][vizIdx];
+  $id("vizMsg").textContent="闭上眼，想象这个画面，越具体越好……（看完4个画面即完成）";
+  $id("vizPanel").onclick=function(){
+    vizIdx++;
+    if(vizIdx>=VIZ[vizKey].length){
+      $id("vizMsg").textContent="🎉 想象完成——大脑已经预演过你的理想人生！";
+      $id("vizBadge").textContent="已完成";$id("vizBadge").style.background="var(--green)";
+      gotAch("viz");addCoins(5);
+    }else{showVizLine();}
+  };
+}
+renderViz();
+
+/* ============ 运动计数 ============ */
+var moveN=0;
+$id("moveBtn").onclick=function(){
+  if(moveN>=20)return;
+  moveN++;
+  $id("moveCount").textContent=moveN+" / 20";
+  $id("moveFill").style.width=(moveN/20*100)+"%";
+  $id("moveEmoji").textContent=moveN%2?"🙆♂️":"🙆";
+  $id("moveEmoji").style.transform="rotate("+(moveN%2?8:-8)+"deg)";
+  if(moveN>=20){
+    $id("moveMsg").textContent="🎉 20个早安伸展完成！身体已唤醒，多巴胺上线！";
+    $id("moveBadge").textContent="已完成";$id("moveBadge").style.background="var(--green)";
+    $id("moveBtn").textContent="完成 🎉";$id("moveBtn").classList.add("ok");
+    gotAch("move");addCoins(5);
+  }else{
+    $id("moveMsg").textContent="继续！还有 "+(20-moveN)+" 个";
+  }
+};
+
+/* ============ 阅读翻页 ============ */
+var BOOKS=[
+  {t:"📖 推荐书单 · 第 1 页",d:"从个人成长入门：《原子习惯》《高效能人士的七个习惯》——习惯塑造人生，先读它们，建立早起的底层逻辑。"},
+  {t:"📖 推荐书单 · 第 2 页",d:"进入财富思维：《富爸爸穷爸爸》——改变金钱观，让清晨多出的时间变成资产。"},
+  {t:"📖 推荐书单 · 第 3 页",d:"深入创业与心流：《从0到1》《心流》——把早晨的能量转化为创造。记住：每天10页，一年18本。"},
+  {t:"📖 推荐书单 · 第 4 页",d:"回到这本书本身：《早起的奇迹》——每天重读一页你的人生操作系统，直到它成为本能。"}
+];
+var bookIdx=0;
+$id("flipBtn").onclick=function(){
+  bookIdx=(bookIdx+1)%BOOKS.length;
+  $id("bfTitle").textContent=BOOKS[bookIdx].t;
+  $id("bfDesc").textContent=BOOKS[bookIdx].d;
+  if(bookIdx===3)toast("📚 一年18本书，从今天10页开始");
+};
+
+/* ============ 晨间三行书写 ============ */
+$id("scribBtn").onclick=function(){
+  var v=$id("scribInput").value.trim();
+  if(v.length<3){toast("写点什么吧，哪怕一行");return;}
+  S.scrib=S.scrib||[];S.scrib.push({t:Date.now(),d:v});
+  save();
+  $id("scribInput").value="";
+  $id("scribMsg").textContent="✅ 已写进今天的日记！你已记录 "+S.scrib.length+" 天晨间三行。";
+  $id("scribBadge").textContent="已写";$id("scribBadge").style.background="var(--green)";
+  gotAch("scrib");addCoins(4);
+};
+
+/* ============ 30天挑战 ============ */
+function renderCh30(){
+  var d=S.ch30.days||{};
+  $id("ch30Grid").innerHTML="";
+  for(var i=1;i<=30;i++){
+    var c=document.createElement("div");
+    c.className="ch30-cell"+(d[i]?" done":"");
+    c.textContent=d[i]?"✓":i;
+    c.onclick=function(){
+      var n=parseInt(this.textContent,10)||parseInt(this.getAttribute("data-n"),10);
+      if(isNaN(n)){n=parseInt(this.dataset.n);}
+      if(d[n]){delete d[n];}else{d[n]=1;}
+      S.ch30.days=d;save();renderCh30();updateCh30Info();
+    };
+    c.setAttribute("data-n",i);
+    c.textContent=d[i]?"✓":i;
+    $id("ch30Grid").appendChild(c);
+  }
+}
+function updateCh30Info(){
+  var d=S.ch30.days||{};
+  var n=0;for(var k in d)n++;
+  if(S.ch30.time||S.ch30.goal){
+    $id("ch30Info").textContent="⏰ "+S.ch30.time+" · 🎯 "+S.ch30.goal+" · 已完成 "+n+" / 30 天";
+    $id("ch30Msg").textContent=n>=1?"✅ 第1天打卡成功，奇迹已经开始。加油！":"点击格子打卡，每天一个小✓，30天后见分晓。";
+    if(n>=1&&!S.ach.ch30){gotAch("ch30");addCoins(8);}
+    if(n>=30)$id("ch30Msg").textContent="🏆 30天全部完成！你已经创造了属于自己的奇迹！";
+  }else{
+    $id("ch30Info").textContent="先设定你的起床时间与目标，再开始打卡。";
+  }
+}
+$id("ch30Create").onclick=function(){
+  var t=$id("ch30Time").value.trim()||"6:00";
+  var g=$id("ch30Goal").value.trim()||"晨读10页";
+  S.ch30.time=t;S.ch30.goal=g;if(!S.ch30.days)S.ch30.days={};
+  save();renderCh30();updateCh30Info();
+  $id("ch30Badge").textContent="已创建";$id("ch30Badge").style.background="var(--green)";
+  toast("📅 30天挑战已生成，明天"+t+"见！");
+};
+$id("ch30Reset").onclick=function(){
+  S.ch30={};save();renderCh30();updateCh30Info();
+  $id("ch30Badge").textContent="未创建";$id("ch30Badge").style.background="";
+};
+renderCh30();updateCh30Info();
+
+/* ============ 金句配对 ============ */
+var PAIRS=[
+  {l:"你怎样过早晨，就怎样过一生",r:"晨间习惯决定人生轨迹",lc:"🌅",rc:"🛤️"},
+  {l:"不是睡多久，而是你以为自己睡了多久",r:"心态决定起床状态",lc:"🛏️",rc:"🧠"},
+  {l:"外在世界是内在世界的反映",r:"向内修炼，向外显化",lc:"🪞",rc:"🌍"},
+  {l:"重要的不是做得多，而是开始做",r:"从6分钟快速版开始",lc:"⏱️",rc:"🚀"},
+  {l:"这是你自己的人生，怎能不全力以赴",r:"人生的主动权在你手里",lc:"🙋",rc:"🎮"},
+  {l:"每天早起一小时，一年多出365小时",r:"复利效应改变人生",lc:"⏰",rc:"📈"}
+];
+var pairSel=null,pairDone={};
+function renderPairs(){
+  var items=[];
+  PAIRS.forEach(function(p,i){
+    items.push({t:p.l,key:"l"+i,p:i,c:p.lc,ok:pairDone["l"+i]});
+    items.push({t:p.r,key:"r"+i,p:i,c:p.rc,ok:pairDone["r"+i]});
+  });
+  items.sort(function(){return Math.random()-.5;});
+  var h="";
+  items.forEach(function(it){h+='<div class="pair-item'+(it.ok?" ok":"")+'" data-key="'+it.key+'" data-p="'+it.p+'">'+it.c+' '+it.t+'</div>';});
+  $id("pairGrid").innerHTML=h;
+  document.querySelectorAll("#pairGrid .pair-item").forEach(function(el){
+    el.onclick=function(){
+      if(el.classList.contains("ok"))return;
+      if(pairSel===null){pairSel=el.getAttribute("data-key");el.classList.add("sel");return;}
+      var a=pairSel,b=el.getAttribute("data-key");
+      var pa=document.querySelector('[data-key="'+a+'"]');
+      if(a.slice(0,1)!==b.slice(0,1)){
+        el.classList.add("bad");setTimeout(function(){el.classList.remove("bad")},400);
+        $id("pairMsg").textContent="不对——再想想这两句话的关系";
+        pairSel=null;pa.classList.remove("sel");return;
+      }
+      if(a.slice(1)===b.slice(1)){pairDone["l"+b.slice(1)]=pairDone["r"+b.slice(1)]=true;}
+      pairSel=null;renderPairs();
+      var n=0;for(var k in pairDone)n++;
+      if(n===PAIRS.length*2){
+        $id("pairMsg").textContent="🎉 六对全部配成——金句已经刻进你的记忆！";
+        $id("pairBadge").textContent="已完成";$id("pairBadge").style.background="var(--green)";
+        gotAch("pair");addCoins(6);
+      }else{$id("pairMsg").textContent="配成 "+(n/2)+" 对 / "+PAIRS.length+" 对";}
+    };
+  });
+}
+renderPairs();
+
+/* ============ 读后小测 ============ */
+var QUIZ=[
+  {q:"S.A.V.E.R.S. 六步法分别代表什么？",opts:["静心、肯定、具象化、运动、阅读、书写","睡觉、早餐、维生素、运动、阅读、写字","沉默、肯定、想象、锻炼、放松、记录","冥想、宣言、愿景、进食、阅读、写作"],a:0,fb:"S静心 A自我肯定 V具象化 E运动 R阅读 S书写——六步组成“人生拯救计划”。"},
+  {q:"五步防赖床法的第一步是什么？",opts:["把闹钟放远","睡前积极自我暗示","喝一大杯水","立刻刷牙"],a:1,fb:"睡前给潜意识下指令——这是哈尔的“核心秘诀”，起床靠的不是意志力而是方法。"},
+  {q:"6分钟快速版中，第6分钟做什么？",opts:["阅读","书写","动起来","冥想"],a:2,fb:"第6分钟：动起来。身体醒了，人生就醒了。"},
+  {q:"哈尔·埃尔罗德20岁那年发生了什么？",opts:["成为世界首富","车祸“临床死亡”6分钟，11处骨折，被判可能无法行走","考上哈佛","出版第一本书"],a:1,fb:"他不仅活了下来，还重新站立、跑完84公里超级马拉松——这就是奇迹的起点。"},
+  {q:"30天挑战的三个阶段分别是？",opts:["适应期、心流期、习惯期","兴奋期、疲惫期、放弃期","学习期、实践期、分享期","早起、晨跑、冥想"],a:0,fb:"第1-7天适应生理时钟；第8-14天建立心流节奏；第15-30天形成自动习惯。"}
+];
+function renderQuiz(){
+  var h="";
+  QUIZ.forEach(function(q,i){
+    if(S.quiz[i]){h+='<div class="game" style="margin:8px 0"><div style="font-weight:700">✅ '+q.q+'</div><div style="font-size:12px;color:var(--ink2);margin-top:6px">'+q.fb+'</div></div>';return;}
+    h+='<div class="game" style="margin:8px 0"><div style="font-weight:700">'+(i+1)+'. '+q.q+'</div>';
+    q.opts.forEach(function(o,j){h+='<div class="q-opt" data-q="'+i+'" data-o="'+j+'">'+o+'</div>';});
+    h+='<div class="q-fb"></div></div>';
+  });
+  $id("quizBox").innerHTML=h;
+  document.querySelectorAll("#quizBox .q-opt").forEach(function(el){
+    el.onclick=function(){
+      var qi=parseInt(el.getAttribute("data-q")),oi=parseInt(el.getAttribute("data-o"));
+      var q=QUIZ[qi],box=el.parentElement;
+      box.querySelectorAll(".q-opt").forEach(function(x){x.style.pointerEvents="none";});
+      if(oi===q.a){el.classList.add("right");box.querySelector(".q-fb").textContent="✓ "+q.fb;S.quiz[qi]=1;save();}
+      else{el.classList.add("wrong");box.querySelector(".q-fb").textContent="✗ "+q.fb;S.quiz[qi]=1;save();}
+      var n=0;for(var k in S.quiz)n++;
+      if(n===QUIZ.length){
+        $id("quizMsg").textContent="🎉 五题作答完毕——你已完整带走《早起的奇迹》的核心！";
+        $id("quizBadge").textContent="已完成";$id("quizBadge").style.background="var(--green)";
+        gotAch("quiz");addCoins(8);
+      }else{$id("quizMsg").textContent="答完 "+(n)+" / "+QUIZ.length+" 题";}
+      setTimeout(function(){renderQuiz()},900);
+    };
+  });
+}
+renderQuiz();
+
+/* ============ 埋点 v2 ============ */
+(function(){
+  var BK='miracle',SEL='section.act[id^="m"]',FIN='section#m10';
+  var API='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track';
+  var vid=localStorage.getItem('xiqi_vid');
+  if(!vid){vid='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;return (c==='x'?r:(r&0x3|0x8)).toString(16);});localStorage.setItem('xiqi_vid',vid);}
+  function track(ev,ch){
+    var p={book:BK,ev:ev,ch:ch||'',vid:vid,t:Date.now(),url:location.href.split('?')[0]};
+    try{
+      if(navigator.sendBeacon){navigator.sendBeacon(API+'?d='+encodeURIComponent(JSON.stringify(p)),'');}
+      else{var img=new Image();img.src=API+'?d='+encodeURIComponent(JSON.stringify(p));}
+    }catch(e){}
+    try{
+      var ls=JSON.parse(localStorage.getItem('xiqi_tq')||'[]');ls.push(p);if(ls.length>200)ls=ls.slice(-200);localStorage.setItem('xiqi_tq',JSON.stringify(ls));
+    }catch(e){}
+  }
+  window.track=track;
+  track('view','');
+  var done={},firedFin=false,els=[].slice.call(document.querySelectorAll(SEL));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(!en.isIntersecting)return;
+        var el=en.target,id=el.id||'';
+        if(id&&!done[id]&&!id.match(/^(wall)$/)){done[id]=1;track('chapter_read',id);}
+        var isLast=(FIN==='last')&&(el===els[els.length-1]);
+        var isFin=(FIN!=='last')&&el.matches(FIN);
+        if((isLast||isFin)&&!firedFin){firedFin=true;track('finish');gotAch('read');}
+      });
+    },{threshold:0.25});
+    els.forEach(function(el){io.observe(el);});
+  }
+})();
+
+/* ============ 进度条 ============ */
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+  $id("progBar").style.width=(max>0?(window.scrollY/max*100):0)+"%";
+});
+
+/* ============ 初始化 ============ */
+(function(){
+  addCoins(0);
+  if(!localStorage.getItem('miracle_visited')){localStorage.setItem('miracle_visited','1');addCoins(10);toast("欢迎来到《早起的奇迹》· 新读者见面礼 ⭐10");}
+  if(UN.unlocked){unlockAll();}
+  applyLocks();renderAch();
+  setTimeout(function(){toast("明早的闹钟，就是你人生的杠杆。");},900);
+})();
+</script>
+</body>
+</html>
