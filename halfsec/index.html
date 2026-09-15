@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>半秒 · 李笑来 多媒体书 | 熙祺智书</title>
+<style>
+:root{--bg:#060b1c;--bg2:#0a1330;--card:#0d1a3a;--line:#1c2c5e;--gold:#f5b942;--gold2:#ffd977;--cyan:#3ee0ff;--txt:#e8eeff;--sub:#93a4d8;--red:#ff6b6b;--green:#3ee08a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(62,224,255,.08),transparent 45%),radial-gradient(ellipse at 90% 100%,rgba(245,185,66,.07),transparent 45%);pointer-events:none;z-index:0}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px;position:relative;z-index:1}
+.hero{position:relative;min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 16px 40px;background:linear-gradient(180deg,#07102b 0%,#060b1c 60%)}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(180deg,transparent,var(--bg))}
+.hero img{width:min(320px,72vw);border-radius:22px;box-shadow:0 0 60px rgba(62,224,255,.18),0 20px 60px rgba(0,0,0,.5);border:1px solid var(--line)}
+.hero h1{font-size:clamp(40px,9vw,72px);font-weight:900;letter-spacing:8px;margin:26px 0 6px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .en{color:var(--sub);letter-spacing:6px;font-size:14px;text-transform:uppercase}
+.hero .sub{margin-top:14px;color:var(--sub);max-width:560px;font-size:15px}
+.hero .meta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.chip{border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:12px;color:var(--sub);background:rgba(13,26,58,.6)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:14px;padding:14px 30px;font-size:16px;font-weight:700;cursor:pointer;transition:.25s;text-decoration:none;background:linear-gradient(90deg,var(--gold),var(--gold2));color:#1a1200}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(245,185,66,.35)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+.btn.gold{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#1a1200}
+.btn.dark{background:var(--card);border:1px solid var(--line);color:var(--txt)}
+.toc{margin:34px auto 0;max-width:620px;text-align:left;background:rgba(13,26,58,.5);border:1px solid var(--line);border-radius:20px;padding:20px 24px;backdrop-filter:blur(8px)}
+.toc h3{color:var(--gold);font-size:14px;letter-spacing:3px;margin-bottom:12px}
+.toc a{display:flex;justify-content:space-between;color:var(--txt);text-decoration:none;padding:9px 8px;border-bottom:1px dashed rgba(28,44,94,.5);font-size:14px}
+.toc a:last-child{border-bottom:none}
+.toc a:hover{color:var(--gold2)}
+.toc .lock{color:var(--sub);font-size:12px}
+section.sec{position:relative;padding:56px 0 24px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.sec-num{width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:14px;font-weight:900;font-size:18px;color:#1a1200;background:linear-gradient(135deg,var(--gold),var(--gold2));box-shadow:0 6px 20px rgba(245,185,66,.3)}
+.sec-title{font-size:26px;font-weight:800;letter-spacing:2px}
+.sec-sub{color:var(--sub);font-size:13px;letter-spacing:2px;margin-top:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:20px}
+.art{border-radius:18px;width:100%;display:block;border:1px solid var(--line);margin:6px 0 14px}
+.quote{background:linear-gradient(135deg,rgba(245,185,66,.12),rgba(62,224,255,.08));border:1px solid rgba(245,185,66,.35);border-radius:18px;padding:22px 24px;margin:16px 0;font-size:17px;color:var(--gold2);line-height:1.9;position:relative}
+.quote::before{content:"“";position:absolute;top:6px;left:14px;font-size:60px;color:rgba(245,185,66,.2);font-family:Georgia,serif}
+.quote .from{display:block;margin-top:10px;font-size:13px;color:var(--sub);text-align:right}
+audio.aud{width:100%;margin:8px 0 4px;height:44px}
+.audio-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--sub);margin-bottom:6px}
+.audio-tag::before{content:"🎧";font-size:14px}
+.pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:6px;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(245,185,66,.5)}50%{opacity:.4;box-shadow:0 0 0 6px rgba(245,185,66,0)}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}}
+.mini-card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;transition:.25s}
+.mini-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.mini-card .ic{font-size:26px;margin-bottom:8px}
+.mini-card b{display:block;font-size:15px;margin-bottom:4px}
+.mini-card p{font-size:13px;color:var(--sub)}
+.video-box{position:relative;padding-top:56.25%;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin:10px 0;background:#000}
+.video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.game{background:linear-gradient(135deg,#0a1330,#0d1a3a);border:1px solid rgba(245,185,66,.4);border-radius:22px;padding:24px;margin:18px 0}
+.game h4{color:var(--gold);font-size:17px;letter-spacing:2px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.game .gsub{color:var(--sub);font-size:12px;margin-bottom:16px}
+.q-item{margin-bottom:14px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg2);cursor:pointer;transition:.2s;font-size:15px}
+.q-item:hover{border-color:var(--cyan)}
+.q-item.sel{border-color:var(--gold);background:rgba(245,185,66,.08)}
+.q-item.correct{border-color:var(--green);background:rgba(62,224,138,.08)}
+.q-item.wrong{border-color:var(--red);background:rgba(255,107,107,.08)}
+.big-num{font-size:64px;font-weight:900;text-align:center;color:var(--gold);text-shadow:0 0 30px rgba(245,185,66,.5);font-variant-numeric:tabular-nums}
+.neuro-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}
+.synapse{width:22px;height:22px;border-radius:50%;background:rgba(28,44,94,.6);transition:.3s}
+.synapse.on{background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.flip{perspective:1000px;cursor:pointer}
+.flip-in{position:relative;transform-style:preserve-3d;transition:transform .6s;min-height:150px}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:18px;border-radius:16px;text-align:center}
+.flip-front{background:var(--bg2);border:1px solid var(--line)}
+.flip-back{background:linear-gradient(135deg,rgba(245,185,66,.15),rgba(62,224,255,.1));border:1px solid var(--gold);transform:rotateY(180deg);color:var(--txt)}
+.flip-back b{color:var(--gold2);margin-bottom:6px}
+.step{display:flex;align-items:flex-start;gap:14px;padding:16px;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;background:var(--bg2);opacity:.5;transition:.4s;cursor:pointer}
+.step.done{opacity:1;border-color:var(--gold);background:rgba(245,185,66,.06)}
+.step .sn{width:38px;height:38px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--gold);border:2px solid var(--gold)}
+.step.done .sn{background:var(--gold);color:#1a1200}
+.step b{font-size:16px;letter-spacing:1px}
+.step p{font-size:13px;color:var(--sub);margin-top:3px}
+input[type=text],input[type=password],input[type=number]{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--txt);font-size:15px;outline:none}
+input:focus{border-color:var(--gold)}
+.script-card{background:linear-gradient(135deg,#101d44,#0d1a3a);border:2px solid var(--gold);border-radius:20px;padding:26px;text-align:center;margin:14px 0;box-shadow:0 0 40px rgba(245,185,66,.15)}
+.script-card .sc-text{font-size:20px;line-height:1.9;color:var(--gold2);font-weight:600;min-height:80px;display:flex;align-items:center;justify-content:center}
+.script-card .sc-save{font-size:12px;color:var(--sub);margin-top:10px}
+.cal{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+@media(max-width:680px){.cal{grid-template-columns:repeat(5,1fr)}}
+.day{aspect-ratio:1;border-radius:8px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--sub);cursor:pointer;transition:.2s}
+.day.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;border-color:var(--gold);font-weight:700}
+.match-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center;margin-bottom:10px}
+.match-row .side{padding:12px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);font-size:14px;cursor:pointer;text-align:center}
+.match-row .side.sel{border-color:var(--gold)}
+.match-row .side.ok{border-color:var(--green);background:rgba(62,224,138,.1)}
+.match-row .side.no{border-color:var(--red);background:rgba(255,107,107,.1)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 12px;color:var(--sub)}
+.locked-section{filter:blur(7px);pointer-events:none;user-select:none;opacity:.55}
+.lock-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.4);color:var(--red);font-size:12px;padding:3px 10px;border-radius:999px;margin-left:10px}
+.wall{position:fixed;inset:0;z-index:999;background:rgba(4,8,20,.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
+.wall.show{display:flex}
+.wall-box{background:var(--card);border:1px solid var(--gold);border-radius:24px;padding:34px 28px;max-width:440px;width:100%;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.wall-box .w-ic{font-size:52px;margin-bottom:10px}
+.wall-box h3{font-size:24px;margin-bottom:6px;color:var(--gold2)}
+.wall-box p{color:var(--sub);font-size:14px;margin-bottom:20px}
+.wall-box .row{display:flex;gap:10px;margin-top:12px}
+.wall-box .row .btn{flex:1;padding:12px 10px;font-size:14px}
+.hint{font-size:12px;color:var(--sub);margin-top:10px}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold2);padding:12px 22px;border-radius:14px;z-index:1200;font-size:14px;opacity:0;transition:.4s;pointer-events:none;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.toast.show{opacity:1}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(6,11,28,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .logo{font-weight:900;letter-spacing:2px;font-size:15px;color:var(--gold2)}
+.topbar .logo span{color:var(--sub);font-weight:400;font-size:12px;margin-left:8px}
+.topbar .acts{display:flex;gap:8px;align-items:center}
+.ico-btn{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:6px 12px;font-size:12px;cursor:pointer}
+.ico-btn:hover{border-color:var(--gold)}
+.topbar .coins{font-size:13px;color:var(--gold);font-weight:700}
+.footer{text-align:center;padding:40px 0 20px;color:#5a6b9c;font-size:12px;line-height:2}
+.footer b{color:var(--sub)}
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--cyan));width:0;z-index:1001;transition:width .3s}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:36px 0}
+.motto{text-align:center;padding:26px 0;color:var(--sub);font-size:14px;letter-spacing:3px}
+.vid-caption{font-size:12px;color:var(--sub);text-align:center;margin:4px 0 14px}
+</style>
+</head>
+<body>
+<div class="progress" id="pgBar"></div>
+<div class="topbar">
+  <div class="logo">熙祺智书<span>半秒 · 李笑来</span></div>
+  <div class="acts">
+    <span class="coins">⚡ <span id="coinNum">0</span></span>
+    <button class="ico-btn" onclick="toggleBgm()">🎵 音乐</button>
+    <button class="ico-btn" onclick="openWall('menu')">🔓 解锁</button>
+  </div>
+</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="半秒">
+  <h1>半 秒</h1>
+  <div class="en">THE HALF SECOND</div>
+  <div class="sub">你的命运，藏在每一个半秒的本能反应里。<br>李笑来：改写半秒，就是改写人生。</div>
+  <div class="meta">
+    <span class="chip">李笑来 著</span>
+    <span class="chip">2026 英文新书</span>
+    <span class="chip">频率计数器 × ARISE</span>
+    <span class="chip">约 250 页</span>
+  </div>
+  <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <button class="btn" id="startBtn">开始阅读 →</button>
+    <button class="btn ghost" onclick="openWall('menu')">解锁全书</button>
+  </div>
+  <div class="toc">
+    <h3>目 录</h3>
+    <a href="#m1">序章 · 39年烟瘾，三句话戒掉 <span class="lock">免费</span></a>
+    <a href="#m2">第1章 · 半秒的真相 <span class="lock">免费</span></a>
+    <a href="#m3">第2章 · 大脑里的频率计数器 <span class="lock">免费</span></a>
+    <a href="#m4">第3章 · 谁在悄悄给你写脚本 <span class="lock">免费</span></a>
+    <a href="#m5">第4章 · 意志力为什么必败 <span class="lock">免费</span></a>
+    <a href="#m6">第5章 · ARISE 五步框架 <span class="lock">🔒</span></a>
+    <a href="#m7">第6章 · 脚本工坊：造你自己的咒语 <span class="lock">🔒</span></a>
+    <a href="#m8">第7章 · 场景练习：替换触发反应 <span class="lock">🔒</span></a>
+    <a href="#m9">第8章 · 21-60天：本能自动替换 <span class="lock">🔒</span></a>
+    <a href="#m10">终章 · 真正的自由 <span class="lock">🔒</span></a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section class="sec" id="m1">
+  <div class="sec-head">
+    <div class="sec-num">序</div>
+    <div><div class="sec-title">39年烟瘾，三句话戒掉</div><div class="sec-sub">PROLOGUE · 李笑来的自证实验</div></div>
+  </div>
+  <img class="art" src="art_story.jpg" alt="我从不抽烟">
+  <p>他从初中开始抽烟，一天至少 20 支，抽了 39 年，近 40 万支烟。戒过无数次，全败了。</p>
+  <div class="quote">这一次，没有意志力，没有硬撑，没有戒断反应。<br>他只是每天对自己重复一句话：<b>“我从不抽烟。”</b><span class="from">——每天念几千遍，三个月，烟瘾消失</span></div>
+  <div class="audio-tag"><span class="pulse"></span>序章 · 有声开场</div>
+  <audio class="aud" controls preload="none" src="voice_open.wav"></audio>
+  <div class="card">
+    <b>为什么这句话有用？</b>
+    <p style="margin-top:6px">因为大脑里住着一个完全不讲道理的<b>频率计数器</b>——它不辨真假、不看证据，只算重复次数。一句话听得越多，就越熟悉，越像真话，身体越会照着做。</p>
+    <div class="tags">
+      <span class="tag">重复优先</span><span class="tag">熟悉优先</span><span class="tag">声音优先</span><span class="tag">半秒生效</span>
+    </div>
+  </div>
+  <div class="motto">✦ 嘴上说的价值观是理想中的自己；半秒本能里藏的，才是真实的自己 ✦</div>
+</section>
+
+<section class="sec" id="m2">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div><div class="sec-title">半秒的真相</div><div class="sec-sub">CHAPTER 1 · 谁在做你人生的主</div></div>
+  </div>
+  <img class="art" src="art_halfsec.jpg" alt="0.5秒">
+  <p>人每天绝大多数行为，都不是深思熟虑的结果，而是<b>半秒本能的直接反应</b>。</p>
+  <div class="quote">政客脸上的肌肉，在刻意微笑前，会先下意识紧绷；父母想耐着性子，火气却先一步窜上来；戒烟的人，决心浮现前，手已经摸向烟盒。<span class="from">——《半秒》开篇</span></div>
+  <div class="grid2">
+    <div class="mini-card"><div class="ic">⚡</div><b>潜意识比意识快 0.5-10 秒</b><p>等你的理智想清楚，本能早就替你做了决定。</p></div>
+    <div class="mini-card"><div class="ic">🧠</div><b>意识永远迟到</b><p>你以为你在选择，其实你在“事后解释”。</p></div>
+  </div>
+  <div class="game">
+    <h4>🎯 半秒反应测试</h4>
+    <div class="gsub">10 个真实场景，凭第一反应选，测出你的本能模式</div>
+    <div id="reacQuiz"></div>
+    <button class="btn" style="margin-top:6px" onclick="reacCheck()">查看你的本能模式</button>
+    <div id="reacResult" style="margin-top:14px;font-size:15px;display:none"></div>
+  </div>
+</section>
+
+<section class="sec" id="m3">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div><div class="sec-title">大脑里的频率计数器</div><div class="sec-sub">CHAPTER 2 · 全书唯一的秘密</div></div>
+  </div>
+  <img class="art" src="art_counter.jpg" alt="频率计数器">
+  <p>全书的核心机制，就一句话：</p>
+  <div class="quote"><b>大脑里有个“频率计数器”，完全不讲道理——不辨真假、不看证据，只算重复次数。</b>一句话听得越多，就越觉得熟悉、越像真话、身体越会照着做。谁重复得多，谁就是默认本能。<span class="from">——《半秒》核心机制</span></div>
+  <div class="audio-tag"><span class="pulse"></span>第2章 · 有声精讲</div>
+  <audio class="aud" controls preload="none" src="voice_freq.wav"></audio>
+  <div class="game">
+    <h4>🔢 频率计数器模拟</h4>
+    <div class="gsub">点一次=重复一次。看它如何不讲道理地改变大脑</div>
+    <div class="big-num" id="cntNum">0</div>
+    <div class="neuro-grid" id="neuroGrid"></div>
+    <div style="display:flex;gap:10px;margin-top:12px;justify-content:center">
+      <button class="btn dark" onclick="cntAdd()">+1 再念一遍</button>
+      <button class="btn gold" onclick="cntHuge()">💥 一天念 3000 遍</button>
+      <button class="btn dark" onclick="cntReset()">重置</button>
+    </div>
+    <div id="cntMsg" style="text-align:center;margin-top:12px;color:var(--sub);font-size:14px">重复 0 次：旧本能依然是老大</div>
+  </div>
+  <div class="card">
+    <b>研究背书</b>
+    <p style="margin-top:6px">作者引用当代认知心理学硬核研究：温迪·伍德（习惯自动性）、菲利普·拉利（无意识行为）、彼得·戈尔维策（执行意图）、丹尼尔·卡尼曼（快慢思考）。方法朴素，证据不朴素。</p>
+  </div>
+</section>
+
+<section class="sec" id="m4">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div><div class="sec-title">谁在悄悄给你写脚本</div><div class="sec-sub">CHAPTER 3 · 你的本能是被安装的软件</div></div>
+  </div>
+  <p>你的本能，是<b>童年、重复、苦乐、环境</b>安装的软件。从你出生起，就有人一直在用频率计数器，往你大脑里写脚本。</p>
+  <div class="grid2">
+    <div class="mini-card"><div class="ic">📢</div><b>广告商</b><p>“怕上火喝××”——重复 30 年，你上火时手自动伸向它。</p></div>
+    <div class="mini-card"><div class="ic">🎤</div><b>政客与媒体</b><p>一句话重复一万遍，谎言也会变得“熟悉得像真相”。</p></div>
+    <div class="mini-card"><div class="ic">👨‍👩‍👧</div><b>父母与老师</b><p>“你怎么这么笨”“你就是不行”——小时候听太多，就成了你的默认设置。</p></div>
+    <div class="mini-card"><div class="ic">🌧️</div><b>童年的苦乐</b><p>被拒绝多了，见到拒绝就逃跑；被夸奖多了，见到夸奖就讨好。</p></div>
+  </div>
+  <div class="quote">你不是天生如此，你只是被<b>装</b>成了如此。<br>好消息是：能装的，就能卸；能写的，就能改。<span class="from">——《半秒》第三章</span></div>
+</section>
+
+<section class="sec" id="m5">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div><div class="sec-title">意志力为什么必败</div><div class="sec-sub">CHAPTER 4 · 别再用错的工具打仗</div></div>
+  </div>
+  <img class="art" src="art_will.jpg" alt="对抗本能必败，改写本能必胜">
+  <p>意志力又慢又弱，还要消耗能量，去对抗一个运转了半辈子的本能——<b>必败</b>。</p>
+  <div class="quote">用意志力对抗本能，就像用<b>短跑去追长跑选手</b>——它快，但你耗不起；它慢，但它永不休息。<span class="from">——《半秒》第四章</span></div>
+  <div class="video-box">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV17wKQ6sEgh&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>
+  </div>
+  <div class="vid-caption">📺 视频 · 戒不掉坏习惯，不要怪意志力（参考《半秒之间》李笑来 著）</div>
+  <div class="game">
+    <h4>🃏 无效方法拆解</h4>
+    <div class="gsub">作者毫不留情：这三样，全是浪费时间。点卡片看真相</div>
+    <div class="grid3">
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="flip-in">
+        <div class="flip-face flip-front"><b style="font-size:18px">自我肯定</b><p style="color:var(--sub);margin-top:6px">“我很棒！我很自信！”对着镜子喊</p></div>
+        <div class="flip-face flip-back"><b>为什么没用</b><p>空泛的话没有具体动作，频率再高也装不进本能。大脑拒绝为没有行为的口号买单。</p></div>
+      </div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="flip-in">
+        <div class="flip-face flip-front"><b style="font-size:18px">NLP</b><p style="color:var(--sub);margin-top:6px">潜意识重塑、锚定、程序化</p></div>
+        <div class="flip-face flip-back"><b>为什么没用</b><p>花哨的技巧没有“自己的声音 + 真实场景 + 反复重复”，就只是听起来高级的仪式。</p></div>
+      </div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="flip-in">
+        <div class="flip-face flip-front"><b style="font-size:18px">吸引力法则</b><p style="color:var(--sub);margin-top:6px">想象自己已经成功，宇宙就会给你</p></div>
+        <div class="flip-face flip-back"><b>为什么没用</b><p>空想没有可执行的动作，只会让你自欺欺人——以为想了就等于变了，结果什么都不会变。</p></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="m6">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div><div class="sec-title">ARISE 五步框架</div><div class="sec-sub">CHAPTER 5 · 不靠意志力的改写系统</div><span class="lock-badge">🔒 付费章节</span></div>
+  </div>
+  <img class="art" src="art_arise.jpg" alt="ARISE">
+  <p>ARISE = <b>A</b>ction 行动 → <b>R</b>eason 理由 → <b>I</b>dentity 身份 → <b>S</b>ituation 场景 → <b>E</b>motion 情绪。</p>
+  <div class="audio-tag"><span class="pulse"></span>ARISE · 五步引导音频</div>
+  <audio class="aud" controls preload="none" src="voice_arise.wav"></audio>
+  <div class="game">
+    <h4>🧗 ARISE 阶梯</h4>
+    <div class="gsub">点击每级台阶，点亮框架</div>
+    <div id="ariseSteps"></div>
+    <div id="ariseNote" style="text-align:center;color:var(--gold2);margin-top:10px;font-size:15px"></div>
+  </div>
+  <div class="quote">写一句简短脚本，格式很简单：<br><b>“因为我是谁，遇到什么情况，我就怎么做，理由是什么。”</b><br>用自己的声音，在触发场景里，反复念上几个月。<span class="from">——《半秒》第五章</span></div>
+</section>
+
+<section class="sec" id="m7">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div><div class="sec-title">脚本工坊</div><div class="sec-sub">CHAPTER 6 · 造你自己的咒语</div><span class="lock-badge">🔒 付费章节</span></div>
+  </div>
+  <img class="art" src="art_script.jpg" alt="脚本卡">
+  <p>不用鸡汤、不用硬撑。按五步填出专属于你的新脚本，它会成为你 21-60 天后的默认本能。</p>
+  <div class="game">
+    <h4>🛠️ 五步造脚本</h4>
+    <div class="gsub">填完五步，自动生成你的脚本卡，还能用你自己的声音念出来</div>
+    <div id="swSteps"></div>
+    <div class="script-card" id="scriptOut">
+      <div class="sc-text" id="scriptText">先完成上面五步，你的脚本会出现在这里</div>
+      <div class="sc-save" id="scriptMeta"></div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px">
+      <button class="btn gold" onclick="speakScript()">🔊 用自己的声音念</button>
+      <button class="btn dark" onclick="saveScript()">💾 保存我的脚本</button>
+    </div>
+    <div class="hint" style="text-align:center">提示：真的念出声。大脑的原则是熟悉优先——自己的声音不会反驳自己，别人的声音会。</div>
+  </div>
+</section>
+
+<section class="sec" id="m8">
+  <div class="sec-head">
+    <div class="sec-num">7</div>
+    <div><div class="sec-title">场景练习</div><div class="sec-sub">CHAPTER 7 · 在失控的地方先练熟</div><span class="lock-badge">🔒 付费章节</span></div>
+  </div>
+  <img class="art" src="art_scene.jpg" alt="触发场景">
+  <p>不要试图在所有场景同时改变。锁定你<b>最容易失控的那个场景</b>，先在那里练熟，再推广。</p>
+  <div class="game">
+    <h4>🎮 触发场景模拟</h4>
+    <div class="gsub">你会被什么触发？选一个场景，练习用新脚本回应</div>
+    <div id="sceneSel" class="grid3" style="margin-bottom:14px"></div>
+    <div id="sceneQ"></div>
+  </div>
+  <div class="quote">环境比意志力强一万倍。<b>设计环境，而不是对抗环境。</b><br>手机放另一个房间，比告诉自己“少刷点”有用一万倍。<span class="from">——《半秒》第七章</span></div>
+</section>
+
+<section class="sec" id="m9">
+  <div class="sec-head">
+    <div class="sec-num">8</div>
+    <div><div class="sec-title">21-60天：本能自动替换</div><div class="sec-sub">CHAPTER 8 · 不费力，轻松重复</div><span class="lock-badge">🔒 付费章节</span></div>
+  </div>
+  <img class="art" src="art_days.jpg" alt="60天打卡">
+  <p>不要想着一口吃成胖子。每天只要<b>很轻松地重复</b>，时间到了，新习惯会自动替代旧习惯。</p>
+  <div class="grid3">
+    <div class="mini-card"><div class="ic">🗣️</div><b>用自己的声音</b><p>听别人的课、冥想音频都没用。自己念出来，潜意识才接收。</p></div>
+    <div class="mini-card"><div class="ic">🌍</div><b>第二语言加持</b><p>想摆脱童年阴影？用外语写脚本，更快跳出旧的情绪怪圈。</p></div>
+    <div class="mini-card"><div class="ic">🪶</div><b>不费力重复</b><p>21-60 天，轻松念，不硬扛。本能自动完成替换。</p></div>
+  </div>
+  <div class="game">
+    <h4>📅 我的 60 天挑战</h4>
+    <div class="gsub">每天打卡一次。60 天后，你就不再是你</div>
+    <div class="cal" id="calGrid"></div>
+    <div style="text-align:center;margin-top:12px"><button class="btn gold" onclick="resetCal()">重置挑战</button></div>
+  </div>
+</section>
+
+<section class="sec" id="m10">
+  <div class="sec-head">
+    <div class="sec-num">终</div>
+    <div><div class="sec-title">真正的自由</div><div class="sec-sub">FINAL · 掌控第一反应</div><span class="lock-badge">🔒 付费章节</span></div>
+  </div>
+  <img class="art" src="art_free.jpg" alt="真正的自由">
+  <div class="quote">真正的自由 = 掌控第一反应。<br>改写半秒，就是改写人生。<span class="from">——《半秒》终章</span></div>
+  <div class="game">
+    <h4>🔗 金句配对</h4>
+    <div class="gsub">把上下句连起来</div>
+    <div id="matchBox"></div>
+  </div>
+  <div class="game">
+    <h4>📝 读后小测</h4>
+    <div class="gsub">检验你真正掌握了多少</div>
+    <div id="quizBox"></div>
+    <button class="btn" style="margin-top:6px" onclick="quizCheck()">提交测验</button>
+    <div id="quizRes" style="margin-top:12px;font-size:15px;display:none"></div>
+  </div>
+  <div class="card" style="text-align:center">
+    <b style="font-size:18px">🎖️ 你已经完成了《半秒》的旅程</b>
+    <p style="margin-top:8px;color:var(--sub)">记住：行为先于身份——先做，再成为。从今晚起，选一个触发场景，念你的第一句新脚本。</p>
+    <div class="tags" style="justify-content:center">
+      <span class="tag">已读完成</span><span class="tag">ARISE 掌握</span><span class="tag">本能改写者</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="footer">
+    <b>《半秒》· The Half Second</b><br>李笑来 著 · Xiaolai Books · 2026<br>
+    本多媒体书由熙祺智书制作 · 依据公开内容整理，核心观点忠于原著<br>
+    内容引用来源：豆瓣读书《The Half Second》条目 · 李笑来与脱不花长谈 · 公开解读
+  </div>
+</section>
+
+</div>
+
+<div class="wall" id="wall">
+  <div class="wall-box">
+    <div class="w-ic">🔐</div>
+    <h3 id="wallTitle">解锁剩余章节</h3>
+    <p id="wallDesc">前 5 章已免费开放。<br>解锁后 5 章，读完《半秒》全部核心方法。</p>
+    <input type="text" id="pwInput" placeholder="输入激活码或管理员口令" autocomplete="off">
+    <div class="row">
+      <button class="btn gold" id="unlockBtn2">解锁</button>
+      <button class="btn dark" onclick="closeWall()">稍后</button>
+    </div>
+    <div class="hint" id="wHint">新读者已赠送 10 积分，可在平台兑换试读权益；管理员可用口令直通全书。</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var S={};
+try{S=JSON.parse(localStorage.getItem("halfsec_state")||"{}");}catch(e){}
+var UN={free:5,unlocked:false,secret:'xiqi_halfsec_2026_fx'};
+(function(){try{var u=JSON.parse(localStorage.getItem('halfsec_unlock')||'{}');if(u&&u.unlocked)UN.unlocked=true;}catch(e){}})();
+(function(){try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('xz_admin','1')}}catch(e){}})();
+(function(){try{if(localStorage.getItem('xz_admin')==='1'){localStorage.setItem('halfsec_unlock',JSON.stringify({unlocked:true,t:Date.now()}));UN.unlocked=true;}}catch(e){}})();
+function save(){try{localStorage.setItem("halfsec_state",JSON.stringify(S));}catch(e){}}
+function $id(i){return document.getElementById(i)}
+function isLocked(id){if(UN.unlocked)return false;var n=parseInt(id.replace("m",""),10);if(!isNaN(n))return n>UN.free;return false}
+function applyLock(){
+  document.querySelectorAll('section.sec').forEach(function(sec){
+    var id=sec.getAttribute('id');
+    if(!id)return;
+    if(isLocked(id)){sec.classList.add("locked-section");}
+    else{sec.classList.remove("locked-section");}
+  });
+}
+function openWall(why){
+  $id("wall").classList.add("show");
+  if(why==='menu'){$id("wallTitle").textContent="解锁剩余章节";$id("wallDesc").textContent="前 5 章免费。解锁后 5 章，读完《半秒》全部核心方法。";}
+}
+function closeWall(){$id("wall").classList.remove("show")}
+function toast(m){var t=$id("toast");t.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2400)}
+function addCoins(n){try{var c=parseInt(localStorage.getItem('xiqi_coins')||'0',10)+n;localStorage.setItem('xiqi_coins',String(c));$id('coinNum').textContent=c;}catch(e){}}
+function initCoins(){try{$id('coinNum').textContent=localStorage.getItem('xiqi_coins')||'0';}catch(e){}}
+function unlockAll(){
+  UN.unlocked=true;
+  try{localStorage.setItem('halfsec_unlock',JSON.stringify({unlocked:true,t:Date.now()}));}catch(e){}
+  applyLock();
+  toast("🎉 全书已解锁，尽情阅读！");
+}
+$id("unlockBtn2").onclick=function(){
+  var v=$id("pwInput").value.trim().toLowerCase();
+  if(v==="xiqi-admin-2026"||v==="325fa149"){
+    localStorage.setItem('xz_admin','1');
+    unlockAll();
+    $id("pwInput").value="";
+    return;
+  }
+  if(v===UN.secret){
+    unlockAll();$id("pwInput").value="";
+    return;
+  }
+  toast("激活码不正确，请检查后重试");
+};
+$id("startBtn").onclick=function(){$id("m1").scrollIntoView({behavior:"smooth"});track("view","halfsec");};
+
+/* 埋点 */
+var API='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track';
+var vid=localStorage.getItem('xiqi_vid');
+if(!vid){vid='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;return (c==='x'?r:(r&0x3|0x8)).toString(16)});localStorage.setItem('xiqi_vid',vid);}
+function track(ev,ch){
+  var p={v:1,book:'halfsec',vid:vid,ev:ev,ch:ch||'',t:Date.now()};
+  try{var ls=JSON.parse(localStorage.getItem('xiqi_tq')||'[]');ls.push(p);if(ls.length>200)ls=ls.slice(-200);localStorage.setItem('xiqi_tq',JSON.stringify(ls));}catch(e){}
+  try{if(navigator.sendBeacon){navigator.sendBeacon(API+'?d='+encodeURIComponent(JSON.stringify(p)));}else{var x=new XMLHttpRequest();x.open('POST',API,true);x.setRequestHeader('Content-Type','application/json');x.send(JSON.stringify(p));}}catch(e){}
+}
+window.track=track;
+track('view','');
+
+/* 阅读进度 + 章节埋点 */
+var done={},firedFin=false;
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;var sc=h.scrollTop||document.body.scrollTop;
+  var max=h.scrollHeight-h.clientHeight;var r=max>0?Math.min(100,Math.round(sc/max*100)):0;
+  $id('pgBar').style.width=r+'%';
+  document.querySelectorAll('section.sec').forEach(function(sec){
+    var id=sec.getAttribute('id');if(!id)return;
+    var b=sec.getBoundingClientRect();
+    if(b.top<innerHeight*0.6&&b.bottom>0){
+      if(!done[id]&&!id.match(/^(wall)$/)){done[id]=1;track('chapter_read',id);}
+      var n=parseInt(id.replace('m',''),10);
+      var isLast=(id==='m10');var isFin=(r>=95);
+      if((isLast||isFin)&&!firedFin){firedFin=true;track('finish');}
+    }
+  });
+});
+
+/* 成就+积分 */
+function gotAch(name){try{var a=JSON.parse(localStorage.getItem('halfsec_ach')||'[]');if(a.indexOf(name)<0){a.push(name);localStorage.setItem('halfsec_ach',JSON.stringify(a));toast("🏅 达成成就："+name);addCoins(5);}}catch(e){}}
+if(!localStorage.getItem('halfsec_visited')){localStorage.setItem('halfsec_visited','1');addCoins(10);setTimeout(function(){toast("⚡ 欢迎来到《半秒》！新读者赠送 10 积分")},800);}
+if(UN.unlocked){unlockAll();}
+
+/* 音乐 */
+var bgmOn=false,bgmEl=null;
+function toggleBgm(){
+  if(!bgmEl){bgmEl=new Audio('bgm.wav');bgmEl.loop=true;}
+  if(bgmOn){bgmEl.pause();bgmOn=false;toast("🎵 音乐已关闭");}
+  else{var pr=bgmEl.play();if(pr&&pr.then){pr.catch(function(){toast("点击播放按钮后，音乐才会开启")});}bgmOn=true;toast("🎵 背景音乐已开启");}
+}
+
+/* ---- 游戏1：半秒反应测试 ---- */
+var RQ=[
+ {q:"下班路上，领导突然来消息：“来我办公室一趟。”你的第一反应是？",opts:["完了，我是不是做错了什么","好，现在就去","先假装没看到，缓一缓","心跳加速，手心出汗"],key:1},
+ {q:"你准备开始写重要方案，手机亮了。第一反应是？",opts:["先看一眼，就一眼","关掉通知，继续写","点开刷了半小时","把手机扔到一边"]},
+ {q:"伴侣说话语气有点冲。你的第一反应是？",opts:["他是不是在针对我","先深呼吸三次再回应","立刻回怼","沉默，但心里记账"]},
+ {q:"想到一件还没做的事，第一反应是？",opts:["再等等，状态好了再做","先动一分钟再说","好烦啊不想做","假装没想起来"]},
+ {q:"开会时有人公开否定你的方案。第一反应是？",opts:["脸瞬间发烫，大脑空白","先闭嘴三秒，听完再说","立刻反驳找理由","表面微笑，心里难受一整天"]},
+ {q:"深夜躺下，第一反应是？",opts:["拿起手机刷视频","复盘今天发生了什么","想明天要做的事","开始焦虑未来"]},
+ {q:"朋友约你去健身，第一反应是？",opts:["我不行，我坚持不下来","好，几点","明天再说","嘴上答应，内心抗拒"]},
+ {q:"看到镜子里的自己，第一反应是？",opts:["又胖了/又老了","挺好的，今天状态不错","挑剔各种缺点","不想看"]},
+ {q:"遇到不会的题/任务，第一反应是？",opts:["我不擅长这个","先查资料试一下","求助别人","放着吧，反正也做不好"]},
+ {q:"被批评之后，第一反应是？",opts:["我很差劲","他说得有道理的部分是什么","他凭什么说我","改，但心里委屈"]}
+];
+var RQSel={};
+var RQTypes={A:["冲动/对抗型","你反应快、情绪来得也快。你的本能脚本常是“先发火/先怼回去”。适合练习：先闭嘴三秒、深呼吸三次。"],B:["稳定/行动型","你的第一反应偏向冷静与行动，已经赢在起跑线。可以继续强化：把稳定反应写成脚本，固化成自动本能。"],C:["回避/拖延型","你的本能脚本是“等一等、躲一躲”。适合练习：先动一分钟、先做最小动作，打断回避回路。"],D:["内耗/敏感型","你的第一反应常是自我怀疑与情绪内耗。适合练习：用第二语言写新脚本，跳出旧的自我否定怪圈。"]};
+function buildReac(){
+  var h='';
+  RQ.forEach(function(q,i){
+    h+='<div style="font-size:14px;font-weight:700;margin:10px 0 6px">'+(i+1)+'. '+q.q+'</div>';
+    q.opts.forEach(function(o,oi){
+      var cls='q-item';
+      if(RQSel[i]===oi)cls+=' sel';
+      h+='<div class="'+cls+'" onclick="reacPick('+i+','+oi+')">'+o+'</div>';
+    });
+  });
+  $id('reacQuiz').innerHTML=h;
+}
+function reacPick(qi,oi){
+  RQSel[qi]=oi;
+  var el=$id('reacQuiz').children;
+  var base=0;
+  for(var k=0;k<qi;k++){base+=1+RQ[k].opts.length;}
+  for(var j=0;j<RQ[qi].opts.length;j++){
+    var idx=base+j;
+    if(el[idx]){el[idx].classList.remove('sel');if(j===oi)el[idx].classList.add('sel');}
+  }
+  track('game_reaction_pick','m2');
+}
+function reacCheck(){
+  var counts={A:0,B:0,C:0,D:0};
+  var typeOf=[[0,2,1,3],[2,1,3,0],[0,3,2,1],[2,1,3,0],[3,1,0,2],[2,1,3,0],[3,2,1,0],[3,1,2,0],[3,2,1,0],[3,1,0,2]];
+  var typeKey=['D','B','C','A'];
+  var n=0;
+  for(var i=0;i<RQ.length;i++){
+    if(RQSel[i]===undefined)continue;
+    n++;
+    var t=typeKey[typeOf[i][RQSel[i]]];
+    if(counts[t]!==undefined)counts[t]++;
+  }
+  if(n<5){toast("至少回答 5 题才能测出模式");return;}
+  var maxK='B',maxV=-1;
+  for(var k in counts){if(counts[k]>maxV){maxV=counts[k];maxK=k;}}
+  var r=$id('reacResult');
+  r.style.display='block';
+  r.innerHTML='<div style="border:1px solid var(--gold);border-radius:14px;padding:16px;background:rgba(245,185,66,.06)"><b style="color:var(--gold2)">你的本能模式：'+RQTypes[maxK][0]+'</b><p style="margin-top:8px;font-size:14px">'+RQTypes[maxK][1]+'</p><p style="margin-top:8px;font-size:12px;color:var(--sub)">测出模式不是给你贴标签，是给你一个改写起点——先知道自己被装了什么，才知道要卸什么。</p></div>';
+  track('game_reaction_done','m2');
+  gotAch('半秒自测');
+}
+
+/* ---- 游戏2：频率计数器模拟 ---- */
+var cnt=0,synOn=0;
+function buildNeuro(){
+  var h='';
+  for(var i=0;i<30;i++){h+='<div class="synapse" id="sy'+i+'"></div>';}
+  $id('neuroGrid').innerHTML=h;
+}
+function cntAdd(){
+  cnt++;
+  $id('cntNum').textContent=cnt;
+  var want=Math.min(30,Math.round(cnt/100));
+  while(synOn<want){var el=$id('sy'+synOn);if(el)el.classList.add('on');synOn++;}
+  updateCntMsg();
+}
+function cntHuge(){
+  cnt+=3000;
+  $id('cntNum').textContent=cnt;
+  for(var i=0;i<30;i++){var el=$id('sy'+i);if(el)el.classList.add('on');}
+  synOn=30;
+  updateCntMsg();
+  track('game_counter_3000','m3');
+  gotAch('频率冠军');
+}
+function cntReset(){cnt=0;synOn=0;$id('cntNum').textContent='0';for(var i=0;i<30;i++){var el=$id('sy'+i);if(el)el.classList.remove('on');}updateCntMsg();}
+function updateCntMsg(){
+  var m=$id('cntMsg');
+  if(cnt>=10000)m.textContent='重复 '+cnt+' 次：新反应已经成了默认本能，旧习惯被彻底替换';
+  else if(cnt>=3000)m.textContent='重复 '+cnt+' 次：神经连接已经成型，身体开始自动执行';
+  else if(cnt>=1000)m.textContent='重复 '+cnt+' 次：大脑开始觉得这句话“有点熟”了';
+  else if(cnt>=300)m.textContent='重复 '+cnt+' 次：熟悉的种子已经埋下，频率开始起作用';
+  else m.textContent='重复 '+cnt+' 次：旧本能依然是老大，继续重复';
+}
+
+/* ---- 游戏3：ARISE 阶梯 ---- */
+var ARISE=[
+ {k:'A',t:'Action 行动',d:'锁定一个具体可做的动作。不是“变自信”，而是：别人反驳我→先闭嘴三秒；想拖延→先动一分钟；情绪激动→深呼吸三次。'},
+ {k:'R',t:'Reason 理由',d:'找一个真正说服自己的理由，反复念到信为止。大脑渴求因果，有“因为”，执行率就会提升。'},
+ {k:'I',t:'Identity 身份',d:'给自己设全新身份。不说“我要努力改变”，说“我就是一个情绪稳定的人”。行为会自动符合身份。'},
+ {k:'S',t:'Situation 场景',d:'锁定最容易失控的那个场景（跟伴侣沟通、独自工作），先在那里反复练熟，再推广到其他场景。'},
+ {k:'E',t:'Emotion 情绪',d:'给新行为真实的情感支撑：我这样做更有底气、更有未来。有情绪价值，新习惯才能快速替换旧习惯。'}
+];
+var ariseStep=0;
+function buildArise(){
+  var h='';
+  ARISE.forEach(function(a,i){
+    h+='<div class="step" id="ariseStep'+i+'" onclick="ariseOn('+i+')"><div class="sn">'+a.k+'</div><div><b>'+a.t+'</b><p>'+a.d+'</p></div></div>';
+  });
+  $id('ariseSteps').innerHTML=h;
+}
+function ariseOn(i){
+  if(i!==ariseStep){toast("按顺序点亮：先完成上一步");return;}
+  $id('ariseStep'+i).classList.add('done');
+  $id('ariseNote').textContent=(i+1)+'/5 · '+ARISE[i].t+' 已点亮';
+  ariseStep++;
+  track('game_arise_step',String(i+1));
+  if(ariseStep===5){$id('ariseNote').textContent="🎉 ARISE 五步已全部点亮！现在去脚本工坊，造你的第一句咒语";gotAch('ARISE 掌握');}
+}
+
+/* ---- 游戏4：脚本工坊 ---- */
+var SW=[
+ {k:'A',t:'行动（你要做什么）',ph:'例如：想拖延时，先动一分钟'},
+ {k:'R',t:'理由（为什么能说服你）',ph:'例如：动起来，焦虑才会停止'},
+ {k:'I',t:'身份（你想成为谁）',ph:'例如：我就是一个行动力很强的人'},
+ {k:'S',t:'场景（哪里最容易失控）',ph:'例如：晚上躺在床上想刷手机时'},
+ {k:'E',t:'情绪（这样做你得到什么）',ph:'例如：我更有掌控感，更有未来'}
+];
+var SWV=['','','','',''];
+function buildSW(){
+  var h='';
+  SW.forEach(function(a,i){
+    h+='<div style="margin-bottom:12px"><div style="font-size:13px;color:var(--gold);margin-bottom:6px;font-weight:700">'+(i+1)+'. '+a.t+'</div><input type="text" id="sw'+i+'" placeholder="'+a.ph+'" oninput="swSync('+i+')"></div>';
+  });
+  $id('swSteps').innerHTML=h;
+}
+function swSync(i){SWV[i]=$id('sw'+i).value.trim();renderScript();}
+function renderScript(){
+  if(SWV[0]&&SWV[2]&&SWV[3]){
+    var txt='因为我是'+SWV[2]+'，遇到'+SWV[3]+'，我就'+SWV[0]+'，因为'+SWV[1];
+    $id('scriptText').textContent=txt;
+    $id('scriptMeta').textContent='我的新脚本 · 用自己的声音，每天轻松重复';
+  }
+}
+function speakScript(){
+  var t=$id('scriptText').textContent;
+  if(t.indexOf('先完成')>-1){toast("请先填完五步");return;}
+  if(!('speechSynthesis' in window)){toast("当前浏览器不支持语音朗读");return;}
+  speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(t);
+  u.lang='zh-CN';u.rate=0.95;
+  speechSynthesis.speak(u);
+  track('game_script_speak','m7');
+  toast("🔊 正在用你的设备声音朗读——记住：自己的声音才管用");
+}
+function saveScript(){
+  if(!SWV[0]&&!SWV[2]){toast("请先填完五步");return;}
+  try{localStorage.setItem('halfsec_script',JSON.stringify({v:SWV,t:Date.now()}));toast("💾 脚本已保存，每天念它！");gotAch('脚本作者');track('game_script_save','m7');}catch(e){toast("保存失败");}
+}
+
+/* ---- 游戏5：场景练习 ---- */
+var SCENES=[
+ {n:'🚬 烟瘾来袭',d:'饭后，手习惯性地伸向口袋',q:'此刻你想起自己的脚本，你会？',opts:["我就一根，没事","默念：我从不抽烟","把烟送给别人","换个场合再抽"],good:1,back:'频率计数器赢了：你念的次数，压过了烟瘾的重复次数。'},
+ {n:'📱 深夜刷手机',d:'躺下，手机就在枕边亮着',q:'此刻你的第一反应被什么接管？',opts:["先刷五分钟","默念：我从不刷视频","把手机放去客厅","关灯玩更爽"],good:1,back:'环境设计 + 脚本重复：手机不在身边，比意志力有用一万倍。'},
+ {n:'🔥 火气上头',d:'伴侣说话语气冲，火气瞬间上涌',q:'你的新脚本让你先做什么？',opts:["立刻回怼","先闭嘴三秒，深呼吸三次","摔门而出","冷战，不说话"],good:1,back:'半秒窗口：闭嘴三秒，让理智赶上半秒本能，你就赢了。'}
+];
+var sceneIdx=0;
+function buildScene(){
+  var h='';
+  SCENES.forEach(function(s,i){
+    var parts=s.n.split(' ');
+    h+='<div class="mini-card" onclick="scenePick('+i+')"><div class="ic">'+parts[0]+'</div><b>'+parts[1]+'</b><p>'+s.d+'</p></div>';
+  });
+  $id('sceneSel').innerHTML=h;
+}
+function scenePick(i){
+  sceneIdx=i;
+  var s=SCENES[i];
+  var h='<div style="font-size:16px;font-weight:700;margin-bottom:8px">'+s.n+'</div><div style="color:var(--sub);font-size:13px;margin-bottom:12px">'+s.d+'</div><div style="font-size:14px;margin-bottom:8px">'+s.q+'</div>';
+  s.opts.forEach(function(o,oi){
+    h+='<div class="q-item" id="scOpt'+oi+'" onclick="sceneAns('+oi+')">'+o+'</div>';
+  });
+  h+='<div id="sceneBack" style="margin-top:10px;font-size:14px"></div>';
+  $id('sceneQ').innerHTML=h;
+  track('game_scene_pick',String(i));
+}
+function sceneAns(oi){
+  var s=SCENES[sceneIdx];
+  for(var i=0;i<s.opts.length;i++){
+    var el=$id('scOpt'+i);
+    el.classList.remove('correct','wrong','sel');
+    if(i===oi){el.classList.add(oi===s.good?'correct':'wrong');}
+  }
+  $id('sceneBack').innerHTML=(oi===s.good?'✅ 正确！':'❌ 这是旧本能。')+' '+s.back;
+  if(oi===s.good)gotAch('场景大师');
+  track('game_scene_ans',String(oi));
+}
+
+/* ---- 游戏6：60天打卡 ---- */
+function buildCal(){
+  var done2={};
+  try{done2=JSON.parse(localStorage.getItem('halfsec_cal')||'{}');}catch(e){}
+  var h='';
+  for(var i=1;i<=60;i++){
+    var on=done2[i];
+    h+='<div class="day'+(on?' on':'')+'" id="day'+i+'" onclick="dayTap('+i+')">'+(on?'✓':i)+'</div>';
+  }
+  $id('calGrid').innerHTML=h;
+}
+function dayTap(i){
+  var done2={};
+  try{done2=JSON.parse(localStorage.getItem('halfsec_cal')||'{}');}catch(e){}
+  if(done2[i]){delete done2[i];}
+  else{done2[i]=1;}
+  localStorage.setItem('halfsec_cal',JSON.stringify(done2));
+  var el=$id('day'+i);
+  if(done2[i]){el.classList.add('on');el.textContent='✓';track('game_day',String(i));if(i===60)gotAch('60天新生');}
+  else{el.classList.remove('on');el.textContent=i;}
+}
+function resetCal(){
+  if(!confirm("确定重置 60 天挑战吗？"))return;
+  localStorage.setItem('halfsec_cal','{}');
+  buildCal();
+  toast("挑战已重置，从今天重新开始");
+}
+
+/* ---- 游戏7：金句配对 ---- */
+var MATCH=[
+ {l:"人生由半秒第一反应决定",r:"而非深思熟虑"},
+ {l:"潜意识比意识快 0.5-10 秒",r:"意识永远迟到"},
+ {l:"对抗本能必败",r:"改写本能必胜"},
+ {l:"环境比意志力强一万倍",r:"设计环境，而非对抗"},
+ {l:"真正的自由",r:"= 掌控第一反应"}
+];
+var mSelL=null,mSelR=null,mPairs=0;
+function buildMatch(){
+  var Ls=MATCH.map(function(m,i){return {t:m.l,i:i}});
+  var Rs=MATCH.map(function(m,i){return {t:m.r,i:i}});
+  for(var i=Ls.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=Ls[i];Ls[i]=Ls[j];Ls[j]=t;}
+  for(var i2=Rs.length-1;i2>0;i2--){var j2=Math.floor(Math.random()*(i2+1));var t2=Rs[i2];Rs[i2]=Rs[j2];Rs[j2]=t2;}
+  var h='';
+  for(var k=0;k<Ls.length;k++){
+    h+='<div class="match-row"><div class="side" id="mL'+k+'" onclick="mPick(\'l\','+k+')">'+Ls[k].t+'</div><div class="side" id="mR'+k+'" onclick="mPick(\'r\','+k+')">'+Rs[k].t+'</div></div>';
+  }
+  $id('matchBox').innerHTML=h;
+  window.__mL=Ls;window.__mR=Rs;
+}
+function mPick(side,k){
+  var Ls=window.__mL,Rs=window.__mR;
+  var el=$id(side==='l'?'mL'+k:'mR'+k);
+  var cur=side==='l'?mSelL:mSelR;
+  if(cur!==null){var pe=$id(cur[0]==='l'?'mL'+cur[1]:'mR'+cur[1]);if(pe)pe.classList.remove('sel');}
+  el.classList.add('sel');
+  if(side==='l')mSelL=['l',k];else mSelR=['r',k];
+  if(mSelL&&mSelR){
+    var li=Ls[mSelL[1]].i,ri=Rs[mSelR[1]].i;
+    if(li===ri){
+      $id('mL'+mSelL[1]).classList.add('ok');$id('mR'+mSelR[1]).classList.add('ok');
+      $id('mL'+mSelL[1]).classList.remove('sel');$id('mR'+mSelR[1]).classList.remove('sel');
+      mPairs++;
+      mSelL=mSelR=null;
+      track('game_match_ok','m10');
+      if(mPairs===MATCH.length){toast("🎉 金句全部配对成功！");gotAch('金句大师');}
+    }else{
+      $id('mL'+mSelL[1]).classList.add('no');$id('mR'+mSelR[1]).classList.add('no');
+      var a=mSelL,b=mSelR;mSelL=mSelR=null;
+      setTimeout(function(){if($id('mL'+a[1]))$id('mL'+a[1]).classList.remove('no');if($id('mR'+b[1]))$id('mR'+b[1]).classList.remove('no');},600);
+    }
+  }
+}
+
+/* ---- 游戏8：读后小测 ---- */
+var QZ=[
+ {q:"《半秒》的核心机制是什么？",opts:["积极思考","大脑的频率计数器：重复次数决定默认反应","吸引力法则","多读书"],key:1},
+ {q:"李笑来靠什么戒掉 39 年烟瘾？",opts:["意志力硬扛","每天重复“我从不抽烟”","戒烟贴片","运动代替"],key:1},
+ {q:"ARISE 的五步是？",opts:["目标-计划-执行-检查-复盘","行动-理由-身份-场景-情绪","觉察-接受-承诺-行动-复盘","早起-阅读-运动-写作-冥想"],key:1},
+ {q:"为什么自我肯定（光喊口号）没用？",opts:["口号太短","没有具体可执行的动作，大脑不装","不够大声","说多了会烦"],key:1},
+ {q:"潜意识比意识快多久？",opts:["0.5-10 秒","1-2 分钟","半小时","同时"],key:0},
+ {q:"“环境比意志力强一万倍”指什么？",opts:["环境决定命运","设计环境（如手机放客厅）比硬扛有用得多","换城市就能改变","靠别人监督"],key:1},
+ {q:"改写本能的关键细节不包括？",opts:["用自己的声音","每天轻松重复 21-60 天","用第二语言摆脱旧情绪","必须每天痛苦坚持"],key:3},
+ {q:"书中拆解了哪些无效方法？",opts:["自我肯定、NLP、吸引力法则","冥想、运动、读书","早起、写作、复盘","目标、执行、反馈"],key:0},
+ {q:"“行为先于身份”的意思是？",opts:["先想清楚再行动","先做，再成为","身份决定行为","先定身份标签"],key:1},
+ {q:"真正的自由是什么？",opts:["想做什么做什么","掌控第一反应","财务自由","不被批评"],key:1}
+];
+var QZSel={};
+function buildQuiz(){
+  var h='';
+  QZ.forEach(function(q,i){
+    h+='<div style="font-size:14px;font-weight:700;margin:10px 0 6px">'+(i+1)+'. '+q.q+'</div>';
+    q.opts.forEach(function(o,oi){
+      var cls='q-item';
+      if(QZSel[i]===oi)cls+=' sel';
+      h+='<div class="'+cls+'" id="qz'+i+'_'+oi+'" onclick="qzPick('+i+','+oi+')">'+o+'</div>';
+    });
+  });
+  $id('quizBox').innerHTML=h;
+}
+function qzPick(qi,oi){
+  QZSel[qi]=oi;
+  for(var j=0;j<QZ[qi].opts.length;j++){
+    var el=$id('qz'+qi+'_'+j);
+    if(el){el.classList.remove('sel');if(j===oi)el.classList.add('sel');}
+  }
+}
+function quizCheck(){
+  var score=0,total=QZ.length;
+  for(var i=0;i<total;i++){
+    if(QZSel[i]===QZ[i].key)score++;
+    for(var j=0;j<QZ[i].opts.length;j++){
+      var el=$id('qz'+i+'_'+j);
+      if(el){
+        el.classList.remove('correct','wrong');
+        if(j===QZ[i].key)el.classList.add('correct');
+        else if(QZSel[i]===j)el.classList.add('wrong');
+      }
+    }
+  }
+  var r=$id('quizRes');
+  r.style.display='block';
+  var msg=score>=9?'🏆 你已彻底掌握《半秒》，去改写你的第一个本能吧！':(score>=6?'👍 掌握得不错，重读第3章和第5章会更强。':'📖 建议回到频率计数器和 ARISE 章节再读一遍。');
+  r.innerHTML='<div style="border:1px solid var(--gold);border-radius:14px;padding:16px;text-align:center"><b style="font-size:20px;color:var(--gold2)">'+score+' / '+total+'</b><p style="margin-top:6px">'+msg+'</p></div>';
+  if(score>=9){gotAch('半秒毕业');}
+  track('game_quiz',String(score));
+}
+
+/* init */
+buildReac();buildNeuro();buildArise();buildSW();buildScene();buildCal();buildMatch();buildQuiz();
+applyLock();initCoins();
+</script>
+</body>
+</html>
