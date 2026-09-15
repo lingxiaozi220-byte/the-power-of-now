@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交易心理分析 · 多媒体书 | 熙祺智书</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1220'/%3E%3Cpath d='M10 46 L22 20 L30 36 L38 18 L54 46 Z' fill='none' stroke='%23e8b94a' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='46' cy='16' r='4' fill='%23e8b94a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+:root{
+  --bg:#0a0f1c; --bg2:#0e1526; --card:#111a30; --card2:#16213c;
+  --line:rgba(232,185,74,.22); --gold:#e8b94a; --gold2:#f4d489; --gold3:#b8860b;
+  --tx:#e8ecf4; --tx2:#9fb0c9; --tx3:#5f7394;
+  --red:#e05a5a; --green:#4fbf8f; --blue:#5aa8e8;
+  --r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'Noto Sans SC',system-ui,-apple-system,'Microsoft YaHei',sans-serif;line-height:1.75;overflow-x:hidden}
+body.night{--bg:#070a12;--bg2:#0a0e1a;--card:#0d1424;--card2:#101a30;--tx:#dfe6f2}
+h1,h2,h3,h4{font-family:'Noto Serif SC',serif;line-height:1.4}
+img{max-width:100%;display:block}
+a{color:var(--gold)}
+::selection{background:rgba(232,185,74,.35)}
+
+/* 顶部栏 */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(10,15,28,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px;font-family:'Noto Serif SC',serif;font-weight:700;color:var(--gold);white-space:nowrap}
+.brand svg{width:26px;height:26px}
+.topbar .sp{flex:1}
+.chip{font-size:12px;color:var(--tx2);background:var(--card);border:1px solid var(--line);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.icon-btn{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:10px;padding:6px 10px;cursor:pointer;font-size:14px;transition:.2s}
+.icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+#progressBar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold3),var(--gold),var(--gold2));z-index:100;width:0;transition:width .15s}
+
+/* 目录 */
+#toc{position:fixed;top:56px;left:0;bottom:0;width:300px;max-width:86vw;background:var(--bg2);border-right:1px solid var(--line);z-index:89;padding:18px;overflow:auto;transform:translateX(-102%);transition:transform .28s}
+#toc.open{transform:none}
+#toc h3{color:var(--gold);margin-bottom:10px;font-size:16px}
+.toc-i{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;cursor:pointer;color:var(--tx2);font-size:14px;border:1px solid transparent;transition:.15s;margin-bottom:2px}
+.toc-i:hover{background:var(--card);color:var(--tx);border-color:var(--line)}
+.toc-i .n{color:var(--gold);font-weight:700;font-family:'Noto Serif SC',serif;min-width:26px}
+.toc-i.lock::after{content:"🔒";font-size:11px;margin-left:auto;opacity:.7}
+
+/* Hero */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:110px 20px 60px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,15,28,.15) 0%,rgba(10,15,28,.55) 55%,var(--bg) 100%)}
+.hero-in{position:relative;z-index:2;max-width:860px;text-align:center}
+.hero-kicker{display:inline-block;color:var(--gold);border:1px solid var(--gold);padding:5px 16px;border-radius:999px;font-size:13px;letter-spacing:3px;margin-bottom:22px;background:rgba(232,185,74,.08)}
+.hero h1{font-size:clamp(34px,6vw,64px);font-weight:900;margin-bottom:12px;background:linear-gradient(120deg,#fff,var(--gold2) 60%,var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{font-size:clamp(15px,2.4vw,21px);color:var(--tx2);max-width:640px;margin:0 auto 8px}
+.hero .en{font-size:13px;color:var(--tx3);letter-spacing:1px;margin-bottom:26px}
+.hero-meta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.hero-meta .m{font-size:13px;color:var(--tx2);background:rgba(17,26,48,.7);border:1px solid var(--line);padding:6px 14px;border-radius:999px}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:.2s;text-decoration:none}
+.btn-gold{background:linear-gradient(120deg,var(--gold3),var(--gold));color:#14100a;box-shadow:0 8px 30px rgba(232,185,74,.35)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(232,185,74,.5)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--tx);border:1px solid rgba(255,255,255,.25)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* 章节通用 */
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section.act{position:relative;padding:80px 0 40px}
+.act-head{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.act-num{flex:0 0 auto;width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,var(--gold3),var(--gold));color:#14100a;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:22px;font-weight:900;box-shadow:0 6px 20px rgba(232,185,74,.3)}
+.act-title{font-size:clamp(22px,3.4vw,34px);font-weight:900}
+.act-tag{font-size:12px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:2px 10px;display:inline-block;margin-top:4px;background:rgba(232,185,74,.06)}
+.act-sub{color:var(--tx2);font-size:15px;margin-bottom:22px}
+.act-title-s{font-size:19px;font-weight:700;color:var(--gold2);margin:26px 0 10px;display:flex;align-items:center;gap:8px}
+.act-title-s::before{content:"";width:4px;height:18px;background:var(--gold);border-radius:2px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:16px}
+.card-soft{background:var(--card2)}
+.gold-line{height:2px;background:linear-gradient(90deg,var(--gold),transparent);border:none;margin:18px 0}
+
+/* 金句块 */
+.quote{position:relative;padding:26px 28px 26px 56px;background:linear-gradient(135deg,rgba(232,185,74,.1),rgba(232,185,74,.02));border:1px solid var(--line);border-radius:var(--r);margin:22px 0;font-family:'Noto Serif SC',serif;font-size:clamp(17px,2.4vw,22px);line-height:1.9;color:var(--gold2)}
+.quote::before{content:"“";position:absolute;left:16px;top:6px;font-size:52px;color:var(--gold);opacity:.5;font-family:Georgia,serif}
+.quote .who{display:block;margin-top:10px;font-size:13px;color:var(--tx3);font-family:'Noto Sans SC',sans-serif;text-align:right}
+.qsmall{font-family:'Noto Serif SC',serif;color:var(--gold2);border-left:3px solid var(--gold);padding-left:12px;margin:14px 0}
+
+/* 图文混排 */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;margin:18px 0}
+.duo img{border-radius:var(--r);border:1px solid var(--line);box-shadow:0 14px 40px rgba(0,0,0,.4);width:100%;height:auto}
+.duo.rev .duo-txt{order:2}
+@media(max-width:820px){.duo{grid-template-columns:1fr}.duo.rev .duo-txt{order:0}}
+
+/* 数字条 */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:20px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 12px;text-align:center}
+.stat .v{font-family:'Noto Serif SC',serif;font-size:clamp(22px,3vw,32px);font-weight:900;color:var(--gold)}
+.stat .k{font-size:12px;color:var(--tx3);margin-top:4px}
+
+/* 列表要点 */
+.points{list-style:none;margin:12px 0}
+.points li{position:relative;padding:10px 0 10px 30px;color:var(--tx);border-bottom:1px dashed rgba(159,176,201,.12)}
+.points li::before{content:"";position:absolute;left:6px;top:17px;width:9px;height:9px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.points li b{color:var(--gold2)}
+.points .why{display:block;font-size:13px;color:var(--tx2);margin-top:2px}
+
+/* 标签 */
+.tag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;background:rgba(90,168,232,.12);color:var(--blue);border:1px solid rgba(90,168,232,.3);margin:0 6px 6px 0}
+.tag.g{background:rgba(79,191,143,.12);color:var(--green);border-color:rgba(79,191,143,.3)}
+.tag.r{background:rgba(224,90,90,.12);color:var(--red);border-color:rgba(224,90,90,.3)}
+.tag.o{background:rgba(232,185,74,.12);color:var(--gold);border-color:var(--line)}
+
+/* 视频容器 */
+.vid{position:relative;margin:20px 0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#000}
+.vid iframe{width:100%;aspect-ratio:16/9;display:block;border:none}
+.vid-caption{font-size:13px;color:var(--tx3);padding:10px 14px;background:rgba(0,0,0,.4);display:flex;gap:8px;align-items:center}
+.vid-caption::before{content:"▶";color:var(--gold)}
+
+/* 互动组件 */
+.game-box{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--gold);border-radius:20px;padding:24px;margin:22px 0;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.game-title{display:flex;align-items:center;gap:10px;font-family:'Noto Serif SC',serif;font-weight:700;color:var(--gold);font-size:18px;margin-bottom:6px}
+.game-sub{font-size:13px;color:var(--tx2);margin-bottom:16px}
+.g-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:12px;border:none;cursor:pointer;font-size:15px;font-weight:700;transition:.18s;background:linear-gradient(120deg,var(--gold3),var(--gold));color:#14100a}
+.g-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,185,74,.4)}
+.g-btn.sec{background:var(--card);color:var(--tx);border:1px solid var(--line)}
+.g-btn.sec:hover{border-color:var(--gold);color:var(--gold)}
+.g-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.g-stat{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+.g-stat .gs{background:rgba(10,15,28,.6);border:1px solid var(--line);border-radius:12px;padding:8px 16px;font-size:14px;color:var(--tx2)}
+.g-stat .gs b{color:var(--gold);font-size:17px;margin-left:4px}
+.feedback{min-height:26px;font-size:14px;color:var(--tx2);margin-top:10px}
+.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}.feedback.info{color:var(--blue)}
+
+/* 5大事实卡 */
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:20px 0}
+.fact-card{perspective:900px;height:230px;cursor:pointer}
+.fact-in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.fact-card.flip .fact-in{transform:rotateY(180deg)}
+.fact-f,.fact-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);padding:18px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line)}
+.fact-f{background:linear-gradient(150deg,var(--card2),var(--card));text-align:center}
+.fact-f .no{font-family:'Noto Serif SC',serif;font-size:34px;font-weight:900;color:var(--gold);margin-bottom:8px}
+.fact-f .t{font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px;color:var(--tx)}
+.fact-f .tap{position:absolute;bottom:10px;left:0;right:0;font-size:11px;color:var(--tx3)}
+.fact-b{background:linear-gradient(150deg,#1c2a4a,#152036);transform:rotateY(180deg);font-size:13px;color:var(--tx2);line-height:1.7}
+.fact-b b{color:var(--gold2)}
+
+/* 掷硬币 */
+.coin{width:120px;height:120px;margin:18px auto;position:relative;transform-style:preserve-3d;transition:transform .5s;border-radius:50%}
+.coin .face{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-weight:900;font-size:40px;backface-visibility:hidden;border:6px solid var(--gold2)}
+.coin .face.a{background:radial-gradient(circle at 35% 30%,#f4d489,#b8860b 70%);color:#3a2c06}
+.coin .face.b{background:radial-gradient(circle at 35% 30%,#4fbf8f,#1d6b4d 70%);color:#052e1d;transform:rotateY(180deg)}
+.coin.spin{animation:spin .7s ease-in-out}
+@keyframes spin{0%{transform:rotateY(0)}100%{transform:rotateY(720deg)}}
+
+/* 测评 */
+.quiz-q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px}
+.quiz-q .q-t{font-weight:600;margin-bottom:12px;display:flex;gap:10px}
+.quiz-q .q-t .qn{color:var(--gold);font-family:'Noto Serif SC',serif;font-weight:900}
+.quiz-q .opts{display:flex;gap:12px;flex-wrap:wrap}
+.opt-btn{padding:9px 26px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--tx2);cursor:pointer;font-size:14px;transition:.15s}
+.opt-btn:hover{border-color:var(--gold);color:var(--gold)}
+.opt-btn.on{background:linear-gradient(120deg,var(--gold3),var(--gold));color:#14100a;border-color:var(--gold);font-weight:700}
+.result-box{display:none;background:linear-gradient(150deg,#1c2a4a,#14203a);border:1px solid var(--gold);border-radius:20px;padding:28px;text-align:center;margin:18px 0}
+.result-box.show{display:block}
+.score-ring{width:150px;height:150px;margin:10px auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:40px;font-weight:900;color:var(--gold);border:8px solid rgba(232,185,74,.25);position:relative}
+.score-ring b{position:absolute;bottom:22px;font-size:11px;color:var(--tx3);font-weight:400}
+.verdict{font-size:18px;font-family:'Noto Serif SC',serif;color:var(--gold2);margin:10px 0}
+.verdict-d{font-size:14px;color:var(--tx2);max-width:560px;margin:0 auto 8px}
+
+/* 图表 */
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:16px 0}
+.legend-row{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--tx2);margin-bottom:8px}
+.legend-row span{display:inline-flex;align-items:center;gap:6px}
+.legend-row i{width:18px;height:4px;border-radius:2px;display:inline-block}
+
+/* 解锁墙 */
+.pw{position:fixed;inset:0;background:rgba(5,8,16,.88);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:18px}
+.pw.on{display:flex}
+.pw-box{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--gold);border-radius:22px;max-width:430px;width:100%;padding:30px;text-align:center;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+.w-ic{font-size:46px;margin-bottom:8px}
+.w-t{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:900;margin-bottom:6px}
+.w-d{font-size:13px;color:var(--tx2);margin-bottom:14px;line-height:1.7}
+.w-price{font-family:'Noto Serif SC',serif;font-size:30px;font-weight:900;color:var(--gold);margin-bottom:18px}
+.w-price small{font-size:12px;color:var(--tx3);font-weight:400;display:block;margin-top:2px}
+.w-btn{display:block;width:100%;padding:13px;border-radius:12px;border:none;cursor:pointer;font-size:15px;font-weight:700;background:linear-gradient(120deg,var(--gold3),var(--gold));color:#14100a;margin-bottom:10px}
+.w-code{margin:14px 0;padding-top:14px;border-top:1px dashed var(--line)}
+.w-code label{display:block;font-size:12px;color:var(--tx3);margin-bottom:8px}
+.w-code input{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:rgba(10,15,28,.7);color:var(--tx);font-size:15px;letter-spacing:1px;margin-bottom:8px;text-align:center}
+.w-code button{width:100%;padding:11px;border-radius:10px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;font-size:14px;font-weight:700}
+.w-ok{min-height:22px;font-size:13px;margin-top:8px;color:var(--green)}
+.w-admin{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.w-admin summary{cursor:pointer;font-size:12px;color:var(--tx3);text-align:left}
+.w-admin label{display:block;font-size:12px;color:var(--tx3);margin:10px 0 6px;text-align:left}
+.w-admin input{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:rgba(10,15,28,.7);color:var(--tx);margin-bottom:8px}
+.w-admin button{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--tx);cursor:pointer}
+.w-x{background:none;border:none;color:var(--tx3);cursor:pointer;font-size:13px;margin-top:14px;text-decoration:underline}
+
+/* 锁定幕 */
+section.locked{position:relative}
+.lock-cover{position:absolute;inset:0;z-index:30;background:linear-gradient(180deg,rgba(10,15,28,.35),rgba(10,15,28,.92) 60%);display:flex;align-items:center;justify-content:center}
+.lc-in{max-width:380px;text-align:center;padding:26px;background:rgba(17,26,48,.85);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(6px)}
+.lc-ic{font-size:40px;margin-bottom:8px}
+.lc-t{font-family:'Noto Serif SC',serif;font-size:19px;font-weight:900;margin-bottom:8px}
+.lc-s{font-size:13px;color:var(--tx2);margin-bottom:14px;line-height:1.7}
+.lc-p{font-family:'Noto Serif SC',serif;font-size:24px;font-weight:900;color:var(--gold);margin-bottom:14px}
+.lc-p small{font-size:11px;color:var(--tx3);font-weight:400}
+.lc-b{padding:11px 28px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(120deg,var(--gold3),var(--gold));color:#14100a;font-weight:700;font-size:15px}
+
+/* 成就 */
+.ach-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin:16px 0}
+.ach-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 8px;text-align:center;opacity:.4;transition:.2s}
+.ach-item.on{opacity:1;border-color:var(--gold);box-shadow:0 0 18px rgba(232,185,74,.15)}
+.ach-item .ic{font-size:30px;margin-bottom:4px}
+.ach-item .nm{font-size:13px;font-weight:700;color:var(--tx)}
+.ach-item .ds{font-size:11px;color:var(--tx3);margin-top:2px}
+
+/* toast */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--card2);border:1px solid var(--gold);color:var(--gold2);padding:12px 24px;border-radius:999px;z-index:300;font-size:14px;transition:transform .3s;box-shadow:0 10px 34px rgba(0,0,0,.5);max-width:90vw;text-align:center}
+.toast.on{transform:translateX(-50%) translateY(0)}
+
+/* confetti */
+.confetti{position:fixed;top:-12px;z-index:500;pointer-events:none;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+/* 进度卡 */
+.progress-steps{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+.pstep{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:14px;color:var(--tx2)}
+.pstep .st-ic{width:28px;height:28px;flex:0 0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--line);font-size:13px}
+.pstep.done .st-ic{background:linear-gradient(135deg,var(--gold3),var(--gold));color:#14100a;border-color:var(--gold)}
+.pstep.done{color:var(--tx);border-color:rgba(232,185,74,.4)}
+.pstep.cur .st-ic{background:rgba(90,168,232,.2);border-color:var(--blue);color:var(--blue)}
+
+/* 朗读按钮 */
+.say-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(232,185,74,.1);border:1px solid var(--line);color:var(--gold);border-radius:999px;padding:5px 14px;font-size:13px;cursor:pointer;margin-top:8px;transition:.15s}
+.say-btn:hover{border-color:var(--gold);background:rgba(232,185,74,.2)}
+.say-btn.speaking{animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,185,74,.4)}50%{box-shadow:0 0 0 8px rgba(232,185,74,0)}}
+
+footer{border-top:1px solid var(--line);padding:34px 20px;text-align:center;color:var(--tx3);font-size:13px;margin-top:40px}
+footer b{color:var(--gold2)}
+
+@media(max-width:640px){
+  .act{padding:60px 0 30px}
+  .act-num{width:46px;height:46px;font-size:17px;border-radius:13px}
+  .quote{padding:20px 18px 20px 44px;font-size:16px}
+  .game-box{padding:18px}
+  .fact-card{height:200px}
+}
+</style>
+</head>
+<body>
+<div id="progressBar"></div>
+
+<!-- ===== 顶部栏 ===== -->
+<header class="topbar">
+  <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="none" stroke="#e8b94a" stroke-width="3"/><path d="M10 46 L22 20 L30 36 L38 18 L54 46 Z" fill="none" stroke="#e8b94a" stroke-width="4" stroke-linejoin="round"/><circle cx="46" cy="16" r="4" fill="#e8b94a"/></svg>
+  <span class="brand">交易心理分析</span>
+  <span class="sp"></span>
+  <span class="chip" id="coinChip">⭐ 0</span>
+  <button class="icon-btn" id="nightBtn">🌙 夜间</button>
+  <button class="icon-btn" id="tocBtn">☰ 目录</button>
+</header>
+
+<!-- ===== 目录 ===== -->
+<nav id="toc">
+  <h3>本书目录</h3>
+  <div class="toc-i" data-to="hero"><span class="n">扉</span> 开场 · 交易者的自白</div>
+  <div class="toc-i" data-to="a0"><span class="n">0</span> 你为什么会亏钱（免费）</div>
+  <div class="toc-i" data-to="a1"><span class="n">1</span> 心理落差：看得见却抓不住</div>
+  <div class="toc-i" data-to="a2"><span class="n">2</span> 交易的诱惑与风险</div>
+  <div class="toc-i" data-to="a3"><span class="n">3</span> 负责：市场只是镜子</div>
+  <div class="toc-i" data-to="a4"><span class="n">4</span> 持续一贯是一种心态</div>
+  <div class="toc-i" data-to="a5"><span class="n">5</span> 市场的 5 大基本事实</div>
+  <div class="toc-i" data-to="a6"><span class="n">6</span> 概率思考：像赌场一样交易</div>
+  <div class="toc-i" data-to="a7"><span class="n">7</span> 信念的力量</div>
+  <div class="toc-i" data-to="a8"><span class="n">8</span> 态度调查：30 题心理测评</div>
+  <div class="toc-i" data-to="a9"><span class="n">9</span> 像交易者一样思考 · 结语</div>
+</nav>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"><img src="assets/art_cover.jpg" alt="市场的金色之海"></div>
+  <div class="hero-in">
+    <span class="hero-kicker">熙祺智书 · 投资心理专题</span>
+    <h1>交易心理分析</h1>
+    <p class="sub">用自信、自律和赢家心态掌控市场</p>
+    <p class="en">Trading in the Zone · Mark Douglas</p>
+    <div class="hero-meta">
+      <span class="m">📗 马克·道格拉斯 著</span>
+      <span class="m">🧠 交易心理经典之作</span>
+      <span class="m">🎮 互动 · 游戏 · 短视频</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#a0">▶ 开始阅读</a>
+      <a class="btn btn-ghost" href="#a8">🧭 先测测你的交易心态</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 幕 0：开场 · 交易者的自白（免费） ===== -->
+<section class="act" id="a0">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">0</div>
+      <div>
+        <h2 class="act-title">开场 · 交易者的自白</h2>
+        <span class="act-tag">免费试读</span>
+      </div>
+    </div>
+    <p class="act-sub">先看一个故事——它可能也是你的故事。</p>
+
+    <div class="card">
+      <p style="font-family:'Noto Serif SC',serif;font-size:17px;line-height:2">
+      我看了三年盘，学遍了所有指标：K线、均线、MACD、波浪理论……<br>
+      我精准地预测过无数次行情——然后眼睁睁看着它起飞，自己却没进场。<br>
+      我止损过、扛单过、追涨杀跌过，账户像坐过山车，赚到的钱总是还回去。<br>
+      直到有人告诉我：<b style="color:var(--gold2)">你缺的不是技术，是心态。</b> 95% 的交易错误，起源于态度。
+      </p>
+      <button class="say-btn" onclick="speakCN('我看了三年盘，学遍了所有指标，却总是看得见机会，抓不住利润。百分之九十五的交易错误，起源于态度。')">🔊 朗读这段自白</button>
+    </div>
+
+    <div class="quote">你追求的一贯获利存在心中，而不是存在市场上。<span class="who">—— 马克·道格拉斯《交易心理分析》</span></div>
+
+    <div class="duo">
+      <div class="duo-txt">
+        <h3 class="act-title-s">为什么聪明人也会在交易里亏光？</h3>
+        <p style="color:var(--tx2)">这本书开篇就回答了一个扎心的问题：交易圈中大部分失败者，恰恰是社会中最聪明、最有成就的人——医生、律师、工程师、科学家、CEO。智力不是决定性因素。</p>
+        <ul class="points">
+          <li><b>高明的分析师 = 糟糕的交易者？</b><span class="why">市场分析可以预测方向，却无法解决缺乏信心和纪律造成的执行问题。</span></li>
+          <li><b>交易充满“矛盾”</b><span class="why">生活中行得通的道理，在交易中可能正好相反，比如“我从事有风险的活动，所以我接受了风险”。</span></li>
+          <li><b>四大交易恐惧</b><span class="why">恐惧错误、恐惧亏损、恐惧错过机会、恐惧赚不到钱——95% 的错误由此而生。</span></li>
+        </ul>
+        <button class="g-btn" onclick="goM('a1')">下一幕：心理落差 →</button>
+      </div>
+      <img src="assets/art_gap.jpg" alt="心理落差">
+    </div>
+
+    <div class="vid">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1T9E56MEHa&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen></iframe>
+      <div class="vid-caption">延伸视频：《交易心理分析》：盈利不靠技术靠心智？——为什么学再多技术依然亏钱</div>
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🎯 互动：你最怕什么？</div>
+      <div class="game-sub">道格拉斯说 95% 的交易错误源于四大恐惧。选出你最强烈的一个（单选），看看书里怎么破解它。</div>
+      <div class="quiz-q" style="margin:0">
+        <div class="q-t"><span class="qn">恐惧测试</span>你最害怕哪一件事？</div>
+        <div class="opts">
+          <button class="opt-btn" onclick="fearPick(0)">😱 犯错</button>
+          <button class="opt-btn" onclick="fearPick(1)">💸 亏损</button>
+          <button class="opt-btn" onclick="fearPick(2)">😰 错过机会</button>
+          <button class="opt-btn" onclick="fearPick(3)">😤 赚不到钱</button>
+        </div>
+        <div class="feedback" id="fearFb"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 幕 1：心理落差（免费） ===== -->
+<section class="act" id="a1">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">1</div>
+      <div>
+        <h2 class="act-title">心理落差：看得见，却抓不住</h2>
+        <span class="act-tag">免费试读</span>
+      </div>
+    </div>
+    <p class="act-sub">你看出无数赚钱机会，却和实际获利之间有惊人的落差——道格拉斯把它叫做“心理落差”。</p>
+
+    <div class="card">
+      <p style="color:var(--tx2)">想一想，你有多少次看着价格图表对自己说：“嗯，看起来市场会上涨。”然后市场确实上涨了，你却没有进场。预测市场走势、想到你应该赚到的所有财富，和实际交易之间，有着重大的差距。</p>
+      <div class="quote" style="margin:16px 0 8px">交易者跨越“长期获利门坎”之前，通常会在情感和财务上经历很多痛苦。<span class="who">—— 第 1 章</span></div>
+    </div>
+
+    <h3 class="act-title-s">交易分析的三次转向</h3>
+    <div class="stat-row">
+      <div class="stat"><div class="v">基本分析</div><div class="k">为什么失效？因为影响价格的是人，不是模型</div></div>
+      <div class="stat"><div class="v">技术分析</div><div class="k">观察集体行为模式，但只是概率，不是保证</div></div>
+      <div class="stat"><div class="v">心理分析</div><div class="k">真正的战场在你心里：认知、信念与态度</div></div>
+    </div>
+
+    <div class="card card-soft">
+      <b style="color:var(--gold2)">分析的黑洞：</b>
+      <p style="color:var(--tx2);margin-top:6px">你以为“多了解市场就能避免亏损”，于是搜集越来越多的变量——结果是“你学到的东西永远不够多，不足以预测市场可能害你犯错的所有方式”。道格拉斯称之为“分析的黑洞”，走到底只会更挫折。</p>
+    </div>
+
+    <div class="duo rev">
+      <div class="duo-txt">
+        <h3 class="act-title-s">互动：测测你的“心理落差”</h3>
+        <p style="color:var(--tx2)">回忆一下最近的交易或投资，拖动滑块选择最接近你的状态。</p>
+        <div class="game-box" style="margin-top:14px">
+          <div class="game-title">📏 心理落差自测</div>
+          <div class="game-sub">我“看对方向”和“真正赚到钱”之间的落差有多大？</div>
+          <input type="range" id="gapRange" min="0" max="100" value="60" style="width:100%;accent-color:#e8b94a">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--tx3);margin-top:4px"><span>看对方向 ≈ 赚到钱</span><span>天壤之别</span></div>
+          <div class="feedback info" id="gapFb">当前：落差很大（60%）——恭喜你，这正是这本书要解决的问题。</div>
+        </div>
+        <button class="g-btn" onclick="goM('a2')">下一幕：交易的诱惑与风险 →</button>
+      </div>
+      <img src="assets/art_moon.jpg" alt="地球与月球之差">
+    </div>
+
+    <div class="quote">长期赢家和其他交易者之间的差距，好比地球与月球之间的差异。地球和月球都是同一个太阳系的天体，因此具有一些共同的地方，但是性质的差别好比天壤之别。<span class="who">—— 第 1 章</span></div>
+    <button class="say-btn" onclick="speakCN('长期赢家和其他交易者之间的差距，好比地球与月球之间的差异。你追求的一贯获利，存在心中，而不是存在市场上。')">🔊 朗读金句</button>
+  </div>
+</section>
+<!-- ===== 幕 2：交易的诱惑与风险（锁定） ===== -->
+<section class="act" id="a2">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">2</div>
+      <div>
+        <h2 class="act-title">交易的诱惑与风险</h2>
+        <span class="act-tag">VIP · 试读免费 · 完整解锁后畅读</span>
+      </div>
+    </div>
+    <p class="act-sub">交易给你无限自由，也给你无限伤害的可能——这是全书最烧脑的一章。</p>
+
+    <div class="card">
+      <p style="color:var(--tx2)">交易真正吸引人的地方，是<b style="color:var(--gold2)">表达创意的无限自由</b>：所有规则几乎都由你自己制定。有人计算过，如果你结合债券期货、债券选择权和现货债券市场，可能的价差组合超过 <b style="color:var(--gold2)">80 亿种</b>。</p>
+      <p style="color:var(--tx2);margin-top:10px">但市场没有开始、中间或结束，像河流一样不断流动、不会等待。赌博有正式的结束，会强迫你变成主动的输家；交易没有——<b style="color:var(--gold2)">你不结束，亏损就继续</b>。</p>
+    </div>
+
+    <div class="duo">
+      <div class="duo-txt">
+        <h3 class="act-title-s">随机报酬：让人上瘾的陷阱</h3>
+        <p style="color:var(--tx2)">科学家研究猴子：如果每次做对都给奖励，猴子很快学会；停止奖励后，它就不再做了。但如果奖励是<b style="color:var(--gold2)">随机出现</b>的——猴子永远不知道下次有没有奖励，就会一直按下去，有些猴子会持续一辈子。</p>
+        <p style="color:var(--tx2);margin-top:8px">交易中偶尔的暴利，就是那个“随机奖励”。它让你沉迷于“再来一次”，而不是建立系统。</p>
+      </div>
+      <img src="assets/art_monkey.jpg" alt="随机报酬实验">
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🐒 互动游戏：猴子实验模拟器</div>
+      <div class="game-sub">你就是那只猴子。点击按钮，有时给你奖励（金币），有时没有。看看你能坚持多久、会不会上瘾。</div>
+      <div style="text-align:center">
+        <button class="g-btn" id="monkeyBtn" onclick="monkeyTap()">🍌 按下按钮！</button>
+      </div>
+      <div class="g-stat" id="monkeyStat">
+        <span class="gs">点击 <b id="mkN">0</b></span>
+        <span class="gs">获得奖励 <b id="mkW">0</b></span>
+        <span class="gs">奖励率 <b id="mkR">--</b></span>
+      </div>
+      <div class="feedback" id="mkFb"></div>
+    </div>
+
+    <div class="card card-soft">
+      <h3 class="act-title-s" style="margin-top:0">四个“问题”，个个致命</h3>
+      <ul class="points">
+        <li><b>不愿意制定规则</b><span class="why">你一生都在摆脱规则，现在却要自己制定规则——这需要克服本能。</span></li>
+        <li><b>不能负责</b><span class="why">随机交易 = 没有结构且不必负责的自由。赚钱归自己，亏钱怪市场。</span></li>
+        <li><b>沉迷于随机的报酬</b><span class="why">随机奖励让人上瘾，让你陷入“别无选择”的状态。</span></li>
+        <li><b>外在控制与内在控制</b><span class="why">社会上你可以操纵环境，市场不行——你只能学习控制自己。</span></li>
+      </ul>
+    </div>
+
+    <div class="vid">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1xxNfzMEfK&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen></iframe>
+      <div class="vid-caption">延伸视频：逐句解读《交易心理分析》第二课 · 交易的诱惑与风险</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 幕 3：负责（锁定） ===== -->
+<section class="act" id="a3">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">3</div>
+      <div>
+        <h2 class="act-title">负责：市场只是镜子</h2>
+        <span class="act-tag">VIP · 完整解锁后畅读</span>
+      </div>
+    </div>
+    <p class="act-sub">负责，不是“我犯的错我认”——而是不再期望市场白白送你什么东西。</p>
+
+    <div class="quote">市场只是镜子，把镜子里的东西向你反映回来。如果你很有信心，不是因为市场让你觉得有信心，而是因为你的信念和态度搭配得宜，让你可以进入某种经验中，为结果负责，从中吸取教训。<span class="who">—— 第 3 章</span></div>
+
+    <div class="duo rev">
+      <div class="duo-txt">
+        <h3 class="act-title-s">你与市场是“零和游戏”</h3>
+        <p style="color:var(--tx2)">市场唯一的目的是拿走你的钱或机会。如果你把亏损归咎于市场、觉得“被市场背叛”，就说明你还没有接受这个现实：<b style="color:var(--gold2)">市场对你毫无亏欠</b>。</p>
+        <ul class="points">
+          <li><b>把责任投射给市场</b><span class="why">你会和市场形成敌对关系，脱离持续流动的机会。</span></li>
+          <li><b>用分析代替负责</b><span class="why">你会误以为“多学市场知识”能解决问题，掉进分析的黑洞。</span></li>
+        </ul>
+      </div>
+      <img src="assets/art_mirror.jpg" alt="市场只是镜子">
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🪞 互动测试：你的“归因模式”</div>
+      <div class="game-sub">六个交易场景，凭第一反应选择。测完看看你更接近“怪市场”还是“怪自己”。</div>
+      <div id="attrQuiz"></div>
+      <div style="text-align:center;margin-top:12px"><button class="g-btn" onclick="attrScore()">📊 查看我的归因结果</button></div>
+      <div class="result-box" id="attrResult">
+        <div class="score-ring" id="attrRing">0<b>自我负责指数</b></div>
+        <div class="verdict" id="attrVerdict"></div>
+        <div class="verdict-d" id="attrDesc"></div>
+      </div>
+    </div>
+
+    <h3 class="act-title-s">三种交易者：你的资产曲线是哪一种？</h3>
+    <div class="chart-box">
+      <div class="legend-row">
+        <span><i style="background:var(--green)"></i> 长期赢家（约10%）</span>
+        <span><i style="background:var(--red)"></i> 长期输家（30%~40%）</span>
+        <span><i style="background:var(--gold)"></i> 旺家兼衰家（40%~50%）</span>
+      </div>
+      <canvas id="curveChart" height="260" style="width:100%;height:260px"></canvas>
+      <div style="font-size:12px;color:var(--tx3);margin-top:8px">旺家衰家学会了赚钱，却不知道如何保住利润——资产曲线像云霄飞车，大涨之后必有大跌。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 幕 4：持续一贯是一种心态（锁定） ===== -->
+<section class="act" id="a4">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">4</div>
+      <div>
+        <h2 class="act-title">持续一贯是一种心态</h2>
+        <span class="act-tag">VIP · 完整解锁后畅读</span>
+      </div>
+    </div>
+    <p class="act-sub">持续一贯不是靠努力得到的东西——努力本身会否定你的意愿，让你脱离机会流程。</p>
+
+    <div class="card">
+      <p style="color:var(--tx2)">最高明的交易都是<b style="color:var(--gold2)">不费工夫的轻松交易</b>。你正确看出需要看出的东西，根据看到的东西采取行动，与当时的时机合而为一。交易者能够创造持续获利，其实是持续并自然地表现本性——他们<b style="color:var(--gold2)">本身就具有持续性</b>。</p>
+    </div>
+
+    <div class="duo">
+      <div class="duo-txt">
+        <h3 class="act-title-s">真正了解风险</h3>
+        <p style="color:var(--tx2)">接受风险，表示你接受交易的后果，在情感上却不会不安，也不会恐惧。这是全书最重要的概念之一。</p>
+        <div class="qsmall">如果你像赢家一样接受风险，你看任何市场行为时就不会觉得受到威胁；如果没有东西威胁你，你就没有应该害怕的东西；如果你不害怕，你就不需要勇气；如果你没有承受压力，你为什么需要钢铁般的意志？<div style="text-align:right;font-size:12px;color:var(--tx3);margin-top:6px">—— 第 4 章</div></div>
+        <ul class="points">
+          <li><b>冒险 ≠ 接受风险</b><span class="why">“我从事有风险的活动，所以我接受了风险”是最大的误解。</span></li>
+          <li><b>最高的交易者不害怕</b><span class="why">他们不会因为交易的固有风险而丧失纪律、专注或信心。</span></li>
+          <li><b>消除痛苦的定义</b><span class="why">当信息不再让你痛苦，你就不需要规避——这就是“客观的观点”。</span></li>
+        </ul>
+      </div>
+      <img src="assets/art_cycle.jpg" alt="资产曲线如云霄飞车">
+    </div>
+
+    <div class="quote">如果你在交易时情感上不能完全没有难过的感觉（尤其是没有恐惧），那么你还没有学会如何接受交易固有的风险。<span class="who">—— 第 1 章</span></div>
+
+    <div class="game-box">
+      <div class="game-title">🧠 互动判断：这是“接受风险”吗？</div>
+      <div class="game-sub">下面哪种说法更接近道格拉斯的“接受风险”？</div>
+      <div class="quiz-q">
+        <div class="q-t"><span class="qn">判断题</span>交易前我应该：</div>
+        <div class="opts">
+          <button class="opt-btn" onclick="riskPick(0)">A. 尽量分析，把风险降到最低再进场</button>
+          <button class="opt-btn" onclick="riskPick(1)">B. 承认每笔结果都不确定，接受它并专注执行优势</button>
+        </div>
+        <div class="feedback" id="riskFb"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== 幕 5：市场的 5 大基本事实（锁定） ===== -->
+<section class="act" id="a5">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">5</div>
+      <div>
+        <h2 class="act-title">市场的 5 大基本事实</h2>
+        <span class="act-tag">VIP · 全书核心</span>
+      </div>
+    </div>
+    <p class="act-sub">这是全书的“心法总纲”。点击卡片翻面，看每一条事实背后的解释。</p>
+
+    <div class="fact-grid" id="factGrid">
+      <div class="fact-card" onclick="flipFact(0)">
+        <div class="fact-in">
+          <div class="fact-f"><div class="no">1</div><div class="t">任何事情都可能发生</div><div class="tap">点击翻面 ▶</div></div>
+          <div class="fact-b"><b>为什么？</b><br>任何时刻总有未知力量（其他交易者）在影响价格。世界上任何地方的一个人，都可能抵消你的优势——只需要一位交易者。</div>
+        </div>
+      </div>
+      <div class="fact-card" onclick="flipFact(1)">
+        <div class="fact-in">
+          <div class="fact-f"><div class="no">2</div><div class="t">要赚钱，不必知道下一步</div><div class="tap">点击翻面 ▶</div></div>
+          <div class="fact-b"><b>为什么？</b><br>优势的盈亏随机分布，你不需要预测每一次结果，只需要优势在样本中发挥。</div>
+        </div>
+      </div>
+      <div class="fact-card" onclick="flipFact(2)">
+        <div class="fact-in">
+          <div class="fact-f"><div class="no">3</div><div class="t">盈亏是随机分布的</div><div class="tap">点击翻面 ▶</div></div>
+          <div class="fact-b"><b>为什么？</b><br>定义优势的任何一组变量，产生的盈亏都是随机分布的。你不知道哪笔赚、哪笔亏。</div>
+        </div>
+      </div>
+      <div class="fact-card" onclick="flipFact(3)">
+        <div class="fact-in">
+          <div class="fact-f"><div class="no">4</div><div class="t">优势只是概率更高</div><div class="tap">点击翻面 ▶</div></div>
+          <div class="fact-b"><b>为什么？</b><br>优势只不过显示一件事发生的概率高于另一件事。不是保证，只是倾向。</div>
+        </div>
+      </div>
+      <div class="fact-card" onclick="flipFact(4)">
+        <div class="fact-in">
+          <div class="fact-f"><div class="no">5</div><div class="t">每一刻都是独一无二的</div><div class="tap">点击翻面 ▶</div></div>
+          <div class="fact-b"><b>为什么？</b><br>市场中的每一刻都具有独一无二的性质。当下与过去脱钩——不要拿“上一次”套“这一次”。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">他可以学到的信念中，最有效和最能发挥功能的信念是“任何事情都可能发生”。这种信念会变成一种力量，扩大他对市场的认知，让他看出原本看不到的信息。<span class="who">—— 第 8 章</span></div>
+    <button class="say-btn" onclick="speakCN('任何事情都可能发生。要赚钱，不必知道下一步会有什么变化。优势，只是显示一件事情发生的概率，高于另一件事情。')">🔊 朗读 5 大事实</button>
+  </div>
+</section>
+
+<!-- ===== 幕 6：概率思考 · 像赌场一样交易（锁定） ===== -->
+<section class="act" id="a6">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">6</div>
+      <div>
+        <h2 class="act-title">概率思考：像赌场一样交易</h2>
+        <span class="act-tag">VIP · 全书高潮</span>
+      </div>
+    </div>
+    <p class="act-sub">赌场靠 4.5% 的微弱优势，年复一年稳定赚钱。为什么？因为样本够大，随机事件也能产生持续一贯的结果。</p>
+
+    <div class="duo">
+      <div class="duo-txt">
+        <h3 class="act-title-s">赌场的秘密：4.5% 优势</h3>
+        <p style="color:var(--tx2)">玩 21 点时，赌场大约比赌客多占 <b style="color:var(--gold2)">4.5% 的优势</b>。这意味着样本够大时，赌场从每 1 美元赌注中净赚 4.5 美分。</p>
+        <p style="color:var(--tx2);margin-top:8px">如果一年下注总额 1 亿美元，赌场净赚 <b style="color:var(--gold2)">450 万美元</b>——赌场老板根本不关心你这一把是赢是输，他只关心：只要玩得够多，优势必然兑现。</p>
+      </div>
+      <img src="assets/art_casino.jpg" alt="赌场优势">
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><div class="v">4.5%</div><div class="k">赌场对赌客的优势</div></div>
+      <div class="stat"><div class="v">$1亿</div><div class="k">一年下注总额</div></div>
+      <div class="stat"><div class="v">$450万</div><div class="k">赌场稳定净赚</div></div>
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🎲 互动游戏：赌场优势模拟器</div>
+      <div class="game-sub">模拟 1000 次下注：你（赌客）与赌场各一条资金曲线。单次结果完全随机，但长期看谁在稳定赚钱？</div>
+      <div class="g-stat">
+        <span class="gs">模拟次数 <b>1000</b></span>
+      </div>
+      <div style="text-align:center;margin:10px 0">
+        <button class="g-btn" onclick="runCasino()">🎰 开始模拟</button>
+        <button class="g-btn sec" onclick="runCasino(true)">🔄 再来一轮</button>
+      </div>
+      <div class="feedback info" id="casinoFb">点击“开始模拟”，看随机结果如何走向必然。</div>
+      <canvas id="casinoChart" height="240" style="width:100%;height:240px;margin-top:10px"></canvas>
+      <div class="legend-row" style="margin-top:10px">
+        <span><i style="background:var(--gold)"></i> 赌场资金（有 4.5% 优势）</span>
+        <span><i style="background:var(--blue)"></i> 赌客资金（无优势）</span>
+      </div>
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🪙 互动游戏：掷硬币交易</div>
+      <div class="game-sub">猜正反，每局 +10 / −10 分，共 20 局。注意你下注时的情绪——这就是“单笔随机，样本稳定”的体感。</div>
+      <div style="text-align:center">
+        <div class="coin" id="coin"><div class="face a">正</div><div class="face b">反</div></div>
+      </div>
+      <div style="text-align:center;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="g-btn" onclick="coinBet(1)">押 正 +10</button>
+        <button class="g-btn" onclick="coinBet(0)">押 反 +10</button>
+        <button class="g-btn sec" onclick="coinReset()">↺ 重新开始</button>
+      </div>
+      <div class="g-stat">
+        <span class="gs">第 <b id="coinN">0</b>/20 局</span>
+        <span class="gs">当前得分 <b id="coinScore">0</b></span>
+        <span class="gs">猜中 <b id="coinHit">0</b></span>
+      </div>
+      <div class="feedback" id="coinFb">每一局都是 50/50 随机——但连续 20 局后，你还能保持平静吗？</div>
+    </div>
+
+    <div class="card card-soft">
+      <h3 class="act-title-s" style="margin-top:0">概率思考的两个层次</h3>
+      <p style="color:var(--tx2)">根据概率思考，需要同时相信两个看似冲突的层次：</p>
+      <ul class="points">
+        <li><b>个体层次</b><span class="why">每一手牌/每一笔交易的结果都不确定、无法预测。</span></li>
+        <li><b>总体层次</b><span class="why">一连串很多次的结果相当确定并可预测——确定性来自持续的优势。</span></li>
+      </ul>
+    </div>
+
+    <div class="vid">
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1QFKVzHEC6&page=1&high_quality=1&danmaku=0" loading="lazy" allowfullscreen></iframe>
+      <div class="vid-caption">延伸视频：交易与赌博的区别和共同点——让概率思维为你服务</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 幕 7：信念的力量（锁定） ===== -->
+<section class="act" id="a7">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">7</div>
+      <div>
+        <h2 class="act-title">信念的力量</h2>
+        <span class="act-tag">VIP · 完整解锁后畅读</span>
+      </div>
+    </div>
+    <p class="act-sub">信念是“已经变成事实的能量”，它控制你和市场互动的每一个层面——从认知、决定、行动，到你对结果的感觉。</p>
+
+    <div class="duo">
+      <div class="duo-txt">
+        <h3 class="act-title-s">信念如何塑造认知</h3>
+        <p style="color:var(--tx2)">一般交易者不了解自己需要哪种信念机制。最有效的信念是<b style="color:var(--gold2)">“任何事情都可能发生”</b>——它除了正确无误，还会成为建立其他赢家信念的坚强基础。</p>
+        <ul class="points">
+          <li><b>信念起源</b><span class="why">来自成长经验、社会教化与自我认同——很多错误信念在童年就埋下了。</span></li>
+          <li><b>信念与事实</b><span class="why">你相信“自己知道”，就会自动期望自己正确——这是幻想与错误的源头。</span></li>
+        </ul>
+      </div>
+      <img src="assets/art_belief.jpg" alt="信念网络">
+    </div>
+
+    <div class="quote">要我们违背自己认为正确的信念采取行动，是极为困难的事情。在某些例子中，信念的力量非常强，我们几乎不可能违背自己完整的信念做任何事情。<span class="who">—— 第 9 章</span></div>
+  </div>
+</section>
+<!-- ===== 幕 8：态度调查 · 30 题心理测评（锁定） ===== -->
+<section class="act" id="a8">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">8</div>
+      <div>
+        <h2 class="act-title">态度调查：30 题心理测评</h2>
+        <span class="act-tag">VIP · 原书附录完整量表</span>
+      </div>
+    </div>
+    <p class="act-sub">这是原书附带的 30 题态度调查表。建议先凭第一直觉答一遍，读完全书后再答一遍，对比变化。</p>
+
+    <div class="card card-soft" style="text-align:center">
+      <b style="color:var(--gold2)">作答规则</b>
+      <p style="font-size:13px;color:var(--tx2);margin-top:4px">每题选择“同意”或“不同意”。选“同意”的题目越多，说明你越接近“用确定性思维交易”的危险区——书里的输家思维倾向。</p>
+    </div>
+
+    <div id="quizBox"></div>
+
+    <div style="text-align:center;margin-top:14px">
+      <button class="g-btn" onclick="quizScore()">🧾 查看我的测评结果</button>
+    </div>
+
+    <div class="result-box" id="quizResult">
+      <div class="score-ring" id="quizRing">0<b>“同意”数（满分30）</b></div>
+      <div class="verdict" id="quizVerdict"></div>
+      <div class="verdict-d" id="quizDesc"></div>
+      <button class="g-btn sec" onclick="quizReset()" style="margin-top:12px">↺ 重新作答</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 幕 9：像交易者一样思考 · 结语（锁定） ===== -->
+<section class="act" id="a9">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="act-num">9</div>
+      <div>
+        <h2 class="act-title">像交易者一样思考 · 结语</h2>
+        <span class="act-tag">VIP · 完本</span>
+      </div>
+    </div>
+    <p class="act-sub">把前面的心法变成每天的练习。这一章，道格拉斯把赌场优势练习拆成了七个步骤。</p>
+
+    <h3 class="act-title-s">赌场优势练习 · 七个步骤</h3>
+    <div class="progress-steps" id="stepList">
+      <div class="pstep" data-s="0"><span class="st-ic">1</span> 承认自己不了解下一步会怎样，认同“任何事情都可能发生”</div>
+      <div class="pstep" data-s="1"><span class="st-ic">2</span> 承认自己不知道每笔交易会赚或亏——但知道优势会兑现</div>
+      <div class="pstep" data-s="2"><span class="st-ic">3</span> 假设你做的每一笔交易都是“错”的，以便只专注执行</div>
+      <div class="pstep" data-s="3"><span class="st-ic">4</span> 把每笔交易当作“下注”，优势是 55%：45% 或 60%：40%</div>
+      <div class="pstep" data-s="4"><span class="st-ic">5</span> 制定一套规则，让自己在每笔交易中完全客观</div>
+      <div class="pstep" data-s="5"><span class="st-ic">6</span> 用具体的信念结构，把客观态度变成习惯</div>
+      <div class="pstep" data-s="6"><span class="st-ic">7</span> 在真实交易中执行、体会，让“赢家思维”内化</div>
+    </div>
+    <div style="text-align:center;margin-top:10px">
+      <button class="g-btn" onclick="nextStep()">✅ 完成一步</button>
+      <button class="g-btn sec" onclick="resetSteps()">↺ 重置</button>
+    </div>
+
+    <div class="quote" style="margin-top:26px">长期成就却是一种心态，一旦你形成这种心态，你就不会“变成”别的样子。你不必尝试变成创造长期获利的人，因为创造长期获利会变成你认同中自然的功能。<span class="who">—— 第 11 章</span></div>
+    <button class="say-btn" onclick="speakCN('长期成就却是一种心态，一旦你形成这种心态，你就不会变成别的样子。你不必尝试变成创造长期获利的人，因为创造长期获利会变成你认同中自然的功能。')">🔊 朗读这段结语</button>
+
+    <div class="game-box" style="margin-top:26px">
+      <div class="game-title">🏆 我的读书成就</div>
+      <div class="game-sub">读完本书，你已点亮这些成就——你的积分已同步到熙祺智书平台。</div>
+      <div class="ach-row" id="achRow">
+        <div class="ach-item" data-a="read"><div class="ic">📖</div><div class="nm">完成通读</div><div class="ds">解锁全部章节</div></div>
+        <div class="ach-item" data-a="coin"><div class="ic">🪙</div><div class="nm">概率玩家</div><div class="ds">完成赌场模拟</div></div>
+        <div class="ach-item" data-a="monkey"><div class="ic">🐒</div><div class="nm">看懂上瘾</div><div class="ds">完成猴子实验</div></div>
+        <div class="ach-item" data-a="quiz"><div class="ic">🧾</div><div class="nm">直面自己</div><div class="ds">完成态度测评</div></div>
+        <div class="ach-item" data-a="steps"><div class="ic">✅</div><div class="nm">七步践行</div><div class="ds">走完练习步骤</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="text-align:center;padding:34px">
+      <h3 style="font-size:22px;color:var(--gold2)">恭喜你读完《交易心理分析》</h3>
+      <p style="color:var(--tx2);font-size:14px;margin:10px 0 20px">从今天起，把“任何事情都可能发生”挂在嘴边。市场没有亏欠你，但你可以训练自己——<b style="color:var(--gold)">像赌场一样，靠优势长期取胜</b>。</p>
+      <a class="btn btn-gold" href="#hero">↺ 回到开头再读一遍</a>
+      <a class="btn btn-ghost" href="https://the-power-of-now.pages.dev/" style="margin-left:10px">🏠 返回熙祺智书</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== 解锁墙 ===== -->
+<div class="pw" id="pw">
+  <div class="pw-box">
+    <div class="w-ic">🔒</div>
+    <div class="w-t">解锁全书 · 成为赢家</div>
+    <div class="w-d">前 2 幕免费试读，后续 8 幕为 VIP 内容。<br>解锁后：完整章节 + 全部互动游戏 + 成就积分，永久可读。</div>
+    <div class="w-price">¥9.9<small>一次解锁，永久可读 · 支持熙祺智书</small></div>
+    <button class="w-btn" onclick="buyAction()">💳 立即解锁（¥9.9）</button>
+    <div class="w-code">
+      <label>已有激活码？输入解锁：</label>
+      <input id="pwInput" placeholder="TZ-XXXXXXXX-XXXXXX" autocomplete="off">
+      <button onclick="tryUnlock()">解锁</button>
+      <div class="w-ok" id="pwOk"></div>
+    </div>
+    <details class="w-admin">
+      <summary>管理员通道</summary>
+      <label>管理员口令</label>
+      <input id="admInput" placeholder="输入管理员口令" autocomplete="off">
+      <button onclick="adminUnlock()">管理员免解锁</button>
+    </details>
+    <button class="w-x" onclick="closePw()">继续试读，稍后再解锁</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer>
+  <p><b>《交易心理分析》多媒体书</b> · 熙祺智书出品</p>
+  <p style="margin-top:6px">本多媒体书依据马克·道格拉斯《交易心理分析》制作，用于学习交流 · 支持正版图书</p>
+  <p style="margin-top:6px"><a href="https://the-power-of-now.pages.dev/">返回熙祺智书平台</a></p>
+</footer>
+
+<script>
+/* ========== 工具函数 ========== */
+function $(s){return document.querySelector(s)}
+function $$(s){return Array.from(document.querySelectorAll(s))}
+function vid(){var v=localStorage.getItem('tz_vid');if(!v){v='v-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);localStorage.setItem('tz_vid',v)}return v}
+function toast(msg){var t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on')},2600)}
+function confetti(){var colors=['#e8b94a','#f4d489','#ffffff','#5aa8e8'];for(var i=0;i<46;i++){var d=document.createElement('div');d.className='confetti';d.style.left=Math.random()*100+'vw';d.style.width=(6+Math.random()*8)+'px';d.style.height=(8+Math.random()*8)+'px';d.style.background=colors[i%4];d.style.animationDuration=(1.6+Math.random()*1.6)+'s';document.body.appendChild(d);setTimeout(function(el){el.remove()},3800,d)}}
+
+/* ========== SHA-256（同步，用于激活码/管理员口令） ========== */
+var SHA=function(){
+  function rrot(n,x,c){return (x>>>n)|(x<<(32-n))}
+  var K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  function sha256(msg){
+    var H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+    var l=msg.length, n=l+8, blk=((n+63)>>6)<<6;
+    var bytes=new Uint8Array(blk); for(var i=0;i<l;i++)bytes[i]=msg.charCodeAt(i)&0xff;
+    bytes[l]=0x80; var dv=new DataView(bytes.buffer); dv.setUint32(blk-4, l*8>>>0); dv.setUint32(blk-8, Math.floor(l*8/4294967296));
+    var w=new Int32Array(64);
+    for(var b=0;b<blk;b+=64){
+      for(var j=0;j<16;j++)w[j]=dv.getInt32(b+j*4,false);
+      for(var j=16;j<64;j++){var s0=rrot(7,w[j-15])^rrot(18,w[j-15])^(w[j-15]>>>3);var s1=rrot(17,w[j-2])^rrot(19,w[j-2])^(w[j-2]>>>10);w[j]=(w[j-16]+s0+w[j-7]+s1)|0}
+      var a=H[0],bb=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];
+      for(var j=0;j<64;j++){
+        var S1=rrot(6,e)^rrot(11,e)^rrot(25,e), ch=(e&f)^(~e&g), t1=(h+S1+ch+K[j]+w[j])|0;
+        var S0=rrot(2,a)^rrot(13,a)^rrot(22,a), maj=(a&bb)^(a&c)^(bb&c), t2=(S0+maj)|0;
+        h=g;g=f;f=e;e=(d+t1)|0;d=c;c=bb;bb=a;a=(t1+t2)|0;
+      }
+      H[0]=(H[0]+a)|0;H[1]=(H[1]+bb)|0;H[2]=(H[2]+c)|0;H[3]=(H[3]+d)|0;H[4]=(H[4]+e)|0;H[5]=(H[5]+f)|0;H[6]=(H[6]+g)|0;H[7]=(H[7]+h)|0;
+    }
+    var hex='';
+    for(var i=0;i<8;i++){var v=H[i]>>>0;hex+=('00000000'+v.toString(16)).slice(-8)}
+    return hex;
+  }
+  return {hex:sha256};
+}();
+function sha256Sync(s){return SHA.hex(s)}
+
+/* ========== 埋点 v2 ========== */
+var API='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track';
+function track(ev,extra){
+  try{
+    var p={book:'tradingzone',event:ev,visitorId:vid(),ts:Date.now(),t:new Date().toISOString(),extra:extra||{}};
+    var body=JSON.stringify(p);
+    if(navigator.sendBeacon){navigator.sendBeacon(API,new Blob([body],{type:'application/json'}));return}
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:body,mode:'no-cors'}).catch(function(){});
+    var i=new Image();i.src=API+'?d='+encodeURIComponent(body.slice(0,1800));
+  }catch(e){}
+}
+
+/* ========== 积分 ========== */
+function getPoints(){return parseInt(localStorage.getItem('tz_points')||'0',10)}
+function setPoints(v){localStorage.setItem('tz_points',String(v));$('#coinChip').textContent='⭐ '+v}
+function addPoints(n,why){var v=getPoints()+n;setPoints(v);toast('⭐ 积分 +'+n+'（'+why+'）');track('points',{delta:n,reason:why,total:v})}
+
+/* ========== 解锁 ========== */
+var UNLOCK_KEY='tz_unlock';
+var ADMIN_HASH_PREFIX='325FA149';
+var SECRET='xiqi_tradingzone_2026_sw';
+function isUnlocked(){return localStorage.getItem(UNLOCK_KEY)==='1'}
+function unlockAll(){
+  localStorage.setItem(UNLOCK_KEY,'1');
+  $$('section.locked').forEach(function(s){s.classList.remove('locked');var c=s.querySelector('.lock-cover');if(c)c.remove()});
+  $$('#toc .toc-i').forEach(function(i){i.classList.remove('lock')});
+  $('.ach-item[data-a="read"]').classList.add('on');
+  track('unlock',{});
+}
+function lockSections(){
+  var ids=['a2','a3','a4','a5','a6','a7','a8','a9'];
+  ids.forEach(function(id){
+    var s=document.getElementById(id);if(!s)return;
+    s.classList.add('locked');
+    var cover=document.createElement('div');cover.className='lock-cover';
+    cover.innerHTML='<div class="lc-in"><div class="lc-ic">🔒</div><div class="lc-t">VIP 专属章节</div><div class="lc-s">解锁后即可畅读全文，参与全部互动游戏并累计积分。</div><div class="lc-p">¥9.9<small>一次解锁 · 永久可读</small></div><button class="lc-b" onclick="openPw()">立即解锁</button></div>';
+    s.appendChild(cover);
+  });
+  $$('#toc .toc-i').forEach(function(i){if(ids.indexOf(i.getAttribute('data-to'))>=0)i.classList.add('lock')});
+}
+function goM(id){
+  var el=document.getElementById(id);if(!el)return;
+  el.scrollIntoView({behavior:'smooth'});
+  if(!isUnlocked()&&el.classList.contains('locked')){setTimeout(openPw,450)}
+}
+function openPw(){$('#pw').classList.add('on');$('#pwInput').focus();track('lockwall_view',{})}
+function closePw(){$('#pw').classList.remove('on')}
+function tryUnlock(){
+  var code=($('#pwInput').value||'').trim().toUpperCase();var ok=$('#pwOk');
+  if(!/^TZ-[0-9A-Z]{8}-[0-9A-Z]{6}$/.test(code)){ok.style.color='#e05a5a';ok.textContent='格式不对：应为 TZ-XXXXXXXX-XXXXXX';return}
+  var payload=code.slice(3);var sig=sha256Sync(payload+SECRET).slice(0,6).toUpperCase();
+  if(sig===code.slice(-6)){ok.style.color='#4fbf8f';ok.textContent='解锁成功！正在为你开启全书…';setTimeout(function(){unlockAll();closePw();addPoints(20,'解锁全书');confetti();toast('🎉 全书已解锁，开始赢家之旅！')},600)}
+  else{ok.style.color='#e05a5a';ok.textContent='激活码无效，请检查后重试'}
+}
+function adminUnlock(){
+  var v=($('#admInput').value||'').trim();
+  if(sha256Sync(v).toUpperCase().slice(0,8)===ADMIN_HASH_PREFIX){
+    unlockAll();closePw();toast('✅ 管理员免解锁成功');track('admin_unlock',{});
+  }else{toast('管理员口令错误')}
+}
+function buyAction(){
+  track('buy_click',{});
+  toast('💳 暂未开通在线支付：请联系平台管理员获取激活码');
+  $('#pwInput').focus();
+}
+
+/* ========== 朗读 ========== */
+function speakCN(txt){
+  try{
+    if(!('speechSynthesis' in window)){toast('当前浏览器不支持朗读');return}
+    speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(txt);u.lang='zh-CN';u.rate=0.95;
+    speechSynthesis.speak(u);
+  }catch(e){toast('朗读启动失败')}
+}
+
+/* ========== 顶部/导航 ========== */
+$('#nightBtn').onclick=function(){document.body.classList.toggle('night');this.textContent=document.body.classList.contains('night')?'☀️ 日间':'🌙 夜间'};
+$('#tocBtn').onclick=function(){$('#toc').classList.toggle('open')};
+$$('#toc .toc-i').forEach(function(i){i.onclick=function(){$('#toc').classList.remove('open');goM(i.getAttribute('data-to'))}});
+window.addEventListener('scroll',function(){
+  var h=document.documentElement.scrollHeight-innerHeight;
+  $('#progressBar').style.width=(h>0?(scrollY/h*100):0)+'%';
+  if(scrollY>600){var t=$$('section.act');var cur=null;
+    t.forEach(function(s){if(s.getBoundingClientRect().top<innerHeight*0.5)cur=s.id});
+    if(cur&&cur!==track._last){track('chapter_read',{chapter:cur});track._last=cur}
+  }
+},{passive:true});
+
+/* ========== 幕0：恐惧测试 ========== */
+var FEARS=['😱 犯错','💸 亏损','😰 错过机会','😤 赚不到钱'];
+var FEAR_TIPS=[
+  '恐惧错误 → 书里的解法：把每一笔交易都假设为“错误的”，你才能只专注于执行，而不是证明自己正确。',
+  '恐惧亏损 → 接受“盈亏随机分布”，你的焦点应从单笔结果转移到优势的长期兑现。',
+  '恐惧错过机会 → 5 大事实第 2 条：要赚钱不必知道下一步。机会永远都有，市场不会消失。',
+  '恐惧赚不到钱 → 建立“自我价值与交易结果脱钩”的信念：你不是你的账户。'
+];
+function fearPick(i){
+  $$('#a0 .quiz-q .opt-btn').forEach(function(b){b.classList.remove('on')});
+  event.target.classList.add('on');
+  var fb=$('#fearFb');fb.className='feedback good';fb.textContent=FEAR_TIPS[i];
+  addPoints(5,'完成恐惧自测');track('fear_test',{pick:i});
+}
+
+/* ========== 幕1：心理落差滑块 ========== */
+$('#gapRange').addEventListener('input',function(){
+  var v=+this.value;var fb=$('#gapFb');fb.className='feedback info';
+  if(v<30)fb.textContent='当前：落差较小（'+v+'%）——你已经跨过一大半的门坎，继续保持。';
+  else if(v<70)fb.textContent='当前：落差中等（'+v+'%）——你常看对方向，但执行和信心还在摇摆。';
+  else fb.textContent='当前：落差很大（'+v+'%）——恭喜你，这正是这本书要解决的问题。';
+});
+$('#gapRange').addEventListener('change',function(){addPoints(5,'完成落差自测');track('gap_test',{v:+this.value})});
+/* ========== 幕2：猴子随机报酬游戏 ========== */
+var mk={n:0,w:0,last:null,times:[]};
+function monkeyTap(){
+  mk.n++;
+  var win=Math.random()<0.25;mk.times.push(win);
+  if(win)mk.w++;
+  $('#mkN').textContent=mk.n;$('#mkW').textContent=mk.w;
+  $('#mkR').textContent=Math.round(mk.w/mk.n*100)+'%';
+  var fb=$('#mkFb');
+  if(win){fb.className='feedback good';fb.textContent='🍌 获得奖励！金币 +1 —— 啊，这种感觉真好，再来一次？'}
+  else{
+    fb.className='feedback bad';
+    var msgs=['什么都没有……也许下一次就有？','没中。但上次明明有奖励啊，再试试？','空空如也。你发现自己停不下来了吗？'];
+    fb.textContent=msgs[mk.n%3];
+  }
+  if(mk.n>=15&&!mk._ach){mk._ach=true;$('.ach-item[data-a="monkey"]').classList.add('on');addPoints(10,'看懂随机报酬');track('monkey_ach',{})}
+  if(mk.n===20){fb.className='feedback info';fb.textContent='你已经按了 20 次。这就是随机报酬的魔力——赌场和交易市场都在利用它。';}
+  track('monkey_tap',{n:mk.n,win:win});
+}
+
+/* ========== 幕3：归因测试 ========== */
+var ATTR=[
+  {q:'我刚止损出场，价格立刻反弹。我的第一反应是？',a:'市场在针对我',b:'我的进场/出场标准当时该执行'},
+  {q:'连续亏了三笔后，我决定：',a:'明天必须加倍赚回来',b:'检查是否优势仍在，按计划继续'},
+  {q:'一笔大赚之后，我觉得：',a:'我已经摸透市场了',b:'这次只是优势兑现，继续保持纪律'},
+  {q:'看到别人晒单暴赚，我：',a:'感觉被市场抛弃，赶紧追进去',b:'那不在我的优势定义内，不关我的事'},
+  {q:'错过一波大行情，我怪：',a:'市场不给机会',b:'我没有坚持自己的计划'},
+  {q:'账户回撤 20%，我觉得：',a:'市场在惩罚我',b:'这是我的风险/仓位管理问题'}
+];
+var attrA=[];
+(function(){
+  var h='';
+  ATTR.forEach(function(it,i){
+    h+='<div class="quiz-q"><div class="q-t"><span class="qn">场景'+(i+1)+'</span>'+it.q+'</div><div class="opts">'+
+       '<button class="opt-btn" onclick="attrPick('+i+',0)">A. '+it.a+'</button>'+
+       '<button class="opt-btn" onclick="attrPick('+i+',1)">B. '+it.b+'</button></div></div>';
+  });
+  $('#attrQuiz').innerHTML=h;
+})();
+function attrPick(i,v){
+  attrA[i]=v;
+  $$('#attrQuiz .quiz-q').forEach(function(q,qi){if(qi===i)$$('.opt-btn',q).forEach(function(b,bi){b.classList.toggle('on',bi===v)})});
+}
+function attrScore(){
+  if(!attrA.length||attrA.filter(function(v){return v===undefined}).length>0){toast('请先把 6 个场景都选完');return}
+  var s=attrA.filter(function(v){return v===1}).length;
+  var ring=$('#attrRing');ring.textContent=s;ring.style.borderColor=s>=4?'rgba(79,191,143,.5)':'rgba(224,90,90,.45)';
+  var v=$('#attrVerdict'),d=$('#attrDesc');
+  if(s<=2){v.textContent='外部归因型——你还在“怪市场”';d.textContent='你把结果归咎于市场、运气和别人，就永远学不会控制自己。道格拉斯说：市场只是镜子，你要为镜子里的自己负责。'}
+  else if(s<=4){v.textContent='摇摆型——一半靠市场，一半靠自己';d.textContent='你开始意识到问题在自己，但情绪一上来还是会投射给市场。第 1 步：切实负责，不再期望市场白白送你什么东西。'}
+  else{v.textContent='自我负责型——你已经走在赢家路上';d.textContent='你明白亏损和错过都源于自己的决策，这种态度正是“像赌场一样思考”的基础。'}
+  $('#attrResult').classList.add('show');addPoints(8,'完成归因测试');track('attr_test',{score:s});
+}
+
+/* ========== 幕4：接受风险判断题 ========== */
+function riskPick(i){
+  $$('#a4 .quiz-q .opt-btn').forEach(function(b){b.classList.remove('on')});
+  event.target.classList.add('on');
+  var fb=$('#riskFb');
+  if(i===0){fb.className='feedback bad';fb.textContent='❌ 不完全对。把所有风险分析到“最低”再进场，恰恰是“需要知道下一步”的思维。'}
+  else{fb.className='feedback good';fb.textContent='✅ 正确！接受风险 = 承认每笔结果不确定，但仍专注执行你的优势。这正是概率思维。';addPoints(5,'答对判断题')}
+}
+
+/* ========== 幕5：5大事实翻转卡 ========== */
+function flipFact(i){
+  var c=$$('.fact-card')[i];c.classList.toggle('flip');
+  if(!flipFact._n){flipFact._n=1;addPoints(5,'翻开5大事实');track('fact_flip',{})}
+}
+
+/* ========== 幕6：赌场优势模拟器 ========== */
+var casinoDone=false;
+function runCasino(again){
+  var N=1000,pHouse=0.5225,pPlayer=0.5;
+  var hArr=[0],pArr=[0],h=0,p=0;
+  for(var i=1;i<=N;i++){
+    h+=Math.random()<pHouse?1:-1;
+    p+=Math.random()<pPlayer?1:-1;
+    hArr.push(h);pArr.push(p);
+  }
+  drawCasino(hArr,pArr);
+  var fb=$('#casinoFb');fb.className='feedback good';
+  fb.innerHTML='模拟完成：赌场最终 <b style="color:var(--gold)">+'+(h>0?'+':'')+h+'</b>，赌客 <b style="color:var(--blue)">'+(p>0?'+':'')+p+'</b>。<br>单笔全是随机，但 4.5% 的优势在 1000 次后几乎必然胜出——这就是“样本够大，随机变必然”。';
+  if(!casinoDone){casinoDone=true;$('.ach-item[data-a="coin"]').classList.add('on');addPoints(10,'完成赌场模拟');track('casino_done',{})}
+  track('casino_run',{});
+}
+function drawCasino(hArr,pArr){
+  var c=$('#casinoChart');var ctx=c.getContext('2d');
+  var W=c.width=c.clientWidth*devicePixelRatio,H=c.height=240*devicePixelRatio;
+  ctx.scale(devicePixelRatio,devicePixelRatio);
+  c.style.height='240px';c.width=W;c.height=H; // 重置后重设
+  var w=c.clientWidth,h=240;
+  var max=Math.max.apply(null,hArr.concat(pArr).map(function(v){return Math.abs(v)}))*1.15||100;
+  function line(arr,col){
+    ctx.beginPath();ctx.strokeStyle=col;ctx.lineWidth=2;ctx.lineJoin='round';
+    for(var i=0;i<arr.length;i++){
+      var x=i/(arr.length-1)*w,y=h/2-arr[i]/max*(h/2-10);
+      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.stroke();
+  }
+  ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle='rgba(159,176,201,.25)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(0,h/2);ctx.lineTo(w,h/2);ctx.stroke();
+  line(pArr,'#5aa8e8');line(hArr,'#e8b94a');
+}
+
+/* ========== 幕6：掷硬币 ========== */
+var coin={n:0,score:0,hit:0,over:false};
+function coinBet(side){
+  if(coin.over){toast('20 局已完成，点“重新开始”再来一轮');return}
+  var r=Math.random()<0.5?1:0;
+  var c=$('#coin');c.classList.remove('spin');void c.offsetWidth;c.classList.add('spin');
+  coin.n++;coin.score+=(r===side?10:-10);if(r===side)coin.hit++;
+  $('#coinN').textContent=coin.n;$('#coinScore').textContent=coin.score;$('#coinHit').textContent=coin.hit;
+  var fb=$('#coinFb');
+  setTimeout(function(){
+    fb.className=r===side?'feedback good':'feedback bad';
+    fb.textContent=(r===side?'✅ 猜中了！':'❌ 没猜中。')+' 单次结果完全随机——注意你现在的情绪，这就是交易中“盯着单笔”的感觉。';
+    if(coin.n>=20){
+      coin.over=true;fb.className='feedback info';
+      fb.textContent='20 局结束：猜中 '+coin.hit+' 次，得分 '+coin.score+'。赢的次数接近 50% 对吗？但你的情绪波动远大于数字——这就是概率思维要训练的。';
+      addPoints(8,'完成掷硬币');track('coin_done',{score:coin.score});
+    }
+  },360);
+}
+function coinReset(){coin={n:0,score:0,hit:0,over:false};$('#coinN').textContent=0;$('#coinScore').textContent=0;$('#coinHit').textContent=0;var fb=$('#coinFb');fb.className='feedback';fb.textContent='每一局都是 50/50 随机——但连续 20 局后，你还能保持平静吗？'}
+
+/* ========== 幕3：资产曲线图 ========== */
+function drawCurves(){
+  var c=$('#curveChart');if(!c)return;
+  var ctx=c.getContext('2d');var w=c.clientWidth||800,h=260;
+  c.width=w;c.height=h;
+  ctx.clearRect(0,0,w,h);
+  ctx.font='11px sans-serif';ctx.fillStyle='#5f7394';
+  var n=120;
+  function mk(seed,f){var out=[1],v=1;for(var i=1;i<=n;i++){v=f(v,i,seed);out.push(Math.max(0.05,v))}return out}
+  var win=mk(0,function(v,i){return v*(1+0.006+Math.sin(i/9)*0.002)});
+  var lose=mk(1,function(v,i){return v*(1-0.011+Math.sin(i/13)*0.003)});
+  var boom=mk(2,function(v,i){var ph=i/9;return v*(1+0.05*Math.sin(ph)*Math.abs(Math.sin(ph))+0.004*Math.sin(i*1.7))});
+  function line(arr,col){
+    ctx.beginPath();ctx.strokeStyle=col;ctx.lineWidth=2;
+    for(var i=0;i<arr.length;i++){
+      var x=i/(arr.length-1)*w;
+      var mx=Math.max(win[0],lose[0],boom[0]);
+      var y=h-10-(arr[i]/mx)*(h-26);
+      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.stroke();
+  }
+  ctx.strokeStyle='rgba(159,176,201,.2)';ctx.beginPath();ctx.moveTo(0,h-10);ctx.lineTo(w,h-10);ctx.stroke();
+  line(win,'#4fbf8f');line(lose,'#e05a5a');line(boom,'#e8b94a');
+}
+/* ========== 幕8：态度调查 30 题（原书附录原文） ========== */
+var QUIZ=[
+  {t:'从事交易要获利，你必须知道市场的下一步走势。',g:0},
+  {t:'有时候，我认为一定有一种方法可以进行交易，却不必认赔。',g:0},
+  {t:'从事交易赚钱是分析的主要功能。',g:0},
+  {t:'亏损是交易中不可避免的一环。',g:1},
+  {t:'进行交易前，风险已经确定。',g:1},
+  {t:'我认为要看出市场下一步的可能走势，总是需要成本。',g:0},
+  {t:'如果我不确定下一次交易会不会赚钱，我甚至不会开始交易。',g:0},
+  {t:'交易者越了解市场和市场行为，交易起来越轻松。',g:0},
+  {t:'我的方法正确地告诉我在什么市场状况下，应该进行交易或结束交易。',g:0},
+  {t:'即使我看到应该反向操作的明确信号，实际做起来还是极为困难。',g:0},
+  {t:'我的资金曲线总是在一段时间保持持续上涨之后就会急剧下跌。',g:0},
+  {t:'最早开始交易时，我的交易方法是随意而偶然的，也就是说经历很多痛苦后偶尔会成功。',g:0},
+  {t:'我经常觉得市场跟我作对。',g:0},
+  {t:'我虽然努力“忘记”，却发现自己很难忘掉过去的情感伤口。',g:0},
+  {t:'我的资金控管哲学的基本原则是在市况允许时，把一部分资金从市场中抽出来。',g:1},
+  {t:'交易者的任务是看出代表机会的市场行为形态，再了解这种形态会不会像过去一样发展，据以判断风险的高低。',g:0},
+  {t:'我有时就是忍不住觉得自己受到市场伤害。',g:0},
+  {t:'交易时，我通常会设法专注一种时间架构。',g:1},
+  {t:'交易要成功，需要的心理弹性远超过大部分人的能力范围。',g:0},
+  {t:'有时我可以明确感觉市场的流动状况，但是我经常很难根据这种感觉采取行动。',g:0},
+  {t:'我经常在交易处于获利状态时，知道波动基本上已经结束，却仍然不愿意获利了结。',g:0},
+  {t:'不管我一次交易赚多少钱，却很少觉得满足，认为自己应该可以赚更多钱。',g:0},
+  {t:'进行交易时，我感觉自己抱着积极的态度，也积极地预期会从交易中赚到很多钱。',g:0},
+  {t:'交易者长期赚钱的能力中，最重要的因素是持续能力。',g:1},
+  {t:'我经常因为担心市场状况而失眠。',g:0},
+  {t:'你是否曾经觉得自己因为担心错过机会而被迫进行交易？',g:0},
+  {t:'我的确希望自己的交易完美无缺，只是这种情形不常发生。当我做出完美的交易时感觉非常好，弥补了所有不完美交易的缺憾。',g:0},
+  {t:'你是否发现自己曾经规划过一些交易却从来没有进行，你是否也发现自己进行根本没有规划过的交易？',g:0}
+];
+var quizA=[];
+(function(){
+  var h='';
+  QUIZ.forEach(function(it,i){
+    h+='<div class="quiz-q"><div class="q-t"><span class="qn">'+(i+1)+'</span>'+it.t+'</div><div class="opts">'+
+       '<button class="opt-btn" onclick="quizPick('+i+',1)">同意</button>'+
+       '<button class="opt-btn" onclick="quizPick('+i+',0)">不同意</button></div></div>';
+  });
+  $('#quizBox').innerHTML=h+'<div style="font-size:12px;color:var(--tx3);margin-top:8px">原书第 25、30 题为开放回答题（“想学会哪种技巧”/“为什么多数人赚不到或保不住钱”），不计入二选一统计。</div>';
+})();
+function quizPick(i,v){
+  quizA[i]=v;
+  $$('#quizBox .quiz-q').forEach(function(q,qi){if(qi===i)$$('.opt-btn',q).forEach(function(b,bi){b.classList.toggle('on',bi===(v?0:1))})});
+}
+function quizScore(){
+  if(!quizA.length||quizA.filter(function(v){return v===undefined}).length>0){toast('请先完成全部 28 道题');return}
+  var s=0;
+  QUIZ.forEach(function(it,i){
+    // 赢家应答：正向题同意(1)、反向题不同意(0)
+    if((it.g===1&&quizA[i]===1)||(it.g===0&&quizA[i]===0))s++;
+  });
+  var ring=$('#quizRing');ring.textContent=s+'/28';
+  ring.style.borderColor=s>=20?'rgba(79,191,143,.5)':(s>=12?'rgba(232,185,74,.5)':'rgba(224,90,90,.45)');
+  var v=$('#quizVerdict'),d=$('#quizDesc');
+  if(s>=20){v.textContent='赢家思维明显——你已在用概率思考';d.textContent='你的信念结构与长期赢家接近。下一课：把态度变成习惯，在真实交易中保持一贯。'}
+  else if(s>=12){v.textContent='摇摆期——你一半是分析师，一半是交易者';d.textContent='你的“知道”和“做到”之间还有落差。建议对照本书第 5-7 章，重新审视你对确定性的需要。'}
+  else{v.textContent='输家思维占上风——但你能读完到这里，已经赢了第一步';d.textContent='你仍然需要“知道下一步”才能行动，恐惧主导了决策。建议回到第 1 章，把“任何事情都可能发生”背下来。'}
+  $('#quizResult').classList.add('show');
+  $('.ach-item[data-a="quiz"]').classList.add('on');setAch('quiz');
+  addPoints(10,'完成态度测评');track('quiz_done',{score:s,total:28});
+}
+function quizReset(){quizA=[];$$('#quizBox .quiz-q .opt-btn').forEach(function(b){b.classList.remove('on')});$('#quizResult').classList.remove('show')}
+
+/* ========== 幕9：七步练习 ========== */
+var stepN=0;
+function nextStep(){
+  var list=$$('#stepList .pstep');
+  if(stepN>=list.length){toast('七步已全部完成——把它带进真实交易中体会吧');return}
+  list[stepN].classList.add('done');stepN++;
+  if(stepN>=list.length){$('.ach-item[data-a="steps"]').classList.add('on');setAch('steps');addPoints(12,'走完七步练习');confetti();track('steps_done',{})}
+}
+function resetSteps(){stepN=0;$$('#stepList .pstep').forEach(function(s){s.classList.remove('done')})}
+
+/* ========== 成就持久化 ========== */
+function setAch(k){var ach=JSON.parse(localStorage.getItem('tz_ach')||'{}');ach[k]=1;localStorage.setItem('tz_ach',JSON.stringify(ach))}
+
+/* ========== 初始化 ========== */
+(function(){
+  setPoints(getPoints());
+  if(!localStorage.getItem('tz_visited')){localStorage.setItem('tz_visited','1');addPoints(10,'新读者见面礼')}
+  if(isUnlocked()){unlockAll();setAch('read')}else{lockSections()}
+  drawCurves();
+  var ach=JSON.parse(localStorage.getItem('tz_ach')||'{}');
+  Object.keys(ach).forEach(function(k){var el=$('.ach-item[data-a="'+k+'"]');if(el)el.classList.add('on')});
+  track('view',{referrer:document.referrer||''});
+})();
+</script>
+</body>
+</html>
