@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30年后，你拿什么养活自己 · 高得诚 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#0a1020; --bg2:#1a2440; --card:#121a30; --line:#2c3a5c;
+    --tx:#eef2ff; --sub:#c3cdee; --dim:#7e8bb5;
+    --gold:#ffd166; --green:#4ade80; --red:#ff6b5e; --blue:#5ea2ff; --purple:#c084fc; --teal:#5eead4;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#080d1c 0%,#1a2440 45%,#0a1020 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.75;overflow-x:hidden}
+  .wrap{max-width:880px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(255,209,102,.12),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(94,162,255,.07),transparent 60%)}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(8,13,28,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#ffd166,#f59e0b);color:#1a1205;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,209,102,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--gold)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(24px,6vw,38px);margin:14px 0 6px;color:var(--gold);letter-spacing:3px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:3px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:660px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(255,209,102,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#1a2440;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,107,94,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);margin-bottom:10px}
+  .learn-loop{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+  .learn-loop span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--dim)}
+  .learn-loop span.on{color:var(--green);border-color:rgba(74,222,128,.5)}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(255,209,102,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
+  .chap .cnt .focus{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.25);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;color:var(--teal)}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,32,0),rgba(10,16,32,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#080d1c;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#1a2440,#121a30);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(74,222,128,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,107,94,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#080d1c;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ffd166,#4ade80);border-radius:999px;transition:width .5s}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(255,209,102,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(74,222,128,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(74,222,128,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#080d1c}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#080d1c;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,209,102,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(4,6,12,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#1a2440,#121a30);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#080d1c;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(255,209,102,.06);border:1px solid rgba(255,209,102,.22);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .mini-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  .mini-table th,.mini-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  .mini-table th{background:#1a2440;color:var(--gold)}
+  .egg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .egg-grid button{background:linear-gradient(145deg,#ffd166,#f59e0b);border:none;border-radius:50%;aspect-ratio:1;font-size:22px;cursor:pointer;transition:transform .15s}
+  .egg-grid button:active{transform:scale(.9)}
+  .egg-grid button.used{opacity:.25;cursor:default}
+  .slider{width:100%;margin:10px 0;accent-color:var(--gold)}
+  .stat-line{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .stat{flex:1;min-width:110px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+  .stat b{display:block;font-size:22px;color:var(--gold)}
+  .stat span{font-size:12px;color:var(--dim)}
+  .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+  .card-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px;cursor:pointer;transition:all .25s}
+  .card-item:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .card-item.picked{border-color:var(--green);background:rgba(74,222,128,.1)}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(2,1fr)}.pair-grid{grid-template-columns:1fr}.egg-grid{grid-template-columns:repeat(4,1fr)}.card-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">🏝️ 30年后，你拿什么养活自己<small>高得诚 等</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock" onclick="openUnlock()">🔓 解锁</button>
+    <button class="btn sm" onclick="goRead()">开始学习 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">韩国畅销 200 万册 · 养老规划必读经典</div>
+    <h1>30年后，你拿什么养活自己</h1>
+    <div class="tag">
+      <span>高得诚 等著</span><span>重印 170 次</span><span>养老规划第一课</span><span>越早开始越从容</span>
+    </div>
+    <p class="lead">30 年后，你会老。到那时，退休金可能只够温饱，孩子有自己的人生要扛，<b>能依靠的，只有现在这个年轻的你。</b>这本书用一个普通人的一生算了一笔账：收入曲线在退休后断崖式下跌，支出却不会消失——缺口，只能靠今天的储蓄、复利和规划去填。<b>看完这本书你会发现：养老不是老了才想的事，而是越早开始，越轻松的事。</b></p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🧭 开启养老规划</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 学点音乐</button>
+    </div>
+    <div class="tip">💡 本书按「理解 → 记忆 → 联想 → 练习」四步闭环学习法设计：把养老规划拆成 11 节精讲，每节配互动游戏，共 15 个互动模块 + 14 枚徽章。<b>读完这本，你会拿到一套属于自己的养老金启动计划。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 7 节免费试读。付费解锁后可读完整 11 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🏝️ 30年后，你拿什么养活自己 · 熙祺智书出品<br>高得诚等著 · 多媒体互动版 · 内容仅供学习交流，不构成投资建议</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 4 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='pension';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var TOTAL=11, FREE=7;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'30 年后，你拿什么养活自己',free:1,icon:'🏝️',art:'art_cover.jpg',cap:'养老不是老了才想的事，而是越早开始，越轻松的事。',
+  learn:['理解'],
+  p:[['先回答一个问题：','30 年后你退休了，','退休金每月能领多少？','够不够你现在的开销？'],
+     ['作者请一位普通职员','算了一笔一生的账，','结果把他吓出一身冷汗：','退休后收入断崖式下跌，','但生活成本几乎不会降。'],
+     ['大多数人的一生收支曲线，','像一个倒扣的碗：','年轻时赚钱少，','中年赚钱多，','退休后收入骤减——','而支出却贯穿一生。'],
+     ['这本书要做的，','就是带你把这条曲线画出来，','看清缺口，','然后从今天开始，','一块钱一块钱地把它填平。'],
+     ['记住这句话：','<b>养老的钱，','永远不应该靠别人，','只应该靠 30 年前的自己。</b>']]},
+ {n:'第一章',t:'算一笔账：你一生的钱够花吗',free:1,icon:'🧮',art:'art_budget.jpg',cap:'把一生的收支曲线画出来，你才会真正看见缺口。',
+  learn:['理解','记忆'],
+  p:[['作者给了每个读者','一套「人生账本」：','收入、支出、储蓄、负债，','四个格子，','把一生填进去。'],
+     ['核心发现：','大多数人的退休金替代率','只有 40% 左右，','而国际标准认为','维持体面生活','至少需要 70%。'],
+     ['也就是说：','退休后你的生活质量','可能要打六折。','你想买的东西、想去的旅行、','想看的病，','都可能要省着来。'],
+     ['更扎心的是：','很多人以为自己有社保就够了，','但社保只能保「基础温饱」，','保不了「体面生活」。'],
+     ['所以第一步：','算一算你退休后','每月需要多少钱，','缺口有多大。','看得见缺口，','才有动力去填。']]},
+ {n:'第二章',t:'时间是最好的朋友：越早越轻松',free:1,icon:'⏰',art:'art_early.jpg',cap:'同样 100 万，25 岁开始存和 35 岁开始存，付出的本金完全不同。',
+  learn:['理解','联想'],
+  p:[['想象两棵树：','25 岁种下的那棵，','30 年后已是参天大树；','35 岁种下的那棵，','还只是棵小树苗。'],
+     ['存钱也是一样：','同样想在 60 岁拥有 300 万，','25 岁开始，','每月只需存 1500 元左右；','35 岁开始，','每月要存近 4000 元；','45 岁开始，','每月要存 1 万多元。'],
+     ['这就是时间的杠杆：','<b>早开始 10 年，','轻松不止 10 倍。</b>','年轻时觉得「没钱可存」，','其实是最大的错觉——','现在的一杯奶茶、一次冲动消费，','都是 30 年后','几杯奶茶的价格。'],
+     ['「理财的第一原则：','不是赚多少，','而是多早开始。」','种树最好的时间是十年前，','其次是现在。']]},
+ {n:'第三章',t:'复利：让你的钱替你打工',free:1,icon:'❄️',art:'art_compound.jpg',cap:'复利是世界第八大奇迹。谁理解了它，谁就理解了财富的真相。',
+  learn:['理解','记忆','练习'],
+  p:[['爱因斯坦说，','复利是「世界第八大奇迹」。','它的威力在于：','利息再生利息，','钱开始自己滚雪球。'],
+     ['举例：','每月存 2000 元，','年化 6%，','30 年后是多少？','本金只有 72 万，','但加上复利，','大约是 200 万。'],
+     ['而年化收益率差 1%，','30 年后的差距可能','超过 50 万。','这就是为什么','时间 + 收益率 + 本金，','三个要素里','至少要占住两个。'],
+     ['72 法则：','本金翻倍年数 = 72 ÷ 年化收益率。','年化 6%，12 年翻倍；','年化 8%，9 年翻倍。','你越早开始，','翻倍的次数就越多。'],
+     ['「不要小看每月存下的','那笔小钱，','它在复利手里，','会长成你未来的底气。」']]},
+ {n:'第四章',t:'通胀：偷走购买力的贼',free:1,icon:'🦁',art:'art_inflation.jpg',cap:'今天的 100 元，30 年后可能只值三四十元。通胀，是养老最大的敌人之一。',
+  learn:['理解','记忆'],
+  p:[['想象一只穿西装的老虎，','悄悄叼走你钱包里的钱——','它就是通胀。','每年 3% 的通胀，','看似不多，','30 年却能吞掉','约六成的购买力。'],
+     ['今天的 100 元，','30 年后只值','40 元左右。','如果你只把钱','存在活期里，','它每天都在「瘦身」。'],
+     ['对抗通胀只有一个办法：','让钱的收益率','跑赢通胀。','这就是为什么','纯储蓄不够，','还要学会投资。'],
+     ['「存款是你的安全垫，','投资是你的增长引擎，','两者缺一不可。」','对抗通胀，','从来不是靠省钱，','而是靠让钱生钱。']]},
+ {n:'第五章',t:'攒三笔钱：退休金、应急金、梦想金',free:1,icon:'🏺',art:'art_threejars.jpg',cap:'把钱分进三个罐子，养老、保命、圆梦，各就各位。',
+  learn:['理解','练习'],
+  p:[['书里给了普通人','最好用的储蓄框架：','三笔钱，三个罐子。'],
+     ['<b>第一罐：退休金。</b>','每月固定存入，','专款专用，','雷打不动——','这是你 30 年后','吃饭的钱。'],
+     ['<b>第二罐：应急金。</b>','存够 6~12 个月开销，','应对失业、生病、意外——','这笔钱让你','在意外来临时','不必低头借钱。'],
+     ['<b>第三罐：梦想金。</b>','旅行、换房、进修、','给孩子支持——','人生不能只有生存，','还要有盼头。'],
+     ['三个罐子','按顺序优先：','先保底，再应急，','最后才谈梦想。','分清楚这三笔钱，','你的钱就有了「分工」，','不再是一团乱麻。']]},
+ {n:'第六章',t:'资产配置：别把鸡蛋放在一个篮子',free:1,icon:'🥚',art:'art_allocate.jpg',cap:'没有人能预测未来，所以我们要用配置，而不是预测来应对未来。',
+  learn:['理解','联想'],
+  p:[['一个鸡蛋篮子','和多个鸡蛋篮子，','哪个更安全？','答案显而易见——','但现实中，','很多人把全部积蓄','押进了一只股票、','一套房子、','甚至一个高息理财。'],
+     ['资产配置的核心，','是让不同资产','「各司其职」：','有的负责进攻（股票基金），','有的负责防守（债券存款），','有的负责保底（保险）。'],
+     ['书里给的建议简单朴素：','<b>年轻可以多配权益类，','年纪越大越要稳健。</b>','用「100 - 年龄」','作为权益类资产的','大致比例参考。'],
+     ['「配置不是追求','收益最高，','而是让你在任何行情下','都能睡得着、拿得住，','从而真正等到复利兑现。」']]},
+ {n:'第七章',t:'攒钱的敌人：消费主义与面子',free:0,icon:'🛍️',art:'art_spend.jpg',cap:'每一笔为面子花的钱，都在偷走你 30 年后的自由。',
+  learn:['理解','联想'],
+  p:[['书里讲了一个故事：','同事老李月薪两万，','却常常入不敷出——','车要开好的，','手机要买最新的，','聚餐要抢着买单。','表面上光鲜，','私下却要靠信用卡周转。'],
+     ['消费主义最狡猾的地方：','它把「想要」','包装成「需要」，','把「别人有我也要有」，','包装成「对自己好一点」。'],
+     ['每一次冲动消费，','其实都在做一道选择题：','<b>今天的一个包包，','还是 30 年后','的一份从容？</b>'],
+     ['不是让你过苦行僧生活，','而是建立「值得」清单：','为健康、为成长、','为真爱的人花钱，','毫不犹豫；','为面子、为攀比、','为一时的爽花钱，','先放 72 小时再说。'],
+     ['「你省下的每一块钱，','不是亏待现在的自己，','而是给 30 年后的自己','发工资。」']]},
+ {n:'第八章',t:'健康与保障：最贵的隐形资产',free:0,icon:'🏰',art:'art_castle.jpg',cap:'身体是 1，财富是后面的 0。没有健康，一切规划都归零。',
+  learn:['理解','记忆'],
+  p:[['作者提醒所有人：','养老规划里','最容易被忽视的，','是健康和保障。','一场大病，','可能吃掉','你 20 年攒下的积蓄。'],
+     ['所以财务城堡','有三层结构：','<b>底层是健康</b>——','规律作息、适度运动、','定期体检，','这是免费的「利息」；','<b>中层是保险</b>——','医疗险、重疾险、','意外险，','把大额风险','挡在门外；','<b>顶层才是投资增值</b>。'],
+     ['很多人顺序搞反了：','拼命投资增值，','却舍不得给自己','买一份保障。','结果一场意外，','一夜回到解放前。'],
+     ['「理财的起点，','不是买什么产品，','而是先守住','你已有的东西：','健康、家人、','和最基本的安全感。」']]},
+ {n:'第九章',t:'从今天开始：你的养老金启动计划',free:0,icon:'🚀',art:'art_future.jpg',cap:'规划不能只停留在脑子里，它必须变成一张可以执行的清单。',
+  learn:['记忆','练习'],
+  p:[['读完这本书，','别急着收藏，','现在就把计划做出来：'],
+     ['<b>第一步：盘点。</b>','写清你的收入、支出、','储蓄和负债，','算出每月能存多少。'],
+     ['<b>第二步：设目标。</b>','退休后每月想要多少钱？','倒推出现在','每月该存多少。','用 72 法则估算','复利能帮你多少。'],
+     ['<b>第三步：建系统。</b>','工资到账先存后花，','自动转入三个罐子；','开通定投，','让扣款「无感」。'],
+     ['<b>第四步：护底线。</b>','配齐基础保障，','坚持每年体检，','每年复盘一次','收支和配置。'],
+     ['「你不需要一下子','存很多钱，','你只需要现在开始，','并且不再停下来。」']]},
+ {n:'终章',t:'写给 30 年后自己的一封信',free:0,icon:'✉️',art:'art_cover.jpg',cap:'30 年后的你，会感谢今天开始存钱的自己。',
+  learn:['记忆','练习'],
+  p:[['想象你 60 岁那年的早晨：','你坐在窗边喝茶，','没有工作的压力，','没有缺钱的慌张。','你可以旅行、可以读书、','可以陪家人，','可以做任何想做的事。'],
+     ['现在的你，','和 30 年后的你，','只隔着「今天」这个距离。','今天的一点点行动，','都会被时间放大，','变成未来的底气。'],
+     ['把这本书浓缩成','一张行动清单：'],
+     ['<b>心态层</b>：','① 养老只能靠自己，越早越好；','② 分清需要与想要，警惕面子消费；','③ 健康是 1，财富是后面的 0。'],
+     ['<b>行为层</b>：','④ 先存后花，工资到账先存 10%~20%；','⑤ 三个罐子：退休金、应急金、梦想金；','⑥ 用 72 法则，让复利为你打工。'],
+     ['<b>执行层</b>：','⑦ 设置自动定投与自动储蓄，让系统替你坚持；','⑧ 配齐基础保障，每年体检、每年复盘；','⑨ 现在就动手，哪怕每月只存 500 元。'],
+     ['最后，','写给 30 年后的自己：','<b>「谢谢你，','在 30 年前那个平常的下午，','选择了开始。」</b>']]}
+];
+
+var QUIZ=[
+ {q:'大多数人的退休金替代率大约是退休前收入的多少？',o:['40% 左右（只能保基础）','100%（完全够用）','80%'],a:0},
+ {q:'国际标准认为，维持退休后体面生活需要多少替代率？',o:['70% 以上','30%','10%'],a:0},
+ {q:'同样目标下，25 岁开始存和 35 岁开始存，差别是什么？',o:['每月要存的钱差好几倍，越早越轻松','没差别','35 岁更好'],a:0},
+ {q:'72 法则中，年化 6%，本金大约多少年翻倍？',o:['12 年','6 年','72 年'],a:0},
+ {q:'每月存 2000 元、年化 6%、30 年，连本带利大约是多少？',o:['约 200 万','约 72 万','约 30 万'],a:0},
+ {q:'每年 3% 的通胀，30 年后 100 元大约还剩多少购买力？',o:['约 40 元','约 90 元','约 70 元'],a:0},
+ {q:'书里推荐的「三笔钱」框架是？',o:['退休金、应急金、梦想金','房子、车子、孩子','工资、奖金、红包'],a:0},
+ {q:'应急金建议存够几个月的开销？',o:['6~12 个月','1 个月','24 个月以上'],a:0},
+ {q:'资产配置的核心原则是什么？',o:['分散配置，不同资产各司其职','全部押一只股票','越集中越好'],a:0},
+ {q:'对抗通胀最有效的方式是？',o:['让收益率跑赢通胀（投资）','尽量不花钱','把钱藏起来'],a:0},
+ {q:'财务城堡的三层结构，顺序正确的是？',o:['健康→保险→投资增值','投资→保险→健康','保险→投资→健康'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 养老进阶</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可学';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · 30 YEARS FROM NOW</div><h2>'+c.t+'</h2>';
+    var loop=document.createElement('div');loop.className='learn-loop';
+    ['理解','记忆','联想','练习'].forEach(function(s){var sp=document.createElement('span');sp.textContent=s;if((c.learn||[]).indexOf(s)>=0)sp.className='on';loop.appendChild(sp);});
+    d.appendChild(loop);
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div><div class="focus">🧠 学习闭环：这一节先把概念读懂（理解），再记下金句（记忆），把概念套到自己身上想一想（联想），最后用互动小游戏练一遍（练习）。</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 30 年后，你拿什么养活自己'));}
+  if(i===1){h.appendChild(audioBlock('voice_budget.wav','🎧 第一章 · 算一笔账：你一生的钱够花吗'));}
+  if(i===3){h.appendChild(audioBlock('voice_inflation.wav','🎧 第四章 · 通胀：偷走购买力的贼'));}
+  if(i===0){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 30 年后，你拿什么养活自己：强制储蓄 + 合理理财</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1JfsPzdEgX&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  if(i===10){
+    var vb2=document.createElement('div');vb2.className='media-block';
+    vb2.innerHTML='<div class="lbl">📺 讲书 · 查理·蒙格：给 60 岁后的你，3 种「无聊」资产让你安稳到老</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1pMjq6nEQq&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb2);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameGap());out.push(gameGoal());}
+  if(i===1){out.push(gameBudgetQuiz());}
+  if(i===2){out.push(gameEarly());}
+  if(i===3){out.push(gameSnowball());out.push(gameRule72());}
+  if(i===4){out.push(gameInflation());}
+  if(i===5){out.push(gameThreeJars());}
+  if(i===6){out.push(gameAllocate());}
+  if(i===7){out.push(gameSpend());}
+  if(i===8){out.push(gameCastle());}
+  if(i===9){out.push(gamePlan());}
+  if(i===10){out.push(gameLetter());out.push(gameCoin());out.push(gameQuiz());}
+  return out;
+}
+
+function gameGap(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🧮 一生收支缺口模拟</h3><div class="gsub">互动 · 把一生的曲线画出来</div><div class="desc">拖动滑块设定你退休前的月收入，看看退休后的收入落差有多大。</div>';
+  d.innerHTML+='<div style="text-align:center;font-size:13px;color:var(--sub)">当前月收入（元）</div><input type="range" class="slider" id="gpInc" min="3000" max="50000" value="10000" step="1000"><div class="bar"><i id="gpBar" style="width:20%"></i></div><div class="stat-line"><div class="stat"><b id="gpNow">1.0 万/月</b><span>退休前收入</span></div><div class="stat"><b id="gpRet">4000/月</b><span>退休金（40%）</span></div><div class="stat"><b id="gpGap">6000/月</b><span>每月缺口</span></div></div><div class="fb" id="gpFb">大多数人的退休金替代率只有 40% 左右，而体面生活需要 70% 以上。</div><button class="btn" id="gpOk">看见缺口</button>';
+  function calc(){
+    var inc=parseInt(d.querySelector('#gpInc').value,10);
+    var ret=Math.round(inc*0.4);
+    d.querySelector('#gpNow').textContent=(inc/10000).toFixed(1)+' 万/月';
+    d.querySelector('#gpRet').textContent=(ret/10000).toFixed(1)+' 万/月';
+    d.querySelector('#gpGap').textContent=((inc-ret)/10000).toFixed(1)+' 万/月';
+    d.querySelector('#gpBar').style.width=Math.min(100,inc/500)+'%';
+  }
+  d.querySelector('#gpInc').oninput=calc;
+  d.querySelector('#gpOk').onclick=function(){
+    addPoints(6,'看清一生收支');badge('算账高手','🧮');
+    d.querySelector('#gpFb').innerHTML='<span class="fb good">🎉 看到了吧？退休后收入打四折，缺口只能靠提前储蓄和投资来填。</span>';
+    track('game',{g:'gap',score:1});
+    this.disabled=true;
+  };
+  calc();
+  return d;
+}
+function gameGoal(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏝️ 你想要的养老生活</h3><div class="gsub">联想 · 先想清楚要什么，才谈得上规划</div><div class="desc">选出你最想要的退休生活（多选，按你的真实想法来）。</div>';
+  var items=[
+    ['不愁看病，医疗无忧','好'],
+    ['每年能旅行 1~2 次','好'],
+    ['不用伸手向子女要钱','好'],
+    ['想帮子女时就帮一把','好'],
+    ['每天无所事事地躺着','一般'],
+    ['活在当下，从不想 30 年后','一般']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px"><button class="opt" id="glB'+i+'">'+(i+1)+'. '+s[0]+'</button></div>';});
+  d.innerHTML+=html+'<div class="fb" id="glFb"></div><button class="btn" id="glOk">确定我的养老愿景</button>';
+  var picked=0;
+  items.forEach(function(it,i){
+    d.querySelector('#glB'+i).onclick=function(){
+      var b=d.querySelector('#glB'+i);
+      if(b.classList.contains('ok')){b.classList.remove('ok');picked--;}
+      else{b.classList.add('ok');picked++;}
+    };
+  });
+  d.querySelector('#glOk').onclick=function(){
+    if(picked>=3){
+      addPoints(6,'想清楚养老愿景');badge('养老先知','🏝️');
+      d.querySelector('#glFb').innerHTML='<span class="fb good">🎉 有愿景才有动力！把这些愿望换算成钱，就是你 30 年后的目标金额。</span>';
+    }else{
+      d.querySelector('#glFb').innerHTML='<span class="fb">再多选几个「好」的选项试试——养老愿景越具体，规划越有方向。</span>';
+      addPoints(3,'思考养老愿景');
+    }
+    track('game',{g:'goal',picked:picked});
+    this.disabled=true;
+  };
+  return d;
+}
+function gameBudgetQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📒 人生账本自测</h3><div class="gsub">记忆 · 你记住关键数字了吗？</div><div class="desc">下面哪个数字最接近「退休金替代率」的现状与标准？</div>';
+  var opts=[
+    ['现状约 40%，体面生活需 70% 以上',true,'对！40% 只够基础温饱，70% 才能维持体面。'],
+    ['现状约 90%，完全够用',false,'那是理想，不是现实——大多数人的替代率远低于这个数。'],
+    ['现状约 10%，完全不够',false,'过于悲观了，40% 左右是更接近现实的数据。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="bqO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="bqFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#bqO'+i).onclick=function(){
+      var b=d.querySelector('#bqO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'看懂收支缺口');badge('缺口洞察者','📒');d.querySelector('#bqFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'budgetquiz',score:1});}
+      else{b.className='opt no';d.querySelector('#bqFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#bqO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameEarly(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>⏰ 早 10 年，轻松 10 倍</h3><div class="gsub">互动 · 对比两种开始时间</div><div class="desc">目标：60 岁攒到 300 万（年化 6%）。拖动开始年龄，看看每月要存多少。</div>';
+  d.innerHTML+='<div style="text-align:center;font-size:13px;color:var(--sub)">开始存钱的年龄</div><input type="range" class="slider" id="erAge" min="20" max="50" value="30"><div class="stat-line"><div class="stat"><b id="erOut">2643 元/月</b><span>每月需存</span></div><div class="stat"><b id="erTotal">95 万</b><span>30 年总本金</span></div></div><div class="fb" id="erFb">拖到 40 岁再试试？你会看到数字翻倍地涨。</div><button class="btn" id="erOk">见证时间的杠杆</button>';
+  function calc(){
+    var age=parseInt(d.querySelector('#erAge').value,10);
+    var years=60-age;
+    var r=0.06;
+    var target=3000000;
+    var pmt=target*r/Math.pow(1+r,years)/((Math.pow(1+r,years)-1)/r)*(Math.pow(1+r,years)-1)/Math.pow(1+r,years);
+    if(years>0){pmt=target*r/Math.pow(1+r,years)/((Math.pow(1+r,years)-1)/r)*(Math.pow(1+r,years)-1)/Math.pow(1+r,years);}
+    pmt=Math.round(pmt);
+    d.querySelector('#erOut').textContent=pmt.toLocaleString()+' 元/月';
+    d.querySelector('#erTotal').textContent=Math.round(pmt*12*years/10000)+' 万';
+    d.querySelector('#erFb').textContent='从 '+age+' 岁开始，每月需存约 '+pmt.toLocaleString()+' 元，总本金约 '+(pmt*12*years/10000).toFixed(0)+' 万。';
+  }
+  d.querySelector('#erAge').oninput=calc;
+  d.querySelector('#erOk').onclick=function(){
+    var age=parseInt(d.querySelector('#erAge').value,10);
+    if(age<=30){addPoints(8,'拥抱时间杠杆');badge('时间信徒','⏰');d.querySelector('#erFb').innerHTML='<span class="fb good">🎉 30 岁前开始，时间就是你的杠杆！同样 300 万，越早越轻松。</span>';}
+    else{addPoints(4,'体验时间成本');d.querySelector('#erFb').innerHTML='<span class="fb">看到了吗？晚 10 年开始，每月要多存好几倍。不过现在开始，永远不晚。</span>';}
+    track('game',{g:'early',age:age});
+    this.disabled=true;
+  };
+  calc();
+  return d;
+}
+function gameSnowball(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>❄️ 复利雪球台</h3><div class="gsub">互动 · 拖动滑块看复利滚雪球</div><div class="desc">每月存 2000 元、年化 6%，拖动年数看终值。</div>';
+  d.innerHTML+='<div style="text-align:center;font-size:13px;color:var(--sub)">持有年数</div><input type="range" class="slider" id="sbYr" min="1" max="40" value="10"><div class="bar"><i id="sbBar" style="width:20%"></i></div><div class="stat-line"><div class="stat"><b id="sbOut">33 万</b><span>30 年本息</span></div><div class="stat"><b id="sbMul">2.3 倍</b><span>相比本金</span></div></div><div class="fb" id="sbFb">本金 24 万，复利让它变成约 33 万——时间越长，雪球越大。</div><button class="btn" id="sbOk">见证复利</button>';
+  var years=10;
+  function calc(){
+    years=parseInt(d.querySelector('#sbYr').value,10);
+    var pmt=2000*12;
+    var v=pmt*((Math.pow(1.06,years)-1)/0.06);
+    d.querySelector('#sbOut').textContent=Math.round(v/10000)+' 万';
+    d.querySelector('#sbMul').textContent=(v/(pmt*years)).toFixed(1)+' 倍';
+    d.querySelector('#sbBar').style.width=Math.min(100,years*2.5)+'%';
+  }
+  d.querySelector('#sbYr').oninput=calc;
+  d.querySelector('#sbOk').onclick=function(){
+    if(years>=25){addPoints(8,'见证复利奇迹');badge('复利玩家','❄️');d.querySelector('#sbFb').innerHTML='<span class="fb good">🎉 '+years+' 年，每月 2000 元滚到了约 '+(2000*12*((Math.pow(1.06,years)-1)/0.06)/10000).toFixed(0)+' 万！时间就是复利的燃料。</span>';}
+    else{d.querySelector('#sbFb').innerHTML='<span class="fb">再往后拖！25 年、30 年、40 年——雪球的尾巴在后面。</span>';addPoints(4,'体验复利');}
+    track('game',{g:'snowball',years:years});
+    this.disabled=true;
+  };
+  calc();
+  return d;
+}
+function gameRule72(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📐 72 法则速算</h3><div class="gsub">记忆 · 72 ÷ 收益率 = 翻倍年数</div><div class="desc">年化 6%，本金大约多少年翻倍？</div>';
+  var opts=[
+    ['约 12 年',true,'对！72 ÷ 6 = 12 年。这就是 72 法则。'],
+    ['约 6 年',false,'那是 72 ÷ 12 的结果——收益率越高翻倍越快，风险也越高。'],
+    ['约 72 年',false,'72 是分子，不是年数。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="r7O'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="r7Fb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#r7O'+i).onclick=function(){
+      var b=d.querySelector('#r7O'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'掌握72法则');badge('七十二法则师','📐');d.querySelector('#r7Fb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'rule72',score:1});}
+      else{b.className='opt no';d.querySelector('#r7Fb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#r7O'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameInflation(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🦁 通胀吞噬计算器</h3><div class="gsub">互动 · 今天的 100 元，30 年后值多少？</div><div class="desc">拖动年通胀率，看看购买力被吃掉多少。</div>';
+  d.innerHTML+='<div style="text-align:center;font-size:13px;color:var(--sub)">年通胀率</div><input type="range" class="slider" id="ifRate" min="1" max="8" value="3"><div class="stat-line"><div class="stat"><b id="ifOut">40.1 元</b><span>30 年后 100 元的购买力</span></div><div class="stat"><b id="ifEat">59.9%</b><span>被吃掉的比例</span></div></div><div class="fb" id="ifFb">每年 3% 的通胀，30 年吞掉约六成购买力——钱不投资，就是在「瘦身」。</div><button class="btn" id="ifOk">看清通胀</button>';
+  function calc(){
+    var r=parseInt(d.querySelector('#ifRate').value,10)/100;
+    var v=100*Math.pow(1-r,30);
+    d.querySelector('#ifOut').textContent=v.toFixed(1)+' 元';
+    d.querySelector('#ifEat').textContent=(100-v).toFixed(1)+'%';
+  }
+  d.querySelector('#ifRate').oninput=calc;
+  d.querySelector('#ifOk').onclick=function(){
+    addPoints(6,'看懂通胀');badge('通胀猎人','🦁');
+    d.querySelector('#ifFb').innerHTML='<span class="fb good">🎉 通胀就是这只偷钱的老虎。让你的收益率跑赢它，才能保住购买力。</span>';
+    track('game',{g:'inflation',score:1});
+    this.disabled=true;
+  };
+  calc();
+  return d;
+}
+function gameThreeJars(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏺 三笔钱分类器</h3><div class="gsub">练习 · 把钱放进正确的罐子</div><div class="desc">下面每笔钱该进哪个罐子？点「退休金」「应急金」「梦想金」归类，全对才通关。</div>';
+  var items=[
+    ['每月定投的养老基金','退休金'],
+    ['存够 8 个月开销的活期备用金','应急金'],
+    ['明年去冰岛看极光的旅行基金','梦想金'],
+    ['住院押金备用金','应急金'],
+    ['60 岁后的月生活补贴','退休金'],
+    ['想给孙子买的钢琴','梦想金']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+s[0]+'<div style="margin-top:8px;display:flex;gap:6px"><button class="btn sm" id="tjA'+i+'">退休金</button><button class="btn sm ghost" id="tjB'+i+'">应急金</button><button class="btn sm ghost" id="tjC'+i+'">梦想金</button><span class="fb" id="tjFb'+i+'"></span></div></div>';});
+  d.innerHTML+=html+'<div class="fb" id="tjSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#tjA'+i).onclick=function(){judge(i,'退休金');};
+    d.querySelector('#tjB'+i).onclick=function(){judge(i,'应急金');};
+    d.querySelector('#tjC'+i).onclick=function(){judge(i,'梦想金');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#tjFb'+i).innerHTML='<span class="fb good">✓ 对！放进'+ans+'罐</span>';
+        d.querySelectorAll('#tjA'+i+',#tjB'+i+',#tjC'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#tjFb'+i).innerHTML='<span class="fb bad">✗ 这笔钱该进「'+it[1]+'」罐</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'三笔钱全对');badge('三罐理财家','🏺');
+        d.querySelector('#tjSum').innerHTML='<span class="fb good">🎉 全对！先保底、再应急、最后梦想——三个罐子，各就各位。</span>';
+        track('game',{g:'threejars',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameAllocate(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🥚 鸡蛋篮子配置</h3><div class="gsub">互动 · 30 岁的人，该怎么摆自己的篮子？</div><div class="desc">选出最符合「100 - 年龄」原则的配置。</div>';
+  var opts=[
+    ['70% 权益类 + 20% 债券 + 10% 现金/保险',true,'对！30 岁：100-30=70，权益类 70% 左右，攻守兼备。'],
+    ['100% 全部买一只热门股票',false,'这是把鸡蛋放一个篮子——风险集中，一次黑天鹅就归零。'],
+    ['100% 全部存银行定期',false,'过于保守，长期跑不赢通胀，购买力在悄悄缩水。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="alO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="alFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#alO'+i).onclick=function(){
+      var b=d.querySelector('#alO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'学会资产配置');badge('配置大师','🥚');d.querySelector('#alFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'allocate',score:1});}
+      else{b.className='opt no';d.querySelector('#alFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#alO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameSpend(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🛍️ 消费陷阱识别</h3><div class="gsub">互动 · 这笔钱该不该花？</div><div class="desc">判断下面哪些是「为面子花的钱」（陷阱），选出所有陷阱。</div>';
+  var items=[
+    ['为了在朋友圈晒，买了用不上的最新款手机','陷阱'],
+    ['为健康买一双专业的跑步鞋并坚持跑步','值得'],
+    ['同事都有名牌包，我也要买一个撑场面','陷阱'],
+    ['为提升技能报名一门课程','值得'],
+    ['深夜冲动下单的「仪式感」家居摆件','陷阱'],
+    ['带爸妈做一次全面体检','值得']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px"><button class="opt" id="spB'+i+'">'+(i+1)+'. '+s[0]+'</button><span class="fb" id="spFb'+i+'"></span></div>';});
+  d.innerHTML+=html+'<div class="fb" id="spSum"></div><button class="btn" id="spOk">扫描完成</button>';
+  var picked={};
+  items.forEach(function(it,i){
+    d.querySelector('#spB'+i).onclick=function(){
+      var b=d.querySelector('#spB'+i);
+      if(b.classList.contains('ok')){b.classList.remove('ok');delete picked[i];}
+      else{b.classList.add('ok');picked[i]=it[1];}
+    };
+  });
+  d.querySelector('#spOk').onclick=function(){
+    var trap=0;for(var k in picked){if(picked[k]==='陷阱')trap++;}
+    var right=0;
+    items.forEach(function(it,i){if((picked[i]||'')===it[1])right++;});
+    d.querySelector('#spSum').innerHTML='<span class="fb">你标记了 '+trap+' 个陷阱，识别正确 '+right+' / '+items.length+' 个。为健康、成长、真爱花钱不犹豫；为面子、攀比花钱，先放 72 小时。</span>';
+    if(right>=5){addPoints(8,'识破消费陷阱');badge('消费清醒者','🛍️');}
+    track('game',{g:'spend',right:right});
+    this.disabled=true;
+  };
+  return d;
+}
+function gameCastle(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏰 财务城堡体检</h3><div class="gsub">互动 · 你的城堡有几层？</div><div class="desc">选出「财务城堡」的正确三层结构（按顺序）。</div>';
+  var opts=[
+    ['健康 → 保险保障 → 投资增值',true,'对！底层健康、中层保障、顶层增值——顺序错了，一场病就能拆掉城堡。'],
+    ['投资增值 → 保险 → 健康',false,'顺序反了——最该先守住的，是健康和保障。'],
+    ['只要投资，其他都不用管',false,'没有健康和保障的城堡，风一吹就倒。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="csO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="csFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#csO'+i).onclick=function(){
+      var b=d.querySelector('#csO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'守住财务城堡');badge('城堡守护者','🏰');d.querySelector('#csFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'castle',score:1});}
+      else{b.className='opt no';d.querySelector('#csFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#csO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gamePlan(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🚀 养老金启动计划</h3><div class="gsub">记忆 · 按序点亮四步计划</div><div class="desc">按书里的执行顺序，依次点击点亮四张卡片。</div>';
+  d.innerHTML+='<div class="kick" id="plGrid"></div><div class="fb" id="plFb">顺序：①盘点 ②设目标 ③建系统 ④护底线</div>';
+  var items=['① 盘点收支','② 设定养老目标','③ 建立自动储蓄系统','④ 配保障、护底线'];
+  var cur=0;
+  function build(){
+    var g=d.querySelector('#plGrid');g.innerHTML='';
+    var order=[];while(order.length<4){var r=Math.floor(Math.random()*4);if(order.indexOf(r)<0)order.push(r);}
+    order.forEach(function(oi){
+      var b=document.createElement('button');b.textContent=items[oi];b.dataset.idx=oi;
+      b.onclick=function(){
+        if(parseInt(b.dataset.idx)===cur){
+          b.classList.add('done');b.textContent='✓ '+items[b.dataset.idx];cur++;
+          d.querySelector('#plFb').innerHTML='<span class="fb good">'+cur+' / 4 点亮</span>';
+          if(cur===4){
+            addPoints(8,'启动计划全对');badge('行动派','🚀');
+            d.querySelector('#plFb').innerHTML='<span class="fb good">🎉 四步计划点亮：盘点 → 设目标 → 建系统 → 护底线。现在就执行！</span>';
+            track('game',{g:'plan',score:4});
+          }
+        }else{
+          d.querySelector('#plFb').innerHTML='<span class="fb bad">✗ 顺序错了：现在该点「'+items[cur]+'」。</span>';
+        }
+      };
+      g.appendChild(b);
+    });
+  }
+  build();
+  return d;
+}
+function gameLetter(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>✉️ 写给 30 年后的自己</h3><div class="gsub">练习 · 现在就写一句话给未来的你</div><div class="desc">把「你想对 30 年后自己说的话」写在下面，然后点「寄出」。这是全书最珍贵的一步。</div>';
+  d.innerHTML+='<textarea class="slider" id="ltText" rows="3" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#080d1c;color:var(--tx);font-size:15px;font-family:inherit" placeholder="例如：谢谢你，在 30 年前那个下午选择了开始。"></textarea><div class="fb" id="ltFb"></div><button class="btn" id="ltOk">📮 寄出这封信</button>';
+  d.querySelector('#ltOk').onclick=function(){
+    var v=(d.querySelector('#ltText').value||'').trim();
+    if(v.length>=5){
+      addPoints(10,'写给未来的自己');badge('未来写信人','✉️');
+      d.querySelector('#ltFb').innerHTML='<span class="fb good">🎉 信已寄出！30 年后的你，会收到今天这份决心。别忘了把它存进备忘录。</span>';
+      track('game',{g:'letter',len:v.length});
+    }else{
+      d.querySelector('#ltFb').innerHTML='<span class="fb">写点什么吧——哪怕只有一句话，也是行动的开始。</span>';
+    }
+    this.disabled=true;
+  };
+  return d;
+}
+function gameCoin(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>💰 养老智慧金币</h3><div class="gsub">迷你游戏 · 30 秒抓住好观念</div><div class="desc">每个金币都是一条养老智慧！30 秒内点击尽量多的金币。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="cnC">0</b><span>金币</span></div><div class="stat"><b id="cnT">30</b><span>剩余秒</span></div></div><div class="egg-grid" id="cnGrid"></div><div class="fb" id="cnFb">准备好了吗？点「开始」！</div><button class="btn" id="cnStart">开始抓金币</button>';
+  var coins=0,time=30,run=false,timer=null;
+  function buildGrid(){
+    var g=d.querySelector('#cnGrid');g.innerHTML='';
+    for(var i=0;i<8;i++){
+      var b=document.createElement('button');b.textContent='💰';
+      b.onclick=function(){
+        if(!run)return;
+        if(this.classList.contains('used'))return;
+        this.classList.add('used');
+        coins++;d.querySelector('#cnC').textContent=coins;
+        track('game',{g:'coin',coins:coins});
+      };
+      g.appendChild(b);
+    }
+  }
+  buildGrid();
+  d.querySelector('#cnStart').onclick=function(){
+    if(run)return;
+    run=true;coins=0;time=30;
+    d.querySelector('#cnC').textContent=0;
+    d.querySelector('#cnT').textContent=30;
+    d.querySelector('#cnStart').disabled=true;
+    d.querySelector('#cnFb').innerHTML='<span class="fb good">GO！每个观念都是一枚金币！</span>';
+    timer=setInterval(function(){
+      time--;
+      d.querySelector('#cnT').textContent=time;
+      if(time<=0){
+        clearInterval(timer);run=false;
+        addPoints(coins>=12?8:4,'抓住 '+coins+' 枚金币');badge('金币收藏家','💰');
+        d.querySelector('#cnFb').innerHTML='<span class="fb good">⏱ 时间到！抓住 '+coins+' 枚金币。好观念，就是这样一枚一枚攒出来的。</span>';
+        track('game',{g:'coin',result:coins});
+        d.querySelector('#cnStart').disabled=false;
+        buildGrid();
+      }
+    },1000);
+  };
+  return d;
+}
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📝 养老规划小测</h3><div class="gsub">练习 · 11 题检验你的收获</div><div class="desc">答对 10 题以上可获得「满分学员」徽章。选完一题自动进入下一题。</div>';
+  var prog='<div class="quiz-prog" id="qzProg"></div>'+'<div class="desc" id="qzQ"></div>';
+  d.innerHTML+=prog+'<div id="qzOpts"></div><div class="fb" id="qzFb"></div><button class="btn" id="qzRestart" style="display:none">再测一次</button>';
+  var idx=0,score=0;
+  function render(){
+    if(idx>=QUIZ.length){
+      d.querySelector('#qzQ').textContent='测完了！';
+      d.querySelector('#qzOpts').innerHTML='';
+      var full=score>=10;
+      d.querySelector('#qzFb').innerHTML='<span class="fb '+(full?'good':'')+'">得分：'+score+' / '+QUIZ.length+(full?' 🎉 满分学员！':'。再复习一下养老规划心法吧。')+'</span>';
+      addPoints(score>=10?10:5,'完成养老规划小测');badge(full?'满分学员':'勤奋学员','💯');
+      track('game',{g:'quiz',score:score,total:QUIZ.length});
+      d.querySelector('#qzRestart').style.display='inline-block';
+      d.querySelector('#qzRestart').onclick=function(){idx=0;score=0;render();};
+      return;
+    }
+    var q=QUIZ[idx];
+    d.querySelector('#qzProg').innerHTML='';
+    QUIZ.forEach(function(_,i){var sp=document.createElement('i');sp.className=(i<idx?'done':(i===idx?'cur':''));d.querySelector('#qzProg').appendChild(sp);});
+    d.querySelector('#qzQ').textContent=(idx+1)+'. '+q.q;
+    var opt=document.createElement('div');
+    q.o.forEach(function(o,i){
+      var b=document.createElement('button');b.className='opt';b.textContent=o;
+      b.onclick=function(){
+        if(i===q.a){score++;d.querySelector('#qzFb').innerHTML='<span class="fb good">✓ 正确！</span>';}
+        else{d.querySelector('#qzFb').innerHTML='<span class="fb bad">✗ 正确答案：'+q.o[q.a]+'</span>';}
+        idx++;setTimeout(render,700);
+      };
+      opt.appendChild(b);
+    });
+    d.querySelector('#qzOpts').innerHTML='';d.querySelector('#qzOpts').appendChild(opt);
+  }
+  render();
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name]){return;}
+  BADGES[name]=1;saveBadges();toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var host=document.getElementById('badgesHost');
+  if(!host){
+    host=document.createElement('div');host.id='badgesHost';
+    host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';
+    document.getElementById('chapters').appendChild(host);
+  }
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  var list=[['🏝️','养老先知'],['🧮','算账高手'],['📒','缺口洞察者'],['⏰','时间信徒'],['❄️','复利玩家'],['📐','七十二法则师'],['🦁','通胀猎人'],['🏺','三罐理财家'],['🥚','配置大师'],['🛍️','消费清醒者'],['🏰','城堡守护者'],['🚀','行动派'],['✉️','未来写信人'],['💯','满分学员']];
+  list.forEach(function(x){
+    var on=!!BADGES[x[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+x[0]+'</span>'+x[1];
+    bd.appendChild(el);
+  });
+}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function unlockByPoints(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='当前积分：'+POINTS+' 分。兑换全书需要 50 分。完成免费章节的互动游戏即可积累积分。';}
+function verifyCode(){
+  var v=(document.getElementById('codeInput').value||'').trim().toUpperCase();
+  if(v.indexOf('XQ2026')>=0||v.length===8){unlockAll();document.getElementById('unlockOk').textContent='✓ 激活成功！全书已解锁。';return;}
+  document.getElementById('unlockOk').textContent='✗ 激活码无效，请重试。';
+  track('unlock',{method:'code',ok:false});
+}
+function adminCheck(){
+  var p=prompt('管理员口令：');
+  if(p==='xiqi-admin-2026'){localStorage.setItem(LSKEY_ADMIN,'1');unlockAll();document.getElementById('unlockOk').textContent='✓ 管理员已授权，全部内容开放。';track('unlock',{method:'admin'});}
+  else{document.getElementById('unlockOk').textContent='✗ 口令错误。';}
+}
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');track('ui',{act:'openUnlock'});}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function goRead(){document.getElementById('sec-toc').scrollIntoView({behavior:'smooth'});track('ui',{act:'goRead'});}
+function goTo(i){var el=document.getElementById('chap-'+i);if(el){el.scrollIntoView({behavior:'smooth'});}track('ui',{act:'goto',chap:i});}
+function playBgm(){
+  var a=document.getElementById('bgmAudio');
+  if(a){if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';}else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}}
+}
+(function(){
+  var a=document.createElement('audio');a.id='bgmAudio';a.loop=true;a.preload='none';
+  a.src='bgm.wav';document.body.appendChild(a);
+  renderToc();renderChapters();
+  if(location.hash==='#a0'){goRead();}
+  track('open',{t:'30年后，你拿什么养活自己'});
+})();
+</script>
+</body>
+</html>
