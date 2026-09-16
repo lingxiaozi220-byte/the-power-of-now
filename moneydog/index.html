@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小狗钱钱 · 博多·舍费尔 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#1a1208; --bg2:#3d2a12; --card:#241a0c; --line:#5a4420;
+    --tx:#fdf3e0; --sub:#e8d5ae; --dim:#a98c5a;
+    --gold:#ffd166; --green:#4ade80; --red:#ff6b5e; --blue:#5ea2ff; --purple:#c084fc; --teal:#5eead4;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#150e06 0%,#3d2a12 45%,#1a1208 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.75;overflow-x:hidden}
+  .wrap{max-width:880px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(255,209,102,.10),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(94,234,212,.06),transparent 60%)}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(21,14,6,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#ffd166,#f59e0b);color:#1a1205;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,209,102,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--gold)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(28px,6.5vw,42px);margin:14px 0 6px;color:var(--gold);letter-spacing:8px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:660px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(255,209,102,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#33240c;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,107,94,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);margin-bottom:10px}
+  .learn-loop{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+  .learn-loop span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--dim)}
+  .learn-loop span.on{color:var(--green);border-color:rgba(74,222,128,.5)}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(255,209,102,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
+  .chap .cnt .focus{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.25);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;color:var(--teal)}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,18,8,0),rgba(26,18,8,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#1c1408;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#3a2a10,#241a0c);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(74,222,128,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,107,94,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#150e06;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ffd166,#4ade80);border-radius:999px;transition:width .5s}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(255,209,102,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(74,222,128,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(74,222,128,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#150e06}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#150e06;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,209,102,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(10,6,2,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#3a2a10,#241a0c);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#150e06;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(255,209,102,.06);border:1px solid rgba(255,209,102,.22);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .mini-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  .mini-table th,.mini-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  .mini-table th{background:#3a2a10;color:var(--gold)}
+  .egg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .egg-grid button{background:linear-gradient(145deg,#ffd166,#f59e0b);border:none;border-radius:50%;aspect-ratio:1;font-size:22px;cursor:pointer;transition:transform .15s}
+  .egg-grid button:active{transform:scale(.9)}
+  .egg-grid button.used{opacity:.25;cursor:default}
+  .slider{width:100%;margin:10px 0;accent-color:var(--gold)}
+  .stat-line{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .stat{flex:1;min-width:110px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+  .stat b{display:block;font-size:22px;color:var(--gold)}
+  .stat span{font-size:12px;color:var(--dim)}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(2,1fr)}.pair-grid{grid-template-columns:1fr}.egg-grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">🐶 小狗钱钱<small>博多·舍费尔</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock" onclick="openUnlock()">🔓 解锁</button>
+    <button class="btn sm" onclick="goRead()">开始学习 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">MONEY OR THE DOG · BODO SCHÄFER</div>
+    <h1>小狗钱钱</h1>
+    <div class="tag">
+      <span>博多·舍费尔 著</span><span>写给所有人的财富童话</span><span>全球畅销 1000 万册</span><span>养一只会下金蛋的鹅</span>
+    </div>
+    <p class="lead">十二岁的女孩吉娅，捡到一只会说话、懂理财的拉布拉多犬<b>钱钱</b>。钱钱没有教她复杂公式，只教她最简单的金钱规律：<b>先储蓄、后消费；养一只永远不杀的鹅；把梦想写下来、画出来；用成功日记积累自信</b>。这本童话讲透了普通人也能上手的财富逻辑——从零开始，慢慢变富。</p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">💰 上财富课</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 学点音乐</button>
+    </div>
+    <div class="tip">🧠 本书按「理解 → 记忆 → 联想 → 练习」四步闭环学习法设计：每节配金句卡片、概念配对、情景演练与实战小测，共 14 个互动游戏 + 14 枚徽章。<b>读完这本童话，你会和钱成为朋友。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 11 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🐶 小狗钱钱 · 熙祺智书出品<br>《Ein Hund namens Money》博多·舍费尔 · 多媒体互动版 · 内容仅供学习交流，不构成投资建议</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 5 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='moneydog';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=11, FREE=6;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'会说话的小狗钱钱',free:1,icon:'🐶',art:'art_cover.jpg',cap:'「你是否能挣到钱，看的不是你有没有好点子，也不是你多么优秀，最关键的是你有没有自信。」',
+  learn:['理解'],
+  p:[['吉娅十二岁那年，','捡到一只受伤的拉布拉多犬，','给它取名"钱钱"。','没想到，钱钱会说话，还会理财。'],
+     ['钱钱开口的第一课：','「金钱是中性的，没有好坏。','它像一个放大镜，','把你本来是什么样的人放得更大。」'],
+     ['钱钱说：','「你之所以总是缺钱，','不是因为你赚得少，','而是因为你从来没有认真对待过钱。」'],
+     ['「大多数人想变富，','却连"为什么想变富"都说不清。','没有清晰的目标，','所有的理财方法都只是空谈。」'],
+     ['从今天起，跟着钱钱上十堂课。','第一件事：','认真写下你想要的——','让梦想先变得具体。']]},
+ {n:'第1课',t:'金钱是放大镜',free:1,icon:'🔍',art:'art_donut.jpg',cap:'钱本身没有善恶，关键在于你拿它去做什么。',
+  learn:['理解','记忆'],
+  p:[['钱钱告诉吉娅的第一条金钱观：','金钱是中性的。'],
+     ['它不会自动让人幸福，','也不会自动带来不幸。','关键在人，在你怎么用它。'],
+     ['「用对了，钱能帮你、帮家人、帮世界；','用错了，钱就是腐蚀人心的东西。」','所以别把钱当神，也别把钱当仇人。'],
+     ['钱钱打了个比方——甜甜圈：','<b>外圈</b>是看得见的财富，','<b>中间的孔</b>是看不见的品格。'],
+     ['只有外圈没有内孔，','财富可能是更大的混乱；','只有品格没有外圈，','理想也只是空谈。','<b>内外兼修</b>，才是完整的富足。']]},
+ {n:'第2课',t:'写下十个梦想',free:1,icon:'🎯',art:'art_dream.jpg',cap:'目标越具体，行动越有力量。',
+  learn:['理解','记忆'],
+  p:[['钱钱让吉娅做的第一件事：','写下<b>十个想变富有的理由</b>，','再从中选出最重要的三个。'],
+     ['「大多数人一辈子没实现梦想，','不是能力不够，','而是根本没把梦想当真。」','目标模糊，行动就无力。'],
+     ['选出三个目标后：','① <b>梦想相册</b>——把梦想的画面贴上去，','每天看一遍，让渴望真实起来；','② <b>梦想储蓄罐</b>——为每个目标准备一个罐子，','开始为梦想存钱。'],
+     ['「视觉化是把梦想变成现实的第一步：','你在心里看见它，','行动才愿意跟着走。」'],
+     ['先定标，再赶路。','明白为什么赚钱，','永远比怎么赚钱重要一万倍。']]},
+ {n:'第3课',t:'成功日记',free:1,icon:'✍️',art:'art_diary.jpg',cap:'自信，是你能赚到钱的根本前提。',
+  learn:['理解','联想'],
+  p:[['钱钱说：','「你是否能挣到钱，','最关键的是你有没有自信。」'],
+     ['怎么建立自信？','准备一本<b>成功日记</b>，','每天写下至少 <b>5 件</b>你做成的事。','任何小事都可以：','"今天按时起床了""帮同学解决了一个问题"。'],
+     ['「当你觉得自己做不到时，','就翻翻成功日记，','从过去的成功里找证据：','我行，我真的行。」'],
+     ['吉娅一开始觉得这很傻，','直到她面对大人的质疑时，','翻开成功日记，','才第一次真正相信自己。'],
+     ['自信不是天生的，','是每天积累出来的。','你记录下的每一次小胜利，','都是你未来的底气。']]},
+ {n:'第4课',t:'鹅与金蛋',free:1,icon:'🦢',art:'art_goose.jpg',cap:'鹅是你的本金，金蛋是收益。永远不要杀死你的鹅。',
+  learn:['理解','记忆'],
+  p:[['钱钱讲了最经典的寓言——金鹅：'],
+     ['一个农夫养了一只鹅，','鹅每天下一个金蛋。','农夫嫌太慢，','把鹅杀了，想一次取出所有金蛋。','结果，什么都没有了。'],
+     ['<b>鹅</b> = 你的本金（储蓄与投资）；','<b>金蛋</b> = 本金带来的收益（利息、分红）。','「鹅是绝不能花掉的钱，','是财富增长的基础。」'],
+     ['大多数人为什么富不起来？','因为总忍不住"杀鹅"：','冲动消费、动用储蓄、提前赎回投资。','鹅没了，金蛋也就没了。'],
+     ['「先养肥你的鹅，','让它天天替你下金蛋，','总有一天，光靠金蛋就能养活你。」']]},
+ {n:'第5课',t:'50 / 40 / 10 分配法',free:1,icon:'🏺',art:'art_split.jpg',cap:'赚到钱先分成三份：50% 养鹅、40% 梦想、10% 零花。',
+  learn:['理解','练习'],
+  p:[['钱钱给了最简单的一套分配规则：','把赚到的钱分成三份。'],
+     ['<b>50% 养鹅</b>：','放进鹅账户，长期不动，','用来钱生钱的本金；','<b>40% 梦想储蓄罐</b>：','用来实现你的三个梦想目标；','<b>10% 日常零花</b>：','用来日常花销。'],
+     ['「就这么简单，','但大多数人做不到——','因为他们总想把 100% 都花掉。」'],
+     ['吉娅一开始觉得 50% 太高了，','钱钱说：','「先支付给自己，再支付给别人。」','存钱，是对自己未来的尊重。'],
+     ['工资到手的第一步，','永远先把鹅喂饱，','再谈消费。']]},
+ {n:'第6课',t:'先消灭债务',free:0,icon:'🧾',art:'art_split.jpg',cap:'高息债务是杀鹅最快的刀，先还清它，再谈投资。',
+  learn:['理解','联想'],
+  p:[['钱钱的父母欠了很多债，','钱钱给出四句箴言：'],
+     ['① 欠债的人应当<b>毁掉所有信用卡</b>；','② 尽可能<b>少还贷款</b>，','把每月能省的钱留出来养鹅；','③ 消费前问自己：','<b>"这真的有必要吗？"</b>；','④ 把"没有必要花"的钱，','立刻放进鹅账户。'],
+     ['「先消灭高息债务，再考虑投资收益。」','利息是数学账：','信用卡 18% 的年息，','是存款利息的好几倍。','先堵住漏水的桶，再谈接水。'],
+     ['债务不是末日，','但要用纪律去还。','每还清一笔，','你的鹅就安全一分。']]},
+ {n:'第7课',t:'72 公式与复利',free:0,icon:'🔢',art:'art_72.jpg',cap:'用 72 除以年收益率，就知道本金几年翻倍。',
+  learn:['记忆','联想'],
+  p:[['钱钱教吉娅一个神奇公式：','<b>72 ÷ 年收益率 = 本金翻倍所需年数</b>。'],
+     ['年化收益 10%，','72 ÷ 10 = 7.2 年，本金翻一倍；','年化收益 6%，','72 ÷ 6 = 12 年翻一倍。'],
+     ['复利的力量：','1 元按 10% 增长 30 年，','会变成约 17 元；','时间越长，曲线越陡。'],
+     ['「复利是人类第八大奇迹。','你唯一要做的，','就是让鹅活得够久、够稳。」'],
+     ['早开始一年，','鹅就多下一年金蛋。','理财的第一要义：','<b>趁早 + 坚持</b>。']]},
+ {n:'第8课',t:'72 小时法则',free:0,icon:'⏰',art:'art_72h.jpg',cap:'想做的事，72 小时内不行动，99% 会放弃。',
+  learn:['理解','练习'],
+  p:[['钱钱说：','「当你决定做一件事时，','必须在 <b>72 小时</b>内开始行动，','否则你很可能永远不会去做。」'],
+     ['为什么是 72 小时？','因为热情有保质期。','三天一过，','新鲜感消退，借口就来了。'],
+     ['吉娅想帮邻居遛狗赚钱，','当天就敲了邻居家的门。','第二天，她有了第一份工作。','「行动，是唯一能把想法变成钱的东西。」'],
+     ['想到就去做，','哪怕先做一点点。','开始本身，','就打败了 99% 的人。']]},
+ {n:'第9课',t:'赚钱之道',free:0,icon:'💼',art:'art_job.jpg',cap:'赚钱靠的不是运气，而是解决别人的难题。',
+  learn:['理解','联想'],
+  p:[['吉娅问钱钱：怎么才能赚到钱？','钱钱回答：'],
+     ['「把精力集中在<b>你知道的、能做的、拥有的</b>东西上。」','替别人解决一个难题，','钱就会自动来找你。'],
+     ['吉娅喜欢狗、会遛狗，','于是帮邻居们遛狗、照顾狗，','一份工作变成三份，','邻居还给她介绍新客户。'],
+     ['「只要你把事情做好，','客户会帮你带来客户。','这是最古老的复利，也是最便宜的广告。」'],
+     ['别盯着"钱"本身，','盯着你能提供的价值。','价值到位，金钱自来。']]},
+ {n:'终章',t:'甜甜圈与财富之路',free:0,icon:'🍩',art:'art_path.jpg',cap:'财商到最后，不是算钱算得更精，而是把自己管理得更好。',
+  learn:['记忆','练习'],
+  p:[['《小狗钱钱》讲到最后，','不讲投资，讲起了甜甜圈。'],
+     ['外圈是看得见的财富，','内孔是看不见的品格。','钱只是放大器：','你本来是什么样，','有钱之后只会更是什么样。'],
+     ['「学理财，别从买基金开始，','先从写下目标和成功日记开始。」','因为财商的第一课，','是认识自己、管理自己。'],
+     ['钱钱送给吉娅的最后一句话：','「富有是一件好事，','但真正的富有，','是让金钱服务于你的生活，','而不是让你的生活服务于金钱。」'],
+     ['现在，把你的鹅养起来，','把梦想贴起来，','把成功日记写起来。','七十二小时内，','开始你的财富之路。']]}
+];
+
+var QUIZ=[
+ {q:'《小狗钱钱》里，鹅代表什么？',o:['本金（储蓄与投资）','宠物','食物'],a:0},
+ {q:'金蛋代表什么？',o:['本金带来的收益','早餐','金币'],a:0},
+ {q:'书中推荐的收入分配比例是？',o:['50% 养鹅 / 40% 梦想 / 10% 零花','30/40/30','全存起来'],a:0},
+ {q:'成功日记要每天写几件事？',o:['至少 5 件','1 件','10 件'],a:0},
+ {q:'72 公式用来算什么？',o:['本金翻倍所需年数','每天花多少钱','鹅的重量'],a:0},
+ {q:'72 小时法则的意思是？',o:['决定做的事 72 小时内行动','72 小时不睡觉','等 72 小时再决定'],a:0},
+ {q:'钱钱说金钱是什么？',o:['中性的放大镜','万恶之源','幸福本身'],a:0},
+ {q:'"杀死你的鹅"指什么？',o:['花掉全部本金','吃掉鹅肉','卖掉资产'],a:0},
+ {q:'赚钱的第一原则是？',o:['替别人解决难题','碰运气','等机会'],a:0},
+ {q:'甜甜圈理论的"内孔"指什么？',o:['看不见的品格','糖霜','金币'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 财商进阶</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可学';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · MONEY LESSON</div><h2>'+c.t+'</h2>';
+    var loop=document.createElement('div');loop.className='learn-loop';
+    ['理解','记忆','联想','练习'].forEach(function(s){var sp=document.createElement('span');sp.textContent=s;if((c.learn||[]).indexOf(s)>=0)sp.className='on';loop.appendChild(sp);});
+    d.appendChild(loop);
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div><div class="focus">🧠 学习闭环：这一节先把概念读懂（理解），再记下金句（记忆），把概念套到自己身上想一想（联想），最后用互动小游戏练一遍（练习）。</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 会说话的小狗钱钱'));}
+  if(i===2){h.appendChild(audioBlock('voice_goal.wav','🎧 梦想课 · 写下十个梦想'));}
+  if(i===4){h.appendChild(audioBlock('voice_goose.wav','🎧 金鹅寓言 · 鹅与金蛋'));}
+  if(i===10){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 ·《小狗钱钱》10 分钟读一本书：梦想、成功日记与养鹅</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1ffa4zzEDp&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameMeet());}
+  if(i===1){out.push(gameMoneyView());}
+  if(i===2){out.push(gameDream());}
+  if(i===3){out.push(gameDiary());}
+  if(i===4){out.push(gameGoose());}
+  if(i===5){out.push(gameSplit());}
+  if(i===6){out.push(gameDebt());}
+  if(i===7){out.push(game72());}
+  if(i===8){out.push(game72h());}
+  if(i===9){out.push(gameJob());}
+  if(i===10){out.push(gameDonut());out.push(gameGolden());out.push(gameCash());out.push(gameQuiz());}
+  return out;
+}
+
+function gameMeet(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🐶 认识钱钱</h3><div class="gsub">互动 · 钱钱会对你说什么？</div><div class="desc">吉娅捡到了钱钱，它开口说的第一句话会是什么？选出最符合书中的金钱观。</div>';
+  var opts=[
+    ['“金钱是万恶之源，离它远点。”',false,'钱钱会说：金钱是中性的，不是万恶之源。'],
+    ['“金钱是中性的，它会把你放大。”',true,'对！金钱是中性的放大镜——你是什么样的人，有钱后只会更是什么样。'],
+    ['“没钱的人才需要理财，有钱人不需要。”',false,'正好相反：是理了财才会有钱，不是有钱了才理财。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="mtO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="mtFb"></div>';
+  var fb=d.querySelector('#mtFb');
+  opts.forEach(function(o,i){
+    d.querySelector('#mtO'+i).onclick=function(){
+      var b=d.querySelector('#mtO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'认识钱钱');badge('财富觉醒者','🌟');fb.innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'meet',score:1});}
+      else{b.className='opt no';fb.innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#mtO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameMoneyView(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🔍 金钱观判断题</h3><div class="gsub">互动 · 这些说法符合钱钱的金钱观吗？</div><div class="desc">依次判断：符合书中观念选「是」，不符合选「否」。</div>';
+  var items=[
+    ['金钱是中性的，好坏取决于使用者','是'],
+    ['有钱就一定会幸福','否'],
+    ['钱是放大器，会让你更像你自己','是'],
+    ['品格比财富更重要（甜甜圈内孔）','是'],
+    ['只要有钱，品格不重要','否']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="mvY'+i+'">是</button><button class="btn sm ghost" id="mvN'+i+'">否</button><span class="fb" id="mvFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="mvSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#mvY'+i).onclick=function(){judge(i,true);};
+    d.querySelector('#mvN'+i).onclick=function(){judge(i,false);};
+    function judge(i,ans){
+      var correct=(it[1]==='是');
+      if(ans===correct){
+        right++;
+        d.querySelector('#mvFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelector('#mvY'+i).disabled=true;d.querySelector('#mvN'+i).disabled=true;
+      }else{
+        d.querySelector('#mvFb'+i).innerHTML='<span class="fb bad">✗ 再想想：'+(correct?'这本书认为它符合钱钱的金钱观':'这本书认为它不符合')+'</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'金钱观全对');badge('金钱观大师','⚖️');
+        d.querySelector('#mvSum').innerHTML='<span class="fb good">🎉 5 题全对！金钱观已刷新。</span>';
+        track('game',{g:'moneyview',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameDream(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🎯 我的梦想清单</h3><div class="gsub">互动 · 从 10 个梦想里选出 3 个最想要的</div><div class="desc">钱钱说：先写下 10 个想变富有的理由，再选出最重要的 3 个。点击卡片选择，再点击「确定梦想」。</div>';
+  var dreams=['环球旅行 365 天','给爸妈买一套房','学一门乐器','开一家自己的小店','存款 100 万','环游世界潜水看海','读 1000 本书','让全家人财务自由','资助 10 个孩子上学','买一台梦想相机'];
+  var cards='<div class="trash">';dreams.forEach(function(s,i){cards+='<div class="item" id="dm'+i+'">'+s+'</div>';});cards+='</div>';
+  d.innerHTML+=cards+'<button class="btn" id="dmOk" disabled>确定我的 3 个梦想</button><div class="fb" id="dmFb"></div>';
+  var sel=[];
+  dreams.forEach(function(s,i){
+    d.querySelector('#dm'+i).onclick=function(){
+      var el=d.querySelector('#dm'+i);
+      if(el.classList.contains('done')){el.classList.remove('done');sel.splice(sel.indexOf(i),1);}
+      else if(sel.length<3){el.classList.add('done');sel.push(i);}
+      else{toast('只能选 3 个哦，先取消一个');}
+      d.querySelector('#dmOk').disabled=sel.length!==3;
+    };
+  });
+  d.querySelector('#dmOk').onclick=function(){
+    addPoints(6,'选出 3 个梦想');badge('梦想家','🎯');
+    d.querySelector('#dmFb').innerHTML='<span class="fb good">🌟 你的三个梦想是：'+sel.map(function(i){return dreams[i];}).join('、')+'。<br>下一步：把它们贴进梦想相册，再为每个梦想准备一个储蓄罐。</span>';
+    track('game',{g:'dream',score:sel.length});
+    d.querySelector('#dmOk').disabled=true;
+  };
+  return d;
+}
+function gameDiary(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>✍️ 我的成功日记</h3><div class="gsub">互动 · 今天你做到了什么？</div><div class="desc">把下面 6 件"小成就"点成你的成功日记条目（每点一个，自信值上涨）。成功日记：每天写至少 5 件做成的事。</div>';
+  var items=['今天按时起床了','主动跟同学打了招呼','完成了一件拖延很久的小事','帮家人做了一件家务','认真读完了这一小节','给自己倒了一杯水（好好照顾自己）'];
+  var cards='<div class="trash">';items.forEach(function(s,i){cards+='<div class="item" id="dy'+i+'">'+s+'</div>';});cards+='</div>';
+  d.innerHTML+=cards+'<div class="bar"><i id="dyBar" style="width:0%"></i></div><div class="fb" id="dyFb">自信值：0 / 6</div>';
+  var cnt=0;
+  items.forEach(function(s,i){
+    d.querySelector('#dy'+i).onclick=function(){
+      var el=d.querySelector('#dy'+i);
+      if(el.classList.contains('done'))return;
+      el.classList.add('done');cnt++;
+      d.querySelector('#dyBar').style.width=(cnt/6*100)+'%';
+      d.querySelector('#dyFb').textContent='自信值：'+cnt+' / 6 —— 每一条都是你未来的底气！';
+      if(cnt>=5){
+        addPoints(6,'写满成功日记');badge('自信少年','✍️');
+        d.querySelector('#dyFb').innerHTML='<span class="fb good">🎉 恭喜！今天至少 5 件小成就。遇到困难时，翻翻这本成功日记。</span>';
+        track('game',{g:'diary',score:cnt});
+      }
+    };
+  });
+  return d;
+}
+function gameGoose(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🦢 养鹅大作战</h3><div class="gsub">迷你游戏 · 6 回合：喂鹅 + 捡金蛋，忍住不杀鹅</div><div class="desc">每回合你先「喂鹅」（本金+1），然后出现一张诱惑卡：选择「忍住」养鹅，还是「杀鹅取卵」？杀了鹅，游戏立即结束。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="gsGoose">1</b><span>鹅（本金）</span></div><div class="stat"><b id="gsEgg">0</b><span>金蛋（收益）</span></div><div class="stat"><b id="gsTurn">1</b><span>回合 / 6</span></div></div><div id="gsCard" class="desc"></div><button class="btn" id="gsFeed">喂鹅（本金 +1）</button> <button class="btn ghost" id="gsKill" style="display:none">杀鹅取卵（立即结束）</button> <button class="btn" id="gsHold" style="display:none">忍住！继续养鹅</button><div class="fb" id="gsFb"></div>';
+  var goose=1,egg=0,turn=0,over=false;
+  var tempt=[
+    '诱惑卡：想买一个新游戏机，要花掉 2 个金蛋。',
+    '诱惑卡：朋友约你吃大餐，账单刚好 = 你的金蛋。',
+    '诱惑卡：双十一打折！冲动消费在召唤你。',
+    '诱惑卡：有人说"存钱没意义，人生得意须尽欢"。',
+    '诱惑卡：你想把钱拿出来"梭哈"一把。'
+  ];
+  d.querySelector('#gsFeed').onclick=function(){
+    if(over)return;
+    goose++;turn++;
+    d.querySelector('#gsGoose').textContent=goose;
+    d.querySelector('#gsTurn').textContent=turn+' / 6';
+    d.querySelector('#gsFb').innerHTML='<span class="fb good">🐣 鹅长大了一点（本金 '+goose+'）。它开始下金蛋了！</span>';
+    egg+=goose;
+    d.querySelector('#gsEgg').textContent=egg;
+    d.querySelector('#gsFeed').style.display='none';
+    d.querySelector('#gsKill').style.display='inline-block';
+    d.querySelector('#gsHold').style.display='inline-block';
+    d.querySelector('#gsCard').textContent=tempt[(turn-1)%tempt.length];
+    if(turn>=6){
+      d.querySelector('#gsCard').textContent='6 回合结束！';
+      finish(true);
+    }
+  };
+  d.querySelector('#gsHold').onclick=function(){
+    if(over)return;
+    d.querySelector('#gsFb').innerHTML='<span class="fb good">💪 你忍住了！鹅和蛋都保住了。</span>';
+    d.querySelector('#gsKill').style.display='none';
+    d.querySelector('#gsHold').style.display='none';
+    d.querySelector('#gsFeed').style.display='inline-block';
+    track('game',{g:'goose',act:'hold',goose:goose,egg:egg});
+  };
+  d.querySelector('#gsKill').onclick=function(){
+    if(over)return;
+    over=true;
+    d.querySelector('#gsFb').innerHTML='<span class="fb bad">😱 你杀了鹅！金蛋从此再也没有了。记住：永远不要杀死你的鹅。</span>';
+    d.querySelector('#gsFeed').disabled=true;
+    track('game',{g:'goose',act:'kill',goose:goose});
+  };
+  function finish(win){
+    if(over)return;
+    over=true;
+    if(win){
+      addPoints(10,'6 回合养鹅成功');badge('养鹅人','🦢');
+      d.querySelector('#gsFb').innerHTML='<span class="fb good">🎉 你养肥了鹅（本金 '+goose+'），还攒下 '+egg+' 枚金蛋！记住：鹅 = 本金，金蛋 = 收益。</span>';
+      track('game',{g:'goose',result:'win',goose:goose,egg:egg});
+    }
+    d.querySelector('#gsFeed').disabled=true;
+  }
+  return d;
+}
+function gameSplit(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏺 50 / 40 / 10 分配器</h3><div class="gsub">互动 · 赚到 100 元，怎么分？</div><div class="desc">把 100 元按钱钱的规则分配：拖动滑杆，让三份加起来 = 100 元，再点「检查分配」。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="spGoose">50</b><span>养鹅 %</span></div><div class="stat"><b id="spDream">40</b><span>梦想 %</span></div><div class="stat"><b id="spLife">10</b><span>零花 %</span></div><div class="stat"><b id="spSum">100</b><span>合计</span></div></div>';
+  d.innerHTML+='<label style="font-size:13px;color:var(--sub)">养鹅（50%）</label><input type="range" class="slider" id="spS1" min="0" max="100" value="50"><label style="font-size:13px;color:var(--sub)">梦想（40%）</label><input type="range" class="slider" id="spS2" min="0" max="100" value="40"><label style="font-size:13px;color:var(--sub)">零花（10%）</label><input type="range" class="slider" id="spS3" min="0" max="100" value="10"><button class="btn" id="spOk">检查分配</button><div class="fb" id="spFb"></div>';
+  var s1=d.querySelector('#spS1'),s2=d.querySelector('#spS2'),s3=d.querySelector('#spS3');
+  function sync(){
+    var sum=parseInt(s1.value)+parseInt(s2.value)+parseInt(s3.value);
+    d.querySelector('#spGoose').textContent=s1.value;
+    d.querySelector('#spDream').textContent=s2.value;
+    d.querySelector('#spLife').textContent=s3.value;
+    d.querySelector('#spSum').textContent=sum;
+  }
+  s1.oninput=sync;s2.oninput=sync;s3.oninput=sync;
+  d.querySelector('#spOk').onclick=function(){
+    var g=parseInt(s1.value),m=parseInt(s2.value),l=parseInt(s3.value);
+    var sum=g+m+l;
+    if(sum!==100){d.querySelector('#spFb').innerHTML='<span class="fb bad">三份加起来是 '+sum+'，要刚好 100 哦。</span>';return;}
+    if(g===50&&m===40&&l===10){
+      addPoints(8,'分配大师');badge('分配大师','💹');
+      d.querySelector('#spFb').innerHTML='<span class="fb good">🎉 完美！50% 养鹅、40% 梦想、10% 零花——钱钱的黄金比例。</span>';
+      track('game',{g:'split',score:1});
+    }else{
+      d.querySelector('#spFb').innerHTML='<span class="fb bad">还差一点：养鹅要 50%（本金优先）、梦想 40%、零花 10%。再调调看。</span>';
+    }
+  };
+  return d;
+}
+function gameDebt(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🧾 债务清理行动</h3><div class="gsub">互动 · 把债务策略配给对应的做法</div><div class="desc">钱钱给欠债人的四句箴言。点击左边策略，再点右边对应的做法，完成配对。</div>';
+  var left=[['毁掉信用卡','先堵住透支的口子'],['少还贷款','把省下的钱养鹅'],['消费前问"有必要吗"','分清想要与必要'],['多余的钱进鹅账户','先支付给自己']];
+  var right=['每个月尽量多存点钱到本金里','把多余的卡都注销掉','每次下单前先深呼吸问一句','工资一到手先给自己留一笔'];
+  var html='<div class="pair-grid"><div>';
+  left.forEach(function(x,i){html+='<div class="pair" id="dbL'+i+'">'+x[0]+'<br><small style="color:var(--dim)">'+x[1]+'</small></div>';});
+  html+='</div><div>';
+  right.forEach(function(x,i){html+='<div class="pair" id="dbR'+i+'">'+x+'</div>';});
+  html+='</div></div><div class="fb" id="dbFb"></div>';
+  d.innerHTML+=html;
+  var answer=[1,0,3,2];var selL=null,matched=0;
+  left.forEach(function(_,i){
+    d.querySelector('#dbL'+i).onclick=function(){
+      if(this.classList.contains('matched'))return;
+      selL=i;
+      d.querySelectorAll('.pair.sel').forEach(function(e){e.classList.remove('sel');});
+      this.classList.add('sel');
+    };
+  });
+  right.forEach(function(_,i){
+    d.querySelector('#dbR'+i).onclick=function(){
+      if(this.classList.contains('matched')||selL===null)return;
+      if(answer[selL]===i){
+        d.querySelector('#dbL'+selL).classList.add('matched');
+        this.classList.add('matched');
+        matched++;
+        d.querySelector('#dbFb').innerHTML='<span class="fb good">✓ 配对成功（'+(matched)+'/4）</span>';
+        if(matched===4){
+          addPoints(8,'债务策略全对');badge('债务终结者','🧾');
+          d.querySelector('#dbFb').innerHTML='<span class="fb good">🎉 四条债务箴言全部掌握！先堵漏，再养鹅。</span>';
+          track('game',{g:'debt',score:4});
+        }
+      }else{
+        d.querySelector('#dbFb').innerHTML='<span class="fb bad">✗ 这对不匹配，再想想。</span>';
+      }
+      d.querySelectorAll('.pair.sel').forEach(function(e){e.classList.remove('sel');});
+      selL=null;
+    };
+  });
+  return d;
+}
+function game72(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🔢 复利计算器</h3><div class="gsub">互动 · 用 72 公式算算你的鹅多久翻倍</div><div class="desc">输入年收益率（%），点「计算」看本金翻倍年数，再对照复利曲线。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="72r">10</b><span>年收益率 %</span></div><div class="stat"><b id="72y">7.2</b><span>翻倍年数</span></div><div class="stat"><b id="72v">约 17 倍</b><span>30 年后</span></div></div>';
+  d.innerHTML+='<label style="font-size:13px;color:var(--sub)">年收益率 %</label><input type="range" class="slider" id="72s" min="1" max="30" value="10">';
+  d.innerHTML+='<div class="bar"><i id="72bar" style="width:50%"></i></div><div class="fb" id="72fb">年化 10%，本金约 7.2 年翻一倍；30 年后约 17 倍。复利，是慢慢变富的魔法。</div><button class="btn" id="72ok">我已理解 72 公式</button>';
+  var r=d.querySelector('#72s');
+  function calc(){
+    var rv=parseInt(r.value);
+    var years=(72/rv);
+    d.querySelector('#72r').textContent=rv;
+    d.querySelector('#72y').textContent=(Math.round(years*10)/10);
+    var mult=Math.pow(1+rv/100,30);
+    d.querySelector('#72v').textContent='约 '+(mult>=10?Math.round(mult)+' 倍':(Math.round(mult*10)/10)+' 倍');
+    d.querySelector('#72bar').style.width=Math.min(100,mult/25*100)+'%';
+    d.querySelector('#72fb').textContent='年化 '+rv+'%，本金约 '+(Math.round(years*10)/10)+' 年翻一倍；30 年后约 '+(mult>=10?Math.round(mult)+' 倍':(Math.round(mult*10)/10)+' 倍')+'。';
+  }
+  r.oninput=calc;
+  d.querySelector('#72ok').onclick=function(){
+    addPoints(6,'理解 72 公式');badge('复利信徒','🔢');
+    d.querySelector('#72fb').innerHTML='<span class="fb good">💡 72 ÷ 年收益率 = 翻倍年数。让鹅活得够久、收益够稳，复利就会替你打工。</span>';
+    track('game',{g:'72',rate:parseInt(r.value)});
+    this.disabled=true;
+  };
+  return d;
+}
+function game72h(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>⏰ 72 小时挑战</h3><div class="gsub">互动 · 想到就做，别让热情过期</div><div class="desc">你有了一个想法，倒计时 72 小时开始。每个行动都会推进进度——如果什么都不做，热情会慢慢归零。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="72ht">72:00:00</b><span>剩余时间</span></div><div class="stat"><b id="72hp">0%</b><span>行动进度</span></div></div>';
+  d.innerHTML+='<button class="btn" id="72hA">把想法写下来（+25%）</button> <button class="btn" id="72hB">制定第一步计划（+35%）</button> <button class="btn" id="72hC">立刻开始做第一步（+40%）</button><div class="fb" id="72hFb">你的想法：我想开始理财。72 小时内行动，成功率 99%！</div>';
+  var p=0,started=false,timer=null;
+  function fmt(t){
+    var h=Math.floor(t/3600),m=Math.floor(t%3600/60),s=t%60;
+    function pad(n){return n<10?'0'+n:''+n;}
+    return pad(h)+':'+pad(m)+':'+pad(s);
+  }
+  function startTimer(){
+    if(started)return;started=true;
+    var end=Date.now()+72*3600*1000;
+    timer=setInterval(function(){
+      var left=Math.max(0,Math.round((end-Date.now())/1000));
+      d.querySelector('#72ht').textContent=fmt(left);
+      if(left<=0&&p<100){clearInterval(timer);d.querySelector('#72hFb').innerHTML='<span class="fb bad">⏳ 72 小时过去了，你还没行动——99% 的人就这样放弃了。</span>';}
+    },1000);
+  }
+  startTimer();
+  var acts=[['72hA',25,'📝 写下来：想法变具体了！'],['72hB',35,'🗺 第一步计划清晰了！'],['72hC',40,'🚀 你已经开始行动了！']];
+  acts.forEach(function(a){
+    d.querySelector('#'+a[0]).onclick=function(){
+      if(this.disabled)return;
+      this.disabled=true;
+      p=Math.min(100,p+a[1]);
+      d.querySelector('#72hp').textContent=p+'%';
+      d.querySelector('#72hFb').innerHTML='<span class="fb good">'+a[2]+' 总进度 '+p+'%</span>';
+      if(p>=100){
+        clearInterval(timer);
+        addPoints(10,'72 小时内行动');badge('行动派','⏰');
+        d.querySelector('#72hFb').innerHTML='<span class="fb good">🎉 100%！你已经跑赢了 99% 的人。记住：想做就 72 小时内行动。</span>';
+        track('game',{g:'72h',score:100});
+      }
+    };
+  });
+  return d;
+}
+function gameJob(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>💼 赚钱模拟器</h3><div class="gsub">互动 · 找到你的赚钱方式</div><div class="desc">选择你擅长的事，为邻居解决难题，看看收入怎么增长。记住钱钱的法则：把精力集中在你知道的、能做的、拥有的东西上。</div>';
+  d.innerHTML+='<div class="desc">你擅长什么？（选一个）</div>';
+  var jobs=[['遛狗','我喜欢狗，邻居们很忙'],['辅导功课','我数学还不错'],['整理花园','我动手能力强'],['做手工艺品','我手很巧']];
+  var html='<div class="trash">';jobs.forEach(function(j,i){html+='<div class="item" id="jb'+i+'">'+j[0]+'<br><small style="color:var(--dim)">'+j[1]+'</small></div>';});html+='</div>';
+  d.innerHTML+=html+'<div class="stat-line"><div class="stat"><b id="jbMoney">0</b><span>赚到的钱</span></div><div class="stat"><b id="jbClient">0</b><span>客户数</span></div></div><button class="btn" id="jbWork">认真接单干活</button><div class="fb" id="jbFb">先选一个你擅长的事。</div>';
+  var chosen=null,money=0,clients=0;
+  jobs.forEach(function(j,i){
+    d.querySelector('#jb'+i).onclick=function(){
+      chosen=i;
+      d.querySelectorAll('.item').forEach(function(e){e.classList.remove('done');});
+      d.querySelector('#jb'+i).classList.add('done');
+      d.querySelector('#jbFb').innerHTML='<span class="fb good">你选了：'+j[0]+'。现在开始接单吧！</span>';
+    };
+  });
+  d.querySelector('#jbWork').onclick=function(){
+    if(chosen===null){d.querySelector('#jbFb').innerHTML='<span class="fb bad">先选一个你擅长的事哦。</span>';return;}
+    if(this.disabled)return;
+    this.disabled=true;
+    var steps=[['第一单完成！邻居很满意，付了钱。','+20'],['邻居介绍了新客户！客户帮你带客户。','+15'],['做出口碑，订单越来越多。','+25']];
+    var i=0;
+    var iv=setInterval(function(){
+      if(i>=steps.length){clearInterval(iv);finish();return;}
+      money+=parseInt(steps[i][1]);clients++;
+      d.querySelector('#jbMoney').textContent=money;
+      d.querySelector('#jbClient').textContent=clients;
+      d.querySelector('#jbFb').innerHTML='<span class="fb good">'+steps[i][0]+'（'+steps[i][1]+' 元）</span>';
+      i++;
+    },900);
+    function finish(){
+      addPoints(10,'赚钱模拟完成');badge('小老板','💼');
+      d.querySelector('#jbFb').innerHTML='<span class="fb good">🎉 赚到 '+money+' 元、'+clients+' 位客户！把 50% 养鹅、40% 放梦想罐、10% 零花吧。</span>';
+      track('game',{g:'job',money:money,clients:clients});
+    }
+  };
+  return d;
+}
+function gameDonut(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🍩 甜甜圈配平</h3><div class="gsub">互动 · 把品格（内孔）与财富（外圈）配成一对</div><div class="desc">甜甜圈的外圈是看得见的财富，内孔是看不见的品格。把左边的品格行为与右边的财富表现配对。</div>';
+  var left=[['诚实记账','不夸大收益'],['延迟满足','先储蓄后消费'],['乐于助人','为客户创造价值'],['坚持自律','持续养鹅不杀鹅']];
+  var right=['每月雷打不动先存 50%','亏了也不说谎，如实记录','帮邻居解决问题赚到钱','不只盯着收益，也修品行'];
+  var html='<div class="pair-grid"><div>';
+  left.forEach(function(x,i){html+='<div class="pair" id="dnL'+i+'">'+x[0]+'<br><small style="color:var(--dim)">'+x[1]+'</small></div>';});
+  html+='</div><div>';
+  right.forEach(function(x,i){html+='<div class="pair" id="dnR'+i+'">'+x+'</div>';});
+  html+='</div></div><div class="fb" id="dnFb"></div>';
+  d.innerHTML+=html;
+  var answer=[1,0,2,3];var selL=null,matched=0;
+  left.forEach(function(_,i){
+    d.querySelector('#dnL'+i).onclick=function(){
+      if(this.classList.contains('matched'))return;
+      selL=i;
+      d.querySelectorAll('.pair.sel').forEach(function(e){e.classList.remove('sel');});
+      this.classList.add('sel');
+    };
+  });
+  right.forEach(function(_,i){
+    d.querySelector('#dnR'+i).onclick=function(){
+      if(this.classList.contains('matched')||selL===null)return;
+      if(answer[selL]===i){
+        d.querySelector('#dnL'+selL).classList.add('matched');
+        this.classList.add('matched');
+        matched++;
+        d.querySelector('#dnFb').innerHTML='<span class="fb good">✓ 配平成功（'+matched+'/4）</span>';
+        if(matched===4){
+          addPoints(8,'甜甜圈内外兼修');badge('内外兼修','🍩');
+          d.querySelector('#dnFb').innerHTML='<span class="fb good">🎉 外圈财富 + 内孔品格 = 完整的富足。内外兼修，才是真正的富有。</span>';
+          track('game',{g:'donut',score:4});
+        }
+      }else{
+        d.querySelector('#dnFb').innerHTML='<span class="fb bad">✗ 这对不匹配，再想想。</span>';
+      }
+      d.querySelectorAll('.pair.sel').forEach(function(e){e.classList.remove('sel');});
+      selL=null;
+    };
+  });
+  return d;
+}
+function gameGolden(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🥚 金蛋收集</h3><div class="gsub">迷你游戏 · 快速点击金蛋，攒下你的收益</div><div class="desc">鹅开始下金蛋了！30 秒内点击尽量多的金蛋。每个金蛋 +1 收益。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="gdEgg">0</b><span>金蛋</span></div><div class="stat"><b id="gdT">30</b><span>剩余秒</span></div></div><div class="egg-grid" id="gdGrid"></div><div class="fb" id="gdFb">准备好了吗？点「开始」！</div><button class="btn" id="gdStart">开始捡金蛋</button>';
+  var egg=0,time=30,run=false,timer=null;
+  function buildGrid(){
+    var g=d.querySelector('#gdGrid');g.innerHTML='';
+    for(var i=0;i<8;i++){
+      var b=document.createElement('button');b.textContent='🥚';
+      b.onclick=function(){
+        if(!run)return;
+        if(this.classList.contains('used'))return;
+        this.classList.add('used');
+        egg++;d.querySelector('#gdEgg').textContent=egg;
+        track('game',{g:'golden',egg:egg});
+      };
+      g.appendChild(b);
+    }
+  }
+  buildGrid();
+  d.querySelector('#gdStart').onclick=function(){
+    if(run)return;
+    run=true;egg=0;time=30;
+    d.querySelector('#gdEgg').textContent=0;
+    d.querySelector('#gdT').textContent=30;
+    d.querySelector('#gdStart').disabled=true;
+    d.querySelector('#gdFb').innerHTML='<span class="fb good">GO！点金蛋！</span>';
+    timer=setInterval(function(){
+      time--;
+      d.querySelector('#gdT').textContent=time;
+      if(time<=0){
+        clearInterval(timer);run=false;
+        addPoints(egg>=10?8:4,'捡到 '+egg+' 个金蛋');badge('金蛋收集者','🥚');
+        d.querySelector('#gdFb').innerHTML='<span class="fb good">⏱ 时间到！捡到 '+egg+' 枚金蛋。它们都是你的鹅下的蛋——收益。</span>';
+        track('game',{g:'golden',result:egg});
+        d.querySelector('#gdStart').disabled=false;
+        buildGrid();
+      }
+    },1000);
+  };
+  return d;
+}
+function gameCash(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🎲 迷你财富桌游</h3><div class="gsub">桌游 · 6 回合抽卡，把钱越理越多</div><div class="desc">你是吉娅。每回合抽一张卡：储蓄、消费、学习、市场、梦想、副业。目标是 6 回合后鹅（本金）≥ 10 且收益 ≥ 6。开始吧！</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="csGoose">5</b><span>鹅（本金）</span></div><div class="stat"><b id="csEgg">0</b><span>金蛋（收益）</span></div><div class="stat"><b id="csTurn">1</b><span>回合 / 6</span></div></div><button class="btn" id="csDraw">抽卡</button><div class="fb" id="csFb">点击「抽卡」开始。</div>';
+  var goose=5,egg=0,turn=0,done=false;
+  var cards=[
+    ['💳 冲动消费',-2,0,'你把钱花在了新玩具上……','bad'],
+    ['🏺 忍住诱惑',0,0,'你问自己"有必要吗"，把钱留下了。','good'],
+    ['🦢 喂鹅',2,0,'你把钱存进了鹅账户，鹅变大了！','good'],
+    ['🥚 鹅下蛋',0,3,'鹅下了 3 个金蛋，收益到账！','good'],
+    ['📚 学习理财',1,1,'你读了一本理财书，本金和收益都 +1。','good'],
+    ['📈 市场上涨',1,2,'你的鹅吃到了市场的红利！','good'],
+    ['💭 梦想储蓄',1,0,'你往梦想储蓄罐里存了钱（本金 +1）。','good'],
+    ['🐶 遛狗副业',2,1,'你帮邻居遛狗，赚到了外快！','good']
+  ];
+  d.querySelector('#csDraw').onclick=function(){
+    if(done)return;
+    var c=cards[Math.floor(Math.random()*cards.length)];
+    goose+=c[1];egg+=c[2];turn++;
+    d.querySelector('#csGoose').textContent=goose;
+    d.querySelector('#csEgg').textContent=egg;
+    d.querySelector('#csTurn').textContent=turn+' / 6';
+    d.querySelector('#csFb').innerHTML='<span class="fb '+(c[4]==='good'?'good':'bad')+'">'+c[0]+'：'+c[3]+'（本金 '+goose+'，收益 '+egg+'）</span>';
+    if(turn>=6){
+      done=true;
+      if(goose>=10&&egg>=6){
+        addPoints(12,'桌游达成目标');badge('桌游冠军','🎲');
+        d.querySelector('#csFb').innerHTML='<span class="fb good">🎉 6 回合后：本金 '+goose+'、收益 '+egg+'。你的鹅养肥了，慢慢变富的节奏！</span>';
+        track('game',{g:'cash',result:'win',goose:goose,egg:egg});
+      }else{
+        addPoints(4,'完成桌游挑战');badge('桌游挑战者','🎲');
+        track('game',{g:'cash',result:'try',goose:goose,egg:egg});
+        d.querySelector('#csFb').innerHTML='<span class="fb">6 回合结束：本金 '+goose+'、收益 '+egg+'。目标本金≥10 且收益≥6。点击「抽卡」再来一局！</span>';
+        goose=5;egg=0;turn=0;done=false;
+        d.querySelector('#csGoose').textContent=goose;
+        d.querySelector('#csEgg').textContent=egg;
+        d.querySelector('#csTurn').textContent='1 / 6';
+        track('game',{g:'cash',result:'retry'});
+      }
+    }
+  };
+  return d;
+}
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📝 财商小测</h3><div class="gsub">练习 · 10 题检验你的收获</div><div class="desc">答对 9 题以上可获得「满分学员」徽章。选完一题自动进入下一题。</div>';
+  var prog='<div class="quiz-prog" id="qzProg"></div>'+'<div class="desc" id="qzQ"></div>';
+  d.innerHTML+=prog+'<div id="qzOpts"></div><div class="fb" id="qzFb"></div><button class="btn" id="qzRestart" style="display:none">再测一次</button>';
+  var idx=0,score=0;
+  function render(){
+    if(idx>=QUIZ.length){
+      d.querySelector('#qzQ').textContent='测完了！';
+      d.querySelector('#qzOpts').innerHTML='';
+      var full=score>=9;
+      d.querySelector('#qzFb').innerHTML='<span class="fb '+(full?'good':'')+'">得分：'+score+' / '+QUIZ.length+(full?' 🎉 满分学员！':'。再复习一下 72 公式和 50/40/10 吧。')+'</span>';
+      addPoints(score>=9?10:5,'完成财商小测');badge(full?'满分学员':'勤奋学员','💯');
+      track('game',{g:'quiz',score:score,total:QUIZ.length});
+      d.querySelector('#qzRestart').style.display='inline-block';
+      d.querySelector('#qzRestart').onclick=function(){idx=0;score=0;render();};
+      return;
+    }
+    var q=QUIZ[idx];
+    d.querySelector('#qzProg').innerHTML='';
+    QUIZ.forEach(function(_,i){var sp=document.createElement('i');sp.className=(i<idx?'done':(i===idx?'cur':''));d.querySelector('#qzProg').appendChild(sp);});
+    d.querySelector('#qzQ').textContent=(idx+1)+'. '+q.q;
+    var opt=document.createElement('div');
+    q.o.forEach(function(o,i){
+      var b=document.createElement('button');b.className='opt';b.textContent=o;
+      b.onclick=function(){
+        if(i===q.a){score++;d.querySelector('#qzFb').innerHTML='<span class="fb good">✓ 正确！</span>';}
+        else{d.querySelector('#qzFb').innerHTML='<span class="fb bad">✗ 正确答案：'+q.o[q.a]+'</span>';}
+        idx++;setTimeout(render,700);
+      };
+      opt.appendChild(b);
+    });
+    d.querySelector('#qzOpts').innerHTML='';d.querySelector('#qzOpts').appendChild(opt);
+  }
+  render();
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name]){return;}
+  BADGES[name]=1;saveBadges();toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var host=document.getElementById('badgesHost');
+  if(!host){
+    host=document.createElement('div');host.id='badgesHost';
+    host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';
+    document.getElementById('chapters').appendChild(host);
+  }
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  var list=[['🌟','财富觉醒者'],['⚖️','金钱观大师'],['🎯','梦想家'],['✍️','自信少年'],['🦢','养鹅人'],['💹','分配大师'],['🧾','债务终结者'],['🔢','复利信徒'],['⏰','行动派'],['💼','小老板'],['🍩','内外兼修'],['💯','满分学员'],['🥚','金蛋收集者'],['🎲','桌游冠军']];
+  list.forEach(function(x){
+    var on=!!BADGES[x[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+x[0]+'</span>'+x[1];
+    bd.appendChild(el);
+  });
+}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function unlockByPoints(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='当前积分：'+POINTS+' 分。兑换全书需要 50 分。完成免费章节的互动游戏即可积累积分。';}
+function verifyCode(){
+  var v=(document.getElementById('codeInput').value||'').trim().toUpperCase();
+  if(v.indexOf('XQ2026')>=0||v.length===8){unlockAll();document.getElementById('unlockOk').textContent='✓ 激活成功！全书已解锁。';return;}
+  document.getElementById('unlockOk').textContent='✗ 激活码无效，请重试。';
+  track('unlock',{method:'code',ok:false});
+}
+function adminCheck(){
+  var p=prompt('管理员口令：');
+  if(p==='xiqi-admin-2026'){localStorage.setItem(LSKEY_ADMIN,'1');unlockAll();document.getElementById('unlockOk').textContent='✓ 管理员已授权，全部内容开放。';track('unlock',{method:'admin'});}
+  else{document.getElementById('unlockOk').textContent='✗ 口令错误。';}
+}
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');track('ui',{act:'openUnlock'});}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function goRead(){document.getElementById('sec-toc').scrollIntoView({behavior:'smooth'});track('ui',{act:'goRead'});}
+function goTo(i){var el=document.getElementById('chap-'+i);if(el){el.scrollIntoView({behavior:'smooth'});}track('ui',{act:'goto',chap:i});}
+function playBgm(){
+  var a=document.getElementById('bgmAudio');
+  if(a){if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';}else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}}
+}
+(function(){
+  var a=document.createElement('audio');a.id='bgmAudio';a.loop=true;a.preload='none';
+  a.src='bgm.wav';document.body.appendChild(a);
+  renderToc();renderChapters();
+  if(location.hash==='#a0'){goRead();}
+  track('open',{t:'小狗钱钱'});
+})();
+</script>
+</body>
+</html>
