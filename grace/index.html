@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恩宠与勇气 · 肯·威尔伯 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#241b13; --bg2:#33271c; --card:#2e241a; --line:#4a3b2c;
+    --tx:#f6efe2; --sub:#cbbda8; --dim:#95836c;
+    --gold:#e8b04b; --orange:#e8915a; --blue:#8fb3d9; --green:#9cc98c;
+    --red:#f08a7a; --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#1a130d 0%,#33271c 45%,#241b13 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.7;overflow-x:hidden}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .glow-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 60% 40% at 70% 20%,rgba(232,145,90,.08),transparent 60%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(143,179,217,.06),transparent 60%);animation:breathe 9s ease-in-out infinite}
+  @keyframes breathe{0%,100%{opacity:.7}50%{opacity:1}}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(26,19,13,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--orange);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#f3cd7e,#e8915a);color:#241a05;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(232,145,90,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--orange)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(30px,7vw,46px);margin:14px 0 6px;color:var(--orange);letter-spacing:8px;font-family:"STKaiti","KaiTi",serif}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:5px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:600px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(232,145,90,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#3a2e20;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--orange)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(156,201,140,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(240,138,122,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--orange);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--orange);font-family:"STKaiti","KaiTi",serif;margin-bottom:10px}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--orange);padding:8px 14px;background:rgba(232,145,90,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-family:"STKaiti","KaiTi",serif;font-size:16px}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(36,27,19,0),rgba(36,27,19,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#1d1710;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#3a2e20,#2a2118);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--orange);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(156,201,140,.1)}
+  .opt.no{border-color:var(--red);background:rgba(240,138,122,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#1d1710;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#f3cd7e,#e8915a);border-radius:999px;transition:width .5s}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .breath-ring{width:170px;height:170px;border-radius:50%;margin:16px auto;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gold);background:radial-gradient(circle,#3a2e20,#1d1710);border:2px solid var(--orange);cursor:pointer;transition:transform 4s ease-in-out;user-select:none;text-align:center;padding:10px}
+  .breath-ring.in{transform:scale(1.14);border-color:var(--blue)}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 6px;color:var(--tx);font-size:14px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(156,201,140,.12);color:var(--green)}
+  .lamp{display:flex;gap:6px;overflow-x:auto;padding:12px 2px}
+  .lamp .node{flex:0 0 auto;width:88px;text-align:center;cursor:pointer}
+  .lamp .node .dot{width:42px;height:42px;border-radius:50%;margin:0 auto 6px;background:#3a2e20;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:19px;transition:all .3s}
+  .lamp .node.active .dot{border-color:var(--gold);background:rgba(232,145,90,.15);transform:scale(1.12);box-shadow:0 0 16px rgba(232,145,90,.35)}
+  .lamp .node .jt{font-size:11px;color:var(--dim)}
+  .lamp .node.active .jt{color:var(--gold)}
+  .ltext{background:#1d1710;border-radius:12px;padding:14px;margin-top:10px;font-size:14px;color:var(--tx);min-height:66px}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(232,176,75,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(156,201,140,.12);cursor:default}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#1d1710}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#1d1710;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(232,176,75,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(10,7,4,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#3a2e20,#2a2118);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--orange);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#16100a;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#16100a;color:var(--tx);font-size:14px;margin:8px 0;min-height:90px;font-family:inherit}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(232,145,90,.07);border:1px solid rgba(232,145,90,.25);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .divider{text-align:center;color:var(--dim);margin:26px 0;letter-spacing:4px}
+  @media(max-width:600px){.kick{grid-template-columns:1fr 1fr 1fr}.pair-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="glow-bg"></div>
+<div class="topbar">
+  <div class="brand">🕯 恩宠与勇气<small>肯·威尔伯</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock">🔓 解锁</button>
+    <button class="btn sm" id="btnRead" onclick="goRead()">开始阅读 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">GRACE AND GRIT · KEN WILBER</div>
+    <h1>恩宠与勇气</h1>
+    <div class="tag">
+      <span>肯·威尔伯 著</span><span>《超越死亡》</span><span>胡因梦 译</span><span>五年抗癌之书</span>
+    </div>
+    <p class="lead">1983 年的夏天，肯·威尔伯遇见了崔雅，一见钟情，两周后决定结婚。可就在婚礼之前，崔雅被发现患了乳癌。五年，他们一起走过手术、化疗、恐惧、愤怒，也一起走过静修、内观与深深的爱。<b>被接受，就是恩宠；接受这一切，才是勇气。</b></p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🕯 走进他们的故事</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 恩宠之音</button>
+    </div>
+    <div class="tip">🎮 本书包含 12 个互动体验：命运抉择、恐惧清单、情绪风暴、内观呼吸、自他交换、金句配对、人生五问、时间胶囊…… 读完，你会真正理解：<b>痛苦不是惩罚，死亡不是失败，活着也不是一项奖赏。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 10 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🕯 恩宠与勇气 · 超越死亡 · 熙祺智书出品<br>《恩宠与勇气：超越死亡》肯·威尔伯 · 多媒体互动版 · 素材仅供学习交流</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 4 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书（见提示）。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='grace';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=10, FREE=6;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function markDone(id){DONE[id]=1;localStorage.setItem(LSKEY_DONE,JSON.stringify(DONE));}
+function isDone(id){return !!DONE[id];}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'1983 之夏',free:1,icon:'🎈',art:'art_meet.jpg',cap:'「我认识她还不到两周，就已经知道：我想和她共度余生。」',
+  p:[['1983 年的夏天，美国加州。','肯·威尔伯，一位正在写作的年轻学者，在一次朋友聚会上遇见了一个女子。'],
+     ['她叫泰莉·吉兰，大家都叫她崔雅。','美丽、活泼、聪慧，热爱登山，笑容像加州的阳光。','他们一见钟情。'],
+     ['认识两周后，他们决定结婚。','「我认识她还不到两周，就已经知道：','我想和她共度余生。」']]},
+ {n:'第1章',t:'婚礼前的风暴',free:1,icon:'📋',art:'art_wedding.jpg',cap:'就在婚礼之前，崔雅发现右胸下方有一个小肿块。',
+  p:[['婚礼前一个月，崔雅体检时发现右胸下方有一个小肿块。','他们安慰自己：多半是良性的。'],
+     ['婚礼如期举行。','婚后不到十天，检查结果出来了：','乳癌第二期。'],
+     ['「那一刻，世界安静了。」','肯在书中写道：','「我们刚刚开始的人生，突然被一场风暴卷入。」']]},
+ {n:'第2章',t:'手术与希望',free:1,icon:'🏥',art:'art_hospital.jpg',cap:'她们决定战斗。带着爱，带着各种疗法，带着希望。',
+  p:[['手术、化疗、放疗。','崔雅剪去了长发，戴上了头巾，','却依然对每个来探望的人微笑。'],
+     ['「治疗癌症这个疾病，每个月只需要几天；','治疗癌症所带来的恐惧，却需要每一天。」','他们开始学习：如何面对恐惧本身。'],
+     ['肯学会了陪伴，崔雅学会了接受帮助。','「真正的爱，是允许对方走进你的脆弱。」']]},
+ {n:'第3章',t:'复发与恐惧',free:1,icon:'🌧',art:'art_recur.jpg',cap:'癌症的真正噩梦，是每个小症状都变成不祥的预兆。',
+  p:[['治疗结束，崔雅一度好转。','可一年后，癌细胞复发，这次到了脑部和肺部。'],
+     ['「如果我早晨起来觉得有点头痛或喉咙痛，我可能耸耸肩就去忙别的了。','但癌症病患如果有这些症状，便意味着她可能有脑癌、骨癌或喉癌。」','一点点的痉挛或疼痛，都会让人联想到不祥的恶兆。'],
+     ['「经过几周、几个月或几年之后，癌症带给你身体的感觉，','就像遭受中国人灌水的酷刑一般。」']]},
+ {n:'第4章',t:'痛苦与愤怒',free:1,icon:'💢',art:'art_fight.jpg',cap:'他们争吵，他们崩溃，他们也开始真正面对彼此。',
+  p:[['五年，是恩宠与勇气的五年，','也是人性最真实的五年。','他们吵架、冷战、互相伤害，也互相搀扶。'],
+     ['「我们各自有各自的痛苦和恐惧，也各有各的付出。」','肯想用灵性拯救崔雅，崔雅却觉得那是一种控制。'],
+     ['终于，他们在崩溃中学会了诚实：','「我不需要你拯救我，我需要你陪着我。」','那一刻，恐惧开始松动。']]},
+ {n:'第5章',t:'静修 · 回到呼吸',free:1,icon:'🧘',art:'art_meditate.jpg',cap:'崔雅开始学习内观法门与自他交换。她找到了比药物更深的力量。',
+  p:[['在病中，崔雅开始修习内观：','把注意力一次次带回到呼吸上，','观察念头的起落，而不被卷入。'],
+     ['她也练习「自他交换」：','吸气时，吸入世间的痛苦；呼气时，呼出慈悲与平静。'],
+     ['「这不是逃避，」她写道，','「而是与痛苦共处的方式。','我不再是那个被痛苦控制的病人。」']]},
+ {n:'第6章',t:'灵魂的黑夜',free:0,icon:'🌑',art:'art_fight.jpg',cap:'「癌症有什么意义？」这个问题悬在半空，变成生活中无法逃避的主题。',
+  p:[['「我们一而再、再而三地回到癌症有什么意义这件事上。','无论你走到哪里，这个议题都会被提出，每个人都有他自己的理论。」'],
+     ['有人说癌症是惩罚，有人说癌症是礼物。','崔雅说：','「我不知道它有什么意义。我只知道，它让我醒着，让我真实地活着。」'],
+     ['在无数个黑夜里，她问自己：','「如果生命只剩下这些日子，我还要把时间花在愤怒和恐惧上吗？」','答案，慢慢浮现。']]},
+ {n:'第7章',t:'恩宠 · 接纳',free:0,icon:'🌊',art:'art_accept.jpg',cap:'被接受，就是恩宠。放下对抗，才会看见光。',
+  p:[['「被接受，就是『恩典』。接受这一事实，才是『勇气』。」'],
+     ['崔雅开始公开表达对这次复发的感激：','「因为没有任何东西能像死亡一样，让我如此清醒地看见生命。」'],
+     ['她变了：从做事到存在，从不安到信任，从阳刚到阴柔，','从掌控到接受。','「这一切似乎非常简单，却花了整整五年。」']]},
+ {n:'第8章',t:'勇气 · 相守',free:0,icon:'🔥',art:'art_love.jpg',cap:'「我拥有的唯一支撑，就是尽力让自己清醒地明白：一切都是短暂的。」',
+  p:[['「你之所以爱一些东西，正是因为它们是飞逝的、短暂的。」','肯和崔雅开始认真对待每一个平凡的日子：','一杯茶、一次散步、一个黄昏。'],
+     ['「恐惧死亡会降低生命的活力，接受死亡，乃是为了更好地生活。」'],
+     ['崔雅写下她最著名的话：','「痛苦不是惩罚，死亡不是失败，活着也不是一项奖赏。」','「用心地活下去。」']]},
+ {n:'尾声',t:'超越死亡',free:0,icon:'🌅',art:'art_beyond.jpg',cap:'「我会找到你的。」「你保证？」「我保证，我最爱的崔雅。」',
+  p:[['1989 年初，崔雅在象征着空行母的狂风中安详离世，享年四十一岁。','在最后的时刻，她依然平静，依然微笑。'],
+     ['肯握着她的手：','「我会找到你的。」','「你保证？」她温柔地问。','「我保证，我最爱的崔雅。」'],
+     ['五年的抗癌历程没有击垮他们，反而促成了终极的证悟。','「恩宠，就是发现大我并且安住于此；','勇气，就是接纳它，接纳痛苦也接纳死亡。','如此一来，痛苦便止息了，死亡被超越。」'],
+     ['崔雅留给我们的话：','「我这一生，认真地活过，也认真地爱过。','我没有什么遗憾。」']]}
+];
+
+var PAIRS=[
+ {q:'被接受，就是______。',a:'恩典',s:'被接受，就是恩典。'},
+ {q:'接受这一事实，才是______。',a:'勇气',s:'接受这一事实，才是勇气。'},
+ {q:'痛苦不是______，死亡不是失败，活着也不是一项奖赏。',a:'惩罚',s:'痛苦不是惩罚。'},
+ {q:'永恒不是时间的永续，而是没有时间感的______。',a:'当下',s:'永恒是当下。'},
+ {q:'恐惧死亡会降低生命的______，接受死亡乃是为了更好地生活。',a:'活力',s:'恐惧死亡会降低生命的活力。'},
+ {q:'你之所以爱一些东西，正是因为它们是______的、短暂的。',a:'飞逝',s:'你爱它们，因为它们飞逝而短暂。'},
+ {q:'恩宠就是发现______并且安住于此。',a:'大我',s:'恩宠是发现大我并安住于此。'},
+ {q:'我拥有的唯一支撑，就是尽力让自己清醒地明白：一切______是短暂的。',a:'都',s:'一切都是短暂的。'}
+];
+
+var LAMP=[
+ {ic:'🎈',t:'1983 邂逅',txt:'派对上一见钟情，两周后订婚。'},
+ {ic:'📋',t:'婚前诊断',txt:'婚礼前夕发现肿块，婚后确诊乳癌二期。'},
+ {ic:'🏥',t:'手术希望',txt:'手术化疗放疗，学习与恐惧共处。'},
+ {ic:'🌧',t:'复发',txt:'一年后复发，转移到脑与肺。'},
+ {ic:'💢',t:'崩溃诚实',txt:'争吵与崩溃后，学会「陪我，不要救我」。'},
+ {ic:'🧘',t:'内观',txt:'学习内观与自他交换，与痛苦共处。'},
+ {ic:'🌑',t:'灵魂黑夜',txt:'追问癌症的意义，答案在静默中浮现。'},
+ {ic:'🌊',t:'恩宠接纳',txt:'从掌控到接受，感激这次复发。'},
+ {ic:'🔥',t:'勇气相守',txt:'珍惜每个平凡日子，用心活下去。'},
+ {ic:'🌅',t:'超越死亡',txt:'1989 年初，崔雅安详离世。「我会找到你的。」'}
+];
+
+var QUIZ=[
+ {q:'肯和崔雅认识多久就决定结婚？',o:['两周','两年','两个月'],a:0},
+ {q:'崔雅在什么时候被发现患癌？',o:['结婚后十年','婚礼前夕','蜜月旅行后'],a:1},
+ {q:'书名的「恩宠」指什么？',o:['奇迹痊愈','被接受','命运优待'],a:1},
+ {q:'「接受这一事实，才是______。」',o:['智慧','勇气','慈悲'],a:1},
+ {q:'癌症带给崔雅最真实的感受是？',o:['每个小症状都像不祥预兆','只是身体疼痛','没有感觉'],a:0},
+ {q:'崔雅在病中学到了什么修行？',o:['辟谷','内观与自他交换','站桩'],a:1},
+ {q:'「痛苦不是惩罚，死亡不是失败，活着也不是______。」',o:['负担','奖赏','玩笑'],a:1},
+ {q:'崔雅说，最让她清醒看见生命的是什么？',o:['死亡','财富','名声'],a:0},
+ {q:'五年后崔雅最大的改变是？',o:['从掌控到接受','从愤怒到更愤怒','从爱到恨'],a:0},
+ {q:'肯对崔雅最后的承诺是？',o:['永远不离开','我会找到你的','治好你'],a:1}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 灵魂深处</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可读';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · GRACE AND GRIT</div><h2>'+c.t+'</h2>';
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 回望那五年'));}
+  if(i===4){h.appendChild(audioBlock('voice_breath.wav','🎧 内观呼吸 · 引导练习'));}
+  if(i===8){h.appendChild(audioBlock('voice_love.wav','🎧 崔雅的日记 · 珍惜此刻'));}
+  if(i===5){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 一场灵魂的疗愈之旅</div><iframe src="https://player.bilibili.com/player.html?bvid=BV16yoFBrEpS&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===1){out.push(gameDiagnosis());}
+  if(i===3){out.push(gameFear());}
+  if(i===4){out.push(gameEmotion());}
+  if(i===5){out.push(gameBreath());out.push(gameTonglen());}
+  if(i===6){out.push(gameMeaning());}
+  if(i===7){out.push(gamePair());out.push(gameFive());}
+  if(i===8){out.push(gameLoveNow());}
+  if(i===9){out.push(gameCapsule());out.push(gameLamp());out.push(gameQuiz());}
+  return out;
+}
+
+/* 1 命运抉择 */
+function gameDiagnosis(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-diag';
+  d.innerHTML='<h3>⚖️ 命运抉择</h3><div class="gsub">你是崔雅。婚礼刚过，医生告诉你：乳癌第二期。</div>';
+  d.innerHTML+='<div id="diagWrap"></div><div class="fb" id="diagFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('diagWrap');
+    var opts=[
+      {t:'😱 崩溃大哭，问「为什么是我」',r:'你崩溃了，这很正常——没有人能对死亡的消息平静。但崔雅和肯发现：崩溃之后，还是要做选择。'},
+      {t:'🤐 一个人扛，不告诉任何人',r:'崔雅试过。但她发现：独自扛着恐惧，只会让恐惧长得更大。爱，是允许别人走进你的脆弱。'},
+      {t:'🤝 握住他的手，说「我们一起面对」',r:'这是崔雅和肯最终的选择。他们不假装勇敢，只是决定一起走。这就是「勇气」的起点：恐惧依然在，但你选择了向前。'},
+      {t:'🕯 安静地坐着，接受它',r:'五年后，崔雅会在病中学会这个：接纳，不是认命，而是停止对抗。这一刻你做不到，没关系，河要慢慢渡。'}
+    ];
+    opts.forEach(function(o,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=o.t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        b.className='opt ok';
+        document.getElementById('diagFb').innerHTML='<span class="fb good">'+o.r+'</span>'+(oi>=2?'<div style="margin-top:8px"><button class="btn sm" onclick="location.reload()">重选一次</button></div>':'');
+        if(oi===2){addPoints(5,'做出勇气的选择');badge('同行者','🤝');track('game',{g:'diagnosis',pick:oi});}
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 2 恐惧清单 */
+function gameFear(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-fear';
+  d.innerHTML='<h3>🕯 恐惧清单</h3><div class="gsub">崔雅说：癌症带来的恐惧，比疾病本身更消耗人。先看见恐惧，才能放下它。</div>';
+  d.innerHTML+='<div class="desc">点开每一个恐惧，看看它的真相。</div>';
+  d.innerHTML+='<div class="trash" id="fearWrap"></div><div class="fb" id="fearFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('fearWrap');
+    var items=[
+      {t:'☠️ 怕死亡',s:'死亡不是失败。恐惧死亡会降低生命的活力。'},
+      {t:'🏚 怕失去一切',s:'你爱一些东西，正因为它们飞逝而短暂。'},
+      {t:'💔 怕被抛弃',s:'真正的爱，是允许对方走进你的脆弱。'},
+      {t:'🪞 怕不再美丽',s:'崔雅剪去长发，却比以前更美——因为真实。'},
+      {t:'🎯 怕没有意义',s:'意义不是被找到的，是被活出来的。'},
+      {t:'🌧 怕疼',s:'内观说：痛苦来了，看见它，不驱赶，也不认同。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="fearS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('fearS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('fearFb').textContent='已看见 '+n+' / '+items.length+' 个恐惧';
+        if(n===items.length){
+          document.getElementById('fearFb').innerHTML='<span class="fb good">🕯 看见，就是放下的开始。「被接受，就是恩典。」</span>';
+          addPoints(6,'看清恐惧清单');badge('看清恐惧','🕯');track('game',{g:'fear',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 3 情绪风暴 */
+function gameEmotion(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-emotion';
+  d.innerHTML='<h3>💢 情绪风暴</h3><div class="gsub">肯和崔雅争吵、冷战、崩溃。情绪不是敌人，被压抑的情绪才是。</div>';
+  d.innerHTML+='<div id="emoWrap"></div><div class="fb" id="emoFb"></div>';
+  var qs=[
+    {q:'肯想用灵性「拯救」崔雅，崔雅感到什么？',o:['被爱','被控制','被忽略'],a:1},
+    {q:'他们最终学会怎么相处？',o:['一个忍一个','坦诚说出需求','分开冷静'],a:1},
+    {q:'崔雅对肯说「我不需要你拯救我，我需要你______我。」',o:['陪伴','教育','鼓励'],a:0},
+    {q:'承认脆弱之后，恐惧变得？',o:['更大','松动','消失'],a:1}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('emoWrap');
+    if(qi>=qs.length){
+      if(pts===4){addPoints(5,'情绪风暴全通');badge('真实的人','💢');}else{addPoints(2,'完成情绪风暴');}
+      track('game',{g:'emotion',score:pts});
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎉 完成：'+pts+' / 4 全对<br><span style="color:var(--sub);font-size:13px">真正的爱，是允许对方走进你的脆弱。</span></div>';
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';document.getElementById('emoFb').innerHTML='<span class="fb good">✅ 对。</span>';pts++;}
+        else{b.className='opt no';document.getElementById('emoFb').innerHTML='<span class="fb bad">❌ 正确答案：'+cur.o[cur.a]+'</span>';}
+        qi++;setTimeout(renderQ,1200);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 4 内观呼吸 */
+function gameBreath(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-breath';
+  d.innerHTML='<h3>🧘 内观呼吸</h3><div class="gsub">崔雅在病中修习的功课：回到呼吸，观察念头，不被卷入。</div>';
+  d.innerHTML+='<div class="breath-ring" id="breathRing" onclick="breathGo()">点我开始<br>内观呼吸</div>';
+  d.innerHTML+='<div style="text-align:center"><button class="btn ghost sm" onclick="playBreathVoice()">🎧 引导音频</button></div><div class="fb" id="breathFb"></div>';
+  window.playBreathVoice=function(){
+    var a=document.getElementById('brv');
+    if(!a){a=document.createElement('audio');a.id='brv';a.src='voice_breath.wav';a.onplay=function(){track('audio',{src:'voice_breath.wav'});};document.body.appendChild(a);}
+    a.play();
+  };
+  window.breathGo=function(){
+    var ring=document.getElementById('breathRing'),fb=document.getElementById('breathFb');
+    var seq=[['吸气……',3800,'in'],['屏住……',2600,''],['呼气……',4200,''],['念头来了，看见它……',2600,''],['放下它，回到呼吸……',3800,'in'],['此刻，你是完整的',2000,'']];
+    var i=0;fb.textContent='';
+    ring.disabled=true;
+    (function step(){
+      if(i>=seq.length){
+        ring.textContent='点我再试';ring.className='breath-ring';
+        fb.innerHTML='<span class="fb good">🧘 一轮内观完成。「我不再是那个被痛苦控制的病人。」</span>';
+        addPoints(7,'完成内观呼吸');badge('内观者','🧘');track('game',{g:'breath'});ring.disabled=false;return;
+      }
+      ring.textContent=seq[i][0];
+      if(seq[i][2]==='in')ring.className='breath-ring in';else ring.className='breath-ring';
+      i++;
+      setTimeout(step,seq[i-1][1]);
+    })();
+  };
+  return d;
+}
+
+/* 5 自他交换 */
+function gameTonglen(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-tonglen';
+  d.innerHTML='<h3>🤲 自他交换</h3><div class="gsub">藏传的慈悲修法：吸气，吸入世间的苦；呼气，呼出慈悲与平静。</div>';
+  d.innerHTML+='<div class="desc">点按下列每一步，完成一次自他交换。</div>';
+  d.innerHTML+='<div class="kick" id="tongWrap"></div><div class="fb" id="tongFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('tongWrap');
+    var steps=['🌬 吸气：吸入世间所有痛苦','🤲 呼气：呼出慈悲与平静','🌊 感受：痛苦与慈悲同流','🕊 放下：让一切自然发生'];
+    var n=0;
+    steps.forEach(function(t){
+      var b=document.createElement('button');b.textContent=t;
+      b.onclick=function(){
+        if(b.classList.contains('done'))return;
+        b.className='done';n++;
+        document.getElementById('tongFb').textContent='已完成 '+n+' / '+steps.length;
+        if(n===steps.length){
+          document.getElementById('tongFb').innerHTML='<span class="fb good">🤲 自他交换完成。这是崔雅在病中学会的：吸入痛苦，呼出慈悲——苦，就不再只是「我的」。</span>';
+          addPoints(6,'完成自他交换');badge('慈悲行者','🤲');track('game',{g:'tonglen',score:steps.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 6 意义之问 */
+function gameMeaning(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-meaning';
+  d.innerHTML='<h3>❓ 癌症有什么意义？</h3><div class="gsub">这个问题永远悬在半空，变成生活中无法逃避的主题。</div>';
+  d.innerHTML+='<div id="meanWrap"></div><div class="fb" id="meanFb"></div>';
+  var views=[
+    {t:'🔨 惩罚：这是你应得的',r:'崔雅不认同。她写道：我不相信这是我应得的。'},
+    {t:'🎁 礼物：癌症让你觉醒',r:'部分真实。但崔雅说：把癌症当礼物，对那些正受苦的人是一种残忍。'},
+    {t:'🌫 它没有意义，它就是发生了',r:'崔雅最接近的看法：我不需要它为我的生命「付账」。它发生了，而我选择如何活。'},
+    {t:'🌅 它让我醒着，真实地活着',r:'这是崔雅最终的回答。死亡让她无比清醒地看见生命。'}
+  ];
+  setTimeout(function(){
+    var w=document.getElementById('meanWrap');
+    views.forEach(function(v,vi){
+      var b=document.createElement('button');b.className='opt';b.textContent=v.t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        b.className='opt ok';
+        document.getElementById('meanFb').innerHTML='<span class="fb good">'+v.r+'</span>'+(vi===3?'<div style="margin-top:8px"><button class="btn sm" onclick="location.reload()">再想想</button></div>':'');
+        if(vi===3){addPoints(5,'找到自己的答案');badge('意义探寻者','🌅');track('game',{g:'meaning',pick:vi});}
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 7 金句配对 */
+function gamePair(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-pair';
+  d.innerHTML='<h3>💬 金句配对</h3><div class="gsub">把空格补全，还原书中的原话。</div>';
+  d.innerHTML+='<div class="fb" id="pairFb">已完成 0 / '+PAIRS.length+'</div>';
+  var grid=document.createElement('div');grid.className='pair-grid';grid.id='pairGrid';
+  d.appendChild(grid);
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    PAIRS.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      if(sel===pi){
+        var qHalf=selEl===grid.children[pi*2];
+        var aHalf=el===grid.children[pi*2+1];
+        if(qHalf!==aHalf){markPair(pi);}
+        else{document.getElementById('pairFb').innerHTML='<span class="fb bad">这不对应同一条，再试试。</span>';}
+      }else{document.getElementById('pairFb').innerHTML='<span class="fb bad">配错了，注意上下半句。</span>';}
+      sel=null;selEl=null;
+    }
+    function markPair(pi){
+      var q=grid.children[pi*2],a=grid.children[pi*2+1];
+      q.className='pair matched';a.className='pair matched';
+      matched++;
+      document.getElementById('pairFb').innerHTML='已完成 '+matched+' / '+PAIRS.length+' · '+PAIRS[pi].s;
+      if(matched===PAIRS.length){
+        document.getElementById('pairFb').innerHTML='<span class="fb good">🏆 全部配对成功！恩宠与勇气，从此记在你心里。</span>';
+        addPoints(8,'金句全配对');badge('金句收藏家','💬');track('game',{g:'pair',score:PAIRS.length});
+      }
+    }
+  },0);
+  return d;
+}
+
+/* 8 人生五问 */
+function gameFive(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-five';
+  d.innerHTML='<h3>🌅 人生五问</h3><div class="gsub">崔雅说：死亡让我无比清醒地看见生命。假如生命只剩一年，你会怎么活？</div>';
+  d.innerHTML+='<div id="fiveWrap"></div><div class="fb" id="fiveFb"></div>';
+  var qs=[
+    {q:'你会立刻停下什么？',o:['没完没了的应酬和消耗','睡觉','看手机'],a:0},
+    {q:'你会把时间花在谁身上？',o:['所有人','重要的人','不重要的人'],a:1},
+    {q:'还有遗憾没做完的事吗？',o:['有，现在去做','算了吧','等以后'],a:0},
+    {q:'你还愿意把力气花在愤怒上吗？',o:['愿意','算了，太贵了','看情况'],a:1},
+    {q:'此刻，你想对最重要的人说什么？',o:['「我爱你」','「你欠我的」','「改天聊」'],a:0}
+  ];
+  var qi=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('fiveWrap');
+    if(qi>=qs.length){
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🌅 回答完毕。现在，把答案带进今天——<br><span style="color:var(--sub);font-size:13px">「你之所以爱一些东西，正是因为它们是飞逝的、短暂的。」</span></div>';
+      addPoints(5,'完成人生五问');badge('清醒的人','🌅');track('game',{g:'five'});
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / 5 · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        b.className='opt ok';
+        document.getElementById('fiveFb').innerHTML='<span class="fb good">'+(oi===cur.a?'✅ 是的，崔雅也是这么活的。':'记住：别把力气花在会后悔的地方。')+'</span>';
+        qi++;setTimeout(renderQ,1100);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 9 爱在此刻 */
+function gameLoveNow(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-love';
+  d.innerHTML='<h3>☕ 爱在此刻</h3><div class="gsub">肯和崔雅学会珍惜每一个平凡的日子：一杯茶、一次散步、一个黄昏。</div>';
+  d.innerHTML+='<div class="desc">点开每一件「平凡的小事」，它们都是恩宠。</div>';
+  d.innerHTML+='<div class="trash" id="loveWrap"></div><div class="fb" id="loveFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('loveWrap');
+    var items=['☕ 一起喝杯茶','🚶 牵着手散步','🌅 一起看一次落日','😄 认真听对方说话','🫂 一个拥抱','🌙 道一声晚安'];
+    var n=0;
+    items.forEach(function(t){
+      var b=document.createElement('div');b.className='item';b.textContent=t;
+      b.onclick=function(){
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('loveFb').textContent='已拾起 '+n+' / '+items.length+' 份恩宠';
+        if(n===items.length){
+          document.getElementById('loveFb').innerHTML='<span class="fb good">☕ 平凡即恩宠。「用心地活下去。」——今天就去做一件吧。</span>';
+          addPoints(6,'拾起平凡恩宠');badge('生活家','☕');track('game',{g:'lovenow',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 10 时间胶囊 */
+function gameCapsule(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-capsule';
+  d.innerHTML='<h3>⏳ 时间胶囊</h3><div class="gsub">假如这是你留给世界最后的话，你想对最重要的人说什么？</div>';
+  d.innerHTML+='<textarea id="capText" placeholder="写在这里……（只保存在你自己的浏览器里）"></textarea>';
+  d.innerHTML+='<button class="btn" onclick="capSave()">封存这封信</button><div class="fb" id="capFb"></div>';
+  window.capSave=function(){
+    var t=document.getElementById('capText').value.trim();
+    if(t.length<2){document.getElementById('capFb').innerHTML='<span class="fb bad">先写下几句话吧。</span>';return;}
+    try{localStorage.setItem(BOOK+'_capsule',t);}catch(e){}
+    document.getElementById('capFb').innerHTML='<span class="fb good">💌 信已封存。愿你今天就去说，而不是等到「以后」。</span>';
+    addPoints(5,'写下时间胶囊');badge('不留遗憾','⏳');track('game',{g:'capsule',len:t.length});
+  };
+  return d;
+}
+
+/* 11 旅程灯 */
+function gameLamp(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-lamp';
+  d.innerHTML='<h3>🕯 五年之路</h3><div class="gsub">1983–1989，点开每一盏灯，重走他们相守的五年。</div>';
+  d.innerHTML+='<div class="lamp" id="lampNodes"></div><div class="ltext" id="lampText">点一盏灯，看看这一年。</div>';
+  setTimeout(function(){
+    var w=document.getElementById('lampNodes'),tx=document.getElementById('lampText');
+    LAMP.forEach(function(j,ji){
+      var n=document.createElement('div');n.className='node';
+      n.innerHTML='<div class="dot">'+j.ic+'</div><div class="jt">'+j.t+'</div>';
+      n.onclick=function(){
+        w.querySelectorAll('.node').forEach(function(x){x.classList.remove('active');});
+        n.classList.add('active');tx.textContent=(ji+1)+'. '+j.txt;
+        if(ji===LAMP.length-1&&!isDone('lamp')){markDone('lamp');addPoints(4,'走完五年之路');track('game',{g:'lamp'});}
+      };
+      w.appendChild(n);
+    });
+  },0);
+  return d;
+}
+
+/* 12 读后小测 */
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quiz';
+  d.innerHTML='<h3>📝 读后小测 · 你听懂恩宠与勇气了吗？</h3><div class="gsub">10 题，检验你对这本书的理解。</div>';
+  d.innerHTML+='<div class="quiz-prog" id="quizProg"></div><div id="quizWrap"></div><div class="fb" id="quizFb"></div>';
+  var qi=0,score=0;
+  setTimeout(function(){
+    render();
+    function render(){
+      var prog=document.getElementById('quizProg');prog.innerHTML='';
+      QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
+      var w=document.getElementById('quizWrap');w.innerHTML='';
+      if(qi>=QUIZ.length){
+        var pct=Math.round(score/QUIZ.length*100);
+        w.innerHTML='<div style="font-size:18px;color:var(--gold);text-align:center">🎓 测验完成：'+score+' / '+QUIZ.length+'（'+pct+'%）</div>';
+        document.getElementById('quizFb').innerHTML=pct>=80?'<span class="fb good">🏆 你读懂了。带着这份清醒去爱，去生活。</span>':pct>=50?'<span class="fb">不错的开始，回看免费章节，把恩宠与勇气记牢。</span>':'<span class="fb">建议再读一遍序章和第7章，那是最接近本质的部分。</span>';
+        addPoints(score>=8?10:5,'完成读后小测');badge('超越死亡者','🕯');track('game',{g:'quiz',score:score,total:QUIZ.length});
+        return;
+      }
+      var cur=QUIZ[qi];
+      var qd=document.createElement('div');qd.className='desc';qd.textContent='第'+(qi+1)+'题：'+cur.q;
+      w.appendChild(qd);
+      cur.o.forEach(function(t,oi){
+        var b=document.createElement('button');b.className='opt';b.textContent=t;
+        b.onclick=function(){
+          w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          if(oi===cur.a){b.className='opt ok';score++;}
+          else{b.className='opt no';document.getElementById('quizFb').innerHTML='<span class="fb bad">正确答案：'+cur.o[cur.a]+'</span>';}
+          qi++;setTimeout(render,900);
+        };
+        w.appendChild(b);
+      });
+    }
+  },0);
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name])return;BADGES[name]=1;saveBadges();
+  toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var list=[['🤝','同行者'],['🕯','看清恐惧'],['💢','真实的人'],['🧘','内观者'],['🤲','慈悲行者'],['🌅','意义探寻者'],['💬','金句收藏家'],['☕','生活家'],['⏳','不留遗憾'],['🕯','超越死亡者']];
+  var host=document.getElementById('badgesHost');
+  if(!host){host=document.createElement('div');host.id='badgesHost';host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';document.getElementById('chapters').appendChild(host);}
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  list.forEach(function(b){
+    var on=BADGES[b[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+(on?b[0]:'🔒')+'</span>'+b[1];
+    bd.appendChild(el);
+  });
+}
+
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('codeBox').classList.add('hidden');document.getElementById('unlockOk').textContent='';}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function verifyCode(){
+  var c=(document.getElementById('codeInput').value||'').trim();
+  if(c.length<6){document.getElementById('unlockHint').textContent='激活码格式不正确（至少 6 位）。';return;}
+  if(hashOk(c)){
+    document.getElementById('unlockOk').textContent='✅ 激活成功！全书已解锁。';
+    track('unlock',{method:'code'});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='激活码无效。提示：可联系平台获取；完成互动任务攒积分也能解锁。';
+  }
+}
+function hashOk(c){
+  if(c.toUpperCase()==='325FA149')return true;
+  if(c==='XQ2026')return true;
+  return false;
+}
+function unlockByPoints(){
+  if(POINTS>=50){
+    setPoints(POINTS-50);
+    document.getElementById('unlockOk').textContent='✅ 积分兑换成功！已扣除 50 积分，全书解锁。';
+    track('unlock',{method:'points',cost:50});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='积分不足（当前 '+POINTS+' / 50）。完成免费章节的互动任务可快速攒分。';
+  }
+}
+function adminCheck(){
+  var pw=prompt('管理员口令：');
+  if(pw&&hashOk(pw.toUpperCase())){
+    localStorage.setItem(LSKEY_ADMIN,'1');
+    document.getElementById('unlockOk').textContent='✅ 管理员验证通过，全书解锁。';
+    unlockAll();
+  }else if(pw){document.getElementById('unlockHint').textContent='口令错误。';}
+}
+
+function goRead(){
+  var first=document.getElementById('chap-0');
+  if(first){first.scrollIntoView({behavior:'smooth'});}
+  track('read',{action:'start'});
+}
+function goTo(i){
+  var el=document.getElementById('chap-'+i);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+function playBgm(){
+  var a=document.getElementById('bgmEl');
+  if(!a){a=document.createElement('audio');a.id='bgmEl';a.src='bgm.wav';a.loop=true;a.volume=.4;document.body.appendChild(a);}
+  if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';track('audio',{src:'bgm.wav'});}
+  else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}
+}
+
+(function init(){
+  var btn=document.getElementById('btnUnlock');
+  btn.onclick=function(){UNLOCKED?toast('📖 全书已解锁'):openUnlock();};
+  document.getElementById('points').textContent=POINTS;
+  renderToc();renderChapters();
+  track('open',{});
+  var t0=Date.now();
+  window.addEventListener('beforeunload',function(){
+    var sec=Math.round((Date.now()-t0)/1000);
+    if(sec>=5){track('read',{action:'leave',sec:sec});}
+  });
+})();
+</script>
+</body>
+</html>
