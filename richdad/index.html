@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富爸爸穷爸爸 · 罗伯特·清崎 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#0a140d; --bg2:#12301c; --card:#0f1f15; --line:#2a5234;
+    --tx:#f2fbf4; --sub:#c6e3cd; --dim:#7ba786;
+    --gold:#ffc46b; --green:#4ade80; --red:#ff6b5e; --blue:#5ea2ff; --purple:#a78bfa; --teal:#5eead4;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#08110a 0%,#12301c 45%,#0a140d 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.75;overflow-x:hidden}
+  .wrap{max-width:880px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(255,196,107,.08),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(74,222,128,.06),transparent 60%)}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(8,17,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#ffc46b,#f59e0b);color:#1a1205;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,196,107,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--gold)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(28px,6.5vw,42px);margin:14px 0 6px;color:var(--gold);letter-spacing:8px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:660px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(255,196,107,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#241a0c;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,107,94,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);margin-bottom:10px}
+  .learn-loop{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+  .learn-loop span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--dim)}
+  .learn-loop span.on{color:var(--green);border-color:rgba(74,222,128,.5)}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(255,196,107,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
+  .chap .cnt .focus{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.25);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;color:var(--teal)}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,13,0),rgba(10,20,13,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#0c1a11;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#163424,#0f1f15);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(74,222,128,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,107,94,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#08110a;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ffc46b,#4ade80);border-radius:999px;transition:width .5s}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(255,196,107,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(74,222,128,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(74,222,128,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#08110a}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#08110a;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,196,107,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(4,10,6,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#163424,#0f1f15);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#08110a;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(255,196,107,.06);border:1px solid rgba(255,196,107,.22);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .mini-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  .mini-table th,.mini-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  .mini-table th{background:#163424;color:var(--gold)}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(2,1fr)}.pair-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">💰 富爸爸穷爸爸<small>罗伯特·清崎</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock">🔓 解锁</button>
+    <button class="btn sm" id="btnRead" onclick="goRead()">开始学习 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">RICH DAD POOR DAD · ROBERT KIYOSAKI</div>
+    <h1>富爸爸穷爸爸</h1>
+    <div class="tag">
+      <span>罗伯特·清崎 著</span><span>全球销量 5000 万册</span><span>财商启蒙第一书</span><span>资产与负债</span>
+    </div>
+    <p class="lead">「穷人和中产阶级为钱而工作，富人让钱为他们工作。」罗伯特·清崎有两个爸爸：穷爸爸高学历勤恳一生却穷于账单；富爸爸中学没毕业却实现了财务自由。这本书用两位爸爸的对比，教你分清<b>资产与负债</b>、跳出<b>老鼠赛跑</b>、从 E/S 走向 B/I，最终靠<b>被动收入</b>实现财务自由。</p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">💰 上财富课</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 学点音乐</button>
+    </div>
+    <div class="tip">🧠 本书按「理解 → 记忆 → 联想 → 练习」四步闭环学习法设计：每节配金句卡片、概念配对、情景演练与实战小测，共 13 个互动游戏 + 14 枚徽章。<b>读完这本书，你会重新认识"钱"。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 11 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">💰 富爸爸穷爸爸 · 熙祺智书出品<br>《Rich Dad Poor Dad》罗伯特·清崎 · 多媒体互动版 · 内容仅供学习交流，不构成投资建议</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 5 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='richdad';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=11, FREE=6;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'两个爸爸的财富课',free:1,icon:'🌳',art:'art_cover.jpg',cap:'「穷人和中产阶级为钱而工作，富人让钱为他们工作。」',
+  learn:['理解'],
+  p:[['罗伯特·清崎从小有两个爸爸，教他完全相反的金钱观：'],
+     ['<b>穷爸爸（亲生父亲）：</b>','高学历、高学历、勤恳工作，','总说"好好学习，找个好工作"。','他一生被账单追着跑，收入越高、支出越大。'],
+     ['<b>富爸爸（好友父亲）：</b>','中学没毕业的企业家，','从不说"找工作"，而是说：','"别为钱工作，要让钱为你工作。"','他靠资产和系统，实现了财务自由。'],
+     ['两个爸爸都很努力，','但一个为钱打工，一个让钱打工。','差别不在学历，不在智商，','而在对金钱的理解。'],
+     ['「起床，上班，付账，再起床，再上班，再付账……','他们的生活永远被两种感觉控制：','恐惧和贪婪。','这就是“老鼠赛跑”。」']]},
+ {n:'第1课',t:'富人不为钱工作',free:1,icon:'🐹',art:'art_rat.jpg',cap:'大多数人让恐惧和贪婪支配自己；富人学会让钱为自己工作。',
+  learn:['理解','记忆'],
+  p:[['富爸爸给清崎上了第一课：','不为钱工作。'],
+     ['大多数人为什么工作？','因为恐惧——怕没钱。','发了工资又为什么花钱？','因为贪婪——想要更多。'],
+     ['「人们因为害怕没钱而工作，','又因为欲望而花钱，','永远循环，永无出期。」','这就是老鼠赛跑。'],
+     ['工作只是暂时的解决方案，','它用"稳定的收入"','换走了你最重要的东西：','时间和成长的机会。'],
+     ['富爸爸说：','「如果你不能学会控制情感，','即使你变得很有钱，','你也只不过是一个高薪的奴隶。」']]},
+ {n:'第2课',t:'分清资产与负债',free:1,icon:'⚖️',art:'art_asset.jpg',cap:'判断标准不是物品本身，而是现金流方向。',
+  learn:['理解','联想'],
+  p:[['这是全书最重要的定义，请务必记住：'],
+     ['<b>资产</b> = 能把钱放进你口袋里的东西。','（出租房产、分红股票、能盈利的生意、版权专利）'],
+     ['<b>负债</b> = 把钱从你口袋里掏走的东西。','（自住房贷、车贷、信用卡、养着却不断花钱的物件）'],
+     ['「富人买入资产，穷人买入负债，','中产阶级买入自以为是的资产。」'],
+     ['你的房子是资产还是负债？','答案取决于现金流：','如果它每月把钱掏走（还贷、物业、维护），','在你的账本里，它就是负债。'],
+     ['一个动作改变人生：','<b>收入先流向资产，再让资产产生被动收入。</b>']]},
+ {n:'第3课',t:'关注自己的事业',free:1,icon:'🏠',art:'art_business.jpg',cap:'职业是你在别人的系统里工作；事业是你自己的资产系统。',
+  learn:['理解','联想'],
+  p:[['富爸爸说：','"你的职业和你的事业是两回事。"'],
+     ['<b>职业</b>：你为别人工作，赚工资。','（老师、医生、工程师、程序员……）','<b>事业</b>：你为自己建立资产。','（房产、股票、版权、能生钱的系统）'],
+     ['很多人拼命工作，','却把赚来的钱全花掉，','然后继续拼命工作——','他们只经营职业，从未经营事业。'],
+     ['富人的做法：','白天上班赚本金，','下班用本金买资产，','让资产替他继续赚钱。'],
+     ['「关注你自己的事业，','把每一份收入的一部分，','优先变成能生钱的资产。」']]},
+ {n:'第4课',t:'税收与公司的力量',free:1,icon:'🏛',art:'art_tax.jpg',cap:'穷人为钱工作、为税交钱；富人先建立系统，再让系统为你省税。',
+  learn:['理解','记忆'],
+  p:[['清崎发现一个残酷的事实：','同样赚 10 万，','雇员和公司主交的税完全不一样。'],
+     ['雇员：收入 → 交税 → 支出。','（工资先被税拿走，剩下的才归你）'],
+     ['公司主：收入 → 支出 → 交税。','（先以公司名义花钱，再对剩余部分交税）'],
+     ['富人不是偷税漏税，','而是利用法律给的合法结构，','把"钱先花在事业上"再计税。'],
+     ['「财商四要素之一就是法律：','了解规则的人，','能让规则为自己服务。」','（请记住：这是讲合法规划，不是逃税）']]},
+ {n:'第5课',t:'富人的投资',free:1,icon:'📈',art:'art_invest.jpg',cap:'投资不是赌博，是让钱为你工作的一门手艺。',
+  learn:['理解','联想'],
+  p:[['普通人投资：听消息、追涨杀跌、看运气。','富人投资：看现金流、算回报、找机会。'],
+     ['富爸爸的投资哲学：','先建立自己的财务知识，','再寻找"别人看不见的机会"。'],
+     ['清崎说：','「财商让你看得见机会。','同样的市场，','财商高的人看见的是现金流，','财商低的人看见的是风险。」'],
+     ['投资标的可以是：','房产、股票、生意、知识产权……','关键是它能否带来正向现金流。'],
+     ['「人们常常高估自己一年能做的事，','却低估十年能做的事。」','慢慢变富，才是富人的节奏。']]},
+ {n:'第6课',t:'不要为金钱而工作',free:0,icon:'🧠',art:'art_invest.jpg',cap:'学习的目的是提升财商，而不是只为一纸工资。',
+  learn:['理解','记忆'],
+  p:[['富爸爸给清崎的最后一课：','不要为了钱而学习，','要为提升财商而学习。'],
+     ['很多人选专业、找工作，','只看"哪个赚钱多"，','却从不问：','"这份工作能让我学会什么？"'],
+     ['富爸爸说：','「工作只是暂时的，','财商是跟着你一辈子的。」','年轻时多学本事、多积累资产，','比多赚几千块工资重要得多。'],
+     ['「如果你的财商足够高，','你一生中遇到的机会，','会多到让你惊讶。」','机会，是留给有准备（有财商）的人。']]},
+ {n:'现金流象限',t:'E-S-B-I 定位自己',free:0,icon:'🧭',art:'art_quadrant.jpg',cap:'你在哪个象限赚钱，决定了你是为钱工作还是让钱为你工作。',
+  learn:['理解','联想','记忆'],
+  p:[['清崎把赚钱方式分成四个象限：'],
+     ['<b>E（雇员）</b>：为别人工作。','稳定、安全，但时间被买断。','<b>S（自由职业者）</b>：为自己工作。','自由，但仍是"超级雇员"，','停下就没有收入。'],
+     ['<b>B（企业主）</b>：拥有系统。','让别人为自己工作，','收入不依赖个人时间。','<b>I（投资人）</b>：让钱为自己工作。','靠资产现金流生活，'],
+     ['「绝大多数人一辈子困在 E/S 象限，','而富人永远站在 B/I 象限。」'],
+     ['从 E 到 I 的路径：','先提升财商 → 积累资产 →','用被动收入覆盖支出 → 进入 I 象限。']]},
+ {n:'被动收入',t:'跳出老鼠赛跑',free:0,icon:'🛠',art:'art_pipe.jpg',cap:'财务自由 = 被动收入 ≥ 生活支出。',
+  learn:['理解','练习'],
+  p:[['什么是财务自由？','不是拥有很多现金，','而是你的<b>被动收入</b>','足以覆盖你的生活支出。'],
+     ['被动收入 = 不用亲自劳动也能持续进来的钱。','（租金、股息、版税、自动运转的生意）'],
+     ['主动收入 = 干一天活赚一天钱。','（工资、接单、自由职业）','你只有主动收入，','就永远在为钱工作。'],
+     ['跳出老鼠赛跑的方法：','1. 先存本金；','2. 用本金买资产；','3. 资产产生被动收入；','4. 被动收入覆盖支出 → 自由。'],
+     ['「富爸爸总说：先支付自己，再支付账单。」','每个月的第一笔钱，','先流向你的资产，而不是先还债、先消费。']]},
+ {n:'财商四要素',t:'会计·投资·市场·法律',free:0,icon:'📚',art:'art_finintel.jpg',cap:'财商是四门功课的合体，缺一门都难走远。',
+  learn:['记忆','联想'],
+  p:[['清崎说，财商 = 四门功课：'],
+     ['<b>① 会计</b>：读懂数字。','看懂收入表、资产负债表、现金流。','这是地基。'],
+     ['<b>② 投资</b>：让钱生钱。','知道钱去哪、怎么产生回报。'],
+     ['<b>③ 市场</b>：看懂供需。','知道什么在涨、为什么涨、何时出手。'],
+     ['<b>④ 法律</b>：了解规则。','税法的优惠、公司的结构、资产的保护。'],
+     ['「这四门功课，学校一门都不教。','但它们决定了你一生的财富走向。」','从会计开始，每天补一课。']]},
+ {n:'终章',t:'从思维到行动',free:0,icon:'🪜',art:'art_action.jpg',cap:'知道和做到之间，差的是行动。',
+  learn:['理解','练习'],
+  p:[['读完这本书，','你知道了：资产 vs 负债、','老鼠赛跑、现金流象限、被动收入……'],
+     ['但清崎说：','「行动的人总是会击败不行动的人。」','知道，只值 1 分；','做到，才值 100 分。'],
+     ['他给出的第一步行动清单：','① 列出你所有的资产与负债；','② 找出一件"以为自己买的是资产、其实是负债"的东西；','③ 每月把收入的一部分先支付给自己（买资产）；','④ 选一个财商方向（会计/投资/市场/法律）开始学。'],
+     ['「大多数人的财务困境，','不是因为他们不够聪明，','而是因为他们从未真正开始。」','今天，就是开始的一天。']]}
+];
+
+var QUIZ=[
+ {q:'《富爸爸穷爸爸》的核心主张是？',o:['让钱为你工作，而非为钱工作','努力加班多赚钱','找一份稳定的好工作'],a:0},
+ {q:'什么是资产？',o:['能把钱放进你口袋里的东西','你觉得值钱的东西','房子和车子'],a:0},
+ {q:'什么是负债？',o:['把钱从你口袋里掏走的东西','欠银行的钱','股票'],a:0},
+ {q:'"老鼠赛跑"指的是？',o:['上班-赚钱-花钱的循环陷阱','仓鼠宠物','竞争压力'],a:0},
+ {q:'中产阶级最常见的错误是？',o:['买入自以为是的资产（实为负债）','存钱太少','不买保险'],a:0},
+ {q:'财务自由的定义是？',o:['被动收入≥生活支出','拥有很多现金','年薪百万'],a:0},
+ {q:'现金流象限中，让钱为自己工作的是？',o:['I 投资人','E 雇员','S 自由职业者'],a:0},
+ {q:'"先支付自己"的意思是？',o:['收入先流向资产再付账单','先给自己买奢侈品','先存消费基金'],a:0},
+ {q:'财商四要素不包括？',o:['炒股技巧','会计','市场'],a:0},
+ {q:'职业和事业的区别是？',o:['职业为别人工作，事业为自己建资产','职业赚钱多，事业赚钱少','一样'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 财商进阶</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可学';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · RICH DAD LESSON</div><h2>'+c.t+'</h2>';
+    var loop=document.createElement('div');loop.className='learn-loop';
+    ['理解','记忆','联想','练习'].forEach(function(s){var sp=document.createElement('span');sp.textContent=s;if((c.learn||[]).indexOf(s)>=0)sp.className='on';loop.appendChild(sp);});
+    d.appendChild(loop);
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div><div class="focus">🧠 学习闭环：这一节先把概念读懂（理解），再记下金句（记忆），把概念套到自己身上想一想（联想），最后用互动小游戏练一遍（练习）。</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 两个爸爸的故事'));}
+  if(i===2){h.appendChild(audioBlock('voice_asset.wav','🎧 核心定义 · 什么是资产与负债'));}
+  if(i===8){h.appendChild(audioBlock('voice_free.wav','🎧 财务自由 · 让钱为你工作'));}
+  if(i===10){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 ·《穷爸爸富爸爸》深度讲解：什么是资产，什么是负债</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1J15T6dEpw&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameDads());}
+  if(i===1){out.push(gameRat());}
+  if(i===2){out.push(gameAssetSort());out.push(gameCashflow());}
+  if(i===3){out.push(gameBusiness());}
+  if(i===4){out.push(gameTaxOrder());}
+  if(i===5){out.push(gameInvest());}
+  if(i===6){out.push(gameLearn());}
+  if(i===7){out.push(gameQuadrant());}
+  if(i===8){out.push(gamePipe());out.push(gameFreedom());}
+  if(i===9){out.push(gameFinIntel());}
+  if(i===10){out.push(gameAction());out.push(gameQuiz());}
+  return out;
+}
+
+/* 1 两个爸爸的选择 */
+function gameDads(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-dads';
+  d.innerHTML='<h3>🌳 两个爸爸的选择</h3><div class="gsub">理解：这些话是穷爸爸说的，还是富爸爸说的？点开揭晓。</div>';
+  d.innerHTML+='<div class="trash" id="daWrap"></div><div class="fb" id="daFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('daWrap');
+    var items=[
+      {t:'💬 「好好学习，找个稳定的好工作」',s:'穷爸爸 · 用时间换工资。'},
+      {t:'💬 「别为钱工作，要让钱为你工作」',s:'富爸爸 · 让钱当你的员工。'},
+      {t:'💬 「我的房子是我最大的投资」',s:'穷爸爸 · 把自住房当资产。'},
+      {t:'💬 「资产是往你口袋放钱的东西」',s:'富爸爸 · 看现金流方向。'},
+      {t:'💬 「努力学习才能找到好工作」',s:'穷爸爸 · 为工资而学。'},
+      {t:'💬 「学习是为了提升财商」',s:'富爸爸 · 财商跟一辈子。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="daS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('daS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('daFb').textContent='已辨认 '+n+' / '+items.length+' 句话';
+        if(n===items.length){
+          document.getElementById('daFb').innerHTML='<span class="fb good">🌳 辨认完成！你想听哪位爸爸的话，决定了你未来 20 年的财务轨迹。</span>';
+          addPoints(6,'辨认两个爸爸');badge('财商觉醒者','🌳');track('game',{g:'dads',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 2 老鼠赛跑识别 */
+function gameRat(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-rat';
+  d.innerHTML='<h3>🐹 老鼠赛跑识别</h3><div class="gsub">理解+联想：下面哪些人陷入了"老鼠赛跑"？点开看分析。</div>';
+  d.innerHTML+='<div class="trash" id="raWrap"></div><div class="fb" id="raFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('raWrap');
+    var items=[
+      {t:'👔 工资涨了，开销也跟着涨',s:'⚠ 老鼠赛跑：加薪只让跑步机变快。'},
+      {t:'💳 用信用卡买"想要"的东西',s:'⚠ 老鼠赛跑：欲望追着工资跑。'},
+      {t:'🏠 收入先买自住房+豪车',s:'⚠ 老鼠赛跑：负债和收入同步增长。'},
+      {t:'📈 每月收入先买资产',s:'✓ 已跳出：先支付自己，资产滚雪球。'},
+      {t:'🏦 被动收入覆盖了生活支出',s:'✓ 已跳出：实现了财务自由。'},
+      {t:'🌱 月薪先存本金再找机会',s:'✓ 已跳出：在积累第一桶金。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="raS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('raS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('raFb').textContent='已识别 '+n+' / '+items.length+' 种状态';
+        if(n===items.length){
+          document.getElementById('raFb').innerHTML='<span class="fb good">🐹 识别完成！跳出老鼠赛跑的唯一方法：收入先流向资产。</span>';
+          addPoints(6,'识别老鼠赛跑');badge('赛跑观察员','🐹');track('game',{g:'rat',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 3 资产 vs 负债大分类 */
+function gameAssetSort(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-asset';
+  d.innerHTML='<h3>⚖️ 资产 vs 负债大分类</h3><div class="gsub">联想：把下面的东西分成两类——资产（放进口袋）还是负债（掏出口袋）？</div>';
+  d.innerHTML+='<div id="asWrap"></div><div class="fb" id="asFb"></div>';
+  var items=[
+    {t:'🏠 出租且租金＞月供的房子',a:'asset'},
+    {t:'🚗 自用代步车（每月养车费）',a:'liab'},
+    {t:'📈 持续分红的股票',a:'asset'},
+    {t:'💳 高利率信用卡欠款',a:'liab'},
+    {t:'📚 能持续卖版税的书',a:'asset'},
+    {t:'🏠 自住房（每月还贷+物业）',a:'liab'},
+    {t:'🏪 自动运转的小生意',a:'asset'},
+    {t:'📱 追新款换的手机',a:'liab'}
+  ];
+  var done=0,correct=0;
+  setTimeout(function(){next();},0);
+  function next(){
+    var w=document.getElementById('asWrap');w.innerHTML='';
+    if(done>=items.length){
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">分类完成：'+correct+' / '+items.length+' 正确<br><span style="color:var(--sub);font-size:13px">记住：唯一标准是现金流方向，不是"我喜不喜欢"。</span></div>';
+      addPoints(correct>=7?8:4,'资产负债大分类');badge(correct>=7?'资产侦探':'分类学徒','⚖️');track('game',{g:'asset',score:correct});
+      return;
+    }
+    var cur=items[done];
+    w.innerHTML='<div class="desc">'+(done+1)+' / '+items.length+' · '+cur.t+'<br><span style="font-size:12px;color:var(--dim)">它把钱放进口袋，还是掏出口袋？</span></div>';
+    var b1=document.createElement('button');b1.className='opt';b1.textContent='💰 资产（放进口袋）';
+    var b2=document.createElement('button');b2.className='opt';b2.textContent='💸 负债（掏出口袋）';
+    b1.onclick=function(){judge('asset');};
+    b2.onclick=function(){judge('liab');};
+    w.appendChild(b1);w.appendChild(b2);
+    function judge(g){
+      b1.disabled=true;b2.disabled=true;
+      if(g===cur.a){correct++;b1.className='opt ok';b2.className='opt no';document.getElementById('asFb').innerHTML='<span class="fb good">✓ 正确！看现金流方向。</span>';}
+      else{document.getElementById('asFb').innerHTML='<span class="fb bad">✗ 再想：它每月往你口袋放钱还是掏钱？</span>';b1.className=g==='asset'?'opt no':'opt ok';b2.className=g==='liab'?'opt no':'opt ok';}
+      done++;setTimeout(next,900);
+    }
+  }
+  return d;
+}
+
+/* 4 现金流方向判断 */
+function gameCashflow(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-cf';
+  d.innerHTML='<h3>💸 现金流方向判断</h3><div class="gsub">练习：判断下面的现金流，是流入（收入）还是流出（支出）？</div>';
+  d.innerHTML+='<div id="cfWrap"></div><div class="fb" id="cfFb"></div>';
+  var qs=[
+    {q:'每月收到 3000 元房租',o:['流入 → 资产','流出 → 负债'],a:0},
+    {q:'每月还 8000 元房贷（自住房）',o:['流入','流出'],a:1},
+    {q:'每年收到 2000 元股息',o:['流入','流出'],a:0},
+    {q:'每月交 500 元养车费',o:['流入','流出'],a:1},
+    {q:'每月收到版权分成',o:['流入','流出'],a:0}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('cfWrap');
+    if(qi>=qs.length){
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">现金流练习：'+pts+' / '+qs.length+'<br><span style="color:var(--sub);font-size:13px">让流入多于流出，你就越来越富。</span></div>';
+      addPoints(pts>=4?6:3,'现金流判断');badge('现金流师','💸');track('game',{g:'cashflow',score:pts});
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';pts++;document.getElementById('cfFb').innerHTML='<span class="fb good">✓ 正确</span>';}
+        else{b.className='opt no';document.getElementById('cfFb').innerHTML='<span class="fb bad">✗ 再想想钱往哪边流</span>';}
+        qi++;setTimeout(renderQ,800);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 5 职业 vs 事业 */
+function gameBusiness(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-biz';
+  d.innerHTML='<h3>🏠 职业 vs 事业</h3><div class="gsub">联想：下面哪些是你的"事业"（资产），哪些只是"职业"（工作）？点开揭晓。</div>';
+  d.innerHTML+='<div class="trash" id="biWrap"></div><div class="fb" id="biFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('biWrap');
+    var items=[
+      {t:'💼 白天的工作',s:'职业 · 用时间换工资。'},
+      {t:'🏠 出租的房产',s:'事业 · 资产在替你赚钱。'},
+      {t:'📚 写书拿版税',s:'事业 · 版权是资产。'},
+      {t:'💻 接单的自由职业',s:'职业 · 停下就没收入（S象限）。'},
+      {t:'📈 持有分红的股票',s:'事业 · 钱在替你工作。'},
+      {t:'🏪 自动运转的生意系统',s:'事业 · 系统替你工作（B象限）。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="biS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('biS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('biFb').textContent='已识别 '+n+' / '+items.length+' 项';
+        if(n===items.length){
+          document.getElementById('biFb').innerHTML='<span class="fb good">🏠 识别完成！白天经营职业，业余经营事业——两手都要抓。</span>';
+          addPoints(6,'分清职业事业');badge('事业家','🏠');track('game',{g:'business',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 6 花钱顺序 */
+function gameTaxOrder(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-tax';
+  d.innerHTML='<h3>🏛 花钱顺序</h3><div class="gsub">记忆：穷人、中产、富人的现金流顺序有何不同？</div>';
+  d.innerHTML+='<div class="pair-grid" id="txGrid"></div><div class="fb" id="txFb">把左边的人和右边的现金流顺序配对（已完成 0 / 3）</div>';
+  var pairs=[
+    {q:'穷人',a:'收入 → 支出'},
+    {q:'中产阶级',a:'收入 → 负债（房贷车贷）→ 支出'},
+    {q:'富人',a:'收入 → 资产 → 被动收入'}
+  ];
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    var grid=document.getElementById('txGrid');
+    pairs.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      var qHalf=selEl===grid.children[sel*2];
+      var aHalf=el===grid.children[pi*2+1];
+      if(sel===pi&&qHalf!==aHalf){
+        var q=grid.children[pi*2],a=grid.children[pi*2+1];
+        q.className='pair matched';a.className='pair matched';
+        matched++;
+        document.getElementById('txFb').innerHTML='把左边的人和右边的现金流顺序配对（已完成 '+matched+' / 3）';
+        if(matched===pairs.length){
+          document.getElementById('txFb').innerHTML='<span class="fb good">🏛 配对完成！富人先买资产，再让资产生钱——这就是差距。</span>';
+          addPoints(8,'现金流顺序配对');badge('现金流排序师','🏛');track('game',{g:'tax',score:pairs.length});
+        }
+      }else{document.getElementById('txFb').innerHTML='<span class="fb bad">配错了，再想想谁先谁后。</span>';}
+      sel=null;selEl=null;
+    }
+  },0);
+  return d;
+}
+
+/* 7 富人投资 */
+function gameInvest(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-invest';
+  d.innerHTML='<h3>📈 富人投资课</h3><div class="gsub">练习：面对同样的钱，富人会怎么选？</div>';
+  d.innerHTML+='<div id="ivWrap"></div><div class="fb" id="ivFb"></div>';
+  var qs=[
+    {q:'手里有 10 万，富爸爸会？',o:['先学习+找能产生现金流的资产','全买奢侈品犒劳自己','存银行吃利息等通胀'],a:0},
+    {q:'朋友推荐"稳赚"的内幕消息，富爸爸会？',o:['看现金流和逻辑，不赌消息','重仓跟进','先借点钱梭哈'],a:0},
+    {q:'遇到一次投资失败，富爸爸会？',o:['复盘学习，控制单笔风险','加倍下注扳本','从此再也不碰投资'],a:0},
+    {q:'投资前最看重什么？',o:['现金流和回报率','别人买我也买','涨得最快'],a:0}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('ivWrap');
+    if(qi>=qs.length){
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">投资课完成：'+pts+' / 4<br><span style="color:var(--sub);font-size:13px">富人投资看现金流，普通人投资看热闹。</span></div>';
+      addPoints(pts>=3?6:3,'富人投资课');badge('现金流投资人','📈');track('game',{g:'invest',score:pts});
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';pts++;document.getElementById('ivFb').innerHTML='<span class="fb good">✅ 富爸爸会点头。</span>';}
+        else{b.className='opt no';document.getElementById('ivFb').innerHTML='<span class="fb bad">✗ 富爸爸会摇头：这不是投资，是赌博。</span>';}
+        qi++;setTimeout(renderQ,900);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 8 不为钱学习 */
+function gameLearn(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-learn';
+  d.innerHTML='<h3>🧠 为财商而学</h3><div class="gsub">理解：同样是学习，目的不同，结果天差地别。点开揭晓。</div>';
+  d.innerHTML+='<div class="trash" id="leWrap"></div><div class="fb" id="leFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('leWrap');
+    var items=[
+      {t:'📚 为找工作而学专业',s:'没错，但别止步于此。'},
+      {t:'💡 为提升财商而学财务知识',s:'富爸爸：财商跟着你一辈子。'},
+      {t:'🧮 学看懂收入表和资产负债表',s:'财商四要素之一：会计。'},
+      {t:'📈 学投资和市场规律',s:'财商：让钱生钱的本事。'},
+      {t:'⚖️ 学法律和公司结构',s:'财商：让规则为你服务。'},
+      {t:'🌟 用知识找机会',s:'「财商高的人看见的是机会。」'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="leS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('leS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('leFb').textContent='已点亮 '+n+' / '+items.length+' 条财商之路';
+        if(n===items.length){
+          document.getElementById('leFb').innerHTML='<span class="fb good">🧠 点亮完成！工作只是暂时的，财商是跟一辈子的。</span>';
+          addPoints(6,'点亮财商之路');badge('终身学习者','🧠');track('game',{g:'learn',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 9 现金流象限定位 */
+function gameQuadrant(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quad';
+  d.innerHTML='<h3>🧭 现金流象限定位</h3><div class="gsub">记忆+联想：把职业/状态匹配到 E / S / B / I 象限。</div>';
+  d.innerHTML+='<div class="pair-grid" id="qdGrid"></div><div class="fb" id="qdFb">把左边的描述和象限配对（已完成 0 / 6）</div>';
+  var pairs=[
+    {q:'朝九晚五的上班族',a:'E 雇员'},
+    {q:'自己接活的手艺人',a:'S 自由职业者'},
+    {q:'拥有自动运转的公司',a:'B 企业主'},
+    {q:'靠股息和租金生活',a:'I 投资人'},
+    {q:'医生/律师（靠个人时间赚钱）',a:'S 自由职业者'},
+    {q:'用被动收入覆盖支出',a:'I 投资人'}
+  ];
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    var grid=document.getElementById('qdGrid');
+    pairs.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      var qHalf=selEl===grid.children[sel*2];
+      var aHalf=el===grid.children[pi*2+1];
+      if(sel===pi&&qHalf!==aHalf){
+        var q=grid.children[pi*2],a=grid.children[pi*2+1];
+        q.className='pair matched';a.className='pair matched';
+        matched++;
+        document.getElementById('qdFb').innerHTML='把左边的描述和象限配对（已完成 '+matched+' / 6）';
+        if(matched===pairs.length){
+          document.getElementById('qdFb').innerHTML='<span class="fb good">🧭 配对完成！财富自由主要发生在 B/I 象限。</span>';
+          addPoints(10,'象限配对完成');badge('象限领航员','🧭');track('game',{g:'quadrant',score:pairs.length});
+        }
+      }else{document.getElementById('qdFb').innerHTML='<span class="fb bad">配错了，再想想这个人是为谁工作。</span>';}
+      sel=null;selEl=null;
+    }
+  },0);
+  return d;
+}
+
+/* 10 被动收入管道 */
+function gamePipe(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-pipe';
+  d.innerHTML='<h3>🛠 被动收入管道</h3><div class="gsub">练习：点按建造你的被动收入管道，一桶一桶接水。</div>';
+  d.innerHTML+='<div class="bar"><i id="piBar" style="width:0%"></i></div>';
+  d.innerHTML+='<div class="kick" id="piKick"></div><div class="fb" id="piFb">建管道进度 0%</div>';
+  var steps=['💰 先存本金','🏠 买第一项资产','📈 资产产生被动收入','🏦 被动收入覆盖1项支出','🔄 再投下一项资产','🕊 被动收入≥生活支出'];
+  var cur=0;
+  setTimeout(function(){
+    var k=document.getElementById('piKick');
+    steps.forEach(function(s,si){
+      var b=document.createElement('button');b.textContent=s;
+      b.onclick=function(){
+        if(b.classList.contains('done'))return;
+        b.classList.add('done');cur++;
+        document.getElementById('piBar').style.width=Math.round(cur/steps.length*100)+'%';
+        document.getElementById('piFb').textContent='建管道进度 '+Math.round(cur/steps.length*100)+'%';
+        if(cur===steps.length){
+          document.getElementById('piFb').innerHTML='<span class="fb good">🕊 管道建成！被动收入≥支出，恭喜你跳出老鼠赛跑。</span>';
+          addPoints(10,'建成被动收入管道');badge('管道建造师','🛠');track('game',{g:'pipe',stage:steps.length});
+        }
+      };
+      k.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 11 财务自由计算 */
+function gameFreedom(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-freedom';
+  d.innerHTML='<h3>🏦 财务自由计算</h3><div class="gsub">练习：算一算，你离财务自由还有多远？</div>';
+  d.innerHTML+='<div id="frWrap"></div><div class="fb" id="frFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('frWrap');
+    w.innerHTML='<div class="desc">小明的月生活支出是 5000 元。他的资产每月产生被动收入：房租 3000 + 股息 1000 + 版权 1500 = 5500 元。他财务自由了吗？</div>';
+    var b1=document.createElement('button');b1.className='opt';b1.textContent='✅ 自由了：被动收入5500 ≥ 支出5000';
+    var b2=document.createElement('button');b2.className='opt';b2.textContent='❌ 还没：钱还不够多';
+    b1.onclick=function(){b1.className='opt ok';b2.disabled=true;document.getElementById('frFb').innerHTML='<span class="fb good">✓ 对！被动收入覆盖支出，钱开始替你工作。</span>';addPoints(5,'财务自由计算');badge('自由计算师','🏦');track('game',{g:'freedom',score:1});};
+    b2.onclick=function(){b2.className='opt no';b1.disabled=true;document.getElementById('frFb').innerHTML='<span class="fb bad">✗ 再想想：财务自由看被动收入 vs 支出，不看钱的总数。</span>';addPoints(2,'尝试计算');track('game',{g:'freedom',score:0});};
+    w.appendChild(b1);w.appendChild(b2);
+  },0);
+  return d;
+}
+
+/* 12 财商四要素 */
+function gameFinIntel(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-fintel';
+  d.innerHTML='<h3>📚 财商四要素</h3><div class="gsub">记忆：把四门功课和它们的作用配对。</div>';
+  d.innerHTML+='<div class="pair-grid" id="fiGrid"></div><div class="fb" id="fiFb">配对（已完成 0 / 4）</div>';
+  var pairs=[
+    {q:'会计',a:'读懂数字：收入表、资产负债表'},
+    {q:'投资',a:'让钱生钱：现金流与回报'},
+    {q:'市场',a:'看懂供需：什么在涨、何时出手'},
+    {q:'法律',a:'了解规则：税务与公司结构'}
+  ];
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    var grid=document.getElementById('fiGrid');
+    pairs.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      var qHalf=selEl===grid.children[sel*2];
+      var aHalf=el===grid.children[pi*2+1];
+      if(sel===pi&&qHalf!==aHalf){
+        var q=grid.children[pi*2],a=grid.children[pi*2+1];
+        q.className='pair matched';a.className='pair matched';
+        matched++;
+        document.getElementById('fiFb').innerHTML='配对（已完成 '+matched+' / 4）';
+        if(matched===pairs.length){
+          document.getElementById('fiFb').innerHTML='<span class="fb good">📚 四要素掌握！学校不教的课，现在开始补。</span>';
+          addPoints(8,'财商四要素');badge('四课全修','📚');track('game',{g:'fintel',score:pairs.length});
+        }
+      }else{document.getElementById('fiFb').innerHTML='<span class="fb bad">配错了，再想想这门课是干嘛的。</span>';}
+      sel=null;selEl=null;
+    }
+  },0);
+  return d;
+}
+
+/* 13 行动阶梯 */
+function gameAction(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-action';
+  d.innerHTML='<h3>🪜 行动阶梯</h3><div class="gsub">练习：把"知道"变成"做到"——逐级踏上行动阶梯。</div>';
+  d.innerHTML+='<div class="kick" id="acKick"></div><div class="fb" id="acFb">从第一级开始，一步步行动。</div>';
+  var steps=['📋 列出我的资产与负债','🔍 找出"伪资产"（其实在掏钱）','💰 本月先支付自己（买资产）','📈 选一个财商方向开始学','🗓 制定一年资产目标','🚀 今天就做一件改变财商的事'];
+  var cur=0;
+  setTimeout(function(){
+    var k=document.getElementById('acKick');
+    steps.forEach(function(s,si){
+      var b=document.createElement('button');b.textContent=s;
+      b.onclick=function(){
+        if(b.classList.contains('done'))return;
+        b.classList.add('done');cur++;
+        document.getElementById('acFb').textContent='已踏上 '+cur+' / '+steps.length+' 级';
+        if(cur===steps.length){
+          document.getElementById('acFb').innerHTML='<span class="fb good">🚀 行动阶梯登顶！知道值 1 分，做到值 100 分——现在开始。</span>';
+          addPoints(10,'行动阶梯登顶');badge('行动派富翁','🪜');track('game',{g:'action',stage:steps.length});
+        }
+      };
+      k.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 14 读后小测 */
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quiz';
+  d.innerHTML='<h3>📝 读后小测 · 财商学分</h3><div class="gsub">10 题，检验你的财商认知收获（练习环节收官）。</div>';
+  d.innerHTML+='<div class="quiz-prog" id="quizProg"></div><div id="quizWrap"></div><div class="fb" id="quizFb"></div>';
+  var qi=0,score=0;
+  setTimeout(function(){
+    render();
+    function render(){
+      var prog=document.getElementById('quizProg');prog.innerHTML='';
+      QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
+      var w=document.getElementById('quizWrap');w.innerHTML='';
+      if(qi>=QUIZ.length){
+        var pct=Math.round(score/QUIZ.length*100);
+        w.innerHTML='<div style="font-size:18px;color:var(--gold);text-align:center">🎓 测验完成：'+score+' / '+QUIZ.length+'（'+pct+'%）</div>';
+        document.getElementById('quizFb').innerHTML=pct>=80?'<span class="fb good">🏆 财商满分！从今天起先支付自己，开始买资产。</span>':pct>=50?'<span class="fb">不错的开始，回看免费章节巩固资产与负债的定义。</span>':'<span class="fb">建议再读第 2 课（资产与负债），那是全书的基石。</span>';
+        addPoints(score>=8?10:5,'完成读后小测');badge('财商优等生','💰');track('game',{g:'quiz',score:score,total:QUIZ.length});
+        return;
+      }
+      var cur=QUIZ[qi];
+      var qd=document.createElement('div');qd.className='desc';qd.textContent='第'+(qi+1)+'题：'+cur.q;
+      w.appendChild(qd);
+      cur.o.forEach(function(t,oi){
+        var b=document.createElement('button');b.className='opt';b.textContent=t;
+        b.onclick=function(){
+          w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          if(oi===cur.a){b.className='opt ok';score++;}
+          else{b.className='opt no';document.getElementById('quizFb').innerHTML='<span class="fb bad">正确答案：'+cur.o[cur.a]+'</span>';}
+          qi++;setTimeout(render,900);
+        };
+        w.appendChild(b);
+      });
+    }
+  },0);
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name])return;BADGES[name]=1;saveBadges();
+  toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var list=[['🌳','财商觉醒者'],['🐹','赛跑观察员'],['⚖️','资产侦探'],['💸','现金流师'],['🏠','事业家'],['🏛','现金流排序师'],['📈','现金流投资人'],['🧠','终身学习者'],['🧭','象限领航员'],['🛠','管道建造师'],['🏦','自由计算师'],['📚','四课全修'],['🪜','行动派富翁'],['💰','财商优等生']];
+  var host=document.getElementById('badgesHost');
+  if(!host){host=document.createElement('div');host.id='badgesHost';host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';document.getElementById('chapters').appendChild(host);}
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  list.forEach(function(b){
+    var on=BADGES[b[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+(on?b[0]:'🔒')+'</span>'+b[1];
+    bd.appendChild(el);
+  });
+}
+
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('codeBox').classList.add('hidden');document.getElementById('unlockOk').textContent='';}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function verifyCode(){
+  var c=(document.getElementById('codeInput').value||'').trim();
+  if(c.length<6){document.getElementById('unlockHint').textContent='激活码格式不正确（至少 6 位）。';return;}
+  if(hashOk(c)){
+    document.getElementById('unlockOk').textContent='✅ 激活成功！全书已解锁。';
+    track('unlock',{method:'code'});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='激活码无效。提示：可联系平台获取；完成互动任务攒积分也能解锁。';
+  }
+}
+function hashOk(c){
+  if(c.toUpperCase()==='325FA149')return true;
+  if(c==='XQ2026')return true;
+  return false;
+}
+function unlockByPoints(){
+  if(POINTS>=50){
+    setPoints(POINTS-50);
+    document.getElementById('unlockOk').textContent='✅ 积分兑换成功！已扣除 50 积分，全书解锁。';
+    track('unlock',{method:'points',cost:50});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='积分不足（当前 '+POINTS+' / 50）。完成免费章节的互动任务可快速攒分。';
+  }
+}
+function adminCheck(){
+  var pw=prompt('管理员口令：');
+  if(pw&&hashOk(pw.toUpperCase())){
+    localStorage.setItem(LSKEY_ADMIN,'1');
+    document.getElementById('unlockOk').textContent='✅ 管理员验证通过，全书解锁。';
+    unlockAll();
+  }else if(pw){document.getElementById('unlockHint').textContent='口令错误。';}
+}
+
+function goRead(){
+  var first=document.getElementById('chap-0');
+  if(first){first.scrollIntoView({behavior:'smooth'});}
+  track('read',{action:'start'});
+}
+function goTo(i){
+  var el=document.getElementById('chap-'+i);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+function playBgm(){
+  var a=document.getElementById('bgmEl');
+  if(!a){a=document.createElement('audio');a.id='bgmEl';a.src='bgm.wav';a.loop=true;a.volume=.4;document.body.appendChild(a);}
+  if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';track('audio',{src:'bgm.wav'});}
+  else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}
+}
+
+(function init(){
+  var btn=document.getElementById('btnUnlock');
+  btn.onclick=function(){UNLOCKED?toast('📖 全书已解锁'):openUnlock();};
+  document.getElementById('points').textContent=POINTS;
+  renderToc();renderChapters();
+  track('open',{});
+  var t0=Date.now();
+  window.addEventListener('beforeunload',function(){
+    var sec=Math.round((Date.now()-t0)/1000);
+    if(sec>=5){track('read',{action:'leave',sec:sec});}
+  });
+})();
+</script>
+</body>
+</html>
