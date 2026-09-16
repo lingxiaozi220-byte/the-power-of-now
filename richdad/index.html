@@ -378,7 +378,7 @@ function gameFor(i){
   if(i===5){out.push(gameInvest());}
   if(i===6){out.push(gameLearn());}
   if(i===7){out.push(gameQuadrant());}
-  if(i===8){out.push(gamePipe());out.push(gameFreedom());}
+  if(i===8){out.push(gamePipe());out.push(gameCashFlowSim());out.push(gameFreedom());}
   if(i===9){out.push(gameFinIntel());}
   if(i===10){out.push(gameAction());out.push(gameQuiz());}
   return out;
@@ -759,7 +759,104 @@ function gamePipe(){
   return d;
 }
 
-/* 11 财务自由计算 */
+/* 11b 现金流桌游模拟器 */
+function gameCashFlowSim(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-sim';
+  d.innerHTML='<h3>🎲 现金流桌游模拟器</h3><div class="gsub">练习：选一个职业，掷卡做选择，把被动收入做到 ≥ 支出，跳出老鼠赛跑！</div>';
+  d.innerHTML+='<div id="simWrap"></div><div class="fb" id="simFb"></div>';
+  var JOBS=[
+    {name:'🧑‍🔧 保安',income:3000,expense:2500,saving:1000},
+    {name:'👩‍💻 工程师',income:8000,expense:6200,saving:3000},
+    {name:'🧑‍⚕️ 医生',income:12000,expense:10500,saving:5000}
+  ];
+  var CARDS=[
+    {t:'🏠 机会卡：一套小公寓，首付 5 万，月净租 +500',kind:'asset',cost:50000,passive:500},
+    {t:'🚗 诱惑卡：换新车，首付 3 万 + 月供 800',kind:'liab',cost:30000,exp:800},
+    {t:'📈 机会卡：分红股票，投入 2 万，月息 +200',kind:'asset',cost:20000,passive:200},
+    {t:'📱 消费卡：最新款手机，花 8000',kind:'spend',cost:8000},
+    {t:'💡 学习卡：花 5000 学投资课，财商 +1',kind:'learn',cost:5000},
+    {t:'🎁 市场卡：资产升值，被动收入 +100',kind:'bonus',passive:100},
+    {t:'🏝 旅行卡：度假花 1 万',kind:'spend',cost:10000},
+    {t:'💰 副业卡：下班接单，月收入 +1000',kind:'income',income:1000}
+  ];
+  var st={phase:'job',job:null,saving:0,income:0,expense:0,passive:0,turn:0,used:[]};
+  setTimeout(function(){render();},0);
+  function render(){
+    var w=document.getElementById('simWrap');w.innerHTML='';
+    if(st.phase==='job'){
+      w.innerHTML='<div class="desc">选择你的职业：</div>';
+      JOBS.forEach(function(j,ji){
+        var b=document.createElement('button');b.className='opt';
+        b.textContent=j.name+' · 月收入 '+j.income+' / 月支出 '+j.expense+' / 存款 '+j.saving;
+        b.onclick=function(){st.job=j;st.saving=j.saving;st.income=j.income;st.expense=j.expense;st.passive=0;st.turn=0;st.used=[];st.phase='play';render();};
+        w.appendChild(b);
+      });
+      document.getElementById('simFb').textContent='医生收入高支出也高，保安起点低更容易跳出——选一个开始。';
+      return;
+    }
+    status();
+    if(st.passive>=st.expense){
+      w.innerHTML='<div style="font-size:18px;color:var(--gold);text-align:center">🕊 跳出老鼠赛跑！</div><div class="desc">被动收入 '+st.passive+' ≥ 支出 '+st.expense+'，钱开始替你工作。</div>';
+      document.getElementById('simFb').innerHTML='<span class="fb good">🎲 你用了 '+st.turn+' 回合跳出赛道！这就是富爸爸的路线。</span>';
+      addPoints(12,'现金流桌游跳出');badge('老鼠赛跑冠军','🎲');track('game',{g:'sim',result:'win',turns:st.turn});
+      return;
+    }
+    if(st.turn>=6){
+      w.innerHTML='<div style="font-size:16px;color:var(--red);text-align:center">🐹 还在老鼠赛跑里…</div><div class="desc">被动收入 '+st.passive+' 还没覆盖支出 '+st.expense+'。记住：收入先流向资产。</div>';
+      document.getElementById('simFb').innerHTML='<span class="fb">再玩一次，优先抓住资产卡！</span>';
+      addPoints(4,'桌游挑战');track('game',{g:'sim',result:'lose',turns:6});
+      return;
+    }
+    var avail=CARDS.filter(function(c){return st.used.indexOf(c.t)<0;});
+    var card=avail[Math.floor(Math.random()*avail.length)];
+    st.used.push(card.t);
+    var cur=st.turn+1;
+    w.innerHTML='<div class="desc">第 '+cur+' 回合 · '+card.t+'</div>';
+    if(card.kind==='asset'){
+      var b=document.createElement('button');b.className='opt';b.textContent='💰 买下它（存款 '+st.saving+'）';
+      var b2=document.createElement('button');b2.className='opt';b2.textContent='🙅 放弃（先存够钱）';
+      b.onclick=function(){
+        if(st.saving>=card.cost){st.saving-=card.cost;st.passive+=card.passive;document.getElementById('simFb').innerHTML='<span class="fb good">✓ 买入资产！被动收入 +'+card.passive+'</span>';}
+        else{document.getElementById('simFb').innerHTML='<span class="fb bad">✗ 存款不足（'+st.saving+'），先攒钱再来。</span>';}
+        b.disabled=true;b2.disabled=true;st.turn++;setTimeout(render,1000);
+      };
+      b2.onclick=function(){document.getElementById('simFb').textContent='放弃资产，错失一次生钱机会…';b.disabled=true;b2.disabled=true;st.turn++;setTimeout(render,1000);};
+      w.appendChild(b);w.appendChild(b2);
+    }else if(card.kind==='liab'){
+      var b=document.createElement('button');b.className='opt';b.textContent='🚗 买它（过把瘾，月支出 +800）';
+      var b2=document.createElement('button');b2.className='opt';b.textContent='🧠 不买（负债越少越好）';
+      b.onclick=function(){st.saving-=card.cost;st.expense+=card.exp;document.getElementById('simFb').innerHTML='<span class="fb bad">✗ 负债 +800/月，离自由更远了…</span>';b.disabled=true;b2.disabled=true;st.turn++;setTimeout(render,1000);};
+      b2.onclick=function(){document.getElementById('simFb').innerHTML='<span class="fb good">✓ 明智！避免负债，富人买资产不买负债。</span>';b.disabled=true;b2.disabled=true;st.turn++;setTimeout(render,1000);};
+      w.appendChild(b);w.appendChild(b2);
+    }else if(card.kind==='spend'){
+      st.saving-=card.cost;
+      document.getElementById('simFb').innerHTML='<span class="fb">💸 花了 '+card.cost+'，存款剩 '+st.saving+'</span>';
+      st.turn++;setTimeout(render,900);
+    }else if(card.kind==='learn'){
+      st.saving-=card.cost;
+      document.getElementById('simFb').innerHTML='<span class="fb good">💡 财商 +1：花钱提升自己永远不亏。</span>';
+      st.turn++;setTimeout(render,900);
+    }else if(card.kind==='bonus'){
+      st.passive+=card.passive;
+      document.getElementById('simFb').innerHTML='<span class="fb good">🎁 资产升值！被动收入 +100</span>';
+      st.turn++;setTimeout(render,900);
+    }else if(card.kind==='income'){
+      st.income+=card.income;
+      document.getElementById('simFb').innerHTML='<span class="fb good">💰 月收入 +'+card.income+'，但记住：提高收入也要优先买资产。</span>';
+      st.turn++;setTimeout(render,900);
+    }
+    function status(){
+      var s=document.createElement('div');
+      s.style.cssText='background:#08110a;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;margin-bottom:12px;color:var(--sub)';
+      s.innerHTML='存款 <b style="color:var(--gold)">'+st.saving+'</b> · 月收入 <b>'+st.income+'</b> · 月支出 <b style="color:var(--red)">'+st.expense+'</b> · 被动收入 <b style="color:var(--green)">+'+st.passive+'</b> · 回合 '+(st.turn+1)+'/6';
+      w.appendChild(s);
+    }
+  }
+  return d;
+}
+
+/* 11c 财务自由计算 */
 function gameFreedom(){
   var d=document.createElement('div');d.className='game';
   d.id='g-freedom';
