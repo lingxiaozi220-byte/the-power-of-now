@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>邻家的百万富翁 · 托马斯·斯坦利 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#101418; --bg2:#1f2a33; --card:#182027; --line:#33424d;
+    --tx:#eef3f6; --sub:#c7d2da; --dim:#8fa2ae;
+    --gold:#ffd166; --green:#4ade80; --red:#ff6b5e; --blue:#5ea2ff; --purple:#c084fc; --teal:#5eead4;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#0d1115 0%,#1f2a33 45%,#101418 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.75;overflow-x:hidden}
+  .wrap{max-width:880px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(255,209,102,.10),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(94,162,255,.06),transparent 60%)}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(13,17,21,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#ffd166,#f59e0b);color:#1a1205;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,209,102,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--gold)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(26px,6vw,40px);margin:14px 0 6px;color:var(--gold);letter-spacing:6px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:660px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(255,209,102,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#26343e;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,107,94,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);margin-bottom:10px}
+  .learn-loop{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+  .learn-loop span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--dim)}
+  .learn-loop span.on{color:var(--green);border-color:rgba(74,222,128,.5)}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(255,209,102,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
+  .chap .cnt .focus{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.25);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;color:var(--teal)}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,20,24,0),rgba(16,20,24,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#0d1115;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#1f2a33,#182027);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(74,222,128,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,107,94,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#0d1115;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ffd166,#4ade80);border-radius:999px;transition:width .5s}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(255,209,102,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(74,222,128,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(74,222,128,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#0d1115}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#0d1115;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,209,102,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(5,7,9,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#1f2a33,#182027);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0d1115;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(255,209,102,.06);border:1px solid rgba(255,209,102,.22);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .mini-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  .mini-table th,.mini-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  .mini-table th{background:#1f2a33;color:var(--gold)}
+  .egg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .egg-grid button{background:linear-gradient(145deg,#ffd166,#f59e0b);border:none;border-radius:50%;aspect-ratio:1;font-size:22px;cursor:pointer;transition:transform .15s}
+  .egg-grid button:active{transform:scale(.9)}
+  .egg-grid button.used{opacity:.25;cursor:default}
+  .slider{width:100%;margin:10px 0;accent-color:var(--gold)}
+  .stat-line{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .stat{flex:1;min-width:110px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+  .stat b{display:block;font-size:22px;color:var(--gold)}
+  .stat span{font-size:12px;color:var(--dim)}
+  .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+  .card-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px;cursor:pointer;transition:all .25s}
+  .card-item:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .card-item.picked{border-color:var(--green);background:rgba(74,222,128,.1)}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(2,1fr)}.pair-grid{grid-template-columns:1fr}.egg-grid{grid-template-columns:repeat(4,1fr)}.card-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">🏡 邻家的百万富翁<small>托马斯·斯坦利 & 威廉·丹科</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock" onclick="openUnlock()">🔓 解锁</button>
+    <button class="btn sm" onclick="goRead()">开始学习 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">THE MILLIONAIRE NEXT DOOR · THOMAS J. STANLEY & WILLIAM D. DANKO</div>
+    <h1>邻家的百万富翁</h1>
+    <div class="tag">
+      <span>托马斯·斯坦利 & 威廉·丹科 著</span><span>20 年调研 11000+ 富翁</span><span>连续 179 周畅销榜</span><span>普通人变富的底层逻辑</span>
+    </div>
+    <p class="lead">真正的百万富翁，往往住在普通社区、开着旧车，你<b>根本看不出他们有钱</b>。两位作者用二十年时间调研了一万一千多位高净值人群、深度访谈五百多位白手起家的富翁，得出一个颠覆认知的结论：<b>财富不等于收入</b>，财富是资产减去负债后真正留下的净值。高收入的人可能月光，而那个低调的邻居可能早已财务自由。<b>这本书要教你的，不是如何赚钱，而是如何成为「看起来不像有钱人」的真正富人。</b></p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🏡 上财富课</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 学点音乐</button>
+    </div>
+    <div class="tip">🧠 本书按「理解 → 记忆 → 联想 → 练习」四步闭环学习法设计：每节配金句、情景演练、测算工具与实战小测，共 14 个互动游戏 + 14 枚徽章。<b>读完这本，你将看穿三大财富幻觉，学会用净值思维积累真实财富。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 7 节免费试读。付费解锁后可读完整 11 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🏡 邻家的百万富翁 · 熙祺智书出品<br>《The Millionaire Next Door》托马斯·斯坦利、威廉·丹科 · 多媒体互动版 · 内容仅供学习交流，不构成投资建议</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 4 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='neighbor';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var TOTAL=11, FREE=7;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'真正的富人，你根本看不出来',free:1,icon:'🏡',art:'art_cover.jpg',cap:'财富最常见的伪装，就是看起来并不富。',
+  learn:['理解'],
+  p:[['1980 年代，两位学者——托马斯·斯坦利和威廉·丹科，','开始了一个野心勃勃的研究：','全美国真正的百万富翁，','到底是什么样的人？'],
+     ['他们花了二十年，','调研了一万一千多份高净值人群问卷，','深度访谈了五百多位白手起家的富翁。','结果震惊所有人：'],
+     ['超过一半的百万富翁，','不住豪宅、不开豪车，','就住在普通的中产社区——','就在你隔壁。'],
+     ['他们开旧车、穿普通衣服、','自己修草坪、自己换机油。','你甚至看不出他们有钱。'],
+     ['为什么？因为他们的财富观：','<b>「看起来有钱」和「真正有钱」','是两回事。</b>'],
+     ['这本书要颠覆你的第一个认知：','<b>财富不是花掉的东西，','而是积累下来的东西。</b>']]},
+ {n:'第一章',t:'财富不等于收入：高收入穷人',free:1,icon:'💸',art:'art_income.jpg',cap:'收入是流量，财富是净值。年薪百万也可能一贫如洗。',
+  learn:['理解','记忆'],
+  p:[['很多人以为：高收入 = 富有。','这是全书要打破的<b>第一幻觉</b>。'],
+     ['你年薪 50 万，但房贷、车贷、孩子教育、','日常排场把钱全部吞噬，','月底依然月光——','这叫「高收入穷人」。'],
+     ['书中调查发现：','很多医生、律师、企业高管收入极高，','但净资产少得可怜。','因为收入越高，消费升级越快。'],
+     ['财富的公式只有一个：','<b>财富 = 资产 − 负债</b>。','年薪只是流量，','净值才是真正剩下的财富。'],
+     ['记住这句话：','「财富不是你赚了多少，','而是你留住了多少。」','收入决定你的生活方式，','净值决定你的安全感。']]},
+ {n:'第二章',t:'量入为出：节俭是第一习惯',free:1,icon:'🛠',art:'art_save.jpg',cap:'节俭不是小气，而是对每一分钱都有清醒的认识。',
+  learn:['理解','练习'],
+  p:[['书中调研的百万富翁，','绝大多数过着','远低于自身财富水平的生活。'],
+     ['他们坚持预算、多入少出，','一辆车能开 20 年就开 20 年，','还经常自己动手换机油。','这是<b>第二个真相</b>。'],
+     ['一位富翁说：','「这车还能开，为什么要换？','买新车的钱，','够我再种下一片财富的森林。」'],
+     ['节俭不是小气，','而是清楚每一分钱的价值：','<b>今天省下的，就是明天积累的。</b>'],
+     ['三句口诀：','① 收入到账先储蓄；','② 记账，知道钱去哪了；','③ 花在资产上，不花在排场上。']]},
+ {n:'第三章',t:'预期净资产公式：测测你是哪类人',free:1,icon:'🧮',art:'art_formula.jpg',cap:'预期净资产 = 年龄 × 年收入 ÷ 10。低于预期，说明财富被生活方式吞噬。',
+  learn:['理解','记忆','练习'],
+  p:[['这本书最著名的工具，','是<b>预期净资产公式</b>：'],
+     ['<b>预期净资产 = 年龄 × 年税前收入 ÷ 10</b>'],
+     ['例如：你 35 岁、年收入 30 万，','预期净资产应为 35 × 30万 ÷ 10 = 105 万。'],
+     ['如果实际净资产 ≥ 预期值 × 2，','你是「财富积累能手」（PAW）；','如果实际净资产 < 预期值 ÷ 2，','你是「低财富积累者」（UAW）。'],
+     ['警惕：','很多高收入者是 UAW——','赚得多、留得少，','财富被生活方式悄悄吞噬。'],
+     ['公式的意义不是让你焦虑，','而是给你一面镜子：','<b>你的钱，到底留住没有？</b>']]},
+ {n:'第四章',t:'时间用在哪里，财富就在哪里',free:1,icon:'⏳',art:'art_time.jpg',cap:'富人把时间花在研究投资；伪富人把时间花在消费炫耀。',
+  learn:['理解','联想'],
+  p:[['研究发现，两类人分配时间的方式截然不同：'],
+     ['<b>财富积累者</b>：','每周花大量时间研究投资、规划资产、','提升专业技能、思考事业。'],
+     ['<b>高收入消费者</b>：','把时间花在购物、娱乐、社交攀比，','研究怎么花掉钱，而不是怎么留住钱。'],
+     ['时间是最公平的资产：','每个人每天 24 小时，','花在哪里，哪里就开花结果。'],
+     ['问自己一个问题：','过去一个月，','我花在「研究财富」上的时间，','和花在「消费」上的时间，','哪个更多？'],
+     ['把时间留给财富积累，','是普通人最容易被忽视的杠杆。']]},
+ {n:'第五章',t:'经济门诊关怀：别用爱毁掉孩子',free:1,icon:'👨‍👩‍👧',art:'art_eo.jpg',cap:'父母随叫随到的经济接济，看似是爱，实则是慢性毒药。',
+  learn:['理解','记忆'],
+  p:[['书中揭示一个隐蔽的陷阱：','<b>经济门诊关怀</b>（Economic Outpatient Care）。'],
+     ['指的是：','成年子女频繁接受父母的经济资助，','父母随叫随到地接济。'],
+     ['研究发现：','被父母长期资助的成年子女，','消费水平往往远高于收入，','净资产却低得可怜。'],
+     ['为什么？','因为有人兜底，','他们就学不会量入为出，','反而养成了更高的消费习惯。'],
+     ['真正富有的家庭，','给孩子的不是钱，','而是三样东西：','① 自立的技能；','② 节俭的习惯；','③ 财务的纪律。'],
+     ['给鱼不如给渔。','让孩子在经济上自给自足，','才是父母留下的最大财富。']]},
+ {n:'第六章',t:'职业与创业：选择你的财富赛道',free:1,icon:'🧭',art:'art_career.jpg',cap:'百万富翁里，自雇者和小企业主占了压倒性多数。',
+  learn:['理解','联想'],
+  p:[['研究者们追问：','这些白手起家的百万富翁，','都是做什么工作的？'],
+     ['答案令人惊讶：','他们大多不是华尔街精英，','而是<b>自雇者、小企业主、自由职业者</b>——','牙医、管道工、农场主、小店主。'],
+     ['他们选职业的共同标准：','① 能发挥自己的专长；','② 收入有自主增长空间；','③ 能持续积累，而不是「越忙越穷」。'],
+     ['不是劝你辞职创业，','而是提醒你：','选择职业时，','别只看工资数字，','要看这份职业能不能帮你积累净值。'],
+     ['把主业做成资产，','是普通人财富积累的第一引擎。']]},
+ {n:'第七章',t:'投资习惯：让资产为你工作',free:0,icon:'🌳',art:'art_asset.jpg',cap:'富人把钱变成资产，穷人把钱变成负债。',
+  learn:['理解','练习'],
+  p:[['百万富翁们的投资习惯，','朴素得惊人：','他们不追求暴富，','追求<b>稳定积累</b>。'],
+     ['典型路径：','每年坚持储蓄 20% 的收入，','投入到长期稳健的资产中，','用几十年的时间滚雪球。'],
+     ['他们买资产，不买负债：','<b>资产</b>是能持续给你带来现金流的东西；','<b>负债</b>是不断从你口袋掏钱的东西。'],
+     ['不要羡慕一夜暴富，','那往往伴随一夜返贫。','真正的财富，','是时间站在你这边慢慢长出来的。'],
+     ['三原则：','① 先储蓄后消费；','② 长期稳健，不追求短期暴利；','③ 不懂的不碰，碰了就要研究透。']]},
+ {n:'第八章',t:'教育与传承：财富的接力棒',free:0,icon:'🎓',art:'art_goal.jpg',cap:'财富传承的第一课，是让孩子学会不靠父母也能活好。',
+  learn:['理解','联想'],
+  p:[['富人的子女，为什么很多反而「富不过三代」？','书中给出了一个残酷的答案：','<b>养尊处优</b>。'],
+     ['从小被满足一切需求的子女，','长大后缺乏财务纪律，','消费习惯远超收入，','最终败光家产。'],
+     ['正确的传承，是传递能力而非金钱：','① 让孩子从小参与劳动与预算；','② 教他们量入为出和储蓄；','③ 成年后经济独立，不再依赖父母。'],
+     ['斯坦利发现：','大多数成功的富二代，','都经历过「必须自己赚钱」的阶段。'],
+     ['金钱会花完，','但能力、习惯和纪律，','会伴随一生，代代相传。']]},
+ {n:'第九章',t:'消费陷阱：看起来有钱与真正有钱',free:0,icon:'🕳',art:'art_trap.jpg',cap:'花 1000 美元买套装的人，非百万富翁的数量是百万富翁的 6 倍以上。',
+  learn:['记忆','练习'],
+  p:[['书中有一个扎心的数据：','那些花 1000 美元买一套西装的人，','非百万富翁的数量，','是百万富翁的 6 倍以上。'],
+     ['消费主义最大的谎言：','「买得起 = 富有」。','买得起只能证明现金流，','证明不了财富。'],
+     ['那些开着豪车、戴名表的人，','很可能正背着巨额债务；','而开旧车的老王，','可能早已全款买房、财务自由。'],
+     ['「看起来有钱」的人，','在为「看起来」付利息；','「真正有钱」的人，','在为「真正」存本金。'],
+     ['破局方法：','① 关掉冲动消费的开关；','② 买东西前问一句：','这是资产，还是面子？','③ 把省下的钱，','投入能生钱的资产。']]},
+ {n:'终章',t:'成为邻家的百万富翁',free:0,icon:'🏠',art:'art_goal.jpg',cap:'财富是一场马拉松，不是短跑冲刺。',
+  learn:['记忆','练习'],
+  p:[['现在，把整本书浓缩成一张行动地图：'],
+     ['<b>财富公式</b>：','财富 = 资产 − 负债','（收入是流量，净值才是财富）。'],
+     ['<b>三大习惯</b>：','① 量入为出，先储蓄后消费；','② 把时间花在研究财富上；','③ 买资产，不买面子。'],
+     ['<b>一条铁律</b>：','不给孩子经济门诊关怀，','传递能力而非金钱。'],
+     ['<b>一个公式</b>：','预期净资产 = 年龄 × 年收入 ÷ 10，','每年算一次，','看看你的净值有没有跟上年龄。'],
+     ['最后记住：','<b>财富是一场马拉松，','不是短跑冲刺。</b>','今天多存下的每一分，','都是明天财务自由的一块砖。'],
+     ['从今晚开始：','记一笔账，存一笔款，','关掉一个冲动消费的念头。','十年后，你会成为那个','低调而富足的「邻家百万富翁」。']]}
+];
+
+var QUIZ=[
+ {q:'书中最核心的财富定义是？',o:['财富 = 资产 − 负债（净值）','财富 = 年收入','财富 = 拥有的名牌数量'],a:0},
+ {q:'预期净资产公式是？',o:['年龄 × 年税前收入 ÷ 10','年收入 ÷ 10','年龄 ÷ 年收入'],a:0},
+ {q:'「高收入穷人」的本质是？',o:['收入高但净值少，财富被消费吞噬','收入太低','不会理财软件'],a:0},
+ {q:'真正的百万富翁大多住在？',o:['普通中产社区','豪宅区','市中心顶层公寓'],a:0},
+ {q:'节俭在书中的含义是？',o:['对每一分钱有清醒认识','抠门小气','不花钱'],a:0},
+ {q:'「经济门诊关怀」指？',o:['父母随叫随到地资助成年子女','定期体检','子女照顾父母'],a:0},
+ {q:'被长期资助的成年子女通常？',o:['消费高、净资产低','更会理财','更节俭'],a:0},
+ {q:'百万富翁中占多数的是？',o:['自雇者和小企业主','华尔街精英','职业运动员'],a:0},
+ {q:'花 1000 美元买西装的人中，非百万富翁是百万富翁的？',o:['6 倍以上','一半','差不多'],a:0},
+ {q:'「看起来有钱」与「真正有钱」的区别是？',o:['前者为面子付利息，后者为本金存钱','前者会理财','后者会消费'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 财富进阶</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可学';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · MILLIONAIRE NEXT DOOR</div><h2>'+c.t+'</h2>';
+    var loop=document.createElement('div');loop.className='learn-loop';
+    ['理解','记忆','联想','练习'].forEach(function(s){var sp=document.createElement('span');sp.textContent=s;if((c.learn||[]).indexOf(s)>=0)sp.className='on';loop.appendChild(sp);});
+    d.appendChild(loop);
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div><div class="focus">🧠 学习闭环：这一节先把概念读懂（理解），再记下金句（记忆），把概念套到自己身上想一想（联想），最后用互动小游戏练一遍（练习）。</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 真正的富人你根本看不出来'));}
+  if(i===2){h.appendChild(audioBlock('voice_save.wav','🎧 量入为出 · 节俭是第一习惯'));}
+  if(i===6){h.appendChild(audioBlock('voice_asset.wav','🎧 让资产为你工作'));}
+  if(i===10){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 一口气看完《邻家的百万富翁》：慢慢变富才是普通人的出路</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1binaz6Ea8&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameReveal());}
+  if(i===1){out.push(gameNet());}
+  if(i===2){out.push(gameBudget());}
+  if(i===3){out.push(gameFormula());}
+  if(i===4){out.push(gameTime());}
+  if(i===5){out.push(gameEO());}
+  if(i===6){out.push(gameCareer());}
+  if(i===7){out.push(gameInvest());}
+  if(i===8){out.push(gameKid());}
+  if(i===9){out.push(gameTrap());out.push(gameShop());}
+  if(i===10){out.push(gameSort());out.push(gameCoin());out.push(gameQuiz());}
+  return out;
+}
+
+function gameReveal(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏡 猜猜谁是百万富翁</h3><div class="gsub">互动 · 你被「看起来有钱」骗过多少次？</div><div class="desc">三位邻居站在一起：谁最有可能是真正的百万富翁？</div>';
+  var opts=[
+    ['开豪车、戴名表、常去高级餐厅',false,'这位可能正背着车贷和消费贷——看起来有钱，往往在为「看起来」付利息。'],
+    ['开旧车、穿普通衣服、自己修草坪',true,'这正是书中超过 50% 百万富翁的真实画像——财富最常见的伪装就是看起来并不富。'],
+    ['住在市中心最贵楼盘、朋友圈晒旅游',false,'高消费往往伴随高负债，晒的是现金流，不是净值。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="rvO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="rvFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#rvO'+i).onclick=function(){
+      var b=d.querySelector('#rvO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'识破财富伪装');badge('识富者','🏡');d.querySelector('#rvFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'reveal',score:1});}
+      else{b.className='opt no';d.querySelector('#rvFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#rvO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameNet(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>💸 净值计算器</h3><div class="gsub">互动 · 收入是流量，净值才是财富</div><div class="desc">输入你的资产和负债，算算真正的净值。资产 = 能持续带来现金流的；负债 = 不断掏钱的。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="ntA">0</b><span>资产（万）</span></div><div class="stat"><b id="ntL">0</b><span>负债（万）</span></div><div class="stat"><b id="ntN">0</b><span>净值（万）</span></div></div>';
+  d.innerHTML+='<label style="font-size:13px;color:var(--sub)">资产总额（万）：</label><input type="range" class="slider" id="ntSA" min="0" max="500" step="5" value="0">';
+  d.innerHTML+='<label style="font-size:13px;color:var(--sub)">负债总额（万）：</label><input type="range" class="slider" id="ntSL" min="0" max="500" step="5" value="0">';
+  d.innerHTML+='<button class="btn" id="ntOk">我明白了：净值才是财富</button><div class="fb" id="ntFb">拖动滑杆，看看你的真实净值。</div>';
+  var a=d.querySelector('#ntSA'),l=d.querySelector('#ntSL');
+  function calc(){
+    var av=parseInt(a.value),lv=parseInt(l.value),nv=av-lv;
+    d.querySelector('#ntA').textContent=av;
+    d.querySelector('#ntL').textContent=lv;
+    d.querySelector('#ntN').textContent=nv;
+    d.querySelector('#ntFb').textContent=nv>=0?'你的净值 '+nv+' 万。收入是流量，净值才是安全感。':'你的净值是负数——先还债、再积累，别让生活方式吃掉未来。';
+  }
+  a.oninput=calc;l.oninput=calc;
+  d.querySelector('#ntOk').onclick=function(){
+    addPoints(8,'搞懂净值');badge('净值计算师','💸');
+    d.querySelector('#ntFb').innerHTML='<span class="fb good">💡 财富 = 资产 − 负债。年薪高不高不重要，留得住才重要。今天开始给每笔消费归类：资产，还是负债？</span>';
+    track('game',{g:'net',net:parseInt(a.value)-parseInt(l.value)});
+    this.disabled=true;
+  };
+  return d;
+}
+function gameBudget(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🛠 量入为出判断</h3><div class="gsub">互动 · 这是富人的习惯还是伪富人的排场？</div><div class="desc">判断下面哪些是书中百万富翁的真实习惯。</div>';
+  var items=[
+    ['坚持做家庭预算','富'],
+    ['换新车只为「撑场面」','伪'],
+    ['旧车能开就一直开','富'],
+    ['用最新款手机证明自己过得好','伪'],
+    ['购物前先问「这是资产还是面子」','富'],
+    ['发薪后第一件事：先存下 20%','富']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="bdA'+i+'">富人</button><button class="btn sm ghost" id="bdB'+i+'">伪富人</button><span class="fb" id="bdFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="bdSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#bdA'+i).onclick=function(){judge(i,'富');};
+    d.querySelector('#bdB'+i).onclick=function(){judge(i,'伪');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#bdFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#bdA'+i+',#bdB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#bdFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+(it[1]==='富'?'富人':'伪富人')+'」的习惯</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'识破消费伪装');badge('节俭家','🛠');
+        d.querySelector('#bdSum').innerHTML='<span class="fb good">🎉 6 项全对！节俭不是小气，而是对每一分钱都有清醒的认识。</span>';
+        track('game',{g:'budget',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameFormula(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🧮 预期净资产检测</h3><div class="gsub">互动 · 你的财富跟得上年龄吗？</div><div class="desc">输入年龄与年收入，用书中公式算出预期净资产，再输入实际净资产，测测你是财富积累能手（PAW）还是低财富积累者（UAW）。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="fmAge">30</b><span>年龄</span></div><div class="stat"><b id="fmInc">20</b><span>年收入（万）</span></div><div class="stat"><b id="fmExp">60</b><span>预期净资产（万）</span></div></div>';
+  d.innerHTML+='<label style="font-size:13px;color:var(--sub)">年龄：</label><input type="range" class="slider" id="fmSA" min="20" max="60" value="30">';
+  d.innerHTML+='<label style="font-size:13px;color:var(--sub)">年收入（万）：</label><input type="range" class="slider" id="fmSI" min="5" max="200" step="5" value="20">';
+  d.innerHTML+='<label style="font-size:13px;color:var(--sub)">实际净资产（万）：</label><input type="range" class="slider" id="fmSN" min="0" max="1000" step="5" value="60">';
+  d.innerHTML+='<div class="fb" id="fmFb"></div><button class="btn" id="fmOk">开始检测</button>';
+  var a=d.querySelector('#fmSA'),i=d.querySelector('#fmSI'),n=d.querySelector('#fmSN');
+  function calc(){
+    var av=parseInt(a.value),iv=parseInt(i.value);
+    var exp=Math.round(av*iv/10);
+    d.querySelector('#fmAge').textContent=av;
+    d.querySelector('#fmInc').textContent=iv;
+    d.querySelector('#fmExp').textContent=exp;
+    var nv=parseInt(n.value);
+    var ratio=nv/exp;
+    var verdict;
+    if(ratio>=2){verdict='<span class="fb good">🏆 财富积累能手（PAW）！你的净值远超预期，继续保持。</span>';}
+    else if(ratio<0.5){verdict='<span class="fb bad">⚠️ 低财富积累者（UAW）——财富正被生活方式吞噬。从今天开始先储蓄后消费！</span>';}
+    else{verdict='<span class="fb">📊 中等水平。预期值 '+(ratio*100).toFixed(0)+'%，再努力一步就能成为 PAW。</span>';}
+    d.querySelector('#fmFb').innerHTML=verdict;
+  }
+  a.oninput=calc;i.oninput=calc;n.oninput=calc;
+  calc();
+  d.querySelector('#fmOk').onclick=function(){
+    addPoints(8,'完成净值检测');badge('财富侦探','🧮');
+    d.querySelector('#fmFb').innerHTML='<span class="fb good">💡 预期净资产 = 年龄 × 年收入 ÷ 10。每年算一次，看净值有没有跟上年龄。</span>';
+    track('game',{g:'formula',age:parseInt(a.value),income:parseInt(i.value)});
+    this.disabled=true;
+  };
+  return d;
+}
+function gameTime(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>⏳ 时间分配排序</h3><div class="gsub">互动 · 把时间留给财富</div><div class="desc">下面 6 项活动，按「财富积累者」的时间分配逻辑，选出最该多花时间的 3 项。</div>';
+  var items=[
+    ['每周固定研究投资与资产规划',true],
+    ['刷短视频逛购物 App 消磨时间',false],
+    ['学习提升主业的专业技能',true],
+    ['研究怎么「看起来更有钱」',false],
+    ['阅读财经书籍与理财课程',true],
+    ['为面子参加无意义的应酬',false]
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px"><button class="opt" id="tmB'+i+'">'+(i+1)+'. '+s[0]+'</button><span class="fb" id="tmFb'+i+'"></span></div>';});
+  d.innerHTML+=html+'<div class="fb" id="tmSum"></div>';
+  var picked=0,score=0;
+  items.forEach(function(it,i){
+    d.querySelector('#tmB'+i).onclick=function(){
+      var b=d.querySelector('#tmB'+i);
+      if(b.disabled)return;
+      b.disabled=true;
+      if(it[1]){score++;d.querySelector('#tmFb'+i).innerHTML='<span class="fb good">✓ 财富积累者之选</span>';}
+      else{d.querySelector('#tmFb'+i).innerHTML='<span class="fb bad">✗ 这是消费型时间</span>';}
+      picked++;
+      if(picked===3){
+        if(score===3){
+          addPoints(8,'时间分配全对');badge('时间规划师','⏳');
+          d.querySelector('#tmSum').innerHTML='<span class="fb good">🎉 你的时间观和真正的富翁一致：时间花在哪，财富就在哪。</span>';
+          track('game',{g:'time',score:score});
+        }else{
+          d.querySelector('#tmSum').innerHTML='<span class="fb bad">你选对了 '+score+'/3。再想想：富人把时间花在研究资产，而不是研究消费。</span>';
+        }
+      }
+    };
+  });
+  return d;
+}
+function gameEO(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>👨‍👩‍👧 经济门诊关怀判断</h3><div class="gsub">互动 · 哪种资助是爱，哪种是毒？</div><div class="desc">判断下面父母的行为，是「传能力」还是「经济门诊关怀」。</div>';
+  var items=[
+    ['孩子买房，父母直接全额付款','毒'],
+    ['教孩子记账、储蓄、做预算','传'],
+    ['孩子失业，父母每月无限期接济生活费','毒'],
+    ['让孩子假期打工，自己赚零花钱','传'],
+    ['孩子创业，父母教他写商业计划并陪他跑客户','传'],
+    ['孩子收入低，父母长期补贴维持他的高消费','毒']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="eoA'+i+'">传能力</button><button class="btn sm ghost" id="eoB'+i+'">门诊关怀</button><span class="fb" id="eoFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="eoSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#eoA'+i).onclick=function(){judge(i,'传');};
+    d.querySelector('#eoB'+i).onclick=function(){judge(i,'毒');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#eoFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#eoA'+i+',#eoB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#eoFb'+i).innerHTML='<span class="fb bad">✗ 这属于「'+(it[1]==='传'?'传能力':'经济门诊关怀')+'」</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'看懂亲子财富');badge('独立家长','👨‍👩‍👧');
+        d.querySelector('#eoSum').innerHTML='<span class="fb good">🎉 6 项全对！给鱼不如给渔，传能力不传救济，才是真正的爱。</span>';
+        track('game',{g:'eo',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameCareer(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🧭 职业赛道选择</h3><div class="gsub">互动 · 选择你的财富赛道</div><div class="desc">书中富翁多为自雇者与小企业主。选择最符合「积累净值」逻辑的职业观。</div>';
+  var opts=[
+    ['选工作只看工资数字',false,'高薪不等于高净值，收入再高留不住也白搭。'],
+    ['选择能发挥专长、收入有增长空间、能持续积累的职业',true,'这是书中财富积累者的选业标准：把主业做成资产。'],
+    ['哪里钱多跳哪里，从不深耕',false,'频繁跳槽换的是现金流，积累不了净值与护城河。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="caO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="caFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#caO'+i).onclick=function(){
+      var b=d.querySelector('#caO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'选对财富赛道');badge('职业规划师','🧭');d.querySelector('#caFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'career',score:1});}
+      else{b.className='opt no';d.querySelector('#caFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#caO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameInvest(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🌳 资产园丁</h3><div class="gsub">互动 · 区分资产与负债</div><div class="desc">下面 8 样东西，判断是「资产」（持续带来现金流）还是「负债」（持续掏钱）。</div>';
+  var items=[
+    ['每月收租的出租房','资产'],
+    ['自住但月供巨大的豪宅','负债'],
+    ['定期分红的股票基金','资产'],
+    ['贷款买来撑面子的豪车','负债'],
+    ['能带来客户的专业证书','资产'],
+    ['闲置落灰的奢侈品包','负债'],
+    ['每月产生收益的生意股权','资产'],
+    ['健身房年卡（从未去过）','负债']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="ivA'+i+'">资产</button><button class="btn sm ghost" id="ivB'+i+'">负债</button><span class="fb" id="ivFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="ivSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#ivA'+i).onclick=function(){judge(i,'资产');};
+    d.querySelector('#ivB'+i).onclick=function(){judge(i,'负债');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#ivFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#ivA'+i+',#ivB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#ivFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」</span>';
+      }
+      if(right===items.length){
+        addPoints(10,'资产负债全对');badge('资产园丁','🌳');
+        d.querySelector('#ivSum').innerHTML='<span class="fb good">🎉 8 项全对！把钱变成资产，别把钱变成负债——这就是富人买资产、穷人买负债的区别。</span>';
+        track('game',{g:'invest',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameKid(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🎓 传承智慧</h3><div class="gsub">互动 · 财富的接力棒怎么交？</div><div class="desc">书中最成功的富二代，都经历过什么？选择正确的传承方式。</div>';
+  var opts=[
+    ['从小有求必应，零花钱管够',false,'养尊处优的子女最容易「富不过三代」。'],
+    ['让孩子自己赚钱、参与预算、成年后经济独立',true,'斯坦利发现：大多数成功的富二代，都经历过「必须自己赚钱」的阶段。'],
+    ['成年后继续长期资助，随叫随到',false,'这是经济门诊关怀——看似是爱，实则是慢性毒药。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="kiO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="kiFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#kiO'+i).onclick=function(){
+      var b=d.querySelector('#kiO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'读懂财富传承');badge('传承智者','🎓');d.querySelector('#kiFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'kid',score:1});}
+      else{b.className='opt no';d.querySelector('#kiFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#kiO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameTrap(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🕳 消费陷阱识别</h3><div class="gsub">互动 · 为面子付利息，还是为本金存钱？</div><div class="desc">识别下面哪些是「看起来有钱」的陷阱。</div>';
+  var items=[
+    ['贷款买豪车只为朋友圈有面子','陷阱'],
+    ['换季买几件得体耐穿的衣物','正常'],
+    ['跟风买最新款手机','陷阱'],
+    ['为提升专业能力付费学习','正常'],
+    ['用信用卡分期买奢侈品撑场面','陷阱'],
+    ['给家人的健康和教育花钱','正常']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="trA'+i+'">陷阱</button><button class="btn sm ghost" id="trB'+i+'">正常</button><span class="fb" id="trFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="trSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#trA'+i).onclick=function(){judge(i,'陷阱');};
+    d.querySelector('#trB'+i).onclick=function(){judge(i,'正常');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#trFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#trA'+i+',#trB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#trFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+(it[1]==='陷阱'?'消费陷阱':'正常消费')+'」</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'识破消费陷阱');badge('消费清醒者','🕳');
+        d.querySelector('#trSum').innerHTML='<span class="fb good">🎉 6 项全对！看起来有钱的人在为「看起来」付利息，真正有钱的人在为本金存钱。</span>';
+        track('game',{g:'trap',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameShop(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🛍 要不要买？</h3><div class="gsub">互动 · 每次购物前问一句</div><div class="desc">下一笔消费，你是「资产」还是「面子」？选择你的决定。</div>';
+  var items=[
+    ['新款旗舰手机（旧手机还能用两年）','不买','旧手机还能用——买新手机的钱够种下一片财富森林。'],
+    ['投资课程，能提升主业收入','买','提升赚钱能力就是买资产。'],
+    ['奢侈品包，为了显得「混得好」','不买','花 1000 美元买套装的人，非百万富翁是富翁的 6 倍。'],
+    ['给家人买健康保险','买','为家人和未来做准备，是财富积累的一部分。']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+s[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="shA'+i+'">买</button><button class="btn sm ghost" id="shB'+i+'">不买</button><span class="fb" id="shFb'+i+'"></span></div></div>';});
+  d.innerHTML+=html+'<div class="fb" id="shSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#shA'+i).onclick=function(){judge(i,'买');};
+    d.querySelector('#shB'+i).onclick=function(){judge(i,'不买');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#shFb'+i).innerHTML='<span class="fb good">✓ 好决定</span>';
+        d.querySelectorAll('#shA'+i+',#shB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#shFb'+i).innerHTML='<span class="fb bad">✗ '+it[2]+'</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'购物决策全对');badge('购物哲学家','🛍');
+        d.querySelector('#shSum').innerHTML='<span class="fb good">🎉 4 项全对！买东西前问一句：这是资产，还是面子？</span>';
+        track('game',{g:'shop',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameSort(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏠 财富习惯排序</h3><div class="gsub">记忆 · 按序点亮六大财富习惯</div><div class="desc">按书中财富积累者的习惯顺序，依次点击点亮六张卡片。</div>';
+  d.innerHTML+='<div class="kick" id="soGrid"></div><div class="fb" id="soFb">顺序：①量入为出 ②先储蓄 ③记预算 ④时间给资产 ⑤买资产不买面子 ⑥传能力给孩子</div>';
+  var habits=['① 量入为出','② 先储蓄','③ 记预算','④ 时间给资产','⑤ 不买面子','⑥ 传能力'];
+  var cur=0;
+  function build(){
+    var g=d.querySelector('#soGrid');g.innerHTML='';
+    var order=[];while(order.length<6){var r=Math.floor(Math.random()*6);if(order.indexOf(r)<0)order.push(r);}
+    order.forEach(function(oi){
+      var b=document.createElement('button');b.textContent=habits[oi];b.dataset.idx=oi;
+      b.onclick=function(){
+        if(parseInt(b.dataset.idx)===cur){
+          b.classList.add('done');b.textContent='✓ '+habits[b.dataset.idx];cur++;
+          d.querySelector('#soFb').innerHTML='<span class="fb good">'+cur+' / 6 点亮</span>';
+          if(cur===6){
+            addPoints(8,'习惯顺序全对');badge('习惯排序家','🏠');
+            d.querySelector('#soFb').innerHTML='<span class="fb good">🎉 六大财富习惯烂熟于心：量入为出 → 先储蓄 → 记预算 → 时间给资产 → 不买面子 → 传能力。</span>';
+            track('game',{g:'sort',score:6});
+          }
+        }else{
+          d.querySelector('#soFb').innerHTML='<span class="fb bad">✗ 顺序错了：现在该点「'+habits[cur]+'」。</span>';
+        }
+      };
+      g.appendChild(b);
+    });
+  }
+  build();
+  return d;
+}
+function gameCoin(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>💰 省下的就是赚到的</h3><div class="gsub">迷你游戏 · 30 秒接住省下的金币</div><div class="desc">每个冲动消费的念头，都是一枚本该留下的金币。30 秒内点击尽量多的金币！</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="cnC">0</b><span>金币</span></div><div class="stat"><b id="cnT">30</b><span>剩余秒</span></div></div><div class="egg-grid" id="cnGrid"></div><div class="fb" id="cnFb">准备好了吗？点「开始」！</div><button class="btn" id="cnStart">开始接金币</button>';
+  var coins=0,time=30,run=false,timer=null;
+  function buildGrid(){
+    var g=d.querySelector('#cnGrid');g.innerHTML='';
+    for(var i=0;i<8;i++){
+      var b=document.createElement('button');b.textContent='💰';
+      b.onclick=function(){
+        if(!run)return;
+        if(this.classList.contains('used'))return;
+        this.classList.add('used');
+        coins++;d.querySelector('#cnC').textContent=coins;
+        track('game',{g:'coin',coins:coins});
+      };
+      g.appendChild(b);
+    }
+  }
+  buildGrid();
+  d.querySelector('#cnStart').onclick=function(){
+    if(run)return;
+    run=true;coins=0;time=30;
+    d.querySelector('#cnC').textContent=0;
+    d.querySelector('#cnT').textContent=30;
+    d.querySelector('#cnStart').disabled=true;
+    d.querySelector('#cnFb').innerHTML='<span class="fb good">GO！省下的都是赚到的！</span>';
+    timer=setInterval(function(){
+      time--;
+      d.querySelector('#cnT').textContent=time;
+      if(time<=0){
+        clearInterval(timer);run=false;
+        addPoints(coins>=12?8:4,'接住 '+coins+' 枚金币');badge('省钱达人','💰');
+        d.querySelector('#cnFb').innerHTML='<span class="fb good">⏱ 时间到！接住 '+coins+' 枚金币。每一个省下的决定，都是未来财富的一块砖。</span>';
+        track('game',{g:'coin',result:coins});
+        d.querySelector('#cnStart').disabled=false;
+        buildGrid();
+      }
+    },1000);
+  };
+  return d;
+}
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📝 邻家富翁小测</h3><div class="gsub">练习 · 10 题检验你的收获</div><div class="desc">答对 9 题以上可获得「满分学员」徽章。选完一题自动进入下一题。</div>';
+  var prog='<div class="quiz-prog" id="qzProg"></div>'+'<div class="desc" id="qzQ"></div>';
+  d.innerHTML+=prog+'<div id="qzOpts"></div><div class="fb" id="qzFb"></div><button class="btn" id="qzRestart" style="display:none">再测一次</button>';
+  var idx=0,score=0;
+  function render(){
+    if(idx>=QUIZ.length){
+      d.querySelector('#qzQ').textContent='测完了！';
+      d.querySelector('#qzOpts').innerHTML='';
+      var full=score>=9;
+      d.querySelector('#qzFb').innerHTML='<span class="fb '+(full?'good':'')+'">得分：'+score+' / '+QUIZ.length+(full?' 🎉 满分学员！':'。再复习一下净值公式和消费陷阱吧。')+'</span>';
+      addPoints(score>=9?10:5,'完成富翁小测');badge(full?'满分学员':'勤奋学员','💯');
+      track('game',{g:'quiz',score:score,total:QUIZ.length});
+      d.querySelector('#qzRestart').style.display='inline-block';
+      d.querySelector('#qzRestart').onclick=function(){idx=0;score=0;render();};
+      return;
+    }
+    var q=QUIZ[idx];
+    d.querySelector('#qzProg').innerHTML='';
+    QUIZ.forEach(function(_,i){var sp=document.createElement('i');sp.className=(i<idx?'done':(i===idx?'cur':''));d.querySelector('#qzProg').appendChild(sp);});
+    d.querySelector('#qzQ').textContent=(idx+1)+'. '+q.q;
+    var opt=document.createElement('div');
+    q.o.forEach(function(o,i){
+      var b=document.createElement('button');b.className='opt';b.textContent=o;
+      b.onclick=function(){
+        if(i===q.a){score++;d.querySelector('#qzFb').innerHTML='<span class="fb good">✓ 正确！</span>';}
+        else{d.querySelector('#qzFb').innerHTML='<span class="fb bad">✗ 正确答案：'+q.o[q.a]+'</span>';}
+        idx++;setTimeout(render,700);
+      };
+      opt.appendChild(b);
+    });
+    d.querySelector('#qzOpts').innerHTML='';d.querySelector('#qzOpts').appendChild(opt);
+  }
+  render();
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name]){return;}
+  BADGES[name]=1;saveBadges();toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var host=document.getElementById('badgesHost');
+  if(!host){
+    host=document.createElement('div');host.id='badgesHost';
+    host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';
+    document.getElementById('chapters').appendChild(host);
+  }
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  var list=[['🏡','识富者'],['💸','净值计算师'],['🛠','节俭家'],['🧮','财富侦探'],['⏳','时间规划师'],['👨‍👩‍👧','独立家长'],['🧭','职业规划师'],['🌳','资产园丁'],['🎓','传承智者'],['🕳','消费清醒者'],['🛍','购物哲学家'],['🏠','习惯排序家'],['💰','省钱达人'],['💯','满分学员']];
+  list.forEach(function(x){
+    var on=!!BADGES[x[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+x[0]+'</span>'+x[1];
+    bd.appendChild(el);
+  });
+}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function unlockByPoints(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='当前积分：'+POINTS+' 分。兑换全书需要 50 分。完成免费章节的互动游戏即可积累积分。';}
+function verifyCode(){
+  var v=(document.getElementById('codeInput').value||'').trim().toUpperCase();
+  if(v.indexOf('XQ2026')>=0||v.length===8){unlockAll();document.getElementById('unlockOk').textContent='✓ 激活成功！全书已解锁。';return;}
+  document.getElementById('unlockOk').textContent='✗ 激活码无效，请重试。';
+  track('unlock',{method:'code',ok:false});
+}
+function adminCheck(){
+  var p=prompt('管理员口令：');
+  if(p==='xiqi-admin-2026'){localStorage.setItem(LSKEY_ADMIN,'1');unlockAll();document.getElementById('unlockOk').textContent='✓ 管理员已授权，全部内容开放。';track('unlock',{method:'admin'});}
+  else{document.getElementById('unlockOk').textContent='✗ 口令错误。';}
+}
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');track('ui',{act:'openUnlock'});}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function goRead(){document.getElementById('sec-toc').scrollIntoView({behavior:'smooth'});track('ui',{act:'goRead'});}
+function goTo(i){var el=document.getElementById('chap-'+i);if(el){el.scrollIntoView({behavior:'smooth'});}track('ui',{act:'goto',chap:i});}
+function playBgm(){
+  var a=document.getElementById('bgmAudio');
+  if(a){if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';}else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}}
+}
+(function(){
+  var a=document.createElement('audio');a.id='bgmAudio';a.loop=true;a.preload='none';
+  a.src='bgm.wav';document.body.appendChild(a);
+  renderToc();renderChapters();
+  if(location.hash==='#a0'){goRead();}
+  track('open',{t:'邻家的百万富翁'});
+})();
+</script>
+</body>
+</html>
