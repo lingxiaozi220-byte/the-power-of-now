@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金钱心理学 · 摩根·豪泽尔 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#0a1020; --bg2:#1a2440; --card:#121a30; --line:#2c3a5c;
+    --tx:#eef2ff; --sub:#c3cdee; --dim:#7e8bb5;
+    --gold:#ffd166; --green:#4ade80; --red:#ff6b5e; --blue:#5ea2ff; --purple:#c084fc; --teal:#5eead4;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#080d1c 0%,#1a2440 45%,#0a1020 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.75;overflow-x:hidden}
+  .wrap{max-width:880px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(255,209,102,.12),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(94,162,255,.07),transparent 60%)}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(8,13,28,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#ffd166,#f59e0b);color:#1a1205;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,209,102,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--gold)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(26px,6vw,40px);margin:14px 0 6px;color:var(--gold);letter-spacing:4px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:660px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(255,209,102,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#1a2440;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,107,94,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);margin-bottom:10px}
+  .learn-loop{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+  .learn-loop span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--dim)}
+  .learn-loop span.on{color:var(--green);border-color:rgba(74,222,128,.5)}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(255,209,102,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
+  .chap .cnt .focus{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.25);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;color:var(--teal)}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,32,0),rgba(10,16,32,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#080d1c;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#1a2440,#121a30);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(74,222,128,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,107,94,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#080d1c;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ffd166,#4ade80);border-radius:999px;transition:width .5s}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(255,209,102,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(74,222,128,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(74,222,128,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#080d1c}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#080d1c;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,209,102,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(4,6,12,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#1a2440,#121a30);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#080d1c;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(255,209,102,.06);border:1px solid rgba(255,209,102,.22);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .mini-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  .mini-table th,.mini-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  .mini-table th{background:#1a2440;color:var(--gold)}
+  .egg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .egg-grid button{background:linear-gradient(145deg,#ffd166,#f59e0b);border:none;border-radius:50%;aspect-ratio:1;font-size:22px;cursor:pointer;transition:transform .15s}
+  .egg-grid button:active{transform:scale(.9)}
+  .egg-grid button.used{opacity:.25;cursor:default}
+  .slider{width:100%;margin:10px 0;accent-color:var(--gold)}
+  .stat-line{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .stat{flex:1;min-width:110px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+  .stat b{display:block;font-size:22px;color:var(--gold)}
+  .stat span{font-size:12px;color:var(--dim)}
+  .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+  .card-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px;cursor:pointer;transition:all .25s}
+  .card-item:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .card-item.picked{border-color:var(--green);background:rgba(74,222,128,.1)}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(2,1fr)}.pair-grid{grid-template-columns:1fr}.egg-grid{grid-template-columns:repeat(4,1fr)}.card-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">💰 金钱心理学<small>摩根·豪泽尔</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock" onclick="openUnlock()">🔓 解锁</button>
+    <button class="btn sm" onclick="goRead()">开始学习 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">THE PSYCHOLOGY OF MONEY · MORGAN HOUSEL</div>
+    <h1>金钱心理学</h1>
+    <div class="tag">
+      <span>摩根·豪泽尔 著</span><span>全球畅销 300 万册</span><span>20 个理财故事</span><span>懂钱先懂人性</span>
+    </div>
+    <p class="lead">摩根·豪泽尔写了 20 个关于金钱的故事，主角有清洁工、医生、基金经理、歌星和诺贝尔奖得主。读完之后你会发现一个扎心的真相：<b>理财的成功，往往不是智商问题，而是行为问题。</b>决定你财富高度的，不是你懂多少金融知识，而是你如何应对<b>贪婪、恐惧、攀比和焦虑</b>。这本书不教你「快速致富」，而是带你直面财富背后的心理真相——<b>你和钱的关系，其实是你和自己的关系。</b></p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🧠 开启金钱觉醒</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 学点音乐</button>
+    </div>
+    <div class="tip">💡 本书按「理解 → 记忆 → 联想 → 练习」四步闭环学习法设计：把 20 个金钱故事拆成 11 节精讲，每节配互动游戏，共 15 个互动模块 + 14 枚徽章。<b>读完这本，你会拿到一套看透金钱与人性的完整框架。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 7 节免费试读。付费解锁后可读完整 11 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">💰 金钱心理学 · 熙祺智书出品<br>《The Psychology of Money》摩根·豪泽尔 · 多媒体互动版 · 内容仅供学习交流，不构成投资建议</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 4 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='moneymind';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var TOTAL=11, FREE=7;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'金钱是一场心理游戏',free:1,icon:'🎭',art:'art_cover.jpg',cap:'理财的成功，不是智商问题，而是行为问题。你和钱的关系，是你和自己的关系。',
+  learn:['理解'],
+  p:[['摩根·豪泽尔做过一个实验：','他把同一个理财问题，','同时抛给华尔街精英和普通人。'],
+     ['结果发现：','决定答案质量的，','不是金融知识，','而是每个人看待风险、贪婪和未来的方式。'],
+     ['「理财的成功，往往不是智商问题，','而是行为问题。','最难的不是数学，','而是控制情绪。」'],
+     ['这本书有 20 个故事：','清洁工存下 800 万美元遗产，','医生却破产了；','天才基金经理一夜巨亏；','歌星赚了上亿却身无分文。'],
+     ['读这些故事，','你会慢慢明白：','金钱不会说谎，','但人心会。','看清人心，','才能看透金钱。']]},
+ {n:'第一章',t:'没有人真的对钱失去理智',free:1,icon:'👓',art:'art_gamble.jpg',cap:'每个人对金钱的决策，在他自己的成长经历里，都是理性的。',
+  learn:['理解','记忆'],
+  p:[['故事主角：','罗纳德·里德——美国一名普通清洁工。','他每天扫地、擦窗，','工资不高，','却攒下了 800 多万美元的遗产。'],
+     ['另一个主角：','理查德——一名高学历医生，','收入是里德的十几倍，','却因为过度借贷和挥霍，','晚年破产。'],
+     ['为什么差距这么大？','摩根的回答：','「没人真的对钱失去理智。','每个人对金钱的决策，','在他自己的成长经历里，','都是理性的。」'],
+     ['里德成长于大萧条年代，','见惯了贫穷和饥饿，','所以他极度节俭、长期储蓄；','理查德成长于繁荣年代，','习惯了消费和透支，','所以他一路借贷、一路挥霍。'],
+     ['我们的金钱观，','是被出生的年代、家庭和经历','一点点写进脑子的。','所以别急着嘲笑别人的「疯狂」，','先理解他为什么这么想。']]},
+ {n:'第二章',t:'运气与风险：同一枚硬币',free:1,icon:'🎲',art:'art_buffett.jpg',cap:'任何事都没有表面看来那样美好或糟糕。运气和风险，是同一枚硬币的两面。',
+  learn:['理解','联想'],
+  p:[['巴菲特为什么是巴菲特？','摩根做了一个思想实验：','如果他出生在 20 世纪 30 年代','之前的某个时代，','或者出生在别的国家……'],
+     ['「运气和风险，','都真实存在，','而且难以区分。','任何事都没有表面看来','那样美好或糟糕。」'],
+     ['美国有大约 200 名','出生于 1930 年的美国人，','最终成为亿万富翁——','这几乎完全取决于','他们出生的时机和市场。'],
+     ['但同样的环境，','为什么只有极少数人成功？','因为时代给了机会，','但只有少数人','把机会变成了行动。'],
+     ['记住两句话：','别人成功时，','别只归功于他的能力；','自己失败时，','也别只怪罪于运气。','把注意力放在','你能控制的行为上。']]},
+ {n:'第三章',t:'永不知足：欲望的漏斗',free:1,icon:'🔻',art:'art_greed.jpg',cap:'你想要的不是更多的钱，而是别人没有的东西——这才是最危险的欲望。',
+  learn:['理解','记忆'],
+  p:[['故事：','伯纳德·麦道夫——','华尔街的传奇，','管理着几百亿美元资金。','他已经拥有了一切，','却还想要更多，','最终用庞氏骗局','毁掉了一切。'],
+     ['摩根问：','「一个已经拥有几百亿的人，','为什么还要铤而走险？」','答案是：<b>永不知足</b>。','「当你想要的东西','比需要的东西多时，','问题就来了。」'],
+     ['更扎心的洞察：','「幸福的第一法则是','降低预期。」','人们真正想要的','往往不是钱本身，','而是「比别人多」。','攀比，是欲望的漏斗，','永远填不满。'],
+     ['应对之道：','区分「需要」和「想要」；','设定「够了」的标准；','把满足感的来源','从比较转向成长本身。','知足，不是放弃，','而是把欲望放回笼子。']]},
+ {n:'第四章',t:'复利之谜：时间比收益率更重要',free:1,icon:'❄️',art:'art_compound.jpg',cap:'复利真正惊人的地方不是收益率，而是时间。',
+  learn:['理解','记忆','练习'],
+  p:[['巴菲特 845 亿美元财富中，','有 815 亿','是他 65 岁之后赚到的。','他真正惊人的','不是收益率，','而是坚持了 75 年。'],
+     ['另一个故事：','格蕾丝·格罗纳','1935 年把 5000 美元','投入股市，','75 年后变成了','700 万美元。','她什么都没做，','只是活得久、拿得住。'],
+     ['摩根算过一笔账：','如果把巴菲特的年化收益率','提高到更高的水平，','他的财富反而会减少——','因为高收益往往意味着','高风险和提前出局。'],
+     ['「复利的反直觉之处在于：','好的投资不一定是','收益最高的，','而是能长期坚持的。','时间，才是最大的杠杆。」'],
+     ['72 法则：','本金翻倍所需年数 = 72 ÷ 年化收益率。','年化 7%，大约 10 年翻倍；','年化 10%，大约 7 年翻倍。','活得久、拿得住，','比赚得快重要得多。']]},
+ {n:'第五章',t:'致富与守富：先活下来',free:1,icon:'🏄',art:'art_survive.jpg',cap:'致富靠冒险，守富靠谦逊。守住财富，才能等到复利兑现。',
+  learn:['理解','联想'],
+  p:[['摩根说：','「财富的最大敌人，','不是波动，','而是你。<br>」'],
+     ['致富和守富，','是两种完全不同的技能：','致富需要冒险、','乐观、放大杠杆；','守富需要谦逊、','敬畏、留足余量。'],
+     ['他用冲浪做比喻：','「冲浪高手与普通人的区别，','不是他翻更多浪，','而是他从不翻船。」','留在游戏里，','才有下一次机会。'],
+     ['守富三原则：','① 永远别把全部身家押上；','② 给自己留 20% 的容错空间；','③ 警惕「这次不一样」。'],
+     ['复利需要时间兑现，','而时间是残酷的：','一次致命的亏损，','就能让你前面的','所有努力归零。','先活下来，','再谈赚钱。']]},
+ {n:'第六章',t:'尾部效应：少数事件决定一切',free:1,icon:'📊',art:'art_tail.jpg',cap:'任何规模巨大的成功，都来自极少数的重大事件。',
+  learn:['理解','记忆'],
+  p:[['你看到的巴菲特，','是他最成功的几十次投资；','但他做过成百上千次交易，','其中大多数','平淡甚至失败。'],
+     ['「任何规模巨大的成功，','都来自少数重大事件，','即所谓的『尾部事件』。']],
+     ['风险投资就是这么玩的：','投 100 个公司，','99 个失败也没关系，','只要 1 个独角兽，','就能覆盖全部亏损。'],
+     ['歌手的故事更直观：','90% 的歌没火，','但几首爆款','养活了整个生涯。','「结果是不对称的：','少数极端事件，','贡献了大部分成果。」'],
+     ['给你的启示：','允许自己犯错，','因为错误是成本；','但必须确保','永远有机会','留在牌桌上，','等到属于你的尾部事件。']]},
+ {n:'第七章',t:'自由：财富买回时间',free:1,icon:'⏳',art:'art_freedom.jpg',cap:'用金钱买回对时间的掌控，是财富能给你的最高回报。',
+  learn:['理解','联想'],
+  p:[['摩根问过很多有钱人：','「你的钱买到了什么？」','答案很少是豪车名表，','几乎都是同一件事：','<b>时间</b>。'],
+     ['「财富是你对时间的掌控：','明天早上，','你想做什么就做什么，','想和谁一起就<br>和谁一起。']],
+     ['这就是为什么','很多人收入不高却富有：','他们花得少、攒得多，','用储蓄买回了','不被打扰的自由；','而高收入者如果被欲望绑架，','工资再高也是穷人。'],
+     ['「花钱的目的，','应该是买体验、买自由、','买选择权，','而不是买别人的羡慕。」'],
+     ['自测一下：','如果明天不用工作，','你的积蓄能撑多久？','这个数字，','就是你现在的「自由指数」。','提升它的方式很简单：','多存一点，少买一点。']]},
+ {n:'第八章',t:'合乎常理胜过绝对理性',free:0,icon:'⚖️',art:'art_reason.jpg',cap:'选一个你能坚持的方案，好过理论最优但坚持不了的方案。',
+  learn:['理解','练习'],
+  p:[['金融学告诉你「最优解」：','永远满仓、永远分散、','永远不要情绪化。','但现实是：','没人能做到。'],
+     ['摩根说：','「合乎常理，','胜过绝对理性。」','一个能让你睡得着、','能坚持 20 年的方案，','比理论完美但','执行不下去的方案好得多。'],
+     ['有人因为「不够理性」','留一部分现金，','错过了上涨，','但正因为这份「不理性」，','他在暴跌时没有恐慌割肉。'],
+     ['理性是标准答案，','常理是生活答案。','投资是一场','跟自己相处的马拉松：','先让自己舒服，','才能跑完全程。']]},
+ {n:'第九章',t:'存钱与谦逊：对未知的敬畏',free:0,icon:'🏦',art:'art_action.jpg',cap:'存钱不需要理由。它是对未来的谦逊，是对意外的准备。',
+  learn:['记忆','练习'],
+  p:[['「收入——欲望 = 储蓄。','这个公式里，','收入是你能控制的，','欲望也是。']],
+     ['摩根说存钱','不需要特定理由：','「你可以为了','「不知道将来会发生什么」','而存钱。」','意外清单上：','失业、生病、危机、','家人需要帮助……','谁都无法预测','哪一个先来。'],
+     ['「储蓄的意义，','不是收益率，','而是给你选择权，','让你在意外来临时','不必低头。」'],
+     ['历史告诉我们：','经济和市场','总在乐观与悲观之间摆动，','唯一确定的','就是不确定。','谦逊的人','会为不确定性付费——','那笔钱就叫储蓄。']]},
+ {n:'终章',t:'现在就做：让金钱为你工作',free:0,icon:'🚀',art:'art_cover.jpg',cap:'最难的从来不是知识，而是行动。现在就做，让时间和复利为你工作。',
+  learn:['记忆','练习'],
+  p:[['把《金钱心理学》浓缩成','一张行动清单：'],
+     ['<b>心态层</b>：','① 承认理财是行为问题，不是智商问题；','② 理解每个人的金钱观都来自他的经历；','③ 分清运气与风险，专注能控制的行为。'],
+     ['<b>行为层</b>：','④ 降低预期，远离攀比，把「够了」写进财务计划；','⑤ 长期主义：收益率不必最高，坚持最久才最赚；','⑥ 先活下来：永远留 20% 容错空间。'],
+     ['<b>执行层</b>：','⑦ 提高储蓄率——收入到手，先存后花；','⑧ 少折腾：低费率指数基金 + 长期持有；','⑨ 用钱买时间自由，而不是买别人的羡慕。'],
+     ['最后记住摩根的话：','「成功的理财，','不在于你有多聪明，','而在于你有多自律。','现在就开始存钱，','哪怕每月只存 100 元。','时间，','会替你完成剩下的魔法。」']]}
+];
+
+var QUIZ=[
+ {q:'《金钱心理学》认为理财成败最核心的因素是什么？',o:['行为和心理（人性）','智商和学历','内幕消息'],a:0},
+ {q:'「没有人真的对钱失去理智」这句话的意思是？',o:['每个人的金钱决策在其成长经历背景下是自洽的','所有人都很冷静','有钱人都是疯子'],a:0},
+ {q:'清洁工里德 vs 医生理查德的故事说明了什么？',o:['收入高不一定富，储蓄和克制决定财富','学历决定财富','医生更会理财'],a:0},
+ {q:'巴菲特的财富 815 亿美元是哪个阶段赚到的？',o:['65 岁之后','30 岁之前','一次行情'],a:0},
+ {q:'72 法则中，年化 8% 大概多少年本金翻倍？',o:['9 年','20 年','3 年'],a:0},
+ {q:'致富与守富的关系是？',o:['守富比致富更重要，先活下来','一样','致富更重要'],a:0},
+ {q:'尾部事件是指？',o:['极少数重大事件贡献大部分结果','每天都发生的事','坏事'],a:0},
+ {q:'财富能给你最高的回报是什么？',o:['对时间的掌控（自由）','豪车名表','别人羡慕的目光'],a:0},
+ {q:'「合乎常理胜过绝对理性」强调什么？',o:['能长期坚持的方案优于理论最优但坚持不了的','理性最完美','不要理性'],a:0},
+ {q:'存钱的核心逻辑是什么？',o:['对未知的谦逊与准备','为了买更多东西','为了面子'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 金钱进阶</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可学';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · PSYCHOLOGY OF MONEY</div><h2>'+c.t+'</h2>';
+    var loop=document.createElement('div');loop.className='learn-loop';
+    ['理解','记忆','联想','练习'].forEach(function(s){var sp=document.createElement('span');sp.textContent=s;if((c.learn||[]).indexOf(s)>=0)sp.className='on';loop.appendChild(sp);});
+    d.appendChild(loop);
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div><div class="focus">🧠 学习闭环：这一节先把概念读懂（理解），再记下金句（记忆），把概念套到自己身上想一想（联想），最后用互动小游戏练一遍（练习）。</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 金钱是一场心理游戏'));}
+  if(i===1){h.appendChild(audioBlock('voice_gamble.wav','🎧 第一章 · 没有人真的对钱失去理智'));}
+  if(i===3){h.appendChild(audioBlock('voice_compound.wav','🎧 复利之谜 · 时间比收益率更重要'));}
+  if(i===0){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 20 分钟掌握《金钱心理学》：金钱与幸福的终极关系</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1uLKQ61En1&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  if(i===10){
+    var vb2=document.createElement('div');vb2.className='media-block';
+    vb2.innerHTML='<div class="lbl">📺 讲书 · 牛顿炒股亏几百万，清洁工留下 800 万遗产：5 个真相让我彻底清醒</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1A9mzBiE2s&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb2);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameLens());}
+  if(i===1){out.push(gameReed());out.push(gameRisky());}
+  if(i===2){out.push(gameLuck());}
+  if(i===3){out.push(gameGreed());}
+  if(i===4){out.push(gameCompound());out.push(gameRule72());}
+  if(i===5){out.push(gameSurvive());}
+  if(i===6){out.push(gameTail());}
+  if(i===7){out.push(gameFreedom());}
+  if(i===8){out.push(gameReason());}
+  if(i===9){out.push(gameSave());}
+  if(i===10){out.push(gameSort());out.push(gameCoin());out.push(gameQuiz());}
+  return out;
+}
+
+function gameLens(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>👓 金钱镜头测试</h3><div class="gsub">互动 · 你的金钱观来自哪里？</div><div class="desc">下面哪种经历，最容易塑造一个人的金钱观？（选出最合理的答案）</div>';
+  var opts=[
+    ['他成长于物资匮乏的年代，所以极度节俭',true,'对！成长环境是金钱观的第一来源——没人真的对钱失去理智。'],
+    ['他是天生抠门，基因决定的',false,'金钱观主要来自经历与环境，而不是基因。'],
+    ['他最近看了几本理财书才变节俭的',false,'几本书改变不了深层的金钱程序，童年与时代才是底色。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="lsO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="lsFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#lsO'+i).onclick=function(){
+      var b=d.querySelector('#lsO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'看见金钱镜头');badge('金钱观察家','👓');d.querySelector('#lsFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'lens',score:1});}
+      else{b.className='opt no';d.querySelector('#lsFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#lsO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameReed(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🧹 清洁工的奇迹</h3><div class="gsub">互动 · 里德为什么能存下 800 万？</div><div class="desc">选出里德致富的真正秘诀。</div>';
+  var opts=[
+    ['他中了彩票',false,'错——他不是靠运气，而是靠几十年的储蓄和克制。'],
+    ['他长期节俭储蓄，买入并长期持有指数基金',true,'对！收入不高没关系，储蓄率和时间才是关键。'],
+    ['他是隐藏的金融天才',false,'他没有复杂策略，方法朴素到人人能学。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="rdO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="rdFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#rdO'+i).onclick=function(){
+      var b=d.querySelector('#rdO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'看懂清洁工奇迹');badge('视角切换者','🧹');d.querySelector('#rdFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'reed',score:1});}
+      else{b.className='opt no';d.querySelector('#rdFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#rdO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameRisky(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🎯 运气还是实力？</h3><div class="gsub">互动 · 判断下面每件事的性质</div><div class="desc">每道题点击「运气」或「实力」。注意：很多事两者都有！</div>';
+  var items=[
+    ['出生于 1930 年的美国人赶上经济腾飞','运气'],
+    ['长期坚持储蓄 40 年不中断','实力'],
+    ['牛市里闭眼买也能赚钱','运气'],
+    ['熊市里靠纪律不乱操作活了下来','实力'],
+    ['同事买中一只十倍股','运气'],
+    ['你通过复盘建立了自己的交易系统','实力']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="rkA'+i+'">运气</button><button class="btn sm ghost" id="rkB'+i+'">实力</button><span class="fb" id="rkFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="rkSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#rkA'+i).onclick=function(){judge(i,'运气');};
+    d.querySelector('#rkB'+i).onclick=function(){judge(i,'实力');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#rkFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#rkA'+i+',#rkB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#rkFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」主导</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'运气与实力全对');badge('运气审判官','🎯');
+        d.querySelector('#rkSum').innerHTML='<span class="fb good">🎉 全对！运气不可控，实力可积累——把精力放在你能控制的实力上。</span>';
+        track('game',{g:'risky',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameLuck(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🎲 1930 年出生的赌局</h3><div class="gsub">互动 · 时代与个体的边界</div><div class="desc">假如你出生在 1930 年的美国，大概率会怎样？选出最接近真实历史数据的答案。</div>';
+  var opts=[
+    ['大多数人只是普通上班族，极少数人成为亿万富翁',true,'对！200 人中约 1 人成为亿万富翁——时代给机会，但只有极少数接得住。'],
+    ['人人都成了亿万富翁',false,'时代只是必要条件，不是充分条件。'],
+    ['所有人都很穷',false,'大萧条确实残酷，但幸存者后来赶上了美国最长的繁荣期。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="lkO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="lkFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#lkO'+i).onclick=function(){
+      var b=d.querySelector('#lkO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'理解时代红利');badge('时代洞察者','🎲');d.querySelector('#lkFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'luck',score:1});}
+      else{b.className='opt no';d.querySelector('#lkFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#lkO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameGreed(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🔻 欲望漏斗检查</h3><div class="gsub">互动 · 你真正想要的是什么？</div><div class="desc">下面哪些是「永不知足」的危险信号？选出所有你认为符合的。</div>';
+  var items=[
+    ['赚到钱后立刻想赚更多，从不满足','危险'],
+    ['总在和别人比较谁更有钱','危险'],
+    ['明确知道自己「够了」的标准','安全'],
+    ['为了面子买不需要的东西','危险'],
+    ['把满足感建立在成长和体验上','安全'],
+    ['看到别人赚快钱就焦虑跟风','危险']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px"><button class="opt" id="grB'+i+'">'+(i+1)+'. '+s[0]+'</button><span class="fb" id="grFb'+i+'"></span></div>';});
+  d.innerHTML+=html+'<div class="fb" id="grSum"></div><button class="btn" id="grOk">扫描完成</button>';
+  var picked={};
+  items.forEach(function(it,i){
+    d.querySelector('#grB'+i).onclick=function(){
+      var b=d.querySelector('#grB'+i);
+      if(b.classList.contains('ok')){b.classList.remove('ok');delete picked[i];}
+      else{b.classList.add('ok');picked[i]=it[1];}
+    };
+  });
+  d.querySelector('#grOk').onclick=function(){
+    var danger=0;for(var k in picked){if(picked[k]==='危险')danger++;}
+    d.querySelector('#grSum').innerHTML='<span class="fb">你标记了 '+danger+' 个危险信号。觉察欲望，是填平漏斗的第一步：想要的少一点，满足感多一点。</span>';
+    if(danger>=3){addPoints(8,'识破欲望陷阱');badge('欲望清醒者','🔻');}
+    track('game',{g:'greed',danger:danger});
+    this.disabled=true;
+  };
+  return d;
+}
+function gameCompound(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>❄️ 复利推演台</h3><div class="gsub">互动 · 拖动年数看复利威力</div><div class="desc">本金 10 万、年化 8%，拖动滑块看不同年数的终值。</div>';
+  d.innerHTML+='<div style="text-align:center;font-size:13px;color:var(--sub)">持有年数</div><input type="range" class="slider" id="cpYr" min="1" max="50" value="10"><div class="bar"><i id="cpBar" style="width:20%"></i></div><div class="stat-line"><div class="stat"><b id="cpOut">21.6 万</b><span>10 年</span></div><div class="stat"><b id="cpMul">2.2 倍</b><span>倍数</span></div></div><div class="fb" id="cpFb">巴菲特大部分财富来自 65 岁之后——这就是时间的魔法。</div><button class="btn" id="cpOk">见证复利</button>';
+  var years=10;
+  function calc(){
+    years=parseInt(d.querySelector('#cpYr').value,10);
+    var v=100000*Math.pow(1.08,years);
+    d.querySelector('#cpOut').textContent=Math.round(v/10000)/10+' 万';
+    d.querySelector('#cpMul').textContent=(Math.pow(1.08,years)).toFixed(1)+' 倍';
+    d.querySelector('#cpBar').style.width=Math.min(100,years*2)+'%';
+  }
+  d.querySelector('#cpYr').oninput=calc;
+  d.querySelector('#cpOk').onclick=function(){
+    if(years>=25){addPoints(8,'见证复利奇迹');badge('复利信徒','❄️');d.querySelector('#cpFb').innerHTML='<span class="fb good">🎉 '+years+' 年，10 万变成 '+(Math.pow(1.08,years)*100000/10000).toFixed(0)+' 万！时间就是最大的杠杆。</span>';}
+    else{d.querySelector('#cpFb').innerHTML='<span class="fb">再往后拖一点！试试 25 年、40 年——复利的尾巴在后面。</span>';addPoints(4,'体验复利');}
+    track('game',{g:'compound',years:years});
+    this.disabled=true;
+  };
+  calc();
+  return d;
+}
+function gameRule72(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📐 72 法则速算</h3><div class="gsub">记忆 · 72 ÷ 收益率 = 翻倍年数</div><div class="desc">年化 6%，本金大约多少年翻倍？</div>';
+  var opts=[
+    ['约 12 年',true,'对！72 ÷ 6 = 12 年。这就是 72 法则。'],
+    ['约 6 年',false,'那是 72 ÷ 12 的结果——收益率越高，翻倍越快，但风险也越高。'],
+    ['约 72 年',false,'72 是分子，不是年数。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="r7O'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="r7Fb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#r7O'+i).onclick=function(){
+      var b=d.querySelector('#r7O'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'掌握72法则');badge('七十二法则师','📐');d.querySelector('#r7Fb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'rule72',score:1});}
+      else{b.className='opt no';d.querySelector('#r7Fb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#r7O'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameSurvive(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏄 冲浪守财测试</h3><div class="gsub">互动 · 先活下来，再谈赚钱</div><div class="desc">你有一笔 100 万的积蓄，遇到以下场景，选最符合「守富」原则的做法。</div>';
+  var opts=[
+    ['全部押进一个听说要翻倍的币',false,'这是赌命——一次归零，前面全白干。'],
+    ['只用 20% 参与高风险，80% 留在稳健资产',true,'对！留足容错空间，你才有机会等到下一次浪潮。'],
+    ['什么都不敢碰，全部存定期吃利息',false,'过度保守本身也是风险——通胀会悄悄吃掉你。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="svO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="svFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#svO'+i).onclick=function(){
+      var b=d.querySelector('#svO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'学会守富');badge('生存优先者','🏄');d.querySelector('#svFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'survive',score:1});}
+      else{b.className='opt no';d.querySelector('#svFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#svO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameTail(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📊 尾部事件识别</h3><div class="gsub">互动 · 少数事件决定一切</div><div class="desc">下面哪些是「尾部事件」主导的例子？选出所有正确的。</div>';
+  var items=[
+    ['风投投 100 家公司，靠 1 个独角兽回本','尾部'],
+    ['上班族每天按时打卡','普通'],
+    ['歌手的生涯靠几首爆款歌养活','尾部'],
+    ['巴菲特的财富大部分来自少数伟大投资','尾部'],
+    ['你每天早上刷牙','普通'],
+    ['一台机器 90% 的时间闲置，10% 的时间创造 90% 的产出','尾部']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+s[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="tlA'+i+'">尾部</button><button class="btn sm ghost" id="tlB'+i+'">普通</button><span class="fb" id="tlFb'+i+'"></span></div></div>';});
+  d.innerHTML+=html+'<div class="fb" id="tlSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#tlA'+i).onclick=function(){judge(i,'尾部');};
+    d.querySelector('#tlB'+i).onclick=function(){judge(i,'普通');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#tlFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#tlA'+i+',#tlB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#tlFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」事件</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'尾部事件全对');badge('尾部洞察者','📊');
+        d.querySelector('#tlSum').innerHTML='<span class="fb good">🎉 全对！允许自己犯错，但永远留在牌桌上，等属于你的尾部事件。</span>';
+        track('game',{g:'tail',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameFreedom(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>⏳ 自由指数计算</h3><div class="gsub">互动 · 你的钱买回了多少时间？</div><div class="desc">输入你的月开支和积蓄，看看你不工作能撑多久。</div>';
+  d.innerHTML+='<div style="font-size:14px;color:var(--sub);margin:6px 0">每月开支（元）</div><input type="number" class="slider" id="frCost" value="5000" min="0"><div style="font-size:14px;color:var(--sub);margin:6px 0">当前积蓄（元）</div><input type="number" class="slider" id="frSave" value="100000" min="0"><div class="stat-line"><div class="stat"><b id="frOut">20 个月</b><span>自由时长</span></div></div><div class="fb" id="frFb">你的「自由指数」：不工作能撑多久。想提升？多存一点，少买一点。</div><button class="btn" id="frOk">计算我的自由</button>';
+  d.querySelector('#frOk').onclick=function(){
+    var cost=parseInt(d.querySelector('#frCost').value||'0',10);
+    var save=parseInt(d.querySelector('#frSave').value||'0',10);
+    var months=cost>0?Math.floor(save/cost):999;
+    d.querySelector('#frOut').textContent=(months>=999?'∞':months+' 个月');
+    if(months>=12){addPoints(8,'时间自由者');badge('时间自由家','⏳');d.querySelector('#frFb').innerHTML='<span class="fb good">🎉 超过 12 个月！你已经初步买回了「对时间的掌控」——这就是财富给你的最高回报。</span>';}
+    else{d.querySelector('#frFb').innerHTML='<span class="fb">'+months+' 个月。别急，提高储蓄率，每个月多存一点，自由会一天天变长。</span>';addPoints(4,'计算自由指数');}
+    track('game',{g:'freedom',months:months});
+    this.disabled=true;
+  };
+  return d;
+}
+function gameReason(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>⚖️ 常理决策台</h3><div class="gsub">互动 · 合乎常理胜过绝对理性</div><div class="desc">下面哪些做法是「合乎常理」而非「绝对理性」？选出所有符合的。</div>';
+  var items=[
+    ['留 20% 现金让自己睡得着，哪怕错过上涨','常理'],
+    ['理论最优：永远满仓、永远不要情绪','理性'],
+    ['每月定投 1000 元并坚持 20 年','常理'],
+    ['因为恐慌在市场暴跌时割肉离场','情绪'],
+    ['承认自己会犯错，所以分散配置','常理'],
+    ['追求每个操作都完美，不然就不做','完美']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+s[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="rsA'+i+'">常理</button><button class="btn sm ghost" id="rsB'+i+'">其他</button><span class="fb" id="rsFb'+i+'"></span></div></div>';});
+  d.innerHTML+=html+'<div class="fb" id="rsSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#rsA'+i).onclick=function(){judge(i,'常理');};
+    d.querySelector('#rsB'+i).onclick=function(){judge(i,'其他');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#rsFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#rsA'+i+',#rsB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#rsFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'常理决策全对');badge('常理决策者','⚖️');
+        d.querySelector('#rsSum').innerHTML='<span class="fb good">🎉 全对！能坚持的方案，永远好过坚持不了的完美方案。</span>';
+        track('game',{g:'reason',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameSave(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏦 储蓄启动器</h3><div class="gsub">练习 · 现在就存</div><div class="desc">你每月存 2000 元，年化 6%，算算 30 年后是多少？（约数）</div>';
+  var opts=[
+    ['约 200 万',true,'对！每月 2000 × 12 × 30 年 = 72 万本金，复利让它翻到约 200 万。时间会替你完成魔法。'],
+    ['约 72 万',false,'那是本金，不含复利——复利才是隐藏的大头。'],
+    ['约 10 万',false,'你低估了复利的尾巴。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="saO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="saFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#saO'+i).onclick=function(){
+      var b=d.querySelector('#saO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'启动储蓄');badge('存钱践行者','🏦');d.querySelector('#saFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'save',score:1});}
+      else{b.className='opt no';d.querySelector('#saFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#saO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameSort(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🔑 金钱心法排序</h3><div class="gsub">记忆 · 按序点亮六大心法</div><div class="desc">按《金钱心理学》的行动逻辑，依次点击点亮六张卡片。</div>';
+  d.innerHTML+='<div class="kick" id="soGrid"></div><div class="fb" id="soFb">顺序：①存钱 ②低预期 ③长期 ④守富 ⑤少折腾 ⑥自由</div>';
+  var items=['① 先存钱','② 降低预期','③ 长期持有','④ 守住本金','⑤ 减少折腾','⑥ 买回自由'];
+  var cur=0;
+  function build(){
+    var g=d.querySelector('#soGrid');g.innerHTML='';
+    var order=[];while(order.length<6){var r=Math.floor(Math.random()*6);if(order.indexOf(r)<0)order.push(r);}
+    order.forEach(function(oi){
+      var b=document.createElement('button');b.textContent=items[oi];b.dataset.idx=oi;
+      b.onclick=function(){
+        if(parseInt(b.dataset.idx)===cur){
+          b.classList.add('done');b.textContent='✓ '+items[b.dataset.idx];cur++;
+          d.querySelector('#soFb').innerHTML='<span class="fb good">'+cur+' / 6 点亮</span>';
+          if(cur===6){
+            addPoints(8,'心法顺序全对');badge('思维排序师','🔑');
+            d.querySelector('#soFb').innerHTML='<span class="fb good">🎉 六大金钱心法全部点亮：先存钱 → 低预期 → 长期 → 守富 → 少折腾 → 自由。</span>';
+            track('game',{g:'sort',score:6});
+          }
+        }else{
+          d.querySelector('#soFb').innerHTML='<span class="fb bad">✗ 顺序错了：现在该点「'+items[cur]+'」。</span>';
+        }
+      };
+      g.appendChild(b);
+    });
+  }
+  build();
+  return d;
+}
+function gameCoin(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>💰 金钱智慧金币</h3><div class="gsub">迷你游戏 · 30 秒抓住好观念</div><div class="desc">每个金币都是一条金钱智慧！30 秒内点击尽量多的金币。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="cnC">0</b><span>金币</span></div><div class="stat"><b id="cnT">30</b><span>剩余秒</span></div></div><div class="egg-grid" id="cnGrid"></div><div class="fb" id="cnFb">准备好了吗？点「开始」！</div><button class="btn" id="cnStart">开始抓金币</button>';
+  var coins=0,time=30,run=false,timer=null;
+  function buildGrid(){
+    var g=d.querySelector('#cnGrid');g.innerHTML='';
+    for(var i=0;i<8;i++){
+      var b=document.createElement('button');b.textContent='💰';
+      b.onclick=function(){
+        if(!run)return;
+        if(this.classList.contains('used'))return;
+        this.classList.add('used');
+        coins++;d.querySelector('#cnC').textContent=coins;
+        track('game',{g:'coin',coins:coins});
+      };
+      g.appendChild(b);
+    }
+  }
+  buildGrid();
+  d.querySelector('#cnStart').onclick=function(){
+    if(run)return;
+    run=true;coins=0;time=30;
+    d.querySelector('#cnC').textContent=0;
+    d.querySelector('#cnT').textContent=30;
+    d.querySelector('#cnStart').disabled=true;
+    d.querySelector('#cnFb').innerHTML='<span class="fb good">GO！每个观念都是一枚金币！</span>';
+    timer=setInterval(function(){
+      time--;
+      d.querySelector('#cnT').textContent=time;
+      if(time<=0){
+        clearInterval(timer);run=false;
+        addPoints(coins>=12?8:4,'抓住 '+coins+' 枚金币');badge('金币收藏家','💰');
+        d.querySelector('#cnFb').innerHTML='<span class="fb good">⏱ 时间到！抓住 '+coins+' 枚金币。好观念，就是这样一枚一枚攒出来的。</span>';
+        track('game',{g:'coin',result:coins});
+        d.querySelector('#cnStart').disabled=false;
+        buildGrid();
+      }
+    },1000);
+  };
+  return d;
+}
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📝 金钱心理学小测</h3><div class="gsub">练习 · 10 题检验你的收获</div><div class="desc">答对 9 题以上可获得「满分学员」徽章。选完一题自动进入下一题。</div>';
+  var prog='<div class="quiz-prog" id="qzProg"></div>'+'<div class="desc" id="qzQ"></div>';
+  d.innerHTML+=prog+'<div id="qzOpts"></div><div class="fb" id="qzFb"></div><button class="btn" id="qzRestart" style="display:none">再测一次</button>';
+  var idx=0,score=0;
+  function render(){
+    if(idx>=QUIZ.length){
+      d.querySelector('#qzQ').textContent='测完了！';
+      d.querySelector('#qzOpts').innerHTML='';
+      var full=score>=9;
+      d.querySelector('#qzFb').innerHTML='<span class="fb '+(full?'good':'')+'">得分：'+score+' / '+QUIZ.length+(full?' 🎉 满分学员！':'。再复习一下金钱心法吧。')+'</span>';
+      addPoints(score>=9?10:5,'完成金钱心理学小测');badge(full?'满分学员':'勤奋学员','💯');
+      track('game',{g:'quiz',score:score,total:QUIZ.length});
+      d.querySelector('#qzRestart').style.display='inline-block';
+      d.querySelector('#qzRestart').onclick=function(){idx=0;score=0;render();};
+      return;
+    }
+    var q=QUIZ[idx];
+    d.querySelector('#qzProg').innerHTML='';
+    QUIZ.forEach(function(_,i){var sp=document.createElement('i');sp.className=(i<idx?'done':(i===idx?'cur':''));d.querySelector('#qzProg').appendChild(sp);});
+    d.querySelector('#qzQ').textContent=(idx+1)+'. '+q.q;
+    var opt=document.createElement('div');
+    q.o.forEach(function(o,i){
+      var b=document.createElement('button');b.className='opt';b.textContent=o;
+      b.onclick=function(){
+        if(i===q.a){score++;d.querySelector('#qzFb').innerHTML='<span class="fb good">✓ 正确！</span>';}
+        else{d.querySelector('#qzFb').innerHTML='<span class="fb bad">✗ 正确答案：'+q.o[q.a]+'</span>';}
+        idx++;setTimeout(render,700);
+      };
+      opt.appendChild(b);
+    });
+    d.querySelector('#qzOpts').innerHTML='';d.querySelector('#qzOpts').appendChild(opt);
+  }
+  render();
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name]){return;}
+  BADGES[name]=1;saveBadges();toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var host=document.getElementById('badgesHost');
+  if(!host){
+    host=document.createElement('div');host.id='badgesHost';
+    host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';
+    document.getElementById('chapters').appendChild(host);
+  }
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  var list=[['👓','金钱观察家'],['🧹','视角切换者'],['🎯','运气审判官'],['🎲','时代洞察者'],['🔻','欲望清醒者'],['❄️','复利信徒'],['📐','七十二法则师'],['🏄','生存优先者'],['📊','尾部洞察者'],['⏳','时间自由家'],['⚖️','常理决策者'],['🏦','存钱践行者'],['🔑','思维排序师'],['💯','满分学员']];
+  list.forEach(function(x){
+    var on=!!BADGES[x[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+x[0]+'</span>'+x[1];
+    bd.appendChild(el);
+  });
+}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function unlockByPoints(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='当前积分：'+POINTS+' 分。兑换全书需要 50 分。完成免费章节的互动游戏即可积累积分。';}
+function verifyCode(){
+  var v=(document.getElementById('codeInput').value||'').trim().toUpperCase();
+  if(v.indexOf('XQ2026')>=0||v.length===8){unlockAll();document.getElementById('unlockOk').textContent='✓ 激活成功！全书已解锁。';return;}
+  document.getElementById('unlockOk').textContent='✗ 激活码无效，请重试。';
+  track('unlock',{method:'code',ok:false});
+}
+function adminCheck(){
+  var p=prompt('管理员口令：');
+  if(p==='xiqi-admin-2026'){localStorage.setItem(LSKEY_ADMIN,'1');unlockAll();document.getElementById('unlockOk').textContent='✓ 管理员已授权，全部内容开放。';track('unlock',{method:'admin'});}
+  else{document.getElementById('unlockOk').textContent='✗ 口令错误。';}
+}
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');track('ui',{act:'openUnlock'});}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function goRead(){document.getElementById('sec-toc').scrollIntoView({behavior:'smooth'});track('ui',{act:'goRead'});}
+function goTo(i){var el=document.getElementById('chap-'+i);if(el){el.scrollIntoView({behavior:'smooth'});}track('ui',{act:'goto',chap:i});}
+function playBgm(){
+  var a=document.getElementById('bgmAudio');
+  if(a){if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';}else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}}
+}
+(function(){
+  var a=document.createElement('audio');a.id='bgmAudio';a.loop=true;a.preload='none';
+  a.src='bgm.wav';document.body.appendChild(a);
+  renderToc();renderChapters();
+  if(location.hash==='#a0'){goRead();}
+  track('open',{t:'金钱心理学'});
+})();
+</script>
+</body>
+</html>
