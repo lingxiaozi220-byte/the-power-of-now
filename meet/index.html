@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遇见未知的自己 · 张德芬 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#150f1e; --bg2:#221736; --card:#1a1228; --line:#3a2c56;
+    --tx:#f8f1ff; --sub:#d8c8ef; --dim:#9682b8;
+    --gold:#ffc46b; --violet:#c08bff; --pink:#ff9ecf; --green:#a4e8a0; --sky:#9fd4ff;
+    --red:#ff8a7a; --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#120c1a 0%,#221736 45%,#150f1e 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.7;overflow-x:hidden}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(192,139,255,.09),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(255,196,107,.07),transparent 60%);animation:pulse 6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(18,12,26,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--violet);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#c08bff,#8b5cf6);color:#1b0f2e;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(192,139,255,.25)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--violet)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(28px,6.5vw,42px);margin:14px 0 6px;color:var(--violet);letter-spacing:8px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:620px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--violet)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--violet);margin-bottom:12px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(192,139,255,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#2c1f45;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--violet)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(164,232,160,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,138,122,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--violet);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--violet);margin-bottom:10px}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--violet);padding:8px 14px;background:rgba(192,139,255,.08);border-radius:8px;color:var(--violet);margin:12px 0;font-size:16px}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,15,30,0),rgba(21,15,30,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#150e22;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#2c1f45,#1a1228);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--violet);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--violet)}
+  .opt.ok{border-color:var(--green);background:rgba(164,232,160,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,138,122,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#120b1c;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#c08bff,#ffc46b);border-radius:999px;transition:width .5s}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--violet)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--violet);background:rgba(192,139,255,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(164,232,160,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(164,232,160,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#120b1c}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--violet)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#120b1c;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--violet);color:var(--violet);background:rgba(192,139,255,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(12,8,18,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#2c1f45,#1a1228);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--violet);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#120c1a;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--violet);color:var(--violet);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(192,139,255,.07);border:1px solid rgba(192,139,255,.25);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .rings{position:relative;width:220px;height:220px;margin:16px auto}
+  .rings .ring{position:absolute;border-radius:50%;border:2px solid rgba(192,139,255,.35);display:flex;align-items:center;justify-content:center}
+  .rings .r1{inset:0;border-color:rgba(255,196,107,.5)}
+  .rings .r2{inset:22px;border-color:rgba(255,158,207,.45)}
+  .rings .r3{inset:44px;border-color:rgba(159,212,255,.45)}
+  .rings .r4{inset:66px;border-color:rgba(192,139,255,.5)}
+  .rings .core{position:absolute;inset:80px;border-radius:50%;background:radial-gradient(circle,#ffdf9e,#ffc46b);box-shadow:0 0 40px rgba(255,196,107,.8);animation:pulse 3s ease-in-out infinite}
+  .rings .lbl{position:absolute;font-size:12px;color:var(--sub)}
+  .rings .l1{top:-20px;left:50%;transform:translateX(-50%)}
+  .rings .l2{right:-64px;top:50%;transform:translateY(-50%)}
+  .rings .l3{bottom:-20px;left:50%;transform:translateX(-50%)}
+  .rings .l4{left:-64px;top:50%;transform:translateY(-50%)}
+  .rings .l0{top:50%;left:50%;transform:translate(-50%,-50%);color:#3a2c0e;font-weight:700;z-index:2;text-align:center}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(3,1fr)}.pair-grid{grid-template-columns:1fr}.rings .l2{right:-10px}.rings .l4{left:-10px}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">💎 遇见未知的自己<small>张德芬</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock">🔓 解锁</button>
+    <button class="btn sm" id="btnRead" onclick="goRead()">开始阅读 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">MEET THE UNKNOWN SELF · 张德芬</div>
+    <h1>遇见未知的自己</h1>
+    <div class="tag">
+      <span>张德芬 著</span><span>都市身心灵修行课</span><span>华语畅销 15 年</span><span>爱·喜悦·和平</span>
+    </div>
+    <p class="lead">「亲爱的，外面没有别人，只有你自己。」张德芬用都市白领若菱的故事，带你一层层剥开<b>角色、思想、情绪、身体</b>的层层包裹，去见那个本就圆满的<b>真我</b>。痛苦不是别人造成的，而是我们弄丢了真实的自己。今天起，<b>向内看，遇见未知的自己</b>。</p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">💎 向内探索</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 疗愈之音</button>
+    </div>
+    <div class="tip">🎮 本书包含 12 个互动体验：我是谁、真我同心圆、角色面具、能量自测、同频相吸、潜意识马车、胜肽识别、身体扫描、情绪臣服、检视思想、每日觉察、读后小测……读完你会明白：<b>改变命运，从认识自己开始</b>。</div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 11 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">💎 遇见未知的自己 · 熙祺智书出品<br>《遇见未知的自己：都市身心灵修行课》张德芬 · 多媒体互动版 · 素材仅供学习交流</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 5 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='meet';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=11, FREE=6;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function markDone(id){DONE[id]=1;localStorage.setItem(LSKEY_DONE,JSON.stringify(DONE));}
+function isDone(id){return !!DONE[id];}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'我是谁 · 亲爱的外面没有别人',free:1,icon:'💎',art:'art_who.jpg',cap:'「亲爱的，外面没有别人，只有你自己。」——这是全书最通透的一句话。',
+  p:[['深夜，若菱问自己：我是谁？'],
+     ['是名校毕业的白领？是别人眼中的妻子？是爸妈的女儿？','这些标签，好像都不能定义完整的她。'],
+     ['张德芬说：','「亲爱的，外面没有别人，只有你自己。」','所有的外在事物，都是你内在投射出来的结果。'],
+     ['我们这一生的烦恼、纠结、内耗，','从来都不是别人造成的，','而是我们弄丢了真实的自己。','「觉察和自省，是一切成长的开始。」']]},
+ {n:'第1章',t:'我们到底想要什么 · 爱喜悦和平',free:1,icon:'🎯',art:'art_true.jpg',cap:'我们真正想要的，不是车子房子，而是它们背后的爱、喜悦与和平。',
+  p:[['若菱问老人：为什么我不能拥有我想要的生活？'],
+     ['老人反问：你到底想要什么？','钱？权？健康？'],
+     ['再往下追问一层：','你要这些，最终是为了什么？','答案往往指向同一个地方：'],
+     ['「我们真正要的不是这些东西本身，','而是它们带来的感受：','爱、喜悦、和平。」'],
+     ['而这三样东西，','不是要到外面去找，','它们本就是真我的本质。']]},
+ {n:'第2章',t:'真我 · 同心圆的核心',free:1,icon:'⭕',art:'art_true.jpg',cap:'真我是天生圆满的，本质是爱、喜悦、和平——不是情绪，而是一种存在的状态。',
+  p:[['老人画了一个同心圆：'],
+     ['最中心是发着柔和光芒的「真我」，','它天生圆满，','本质是爱、喜悦、和平。'],
+     ['从内到外，包裹着四层：','身体、情绪、思想、身份认同。','我们往往把外面的角色当成自己，','把思想的噪音当成自己，','却忘了最中心的真我。'],
+     ['「就像一颗钻石，诞生之初就璀璨无比。','我们的本质，','是那个充满爱与喜悦的能量体。」']]},
+ {n:'第3章',t:'人生就像一场戏 · 角色面具',free:1,icon:'🎭',art:'art_roles.jpg',cap:'我们太入戏，把角色当成了自己，于是不断被外界牵动。',
+  p:[['张德芬说：人生就像一场戏。'],
+     ['我们扮演各种角色：','好员工、好儿女、好伴侣、成功人士……','戴着不同的面具，切换不同的场景。'],
+     ['入戏太深，','就把角色当成了自己。','被夸就开心，被批就崩溃，','情绪完全被外界操控。'],
+     ['「我们混淆了身份、情绪与真实的自我。','把社会标签、别人的评价当成自己，','于是不断被外界牵动，随境遇起伏。」','看清角色，是为了卸下面具。']]},
+ {n:'第4章',t:'能量争夺战 · 吸引力法则',free:1,icon:'✨',art:'art_energy.jpg',cap:'这个世界是由能量组成的，同频的能量会相互吸引。',
+  p:[['老人说：我们每天其实都在打一场「能量争夺战」。'],
+     ['每个人都是一个能量场，','你愤怒，就散发愤怒的能量；','你感恩，就散发感恩的能量。'],
+     ['「这个世界是什么组成的？能量。」','「你所招引的人、事、物，','取决于你散发的频率。」'],
+     ['所以张德芬提醒：','与其抱怨环境，不如调频自己。','「当你发自内心地喜悦，','好事会自然而然向你靠近。」']]},
+ {n:'第5章',t:'潜意识初探 · 马车比喻',free:1,icon:'🐴',art:'art_horse.jpg',cap:'潜意识操控你的人生，而你却称其为命运。',
+  p:[['老人用一个马车比喻，点破人生模式：'],
+     ['马 = 表意识：你以为自己在决定方向；','车夫 = 潜意识：它悄悄握着缰绳；','乘客 = 真我：真正安排人生功课的那一位。'],
+     ['很多时候，','你的马拼命往一个方向跑，','可车夫（潜意识）的想法却相反：','你想找好姻缘，潜意识却认定自己不配。'],
+     ['「潜意识操控着你的人生，','而你却称其为命运。」','改命，先改潜意识。']]},
+ {n:'第6章',t:'胜肽 · 情绪的瘾',free:0,icon:'🧬',art:'art_peptide.jpg',cap:'你习惯什么情绪，细胞就对什么情绪上瘾。',
+  p:[['书中讲到一个惊人的机制——胜肽：'],
+     ['当你长期处于某种情绪，','身体细胞会对这种情绪分泌的化学物质「上瘾」。'],
+     ['习惯愤怒的人，','细胞渴望愤怒；','习惯当受害者的人，','细胞渴望被亏待。'],
+     ['这就是为什么你「想改变却总是回到原地」——','不只是心理习惯，','还有身体层面的惯性。'],
+     ['「看清你的情绪惯性，','是挣脱它的第一步。」']]},
+ {n:'第7章',t:'身体联结 · 与身体对话',free:0,icon:'🧘',art:'art_body.jpg',cap:'身体，是你与这个世界唯一的物理连接。回到身体，就是回到当下。',
+  p:[['四把钥匙的第一把：身体——联结。'],
+     ['张德芬说：','身体是你和世界唯一的物理连接。','当你焦虑未来、悔恨过去时，','身体其实一直在「当下」。'],
+     ['练习：','每天留一点时间与身体联结——','瑜伽、拉伸、专注地呼吸，','感受身体每个部位的感觉。'],
+     ['「回到身体，','就是回到当下；','回到当下，','你就回到了真我附近。」']]},
+ {n:'第8章',t:'情绪臣服 · 允许流经',free:0,icon:'🌊',art:'art_surrender.jpg',cap:'臣服，不是认输，而是不再与情绪对抗，让情绪流经你。',
+  p:[['四把钥匙的第二把：情绪——臣服。'],
+     ['情绪来的时候，','我们习惯抗拒、压抑、发泄，','结果越搞越糟。'],
+     ['张德芬教你「臣服」：','认出它，允许它在，','看着它流经你——','像看着云飘过天空，','像站在河里让河水流过。'],
+     ['「当你不再与情绪对抗，','它自己会慢慢离开。','臣服，不是认输，','而是不再内耗。」']]},
+ {n:'第9章',t:'检视思想 · 想法不是你',free:0,icon:'💭',art:'art_surrender.jpg',cap:'你不是你的想法。看着想法来来去去，你只是那个看的人。',
+  p:[['四把钥匙的第三把：思想——检视。'],
+     ['大脑每天产生几万个想法，','大多只是噪音和重复的旧剧本。'],
+     ['张德芬说：','你不是你的想法，','你是那个「看见想法」的存在。'],
+     ['练习：','像看天上的云一样，','看着想法升起又消散，','不认同它，不跟随它。'],
+     ['「当你不再被想法裹挟，','你就拿回了生命的主权。」']]},
+ {n:'第10章',t:'身份认同 · 觉察功课',free:0,icon:'🌅',art:'art_awake.jpg',cap:'觉察和自省是一切成长的开始。每天检视：今天，是谁偷走了我的快乐？',
+  p:[['四把钥匙的第四把：身份认同——觉察。'],
+     ['当你能觉察到：','「哦，我又在扮演受害者了」','「哦，我又在求别人认可了」——','你就已经走在觉醒的路上。'],
+     ['张德芬给出每日功课：','身体层面，','从你能做到的一个小习惯开始：饮食或运动；','心理层面，','每天检视：今天，是谁或什么事，','偷走了我的平静？'],
+     ['「亲爱的，外面没有别人，只有你自己。','所有的外在事物，','都是你内在投射出来的结果。」','向内看，','那个本就圆满的自己，一直在等你。']]}
+];
+
+var QUIZ=[
+ {q:'《遇见未知的自己》最核心的一句话是？',o:['亲爱的，外面没有别人，只有你自己','努力就有回报','人生苦短'],a:0},
+ {q:'真我的本质是？',o:['爱、喜悦、和平','成功和财富','被所有人喜欢'],a:0},
+ {q:'同心圆最中心是什么？',o:['真我','身份认同','情绪'],a:0},
+ {q:'人生就像一场戏，说的是？',o:['我们把角色当成了自己','人生很虚假','要演好每个角色'],a:0},
+ {q:'吸引力法则的核心是？',o:['同频能量相互吸引','想什么有什么','祈祷'],a:0},
+ {q:'马车比喻中，车夫代表？',o:['潜意识','表意识','真我'],a:0},
+ {q:'胜肽是指？',o:['细胞对情绪化学物质上瘾','一种药物','神经递质'],a:0},
+ {q:'四把钥匙的第一把是？',o:['身体-联结','情绪-发泄','思想-压抑'],a:0},
+ {q:'情绪臣服的意思是？',o:['允许情绪流经而不对抗','认输放弃','压抑情绪'],a:0},
+ {q:'「我不是我的想法」的意思是？',o:['想法会来也会去，我是看的人','想法不重要','不要思考'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 心灵觉醒</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可读';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · MEET THE UNKNOWN SELF</div><h2>'+c.t+'</h2>';
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 亲爱的，外面没有别人'));}
+  if(i===0){h.appendChild(audioBlock('voice_who.wav','🎧 我是谁 · 冥想引导'));}
+  if(i===8){h.appendChild(audioBlock('voice_surrender.wav','🎧 情绪臣服 · 练习引导'));}
+  if(i===10){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 为什么你越努力越不快乐？拆解情绪枷锁</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1Bhd7BnEt5&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameWho());}
+  if(i===1){out.push(gameWant());}
+  if(i===2){out.push(gameRings());}
+  if(i===3){out.push(gameRoles());}
+  if(i===4){out.push(gameEnergy());out.push(gameAttract());}
+  if(i===5){out.push(gameHorse());}
+  if(i===6){out.push(gamePeptide());}
+  if(i===7){out.push(gameBody());}
+  if(i===8){out.push(gameSurrender());}
+  if(i===9){out.push(gameMind());}
+  if(i===10){out.push(gameAware());out.push(gameQuiz());}
+  return out;
+}
+
+/* 1 我是谁 */
+function gameWho(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-who';
+  d.innerHTML='<h3>💎 我是谁</h3><div class="gsub">一层层剥开身份标签，看看还剩下什么。</div>';
+  d.innerHTML+='<div class="trash" id="whWrap"></div><div class="fb" id="whFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('whWrap');
+    var items=[
+      {t:'🏷 我的名字',s:'名字是标签，不是你。'},
+      {t:'💼 我的工作',s:'工作是角色，不是你。'},
+      {t:'👨‍👩‍👧 我的家庭身份',s:'关系是连接，定义不了你。'},
+      {t:'💰 我的财富',s:'财富是身外之物，不是你。'},
+      {t:'🏆 别人对我的评价',s:'评价是别人的投射，不是你。'},
+      {t:'💎 剩下的那个「我」',s:'安静、完整、不依赖任何身份的存在——这就是真我。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="whS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('whS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('whFb').textContent='已放下 '+n+' / '+items.length+' 个标签';
+        if(n===items.length){
+          document.getElementById('whFb').innerHTML='<span class="fb good">💎 标签都放下了。剩下的那个安静的存在，就是真的你。</span>';
+          addPoints(6,'完成我是谁');badge('真我寻宝人','💎');track('game',{g:'who',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 2 我们到底想要什么 */
+function gameWant(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-want';
+  d.innerHTML='<h3>🎯 我们到底想要什么</h3><div class="gsub">层层追问，找到你真正想要的东西。</div>';
+  d.innerHTML+='<div id="waWrap"></div><div class="fb" id="waFb"></div>';
+  var qs=[
+    {q:'你为什么想要很多钱？',o:['可以买想要的东西','获得安全感与自由'],a:1},
+    {q:'有了安全感与自由，你会感到？',o:['平静和喜悦','更大的焦虑'],a:0},
+    {q:'你真正想要的其实是？',o:['车子房子','爱、喜悦、和平'],a:1}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('waWrap');
+    if(qi>=qs.length){
+      w.innerHTML='<div style="font-size:15px;color:var(--violet)">🎯 追问完成：'+pts+' / 3 全对<br><span style="color:var(--sub);font-size:13px">爱、喜悦、和平，不在外面，而在真我里。</span></div>';
+      if(pts===3){addPoints(5,'追问全对');badge('欲望侦探','🎯');}else{addPoints(2,'完成追问');}
+      track('game',{g:'want',score:pts});
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';pts++;document.getElementById('waFb').innerHTML='<span class="fb good">✅ 继续追问……</span>';}
+        else{b.className='opt no';document.getElementById('waFb').innerHTML='<span class="fb bad">再想想：那背后的感受是什么？</span>';}
+        qi++;setTimeout(renderQ,1100);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 3 真我同心圆 */
+function gameRings(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-rings';
+  d.innerHTML='<h3>⭕ 真我同心圆</h3><div class="gsub">点按从外到内的每一层，走进真我。</div>';
+  d.innerHTML+='<div class="rings"><div class="ring r1"><div class="lbl l1">身份认同</div></div><div class="ring r2"><div class="lbl l2">思想</div></div><div class="ring r3"><div class="lbl l3">情绪</div></div><div class="ring r4"><div class="lbl l4">身体</div></div><div class="core"><div class="lbl l0">真我</div></div></div>';
+  d.innerHTML+='<div class="fb" id="rgFb">从最外层「身份认同」开始，点击揭晓。</div>';
+  var layers=[['身份认同','你扮演的角色和标签——最外层，最容易迷惑你。'],['思想','头脑里的噪音和旧剧本——它们不是你。'],['情绪','起伏的情绪之海——允许它们流经你。'],['身体','与世界的唯一物理连接——回到身体就回到当下。'],['真我','爱、喜悦、和平——你本就圆满的本质。']];
+  var cur=0;
+  setTimeout(function(){
+    var rings=document.querySelectorAll('#g-rings .ring');
+    var core=document.querySelector('#g-rings .core');
+    function next(ix){
+      if(ix!==cur){
+        document.getElementById('rgFb').innerHTML='<span class="fb bad">要从最外层「身份认同」开始，按顺序走进来。</span>';
+        return;
+      }
+      document.getElementById('rgFb').innerHTML='<span class="fb good">'+(cur+1)+' / 5 · '+layers[cur][0]+'：'+layers[cur][1]+'</span>';
+      if(cur<4){rings[cur].style.borderColor='var(--green)';}
+      else{core.style.boxShadow='0 0 60px rgba(255,196,107,.9)';}
+      cur++;
+      if(cur>=layers.length){
+        setTimeout(function(){
+          document.getElementById('rgFb').innerHTML='<span class="fb good">⭕ 同心圆点亮！最中心就是真我——爱、喜悦、和平，一直等着你。</span>';
+          addPoints(6,'点亮真我同心圆');badge('同心圆行者','⭕');track('game',{g:'rings',score:5});
+        },600);
+      }
+    }
+    rings.forEach(function(r,i){r.style.cursor='pointer';r.onclick=function(){next(i);};});
+    core.style.cursor='pointer';core.onclick=function(){next(4);};
+  },0);
+  return d;
+}
+
+/* 4 角色面具 */
+function gameRoles(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-roles';
+  d.innerHTML='<h3>🎭 角色面具</h3><div class="gsub">识别你正在扮演的角色，试着卸下面具。</div>';
+  d.innerHTML+='<div class="trash" id="roWrap"></div><div class="fb" id="roFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('roWrap');
+    var items=[
+      {t:'💼 好员工面具',s:'摘下面具：我的价值不靠职位定义。'},
+      {t:'👨‍👩‍👧 好儿女面具',s:'摘下面具：孝顺不等于讨好。'},
+      {t:'🏆 成功人士面具',s:'摘下面具：成功不等于被爱。'},
+      {t:'😊 永远开心面具',s:'摘下面具：允许自己有情绪。'},
+      {t:'🙏 老好人面具',s:'摘下面具：说「不」也安全。'},
+      {t:'🎭 最真实的我',s:'不戴面具的我，依然值得被爱。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="roS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('roS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('roFb').textContent='已卸下 '+n+' / '+items.length+' 个面具';
+        if(n===items.length){
+          document.getElementById('roFb').innerHTML='<span class="fb good">🎭 面具卸完。看清角色，是为了做回自己。</span>';
+          addPoints(6,'卸下面具');badge('卸下面具者','🎭');track('game',{g:'roles',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 5 能量自测 */
+function gameEnergy(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-energy';
+  d.innerHTML='<h3>✨ 能量自测</h3><div class="gsub">此刻的你，散发的频率是什么？</div>';
+  d.innerHTML+='<div class="bar"><i id="enBar" style="width:0%"></i></div>';
+  d.innerHTML+='<div id="enWrap" style="margin:10px 0"></div><div class="fb" id="enFb"></div>';
+  var qs=[
+    {q:'早上醒来，你的第一感觉是？',o:['烦躁/沉重','平静','期待'],v:[0,5,10]},
+    {q:'想到工作/学习，你？',o:['抗拒','平淡','有动力'],v:[0,5,10]},
+    {q:'最近和人的相处？',o:['总起冲突','还行','温暖融洽'],v:[0,5,10]},
+    {q:'遇到小挫折，你通常？',o:['立刻崩溃','有点郁闷但能过去','先接受再想办法'],v:[0,5,10]}
+  ];
+  var qi=0,score=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('enWrap');
+    if(qi>=qs.length){
+      var lvl=score>=35?'🌟 高能量：你散发着喜悦的振动，同频的好事会靠近你。':score>=20?'✨ 中能量：有波动，试着每天做一件滋养自己的小事。':'🌫 低能量：今天先照顾自己，从身体联结开始。';
+      w.innerHTML='<div style="font-size:15px;color:var(--violet)">能量值 '+score+' / 40<br><span style="color:var(--sub);font-size:13px">'+lvl+'</span></div>';
+      document.getElementById('enBar').style.width=Math.round(score/40*100)+'%';
+      addPoints(4,'完成能量自测');track('game',{g:'energy',score:score});
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        b.className='opt ok';score+=cur.v[oi];
+        document.getElementById('enBar').style.width=Math.round(score/40*100)+'%';
+        qi++;setTimeout(renderQ,700);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 6 同频相吸 */
+function gameAttract(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-attract';
+  d.innerHTML='<h3>✨ 同频相吸</h3><div class="gsub">把能量和它吸引的结果配对。</div>';
+  d.innerHTML+='<div class="pair-grid" id="atGrid"></div><div class="fb" id="atFb">已完成 0 / 5</div>';
+  var pairs=[
+    {q:'经常抱怨',a:'吸引更多不顺心的事'},
+    {q:'心怀感恩',a:'发现生活里越来越多的小确幸'},
+    {q:'焦虑不安',a:'吸引让你更焦虑的信息'},
+    {q:'自信从容',a:'吸引机会与贵人'},
+    {q:'平静喜悦',a:'吸引同频的善意与美好'}
+  ];
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    var grid=document.getElementById('atGrid');
+    pairs.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      var qHalf=selEl===grid.children[sel*2];
+      var aHalf=el===grid.children[pi*2+1];
+      if(sel===pi&&qHalf!==aHalf){
+        var q=grid.children[pi*2],a=grid.children[pi*2+1];
+        q.className='pair matched';a.className='pair matched';
+        matched++;
+        document.getElementById('atFb').innerHTML='已完成 '+matched+' / '+pairs.length;
+        if(matched===pairs.length){
+          document.getElementById('atFb').innerHTML='<span class="fb good">✨ 同频相吸完成！你散发什么频率，就吸引什么人生。</span>';
+          addPoints(8,'同频相吸配对');badge('调频师','✨');track('game',{g:'attract',score:pairs.length});
+        }
+      }else{document.getElementById('atFb').innerHTML='<span class="fb bad">配错了，再想想这个频率会带来什么。</span>';}
+      sel=null;selEl=null;
+    }
+  },0);
+  return d;
+}
+
+/* 7 潜意识马车 */
+function gameHorse(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-horse';
+  d.innerHTML='<h3>🐴 潜意识马车</h3><div class="gsub">判断下面这些想法，来自表意识还是潜意识。</div>';
+  d.innerHTML+='<div class="trash" id="hoWrap"></div><div class="fb" id="hoFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('hoWrap');
+    var items=[
+      {t:'💭 「我要找到好工作」（表意识）',s:'这是马的方向——表面目标。'},
+      {t:'🤫 「我不配拥有好工作」（潜意识）',s:'这是车夫的方向——真正的方向盘。'},
+      {t:'💭 「我要减肥」（表意识）',s:'表面的决心。'},
+      {t:'🤫 「我坚持不了」（潜意识）',s:'潜意识的旧剧本。'},
+      {t:'🤫 「我不值得被爱」（潜意识）',s:'童年写进潜意识的老程序。'},
+      {t:'💎 「我本就圆满」（真我）',s:'乘客的视角——真我从不缺爱。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="hoS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('hoS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('hoFb').textContent='已看清 '+n+' / '+items.length+' 个声音来源';
+        if(n===items.length){
+          document.getElementById('hoFb').innerHTML='<span class="fb good">🐴 看清了！改命先改潜意识——把车夫从打盹中叫醒。</span>';
+          addPoints(6,'看清潜意识马车');badge('马车乘客','🐴');track('game',{g:'horse',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 8 胜肽识别 */
+function gamePeptide(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-peptide';
+  d.innerHTML='<h3>🧬 胜肽识别</h3><div class="gsub">你的细胞习惯吃什么情绪？识别你的情绪惯性。</div>';
+  d.innerHTML+='<div class="trash" id="peWrap"></div><div class="fb" id="peFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('peWrap');
+    var items=[
+      {t:'😠 愤怒惯性',s:'习惯生气？你的细胞渴望愤怒的胜肽。'},
+      {t:'😢 受害者惯性',s:'习惯委屈？细胞渴望「被亏待」的剧情。'},
+      {t:'😰 焦虑惯性',s:'习惯担心？细胞渴望焦虑的化学信号。'},
+      {t:'😔 自卑惯性',s:'习惯自我否定？细胞渴望「我不行」的熟悉感。'},
+      {t:'😊 感恩惯性',s:'习惯感恩？细胞会渴望感恩的胜肽——这是好瘾！'},
+      {t:'🕊 平静惯性',s:'习惯平静？细胞的安宁需求会越来越多。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="peS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('peS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('peFb').textContent='已识别 '+n+' / '+items.length+' 种情绪惯性';
+        if(n===items.length){
+          document.getElementById('peFb').innerHTML='<span class="fb good">🧬 识别完成！看清情绪惯性，是挣脱它的第一步。把坏瘾换成好瘾。</span>';
+          addPoints(6,'识别胜肽惯性');badge('细胞观察员','🧬');track('game',{g:'peptide',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 9 身体扫描 */
+function gameBody(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-body';
+  d.innerHTML='<h3>🧘 身体扫描</h3><div class="gsub">跟随引导，从上到下与身体联结。每扫描一处，点击确认。</div>';
+  d.innerHTML+='<div class="trash" id="byWrap"></div><div class="fb" id="byFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('byWrap');
+    var items=[
+      {t:'👤 头部与面部',s:'放松额头，松开牙关，舒展眉头。'},
+      {t:'🫀 肩膀与脖颈',s:'把肩膀放下来，让呼吸沉到胸口。'},
+      {t:'✋ 双臂与双手',s:'感受手心微微发暖，放松每一根手指。'},
+      {t:'🫁 胸腔与呼吸',s:'吸气时感受肋骨扩张，呼气时完全放下。'},
+      {t:'🍃 腹部',s:'让腹部柔软，不紧绷，随呼吸起伏。'},
+      {t:'🦶 双腿与双脚',s:'感受脚底踩实地面，稳稳地在这里。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="byS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('byS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('byFb').textContent='已联结 '+n+' / '+items.length+' 个部位';
+        if(n===items.length){
+          document.getElementById('byFb').innerHTML='<span class="fb good">🧘 扫描完成！回到身体，就是回到当下；回到当下，你就靠近了真我。</span>';
+          addPoints(6,'完成身体扫描');badge('身体联结者','🧘');track('game',{g:'body',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 10 情绪臣服 */
+function gameSurrender(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-surr';
+  d.innerHTML='<h3>🌊 情绪臣服</h3><div class="gsub">情绪来的时候，不抗拒、不压抑，允许它流经你。</div>';
+  d.innerHTML+='<div class="trash" id="suWrap"></div><div class="fb" id="suFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('suWrap');
+    var items=[
+      {t:'😠 愤怒来了',s:'允许：我看见了愤怒，我允许它在这里。'},
+      {t:'😢 难过来了',s:'允许：难过也是我的一部分，它会被流走。'},
+      {t:'😰 焦虑来了',s:'允许：焦虑只是身体的一个信号，不是我。'},
+      {t:'😔 委屈来了',s:'允许：我接纳此刻的感受，不评判自己。'},
+      {t:'🌊 情绪像河水',s:'我不在河里挣扎，我看着它流过。'},
+      {t:'🕊 情绪走了',s:'它果然会走。臣服，让我不再内耗。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="suS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('suS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('suFb').textContent='已允许 '+n+' / '+items.length+' 种情绪流经';
+        if(n===items.length){
+          document.getElementById('suFb').innerHTML='<span class="fb good">🌊 臣服完成！当你不再与情绪对抗，它自己会慢慢离开。</span>';
+          addPoints(6,'完成情绪臣服');badge('臣服之河','🌊');track('game',{g:'surrender',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 11 检视思想 */
+function gameMind(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-mind';
+  d.innerHTML='<h3>💭 检视思想</h3><div class="gsub">像看云一样看想法：想法会来，也会走。你不是它。</div>';
+  d.innerHTML+='<div class="trash" id="miWrap"></div><div class="fb" id="miFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('miWrap');
+    var items=[
+      {t:'☁️ 想法：「我不够好」',s:'看见了。它只是一片云，不是事实。'},
+      {t:'☁️ 想法：「未来会完蛋」',s:'看见了。这是大脑的警报，不是预言。'},
+      {t:'☁️ 想法：「别人在笑我」',s:'看见了。这是猜测，不是事实。'},
+      {t:'☁️ 想法：「我不该犯错」',s:'看见了。这是旧剧本，不是真理。'},
+      {t:'☁️ 想法：「我必须被认可」',s:'看见了。这是习惯，不是需要。'},
+      {t:'🕊 看云的人',s:'想法来来去去，我始终在这里，平静地看。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="miS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('miS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('miFb').textContent='已看清 '+n+' / '+items.length+' 朵想法之云';
+        if(n===items.length){
+          document.getElementById('miFb').innerHTML='<span class="fb good">💭 检视完成！想法会来也会走，你不是它，你是那个看的人。</span>';
+          addPoints(6,'完成思想检视');badge('云上观者','💭');track('game',{g:'mind',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 12 每日觉察 */
+function gameAware(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-aware';
+  d.innerHTML='<h3>🌅 每日觉察功课</h3><div class="gsub">张德芬的日常功课：身体一个小习惯 + 每天检视谁偷走了平静。</div>';
+  d.innerHTML+='<div class="kick" id="awKick"></div><div class="fb" id="awFb">点按完成今日功课。</div>';
+  setTimeout(function(){
+    var k=document.getElementById('awKick');
+    var steps=['🍎 饮食一个健康选择','🚶 运动 10 分钟','🧘 与身体联结一次','💭 检视一个消极想法','🙏 感恩三件事','😴 今天好好睡觉'];
+    steps.forEach(function(s,si){
+      var b=document.createElement('button');b.textContent=s;
+      b.onclick=function(){
+        if(b.classList.contains('done'))return;
+        b.classList.add('done');
+        document.getElementById('awFb').textContent='今日功课已完成 '+si+' / '+steps.length;
+        if(si===steps.length-1){
+          document.getElementById('awFb').innerHTML='<span class="fb good">🌅 今日功课全完成！日复一日，你会离真我越来越近。</span>';
+          addPoints(8,'完成每日功课');badge('觉醒练习者','🌅');track('game',{g:'aware',stage:steps.length});
+        }
+      };
+      k.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 13 读后小测 */
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quiz';
+  d.innerHTML='<h3>📝 读后小测 · 向内探索学分</h3><div class="gsub">10 题，检验你的身心灵修行收获。</div>';
+  d.innerHTML+='<div class="quiz-prog" id="quizProg"></div><div id="quizWrap"></div><div class="fb" id="quizFb"></div>';
+  var qi=0,score=0;
+  setTimeout(function(){
+    render();
+    function render(){
+      var prog=document.getElementById('quizProg');prog.innerHTML='';
+      QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
+      var w=document.getElementById('quizWrap');w.innerHTML='';
+      if(qi>=QUIZ.length){
+        var pct=Math.round(score/QUIZ.length*100);
+        w.innerHTML='<div style="font-size:18px;color:var(--violet);text-align:center">🎓 测验完成：'+score+' / '+QUIZ.length+'（'+pct+'%）</div>';
+        document.getElementById('quizFb').innerHTML=pct>=80?'<span class="fb good">🏆 心灵修行满分！今天起，开始你的每日觉察功课吧。</span>':pct>=50?'<span class="fb">不错的开始，回看免费章节巩固知识点。</span>':'<span class="fb">建议再读一遍序章和同心圆，理解「真我」。</span>';
+        addPoints(score>=8?10:5,'完成读后小测');badge('身心灵行者','💎');track('game',{g:'quiz',score:score,total:QUIZ.length});
+        return;
+      }
+      var cur=QUIZ[qi];
+      var qd=document.createElement('div');qd.className='desc';qd.textContent='第'+(qi+1)+'题：'+cur.q;
+      w.appendChild(qd);
+      cur.o.forEach(function(t,oi){
+        var b=document.createElement('button');b.className='opt';b.textContent=t;
+        b.onclick=function(){
+          w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          if(oi===cur.a){b.className='opt ok';score++;}
+          else{b.className='opt no';document.getElementById('quizFb').innerHTML='<span class="fb bad">正确答案：'+cur.o[cur.a]+'</span>';}
+          qi++;setTimeout(render,900);
+        };
+        w.appendChild(b);
+      });
+    }
+  },0);
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name])return;BADGES[name]=1;saveBadges();
+  toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var list=[['💎','真我寻宝人'],['🎯','欲望侦探'],['⭕','同心圆行者'],['🎭','卸下面具者'],['✨','调频师'],['🐴','马车乘客'],['🧬','细胞观察员'],['🧘','身体联结者'],['🌊','臣服之河'],['💭','云上观者'],['🌅','觉醒练习者'],['💎','身心灵行者']];
+  var host=document.getElementById('badgesHost');
+  if(!host){host=document.createElement('div');host.id='badgesHost';host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';document.getElementById('chapters').appendChild(host);}
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  list.forEach(function(b){
+    var on=BADGES[b[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+(on?b[0]:'🔒')+'</span>'+b[1];
+    bd.appendChild(el);
+  });
+}
+
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('codeBox').classList.add('hidden');document.getElementById('unlockOk').textContent='';}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function verifyCode(){
+  var c=(document.getElementById('codeInput').value||'').trim();
+  if(c.length<6){document.getElementById('unlockHint').textContent='激活码格式不正确（至少 6 位）。';return;}
+  if(hashOk(c)){
+    document.getElementById('unlockOk').textContent='✅ 激活成功！全书已解锁。';
+    track('unlock',{method:'code'});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='激活码无效。提示：可联系平台获取；完成互动任务攒积分也能解锁。';
+  }
+}
+function hashOk(c){
+  if(c.toUpperCase()==='325FA149')return true;
+  if(c==='XQ2026')return true;
+  return false;
+}
+function unlockByPoints(){
+  if(POINTS>=50){
+    setPoints(POINTS-50);
+    document.getElementById('unlockOk').textContent='✅ 积分兑换成功！已扣除 50 积分，全书解锁。';
+    track('unlock',{method:'points',cost:50});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='积分不足（当前 '+POINTS+' / 50）。完成免费章节的互动任务可快速攒分。';
+  }
+}
+function adminCheck(){
+  var pw=prompt('管理员口令：');
+  if(pw&&hashOk(pw.toUpperCase())){
+    localStorage.setItem(LSKEY_ADMIN,'1');
+    document.getElementById('unlockOk').textContent='✅ 管理员验证通过，全书解锁。';
+    unlockAll();
+  }else if(pw){document.getElementById('unlockHint').textContent='口令错误。';}
+}
+
+function goRead(){
+  var first=document.getElementById('chap-0');
+  if(first){first.scrollIntoView({behavior:'smooth'});}
+  track('read',{action:'start'});
+}
+function goTo(i){
+  var el=document.getElementById('chap-'+i);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+function playBgm(){
+  var a=document.getElementById('bgmEl');
+  if(!a){a=document.createElement('audio');a.id='bgmEl';a.src='bgm.wav';a.loop=true;a.volume=.4;document.body.appendChild(a);}
+  if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';track('audio',{src:'bgm.wav'});}
+  else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}
+}
+
+(function init(){
+  var btn=document.getElementById('btnUnlock');
+  btn.onclick=function(){UNLOCKED?toast('📖 全书已解锁'):openUnlock();};
+  document.getElementById('points').textContent=POINTS;
+  renderToc();renderChapters();
+  track('open',{});
+  var t0=Date.now();
+  window.addEventListener('beforeunload',function(){
+    var sec=Math.round((Date.now()-t0)/1000);
+    if(sec>=5){track('read',{action:'leave',sec:sec});}
+  });
+})();
+</script>
+</body>
+</html>
