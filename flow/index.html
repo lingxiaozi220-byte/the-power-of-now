@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心流 · 米哈里·契克森米哈赖 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#0a0f1e; --bg2:#131a30; --card:#121a30; --line:#28365c;
+    --tx:#eef2ff; --sub:#b6c2e2; --dim:#7c89ad;
+    --gold:#ffd166; --orange:#ff8a4c; --teal:#41d6c4; --violet:#a78bfa; --purple:#b28cff;
+    --red:#ff7a7a; --green:#8fe0a0; --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#080c18 0%,#131a30 45%,#0a0f1e 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.7;overflow-x:hidden}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(167,139,250,.10),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(255,209,102,.07),transparent 60%);animation:pulse 6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(8,12,24,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--violet);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#a78bfa,#41d6c4);color:#0a1020;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(167,139,250,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--violet)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(28px,6.5vw,42px);margin:14px 0 6px;color:var(--violet);letter-spacing:10px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:5px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:620px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--violet);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(167,139,250,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#1c2542;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--violet)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(143,224,160,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,122,122,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--violet);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--violet);margin-bottom:10px}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--violet);padding:8px 14px;background:rgba(167,139,250,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,15,30,0),rgba(10,15,30,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#0e1526;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#1c2542,#12192e);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--violet);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(143,224,160,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,122,122,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#0e1526;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#a78bfa,#ffd166);border-radius:999px;transition:width .5s}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(255,209,102,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(143,224,160,.12);cursor:default}
+  .slider-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:14px 0}
+  .slider-row label{font-size:13px;color:var(--sub);min-width:70px}
+  .slider-row input[type=range]{flex:1;min-width:160px;accent-color:var(--violet)}
+  .zone-map{position:relative;height:220px;border-radius:14px;background:linear-gradient(135deg,rgba(255,122,122,.18),rgba(124,137,173,.15),rgba(143,224,160,.15));border:1px solid var(--line);margin:14px 0;overflow:hidden}
+  .zone-map .dot{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold);transform:translate(-50%,-50%);transition:all .3s}
+  .zone-map .zone-label{position:absolute;font-size:11px;color:var(--sub);padding:2px 8px;border-radius:8px;background:rgba(10,15,30,.6)}
+  .kick{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(143,224,160,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#0e1526}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#0e1526;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,209,102,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(4,7,14,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#1c2542,#12192e);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--violet);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0a0f1e;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.25);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .timer-big{font-size:44px;font-weight:800;color:var(--violet);text-align:center;margin:10px 0;font-variant-numeric:tabular-nums}
+  .hidden{display:none!important}
+  .molecule{display:inline-flex;flex-direction:column;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:6px;cursor:pointer;font-size:14px;transition:all .3s}
+  .molecule:hover{border-color:var(--violet);transform:translateY(-2px)}
+  .molecule.done{border-color:var(--green);background:rgba(143,224,160,.1)}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(4,1fr)}.pair-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">🌊 心流<small>米哈里·契克森米哈赖</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock">🔓 解锁</button>
+    <button class="btn sm" id="btnRead" onclick="goRead()">开始阅读 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">FLOW · MIHALY CSIKSZENTMIHALYI</div>
+    <h1>心流</h1>
+    <div class="tag">
+      <span>米哈里·契克森米哈赖 著</span><span>积极心理学奠基之作</span><span>最优体验心理学</span>
+    </div>
+    <p class="lead">人最幸福的时刻，往往不是躺平放松的时候，而是<b>全身心投入一件有挑战的事</b>的时候。米哈里花了三十年追踪全球数千人，把这个状态命名为「心流」：忘记时间、忘记自我、物我两忘。这本书告诉你：<b>幸福不是等来的，是流出来的。</b></p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🌊 进入心流</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 流动之音</button>
+    </div>
+    <div class="tip">🎮 本书包含 12 个互动体验：心流自测、精神熵清除、心流通道导航、八要素配对、感官之乐、思维棋局、工作游戏化、深度对话、逆境心流、专注计时器、7天心流打卡、读后小测……读完你会明白：<b>把涣散的意识聚焦成激光，就是幸福的方法。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 10 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🌊 心流 · FLOW · 熙祺智书出品<br>《心流：最优体验心理学》米哈里·契克森米哈赖 · 多媒体互动版 · 素材仅供学习交流</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 4 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书（见提示）。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='flow';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=10, FREE=6;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function markDone(id){DONE[id]=1;localStorage.setItem(LSKEY_DONE,JSON.stringify(DONE));}
+function isDone(id){return !!DONE[id];}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'幸福的秘密',free:1,icon:'💎',art:'art_flow.jpg',cap:'最愉悦的时刻，通常出现在一个人为某项艰巨任务辛苦付出、把体能与智力发挥到极致的时候。',
+  p:[['你是否有过这样的时刻：','做一件事做到忘记时间、忘记自己、甚至忘记累？','那种「水到渠成、不费吹灰之力」的感觉，就是心流。'],
+     ['积极心理学奠基人米哈里用三十年追踪了全球数千人、','收集超过 10 万份体验样本，得出一个反常识的结论：'],
+     ['「人类最幸福的时刻，往往不是躺平休息的时候，','而是全身心投入一件有挑战性的事情的时候。」'],
+     ['躺平只能带来短暂的放松，','而心流，带来的是深刻的满足与幸福。']]},
+ {n:'第1章',t:'心流 · 快乐的源泉',free:1,icon:'🌊',art:'art_flow.jpg',cap:'心流即一个人完全沉浸在某种活动当中，无视其他事物存在的状态。',
+  p:[['什么是心流？米哈里这样描述：','「一种将个人精神力完全投注在某种活动上的感觉，','水到渠成、不费吹灰之力。」'],
+     ['它像运动家的「巅峰状态」、','艺术家和音乐家所说的「灵思泉涌」。'],
+     ['心流的体验有七个标志：','专注到日常忧虑一扫而空、行动与意识合一、','获得掌控感、进入忘我状态、时间感扭曲。'],
+     ['「体验过心流的人都知道，那份深沉的快乐，','是严格的自律、集中注意力换来的。」']]},
+ {n:'第2章',t:'精神熵 · 内耗的元凶',free:1,icon:'🌀',art:'art_entropy.jpg',cap:'意识的默认状态是「精神熵」——混乱与无序。心流是它的反面，是内在秩序的建立。',
+  p:[['我们的房间不打扫会越来越乱，','人的意识也一样：','它会自动趋向混乱、涣散、负面。'],
+     ['你莫名其妙担心未来，','毫无缘由回忆尴尬往事，','注意力在念头之间跳来跳去——这就是精神熵，内耗的元凶。'],
+     ['精神熵让人焦虑、无聊、疲惫。'],
+     ['而心流是「负熵」：','所有精神力朝向一个目标，','像激光把散射的光聚成一束。','「心流，就是把你涣散的意识，聚焦成激光的过程。」']]},
+ {n:'第3章',t:'心流通道 · 挑战与技能',free:1,icon:'🧭',art:'art_channel.jpg',cap:'心流发生在挑战与技能的平衡点上：挑战太高会焦虑，技能太高会无聊。',
+  p:[['米哈里画了一条「心流通道」：'],
+     ['当挑战太高、技能跟不上，你会焦虑；','当技能太高、挑战太弱，你会无聊；'],
+     ['只有当两者都处于较高水平、且恰好匹配时，','你才会进入心流。'],
+     ['「如果你所做的事超过你的能力，你会焦虑；','低于你的能力，你会无聊。','唯有匹配，才有心流。」'],
+     ['所以成长的方法很简单：','让挑战稍稍高出你的能力一点点，','在焦虑与无聊之间，找到你的黄金区。']]},
+ {n:'第4章',t:'心流的八要素',free:1,icon:'✨',art:'art_think.jpg',cap:'明确的目标、即时的反馈、全神贯注、掌控感、忘我……这些要素加在一起，就是心流。',
+  p:[['米哈里总结了心流的八个构成要素：'],
+     ['一、可完成的任务；二、全神贯注；','三、明确目标；四、即时反馈；','五、深入投入，忧虑一扫而空；'],
+     ['六、自由控制行动；七、忘我状态；','八、时间感扭曲。'],
+     ['「心流不是一种被动的快乐，','而是一种主动的、需要训练的掌控。」','有了这些要素，无论做什么，你都能把散乱的心聚成一束光。']]},
+ {n:'第5章',t:'感官之乐',free:1,icon:'🎶',art:'art_senses.jpg',cap:'运动、美食、音乐、瑜伽——身体本身就是心流的入口。',
+  p:[['米哈里说：不需要天才或特殊才能，','任何人都能通过感官活动进入心流。'],
+     ['跑步时感受呼吸与脚步的节奏，','品尝食物时专注每一口的味道，','弹奏乐器时让手指跟着旋律流动，'],
+     ['这些都是「感官之乐」。'],
+     ['「身体是一座实验室，','你可以在里面反复实验，找到自己的心流配方。」']]},
+ {n:'第6章',t:'思维之乐',free:0,icon:'♟️',art:'art_think.jpg',cap:'下棋、阅读、解谜、写代码——心智的活动，是更高级的心流。',
+  p:[['如果说感官之乐是入门，','那么思维之乐就是心流的高级形态。'],
+     ['一个棋手面对棋盘的冥思苦想，','一个学者沉浸在阅读中的忘记饭点，','一个程序员在代码世界里穿梭——'],
+     ['他们都在经历思维之乐。'],
+     ['「心智的乐趣，在于建立秩序。','当我们把信息组织成有意义的系统，','我们就进入了心流。」']]},
+ {n:'第7章',t:'工作之乐',free:0,icon:'🛠️',art:'art_work.jpg',cap:'把工作变成游戏：明确目标、即时反馈、难度匹配，工作就是心流的竞技场。',
+  p:[['很多人以为：工作是负担，休闲才是享受。','但米哈里的数据恰恰相反：'],
+     ['工作中的人进入心流的频率，','远高于无所事事的休闲时光。','「工作时的心流，是生活中最容易获得的心流之一。」'],
+     ['秘诀是把工作游戏化：','设定明确的小目标，','把任务拆成关卡，给每个步骤即时反馈，','让难度恰好超出能力一点点。'],
+     ['你不需要热爱工作才能投入，','你只需要让自己沉浸其中。']]},
+ {n:'第8章',t:'人际之乐',free:0,icon:'💬',art:'art_people.jpg',cap:'深度对话、共同创作、真诚相处——人际关系是心流最丰富的源泉。',
+  p:[['孤独的人更容易精神熵增，','而良好的人际关系是内在秩序的重要来源。'],
+     ['一场真正的深度对话，','一次合唱、共舞、团队协作，','都能让人际心流自然涌现。'],
+     ['「与一个人谈话，如果双方都投入，','对话就会像一场即兴合奏，','每个人都被对方的专注带动。」'],
+     ['学会倾听，放下表演，','真诚的相处，是最温暖的流动。']]},
+ {n:'第9章',t:'逆境心流 · 挫折中自得其乐',free:0,icon:'⛰️',art:'art_adversity.jpg',cap:'命运给你打击时，专注于你能控制的部分，把逆境变成成长的通道。',
+  p:[['谁都会遭遇挫折：失业、失恋、疾病、失败。'],
+     ['米哈里发现：那些能在逆境中保持幸福的人，','不是运气好，而是掌握了一种能力——','把注意力集中在能控制的事情上。'],
+     ['「一个人若能控制自己的意识，','无论发生什么，他都能找到内在秩序，','在最坏的情况下也能找到乐趣。」'],
+     ['痛苦无法选择，','但你可以选择如何专注。','逆境，也可以成为心流的通道。']]},
+ {n:'第10章',t:'生命意义 · 心流与幸福',free:0,icon:'🌌',art:'art_meaning.jpg',cap:'把一生串成一次伟大的心流——为超越自我的目标投入，你就找到了意义。',
+  p:[['心流研究的最终目的地，是生命的意义。'],
+     ['米哈里说：把散落在日常中的心流体验串联起来，','为一个超越自我的目标投入一生，','你就把「我的一生」变成了一次伟大的心流。'],
+     ['「幸福不是人生的事件，','而是人生的过程本身。','当我们为意义投入，幸福就自然流出来。」'],
+     ['从今天起，找到那件让你忘记时间的事，','然后，把它变成你的人生。']]}
+];
+
+var ELEMENTS=[
+ {m:'🎯 明确目标',f:'知道要做什么'},
+ {m:'📡 即时反馈',f:'随时知道做得好不好'},
+ {m:'💫 全神贯注',f:'注意力完全投入'},
+ {m:'🎮 掌控感',f:'自由控制行动'},
+ {m:'🧊 忘我状态',f:'自我意识消失'},
+ {m:'⏳ 时间扭曲',f:'时间变快或变慢'},
+ {m:'🌪 忧虑消散',f:'烦恼一扫而空'},
+ {m:'🧗 挑战匹配',f:'挑战与技能平衡'}
+];
+
+var QUIZ=[
+ {q:'《心流》的作者是谁？',o:['米哈里·契克森米哈赖','马斯洛','弗洛伊德'],a:0},
+ {q:'人最幸福的时刻，通常出现在什么时候？',o:['躺平休息','全身心投入有挑战的事','刷手机'],a:1},
+ {q:'意识的默认状态是？',o:['精神熵（混乱）','心流（有序）','空白'],a:0},
+ {q:'心流是精神熵的反面，被比喻成？',o:['负熵·聚焦成激光','放大器','黑洞'],a:0},
+ {q:'挑战太高、技能跟不上，你会？',o:['心流','焦虑','无聊'],a:1},
+ {q:'技能太高、挑战太弱，你会？',o:['焦虑','无聊','心流'],a:1},
+ {q:'心流的黄金区在哪里？',o:['挑战略高于能力','挑战远高于能力','挑战远低于能力'],a:0},
+ {q:'以下哪个是心流的要素？',o:['即时反馈','多任务并行','拖延'],a:0},
+ {q:'工作中的人进入心流的频率，相比休闲时？',o:['更高','更低','一样'],a:0},
+ {q:'把一生串成一次伟大的心流，关键是什么？',o:['为超越自我的目标投入','赚更多钱','放松休息'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 心流进阶</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可读';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · FLOW</div><h2>'+c.t+'</h2>';
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 幸福的秘密'));}
+  if(i===2){h.appendChild(audioBlock('voice_focus.wav','🎧 专注引导 · 把注意力聚成激光'));}
+  if(i===6){h.appendChild(audioBlock('voice_work.wav','🎧 工作游戏化 · 心流教练'));}
+  if(i===9){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 顶级快乐，藏在专注里（《心流》精讲）</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameSelfTest());}
+  if(i===1){out.push(gameEntropy());}
+  if(i===2){out.push(gameChannel());}
+  if(i===3){out.push(gameElements());}
+  if(i===4){out.push(gameSenses());}
+  if(i===5){out.push(gameThink());}
+  if(i===6){out.push(gameWork());}
+  if(i===7){out.push(gamePeople());}
+  if(i===8){out.push(gameAdversity());}
+  if(i===9){out.push(gameTimer());out.push(gamePunch());out.push(gameQuiz());}
+  return out;
+}
+
+/* 1 心流自测 */
+function gameSelfTest(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-selftest';
+  d.innerHTML='<h3>💎 心流自测</h3><div class="gsub">米哈里用「体验抽样法」追踪人们的状态。先测测你离心流有多远。</div>';
+  d.innerHTML+='<div id="stWrap"></div><div class="fb" id="stFb"></div>';
+  var qs=[
+    {q:'你最近能长时间专注于一件事而不分心吗？',o:['很难','偶尔可以','经常可以'],w:2},
+    {q:'你有多久没有「忘记时间」的体验了？',o:['很久了','偶尔','最近就有'],w:2},
+    {q:'你做事时有明确目标、知道下一步该干嘛吗？',o:['没有','有时有','很清楚'],w:2},
+    {q:'你的挑战与能力匹配吗？',o:['要么太闲要么太难','基本匹配','刚刚好'],w:2}
+  ];
+  var qi=0,score=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('stWrap');
+    if(qi>=qs.length){
+      var level = score>=6?'🔴 你的意识正在精神熵状态：散乱、焦虑、内耗。需要学习聚焦。':score>=3?'🟡 你偶尔进入心流，但还不够稳定。本书教你设计心流。':'🟢 你的心流体验很丰富！这本书能帮你把它系统化、日常化。';
+      w.innerHTML='<div style="font-size:16px;color:var(--gold)">评估完成 · 心流指数 '+score+'/8<br><span style="color:var(--tx);font-size:14px">'+level+'</span></div>';
+      document.getElementById('stFb').innerHTML='<span class="fb good">无论结果如何，心流是一种可以练习的技能。往下读，你会掌握它。</span>';
+      addPoints(4,'完成心流自测');badge('心流侦探','💎');track('game',{g:'selftest',score:score});
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        b.className='opt ok';
+        if(oi===2)score+=cur.w;
+        qi++;setTimeout(renderQ,700);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 2 精神熵清除 */
+function gameEntropy(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-entropy';
+  d.innerHTML='<h3>🌀 精神熵清除</h3><div class="gsub">识别那些消耗你的内耗念头，逐一放下它们。</div>';
+  d.innerHTML+='<div class="trash" id="entWrap"></div><div class="fb" id="entFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('entWrap');
+    var items=[
+      {t:'⏳ 反复担心未来',s:'未来不可控，把注意力放回此刻能做的事。'},
+      {t:'🔁 回忆尴尬往事',s:'那件事已经结束，让它过去。'},
+      {t:'📱 无意识刷手机',s:'刷之前问自己：我真的需要吗？'},
+      {t:'⚖️ 自我比较内耗',s:'比较是偷走幸福的小偷。'},
+      {t:'💭 多线程乱想',s:'一次只做一件事，意识才能聚拢。'},
+      {t:'😤 对无法改变的事愤怒',s:'接受不能改变的，改变能改变的。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="entS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('entS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('entFb').textContent='已放下 '+n+' / '+items.length+' 个内耗念头';
+        if(n===items.length){
+          document.getElementById('entFb').innerHTML='<span class="fb good">🌀 清场完成！意识不再散乱，现在可以开始聚焦了。</span>';
+          addPoints(6,'清除精神熵');badge('熵清除师','🌀');track('game',{g:'entropy',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 3 心流通道 */
+function gameChannel(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-channel';
+  d.innerHTML='<h3>🧭 心流通道导航</h3><div class="gsub">米哈里的通道模型：挑战太高焦虑，技能太高无聊。拖动滑块，找到你的心流区。</div>';
+  d.innerHTML+='<div class="zone-map" id="zoneMap"><span class="zone-label" style="left:12px;top:12px">😰 焦虑区</span><span class="zone-label" style="right:12px;bottom:12px">😴 无聊区</span><span class="zone-label" style="left:50%;top:50%;transform:translate(-50%,-50%)">✨ 心流区</span><div class="dot" id="zoneDot" style="left:20%;top:80%"></div></div>';
+  d.innerHTML+='<div class="slider-row"><label>挑战难度</label><input type="range" id="chSlider" min="0" max="100" value="20" oninput="zoneMove()"></div>';
+  d.innerHTML+='<div class="slider-row"><label>技能水平</label><input type="range" id="skSlider" min="0" max="100" value="80" oninput="zoneMove()"></div>';
+  d.innerHTML+='<div class="fb" id="zoneFb">当前：无聊区。把挑战调高一点，进入心流。</div>';
+  var inZone=false;
+  window.zoneMove=function(){
+    var ch=parseInt(document.getElementById('chSlider').value,10);
+    var sk=parseInt(document.getElementById('skSlider').value,10);
+    document.getElementById('zoneDot').style.left=ch+'%';
+    document.getElementById('zoneDot').style.top=(100-sk)+'%';
+    var fb=document.getElementById('zoneFb');
+    if(ch>=45&&ch<=80&&sk>=45&&sk<=80){
+      fb.innerHTML='<span class="fb good">✨ 心流区！挑战与技能高度匹配——这就是最优体验。</span>';
+      if(!inZone){inZone=true;addPoints(5,'找到心流区');badge('通道导航员','🧭');track('game',{g:'channel',ch:ch,sk:sk});}
+    }else if(ch>sk+30){fb.innerHTML='<span class="fb bad">😰 焦虑区！挑战太高，先提升技能或降低难度。</span>';inZone=false;}
+    else if(sk>ch+30){fb.innerHTML='<span class="fb">😴 无聊区！技能太高，给任务加一点挑战。</span>';inZone=false;}
+    else{fb.innerHTML='<span class="fb">再调整一下，让挑战略高于技能。</span>';inZone=false;}
+  };
+  return d;
+}
+
+/* 4 八要素配对 */
+function gameElements(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-elements';
+  d.innerHTML='<h3>✨ 心流八要素</h3><div class="gsub">把心流的八个要素配对到它们的含义。</div>';
+  d.innerHTML+='<div class="fb" id="elFb">已完成 0 / 8</div>';
+  var grid=document.createElement('div');grid.className='pair-grid';grid.id='elGrid';
+  d.appendChild(grid);
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    ELEMENTS.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.m;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.f;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      var qHalf=selEl===grid.children[sel*2];
+      var aHalf=el===grid.children[pi*2+1];
+      if(sel===pi&&qHalf!==aHalf){
+        var q=grid.children[pi*2],a=grid.children[pi*2+1];
+        q.className='pair matched';a.className='pair matched';
+        matched++;
+        document.getElementById('elFb').innerHTML='已完成 '+matched+' / '+ELEMENTS.length;
+        if(matched===ELEMENTS.length){
+          document.getElementById('elFb').innerHTML='<span class="fb good">🏆 八要素集齐！心流是设计出来的，不是等来的。</span>';
+          addPoints(8,'八要素配对完成');badge('八要素大师','✨');track('game',{g:'elements',score:ELEMENTS.length});
+        }
+      }else{document.getElementById('elFb').innerHTML='<span class="fb bad">配错了，再试试。</span>';}
+      sel=null;selEl=null;
+    }
+  },0);
+  return d;
+}
+
+/* 5 感官之乐 */
+function gameSenses(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-senses';
+  d.innerHTML='<h3>🎶 感官之乐</h3><div class="gsub">身体就是心流的入口。选一个你今天就能做的感官心流。</div>';
+  d.innerHTML+='<div class="trash" id="senWrap"></div><div class="fb" id="senFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('senWrap');
+    var items=[
+      {t:'🏃 跑步·感受节奏',s:'专注呼吸与脚步，跑进「自动巡航」。'},
+      {t:'🎸 弹琴·让手指流动',s:'不看琴键，让音乐带着你走。'},
+      {t:'🍵 品茶·专注每一口',s:'感受温度、香气、回甘，慢慢喝。'},
+      {t:'🧘 瑜伽·身体与呼吸合一',s:'把注意力放在每一次伸展上。'},
+      {t:'🎨 画画·随手下笔',s:'不追求完美，只享受笔触的流动。'},
+      {t:'🚴 骑行·迎风而行',s:'感受风、路与身体的默契。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="senS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('senS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('senFb').textContent='已收藏 '+n+' / '+items.length+' 种感官心流';
+        if(n===items.length){
+          document.getElementById('senFb').innerHTML='<span class="fb good">🎶 你的感官心流菜单已就绪。今天选一项，立刻开始。</span>';
+          addPoints(6,'集齐感官心流');badge('感官玩家','🎶');track('game',{g:'senses',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 6 思维棋局 */
+function gameThink(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-think';
+  d.innerHTML='<h3>♟️ 思维棋局</h3><div class="gsub">思维之乐的本质：把信息组织成有意义的系统。来解三道思考题。</div>';
+  d.innerHTML+='<div id="tkWrap"></div><div class="fb" id="tkFb"></div>';
+  var qs=[
+    {q:'经典问题：如何用6根火柴拼出4个等边三角形？',o:['搭成立体的三棱锥','摆成田字','做不到'],a:0},
+    {q:'阅读时最容易进入心流的状态是？',o:['有明确问题在寻找答案','随便翻翻','边看边刷手机'],a:0},
+    {q:'写代码时那种「一切都连上了」的感觉，属于？',o:['思维心流','错觉','浪费时间'],a:0}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('tkWrap');
+    if(qi>=qs.length){
+      if(pts===3){addPoints(6,'思维棋局全对');badge('思维棋手','♟️');}else{addPoints(2,'完成思维棋局');}
+      track('game',{g:'think',score:pts});
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎉 完成：'+pts+' / 3 全对<br><span style="color:var(--sub);font-size:13px">思维之乐的关键：带着问题去思考，让心智建立秩序。</span></div>';
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';document.getElementById('tkFb').innerHTML='<span class="fb good">✅ 对。</span>';pts++;}
+        else{b.className='opt no';document.getElementById('tkFb').innerHTML='<span class="fb bad">❌ 正确答案：'+cur.o[cur.a]+'</span>';}
+        qi++;setTimeout(renderQ,1200);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 7 工作游戏化 */
+function gameWork(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-work';
+  d.innerHTML='<h3>🛠️ 工作游戏化</h3><div class="gsub">把枯燥任务改造成游戏关卡：目标 + 反馈 + 难度匹配。</div>';
+  d.innerHTML+='<div class="bar"><i id="wkBar" style="width:0%"></i></div>';
+  d.innerHTML+='<div id="wkWrap" style="margin:10px 0"></div><div class="fb" id="wkFb">启动游戏化引擎…</div>';
+  var steps=[
+    {t:'🎯 设定目标',d:'把任务写成一个明确、可完成的目标。',btn:'目标已设定'},
+    {t:'🧩 拆解关卡',d:'把大任务拆成 3-5 个小关卡。',btn:'关卡已拆解'},
+    {t:'⏱ 设定时间盒',d:'给每个关卡一个时间限制，制造挑战感。',btn:'时间盒已设定'},
+    {t:'📡 建立反馈',d:'每完成一步，给自己一个即时反馈。',btn:'反馈已建立'},
+    {t:'🏆 设计奖励',d:'完成后奖励自己：散步、美食、喜欢的歌。',btn:'奖励已设计'}
+  ];
+  var cur=0;
+  setTimeout(function(){renderStep();},0);
+  function renderStep(){
+    var w=document.getElementById('wkWrap');
+    if(cur>=steps.length){
+      document.getElementById('wkBar').style.width='100%';
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎮 游戏化完成！现在，带着这张地图，把今天的工作变成一场冒险。</div>';
+      document.getElementById('wkFb').innerHTML='<span class="fb good">记住：工作时的心流，是生活中最容易获得的心流之一。</span>';
+      addPoints(6,'完成工作游戏化');badge('游戏化工程师','🛠️');track('game',{g:'work',score:steps.length});
+      return;
+    }
+    var s=steps[cur];
+    w.innerHTML='<div class="desc">'+(cur+1)+' / '+steps.length+' · '+s.t+'</div><div style="font-size:14px;color:var(--sub);margin-bottom:12px">'+s.d+'</div>';
+    var b=document.createElement('button');b.className='btn sm';b.textContent=s.btn;
+    b.onclick=function(){
+      document.getElementById('wkBar').style.width=Math.round((cur+1)/steps.length*100)+'%';
+      cur++;renderStep();
+    };
+    w.appendChild(b);
+  }
+  return d;
+}
+
+/* 8 深度对话 */
+function gamePeople(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-people';
+  d.innerHTML='<h3>💬 深度对话</h3><div class="gsub">人际心流发生在真诚的相处中。选出最能创造对话心流的做法。</div>';
+  d.innerHTML+='<div id="ppWrap"></div><div class="fb" id="ppFb"></div>';
+  var qs=[
+    {q:'一场高质量对话，最重要的是？',o:['认真倾听、全身心在场','想好下一句怎么说','展示自己'],a:0},
+    {q:'如何让对话进入心流？',o:['放下表演，真诚回应','聊八卦','比谁更有道理'],a:0},
+    {q:'团队协作中的心流常来自？',o:['共同目标与即时配合','互相竞争','各干各的'],a:0}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('ppWrap');
+    if(qi>=qs.length){
+      if(pts===3){addPoints(6,'对话心流全对');badge('对话艺术家','💬');}else{addPoints(2,'完成对话心流');}
+      track('game',{g:'people',score:pts});
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎉 完成：'+pts+' / 3 全对<br><span style="color:var(--sub);font-size:13px">最温暖的流动，是两个人的心都在场。</span></div>';
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';document.getElementById('ppFb').innerHTML='<span class="fb good">✅ 对。</span>';pts++;}
+        else{b.className='opt no';document.getElementById('ppFb').innerHTML='<span class="fb bad">❌ 正确答案：'+cur.o[cur.a]+'</span>';}
+        qi++;setTimeout(renderQ,1200);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 9 逆境心流 */
+function gameAdversity(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-adversity';
+  d.innerHTML='<h3>⛰️ 逆境心流</h3><div class="gsub">命运给你打击时，专注你能控制的。把逆境变成通道。</div>';
+  d.innerHTML+='<div id="adWrap"></div><div class="fb" id="adFb"></div>';
+  var qs=[
+    {q:'遭遇重大挫折时，最能保持内在秩序的是？',o:['专注于能控制的事','反复想为什么是我','彻底躺平'],a:0},
+    {q:'纳粹集中营幸存者维克多·弗兰克尔靠什么活下来？',o:['找到意义、专注当下','运气','等待救援'],a:0},
+    {q:'米哈里研究中的「自得其乐者」是？',o:['在任何处境都能找到心流的人','从不倒霉的人','不工作的人'],a:0}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('adWrap');
+    if(qi>=qs.length){
+      if(pts===3){addPoints(6,'逆境心流全对');badge('逆境攀登者','⛰️');}else{addPoints(2,'完成逆境心流');}
+      track('game',{g:'adversity',score:pts});
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎉 完成：'+pts+' / 3 全对<br><span style="color:var(--sub);font-size:13px">痛苦无法选择，但你可以选择如何专注。</span></div>';
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';document.getElementById('adFb').innerHTML='<span class="fb good">✅ 对。</span>';pts++;}
+        else{b.className='opt no';document.getElementById('adFb').innerHTML='<span class="fb bad">❌ 正确答案：'+cur.o[cur.a]+'</span>';}
+        qi++;setTimeout(renderQ,1200);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 10 专注计时器 */
+function gameTimer(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-timer';
+  d.innerHTML='<h3>⏱ 专注计时器</h3><div class="gsub">心流需要一段不被打扰的时间。现在，选一个任务，开始你的 15 分钟心流。</div>';
+  d.innerHTML+='<div class="timer-big" id="timerBig">15:00</div>';
+  d.innerHTML+='<div style="text-align:center;display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="btn sm" onclick="timerStart()">▶ 开始</button><button class="btn ghost sm" onclick="timerReset()">重置</button></div>';
+  d.innerHTML+='<div class="fb" id="timerFb">准备：关掉通知，把手机放远，只留眼前这一件事。</div>';
+  var timer=null,left=900,started=false;
+  window.timerStart=function(){
+    if(timer)return;
+    started=true;
+    timer=setInterval(function(){
+      left--;
+      var m=Math.floor(left/60),s=left%60;
+      document.getElementById('timerBig').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      if(left===300){document.getElementById('timerFb').innerHTML='<span class="fb">坚持住，还有 5 分钟——你正在进入更深的心流。</span>';}
+      if(left===60){document.getElementById('timerFb').innerHTML='<span class="fb good">最后 1 分钟！感受此刻的专注。</span>';}
+      if(left<=0){
+        clearInterval(timer);timer=null;
+        document.getElementById('timerBig').textContent='完成！';
+        document.getElementById('timerFb').innerHTML='<span class="fb good">🎉 15 分钟心流完成！如果刚才你忘记了时间，恭喜，你体验到了心流。</span>';
+        addPoints(6,'完成15分钟专注');badge('专注计时器','⏱');track('game',{g:'timer',sec:900});
+      }
+    },1000);
+  };
+  window.timerReset=function(){
+    if(timer){clearInterval(timer);timer=null;}
+    left=900;started=false;
+    document.getElementById('timerBig').textContent='15:00';
+    document.getElementById('timerFb').textContent='准备：关掉通知，把手机放远，只留眼前这一件事。';
+  };
+  return d;
+}
+
+/* 11 7天心流打卡 */
+function gamePunch(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-punch';
+  d.innerHTML='<h3>📅 7 天心流打卡</h3><div class="gsub">每天给自己一段专注时间，记录你的心流时刻。数据保存在你的浏览器。</div>';
+  d.innerHTML+='<div class="kick" id="punchWrap"></div><div class="fb" id="punchFb"></div>';
+  var days=[];
+  try{days=JSON.parse(localStorage.getItem(BOOK+'_punch')||'[]');}catch(e){days=[];}
+  setTimeout(function(){
+    var w=document.getElementById('punchWrap');
+    for(var i=1;i<=7;i++){
+      (function(di){
+        var b=document.createElement('button');b.textContent='D'+di;
+        if(days.indexOf(di)>=0)b.className='done';
+        b.onclick=function(){
+          if(b.classList.contains('done')){b.className='';days.splice(days.indexOf(di),1);}
+          else{b.className='done';days.push(di);}
+          localStorage.setItem(BOOK+'_punch',JSON.stringify(days));
+          updateFb();
+        };
+        w.appendChild(b);
+      })(i);
+    }
+    function updateFb(){
+      var n=days.length;
+      document.getElementById('punchFb').textContent='已打卡 '+n+' / 7 天';
+      if(n>=7){
+        document.getElementById('punchFb').innerHTML='<span class="fb good">🏆 7 天完成！心流已经成为你的习惯——你已经掌握了幸福的方法。</span>';
+        addPoints(8,'完成7天心流打卡');badge('心流达人','🌊');track('game',{g:'punch',days:n});
+      }
+    }
+    updateFb();
+  },0);
+  return d;
+}
+
+/* 12 读后小测 */
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quiz';
+  d.innerHTML='<h3>📝 读后小测 · 你掌握心流了吗？</h3><div class="gsub">10 题，检验你的心流学分。</div>';
+  d.innerHTML+='<div class="quiz-prog" id="quizProg"></div><div id="quizWrap"></div><div class="fb" id="quizFb"></div>';
+  var qi=0,score=0;
+  setTimeout(function(){
+    render();
+    function render(){
+      var prog=document.getElementById('quizProg');prog.innerHTML='';
+      QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
+      var w=document.getElementById('quizWrap');w.innerHTML='';
+      if(qi>=QUIZ.length){
+        var pct=Math.round(score/QUIZ.length*100);
+        w.innerHTML='<div style="font-size:18px;color:var(--gold);text-align:center">🎓 测验完成：'+score+' / '+QUIZ.length+'（'+pct+'%）</div>';
+        document.getElementById('quizFb').innerHTML=pct>=80?'<span class="fb good">🏆 心流大师！现在，放下手机，去找一件让你忘记时间的事。</span>':pct>=50?'<span class="fb">不错的开始，回看免费章节巩固知识点。</span>':'<span class="fb">建议再读一遍序章和第3章，理解精神熵与心流通道。</span>';
+        addPoints(score>=8?10:5,'完成读后小测');badge('心流工程师','🧠');track('game',{g:'quiz',score:score,total:QUIZ.length});
+        return;
+      }
+      var cur=QUIZ[qi];
+      var qd=document.createElement('div');qd.className='desc';qd.textContent='第'+(qi+1)+'题：'+cur.q;
+      w.appendChild(qd);
+      cur.o.forEach(function(t,oi){
+        var b=document.createElement('button');b.className='opt';b.textContent=t;
+        b.onclick=function(){
+          w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          if(oi===cur.a){b.className='opt ok';score++;}
+          else{b.className='opt no';document.getElementById('quizFb').innerHTML='<span class="fb bad">正确答案：'+cur.o[cur.a]+'</span>';}
+          qi++;setTimeout(render,900);
+        };
+        w.appendChild(b);
+      });
+    }
+  },0);
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name])return;BADGES[name]=1;saveBadges();
+  toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var list=[['💎','心流侦探'],['🌀','熵清除师'],['🧭','通道导航员'],['✨','八要素大师'],['🎶','感官玩家'],['♟️','思维棋手'],['🛠️','游戏化工程师'],['💬','对话艺术家'],['⛰️','逆境攀登者'],['⏱','专注计时器'],['🌊','心流达人'],['🧠','心流工程师']];
+  var host=document.getElementById('badgesHost');
+  if(!host){host=document.createElement('div');host.id='badgesHost';host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';document.getElementById('chapters').appendChild(host);}
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  list.forEach(function(b){
+    var on=BADGES[b[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+(on?b[0]:'🔒')+'</span>'+b[1];
+    bd.appendChild(el);
+  });
+}
+
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('codeBox').classList.add('hidden');document.getElementById('unlockOk').textContent='';}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function verifyCode(){
+  var c=(document.getElementById('codeInput').value||'').trim();
+  if(c.length<6){document.getElementById('unlockHint').textContent='激活码格式不正确（至少 6 位）。';return;}
+  if(hashOk(c)){
+    document.getElementById('unlockOk').textContent='✅ 激活成功！全书已解锁。';
+    track('unlock',{method:'code'});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='激活码无效。提示：可联系平台获取；完成互动任务攒积分也能解锁。';
+  }
+}
+function hashOk(c){
+  if(c.toUpperCase()==='325FA149')return true;
+  if(c==='XQ2026')return true;
+  return false;
+}
+function unlockByPoints(){
+  if(POINTS>=50){
+    setPoints(POINTS-50);
+    document.getElementById('unlockOk').textContent='✅ 积分兑换成功！已扣除 50 积分，全书解锁。';
+    track('unlock',{method:'points',cost:50});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='积分不足（当前 '+POINTS+' / 50）。完成免费章节的互动任务可快速攒分。';
+  }
+}
+function adminCheck(){
+  var pw=prompt('管理员口令：');
+  if(pw&&hashOk(pw.toUpperCase())){
+    localStorage.setItem(LSKEY_ADMIN,'1');
+    document.getElementById('unlockOk').textContent='✅ 管理员验证通过，全书解锁。';
+    unlockAll();
+  }else if(pw){document.getElementById('unlockHint').textContent='口令错误。';}
+}
+
+function goRead(){
+  var first=document.getElementById('chap-0');
+  if(first){first.scrollIntoView({behavior:'smooth'});}
+  track('read',{action:'start'});
+}
+function goTo(i){
+  var el=document.getElementById('chap-'+i);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+function playBgm(){
+  var a=document.getElementById('bgmEl');
+  if(!a){a=document.createElement('audio');a.id='bgmEl';a.src='bgm.wav';a.loop=true;a.volume=.4;document.body.appendChild(a);}
+  if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';track('audio',{src:'bgm.wav'});}
+  else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}
+}
+
+(function init(){
+  var btn=document.getElementById('btnUnlock');
+  btn.onclick=function(){UNLOCKED?toast('📖 全书已解锁'):openUnlock();};
+  document.getElementById('points').textContent=POINTS;
+  renderToc();renderChapters();
+  track('open',{});
+  var t0=Date.now();
+  window.addEventListener('beforeunload',function(){
+    var sec=Math.round((Date.now()-t0)/1000);
+    if(sec>=5){track('read',{action:'leave',sec:sec});}
+  });
+})();
+</script>
+</body>
+</html>
