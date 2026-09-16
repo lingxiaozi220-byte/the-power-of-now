@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百万富翁快车道 · MJ·德马科 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#0d0705; --bg2:#7a1f0d; --card:#1c0f08; --line:#8a3a12;
+    --tx:#fff0e2; --sub:#e8c9a8; --dim:#b08555;
+    --gold:#ffc94d; --green:#4ade80; --red:#ff6b5e; --blue:#5ea2ff; --purple:#c084fc; --teal:#5eead4;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#0a0503 0%,#7a1f0d 42%,#0d0705 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.75;overflow-x:hidden}
+  .wrap{max-width:880px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(255,201,77,.12),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(255,107,94,.08),transparent 60%)}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(10,5,3,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#ffc94d,#f59e0b);color:#1a1205;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,201,77,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--gold)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(26px,6vw,40px);margin:14px 0 6px;color:var(--gold);letter-spacing:4px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:660px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(255,201,77,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#3a1a08;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,107,94,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);margin-bottom:10px}
+  .learn-loop{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+  .learn-loop span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--dim)}
+  .learn-loop span.on{color:var(--green);border-color:rgba(74,222,128,.5)}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(255,201,77,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
+  .chap .cnt .focus{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.25);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;color:var(--teal)}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,7,5,0),rgba(13,7,5,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#0a0503;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#7a1f0d,#1c0f08);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(74,222,128,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,107,94,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#0a0503;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ffc94d,#4ade80);border-radius:999px;transition:width .5s}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(255,201,77,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(74,222,128,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(74,222,128,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#0a0503}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#0a0503;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,201,77,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(6,3,1,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#7a1f0d,#1c0f08);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0a0503;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(255,201,77,.06);border:1px solid rgba(255,201,77,.22);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .mini-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  .mini-table th,.mini-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  .mini-table th{background:#7a1f0d;color:var(--gold)}
+  .egg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .egg-grid button{background:linear-gradient(145deg,#ffc94d,#f59e0b);border:none;border-radius:50%;aspect-ratio:1;font-size:22px;cursor:pointer;transition:transform .15s}
+  .egg-grid button:active{transform:scale(.9)}
+  .egg-grid button.used{opacity:.25;cursor:default}
+  .slider{width:100%;margin:10px 0;accent-color:var(--gold)}
+  .stat-line{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .stat{flex:1;min-width:110px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+  .stat b{display:block;font-size:22px;color:var(--gold)}
+  .stat span{font-size:12px;color:var(--dim)}
+  .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+  .card-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px;cursor:pointer;transition:all .25s}
+  .card-item:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .card-item.picked{border-color:var(--green);background:rgba(74,222,128,.1)}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(2,1fr)}.pair-grid{grid-template-columns:1fr}.egg-grid{grid-template-columns:repeat(4,1fr)}.card-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">🏎 百万富翁快车道<small>MJ·德马科</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock" onclick="openUnlock()">🔓 解锁</button>
+    <button class="btn sm" onclick="goRead()">开始学习 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">THE MILLIONAIRE FASTLANE · MJ. DEMARCO</div>
+    <h1>百万富翁快车道</h1>
+    <div class="tag">
+      <span>MJ·德马科 著</span><span>全球销量超 100 万册</span><span>三条车道 × 五戒律</span><span>把「慢车道」换成「快车道」</span>
+    </div>
+    <p class="lead">德马科做过外卖员、摆过摊、开过出租车、住过地下室，后来靠一辆「网上豪车租赁」的生意，在三十岁出头实现财务自由。他用自己的逆袭，把所有人的人生财富路径精准分成三条：<b>人行道、慢车道、快车道</b>。他说：95% 的普通人，终其一生都困在前两条死路里。<b>复利是最美丽的谎言，朝九晚五是慢性自杀，财富从来不是靠时间换来的——而是靠系统、杠杆和影响力换来的。</b>这本书，就是你的换道地图。</p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🏎 驶入快车道</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 学点音乐</button>
+    </div>
+    <div class="tip">🏎 本书按「理解 → 记忆 → 联想 → 练习」四步闭环学习法设计：三条车道、五大财富加速器拆成 11 节精讲，每节配互动游戏，共 18 个互动模块 + 14 枚徽章。<b>读完这本，你会拿到一张从「打工思维」切换到「老板思维」的完整换道地图。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 7 节免费试读。付费解锁后可读完整 11 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🏎 百万富翁快车道 · 熙祺智书出品<br>《The Millionaire Fastlane》MJ·德马科 · 多媒体互动版 · 内容仅供学习交流，不构成投资建议</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 4 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='fastlane';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var TOTAL=11, FREE=7;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'三条车道，你选哪条',free:1,icon:'🏎',art:'art_cover.jpg',cap:'财富不是靠时间换来的，而是靠系统、杠杆和影响力换来的。',
+  learn:['理解'],
+  p:[['MJ·德马科出身普通，','做过外卖员、摆过摊、开过出租车、住过地下室。'],
+     ['他的成功不是靠运气，','而是发现了一个大多数人看不见的秘密：','通往财富的路不止一条，','大多数人走的路，通向平庸。'],
+     ['他把所有人的人生财富路径，','精准分成三条车道：'],
+     ['<b>人行道</b>——赚多少花多少，','透支未来，活在当下；','<b>慢车道</b>——用时间换钱，','努力工作、储蓄、等复利，牺牲当下；','<b>快车道</b>——建立系统、放大杠杆，','让生意在你睡觉时为你工作。'],
+     ['「95% 的人终其一生，','都困在前两条死路里。」','你现在的选择，','决定了你十年后在哪里。'],
+     ['这一趟旅程，','就是帮你换道——','从人行道和慢车道，','驶入真正属于你的快车道。']]},
+ {n:'第一章',t:'人行道：月光族的陷阱',free:1,icon:'🌵',art:'art_sidewalk.jpg',cap:'人行道的财富公式：财富 = 收入 + 债务。没有计划，就没有未来。',
+  learn:['理解','记忆'],
+  p:[['先看最危险的一条路：<b>人行道</b>。','走在这条路上的人，','有一个共同公式：','财富 = 收入 + 债务。'],
+     ['工资一发就花光，','换最新款的手机、名牌穿搭、','说走就走的旅行；','收入填不满欲望，','就用信用卡和网贷来补。'],
+     ['人行道的特征有三个：','<b>没有计划</b>——从不为未来做财务安排；','<b>即时满足</b>——快乐优先，储蓄靠后；','<b>负债消费</b>——花明天的钱，圆今天的梦。'],
+     ['这种生活看似潇洒，','实则是一座纸牌屋：','一旦收入中断，','整座大厦瞬间崩塌。'],
+     ['德马科说：','「人行道是一条直通贫困的单行线，','走得越久，离深渊越近。」','今天的每一笔透支，','都是在向未来的自己借高利贷。'],
+     ['记住：','<b>没有计划的财富，不是财富，是负担。</b>']]},
+ {n:'第二章',t:'慢车道：打工与复利的谎言',free:1,icon:'⏳',art:'art_slowlane.jpg',cap:'慢车道的财富公式：财富 = 工作 + 市场投资。你出卖时间，时间就出卖你。',
+  learn:['理解','记忆','联想'],
+  p:[['大多数人以为，「好好上班、慢慢存钱、靠复利变富」','就是最稳妥的人生。','德马科管这条路叫<b>慢车道</b>：','财富 = 工作 + 市场投资。'],
+     ['慢车道的本质是<b>用时间换钱</b>：','收入与你的工作时间绑定，','你停下来，钱就停下来。','它把希望寄托在几十年后的退休，','牺牲的是当下最好的时光。'],
+     ['关于复利，德马科说了句很扎心的话：','「<b>复利是世界第八大奇迹</b>」','这句话，是金融机构最爱给你听的。','因为复利确实存在——','但它需要足够长的时间：','25 岁开始每月存 1000，','65 岁才能滚出一笔不算大的钱。','问题不是复利不存在，','而是<b>速度太慢</b>：','慢车道要花四十年，','才勉强够到快车道几年就能到的位置。'],
+     ['慢车道还有四个致命风险：','① <b>时间不自由</b>——你的青春被定价出售；','② <b>收入有上限</b>——加班再多，天花板就在那里；','③ <b>不确定性</b>——失业、疾病、行业变迁，随时打断计划；','④ <b>延迟牺牲</b>——最好的年华用来换一张遥远的退休票。'],
+     ['「朝九晚五的本质，','是在替你老板的快车道添砖加瓦，','顺便出售你的生命。」','这不是否定工作，','而是提醒你：','如果你把一生都押在工资上，','那你永远只是观众，不是玩家。']]},
+ {n:'第三章',t:'快车道：真正的财富公式',free:1,icon:'🏁',art:'art_fastlane.jpg',cap:'快车道的财富公式：财富 = 净利润 + 资产价值。让系统替你赚钱。',
+  learn:['理解'],
+  p:[['现在，看那条大多数人不敢走的路：<b>快车道</b>。'],
+     ['快车道的财富公式：','<b>财富 = 净利润 + 资产价值</b>。','翻译成人话就是：','你建一个能赚钱的系统，','系统产生的利润不断累积，','而系统本身还会不断增值。'],
+     ['快车道不是「上班赚钱」，','而是「<b>建立生意</b>」：','你可以做一个产品、一门课程、','一个服务平台，','让收益与你的时间脱钩。'],
+     ['快车道的三大特征：','① <b>可控</b>——方向盘在你手里，','收入不依赖老板的脸色；','② <b>可扩展</b>——一份努力，','可以服务一千人、一百万人；','③ <b>被动</b>——你睡觉时，','系统还在为你工作。'],
+     ['德马科用亲身经历证明：','一个网上豪车租赁的小生意，','让他在几年内','从地下室搬进了豪宅。','不是他更聪明，','而是他选择了不同的车道。'],
+     ['记住这句话：','「<b>你睡觉时也在赚钱的资产，','才是真正的资产。</b>」','快车道的核心，','不是拼命干活，','而是建造一台为你工作的引擎。']]},
+ {n:'第四章',t:'需求戒律：先解决别人的痛点',free:1,icon:'💡',art:'art_weeds.jpg',cap:'赚钱的起点不是你的热情，而是别人的需求。自我感动，是创业的毒药。',
+  learn:['理解','练习'],
+  p:[['进入快车道，','要遵守的第一条戒律叫<b>需求戒律</b>：','你的生意，必须解决一个真实存在的痛点。'],
+     ['很多人创业是从「我喜欢」出发：','我喜欢咖啡，就开咖啡馆；','我热爱手工，就做手作店。','德马科说：','「<b>追求热情是一个陷阱。</b>」','热情不解决别人的问题，','就没有人愿意为它付钱。'],
+     ['需求戒律的三个问题：','① <b>谁需要</b>——目标人群是谁？','② <b>多痛</b>——这个问题让他们多难受？','③ <b>愿意付钱吗</b>——他们会掏钱解决吗？'],
+     ['德马科做豪车租赁的起点，','不是他多爱豪车，','而是他发现：','很多人想开豪车但买不起，','租一天的价钱完全可承受——','这就是一个被验证的需求。'],
+     ['就像花园里的杂草：','伪需求、坏习惯、自嗨式想法，','都是财富花园里的杂草，','必须第一时间清除，','否则它们会抢走养分的阳光。'],
+     ['先问市场要什么，','再问自己喜欢什么。','<b>解决别人的痛点，','财富只是副产品。</b>']]},
+ {n:'第五章',t:'五大财富加速器：CENTS 戒律',free:1,icon:'⚙️',art:'art_cnet.jpg',cap:'CENTS：掌控、门槛、需求、时间、规模——五个要素，缺一个都到不了终点。',
+  learn:['理解','记忆'],
+  p:[['怎么判断一个机会','是不是真正的快车道？','德马科给了五个检验标准，','缩写是 <b>CENTS</b>：'],
+     ['<b>C — Command 掌控</b>：','你必须掌握生意和定价的控制权。','完全依赖平台、依赖别人的规则，','就是在裸奔。'],
+     ['<b>E — Entry 门槛</b>：','这门生意要有进入门槛。','花几百块填个表、十分钟就能开的生意，','几百万人也能做，','路早就堵死了。','技术、牌照、资本、专业度，','都能挡住跟风者。'],
+     ['<b>N — Need 需求</b>：','满足真实需求才能变现。','有需求，才有现金流。'],
+     ['<b>T — Time 时间</b>：','收益与你的时间脱钩。','按小时赚钱是慢车道，','睡觉也在赚才是快车道。'],
+     ['<b>S — Scale 规模</b>：','生意可以无限放大。','服务 100 个人和服务 100 万人，','成本不能等比例上升。'],
+     ['用这五条给自己的机会打分：','五项全过，才是快车道；','缺一项，都可能在半路抛锚。','<b>五戒律不是限制，','是导航。</b>']]},
+ {n:'第六章',t:'系统：让你的生意替你工作',free:1,icon:'🌳',art:'art_system.jpg',cap:'快车道企业家不卖时间，他们建造系统——一份努力，重复收益。',
+  learn:['理解','联想'],
+  p:[['快车道的核心资产，是<b>系统</b>。','系统有两种主流形态：'],
+     ['<b>产品系统</b>：','把可复制的东西自动卖出去——','在线课程、电子书、软件、','自动售货机、品牌化产品。','你做一次，卖一万次。'],
+     ['<b>租赁系统</b>：','把资产的使用权租出去——','房产、豪车、版权、专利、设备。','资产在你手里，','租金源源不断。'],
+     ['德马科的豪车生意，','本质就是租赁系统：','车是资产，客户是租客，','他自己不需要每天开车接送。'],
+     ['系统的意义在于「<b>脱钩</b>」：','收入不再等于你的劳动时长，','而是等于系统的运转能力。','你休息，系统不休；','你生病，收入不断。'],
+     ['联想一下：','打工是把时间卖给一家公司；','系统是把一份努力卖给一万人。','<b>建造系统，','就是建造你的第二人生。</b>']]},
+ {n:'第七章',t:'杠杆：从影响力到收入',free:1,icon:'📢',art:'art_law.jpg',cap:'收入 = 影响的人数 × 提供的价值 × 发生的次数。杠杆，把一份努力放大一千倍。',
+  learn:['理解','记忆','练习'],
+  p:[['快车道为什么能爆发？','因为<b>杠杆</b>。','德马科给出了影响力定律：','<b>收入 = 影响的人数 × 提供的价值 × 发生的次数。</b>'],
+     ['一个医生一小时只能服务一个病人，','收入天花板清晰可见；','而一门在线课程可以同时被一万人学习，','同样的知识，影响力放大了上万倍。','这就是杠杆。'],
+     ['三大杠杆：','① <b>技术杠杆</b>——软件、自动化、系统，','让流程自己跑；','② <b>媒体杠杆</b>——内容、视频、文章，','让一个声音触达千万人；','③ <b>资本杠杆</b>——用钱生钱，','让利润滚动起来。'],
+     ['普通人最容易上手的是媒体杠杆：','一支短视频、一篇干货、一门小课，','都可能被十万、百万人看见。','你不需要雇佣团队，','杠杆会替你放大。'],
+     ['注意顺序：','先创造价值，再放大影响；','先服务好 100 个人，','再用杠杆服务 100 万人。','<b>没有价值的杠杆，','只是更大的噪音。</b>']]},
+ {n:'第八章',t:'五戒律守护：把风险挡在门外',free:0,icon:'🛡',art:'art_road.jpg',cap:'快车道不是赌场。需求、门槛、掌控、时间、规模——用戒律筛掉风险。',
+  learn:['理解','练习'],
+  p:[['很多人一听说快车道，','以为就是「敢闯敢干、梭哈一把」。','恰恰相反：','真正的快车道玩家，','都是风险控制大师。'],
+     ['德马科反复强调五戒律的另一面：','<b>它们不是限制，是安全气囊。</b>'],
+     ['<b>没有掌控</b>的生意——','你的一切都押在平台规则上，','平台一改算法，你就清零；','<b>没有门槛</b>的生意——','所有跟风者都来抢食，','利润瞬间被摊薄；','<b>没有需求</b>的生意——','再努力也没有人付钱；','<b>没有时间脱钩</b>的生意——','你只是换了一种方式打工；','<b>没有规模</b>的生意——','天花板一眼看到头。'],
+     ['快车道玩家的习惯是：','先用戒律筛项目，','筛掉 90% 的诱惑，','再all in 剩下的 10%。','放弃也是一种风控。'],
+     ['现金流永远是第一位：','任何生意，先保证能活下去，','再谈放大。','「<b>快车道不是赌一把，','是造一台机器。</b>」','机器要的是稳定运转，','不是惊险刺激。']]},
+ {n:'第九章',t:'换道行动计划：从今天开始',free:0,icon:'🗺',art:'art_action.jpg',cap:'评估车道 → 找到需求 → 建立最小系统 → 放大杠杆 → 坚持迭代。',
+  learn:['记忆','练习'],
+  p:[['知道和做到之间，','只差一张行动计划。','德马科的换道五步：'],
+     ['<b>第一步：诚实评估</b>。','你现在走在哪条车道？','赚多少花多少？还是用时间换钱？','承认现状，是改变的开始。'],
+     ['<b>第二步：找到需求</b>。','去市场里找痛点，','别在家里想情怀。','观察身边人抱怨什么、','愿意为什么掏钱。'],
+     ['<b>第三步：建立最小系统</b>。','别等完美，先做个最小版本：','一个产品、一门课、一个小服务，','先跑起来，先收到第一笔钱。'],
+     ['<b>第四步：放大杠杆</b>。','用内容、技术、资本','把验证过的系统放大。','把服务 100 人的方法，','复制给 100 万人。'],
+     ['<b>第五步：坚持迭代</b>。','系统不是一次建成的，','是根据反馈不断打磨的。','每迭代一次，','引擎就更强一分。'],
+     ['不必辞职，不必梭哈：','用下班后的两小时，','先搭出最小系统的雏形。','<b>快车道不是某一天的决定，','是每一天的选择。</b>']]},
+ {n:'终章',t:'驶入你的快车道',free:0,icon:'🔑',art:'art_cover.jpg',cap:'时间自由比金钱更珍贵。财富只是手段，自由才是目的。',
+  learn:['记忆','练习'],
+  p:[['把整本书浓缩成一张行动清单：'],
+     ['<b>认清车道</b>：','人行道（收入+债务）、慢车道（工作+复利）、','快车道（净利润+资产价值）——','你正在哪条道上？'],
+     ['<b>守住五戒律</b>：','掌控（C）、门槛（E）、需求（N）、','时间（T）、规模（S）——','用五个问题检验每一个机会。'],
+     ['<b>建造系统</b>：','产品系统或租赁系统，','让收益与你的时间脱钩。'],
+     ['<b>放大杠杆</b>：','技术、媒体、资本，','把一份努力放大一千倍。'],
+     ['<b>回归本质</b>：','德马科最终想告诉你的，','不是怎么赚到一百万，','而是：','「金钱只是工具，','<b>时间自由和对生活的掌控，','才是真正的财富。</b>」'],
+     ['现在，系好安全带，','选择你的车道——','你的人生方向盘，','一直在你自己手里。']]}
+];
+
+var QUIZ=[
+ {q:'德马科把大多数人的财富路径分成几条车道？',o:['三条：人行道、慢车道、快车道','两条：打工和创业','四条：存钱、投资、炒股、买房'],a:0},
+ {q:'「人行道」的财富公式是？',o:['财富 = 收入 + 债务','财富 = 工作 + 市场投资','财富 = 净利润 + 资产价值'],a:0},
+ {q:'德马科为什么说复利是「美丽的谎言」？',o:['复利需要几十年，速度太慢，慢车道等不起','复利不存在','复利会让人破产'],a:0},
+ {q:'「快车道」的财富公式是？',o:['财富 = 净利润 + 资产价值','财富 = 收入 + 债务','财富 = 加班 + 升职'],a:0},
+ {q:'CENTS 戒律中的 C 代表什么？',o:['掌控 Command','现金 Cash','成本 Cost'],a:0},
+ {q:'CENTS 戒律中的 E 代表什么？',o:['进入门槛 Entry','效率 Efficiency','经验 Experience'],a:0},
+ {q:'需求戒律的核心是？',o:['先解决别人的真实痛点，再谈热爱','先做自己喜欢的事','先模仿别人成功的事'],a:0},
+ {q:'产品系统和租赁系统的共同点是？',o:['让收益与你的时间脱钩，睡觉也在赚','都需要每天亲自服务客户','都只适合大公司'],a:0},
+ {q:'影响力定律（收入公式）是？',o:['收入 = 影响的人数 × 价值 × 次数','收入 = 工作时长 × 时薪','收入 = 存款 × 利率'],a:0},
+ {q:'德马科认为，比金钱更重要的财富是什么？',o:['时间自由和对生活的掌控','名牌和豪车','别人的羡慕'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 换道进阶</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可学';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · FASTLANE</div><h2>'+c.t+'</h2>';
+    var loop=document.createElement('div');loop.className='learn-loop';
+    ['理解','记忆','联想','练习'].forEach(function(s){var sp=document.createElement('span');sp.textContent=s;if((c.learn||[]).indexOf(s)>=0)sp.className='on';loop.appendChild(sp);});
+    d.appendChild(loop);
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div><div class="focus">🧠 学习闭环：这一节先把概念读懂（理解），再记下金句（记忆），把概念套到自己身上想一想（联想），最后用互动小游戏练一遍（练习）。</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){
+    h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 三条车道，你选哪条'));
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 20 分钟深度解读《百万富翁快车道》：26 岁开始存钱，65 岁才能财务自由？</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1U25b6eEgs&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  if(i===2){h.appendChild(audioBlock('voice_road.wav','🎧 慢车道与复利的真相'));}
+  if(i===5){h.appendChild(audioBlock('voice_law.wav','🎧 CENTS 五戒律与杠杆公式'));}
+  if(i===10){
+    var vb2=document.createElement('div');vb2.className='media-block';
+    vb2.innerHTML='<div class="lbl">📺 延伸 · 《百万富翁快车道》：节俭存钱、基金定投、等待复利，为什么是「慢性自杀」？</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1wD5V62EQT&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb2);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameLane());}
+  if(i===1){out.push(gameWeed());out.push(gameSidewalk());}
+  if(i===2){out.push(gameCompound());out.push(gamePassive());}
+  if(i===3){out.push(gameFormula());}
+  if(i===4){out.push(gameNeed());}
+  if(i===5){out.push(gameCents());out.push(gameGate());}
+  if(i===6){out.push(gameSystem());}
+  if(i===7){out.push(gameLeverage());out.push(gameScale());}
+  if(i===8){out.push(gameGuard());}
+  if(i===9){out.push(gamePlan());}
+  if(i===10){out.push(gameSort());out.push(gameCoin());out.push(gameQuiz());}
+  return out;
+}
+
+function gameLane(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏎 车道自测</h3><div class="gsub">互动 · 你现在走在哪条车道上？</div><div class="desc">面对人生财富，选出最接近你现状的描述。</div>';
+  var opts=[
+    ['“工资一到手就花光，先享受再说”',false,'这是人行道——透支未来，通往贫困的单行线。'],
+    ['“好好上班、慢慢存钱，等退休靠复利”',false,'这是慢车道——用时间换钱，四十年才到终点。'],
+    ['“我要建立一个系统，让它替我赚钱”',true,'对！这是快车道——建立系统、放大杠杆，让财富爆发。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="lnO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="lnFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#lnO'+i).onclick=function(){
+      var b=d.querySelector('#lnO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'认清车道');badge('车道领航员','🏎');d.querySelector('#lnFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'lane',score:1});}
+      else{b.className='opt no';d.querySelector('#lnFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#lnO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameWeed(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🌱 清除杂草</h3><div class="gsub">互动 · 拔掉财富花园里的坏习惯</div><div class="desc">下面这些「杂草」会抢走财富的养分，点击把它们全部拔掉。</div>';
+  var items=[['💳 信用卡透支消费','透支未来'],['🛍 攀比式购物','花明天的钱'],['🌙 月光无计划','没有储蓄'],['🎰 投机赌博','快速归零'],['📺 沉迷短效快乐','逃避成长'],['🚬 健康透支','消耗本金']];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px"><button class="opt" id="wdB'+i+'">'+s[0]+' <small style="color:var(--dim)">（'+s[1]+'）</small></button><span class="fb" id="wdFb'+i+'"></span></div>';});
+  d.innerHTML+=html+'<div class="fb" id="wdSum"></div>';
+  var cnt=0;
+  items.forEach(function(_,i){
+    d.querySelector('#wdB'+i).onclick=function(){
+      if(this.disabled)return;
+      this.disabled=true;this.textContent='✓ 已拔除';this.className='opt ok';
+      cnt++;
+      d.querySelector('#wdFb'+i).innerHTML='<span class="fb good">财富花园 +1 片净土</span>';
+      if(cnt===items.length){
+        addPoints(8,'清完所有杂草');badge('杂草清除者','🌱');
+        d.querySelector('#wdSum').innerHTML='<span class="fb good">🎉 全部拔除！坏习惯是财富最大的敌人——清除它们，财富才有生长的土壤。</span>';
+        track('game',{g:'weed',score:6});
+      }
+    };
+  });
+  return d;
+}
+function gameSidewalk(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🌵 月光族侦探</h3><div class="gsub">互动 · 第一章</div><div class="desc">下面哪些是「人行道」思维？逐个判断。</div>';
+  var items=[
+    ['“工资一到手就花光”','人行道'],
+    ['“先花未来的钱，信用卡刷爆再说”','人行道'],
+    ['“每月先存 10%，再安排开支”','快车道'],
+    ['“没有财务计划，随性而为”','人行道'],
+    ['“为学习新技能花钱投资自己”','快车道'],
+    ['“有了闲钱就投入能生钱的资产”','快车道']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="swA'+i+'">人行道</button><button class="btn sm ghost" id="swB'+i+'">快车道</button><span class="fb" id="swFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="swSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#swA'+i).onclick=function(){judge(i,'人行道');};
+    d.querySelector('#swB'+i).onclick=function(){judge(i,'快车道');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#swFb'+i).innerHTML='<span class="fb good">✓ 判断正确</span>';
+        d.querySelectorAll('#swA'+i+',#swB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#swFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」行为</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'识别全对');badge('月光族侦探','🌵');
+        d.querySelector('#swSum').innerHTML='<span class="fb good">🎉 全对！人行道的核心是没有计划、透支未来；快车道的核心是储蓄、投资、建立资产。</span>';
+        track('game',{g:'sidewalk',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameCompound(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>⏳ 复利真相拆穿</h3><div class="gsub">互动 · 第二章：复利是「美丽的谎言」？</div><div class="desc">关于复利的说法，判断对错。</div>';
+  var items=[
+    ['“对普通人而言，复利是致富的捷径”','错'],
+    ['“复利需要足够长的时间，常常要几十年”','对'],
+    ['“金融机构喜欢宣传复利，因为你在其中存钱”','对'],
+    ['“复利可以让财富在 5 年内翻百倍”','错'],
+    ['“慢车道的问题，是把希望寄托在遥远的未来”','对']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+s[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="cpA'+i+'">对</button><button class="btn sm ghost" id="cpB'+i+'">错</button><span class="fb" id="cpFb'+i+'"></span></div></div>';});
+  d.innerHTML+=html+'<div class="fb" id="cpSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#cpA'+i).onclick=function(){judge(i,'对');};
+    d.querySelector('#cpB'+i).onclick=function(){judge(i,'错');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#cpFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#cpA'+i+',#cpB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#cpFb'+i).innerHTML='<span class="fb bad">✗ 正确答案：'+(it[1]==='对'?'对':'错')+'</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'拆穿复利谎言');badge('复利拆穿者','⏳');
+        d.querySelector('#cpSum').innerHTML='<span class="fb good">🎉 全对！复利真实但太慢——把青春押给几十年后的复利，不如建造一台替你赚钱的系统。</span>';
+        track('game',{g:'compound',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gamePassive(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>💤 被动收入识别</h3><div class="gsub">互动 · 哪些收入在你睡觉时也在产生？</div><div class="desc">选出所有属于「被动收入」的选项（可多选）。</div>';
+  var items=[
+    ['房租收入','被动'],
+    ['版权与专利授权费','被动'],
+    ['打工的月工资','主动'],
+    ['在线课程自动售卖','被动'],
+    ['按小时收费的咨询','主动'],
+    ['投资分红与利息','被动']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px"><button class="opt" id="psB'+i+'">'+(i+1)+'. '+s[0]+'</button><span class="fb" id="psFb'+i+'"></span></div>';});
+  d.innerHTML+=html+'<div class="fb" id="psSum"></div><button class="btn" id="psOk">确认选择</button>';
+  var picked={};
+  items.forEach(function(it,i){
+    d.querySelector('#psB'+i).onclick=function(){
+      var b=d.querySelector('#psB'+i);
+      if(b.classList.contains('ok')){b.classList.remove('ok');delete picked[i];}
+      else{b.classList.add('ok');picked[i]=it[1];}
+    };
+  });
+  d.querySelector('#psOk').onclick=function(){
+    var good=0,miss=0;
+    items.forEach(function(it,i){if(picked[i]==='被动')good++;if(!picked[i]&&it[1]==='被动')miss++;});
+    var wrong=0;for(var k in picked){if(picked[k]==='主动')wrong++;}
+    var total=items.filter(function(x){return x[1]==='被动';}).length;
+    var full=(good===total&&wrong===0);
+    d.querySelector('#psSum').innerHTML='<span class="fb '+(full?'good':'')+'">选对 '+good+'/'+total+' 个被动收入，误选 '+wrong+' 个主动收入。被动收入的本质：收益与你的时间脱钩。</span>';
+    addPoints(full?8:4,'识别被动收入');badge('被动收入识别者','💤');
+    track('game',{g:'passive',score:good});
+    this.disabled=true;
+  };
+  return d;
+}
+function gameFormula(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🏁 快车道公式</h3><div class="gsub">互动 · 第三章：选对公式</div><div class="desc">快车道的财富公式是哪一个？</div>';
+  var opts=[
+    ['财富 = 收入 + 债务',false,'这是人行道——赚多少花多少，透支未来。'],
+    ['财富 = 工作 + 市场投资',false,'这是慢车道——用时间换钱，四十年到终点。'],
+    ['财富 = 净利润 + 资产价值',true,'对！快车道：建立能赚钱的系统，利润累积，资产增值。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="fmO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="fmFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#fmO'+i).onclick=function(){
+      var b=d.querySelector('#fmO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'选对快车道公式');badge('快车道车手','🏁');d.querySelector('#fmFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'formula',score:1});}
+      else{b.className='opt no';d.querySelector('#fmFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#fmO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameNeed(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>💡 需求猎手</h3><div class="gsub">互动 · 第四章：是真需求还是自我感动？</div><div class="desc">判断下面的机会，哪个有「真实需求」。</div>';
+  var items=[
+    ['“做一款帮家长辅导孩子作业的 App”','需求'],
+    ['“开一家我喜欢的咖啡店，没人喝也没关系”','伪需求'],
+    ['“解决上班族没时间做饭的预制菜”','需求'],
+    ['“做我热爱的手办，卖不出去也行”','伪需求'],
+    ['“帮小商家做线上获客服务”','需求'],
+    ['“我看好这个方向，先烧钱再说”','伪需求']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="ndA'+i+'">需求</button><button class="btn sm ghost" id="ndB'+i+'">伪需求</button><span class="fb" id="ndFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="ndSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#ndA'+i).onclick=function(){judge(i,'需求');};
+    d.querySelector('#ndB'+i).onclick=function(){judge(i,'伪需求');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#ndFb'+i).innerHTML='<span class="fb good">✓ 找得准</span>';
+        d.querySelectorAll('#ndA'+i+',#ndB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#ndFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'需求识别全对');badge('需求猎手','💡');
+        d.querySelector('#ndSum').innerHTML='<span class="fb good">🎉 全对！需求戒律三问：谁需要？多痛？愿意付钱吗？先解决别人的痛点，财富只是副产品。</span>';
+        track('game',{g:'need',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameCents(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>⚙️ CENTS 五戒律排序</h3><div class="gsub">记忆 · 按顺序点亮五大财富加速器</div><div class="desc">按 C→E→N→T→S 的顺序依次点击点亮。</div>';
+  d.innerHTML+='<div class="kick" id="csGrid"></div><div class="fb" id="csFb">顺序：C 掌控 → E 门槛 → N 需求 → T 时间 → S 规模</div>';
+  var items=['C 掌控 Command','E 门槛 Entry','N 需求 Need','T 时间 Time','S 规模 Scale'];
+  var cur=0;
+  function build(){
+    var g=d.querySelector('#csGrid');g.innerHTML='';
+    var order=[];while(order.length<5){var r=Math.floor(Math.random()*5);if(order.indexOf(r)<0)order.push(r);}
+    order.forEach(function(oi){
+      var b=document.createElement('button');b.textContent=items[oi];b.dataset.idx=oi;
+      b.onclick=function(){
+        if(parseInt(b.dataset.idx)===cur){
+          b.classList.add('done');b.textContent='✓ '+items[b.dataset.idx];cur++;
+          d.querySelector('#csFb').innerHTML='<span class="fb good">'+cur+' / 5 点亮</span>';
+          if(cur===5){
+            addPoints(8,'五戒律全对');badge('五戒律大师','⚙️');
+            d.querySelector('#csFb').innerHTML='<span class="fb good">🎉 CENTS 全部点亮：掌控 → 门槛 → 需求 → 时间 → 规模。用这五条检验每一个机会！</span>';
+            track('game',{g:'cents',score:5});
+          }
+        }else{
+          d.querySelector('#csFb').innerHTML='<span class="fb bad">✗ 顺序错了：现在该点「'+items[cur]+'」。</span>';
+        }
+      };
+      g.appendChild(b);
+    });
+  }
+  build();
+  return d;
+}
+function gameGate(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🚪 门槛判断</h3><div class="gsub">互动 · 第五章：哪个生意有「进入门槛」？</div><div class="desc">判断下面的生意，有没有真正的进入门槛。</div>';
+  var items=[
+    ['摆地摊卖同质小吃','无门槛'],
+    ['需要专业牌照的医疗服务','高门槛'],
+    ['需要核心技术专利的产品','高门槛'],
+    ['十分钟就能开网店卖同质商品','无门槛'],
+    ['需要多年专业积累的咨询','高门槛']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+s[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="gtA'+i+'">高门槛</button><button class="btn sm ghost" id="gtB'+i+'">无门槛</button><span class="fb" id="gtFb'+i+'"></span></div></div>';});
+  d.innerHTML+=html+'<div class="fb" id="gtSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#gtA'+i).onclick=function(){judge(i,'高门槛');};
+    d.querySelector('#gtB'+i).onclick=function(){judge(i,'无门槛');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#gtFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#gtA'+i+',#gtB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#gtFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'门槛识别全对');badge('门槛判断者','🚪');
+        d.querySelector('#gtSum').innerHTML='<span class="fb good">🎉 全对！门槛越高，跟风者越少，利润越厚。技术、牌照、资本、专业度，都是你的护城河。</span>';
+        track('game',{g:'gate',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameSystem(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🌳 系统分类</h3><div class="gsub">互动 · 第六章：产品系统还是租赁系统？</div><div class="desc">把下面的资产分到对应的系统。</div>';
+  var items=[
+    ['在线课程自动售卖','产品系统'],
+    ['出租房产收租金','租赁系统'],
+    ['电子书自动销售','产品系统'],
+    ['品牌与专利授权','租赁系统'],
+    ['软件订阅服务','产品系统'],
+    ['出租豪车收租金','租赁系统']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="syA'+i+'">产品系统</button><button class="btn sm ghost" id="syB'+i+'">租赁系统</button><span class="fb" id="syFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="sySum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#syA'+i).onclick=function(){judge(i,'产品系统');};
+    d.querySelector('#syB'+i).onclick=function(){judge(i,'租赁系统');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#syFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#syA'+i+',#syB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#syFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'系统分类全对');badge('系统建造者','🌳');
+        d.querySelector('#sySum').innerHTML='<span class="fb good">🎉 全对！产品系统做一次卖一万次，租赁系统资产在手租金不断——共同点是收益与时间脱钩。</span>';
+        track('game',{g:'system',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameLeverage(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📢 杠杆放大</h3><div class="gsub">互动 · 第七章：同样一份技能，哪种收入天花板更高？</div><div class="desc">选择你的变现方式。</div>';
+  var opts=[
+    ['一对一咨询，每小时 500 元',false,'按时间卖，一小时只有 60 分钟，上限封死。'],
+    ['录成课程，卖给 10000 人，每人 99 元',true,'对！用媒体和技术杠杆，一份努力服务一万人，收入瞬间放大。'],
+    ['等公司涨工资',false,'把主动权交给别人，天花板更低。']
+  ];
+  var items='';opts.forEach(function(o,i){items+='<button class="opt" id="lvO'+i+'">'+(i+1)+'. '+o[0]+'</button>';});
+  d.innerHTML+=items+'<div class="fb" id="lvFb"></div>';
+  opts.forEach(function(o,i){
+    d.querySelector('#lvO'+i).onclick=function(){
+      var b=d.querySelector('#lvO'+i);
+      if(o[1]){b.className='opt ok';addPoints(6,'选择杠杆');badge('杠杆大师','📢');d.querySelector('#lvFb').innerHTML='<span class="fb good">'+o[2]+'</span>';track('game',{g:'leverage',score:1});}
+      else{b.className='opt no';d.querySelector('#lvFb').innerHTML='<span class="fb bad">'+o[2]+'</span>';}
+      opts.forEach(function(_,j){d.querySelector('#lvO'+j).disabled=true;});
+    };
+  });
+  return d;
+}
+function gameScale(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📈 规模测试</h3><div class="gsub">互动 · 第七章：哪些生意可以规模化？</div><div class="desc">判断下面的生意能否无限放大。</div>';
+  var items=[
+    ['一对一私人服务','不能'],
+    ['软件订阅','能'],
+    ['每件都要亲手做的手工定制','不能'],
+    ['内容 + 广告','能'],
+    ['完全依赖你坐镇的餐厅','不能'],
+    ['在线课程','能']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+s[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="scA'+i+'">能</button><button class="btn sm ghost" id="scB'+i+'">不能</button><span class="fb" id="scFb'+i+'"></span></div></div>';});
+  d.innerHTML+=html+'<div class="fb" id="scSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#scA'+i).onclick=function(){judge(i,'能');};
+    d.querySelector('#scB'+i).onclick=function(){judge(i,'不能');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#scFb'+i).innerHTML='<span class="fb good">✓ 正确</span>';
+        d.querySelectorAll('#scA'+i+',#scB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#scFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'规模化」的生意</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'规模测试全对');
+        d.querySelector('#scSum').innerHTML='<span class="fb good">🎉 全对！规模定律：服务 100 人和 100 万人的成本不能等比例上升——可复制的系统才有规模。</span>';
+        track('game',{g:'scale',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameGuard(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🛡 戒律守护</h3><div class="gsub">互动 · 第八章：这个生意通过五戒律检验了吗？</div><div class="desc">判断下面的生意是否「通过」五戒律检验。</div>';
+  var items=[
+    ['“我的生意全靠平台，平台一改规则我就死”','不通过'],
+    ['“我的产品能解决一万人的痛点，且可复制卖给百万人”','通过'],
+    ['“我的项目谁都能做，门槛极低”','不通过'],
+    ['“收益与我的时间完全脱钩，睡觉也在赚”','通过'],
+    ['“我只能服务同城的 100 个人”','不通过']
+  ];
+  var html='';items.forEach(function(s,i){html+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+s[0]+'<div style="margin-top:8px;display:flex;gap:8px"><button class="btn sm" id="gdA'+i+'">通过</button><button class="btn sm ghost" id="gdB'+i+'">不通过</button><span class="fb" id="gdFb'+i+'"></span></div></div>';});
+  d.innerHTML+=html+'<div class="fb" id="gdSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#gdA'+i).onclick=function(){judge(i,'通过');};
+    d.querySelector('#gdB'+i).onclick=function(){judge(i,'不通过');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#gdFb'+i).innerHTML='<span class="fb good">✓ 判断正确</span>';
+        d.querySelectorAll('#gdA'+i+',#gdB'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#gdFb'+i).innerHTML='<span class="fb bad">✗ 这是「'+it[1]+'」检验</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'戒律守护全对');badge('风险守护者','🛡');
+        d.querySelector('#gdSum').innerHTML='<span class="fb good">🎉 全对！掌控、门槛、需求、时间、规模——缺一项都是风险。快车道不是赌场，是造一台稳定运转的机器。</span>';
+        track('game',{g:'guard',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gamePlan(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🗺 换道五步</h3><div class="gsub">记忆 · 按顺序点亮行动计划</div><div class="desc">按德马科的换道顺序，依次点击点亮五步。</div>';
+  d.innerHTML+='<div class="kick" id="plGrid"></div><div class="fb" id="plFb">顺序：①评估车道 ②找到需求 ③建立最小系统 ④放大杠杆 ⑤坚持迭代</div>';
+  var items=['① 评估车道','② 找到需求','③ 建立最小系统','④ 放大杠杆','⑤ 坚持迭代'];
+  var cur=0;
+  function build(){
+    var g=d.querySelector('#plGrid');g.innerHTML='';
+    var order=[];while(order.length<5){var r=Math.floor(Math.random()*5);if(order.indexOf(r)<0)order.push(r);}
+    order.forEach(function(oi){
+      var b=document.createElement('button');b.textContent=items[oi];b.dataset.idx=oi;
+      b.onclick=function(){
+        if(parseInt(b.dataset.idx)===cur){
+          b.classList.add('done');b.textContent='✓ '+items[b.dataset.idx];cur++;
+          d.querySelector('#plFb').innerHTML='<span class="fb good">'+cur+' / 5 点亮</span>';
+          if(cur===5){
+            addPoints(8,'行动计划全对');badge('行动派','🗺');
+            d.querySelector('#plFb').innerHTML='<span class="fb good">🎉 评估 → 需求 → 最小系统 → 杠杆 → 迭代。快车道不是某一天的决定，是每一天的选择。</span>';
+            track('game',{g:'plan',score:5});
+          }
+        }else{
+          d.querySelector('#plFb').innerHTML='<span class="fb bad">✗ 顺序错了：现在该点「'+items[cur]+'」。</span>';
+        }
+      };
+      g.appendChild(b);
+    });
+  }
+  build();
+  return d;
+}
+function gameSort(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>🔑 车道分类师</h3><div class="gsub">记忆 · 把每句话归到正确的车道</div><div class="desc">判断下面的说法属于哪条车道。</div>';
+  var items=[
+    ['“先享受，未来再说”','人行道'],
+    ['“用时间换钱，等退休”','慢车道'],
+    ['“建立系统，让钱工作”','快车道'],
+    ['“赚多少花多少”','人行道'],
+    ['“复利慢慢滚，五十年后退休”','慢车道'],
+    ['“被动收入覆盖生活”','快车道']
+  ];
+  var itemsHtml='';items.forEach(function(it,i){itemsHtml+='<div style="margin:10px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px">'+(i+1)+'. '+it[0]+'<div style="margin-top:8px;display:flex;gap:6px"><button class="btn sm" id="stA'+i+'">人行道</button><button class="btn sm" id="stB'+i+'">慢车道</button><button class="btn sm ghost" id="stC'+i+'">快车道</button><span class="fb" id="stFb'+i+'"></span></div></div>';});
+  d.innerHTML+=itemsHtml+'<div class="fb" id="stSum"></div>';
+  var right=0;
+  items.forEach(function(it,i){
+    d.querySelector('#stA'+i).onclick=function(){judge(i,'人行道');};
+    d.querySelector('#stB'+i).onclick=function(){judge(i,'慢车道');};
+    d.querySelector('#stC'+i).onclick=function(){judge(i,'快车道');};
+    function judge(i,ans){
+      var correct=(it[1]===ans);
+      if(correct){
+        right++;
+        d.querySelector('#stFb'+i).innerHTML='<span class="fb good">✓ 归对了</span>';
+        d.querySelectorAll('#stA'+i+',#stB'+i+',#stC'+i).forEach(function(e){e.disabled=true;});
+      }else{
+        d.querySelector('#stFb'+i).innerHTML='<span class="fb bad">✗ 属于「'+it[1]+'」</span>';
+      }
+      if(right===items.length){
+        addPoints(8,'车道全部分对');
+        d.querySelector('#stSum').innerHTML='<span class="fb good">🎉 全对！人行道透支今天，慢车道牺牲今天换明天，快车道建造系统让今天和明天一起增值。</span>';
+        track('game',{g:'sort',score:right});
+      }
+    }
+  });
+  return d;
+}
+function gameCoin(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>💰 快车道金币</h3><div class="gsub">迷你游戏 · 30 秒接住财富念头</div><div class="desc">每个金币都是一个「快车道念头」！30 秒内点击尽量多的金币。</div>';
+  d.innerHTML+='<div class="stat-line"><div class="stat"><b id="cnC">0</b><span>金币</span></div><div class="stat"><b id="cnT">30</b><span>剩余秒</span></div></div><div class="egg-grid" id="cnGrid"></div><div class="fb" id="cnFb">准备好了吗？点「开始」！</div><button class="btn" id="cnStart">开始接金币</button>';
+  var coins=0,time=30,run=false,timer=null;
+  function buildGrid(){
+    var g=d.querySelector('#cnGrid');g.innerHTML='';
+    for(var i=0;i<8;i++){
+      var b=document.createElement('button');b.textContent='💰';
+      b.onclick=function(){
+        if(!run)return;
+        if(this.classList.contains('used'))return;
+        this.classList.add('used');
+        coins++;d.querySelector('#cnC').textContent=coins;
+        track('game',{g:'coin',coins:coins});
+      };
+      g.appendChild(b);
+    }
+  }
+  buildGrid();
+  d.querySelector('#cnStart').onclick=function(){
+    if(run)return;
+    run=true;coins=0;time=30;
+    d.querySelector('#cnC').textContent=0;
+    d.querySelector('#cnT').textContent=30;
+    d.querySelector('#cnStart').disabled=true;
+    d.querySelector('#cnFb').innerHTML='<span class="fb good">GO！每个念头都是一枚金币！</span>';
+    timer=setInterval(function(){
+      time--;
+      d.querySelector('#cnT').textContent=time;
+      if(time<=0){
+        clearInterval(timer);run=false;
+        addPoints(coins>=12?8:4,'接住 '+coins+' 枚金币');badge('财富念头手','💰');
+        d.querySelector('#cnFb').innerHTML='<span class="fb good">⏱ 时间到！接住 '+coins+' 枚金币。快车道思维，就是这样一点一点练出来的。</span>';
+        track('game',{g:'coin',result:coins});
+        d.querySelector('#cnStart').disabled=false;
+        buildGrid();
+      }
+    },1000);
+  };
+  return d;
+}
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.innerHTML='<h3>📝 快车道小测</h3><div class="gsub">练习 · 10 题检验你的收获</div><div class="desc">答对 9 题以上可获得「满分学员」徽章。选完一题自动进入下一题。</div>';
+  var prog='<div class="quiz-prog" id="qzProg"></div>'+'<div class="desc" id="qzQ"></div>';
+  d.innerHTML+=prog+'<div id="qzOpts"></div><div class="fb" id="qzFb"></div><button class="btn" id="qzRestart" style="display:none">再测一次</button>';
+  var idx=0,score=0;
+  function render(){
+    if(idx>=QUIZ.length){
+      d.querySelector('#qzQ').textContent='测完了！';
+      d.querySelector('#qzOpts').innerHTML='';
+      var full=score>=9;
+      d.querySelector('#qzFb').innerHTML='<span class="fb '+(full?'good':'')+'">得分：'+score+' / '+QUIZ.length+(full?' 🎉 满分学员！':'。再复习一下三条车道吧。')+'</span>';
+      addPoints(score>=9?10:5,'完成快车道小测');badge(full?'满分学员':'勤奋学员','💯');
+      track('game',{g:'quiz',score:score,total:QUIZ.length});
+      d.querySelector('#qzRestart').style.display='inline-block';
+      d.querySelector('#qzRestart').onclick=function(){idx=0;score=0;render();};
+      return;
+    }
+    var q=QUIZ[idx];
+    d.querySelector('#qzProg').innerHTML='';
+    QUIZ.forEach(function(_,i){var sp=document.createElement('i');sp.className=(i<idx?'done':(i===idx?'cur':''));d.querySelector('#qzProg').appendChild(sp);});
+    d.querySelector('#qzQ').textContent=(idx+1)+'. '+q.q;
+    var opt=document.createElement('div');
+    q.o.forEach(function(o,i){
+      var b=document.createElement('button');b.className='opt';b.textContent=o;
+      b.onclick=function(){
+        if(i===q.a){score++;d.querySelector('#qzFb').innerHTML='<span class="fb good">✓ 正确！</span>';}
+        else{d.querySelector('#qzFb').innerHTML='<span class="fb bad">✗ 正确答案：'+q.o[q.a]+'</span>';}
+        idx++;setTimeout(render,700);
+      };
+      opt.appendChild(b);
+    });
+    d.querySelector('#qzOpts').innerHTML='';d.querySelector('#qzOpts').appendChild(opt);
+  }
+  render();
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name]){return;}
+  BADGES[name]=1;saveBadges();toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var host=document.getElementById('badgesHost');
+  if(!host){
+    host=document.createElement('div');host.id='badgesHost';
+    host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';
+    document.getElementById('chapters').appendChild(host);
+  }
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  var list=[['🏎','车道领航员'],['🌱','杂草清除者'],['🌵','月光族侦探'],['⏳','复利拆穿者'],['💤','被动收入识别者'],['🏁','快车道车手'],['💡','需求猎手'],['⚙️','五戒律大师'],['🚪','门槛判断者'],['🌳','系统建造者'],['📢','杠杆大师'],['🛡','风险守护者'],['🗺','行动派'],['💯','满分学员']];
+  list.forEach(function(x){
+    var on=!!BADGES[x[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+x[0]+'</span>'+x[1];
+    bd.appendChild(el);
+  });
+}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function unlockByPoints(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='当前积分：'+POINTS+' 分。兑换全书需要 50 分。完成免费章节的互动游戏即可积累积分。';}
+function verifyCode(){
+  var v=(document.getElementById('codeInput').value||'').trim().toUpperCase();
+  if(v.indexOf('XQ2026')>=0||v.length===8){unlockAll();document.getElementById('unlockOk').textContent='✓ 激活成功！全书已解锁。';return;}
+  document.getElementById('unlockOk').textContent='✗ 激活码无效，请重试。';
+  track('unlock',{method:'code',ok:false});
+}
+function adminCheck(){
+  var p=prompt('管理员口令：');
+  if(p==='xiqi-admin-2026'){localStorage.setItem(LSKEY_ADMIN,'1');unlockAll();document.getElementById('unlockOk').textContent='✓ 管理员已授权，全部内容开放。';track('unlock',{method:'admin'});}
+  else{document.getElementById('unlockOk').textContent='✗ 口令错误。';}
+}
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');track('ui',{act:'openUnlock'});}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function goRead(){document.getElementById('sec-toc').scrollIntoView({behavior:'smooth'});track('ui',{act:'goRead'});}
+function goTo(i){var el=document.getElementById('chap-'+i);if(el){el.scrollIntoView({behavior:'smooth'});}track('ui',{act:'goto',chap:i});}
+function playBgm(){
+  var a=document.getElementById('bgmAudio');
+  if(a){if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';}else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}}
+}
+(function(){
+  var a=document.createElement('audio');a.id='bgmAudio';a.loop=true;a.preload='none';
+  a.src='bgm.wav';document.body.appendChild(a);
+  renderToc();renderChapters();
+  if(location.hash==='#a0'){goRead();}
+  track('open',{t:'百万富翁快车道'});
+})();
+</script>
+</body>
+</html>
