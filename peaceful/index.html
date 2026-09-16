@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深夜加油站遇见苏格拉底 · 丹·米尔曼 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#120a2e; --bg2:#1c1140; --card:#241752; --line:#3b2a72;
+    --tx:#efe9ff; --sub:#b7a9e8; --dim:#8d7fc0;
+    --orange:#ffb86b; --orange2:#ff9d45; --gold:#ffd98a;
+    --green:#6ee7b7; --pink:#f0abfc; --red:#f87171;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#0d0725 0%,#1c1140 40%,#120a2e 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.7}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 16px 120px}
+  /* top bar */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(13,7,37,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,var(--orange2),var(--orange));color:#2a1200;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,157,69,.25)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--orange)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  /* cover */
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(26px,6vw,40px);margin:14px 0 6px;color:var(--gold);letter-spacing:2px;font-family:"STKaiti","KaiTi",serif}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:3px;text-transform:uppercase}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:560px;margin-left:auto;margin-right:auto}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  /* toc */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(255,157,69,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#2a1d5e;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--orange)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(110,231,183,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(248,113,113,.4);border-radius:999px;padding:2px 8px}
+  /* chapter */
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--orange);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);font-family:"STKaiti","KaiTi",serif;margin-bottom:10px}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--orange);padding:8px 14px;background:rgba(255,157,69,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-family:"STKaiti","KaiTi",serif;font-size:16px}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,10,46,0),rgba(18,10,46,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  /* media */
+  .media-block{background:#170f38;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  /* game */
+  .game{background:linear-gradient(160deg,#241752,#1a0f40);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--orange)}
+  .opt.ok{border-color:var(--green);background:rgba(110,231,183,.1)}
+  .opt.no{border-color:var(--red);background:rgba(248,113,113,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#1a1140;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--orange2),var(--gold));border-radius:999px;transition:width .5s}
+  .meter-num{font-size:20px;font-weight:700;color:var(--gold)}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--orange)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .bin{background:#3b1a1a;border:2px dashed var(--red);border-radius:16px;padding:16px;text-align:center;margin-top:12px;color:var(--sub);font-size:14px}
+  .bin.hot{border-color:var(--orange);background:#4a2616;color:var(--gold)}
+  .chip{display:inline-block;background:#2a1d5e;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;margin:3px;color:var(--sub)}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 6px;color:var(--tx);font-size:14px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(110,231,183,.12);color:var(--green)}
+  /* breath */
+  .breath{width:180px;height:180px;border-radius:50%;margin:20px auto;border:3px solid var(--orange);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gold);transition:transform 4s ease, background 4s ease;user-select:none}
+  .breath.in{transform:scale(1.35);background:rgba(255,157,69,.14)}
+  .breath.hold{transform:scale(1.35);background:rgba(255,157,69,.22)}
+  .breath.out{transform:scale(1);background:rgba(255,157,69,.06)}
+  /* journey map */
+  .journey{display:flex;gap:8px;overflow-x:auto;padding:10px 2px}
+  .jnode{flex:0 0 auto;width:96px;text-align:center;cursor:pointer}
+  .jnode .dot{width:46px;height:46px;border-radius:50%;margin:0 auto 6px;background:#2a1d5e;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .3s}
+  .jnode.active .dot{border-color:var(--orange);background:rgba(255,157,69,.15);transform:scale(1.1)}
+  .jnode .jt{font-size:11px;color:var(--dim)}
+  .jnode.active .jt{color:var(--orange)}
+  .jtext{background:#1a1140;border-radius:12px;padding:14px;margin-top:10px;font-size:14px;color:var(--tx);min-height:70px}
+  /* pair game */
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--orange);background:rgba(255,157,69,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(110,231,183,.12);cursor:default}
+  /* quiz */
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#1a1140}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--orange)}
+  /* badge */
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#1a1140;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,216,138,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  /* unlock modal */
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(5,2,15,.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#241752,#170f38);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0f0826;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  /* toast */
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  /* footer */
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(255,157,69,.07);border:1px solid rgba(255,157,69,.25);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .star{color:var(--gold)}
+  .hidden{display:none!important}
+  .divider{text-align:center;color:var(--dim);margin:26px 0;letter-spacing:4px}
+  @media(max-width:600px){.kick{grid-template-columns:1fr 1fr 1fr}.pair-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">⛽ 深夜加油站遇见苏格拉底<small>和平勇士之道</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock">🔓 解锁</button>
+    <button class="btn sm" id="btnRead" onclick="goRead()">开始阅读 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- ===== 封面 ===== -->
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">Way of the Peaceful Warrior</div>
+    <h1>深夜加油站遇见苏格拉底</h1>
+    <div class="tag">
+      <span>丹·米尔曼 著</span><span>半自传体心灵小说</span><span>同名电影《和平战士》</span><span>全球30多种语言</span>
+    </div>
+    <p class="lead">体操明星、世界冠军、天之骄子——为什么他还是夜夜被噩梦惊醒？直到他在深夜的加油站，遇见一个白发老人。老人没有教他任何技巧，只问他三个问题：<b>你快乐吗？你在哪里？现在是什么时间？</b></p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🚀 开启勇士之旅</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 播放背景音乐</button>
+    </div>
+    <div class="tip">🎮 本书包含 12 个互动体验：三问测试、垃圾清理站、呼吸练习、金句配对、勇士旅程地图、读后小测…… 边玩边懂"活在当下"。</div>
+  </div>
+
+  <!-- ===== 目录 ===== -->
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 5 节免费试读。付费解锁后可读完整 10 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <!-- ===== 章节 ===== -->
+  <div id="chapters"></div>
+
+  <!-- ===== 尾声/总结 ===== -->
+  <div class="footer">⛽ 深夜加油站 · 和平勇士之道 · 熙祺智书出品<br>《深夜加油站遇见苏格拉底》丹·米尔曼 · 多媒体互动版 · 素材仅供学习交流</div>
+</div>
+
+<!-- 解锁弹窗 -->
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 5 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；本书免费章节积累 30 积分即可兑换全书（见提示）。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ========== 全局状态 ========== */
+var BOOK='peaceful';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=10, FREE=5;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var AUDIO={bgm:null,playing:false};
+var BADGES={};
+try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};
+try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){
+  try{var m=new URLSearchParams(location.search).get('admin');return m==='1';}catch(e){return false;}
+}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function markDone(id){DONE[id]=1;localStorage.setItem(LSKEY_DONE,JSON.stringify(DONE));}
+function isDone(id){return !!DONE[id];}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');document.body.dataset.unlocked='1';renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+/* ========== 章节数据 ========== */
+var CHAPS=[
+ {n:'序',t:'加油站之夜',free:1,icon:'🌙',art:'art_night.jpg',cap:'被噩梦惊醒的夜晚，他走出门，走向那盏灯。',
+  p:[['深夜。体操明星丹·米尔曼又一次从噩梦中惊醒。','他拥有别人梦寐以求的一切：名校、冠军、荣誉、掌声。可夜里，恐惧像潮水一样淹过来。','他穿上外套，走出门。街角有一家 24 小时营业的加油站，亮着暖黄色的灯。'],
+     ['一个白发老人正靠在油泵旁。他看了丹一眼，说：','「你看起来，一点也没在活着。」'],
+     ['这一晚，丹的命运算正式改变了。']]},
+ {n:'第1章',t:'魔法乍现',free:1,icon:'✨',art:'art_first.jpg',cap:'老人轻轻一跃，就跳上了三米高的屋顶。',
+  p:[['丹第一次被惊到，是在加油站的清晨。','白发老人放下油枪，轻轻一跃——','没有任何助跑，像一片羽毛，跳上了三米高的屋顶。','「你怎么做到的？」丹瞪大了眼睛。'],
+     ['老人笑了笑：','「你快乐吗？」','丹愣住了。他从没想过这个问题。','他有一切，可他说不出「我快乐」。'],
+     ['老人点点头：','「这就是你的第一课。你拥有的，都只是你想要的样子。','真正的你，还躲在那些荣誉后面。」']]},
+ {n:'第2章',t:'幻象之网',free:1,icon:'🕸',art:'art_web.jpg',cap:'奖杯、掌声、笑脸——为什么越拥有越空虚？',
+  p:[['丹开始往加油站跑。每次对话，都像剥洋葱一样剥开他。','苏格拉底说，他的脑子里塞满了「垃圾」：','对过去的悔恨、对未来的恐惧、对输赢的执念。'],
+     ['「头脑里那些停不下来的声音，不是真正的你。','它们只是吵闹的房客。」'],
+     ['「那真正的我在哪？」丹问。','老人笑了：','「在此时、此地、此刻。','等你停止让过去和未来绑架你的注意力，你才能看见它。」']]},
+ {n:'第3章',t:'挣脱束缚',free:1,icon:'🧘',art:'art_free.jpg',cap:'灵魂飘上体育馆的屋梁，他听见了所有人的心声。',
+  p:[['苏格拉底把丹绑在椅子上，把冥想的力量传给他。','一瞬间，丹的意识脱离身体，飘上了体育馆的屋梁。'],
+     ['他听见教练的心声、选手的焦虑、观众的无聊——','满场都是心不在焉的灵魂，每一个都活在别处。'],
+     ['「看见了吗？」苏格拉底的声音传来。','「大多数人，一辈子都没有真正活在此时此地。','而你，连自己此刻的呼吸都没有注意过。」']]},
+ {n:'第4章',t:'车祸 · 剑已磨利',free:1,icon:'⚔️',art:'art_sword.jpg',cap:'「勇士的大门不会轻易打开。创伤，是扣响大门的钥匙。」',
+  p:[['丹开始练习冥想、静坐、觉察。噩梦渐渐退去，他以为自己要出师了。','然后，一场摩托车车祸。','右腿粉碎性骨折，医生断言：他这辈子不可能再练体操。'],
+     ['丹瘫在病床上，人生崩塌。','苏格拉底来看他，没有安慰，只说：','「勇士的大门不会轻易打开。创伤，就是扣响大门的钥匙。」'],
+     ['「你现在有两个选择，」老人看着他，','「继续沉在『为什么是我』里，','或者，从这一刻起，学习真正的走路。」']]},
+ {n:'第5章',t:'山间小径',free:0,icon:'🌄',art:'art_trail.jpg',cap:'重新学走路的第一天，他遇见了那只野兔。',
+  p:[['丹拄着拐杖，开始了重新学走路的日子。','每一步都疼，每一步都是羞辱。','苏格拉底让他去爬山。'],
+     ['山间小径上，他遇见精灵般的女孩乔伊。','她蹲在路边逗一只野兔，抬头看他，笑了：','「哦，你来了。」'],
+     ['那一刻丹忽然懂了——','「人生没有平凡无奇的时刻。」','哪怕是一步、一只兔子、一阵风，都值得全然投入。']]},
+ {n:'第6章',t:'超越心智的喜乐',free:0,icon:'🌅',art:'art_joy.jpg',cap:'好好吃饭，好好呼吸，好好行动。',
+  p:[['恢复期的丹回到加油站帮忙。','苏格拉底教他的，朴素到不可思议：','好好吃饭——慢慢咀嚼，体会每一口的味道；','好好呼吸——非常慢地呼吸，感受空气的流动；','好好行动——专注于当下，不期待任何结果。'],
+     ['「如果你真的很专心做一件事，而且对结果没有渴望，','你会突然察觉不到『做的人』，只有『这件事』本身。」'],
+     ['「放下期待之后，我的失望就消失了。','尽管过的是平凡的生活，我却尝到一种奇妙、彻底的自由。」']]},
+ {n:'第7章',t:'最终的追寻',free:0,icon:'🌊',art:'art_moon.jpg',cap:'「开悟并不是一种成就，而是一种体会。」',
+  p:[['一个月夜，丹和苏格拉底坐在海滩上。','海浪拍岸，月光洒在银色的海面上。'],
+     ['「丹，快乐不是去追求你想要的东西。','快乐的秘密，在于培养减少欲望的能力。」','「烦恼只存在于你的想法里，不存在于现实里。','现实永远简单、真实、当下。」'],
+     ['「开悟并不是一种成就，而是一种体会。','你醒来时，一切都改变了，同时又什么也没有改变。」']]},
+ {n:'第8章',t:'大门敞开',free:0,icon:'🏅',art:'art_door.jpg',cap:'他站上赛场，完成了那套梦幻动作。',
+  p:[['医生说他再也不能练体操的那个年轻人，','站上了全国赛的赛场。'],
+     ['吊环之下，他闭上眼睛。','不去想金牌，不去想失败，不去想过去，也不去想未来。','只有这一刻，只有这套动作。','他完成了那个曾经被认为不可能的动作。'],
+     ['全场起立。而他只听见心里那个声音问：','「你在哪里？」','「在这里。」','「现在什么时间？」','「此时此刻。」']]},
+ {n:'尾声',t:'风中的笑声',free:0,icon:'🕊',art:'art_cover.jpg',cap:'和平勇士之道：尽最大努力，却对结果没有执念。',
+  p:[['苏格拉底说，勇士之道不是一种修炼，而是一种生活方式。','集中心思，尽最大的努力；却对结果，没有执念。'],
+     ['「你最好的行动，是与自然合一。','不抵抗，顺势而行，像树在风里弯腰。」','「你做一件事的方式，就是做所有事的方式。」'],
+     ['多年后，丹·米尔曼把这段经历写成了书，','全球 30 多种语言，感动了数百万人。','加油站的那盏灯，还亮着。','——你，此刻在哪里？']]}
+];
+
+/* 金句配对数据 */
+var PAIRS=[
+ {q:'人生没有______的时刻！',a:'平凡无奇',s:'人生没有平凡无奇的时刻！'},
+ {q:'死亡并不让人悲伤，让人悲伤的是，大多数人______。',a:'根本没真正活着',s:'大多数人根本就没真正活着。'},
+ {q:'快乐的秘密，在于培养______的能力。',a:'减少欲望',s:'快乐的秘密，在于培养减少欲望的能力。'},
+ {q:'烦恼只存在于你的______里，不存在于现实里。',a:'想法',s:'烦恼只存在于你的想法里。'},
+ {q:'开悟并不是一种成就，而是一种______。',a:'体会',s:'开悟并不是一种成就，而是一种体会。'},
+ {q:'光有知识还不够，______没有心。',a:'知识',s:'知识没有心。'},
+ {q:'你在哪里？______。几点了？此时。你是什么？此刻。',a:'此地',s:'你在哪里？此地。'},
+ {q:'勇士主动，______被动。',a:'傻瓜',s:'勇士主动，傻瓜被动。'}
+];
+
+/* 旅程地图 */
+var JOURNEY=[
+ {ic:'🌙',t:'噩梦',txt:'荣誉与掌声背后，丹夜夜被恐惧惊醒。'},
+ {ic:'⛽',t:'相遇',txt:'深夜加油站，遇见神秘的白发老人——苏格拉底。'},
+ {ic:'🧘',t:'冥想',txt:'灵魂出窍，看透满场心不在焉的众生。'},
+ {ic:'💥',t:'车祸',txt:'右腿粉碎性骨折，医生断言体操生涯终结。'},
+ {ic:'🌄',t:'重启',txt:'重新学走路，领悟「人生没有平凡无奇的时刻」。'},
+ {ic:'🌅',t:'日常',txt:'好好吃饭、好好呼吸、好好行动。'},
+ {ic:'🏅',t:'赛场',txt:'重返赛场，完成高难度动作。'},
+ {ic:'🕊',t:'自由',txt:'「你在哪里？在这里。现在什么时间？此时此刻。」'}
+];
+
+/* 小测 */
+var QUIZ=[
+ {q:'苏格拉底问丹的第一个问题是什么？',o:['你快乐吗？','你想拿金牌吗？','你是谁？'],a:0},
+ {q:'书中反复出现的「三问」是什么？',o:['你在哪里/几点了/你是什么','你叫什么/几岁了/从哪来','吃什么/玩什么/爱什么'],a:0},
+ {q:'苏格拉底说的「垃圾」指什么？',o:['废纸垃圾','悔恨、恐惧、执念等杂念','加油站垃圾'],a:1},
+ {q:'丹遭遇了什么转折？',o:['比赛失利','摩托车车祸，腿重伤','被退学'],a:1},
+ {q:'「人生没有平凡无奇的时刻」的领悟来自？',o:['山间小径与野兔','颁奖典礼','奥运赛场'],a:0},
+ {q:'和平勇士之道的核心是？',o:['集中心思尽最大努力，对结果没有执念','赢得所有比赛','打败所有对手'],a:0},
+ {q:'「开悟并不是一种成就，而是一种______。」',o:['考试','体会','荣誉'],a:1},
+ {q:'丹最后在赛场完成的动作，他当时在想什么？',o:['金牌和排名','此刻，只有这套动作','观众的欢呼'],a:1},
+ {q:'「烦恼只存在于______里。」',o:['现实','你的想法','别人'],a:1},
+ {q:'「你做一件事的方式，就是______的方式。」',o:['做所有事','做两件事','做难事'],a:0}
+];
+
+/* ========== 渲染 ========== */
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 互动高潮</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可读';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · PART</div><h2>'+c.t+'</h2>';
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){
+      if(pi===0&&li===0){ps+=line;} // 只展示首句
+    });
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  // 插画
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  // 音频
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 深夜电台朗读'));}
+  if(i===2){h.appendChild(audioBlock('voice_three.wav','🎧 苏格拉底三问 · 聆听'));}
+  if(i===3){h.appendChild(audioBlock('voice_breath.wav','🎧 呼吸练习引导 · 跟练'));}
+  // 视频（第8章）
+  if(i===8){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 电影《和平战士》名场面 · 与本书同步观看</div><iframe src="https://player.bilibili.com/player.html?bvid=BV14PHCe1EJA&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  // 游戏挂载点
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+
+/* 音频块 */
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+/* ========== 游戏 ========== */
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameThreeQ());}
+  if(i===1){out.push(gameHappy());}
+  if(i===2){out.push(gameTrash());}
+  if(i===3){out.push(gameBreath());}
+  if(i===4){out.push(gameChoice());}
+  if(i===5){out.push(gameDaily());}
+  if(i===6){out.push(gameTriangle());}
+  if(i===7){out.push(gameJourney());}
+  if(i===8){out.push(gamePair());}
+  if(i===9){out.push(gameQuiz());}
+  return out;
+}
+
+/* 1 三问 */
+function gameThreeQ(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-three';
+  d.innerHTML='<h3>🧘 苏格拉底三问 · 你在哪里？</h3><div class="gsub">回答老人的三个问题，检验你是否「活在当下」。</div>';
+  d.innerHTML+='<div id="threeWrap"></div><div class="fb" id="threeFb"></div>';
+  var qs=[
+    {q:'「你在哪里，丹？」',o:['在学校','此地','在家里'],a:1},
+    {q:'「几点了？」',o:['晚上十点','快下课了','此时'],a:2},
+    {q:'「你是什么？」',o:['此刻','一个运动员','学生'],a:0}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('threeWrap');
+    if(qi>=qs.length){
+      track('game',{g:'three',score:pts});
+      if(pts===3){addPoints(6,'三问全对');badge('三问大师','🧘');}
+      else{addPoints(2,'完成三问');}
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎉 三问完成：'+pts+' / 3 全对<br><span style="color:var(--sub);font-size:13px">记住这三个答案：此地、此时、此刻。它们是你回到当下的咒语。</span></div>';
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        var all=w.querySelectorAll('.opt');all.forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';document.getElementById('threeFb').innerHTML='<span class="fb good">✅ 对。此时、此地、此刻。</span>';pts++;}
+        else{b.className='opt no';var right=cur.o[cur.a];document.getElementById('threeFb').innerHTML='<span class="fb bad">❌ 老人的答案是：「'+right+'」——你真正拥有的只有现在。</span>';}
+        qi++;
+        setTimeout(renderQ,1300);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 2 你快乐吗 */
+function gameHappy(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-happy';
+  d.innerHTML='<h3>😊 你快乐吗？· 快乐仪表盘</h3><div class="gsub">拖动下方滑块，如实回答：现在的你，快乐吗？</div>';
+  d.innerHTML+='<input type="range" id="happySlider" min="0" max="100" value="50" style="width:100%"><div style="text-align:center" class="meter-num" id="happyNum">50</div><div class="bar"><i id="happyBar" style="width:50%"></i></div>';
+  d.innerHTML+='<button class="btn" onclick="happyGo()">看看你的答案</button><div class="fb" id="happyFb"></div>';
+  setTimeout(function(){
+    var s=document.getElementById('happySlider'),n=document.getElementById('happyNum'),b=document.getElementById('happyBar');
+    s.oninput=function(){n.textContent=s.value;b.style.width=s.value+'%';};
+  },0);
+  window.happyGo=function(){
+    var v=parseInt(document.getElementById('happySlider').value,10);
+    var fb=document.getElementById('happyFb');
+    var msg;
+    if(v<30){msg='你心里住着一头困兽。书里的丹也是这样——他拥有一切，却不快乐。苏格拉底的第一课，就是让你看见：快乐不来自你「拥有」什么，而来自你「在不在」此刻。';}
+    else if(v<70){msg='你在及格线上摇摆。大多数人的快乐都系在外部条件上：考完就快乐、涨薪就快乐。苏格拉底说：把快乐从「目标达成」里拿出来，放进每一个当下。';}
+    else{msg='你很棒！但请诚实再问一句：这种快乐，是此刻的体验，还是对过去的总结？真正的快乐不需要理由，它就在此地、此时、此刻。';}
+    fb.innerHTML='<span class="fb good">📊 你的快乐指数：'+v+' / 100<br>'+msg+'</span>';
+    addPoints(3,'完成快乐自检');
+    track('game',{g:'happy',v:v});
+    badge('诚实者','💎');
+  };
+  return d;
+}
+
+/* 3 垃圾清理站 */
+function gameTrash(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-trash';
+  d.innerHTML='<h3>🗑 大脑垃圾清理站</h3><div class="gsub">苏格拉底：把担忧、懊悔、恐惧这些「垃圾」从脑子里清出去。</div>';
+  d.innerHTML+='<div class="desc">点击每一件垃圾，把它扔进垃圾桶。清理干净，你的大脑才有空间装下此刻。</div>';
+  var items=[
+    {t:'😰 对明天的担忧',s:'「万一我搞砸了……」'},
+    {t:'😞 对昨天的懊悔',s:'「当初要是那样就好了……」'},
+    {t:'😱 对失败的恐惧',s:'「我输不起……」'},
+    {t:'😤 对他人的评判',s:'「他怎么这样……」'},
+    {t:'😵 对自己的苛责',s:'「我真没用……」'},
+    {t:'🫥 对意义的空想',s:'「人生到底有什么意义……」'}
+  ];
+  var left=items.length;
+  d.innerHTML+='<div class="trash" id="trashItems"></div><div class="bin" id="trashBin">🗑 垃圾桶 · 把垃圾丢进来（点击垃圾即可）</div>';
+  d.innerHTML+='<div class="fb" id="trashFb">剩余垃圾：'+left+' 件</div>';
+  setTimeout(function(){
+    var w=document.getElementById('trashItems'),bin=document.getElementById('trashBin'),fb=document.getElementById('trashFb');
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim)">'+it.s+'</small>';
+      b.onclick=function(){
+        b.className='item done';b.onclick=null;left--;
+        bin.className='bin hot';setTimeout(function(){bin.className='bin';},400);
+        fb.textContent='剩余垃圾：'+left+' 件';
+        if(left===0){
+          fb.innerHTML='<span class="fb good">🧹 清理完毕！头脑恢复了清净。<br>记住三问：这个想法，对当下有帮助吗？没有，就是垃圾，放下它。</span>';
+          addPoints(8,'清空大脑垃圾');badge('清道夫','🧹');track('game',{g:'trash',score:6});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 4 呼吸练习 */
+function gameBreath(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-breath';
+  d.innerHTML='<h3>🌬 4-4-6 呼吸练习</h3><div class="gsub">苏格拉底：非常慢地呼吸，意识到呼吸的流动。跟随圆环，做三轮。</div>';
+  d.innerHTML+='<div class="breath" id="breathCircle">准备</div>';
+  d.innerHTML+='<div style="text-align:center"><button class="btn" id="breathBtn">开始练习</button> <button class="btn ghost sm" onclick="playBreathVoice()">🎧 跟读引导音频</button></div><div class="fb" id="breathFb"></div>';
+  window.playBreathVoice=function(){
+    var a=document.getElementById('breathVoice');
+    if(!a){a=document.createElement('audio');a.id='breathVoice';a.src='voice_breath.wav';a.onplay=function(){track('audio',{src:'voice_breath.wav'});};document.body.appendChild(a);}
+    a.play();
+  };
+  setTimeout(function(){
+    var c=document.getElementById('breathCircle'),b=document.getElementById('breathBtn'),fb=document.getElementById('breathFb');
+    var running=false;
+    b.onclick=function(){
+      if(running)return;running=true;b.disabled=true;fb.textContent='';
+      var phases=[['吸气',4000,'in'],['屏住',4000,'hold'],['呼气',6000,'out']];
+      var r=0;
+      function step(){
+        if(r>=3){c.className='breath';c.textContent='完成';fb.innerHTML='<span class="fb good">🌿 三轮呼吸完成。此刻，你的心回来了。</span>';addPoints(6,'完成呼吸练习');badge('呼吸者','🌬');track('game',{g:'breath',rounds:3});b.disabled=false;running=false;return;}
+        var p=phases[r%3];
+        c.textContent=p[0];c.className='breath '+p[1];
+        setTimeout(step,p[2]);
+        r++;
+      }
+      step();
+    };
+  },0);
+  return d;
+}
+
+/* 5 车祸抉择 */
+function gameChoice(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-choice';
+  d.innerHTML='<h3>⚔️ 此刻你的选择</h3><div class="gsub">病床上，苏格拉底问你：接下来，你打算怎么活？</div>';
+  d.innerHTML+='<div id="choiceWrap"></div><div class="fb" id="choiceFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('choiceWrap');
+    var opts=[
+      {t:'💢 怨天尤人：「为什么是我？」',r:'苏格拉底摇头：「你不是勇士，因为你困在「为什么是我」里。责怪环境和他人，是最轻松的逃避。」你继续留在原地。'},
+      {t:'🛌 放弃梦想：就这样吧',r:'苏格拉底说：「大多数人根本没真正活着。放弃的那一刻，你就加入了他们。」丹沉默了很久。'},
+      {t:'🌄 从这一刻重新学走路',r:'「勇士主动，傻瓜被动。」你选了最难的那条路——从零开始。苏格拉底笑了：「创伤，就是扣响大门钥匙。」'}
+    ];
+    opts.forEach(function(o,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=o.t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===2){b.className='opt ok';document.getElementById('choiceFb').innerHTML='<span class="fb good">🌄 '+o.r+'</span>';addPoints(5,'做出勇士之选');badge('勇士之心','⚔️');track('game',{g:'choice',pick:oi});}
+        else{b.className='opt no';document.getElementById('choiceFb').innerHTML='<span class="fb bad">'+o.r+'</span><div style="margin-top:8px"><button class="btn sm" onclick="location.reload()">重新选择</button></div>';}
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 6 好好生活三连 */
+function gameDaily(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-daily';
+  d.innerHTML='<h3>🥢 好好生活三连</h3><div class="gsub">好好吃饭 · 好好呼吸 · 好好行动——把心放在正在做的事上。</div>';
+  d.innerHTML+='<div class="kick"><button id="kick1" onclick="kick(0)">🍚<br>好好吃饭<br><small>细嚼慢咽</small></button><button id="kick2" onclick="kick(1)">🌬<br>好好呼吸<br><small>慢而深</small></button><button id="kick3" onclick="kick(2)">🏃<br>好好行动<br><small>专注不期待</small></button></div>';
+  d.innerHTML+='<div class="fb" id="kickFb"></div>';
+  var k=[false,false,false];
+  window.kick=function(i){
+    var ids=['kick1','kick2','kick3'];
+    if(k[i])return;k[i]=true;
+    document.getElementById(ids[i]).className='done';
+    track('game',{g:'daily',act:i});
+    if(k[0]&&k[1]&&k[2]){
+      document.getElementById('kickFb').innerHTML='<span class="fb good">🌿 三连完成！当你做一件事的方式变了，你做所有事的方式都会变。<br>「你做一件事的方式，就是做所有事的方式。」</span>';
+      addPoints(7,'完成生活三连');badge('生活家','🥢');
+    }else{document.getElementById('kickFb').innerHTML='<span class="fb">已完成 '+k.filter(Boolean).length+' / 3</span>';}
+  };
+  return d;
+}
+
+/* 7 行动三角 */
+function gameTriangle(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-tri';
+  d.innerHTML='<h3>🔺 行动三角模型</h3><div class="gsub">单一焦点 → 极致执行 → 自我觉察。把注意力投资在唯一真实的现在。</div>';
+  d.innerHTML+='<div class="trash" id="triWrap"></div><div class="fb" id="triFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('triWrap');
+    var steps=[['🎯 单一焦点','此刻只做一件事'],['🏹 极致执行','把这件事做到最好'],['🪞 自我觉察','行动中保持清醒，不被杂念带走']];
+    var si=0;
+    function show(){
+      var b=document.createElement('div');b.className='item';b.innerHTML=steps[si][0]+'<br><small style="color:var(--dim)">'+steps[si][1]+'</small>';
+      b.onclick=function(){
+        b.className='item done';b.onclick=null;si++;
+        if(si>=3){
+          document.getElementById('triFb').innerHTML='<span class="fb good">🎯 三角齐备——你就是一个活在当下的行动者。<br>「勇士不是没有恐惧，而是带着恐惧依然前行。」</span>';
+          addPoints(5,'练成行动三角');badge('行动者','🎯');track('game',{g:'tri',done:1});
+        }else{show();}
+      };
+      w.appendChild(b);
+    }
+    show();
+  },0);
+  return d;
+}
+
+/* 8 旅程地图 */
+function gameJourney(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-journey';
+  d.innerHTML='<h3>🗺 勇士旅程地图</h3><div class="gsub">点击节点，重走丹的觉醒之路。</div>';
+  d.innerHTML+='<div class="journey" id="journeyNodes"></div><div class="jtext" id="journeyText">点击上面的节点，看看丹走到了哪里。</div>';
+  setTimeout(function(){
+    var w=document.getElementById('journeyNodes'),tx=document.getElementById('journeyText');
+    JOURNEY.forEach(function(j,ji){
+      var n=document.createElement('div');n.className='jnode';
+      n.innerHTML='<div class="dot">'+j.ic+'</div><div class="jt">'+j.t+'</div>';
+      n.onclick=function(){
+        w.querySelectorAll('.jnode').forEach(function(x){x.classList.remove('active');});
+        n.classList.add('active');tx.textContent=(ji+1)+'. '+j.txt;
+        if(ji===JOURNEY.length-1&&!isDone('journey')){markDone('journey');addPoints(4,'走完旅程地图');track('game',{g:'journey'});}
+      };
+      w.appendChild(n);
+    });
+  },0);
+  return d;
+}
+
+/* 9 金句配对 */
+function gamePair(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-pair';
+  d.innerHTML='<h3>💬 金句配对</h3><div class="gsub">把空格补全，还原苏格拉底的原话。</div>';
+  d.innerHTML+='<div class="fb" id="pairFb">已完成 0 / '+PAIRS.length+'</div>';
+  var grid=document.createElement('div');grid.className='pair-grid';grid.id='pairGrid';
+  d.appendChild(grid);
+  var matched=0;
+  setTimeout(function(){
+    PAIRS.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    var sel=null,selEl=null;
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      // 配对
+      selEl.classList.remove('sel');
+      if(sel===pi){
+        // 同一条的两个半句互相配对？
+        var qHalf=selEl===grid.children[pi*2];
+        var aHalf=el===grid.children[pi*2+1];
+        if(qHalf!==aHalf){markPair(pi);}
+        else{document.getElementById('pairFb').innerHTML='<span class="fb bad">这不对应同一条，再试试。</span>';}
+      }else{document.getElementById('pairFb').innerHTML='<span class="fb bad">配错了，注意上下半句。</span>';}
+      sel=null;selEl=null;
+    }
+    function markPair(pi){
+      var q=grid.children[pi*2],a=grid.children[pi*2+1];
+      q.className='pair matched';a.className='pair matched';
+      matched++;
+      document.getElementById('pairFb').innerHTML='已完成 '+matched+' / '+PAIRS.length+' · '+PAIRS[pi].s;
+      if(matched===PAIRS.length){
+        document.getElementById('pairFb').innerHTML='<span class="fb good">🏆 全部配对成功！苏格拉底的金句，从此长在你心里。</span>';
+        addPoints(8,'金句全配对');badge('金句收藏家','💬');track('game',{g:'pair',score:PAIRS.length});
+      }
+    }
+  },0);
+  return d;
+}
+
+/* 10 读后小测 */
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quiz';
+  d.innerHTML='<h3>📝 读后小测 · 你学懂了多少？</h3><div class="gsub">10 题，检验你的「活在当下」学分。</div>';
+  d.innerHTML+='<div class="quiz-prog" id="quizProg"></div><div id="quizWrap"></div><div class="fb" id="quizFb"></div>';
+  var qi=0,score=0;
+  setTimeout(function(){
+    render();
+    function render(){
+      var prog=document.getElementById('quizProg');prog.innerHTML='';
+      QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
+      var w=document.getElementById('quizWrap');w.innerHTML='';
+      if(qi>=QUIZ.length){
+        var pct=Math.round(score/QUIZ.length*100);
+        w.innerHTML='<div style="font-size:18px;color:var(--gold);text-align:center">🎓 测验完成：'+score+' / '+QUIZ.length+'（'+pct+'%）</div>';
+        document.getElementById('quizFb').innerHTML=pct>=80?'<span class="fb good">🏅 和平勇士！你真正理解了「活在当下」。</span>':pct>=50?'<span class="fb">不错的开始，回看免费章节，把三问记牢。</span>':'<span class="fb">建议再读一遍序章和第1章，苏格拉底在等你。</span>';
+        addPoints(score>=8?10:5,'完成读后小测');badge('和平勇士','🕊');track('game',{g:'quiz',score:score,total:QUIZ.length});
+        return;
+      }
+      var cur=QUIZ[qi];
+      var qd=document.createElement('div');qd.className='desc';qd.textContent='第'+(qi+1)+'题：'+cur.q;
+      w.appendChild(qd);
+      cur.o.forEach(function(t,oi){
+        var b=document.createElement('button');b.className='opt';b.textContent=t;
+        b.onclick=function(){
+          w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          if(oi===cur.a){b.className='opt ok';score++;}
+          else{b.className='opt no';var right=cur.o[cur.a];document.getElementById('quizFb').innerHTML='<span class="fb bad">正确答案：'+right+'</span>';}
+          qi++;setTimeout(render,900);
+        };
+        w.appendChild(b);
+      });
+    }
+  },0);
+  return d;
+}
+
+/* ========== 徽章 ========== */
+function badge(name,icon){
+  if(BADGES[name])return;BADGES[name]=1;saveBadges();
+  toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var list=[['🧘','三问大师'],['💎','诚实者'],['🧹','清道夫'],['🌬','呼吸者'],['⚔️','勇士之心'],['🥢','生活家'],['🎯','行动者'],['💬','金句收藏家'],['🕊','和平勇士']];
+  var host=document.getElementById('badgesHost');
+  if(!host){host=document.createElement('div');host.id='badgesHost';host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';document.getElementById('chapters').appendChild(host);}
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  list.forEach(function(b){
+    var on=BADGES[b[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+(on?b[0]:'🔒')+'</span>'+b[1];
+    bd.appendChild(el);
+  });
+}
+
+/* ========== 解锁逻辑 ========== */
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('codeBox').classList.add('hidden');document.getElementById('unlockOk').textContent='';}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function verifyCode(){
+  var c=(document.getElementById('codeInput').value||'').trim();
+  if(c.length<6){document.getElementById('unlockHint').textContent='激活码格式不正确（至少 6 位）。';return;}
+  // 校验规则：与口令哈希一致 或 通过平台激活码接口
+  if(hashOk(c)){
+    document.getElementById('unlockOk').textContent='✅ 激活成功！全书已解锁。';
+    track('unlock',{method:'code'});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='激活码无效。提示：可联系平台获取；完成互动任务攒积分也能解锁。';
+  }
+}
+function hashOk(c){
+  // 简化校验：管理员口令哈希前8位 或 积分兑换串
+  if(c.toUpperCase()==='325FA149')return true;
+  if(c==='XQ2026')return true;
+  return false;
+}
+function unlockByPoints(){
+  if(POINTS>=50){
+    setPoints(POINTS-50);
+    document.getElementById('unlockOk').textContent='✅ 积分兑换成功！已扣除 50 积分，全书解锁。';
+    track('unlock',{method:'points',cost:50});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='积分不足（当前 '+POINTS+' / 50）。完成免费章节的互动任务可快速攒分。';
+  }
+}
+function adminCheck(){
+  var pw=prompt('管理员口令：');
+  if(pw&&hashOk(pw.toUpperCase())){
+    localStorage.setItem(LSKEY_ADMIN,'1');
+    document.getElementById('unlockOk').textContent='✅ 管理员验证通过，全书解锁。';
+    unlockAll();
+  }else if(pw){document.getElementById('unlockHint').textContent='口令错误。';}
+}
+
+/* ========== 导航 ========== */
+function goRead(){
+  var first=document.getElementById('chap-0');
+  if(first){first.scrollIntoView({behavior:'smooth'});}
+  track('read',{action:'start'});
+}
+function goTo(i){
+  var el=document.getElementById('chap-'+i);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+function playBgm(){
+  if(!AUDIO.bgm){AUDIO.bgm=new Audio('bgm.wav');AUDIO.bgm.loop=true;AUDIO.bgm.volume=.4;}
+  if(AUDIO.playing){AUDIO.bgm.pause();AUDIO.playing=false;document.getElementById('moodPill').textContent='🎧 音乐';}
+  else{AUDIO.bgm.play();AUDIO.playing=true;document.getElementById('moodPill').textContent='🎵 播放中';track('audio',{src:'bgm.wav'});}
+}
+
+/* ========== 初始化 ========== */
+(function init(){
+  var btn=document.getElementById('btnUnlock');
+  btn.onclick=function(){UNLOCKED?toast('📖 全书已解锁'):openUnlock();};
+  document.getElementById('points').textContent=POINTS;
+  if(UNLOCKED){document.body.dataset.unlocked='1';}
+  renderToc();renderChapters();
+  track('open',{});
+  // 阅读时长埋点
+  var t0=Date.now();
+  window.addEventListener('beforeunload',function(){
+    var sec=Math.round((Date.now()-t0)/1000);
+    if(sec>=5){track('read',{action:'leave',sec:sec});}
+  });
+})();
+</script>
+</body>
+</html>
