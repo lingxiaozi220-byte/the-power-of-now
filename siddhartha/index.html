@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>悉达多 · 赫尔曼·黑塞 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#141a10; --bg2:#1d281a; --card:#24301f; --line:#3c5230;
+    --tx:#f2f7ea; --sub:#b7c9a8; --dim:#84957a;
+    --gold:#e8b04b; --gold2:#f3cd7e; --green:#8fce7e; --river:#7fb5e0;
+    --red:#f08a7a; --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#101409 0%,#1d281a 45%,#141a10 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.7;overflow-x:hidden}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  /* 河流背景 */
+  .river-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;opacity:.5;background:repeating-linear-gradient(100deg,transparent 0 60px,rgba(127,181,224,.05) 60px 90px,transparent 90px 150px);animation:flow 22s linear infinite}
+  @keyframes flow{from{background-position:0 0}to{background-position:-600px 0}}
+  /* top bar */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(16,20,9,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#241a05;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(232,176,75,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--gold)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  /* cover */
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(30px,7vw,46px);margin:14px 0 6px;color:var(--gold);letter-spacing:8px;font-family:"STKaiti","KaiTi",serif}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:5px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:580px;margin-left:auto;margin-right:auto}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  /* toc */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(232,176,75,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#2c3d26;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(143,206,126,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(240,138,122,.4);border-radius:999px;padding:2px 8px}
+  /* chapter */
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);font-family:"STKaiti","KaiTi",serif;margin-bottom:10px}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(232,176,75,.08);border-radius:8px;color:var(--gold2);margin:12px 0;font-family:"STKaiti","KaiTi",serif;font-size:16px}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,26,16,0),rgba(20,26,16,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  /* media */
+  .media-block{background:#1c2618;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  /* game */
+  .game{background:linear-gradient(160deg,#2a3a22,#1e2b1a);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(143,206,126,.1)}
+  .opt.no{border-color:var(--red);background:rgba(240,138,122,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#1a2415;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:999px;transition:width .5s}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .chip{display:inline-block;background:#2c3d26;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;margin:3px;color:var(--sub)}
+  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 6px;color:var(--tx);font-size:14px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(143,206,126,.12);color:var(--green)}
+  /* river game */
+  .river-view{position:relative;height:200px;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#16222e,#123);margin:14px 0;border:1px solid var(--line)}
+  .river-view .water{position:absolute;left:0;right:0;top:60%;height:40%;background:linear-gradient(180deg,#2c5a80,#1d3a54);animation:riverflow 3s ease-in-out infinite}
+  @keyframes riverflow{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .river-view .boat{position:absolute;left:8%;top:38%;font-size:34px;transition:left 6s linear}
+  .river-view .moon{position:absolute;right:12%;top:14%;font-size:30px;opacity:.85}
+  .river-view .tree{position:absolute;left:4%;bottom:6%;font-size:40px}
+  .river-view .tip-r{position:absolute;left:0;right:0;top:50%;text-align:center;font-size:15px;color:var(--river);text-shadow:0 2px 8px rgba(0,0,0,.6)}
+  /* om */
+  .om-circle{width:170px;height:170px;border-radius:50%;margin:16px auto;display:flex;align-items:center;justify-content:center;font-size:44px;color:var(--gold);background:radial-gradient(circle,#2c3d26,#1a2415);border:2px solid var(--gold);cursor:pointer;transition:transform .6s, box-shadow .6s;user-select:none}
+  .om-circle.vib{animation:vib .8s ease-in-out infinite}
+  @keyframes vib{0%,100%{transform:scale(1);box-shadow:0 0 10px rgba(232,176,75,.2)}50%{transform:scale(1.06);box-shadow:0 0 34px rgba(232,176,75,.6)}}
+  /* journey */
+  .journey{display:flex;gap:8px;overflow-x:auto;padding:10px 2px}
+  .jnode{flex:0 0 auto;width:96px;text-align:center;cursor:pointer}
+  .jnode .dot{width:46px;height:46px;border-radius:50%;margin:0 auto 6px;background:#2c3d26;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .3s}
+  .jnode.active .dot{border-color:var(--gold);background:rgba(232,176,75,.15);transform:scale(1.1)}
+  .jnode .jt{font-size:11px;color:var(--dim)}
+  .jnode.active .jt{color:var(--gold)}
+  .jtext{background:#1c2618;border-radius:12px;padding:14px;margin-top:10px;font-size:14px;color:var(--tx);min-height:70px}
+  /* pair */
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(232,176,75,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(143,206,126,.12);cursor:default}
+  /* quiz */
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#1a2415}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  /* badge */
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#1c2618;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(232,176,75,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(5,8,4,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#2a3a22,#1e2b1a);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#101a0c;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(232,176,75,.07);border:1px solid rgba(232,176,75,.25);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .divider{text-align:center;color:var(--dim);margin:26px 0;letter-spacing:4px}
+  @media(max-width:600px){.kick{grid-template-columns:1fr 1fr 1fr}.pair-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="river-bg"></div>
+<div class="topbar">
+  <div class="brand">🛶 悉达多<small>赫尔曼·黑塞</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock">🔓 解锁</button>
+    <button class="btn sm" id="btnRead" onclick="goRead()">开始阅读 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">SIDDHARTHA · HERMANN HESSE</div>
+    <h1>悉 达 多</h1>
+    <div class="tag">
+      <span>赫尔曼·黑塞 著</span><span>诺贝尔文学奖得主</span><span>1922 经典</span><span>一部印度的诗</span>
+    </div>
+    <p class="lead">他是婆罗门之子，聪慧、英俊、受人敬爱。他读遍圣典，却找不到最重要的东西——<b>他自己</b>。于是，他离开家，走过苦修、佛陀、情欲、财富与赌博，走到一条河边，遇见一个船夫。河流告诉他：<b>没有过去，没有未来，只有此刻，和本质。</b></p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🚣 随河而行</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 恒河晨雾</button>
+    </div>
+    <div class="tip">🎮 本书包含 10 个互动体验：求道抉择、河流冥想、唵唱诵、时间之河、意义之问、爱世界练习、金句配对、读后小测…… 边玩边悟"爱这个世界"。</div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 10 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🛶 悉达多 · 一条河的诗 · 熙祺智书出品<br>《悉达多》赫尔曼·黑塞 · 多媒体互动版 · 素材仅供学习交流</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 4 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书（见提示）。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ========== 全局状态 ========== */
+var BOOK='siddhartha';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=10, FREE=6;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var AUDIO={bgm:null,playing:false};
+var BADGES={};
+try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};
+try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){
+  try{var m=new URLSearchParams(location.search).get('admin');return m==='1';}catch(e){return false;}
+}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function markDone(id){DONE[id]=1;localStorage.setItem(LSKEY_DONE,JSON.stringify(DONE));}
+function isDone(id){return !!DONE[id];}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');document.body.dataset.unlocked='1';renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+/* ========== 章节数据 ========== */
+var CHAPS=[
+ {n:'序',t:'婆罗门之子',free:1,icon:'🪔',art:'art_son.jpg',cap:'他读遍圣典，却找不到最重要的东西——他自己。',
+  p:[['他是婆罗门之子。聪慧、英俊、强壮，是全城的骄傲。','父亲希望他成为伟大的祭司和智者。朋友们敬爱他，所有人都相信：他会成为一个了不起的人。'],
+     ['可悉达多心里有一个空洞。','他背诵所有圣典，练习所有仪式，却始终没有找到那个东西——','那个让他安宁的「自我」。'],
+     ['「父亲，」一天他对父亲说，','「我要离开家，去做沙门，去苦修。','请允许我，去寻找我自己。」']]},
+ {n:'第1章',t:'与沙门同行',free:1,icon:'🕉',art:'art_sramana.jpg',cap:'三年苦修，他把「我」饿得越来越小。',
+  p:[['悉达多加入沙门，跟着苦行僧们在森林里绝食、静坐、忍痛。','他学会了让身体受苦，让欲望熄灭，让「自我」消失。'],
+     ['三年过去，他瘦骨嶙峋，心如止水。','可他突然明白：','「这不过是另一种逃避。用折磨自己来逃避世界，和用享乐麻醉自己，没有区别。」'],
+     ['「我的『自我』并没有消失，它只是躲了起来。」','他离开沙门，走向传说中的觉悟者——乔达摩。']]},
+ {n:'第2章',t:'乔达摩',free:1,icon:'🌳',art:'art_buddha.jpg',cap:'佛陀的教义圆满无缺。可悉达多知道：智慧无法被言传。',
+  p:[['菩提树下，乔达摩正在说法。','他的教义如此圆满、如此自洽，连悉达多都挑不出任何破绽。'],
+     ['「你的教义无懈可击，」悉达多对佛陀说，','「但它有一个裂痕：它是在你的觉悟中诞生的，','而我，无法通过相信它，获得你的觉悟。」'],
+     ['佛陀微微一笑：「你说得对。','去吧，走你自己的路。」','悉达多知道，知识可以被教授，智慧只能被体验。']]},
+ {n:'第3章',t:'觉醒',free:1,icon:'🌅',art:'art_awake.jpg',cap:'他站在林间，忽然发现：这个世界，原来是这么美。',
+  p:[['离开佛陀后，悉达多独自走在林间。','第一次，他没有带着任何目的看世界。'],
+     ['「我看见河流，看见星空，看见飞鸟，看见花开。','它们不再是通往觉悟的障碍，它们就是它们自己。」'],
+     ['他忽然明白：','「意义和本质，不在事物背后。','它们就在事物之中，在一切事物之中。」']]},
+ {n:'第4章',t:'迦摩罗',free:1,icon:'🌺',art:'art_kamala.jpg',cap:'他走进尘世，学习情爱与欲望。',
+  p:[['悉达多走进城里。他遇见了美丽的迦摩罗，那个以情爱为业的女人。'],
+     ['「情爱可以乞得，可以购买，可以受馈，','可以在陋巷觅得，却唯独不能强夺。」','迦摩罗笑着教他。'],
+     ['他开始学习爱，学习打扮，学习如何让女人爱上他。','他坠入了尘世。这一次，他要亲身体验，而不是背诵教义。']]},
+ {n:'第5章',t:'尘世间',free:1,icon:'💰',art:'art_merchant.jpg',cap:'他学会赚钱，学会赌博，学会用麻木填满空虚。',
+  p:[['迦摩罗介绍悉达多认识富商迦马斯瓦弥。','悉达多学得很快：做生意、谈价格、赚大钱。'],
+     ['他拥有了花园、豪宅、仆人和赌桌。','「我就像一个孩子，」他在心里想，','「以为往嘴里塞得越多，就越饱。」'],
+     ['二十年后，他成了城里最富有的人之一。','可每当夜深人静，他感到自己像一张揉皱的纸。','赌博带来的麻木，越来越难填满他心里的洞。']]},
+ {n:'第6章',t:'轮回',free:0,icon:'🌀',art:'art_river.jpg',cap:'他厌倦了这一切，甚至厌倦了自己。他走向那条河。',
+  p:[['一夜又一夜，悉达多躺在赌桌边，醉生梦死。','他失去了对迦摩罗的爱，失去了对游戏的兴趣，','只剩下麻木、厌恶，和自我厌恶。'],
+     ['「我这一生，都做了什么？」','他忽然惊醒。','「我学会了享乐，却忘了生活；我赚到了钱，却输掉了灵魂。」'],
+     ['他离开豪宅，离开城市，走到一条大河边。','月光下，他坐在岸边，','只想结束这一切。','就在这时，一个声音从心底升起：','「唵——」']]},
+ {n:'第7章',t:'船夫',free:0,icon:'🚣',art:'art_ferry.jpg',cap:'「一条河，可以教会人许多东西。」',
+  p:[['「唵」字救了他。','悉达多沉沉地睡去，醒来时，感觉自己像一条新生的蛇。'],
+     ['他遇见老船夫瓦苏德瓦，一个从不谈教义、只听河流说话的人。','「留下来吧，」瓦苏德瓦说，','「一起摆渡，一起听河。」'],
+     ['「河水到处都同时存在：在源头，在河口，在瀑布，在急流，在大海。','对于它来说，只有现在，没有过去的阴影。」','「你的生活，也是一条河。」']]},
+ {n:'第8章',t:'儿子 · 唵',free:0,icon:'🔱',art:'art_om.jpg',cap:'爱，让圆满的智者重新受苦。而受苦，让他真正完整。',
+  p:[['迦摩罗在朝圣途中死去，把儿子小悉达多留给了他。','这个骄纵的儿子让船夫悉达多吃尽苦头——','他第一次尝到了「爱而不得」的滋味。'],
+     ['「你爱他，」瓦苏德瓦说，','「所以你会受苦。可这苦，也是爱的一部分。'],
+     ['悉达多终于懂了：','他当年离开父亲时父亲的痛，','正如现在儿子离开他时他的痛。','人生所有的相遇与离别，都在同一条河里。']]},
+ {n:'尾声',t:'果文达 · 爱这个世界',free:0,icon:'🌊',art:'art_om.jpg',cap:'「我唯一的事，是爱这个世界。」',
+  p:[['多年后，老友果文达找到他，向他求道。','悉达多看着河水说：','「智慧无法言传。智者试图传授智慧，听起来总像是痴人说梦。」'],
+     ['「爱，我觉得是一切事物中最重要的。','我不藐视世界，不憎恶世界和自己，','怀抱爱、惊叹和敬畏，注视一切存在之物和我自己。」'],
+     ['「当一个人能够如此单纯，如此觉醒，如此专注于当下，','毫无疑虑地走过这个世界，','生命真是一件赏心悦目的事。」'],
+     ['河水奔流。悉达多微笑。','他不再需要任何教义。他就在此刻，就在这条河里。']]}
+];
+
+var PAIRS=[
+ {q:'意义和本质，不在事物背后，而在______之中。',a:'事物',s:'意义和本质，不在事物背后，就在事物之中。'},
+ {q:'一条______可以教会人许多东西。',a:'河',s:'一条河，可以教会人许多东西。'},
+ {q:'对于河水来说，只有______，没有过去的阴影。',a:'现在',s:'只有现在，没有过去的阴影。'},
+ {q:'智慧无法______，只能被体验。',a:'言传',s:'智慧无法言传，只能被体验。'},
+ {q:'我唯一的事，是______这个世界。',a:'爱',s:'我唯一的事，是爱这个世界。'},
+ {q:'过去和未来都不存在，一切只是本质和______。',a:'当下',s:'一切只是本质和当下。'},
+ {q:'情爱可以乞得，可以购买，却唯独不能______。',a:'强夺',s:'情爱却唯独不能强夺。'},
+ {q:'当一个人能够如此单纯、如此觉醒、如此专注于______，生命真是一件赏心悦目的事。',a:'当下',s:'如此专注于当下，生命真是一件赏心悦目的事。'}
+];
+
+var JOURNEY=[
+ {ic:'🪔',t:'婆罗门之子',txt:'读遍圣典，找不到「自我」，决定离家求道。'},
+ {ic:'🕉',t:'沙门苦修',txt:'三年苦行，发现折磨身体也是另一种逃避。'},
+ {ic:'🌳',t:'遇见佛陀',txt:'教义圆满，但智慧无法被言传，只能体验。'},
+ {ic:'🌅',t:'觉醒',txt:'「意义不在事物背后，就在事物之中。」'},
+ {ic:'🌺',t:'迦摩罗',txt:'走进尘世，学习情爱，坠入欲望之河。'},
+ {ic:'💰',t:'尘世间',txt:'成为富商，赌博麻木，心里越来越空。'},
+ {ic:'🌀',t:'轮回',txt:'厌倦一切，走向河边，濒临崩溃。'},
+ {ic:'🚣',t:'船夫',txt:'遇见瓦苏德瓦，向河流学习「只有现在」。'},
+ {ic:'🔱',t:'儿子与唵',txt:'爱而不得的苦，让他真正完整。'},
+ {ic:'🌊',t:'爱这个世界',txt:'「我唯一的事，是爱这个世界。」'}
+];
+
+var QUIZ=[
+ {q:'悉达多离家求道，最根本的原因是什么？',o:['家里太穷','读遍圣典却找不到「自我」','想去旅行'],a:1},
+ {q:'悉达多为什么离开沙门苦行？',o:['太苦了受不了','发现折磨自己也是逃避','想回家'],a:1},
+ {q:'佛陀的教义对悉达多来说？',o:['无懈可击但无法替代亲身体验','全是错误','让他立刻觉悟'],a:0},
+ {q:'「意义和本质在哪里？」',o:['在事物背后','在事物之中','在圣典里'],a:1},
+ {q:'悉达多在尘世学会了什么？',o:['赚钱与赌博','冥想','写诗'],a:0},
+ {q:'什么救赎了濒临崩溃的悉达多？',o:['一个商人','「唵」字','一场梦'],a:1},
+ {q:'船夫瓦苏德瓦教给悉达多什么？',o:['更多教义','倾听河流','打坐口诀'],a:1},
+ {q:'「河水到处同时存在，所以只有什么？」',o:['现在','过去','未来'],a:0},
+ {q:'悉达多晚年最重要的领悟是？',o:['恨这个世界','爱这个世界','远离世界'],a:1},
+ {q:'「智慧无法言传，只能被______。」',o:['背诵','体验','写作'],a:1}
+];
+
+/* ========== 渲染 ========== */
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 觉悟时刻</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可读';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · SIDDHARTHA</div><h2>'+c.t+'</h2>';
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 求道者独白'));}
+  if(i===6){h.appendChild(audioBlock('voice_river.wav','🎧 河流冥想 · 跟随倾听'));}
+  if(i===8){h.appendChild(audioBlock('voice_om.wav','🎧 唵 · 唱诵聆听'));}
+  if(i===7){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 深度解读 · 悉达多的人生三段论</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1PiWWzJEMy&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+/* ========== 游戏 ========== */
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameChoice());}
+  if(i===1){out.push(gameSramana());}
+  if(i===3){out.push(gameMeaning());}
+  if(i===5){out.push(gameTime());}
+  if(i===6){out.push(gameRiver());}
+  if(i===7){out.push(gameFerry());}
+  if(i===8){out.push(gameOm());}
+  if(i===9){out.push(gameLove());out.push(gameJourney());out.push(gamePair());out.push(gameQuiz());}
+  return out;
+}
+
+/* 1 求道抉择 */
+function gameChoice(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-choice';
+  d.innerHTML='<h3>🛤 求道抉择</h3><div class="gsub">你是婆罗门之子悉达多。此刻，你站在人生的分岔路口。</div>';
+  d.innerHTML+='<div id="choiceWrap"></div><div class="fb" id="choiceFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('choiceWrap');
+    var opts=[
+      {t:'📖 留在家里，成为伟大的祭司',r:'你顺从了父亲的期待，成为人人敬仰的智者。可夜深人静时，那个空洞还在。你偶尔会想：如果当初走了呢？'},
+      {t:'🕉 与沙门同行，去森林苦修',r:'你走了。三年苦行之后你发现：折磨身体，也是另一种逃避。于是你继续走——走向佛陀，走向尘世，走向那条河。这就是《悉达多》的旅程。'},
+      {t:'🌃 逃进城市，享受生活',r:'你逃进了享乐。二十年后的某个深夜，你像悉达多一样，在赌桌边惊醒：我到底在做什么？你依然要走向那条河。'}
+    ];
+    opts.forEach(function(o,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=o.t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===1){b.className='opt ok';document.getElementById('choiceFb').innerHTML='<span class="fb good">🕉 '+o.r+'</span>';addPoints(4,'做出求道之选');badge('求道者','🛤');track('game',{g:'choice',pick:oi});}
+        else{b.className='opt no';document.getElementById('choiceFb').innerHTML='<span class="fb bad">'+o.r+'<br><small>但故事没有停在这里——你最终还是要走向那条河。</small></span><div style="margin-top:8px"><button class="btn sm" onclick="location.reload()">重新选择</button></div>';}
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 2 沙门三问 */
+function gameSramana(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-sramana';
+  d.innerHTML='<h3>🕉 苦行三问</h3><div class="gsub">沙门的修行，让你学会分辨：什么在喂养「自我」，什么在饿死它。</div>';
+  d.innerHTML+='<div id="sraWrap"></div><div class="fb" id="sraFb"></div>';
+  var qs=[
+    {q:'三年苦行后，悉达多发现了什么？',o:['他获得了神通','折磨自己也是逃避','他成了圣人'],a:1},
+    {q:'他为什么离开佛陀？',o:['佛陀教义有错','智慧无法言传，只能体验','佛陀赶他走'],a:1},
+    {q:'「意义和本质在哪里？」',o:['事物背后','事物之中','圣典里'],a:1}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('sraWrap');
+    if(qi>=qs.length){
+      if(pts===3){addPoints(5,'苦行三问全对');badge('觉悟者','🕉');}else{addPoints(2,'完成苦行三问');}
+      track('game',{g:'sramana',score:pts});
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎉 完成：'+pts+' / 3 全对<br><span style="color:var(--sub);font-size:13px">记住：知识可以被教授，智慧只能被体验。</span></div>';
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';document.getElementById('sraFb').innerHTML='<span class="fb good">✅ 对。</span>';pts++;}
+        else{b.className='opt no';document.getElementById('sraFb').innerHTML='<span class="fb bad">❌ 正确答案：'+cur.o[cur.a]+'</span>';}
+        qi++;setTimeout(renderQ,1200);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 3 意义之问 */
+function gameMeaning(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-meaning';
+  d.innerHTML='<h3>🔍 意义之问</h3><div class="gsub">黑塞说：意义和本质不在事物背后，就在事物之中。</div>';
+  d.innerHTML+='<div class="desc">点开每朵莲花，看看「意义」藏在哪里。</div>';
+  d.innerHTML+='<div class="trash" id="meanWrap"></div><div class="fb" id="meanFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('meanWrap');
+    var items=[
+      {t:'🌄 一朵云',s:'「我看见了它的形状、光与风。」'},
+      {t:'🌊 一条河',s:'「我听见了它的流动、声音与此刻。」'},
+      {t:'🌹 一朵花',s:'「我闻到了它的香气，看见了它的颜色。」'},
+      {t:'🍚 一碗饭',s:'「我尝到了它的味道，感到了它的温度。」'},
+      {t:'🧍 一个人',s:'「我看见了此刻站在我面前的你。」'},
+      {t:'💨 一阵风',s:'「我感到了它拂过我的皮肤。」'}
+    ];
+    var opened=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="meanS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('meanS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;opened++;
+        document.getElementById('meanFb').textContent='已觉察 '+opened+' / '+items.length;
+        if(opened===items.length){
+          document.getElementById('meanFb').innerHTML='<span class="fb good">🌸 当你全然地看见、听见、感受，意义就出现了——它一直都在事物之中。</span>';
+          addPoints(6,'完成意义之问');badge('觉察者','🔍');track('game',{g:'meaning',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 4 时间之河 */
+function gameTime(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-time';
+  d.innerHTML='<h3>⏳ 时间之河</h3><div class="gsub">悉达多悟到：时间不存在。过去与未来都是幻象，只有此刻。</div>';
+  d.innerHTML+='<div class="desc">拖动滑块，看看你的注意力正流向哪里。</div>';
+  d.innerHTML+='<input type="range" id="timeSlider" min="0" max="100" value="50" style="width:100%"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--dim)"><span>🔙 过去（悔恨）</span><span>🌿 此刻</span><span>🔜 未来（焦虑）</span></div>';
+  d.innerHTML+='<div class="bar"><i id="timeBar" style="width:50%"></i></div>';
+  d.innerHTML+='<button class="btn" onclick="timeGo()">看看你的心在哪</button><div class="fb" id="timeFb"></div>';
+  setTimeout(function(){
+    var s=document.getElementById('timeSlider'),b=document.getElementById('timeBar');
+    s.oninput=function(){b.style.width=s.value+'%';};
+  },0);
+  window.timeGo=function(){
+    var v=parseInt(document.getElementById('timeSlider').value,10);
+    var fb=document.getElementById('timeFb');
+    var msg;
+    if(v<30){msg='你的心更多住在过去。悔恨是幻象——过去的水早已流走。像河水一样，放它走。';}
+    else if(v>70){msg='你的心更多飞向未来。焦虑是幻象——未来的水还没到来。像河水一样，只承载此刻。';}
+    else{msg='你的心基本停在当下。很好——记住河水的话：没有过去的水，没有未来的水，只有此刻的河水。';}
+    fb.innerHTML='<span class="fb good">🧭 你的注意力：'+v+' / 100<br>'+msg+'</span>';
+    addPoints(3,'完成时间之河');track('game',{g:'time',v:v});
+  };
+  return d;
+}
+
+/* 5 河流冥想 */
+function gameRiver(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-river';
+  d.innerHTML='<h3>🌊 河流冥想</h3><div class="gsub">跟随河水呼吸：把悔恨与焦虑，交给流动。</div>';
+  d.innerHTML+='<div class="river-view"><div class="moon">🌕</div><div class="tree">🌳</div><div class="boat" id="riverBoat">🚣</div><div class="tip-r" id="riverTip">点击开始，随河而行</div><div class="water"></div></div>';
+  d.innerHTML+='<div style="text-align:center"><button class="btn" id="riverBtn">开始河流冥想</button> <button class="btn ghost sm" onclick="playRiverVoice()">🎧 跟读引导音频</button></div><div class="fb" id="riverFb"></div>';
+  window.playRiverVoice=function(){
+    var a=document.getElementById('rv');
+    if(!a){a=document.createElement('audio');a.id='rv';a.src='voice_river.wav';a.onplay=function(){track('audio',{src:'voice_river.wav'});};document.body.appendChild(a);}
+    a.play();
+  };
+  setTimeout(function(){
+    var btn=document.getElementById('riverBtn'),fb=document.getElementById('riverFb'),boat=document.getElementById('riverBoat'),tip=document.getElementById('riverTip');
+    var running=false;
+    btn.onclick=function(){
+      if(running)return;running=true;btn.disabled=true;
+      fb.textContent='';
+      tip.textContent='吸气……屏住……呼气……河水流动……';
+      boat.style.left='8%';
+      boat.style.transition='left 6s linear';
+      setTimeout(function(){boat.style.left='86%';},100);
+      var steps=['吸气（4秒）……','屏住（4秒）……','呼气（6秒）……','河水流动，只有此刻……','没有过去的水','没有未来的水','只有此刻的河水','你也在流动，也在完整'];
+      var si=0;
+      function next(){
+        if(si>=steps.length){
+          fb.innerHTML='<span class="fb good">🌊 河流冥想完成。此刻的你，像河水一样完整。<br>「一切都会重来！痛苦会过去，快乐会过去，而河流，永远在这里。」</span>';
+          addPoints(7,'完成河流冥想');badge('听河人','🌊');track('game',{g:'river'});btn.disabled=false;running=false;return;
+        }
+        tip.textContent=steps[si];si++;
+        setTimeout(next,2600);
+      }
+      setTimeout(next,800);
+    };
+  },0);
+  return d;
+}
+
+/* 6 船夫之问 */
+function gameFerry(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-ferry';
+  d.innerHTML='<h3>🚣 船夫之问</h3><div class="gsub">瓦苏德瓦不传授教义，只让你听河。听懂了，你就渡过去了。</div>';
+  d.innerHTML+='<div id="ferryWrap"></div><div class="fb" id="ferryFb"></div>';
+  var qs=[
+    {q:'「河水到处同时存在，所以对于它，只有什么？」',o:['过去','现在','未来'],a:1},
+    {q:'悉达多的人生像什么？',o:['一座山','一条河','一棵树'],a:1},
+    {q:'瓦苏德瓦用什么教导悉达多？',o:['诵经','倾听河流','苦修'],a:1},
+    {q:'「一切都会______！」',o:['消失','重来','变好'],a:1}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('ferryWrap');
+    if(qi>=qs.length){
+      if(pts===4){addPoints(5,'船夫四问全对');badge('渡河人','🚣');}else{addPoints(2,'完成船夫之问');}
+      track('game',{g:'ferry',score:pts});
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎉 完成：'+pts+' / 4 全对<br><span style="color:var(--sub);font-size:13px">河水在源头、河口、瀑布、大海——处处同时存在。你的生活，也是一条河。</span></div>';
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';document.getElementById('ferryFb').innerHTML='<span class="fb good">✅ 对。</span>';pts++;}
+        else{b.className='opt no';document.getElementById('ferryFb').innerHTML='<span class="fb bad">❌ 正确答案：'+cur.o[cur.a]+'</span>';}
+        qi++;setTimeout(renderQ,1200);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 7 唵唱诵 */
+function gameOm(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-om';
+  d.innerHTML='<h3>🔱 唵 · 唱诵</h3><div class="gsub">濒临崩溃的悉达多，被一个「唵」字唤醒。点击圆环，聆听唵的声音。</div>';
+  d.innerHTML+='<div class="om-circle" id="omCircle" onclick="omGo()">唵</div>';
+  d.innerHTML+='<div style="text-align:center" class="fb" id="omFb">点击唵，感受振动</div>';
+  window.omGo=function(){
+    var c=document.getElementById('omCircle'),fb=document.getElementById('omFb');
+    c.classList.add('vib');
+    fb.innerHTML='<span class="fb good">🔱 唵——宇宙之初的声音。它提醒你：回到呼吸，回到此刻。</span>';
+    var a=document.getElementById('omA');
+    if(!a){a=document.createElement('audio');a.id='omA';a.src='voice_om.wav';a.onplay=function(){track('audio',{src:'voice_om.wav'});};document.body.appendChild(a);}
+    a.play();
+    setTimeout(function(){c.classList.remove('vib');},6000);
+    if(!isDone('om')){markDone('om');addPoints(4,'聆听唵');badge('唱诵者','🔱');track('game',{g:'om'});}
+  };
+  return d;
+}
+
+/* 8 爱世界练习 */
+function gameLove(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-love';
+  d.innerHTML='<h3>🌍 爱世界练习</h3><div class="gsub">悉达多晚年唯一的事：爱这个世界。不藐视，不憎恶，怀抱爱与敬畏。</div>';
+  d.innerHTML+='<div class="desc">点击你此刻能看到的事物，对它说：我看见你。</div>';
+  d.innerHTML+='<div class="trash" id="loveWrap"></div><div class="fb" id="loveFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('loveWrap');
+    var items=['🪟 窗外的光','🖐 我的手','🌬 呼吸的空气','💡 头顶的灯','🌳 窗外的树','☕ 手边的水'];
+    var n=0;
+    items.forEach(function(t,ii){
+      var b=document.createElement('div');b.className='item';b.textContent=t;
+      b.onclick=function(){
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('loveFb').textContent='已看见 '+n+' / '+items.length;
+        if(n===items.length){
+          document.getElementById('loveFb').innerHTML='<span class="fb good">🌍 「我唯一的事，是爱这个世界。怀抱爱、惊叹和敬畏，注视一切存在之物和我自己。」<br>——当你真正看见，你就已经在爱。</span>';
+          addPoints(6,'完成爱世界练习');badge('爱世界者','🌍');track('game',{g:'love',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 9 旅程地图 */
+function gameJourney(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-journey';
+  d.innerHTML='<h3>🗺 悉达多的一生</h3><div class="gsub">点击节点，沿河重走他的求道之路。</div>';
+  d.innerHTML+='<div class="journey" id="journeyNodes"></div><div class="jtext" id="journeyText">点击节点，看看悉达多走到了哪里。</div>';
+  setTimeout(function(){
+    var w=document.getElementById('journeyNodes'),tx=document.getElementById('journeyText');
+    JOURNEY.forEach(function(j,ji){
+      var n=document.createElement('div');n.className='jnode';
+      n.innerHTML='<div class="dot">'+j.ic+'</div><div class="jt">'+j.t+'</div>';
+      n.onclick=function(){
+        w.querySelectorAll('.jnode').forEach(function(x){x.classList.remove('active');});
+        n.classList.add('active');tx.textContent=(ji+1)+'. '+j.txt;
+        if(ji===JOURNEY.length-1&&!isDone('journey')){markDone('journey');addPoints(4,'走完求道之路');track('game',{g:'journey'});}
+      };
+      w.appendChild(n);
+    });
+  },0);
+  return d;
+}
+
+/* 10 金句配对 */
+function gamePair(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-pair';
+  d.innerHTML='<h3>💬 金句配对</h3><div class="gsub">把空格补全，还原黑塞的原话。</div>';
+  d.innerHTML+='<div class="fb" id="pairFb">已完成 0 / '+PAIRS.length+'</div>';
+  var grid=document.createElement('div');grid.className='pair-grid';grid.id='pairGrid';
+  d.appendChild(grid);
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    PAIRS.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      if(sel===pi){
+        var qHalf=selEl===grid.children[pi*2];
+        var aHalf=el===grid.children[pi*2+1];
+        if(qHalf!==aHalf){markPair(pi);}
+        else{document.getElementById('pairFb').innerHTML='<span class="fb bad">这不对应同一条，再试试。</span>';}
+      }else{document.getElementById('pairFb').innerHTML='<span class="fb bad">配错了，注意上下半句。</span>';}
+      sel=null;selEl=null;
+    }
+    function markPair(pi){
+      var q=grid.children[pi*2],a=grid.children[pi*2+1];
+      q.className='pair matched';a.className='pair matched';
+      matched++;
+      document.getElementById('pairFb').innerHTML='已完成 '+matched+' / '+PAIRS.length+' · '+PAIRS[pi].s;
+      if(matched===PAIRS.length){
+        document.getElementById('pairFb').innerHTML='<span class="fb good">🏆 全部配对成功！黑塞的金句，从此流进你的心里。</span>';
+        addPoints(8,'金句全配对');badge('金句收藏家','💬');track('game',{g:'pair',score:PAIRS.length});
+      }
+    }
+  },0);
+  return d;
+}
+
+/* 11 读后小测 */
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quiz';
+  d.innerHTML='<h3>📝 读后小测 · 你渡到彼岸了吗？</h3><div class="gsub">10 题，检验你的「悉达多」学分。</div>';
+  d.innerHTML+='<div class="quiz-prog" id="quizProg"></div><div id="quizWrap"></div><div class="fb" id="quizFb"></div>';
+  var qi=0,score=0;
+  setTimeout(function(){
+    render();
+    function render(){
+      var prog=document.getElementById('quizProg');prog.innerHTML='';
+      QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
+      var w=document.getElementById('quizWrap');w.innerHTML='';
+      if(qi>=QUIZ.length){
+        var pct=Math.round(score/QUIZ.length*100);
+        w.innerHTML='<div style="font-size:18px;color:var(--gold);text-align:center">🎓 测验完成：'+score+' / '+QUIZ.length+'（'+pct+'%）</div>';
+        document.getElementById('quizFb').innerHTML=pct>=80?'<span class="fb good">🏆 船夫合格！你理解了「爱这个世界」。</span>':pct>=50?'<span class="fb">不错的开始，回看免费章节，把河流的话记牢。</span>':'<span class="fb">建议再读一遍序章和第3章，悉达多在河边等你。</span>';
+        addPoints(score>=8?10:5,'完成读后小测');badge('渡彼岸者','🛶');track('game',{g:'quiz',score:score,total:QUIZ.length});
+        return;
+      }
+      var cur=QUIZ[qi];
+      var qd=document.createElement('div');qd.className='desc';qd.textContent='第'+(qi+1)+'题：'+cur.q;
+      w.appendChild(qd);
+      cur.o.forEach(function(t,oi){
+        var b=document.createElement('button');b.className='opt';b.textContent=t;
+        b.onclick=function(){
+          w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          if(oi===cur.a){b.className='opt ok';score++;}
+          else{b.className='opt no';var right=cur.o[cur.a];document.getElementById('quizFb').innerHTML='<span class="fb bad">正确答案：'+right+'</span>';}
+          qi++;setTimeout(render,900);
+        };
+        w.appendChild(b);
+      });
+    }
+  },0);
+  return d;
+}
+
+/* ========== 徽章 ========== */
+function badge(name,icon){
+  if(BADGES[name])return;BADGES[name]=1;saveBadges();
+  toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var list=[['🛤','求道者'],['🕉','觉悟者'],['🔍','觉察者'],['🌊','听河人'],['🚣','渡河人'],['🔱','唱诵者'],['🌍','爱世界者'],['💬','金句收藏家'],['🛶','渡彼岸者']];
+  var host=document.getElementById('badgesHost');
+  if(!host){host=document.createElement('div');host.id='badgesHost';host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';document.getElementById('chapters').appendChild(host);}
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  list.forEach(function(b){
+    var on=BADGES[b[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+(on?b[0]:'🔒')+'</span>'+b[1];
+    bd.appendChild(el);
+  });
+}
+
+/* ========== 解锁逻辑 ========== */
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('codeBox').classList.add('hidden');document.getElementById('unlockOk').textContent='';}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function verifyCode(){
+  var c=(document.getElementById('codeInput').value||'').trim();
+  if(c.length<6){document.getElementById('unlockHint').textContent='激活码格式不正确（至少 6 位）。';return;}
+  if(hashOk(c)){
+    document.getElementById('unlockOk').textContent='✅ 激活成功！全书已解锁。';
+    track('unlock',{method:'code'});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='激活码无效。提示：可联系平台获取；完成互动任务攒积分也能解锁。';
+  }
+}
+function hashOk(c){
+  if(c.toUpperCase()==='325FA149')return true;
+  if(c==='XQ2026')return true;
+  return false;
+}
+function unlockByPoints(){
+  if(POINTS>=50){
+    setPoints(POINTS-50);
+    document.getElementById('unlockOk').textContent='✅ 积分兑换成功！已扣除 50 积分，全书解锁。';
+    track('unlock',{method:'points',cost:50});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='积分不足（当前 '+POINTS+' / 50）。完成免费章节的互动任务可快速攒分。';
+  }
+}
+function adminCheck(){
+  var pw=prompt('管理员口令：');
+  if(pw&&hashOk(pw.toUpperCase())){
+    localStorage.setItem(LSKEY_ADMIN,'1');
+    document.getElementById('unlockOk').textContent='✅ 管理员验证通过，全书解锁。';
+    unlockAll();
+  }else if(pw){document.getElementById('unlockHint').textContent='口令错误。';}
+}
+
+/* ========== 导航 ========== */
+function goRead(){
+  var first=document.getElementById('chap-0');
+  if(first){first.scrollIntoView({behavior:'smooth'});}
+  track('read',{action:'start'});
+}
+function goTo(i){
+  var el=document.getElementById('chap-'+i);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+function playBgm(){
+  if(!AUDIO.bgm){AUDIO.bgm=new Audio('bgm.wav');AUDIO.bgm.loop=true;AUDIO.bgm.volume=.4;}
+  if(AUDIO.playing){AUDIO.bgm.pause();AUDIO.playing=false;document.getElementById('moodPill').textContent='🎧 音乐';}
+  else{AUDIO.bgm.play();AUDIO.playing=true;document.getElementById('moodPill').textContent='🎵 播放中';track('audio',{src:'bgm.wav'});}
+}
+
+/* ========== 初始化 ========== */
+(function init(){
+  var btn=document.getElementById('btnUnlock');
+  btn.onclick=function(){UNLOCKED?toast('📖 全书已解锁'):openUnlock();};
+  document.getElementById('points').textContent=POINTS;
+  if(UNLOCKED){document.body.dataset.unlocked='1';}
+  renderToc();renderChapters();
+  track('open',{});
+  var t0=Date.now();
+  window.addEventListener('beforeunload',function(){
+    var sec=Math.round((Date.now()-t0)/1000);
+    if(sec>=5){track('read',{action:'leave',sec:sec});}
+  });
+})();
+</script>
+</body>
+</html>
