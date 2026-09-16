@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>思维改变生活 · 萨拉·埃德尔曼 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#0e1513; --bg2:#152320; --card:#12201c; --line:#2c4a40;
+    --tx:#eefaf4; --sub:#c9ded3; --dim:#7fa294;
+    --gold:#ffb84d; --teal:#4fd8c0; --green:#a4e8a0; --sky:#7cc8ff;
+    --orange:#ff8a5c; --red:#ff8a7a; --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#0c1210 0%,#152320 45%,#0e1513 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.7;overflow-x:hidden}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(79,216,192,.08),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(255,184,77,.06),transparent 60%);animation:pulse 6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(12,18,16,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--teal);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#4fd8c0,#2aa88e);color:#06231c;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(79,216,192,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--teal)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(28px,6.5vw,42px);margin:14px 0 6px;color:var(--teal);letter-spacing:8px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:620px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--teal)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--teal);margin-bottom:12px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(79,216,192,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#17332b;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--teal)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(164,232,160,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,138,122,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--teal);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--teal);margin-bottom:10px}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--teal);padding:8px 14px;background:rgba(79,216,192,.08);border-radius:8px;color:var(--teal);margin:12px 0;font-size:16px}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,21,19,0),rgba(14,21,19,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#0f1c18;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#17332b,#12201c);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--teal);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--teal)}
+  .opt.ok{border-color:var(--green);background:rgba(164,232,160,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,138,122,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#0d1714;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#4fd8c0,#a4e8a0);border-radius:999px;transition:width .5s}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--teal)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--teal);background:rgba(79,216,192,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(164,232,160,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(164,232,160,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#0d1714}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--teal)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#0d1714;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--teal);color:var(--teal);background:rgba(79,216,192,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(8,12,10,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#17332b,#12201c);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--teal);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0c1210;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--teal);color:var(--teal);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(79,216,192,.07);border:1px solid rgba(79,216,192,.25);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .hidden{display:none!important}
+  .breathe-dot{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#4fd8c0,#1d5c4e);margin:16px auto;display:flex;align-items:center;justify-content:center;color:#06231c;font-weight:700;transition:transform .4s;cursor:pointer}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(3,1fr)}.pair-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">🧠 思维改变生活<small>萨拉·埃德尔曼</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock">🔓 解锁</button>
+    <button class="btn sm" id="btnRead" onclick="goRead()">开始阅读 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">CHANGE YOUR THINKING · SARAH EDELMAN</div>
+    <h1>思维改变生活</h1>
+    <div class="tag">
+      <span>萨拉·埃德尔曼 著</span><span>认知行为疗法 CBT</span><span>心理学自助经典</span><span>全球畅销 50 年验证</span>
+    </div>
+    <p class="lead">让你难受的，从来不是事情本身，而是你对事情的看法。萨拉·埃德尔曼把经过五十年验证的<b>认知行为疗法</b>，变成普通人能用的自助工具：<b>ABC 模型、识别错误思维、驳斥消极认知、行为实验</b>。学会它，沮丧、愤怒、焦虑、自卑、抑郁，都有法可解。今天起，<b>你的想法，由你说了算</b>。</p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🧠 重写想法</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 心晴之音</button>
+    </div>
+    <div class="tip">🎮 本书包含 12 个互动体验：ABC 拆解、想法监测、认知歪曲识别、反驳训练、行为实验、挫折耐力、愤怒降温、焦虑挑战、4-7-8 呼吸、自尊重构、果敢沟通、读后小测……读完你会掌握一套终身受用的<b>思维自检工具</b>。</div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 11 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🧠 思维改变生活 · 熙祺智书出品<br>《思维改变生活：积极而实用的认知行为疗法》萨拉·埃德尔曼 · 多媒体互动版 · 素材仅供学习交流</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 5 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='cbt';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=11, FREE=6;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function markDone(id){DONE[id]=1;localStorage.setItem(LSKEY_DONE,JSON.stringify(DONE));}
+function isDone(id){return !!DONE[id];}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'让你难受的，是你的想法',free:1,icon:'🧠',art:'art_abc.jpg',cap:'「如果我们学会用一种更健康的方式来思考，我们就不会遇到问题便自寻烦恼。」',
+  p:[['同样被老板批评，有人崩溃一整天，有人改进后继续向前。'],
+     ['差别不在事件本身，','而在他们心里的想法。'],
+     ['认知行为疗法的核心理念就一句话：','「不是事情让你难受，','是你对事情的看法让你难受。」'],
+     ['这本书，','就是教你看清并改写那些让你难受的想法。','「如果我们学会用一种更健康的方式来思考，','我们就不会遇到问题便自寻烦恼。」']]},
+ {n:'第1章',t:'认知行为疗法 · 思维的健身房',free:1,icon:'🏋️',art:'art_abc.jpg',cap:'CBT 的目标，是用实事求是的思维模式，帮我们对情绪困扰作出更好的反应。',
+  p:[['认知行为疗法（CBT），','是当今世界应用最广、证据最充分的心理治疗方法之一。'],
+     ['它基于一个简单理念：','认知（思维）→ 情绪 → 行为，','三者相互影响，','而思维是我们可以最先改变的入口。'],
+     ['就像健身练肌肉，','CBT 帮你练「思维肌肉」：','识别错误思维、发展理性想法、','用行动验证新想法。'],
+     ['「CBT 的目标，就是用实事求是的思维模式，','来帮助我们更好地应对情绪困扰。」']]},
+ {n:'第2章',t:'ABC 模型 · 想法决定情绪',free:1,icon:'🔤',art:'art_abc.jpg',cap:'A 是事件，B 是想法，C 是情绪。真正决定 C 的，是 B，不是 A。',
+  p:[['CBT 最核心的工具，是 ABC 模型：'],
+     ['A = 触发事件','B = 你的信念和想法','C = 情绪后果'],
+     ['大多数人以为是 A 直接导致 C：','事情糟糕，所以我难过。'],
+     ['但埃德尔曼说：真正决定 C 的是 B。','老板没回消息，','有人想「他肯定在忙」，','有人想「他一定讨厌我」。','事件一样，想法不同，情绪天差地别。'],
+     ['「改变想法，就改变了感受。」']]},
+ {n:'第3章',t:'识别错误思维 · 十二种思维陷阱',free:1,icon:'🕳️',art:'art_distort.jpg',cap:'非黑即白、灾难化、读心术、贴标签……我们的思维有一整套自动陷阱。',
+  p:[['我们的思维有一套自动化陷阱，','专门扭曲现实：'],
+     ['⚫ 非黑即白：一次没做好，就认定「全完了」','🔮 灾难化：小事想成最坏的结果','👂 读心术：猜别人一定讨厌自己','🏷 贴标签：用一件事定义整个人','🔍 心理过滤：只看到负面的部分','📈 过度概括：一次失败，觉得永远会失败','😤 情绪化推理：我感觉到糟糕，所以事情一定很糟'],
+     ['这些扭曲的思维，','是痛苦情绪的放大器。','「看见它们，','就是摆脱它们的第一步。」']]},
+ {n:'第4章',t:'驳斥消极认知 · 苏格拉底式提问',free:1,icon:'⚖️',art:'art_dispute.jpg',cap:'把吓人的想法写下来，像苏格拉底一样向它提问，它大多经不起推敲。',
+  p:[['识别出消极想法之后，','下一步是驳斥它。'],
+     ['最常用的技术是逻辑驳斥：','像苏格拉底一样向自己的想法提问：','「有什么证据支持这个想法？」','「有什么证据反对它？」','「最坏的情况真的会发生吗？」','「就算发生了，我真的承受不了吗？」','「更可能的真相是什么？」'],
+     ['把消极认知和反驳都写下来，','用「思维监测表」记录，','你会发现那些吓人的想法，','大多站不住脚。'],
+     ['「将反驳写下来，','通常有助于整理并澄清我们的认知。」']]},
+ {n:'第5章',t:'行为驳斥 · 用行动验证想法',free:1,icon:'🧪',art:'art_assert.jpg',cap:'光说不练没用：行为实验能检验你的想法到底是不是真的。',
+  p:[['有些想法，光靠逻辑驳斥还不够，','需要用行动来检验。'],
+     ['这就是行为实验：','把「我做不到」「别人会笑话我」','当成一个待验证的假设，','设计一个小实验去试。'],
+     ['你害怕当众发言，','就主动举手说一次；','你担心被拒绝，','就主动发出一次邀请。'],
+     ['「当你用行动验证了想法，','你会发现，','大脑里那些警报，','大多数是虚惊一场。」']]},
+ {n:'第6章',t:'战胜挫折 · 告别「必须」',free:0,icon:'⛰️',art:'art_belief.jpg',cap:'低挫折忍耐力的根源，是「事情必须如我所愿」的绝对化要求。',
+  p:[['「我必须成功」「他必须对我好」「事情必须顺利」——','这些「必须」，就是低挫折忍耐力的根源。'],
+     ['埃德尔曼说：','把「必须」换成「希望」：','「我希望成功，但失败也可以承受」；','「我希望被喜欢，但不是每个人都会喜欢我」。'],
+     ['当你能接受「事情可以不完美」，','挫折的杀伤力就大幅下降。'],
+     ['「面对无法改变的事，','与其愤怒和抱怨，','不如把精力转向还能做什么。」']]},
+ {n:'第7章',t:'应对愤怒 · 给火山降温',free:0,icon:'🌋',art:'art_anger.jpg',cap:'愤怒常源于「他们不应该这样对我」。先降温，再沟通。',
+  p:[['愤怒背后，','常常藏着非理性信念：','「他们不应该这样对我」。'],
+     ['埃德尔曼建议先给火山降温：','① 深呼吸，离开现场 10 分钟；','② 问自己：这件事值得我生气吗？','③ 我生气能改变什么？','④ 换个说法：「我不喜欢这样，但我能承受」。'],
+     ['冷静之后，','再用「我」句式表达感受：','「当你迟到时，我感到不被尊重。」','而不是攻击和指责。'],
+     ['「愤怒是信号，不是武器。','用它来了解自己，','而不是伤害别人。」']]},
+ {n:'第8章',t:'战胜焦虑 · 直面恐惧阶梯',free:0,icon:'😰',art:'art_anxiety.jpg',cap:'越逃避，恐惧越膨胀；逐级面对，恐惧才会退缩。',
+  p:[['焦虑的本质是「高估危险，低估自己」。'],
+     ['埃德尔曼教你用「恐惧阶梯」：','把害怕的事从轻到重列出来，','像爬楼梯一样，','一级一级地去面对。'],
+     ['怕坐电梯，就先站到电梯口；','怕发言，就先在小组里说一句。','每完成一级，','自信就增加一分。'],
+     ['同时练习深度放松：','腹式呼吸、渐进式肌肉放松，','让身体先平静下来。'],
+     ['「勇气不是没有恐惧，','而是带着恐惧，','仍然向前。」']]},
+ {n:'第9章',t:'克服抑郁 · 用行动激活生活',free:0,icon:'🌤️',art:'art_depress.jpg',cap:'抑郁时感觉做什么都无意义——先动起来，感觉才会跟上。',
+  p:[['抑郁时，','大脑会告诉你：做什么都没意义。'],
+     ['埃德尔曼给出行为激活：','先行动，感受才会跟上。'],
+     ['① 制定小而具体的活动清单：','起床拉开窗帘、散步 10 分钟、给朋友发条消息；','② 不要等「有心情」再动，','先动，心情才可能回来；','③ 记录每次活动后的感受，','看到微小的改善。'],
+     ['「抑郁让你相信行动没有意义，','但恰恰是行动，','是走出抑郁的第一级台阶。」']]},
+ {n:'第10章',t:'提升自尊 · 你本来就值得',free:0,icon:'🪞',art:'art_esteem.jpg',cap:'自尊不是被认可的产物，而是你如何看待自己的结果。',
+  p:[['很多人把自尊建立在外界的评价上：','被表扬就有价值，被批评就崩塌。'],
+     ['埃德尔曼说：','自尊应该建立在「我接纳自己」上。'],
+     ['① 停止拿自己和别人比较；','② 用「我尽力了」代替「我必须完美」；','③ 写下自己的优点和成就，','每天读一遍；','④ 允许自己犯错——','犯错不降低你的价值。'],
+     ['「你不需要先变得完美，','才值得被尊重。','你的价值，','从你存在的那一刻就存在了。」']]}
+];
+
+var QUIZ=[
+ {q:'《思维改变生活》的核心方法是？',o:['认知行为疗法','精神分析','催眠'],a:0},
+ {q:'ABC 模型中，真正决定情绪 C 的是？',o:['想法 B','事件 A','运气'],a:0},
+ {q:'「他一定讨厌我」属于哪种思维陷阱？',o:['读心术','贴标签','非黑即白'],a:0},
+ {q:'驳斥消极认知最常用的技术是？',o:['逻辑驳斥','转移注意力','压抑'],a:0},
+ {q:'「我必须成功」中的「必须」属于？',o:['绝对化要求','合理期待','积极暗示'],a:0},
+ {q:'应对愤怒第一步应该？',o:['先深呼吸离开现场','立刻爆发','忍住不说'],a:0},
+ {q:'恐惧阶梯的方法是？',o:['逐级面对恐惧','一次性硬扛','永远回避'],a:0},
+ {q:'抑郁时埃德尔曼建议？',o:['先行动再等心情','等有心情再动','躺平休息'],a:0},
+ {q:'自尊应该建立在？',o:['自我接纳','别人的评价','完美表现'],a:0},
+ {q:'把「我必须」换成「我希望」能提升？',o:['挫折忍耐力','智力','记忆力'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 思维升级</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可读';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · CHANGE YOUR THINKING</div><h2>'+c.t+'</h2>';
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 你的想法，由你说了算'));}
+  if(i===2){h.appendChild(audioBlock('voice_abc.wav','🎧 ABC 模型 · 想法决定情绪'));}
+  if(i===4){h.appendChild(audioBlock('voice_dispute.wav','🎧 反驳练习 · 苏格拉底式提问'));}
+  if(i===10){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 全面的认知行为疗法解说</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1Ae6zYsENA&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameABC());}
+  if(i===1){out.push(gameCBTintro());}
+  if(i===2){out.push(gameDistort());}
+  if(i===3){out.push(gameDispute());}
+  if(i===4){out.push(gameExperiment());}
+  if(i===5){out.push(gameFrustration());}
+  if(i===6){out.push(gameAnger());}
+  if(i===7){out.push(gameAnxiety());out.push(gameBreath());}
+  if(i===8){out.push(gameActivate());}
+  if(i===9){out.push(gameEsteem());out.push(gameQuiz());}
+  return out;
+}
+
+/* 1 ABC 拆解 */
+function gameABC(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-abc';
+  d.innerHTML='<h3>🔤 ABC 拆解</h3><div class="gsub">把一件让你难受的事，拆成 A 事件、B 想法、C 情绪，看看 B 如何决定了 C。</div>';
+  d.innerHTML+='<div class="trash" id="abcWrap"></div><div class="fb" id="abcFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('abcWrap');
+    var items=[
+      {t:'📱 老板没回消息（事件 A）',s:'事件本身是中性的。'},
+      {t:'💭 他肯定在忙（想法 B）',s:'中性想法 → 情绪平稳。'},
+      {t:'😟 他一定讨厌我（想法 B）',s:'消极想法 → 焦虑不安。'},
+      {t:'😊 我工作很安心（情绪 C）',s:'平静想法带来的情绪后果。'},
+      {t:'😰 我坐立难安（情绪 C）',s:'消极想法带来的情绪后果。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="abcS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('abcS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('abcFb').textContent='已拆解 '+n+' / '+items.length;
+        if(n===items.length){
+          document.getElementById('abcFb').innerHTML='<span class="fb good">🔤 拆解完成！同样的 A，不同的 B，就有不同的 C。改想法，就改了感受。</span>';
+          addPoints(6,'完成 ABC 拆解');badge('ABC 拆解师','🔤');track('game',{g:'abc',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 2 CBT 入门问答 */
+function gameCBTintro(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-cbt';
+  d.innerHTML='<h3>🏋️ CBT 思维健身房</h3><div class="gsub">认知行为疗法的小知识，测测你的掌握度。</div>';
+  d.innerHTML+='<div id="cbtWrap"></div><div class="fb" id="cbtFb"></div>';
+  var qs=[
+    {q:'CBT 中认知、情绪、行为的关系是？',o:['三者相互影响，认知是入口','情绪决定一切','行为与认知无关'],a:0},
+    {q:'CBT 对以下哪些问题被证明有效？',o:['焦虑、抑郁、恐惧症等','只有性格问题','任何疾病'],a:0},
+    {q:'思维肌肉可以怎么练？',o:['识别错误思维+发展理性想法+行动验证','多睡觉','多吃补脑食物'],a:0}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('cbtWrap');
+    if(qi>=qs.length){
+      w.innerHTML='<div style="font-size:15px;color:var(--teal)">🏋️ 训练完成：'+pts+' / 3 全对<br><span style="color:var(--sub);font-size:13px">CBT 是思维的健身房，坚持练，情绪肌肉就会变强。</span></div>';
+      if(pts===3){addPoints(5,'CBT 入门全对');badge('CBT 学徒','🏋️');}else{addPoints(2,'完成 CBT 入门');}
+      track('game',{g:'cbt',score:pts});
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';pts++;document.getElementById('cbtFb').innerHTML='<span class="fb good">✅ 对！</span>';}
+        else{b.className='opt no';document.getElementById('cbtFb').innerHTML='<span class="fb bad">正确答案：'+cur.o[cur.a]+'</span>';}
+        qi++;setTimeout(renderQ,1200);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 3 认知歪曲识别 */
+function gameDistort(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-distort';
+  d.innerHTML='<h3>🕳️ 思维陷阱识别</h3><div class="gsub">看看这些想法掉进了哪个思维陷阱。</div>';
+  d.innerHTML+='<div class="pair-grid" id="dtGrid"></div><div class="fb" id="dtFb">已完成 0 / 6</div>';
+  var pairs=[
+    {q:'「这次考试没考好，我的人生完了」',a:'灾难化'},
+    {q:'「他刚才没理我，肯定讨厌我」',a:'读心术'},
+    {q:'「我不是当领导的料」',a:'贴标签'},
+    {q:'「我每次都搞砸」',a:'过度概括'},
+    {q:'「要么完美，要么拉倒」',a:'非黑即白'},
+    {q:'「我觉得很焦虑，所以一定出事」',a:'情绪化推理'}
+  ];
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    var grid=document.getElementById('dtGrid');
+    pairs.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      var qHalf=selEl===grid.children[sel*2];
+      var aHalf=el===grid.children[pi*2+1];
+      if(sel===pi&&qHalf!==aHalf){
+        var q=grid.children[pi*2],a=grid.children[pi*2+1];
+        q.className='pair matched';a.className='pair matched';
+        matched++;
+        document.getElementById('dtFb').innerHTML='已完成 '+matched+' / '+pairs.length;
+        if(matched===pairs.length){
+          document.getElementById('dtFb').innerHTML='<span class="fb good">🕳️ 识别完成！看见思维陷阱，就是摆脱它的第一步。</span>';
+          addPoints(8,'识别全部思维陷阱');badge('陷阱猎人','🕳️');track('game',{g:'distort',score:pairs.length});
+        }
+      }else{document.getElementById('dtFb').innerHTML='<span class="fb bad">配错了，再想想这个陷阱的名字。</span>';}
+      sel=null;selEl=null;
+    }
+  },0);
+  return d;
+}
+
+/* 4 反驳训练 */
+function gameDispute(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-dispute';
+  d.innerHTML='<h3>⚖️ 反驳训练</h3><div class="gsub">像苏格拉底一样，向你的消极想法提问。逐个驳倒它。</div>';
+  d.innerHTML+='<div class="trash" id="dpWrap"></div><div class="fb" id="dpFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('dpWrap');
+    var items=[
+      {t:'💭「我这次肯定失败」',s:'证据？——我上次准备充分时其实成功了。'},
+      {t:'💭「没人喜欢我」',s:'证据？——家人朋友一直都在。'},
+      {t:'💭「最坏一定会发生」',s:'概率？——大多数担心的事从未发生。'},
+      {t:'💭「我承受不了」',s:'过往？——我经历过更难的事。'},
+      {t:'💭「我必须让所有人满意」',s:'可能吗？——连圣人都做不到。'},
+      {t:'💭「我完了」',s:'真相？——只是这一次不理想，不是人生结束。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="dpS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('dpS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('dpFb').textContent='已驳倒 '+n+' / '+items.length+' 个消极想法';
+        if(n===items.length){
+          document.getElementById('dpFb').innerHTML='<span class="fb good">⚖️ 全部驳倒！写下来、问证据、找真相——消极想法大多经不起推敲。</span>';
+          addPoints(6,'完成反驳训练');badge('思维辩手','⚖️');track('game',{g:'dispute',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 5 行为实验 */
+function gameExperiment(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-exp';
+  d.innerHTML='<h3>🧪 行为实验</h3><div class="gsub">把你的担心当成假设，设计一个小实验去验证它。</div>';
+  d.innerHTML+='<div class="trash" id="exWrap"></div><div class="fb" id="exFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('exWrap');
+    var items=[
+      {t:'😨 担心：发言会被人笑话',s:'实验：在小组里主动说一句话。'},
+      {t:'😨 担心：主动会被拒绝',s:'实验：发出一次小小的请求。'},
+      {t:'😨 担心：别人觉得我烦',s:'实验：先发一条问候消息。'},
+      {t:'😨 担心：我做不好新任务',s:'实验：先做 10 分钟试试。'},
+      {t:'😨 担心：出门会很糟',s:'实验：出门散步 15 分钟。'},
+      {t:'😨 担心：说出来会吵架',s:'实验：用「我」句式表达一次感受。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="exS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('exS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('exFb').textContent='已设计 '+n+' / '+items.length+' 个实验';
+        if(n===items.length){
+          document.getElementById('exFb').innerHTML='<span class="fb good">🧪 实验清单就绪！大脑里的警报大多是虚惊一场——去验证一次就知道了。</span>';
+          addPoints(6,'设计行为实验');badge('实验科学家','🧪');track('game',{g:'experiment',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 6 挫折耐力 */
+function gameFrustration(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-frust';
+  d.innerHTML='<h3>⛰️ 「必须」变「希望」</h3><div class="gsub">把压着你的「必须」，改写成更有弹性的「希望」。</div>';
+  d.innerHTML+='<div class="trash" id="frWrap"></div><div class="fb" id="frFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('frWrap');
+    var items=[
+      {t:'😤 我必须成功',s:'我希望成功，但失败我也能承受。'},
+      {t:'😤 别人必须喜欢我',s:'我希望被喜欢，但无法强求。'},
+      {t:'😤 事情必须顺利',s:'我希望顺利，但不顺利也能应对。'},
+      {t:'😤 我必须完美',s:'我希望做好，但不完美也可以。'},
+      {t:'😤 我必须被认可',s:'我希望被认可，但认可不是必需品。'},
+      {t:'😤 我必须马上解决',s:'我希望尽快，但慢慢来也可以。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="frS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('frS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('frFb').textContent='已改写 '+n+' / '+items.length+' 个「必须」';
+        if(n===items.length){
+          document.getElementById('frFb').innerHTML='<span class="fb good">⛰️ 改写完成！当你能接受事情可以不完美，挫折的杀伤力就大幅下降。</span>';
+          addPoints(6,'完成必须改写');badge('弹性思维者','⛰️');track('game',{g:'frustration',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 7 愤怒降温 */
+function gameAnger(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-anger';
+  d.innerHTML='<h3>🌋 愤怒降温</h3><div class="gsub">火山要喷发前，按顺序做这几步降温。</div>';
+  d.innerHTML+='<div class="bar"><i id="agBar" style="width:0%"></i></div>';
+  d.innerHTML+='<div id="agWrap" style="margin:10px 0"></div><div class="fb" id="agFb">火山正在升温……开始降温。</div>';
+  var steps=[
+    {t:'🌬 第一步：深呼吸 3 次',d:'给身体一个「冷静下来」的信号。'},
+    {t:'🚶 第二步：离开现场 10 分钟',d:'先离开，再处理。'},
+    {t:'🤔 第三步：问自己「这件事值得吗」',d:'评估愤怒的性价比。'},
+    {t:'🔄 第四步：把「必须」换成「希望」',d:'「他不应该这样」→「我希望他别这样」。'},
+    {t:'💬 第五步：用「我」句式表达',d:'「当你迟到时，我感到不被尊重。」'}
+  ];
+  var cur=0;
+  setTimeout(function(){renderStep();},0);
+  function renderStep(){
+    var w=document.getElementById('agWrap');
+    if(cur>=steps.length){
+      document.getElementById('agBar').style.width='100%';
+      w.innerHTML='<div style="font-size:15px;color:var(--teal)">🌋 火山冷却完成！愤怒是信号，不是武器。</div>';
+      document.getElementById('agFb').innerHTML='<span class="fb good">下次生气时，试着先走完这五步。</span>';
+      addPoints(6,'完成愤怒降温');badge('火山冷却师','🌋');track('game',{g:'anger',stage:5});
+      return;
+    }
+    var s=steps[cur];
+    w.innerHTML='<div class="desc">'+(cur+1)+' / '+steps.length+' · '+s.t+'</div><div style="font-size:14px;color:var(--sub);margin-bottom:12px">'+s.d+'</div>';
+    var b=document.createElement('button');b.className='btn sm';b.textContent='这一步，我做了';
+    b.onclick=function(){
+      document.getElementById('agBar').style.width=Math.round((cur+1)/steps.length*100)+'%';
+      cur++;renderStep();
+    };
+    w.appendChild(b);
+  }
+  return d;
+}
+
+/* 8 恐惧阶梯 */
+function gameAnxiety(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-anxiety';
+  d.innerHTML='<h3>😰 恐惧阶梯</h3><div class="gsub">把害怕的事从轻到重列成阶梯，逐级面对，恐惧才会退缩。</div>';
+  d.innerHTML+='<div class="kick" id="axKick"></div><div class="fb" id="axFb">每完成一级，自信增加一分。点按阶梯升级。</div>';
+  setTimeout(function(){
+    var k=document.getElementById('axKick');
+    var steps=['👀 想一想那件事','📝 写下最坏结果','🚶 到现场站 3 分钟','💬 说一句话','✅ 完成一次尝试'];
+    steps.forEach(function(s,si){
+      var b=document.createElement('button');b.textContent=s;
+      b.onclick=function(){
+        if(b.classList.contains('done'))return;
+        b.classList.add('done');
+        document.getElementById('axFb').textContent='已走完 '+si+' / '+steps.length+' 级';
+        if(si===steps.length-1){
+          document.getElementById('axFb').innerHTML='<span class="fb good">😰 阶梯走完！勇气不是没有恐惧，而是带着恐惧仍然向前。</span>';
+          addPoints(6,'爬完恐惧阶梯');badge('恐惧攀登者','😰');track('game',{g:'anxiety',stage:steps.length});
+        }
+      };
+      k.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 9 呼吸放松 */
+function gameBreath(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-breath';
+  d.innerHTML='<h3>🌬 4-7-8 呼吸</h3><div class="gsub">跟着节奏：吸气 4 秒，屏住 7 秒，呼气 8 秒。做 3 轮，焦虑就降下来了。</div>';
+  d.innerHTML+='<div class="breathe-dot" id="bdDot">开始</div>';
+  d.innerHTML+='<div class="fb" id="bdFb">点圆点开始呼吸练习。</div>';
+  var running=false;
+  d.querySelector('#bdDot').onclick=function(){
+    if(running)return;running=true;
+    var dot=document.getElementById('bdDot'),fb=document.getElementById('bdFb');
+    var seq=[['吸气',4,'scale(1.35)'],['屏住',7,'scale(1.35)'],['呼气',8,'scale(1)']];
+    var round=0,step=0;
+    function next(){
+      if(step>=3){step=0;round++;fb.textContent='第 '+round+' 轮完成';
+        if(round>=3){fb.innerHTML='<span class="fb good">🌬 3 轮完成！身体平静，想法也会慢下来。</span>';addPoints(5,'完成呼吸练习');badge('呼吸大师','🌬');track('game',{g:'breath',rounds:3});running=false;return;}
+      }
+      var s=seq[step];
+      dot.textContent=s[0];dot.style.transform=s[2];
+      fb.textContent='第 '+(round+1)+' 轮 · '+s[0]+' '+s[1]+' 秒';
+      step++;setTimeout(next,s[1]*1000);
+    }
+    next();
+  };
+  return d;
+}
+
+/* 10 行为激活 */
+function gameActivate(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-activate';
+  d.innerHTML='<h3>🌤️ 行为激活</h3><div class="gsub">抑郁时感觉做什么都没意义——先动起来，感受才会跟上。</div>';
+  d.innerHTML+='<div class="trash" id="acWrap"></div><div class="fb" id="acFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('acWrap');
+    var items=[
+      {t:'🛏 起床拉开窗帘',s:'让阳光进来，激活身体。'},
+      {t:'🚶 出门散步 10 分钟',s:'让身体先动起来。'},
+      {t:'💧 喝一杯水',s:'照顾好最基本的自己。'},
+      {t:'📩 给朋友发条消息',s:'重新建立连接。'},
+      {t:'📝 写下今天的一件小事',s:'看见微小的完成。'},
+      {t:'🛌 按时睡觉',s:'稳定作息，稳住情绪。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="acS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('acS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('acFb').textContent='已完成 '+n+' / '+items.length+' 个小行动';
+        if(n===items.length){
+          document.getElementById('acFb').innerHTML='<span class="fb good">🌤️ 行动清单完成！先动起来，心情才可能回来。</span>';
+          addPoints(6,'完成行为激活');badge('行动激活者','🌤️');track('game',{g:'activate',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 11 自尊重构 */
+function gameEsteem(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-esteem';
+  d.innerHTML='<h3>🪞 自尊重构</h3><div class="gsub">写下你的优点、成就和值得被尊重的理由。你不需要先完美，才值得。</div>';
+  d.innerHTML+='<div class="trash" id="esWrap"></div><div class="fb" id="esFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('esWrap');
+    var items=[
+      {t:'👍 我的三个优点',s:'写下来：善良？认真？坚持？'},
+      {t:'🏆 我做成的三件事',s:'哪怕很小，也是你的成就。'},
+      {t:'💪 我挺过的困难',s:'每一次都是你能力的证据。'},
+      {t:'❤️ 我珍视的三个人',s:'你也被他们珍视着。'},
+      {t:'✨ 我每天可以夸自己一次',s:'「今天我做得不错。」'},
+      {t:'🪞 我接纳不完美的自己',s:'犯错不降低我的价值。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="esS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('esS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('esFb').textContent='已完成 '+n+' / '+items.length+' 项';
+        if(n===items.length){
+          document.getElementById('esFb').innerHTML='<span class="fb good">🪞 重构完成！你的价值，从你存在的那一刻就存在了。</span>';
+          addPoints(6,'完成自尊重构');badge('自尊建筑师','🪞');track('game',{g:'esteem',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 12 读后小测 */
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quiz';
+  d.innerHTML='<h3>📝 读后小测 · 思维自检工具包</h3><div class="gsub">10 题，检验你的认知行为学分。</div>';
+  d.innerHTML+='<div class="quiz-prog" id="quizProg"></div><div id="quizWrap"></div><div class="fb" id="quizFb"></div>';
+  var qi=0,score=0;
+  setTimeout(function(){
+    render();
+    function render(){
+      var prog=document.getElementById('quizProg');prog.innerHTML='';
+      QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
+      var w=document.getElementById('quizWrap');w.innerHTML='';
+      if(qi>=QUIZ.length){
+        var pct=Math.round(score/QUIZ.length*100);
+        w.innerHTML='<div style="font-size:18px;color:var(--teal);text-align:center">🎓 测验完成：'+score+' / '+QUIZ.length+'（'+pct+'%）</div>';
+        document.getElementById('quizFb').innerHTML=pct>=80?'<span class="fb good">🏆 认知行为满分！现在，去重写一个让你难受的想法吧。</span>':pct>=50?'<span class="fb">不错的开始，回看免费章节巩固知识点。</span>':'<span class="fb">建议再读一遍第2章 ABC 模型和第4章反驳训练。</span>';
+        addPoints(score>=8?10:5,'完成读后小测');badge('思维改变者','🧠');track('game',{g:'quiz',score:score,total:QUIZ.length});
+        return;
+      }
+      var cur=QUIZ[qi];
+      var qd=document.createElement('div');qd.className='desc';qd.textContent='第'+(qi+1)+'题：'+cur.q;
+      w.appendChild(qd);
+      cur.o.forEach(function(t,oi){
+        var b=document.createElement('button');b.className='opt';b.textContent=t;
+        b.onclick=function(){
+          w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          if(oi===cur.a){b.className='opt ok';score++;}
+          else{b.className='opt no';document.getElementById('quizFb').innerHTML='<span class="fb bad">正确答案：'+cur.o[cur.a]+'</span>';}
+          qi++;setTimeout(render,900);
+        };
+        w.appendChild(b);
+      });
+    }
+  },0);
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name])return;BADGES[name]=1;saveBadges();
+  toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var list=[['🔤','ABC 拆解师'],['🏋️','CBT 学徒'],['🕳️','陷阱猎人'],['⚖️','思维辩手'],['🧪','实验科学家'],['⛰️','弹性思维者'],['🌋','火山冷却师'],['😰','恐惧攀登者'],['🌬','呼吸大师'],['🌤️','行动激活者'],['🪞','自尊建筑师'],['🧠','思维改变者']];
+  var host=document.getElementById('badgesHost');
+  if(!host){host=document.createElement('div');host.id='badgesHost';host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';document.getElementById('chapters').appendChild(host);}
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  list.forEach(function(b){
+    var on=BADGES[b[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+(on?b[0]:'🔒')+'</span>'+b[1];
+    bd.appendChild(el);
+  });
+}
+
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('codeBox').classList.add('hidden');document.getElementById('unlockOk').textContent='';}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function verifyCode(){
+  var c=(document.getElementById('codeInput').value||'').trim();
+  if(c.length<6){document.getElementById('unlockHint').textContent='激活码格式不正确（至少 6 位）。';return;}
+  if(hashOk(c)){
+    document.getElementById('unlockOk').textContent='✅ 激活成功！全书已解锁。';
+    track('unlock',{method:'code'});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='激活码无效。提示：可联系平台获取；完成互动任务攒积分也能解锁。';
+  }
+}
+function hashOk(c){
+  if(c.toUpperCase()==='325FA149')return true;
+  if(c==='XQ2026')return true;
+  return false;
+}
+function unlockByPoints(){
+  if(POINTS>=50){
+    setPoints(POINTS-50);
+    document.getElementById('unlockOk').textContent='✅ 积分兑换成功！已扣除 50 积分，全书解锁。';
+    track('unlock',{method:'points',cost:50});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='积分不足（当前 '+POINTS+' / 50）。完成免费章节的互动任务可快速攒分。';
+  }
+}
+function adminCheck(){
+  var pw=prompt('管理员口令：');
+  if(pw&&hashOk(pw.toUpperCase())){
+    localStorage.setItem(LSKEY_ADMIN,'1');
+    document.getElementById('unlockOk').textContent='✅ 管理员验证通过，全书解锁。';
+    unlockAll();
+  }else if(pw){document.getElementById('unlockHint').textContent='口令错误。';}
+}
+
+function goRead(){
+  var first=document.getElementById('chap-0');
+  if(first){first.scrollIntoView({behavior:'smooth'});}
+  track('read',{action:'start'});
+}
+function goTo(i){
+  var el=document.getElementById('chap-'+i);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+function playBgm(){
+  var a=document.getElementById('bgmEl');
+  if(!a){a=document.createElement('audio');a.id='bgmEl';a.src='bgm.wav';a.loop=true;a.volume=.4;document.body.appendChild(a);}
+  if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';track('audio',{src:'bgm.wav'});}
+  else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}
+}
+
+(function init(){
+  var btn=document.getElementById('btnUnlock');
+  btn.onclick=function(){UNLOCKED?toast('📖 全书已解锁'):openUnlock();};
+  document.getElementById('points').textContent=POINTS;
+  renderToc();renderChapters();
+  track('open',{});
+  var t0=Date.now();
+  window.addEventListener('beforeunload',function(){
+    var sec=Math.round((Date.now()-t0)/1000);
+    if(sec>=5){track('read',{action:'leave',sec:sec});}
+  });
+})();
+</script>
+</body>
+</html>
