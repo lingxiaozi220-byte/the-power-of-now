@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>了不起的我 · 陈海贤 多媒体书 | 熙祺智书</title>
+<style>
+  :root{
+    --bg:#16110b; --bg2:#241b10; --card:#201710; --line:#4a3820;
+    --tx:#fbf3e6; --sub:#d9c9ad; --dim:#a08a68;
+    --gold:#ffb84d; --orange:#ff7a3d; --teal:#58d6a8; --green:#a4e8a0; --sky:#7cc8ff;
+    --red:#ff8a7a; --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:linear-gradient(180deg,#120d07 0%,#241b10 45%,#16110b 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.7;overflow-x:hidden}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
+  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(255,184,77,.09),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(88,214,168,.06),transparent 60%);animation:pulse 6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(18,13,7,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
+  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
+  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
+  .pill b{color:var(--gold)}
+  .btn{background:linear-gradient(135deg,#ffb84d,#ff7a3d);color:#22160a;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,184,77,.22)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
+  .btn.ghost b{color:var(--gold)}
+  .btn.sm{padding:4px 12px;font-size:13px}
+  .cover{text-align:center;padding:70px 12px 30px}
+  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
+  .cover h1{font-size:clamp(28px,6.5vw,42px);margin:14px 0 6px;color:var(--gold);letter-spacing:8px}
+  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
+  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
+  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:620px;margin-left:auto;margin-right:auto}
+  .cover .lead b{color:var(--gold)}
+  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
+  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
+  .toc-item:last-child{border-bottom:none}
+  .toc-item:hover{background:rgba(255,184,77,.08)}
+  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#332614;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
+  .toc-item .tt{flex:1;font-size:15px}
+  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
+  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(164,232,160,.4);border-radius:999px;padding:2px 8px}
+  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,138,122,.4);border-radius:999px;padding:2px 8px}
+  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
+  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+  .chap h2{font-size:22px;color:var(--gold);margin-bottom:10px}
+  .chap .cnt{font-size:15.5px;color:var(--tx)}
+  .chap .cnt p{margin:8px 0}
+  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(255,184,77,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
+  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
+  .chapter-lock{position:relative}
+  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,17,11,0),rgba(22,17,11,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
+  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
+  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
+  .media-block{background:#1a130a;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .media-block audio{width:100%;height:38px}
+  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
+  .game{background:linear-gradient(160deg,#332614,#201710);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
+  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
+  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
+  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt.ok{border-color:var(--green);background:rgba(164,232,160,.1)}
+  .opt.no{border-color:var(--red);background:rgba(255,138,122,.08)}
+  .opt:disabled{cursor:default;opacity:.85}
+  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
+  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
+  .bar{height:10px;background:#1a130a;border-radius:999px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ffb84d,#58d6a8);border-radius:999px;transition:width .5s}
+  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
+  .trash .item:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
+  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
+  .pair.sel{border-color:var(--gold);background:rgba(255,184,77,.12)}
+  .pair.matched{border-color:var(--green);background:rgba(164,232,160,.12);cursor:default}
+  .kick{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
+  .kick button.done{border-color:var(--green);background:rgba(164,232,160,.12);color:var(--green)}
+  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
+  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#1a130a}
+  .quiz-prog i.done{background:var(--green)}
+  .quiz-prog i.cur{background:var(--gold)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .badge{width:74px;text-align:center;padding:10px 4px;background:#1a130a;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
+  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,184,77,.08)}
+  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(10,7,3,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:linear-gradient(160deg,#332614,#201710);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
+  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#120d07;color:var(--tx);font-size:15px;margin:8px 0}
+  .modal-card .row{display:flex;gap:8px;margin:8px 0}
+  .modal-card .row .btn{flex:1}
+  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
+  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
+  .toast.show{opacity:1}
+  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
+  .tip{background:rgba(255,184,77,.07);border:1px solid rgba(255,184,77,.25);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
+  .lantern{width:90px;height:110px;margin:10px auto;position:relative}
+  .lantern .body{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#ffd98a,#ff9d3d 70%);border-radius:40% 40% 45% 45%;box-shadow:0 0 40px rgba(255,180,90,.7)}
+  .lantern .top{position:absolute;left:15px;right:15px;top:-6px;height:14px;background:#8a5a24;border-radius:6px}
+  .lantern .glow{position:absolute;inset:-16px;background:radial-gradient(circle,rgba(255,200,110,.35),transparent 70%);animation:pulse 2s ease-in-out infinite}
+  .hidden{display:none!important}
+  @media(max-width:600px){.kick{grid-template-columns:repeat(3,1fr)}.pair-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="pulse-bg"></div>
+<div class="topbar">
+  <div class="brand">🌅 了不起的我<small>陈海贤</small></div>
+  <div class="tb-right">
+    <span class="pill">⚡ <b id="points">10</b> 分</span>
+    <span class="pill" id="moodPill">🎧 音乐</span>
+    <button class="btn ghost sm" id="btnUnlock">🔓 解锁</button>
+    <button class="btn sm" id="btnRead" onclick="goRead()">开始阅读 →</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cover" id="sec-cover">
+    <img class="cover-art" src="art_cover.jpg" alt="封面">
+    <div class="en">THE REMARKABLE ME · 陈海贤</div>
+    <h1>了不起的我</h1>
+    <div class="tag">
+      <span>陈海贤 著</span><span>自我发展心理学</span><span>浙大心理学博士</span><span>豆瓣 9.0</span>
+    </div>
+    <p class="lead">你是不是也有这样的时刻：明明想改变，却总也动不了？陈海贤博士告诉你：改变从来不是因为懒，而是你心里有一套<b>心理免疫系统</b>在保护旧的自己。这本书不讲大道理，只给方法——<b>小步子原理、课题分离、控制两分法</b>。它只帮你做一件事：成为那个一直想成为的、<b>了不起的自己</b>。</p>
+    <div class="cta-row">
+      <button class="btn" onclick="goRead()">🚶 迈出第一步</button>
+      <button class="btn ghost" onclick="playBgm()">🎵 成长之音</button>
+    </div>
+    <div class="tip">🎮 本书包含 12 个互动体验：改变自测、心理免疫系统、舒适区识别、奇迹提问、看脚下小步子、思维切换、应该思维清理、课题分离、控制两分法、转折期渡河、人生地图、读后小测……读完你会明白：<b>改变不是一场爆发，而是一小步一小步的积累。</b></div>
+  </div>
+
+  <div class="toc" id="sec-toc">
+    <h2>📖 目 录</h2>
+    <div id="tocList"></div>
+    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 10 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
+  </div>
+
+  <div id="chapters"></div>
+
+  <div class="footer">🌅 了不起的我 · 熙祺智书出品<br>《了不起的我：自我发展的心理学》陈海贤 · 多媒体互动版 · 素材仅供学习交流</div>
+</div>
+
+<div class="modal" id="modalUnlock">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3>🔓 解锁全书</h3>
+    <p style="font-size:14px;color:var(--sub)">后 4 节为付费内容，支持三种方式解锁：</p>
+    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
+    <div id="codeBox" class="hidden">
+      <input id="codeInput" placeholder="输入 8 位激活码">
+      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
+    </div>
+    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书（见提示）。</div>
+    <div class="ok-msg" id="unlockOk"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOOK='remarkable';
+var LSKEY_UNLOCK=BOOK+'_unlock';
+var LSKEY_ADMIN='xz_admin';
+var LSKEY_POINTS='xz_points';
+var LSKEY_BADGES=BOOK+'_badges';
+var LSKEY_DONE=BOOK+'_done';
+var TOTAL=10, FREE=6;
+var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
+var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
+var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
+var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
+
+function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
+function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
+function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
+function markDone(id){DONE[id]=1;localStorage.setItem(LSKEY_DONE,JSON.stringify(DONE));}
+function isDone(id){return !!DONE[id];}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
+function track(ev,extra){
+  try{
+    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
+    if(extra){for(var k in extra){d[k]=extra[k];}}
+    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
+    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
+  }catch(e){}
+}
+function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
+
+var CHAPS=[
+ {n:'序',t:'关于改变，你一直都有选择',free:1,icon:'🚪',art:'art_choice.jpg',cap:'「关于改变，你其实一直都有选择。」——这是这本书的起点。',
+  p:[['很多人的困境是：想改变，又觉得改变不了。'],
+     ['但陈海贤说：','「关于改变，你其实一直都有选择。」','当你认为自己没得选时，这个想法本身就是一种选择。'],
+     ['改变不是意志力的问题，','而是方法的问题。','这本书要做的，就是给你一套系统的改变方法。'],
+     ['「改变需要勇气，但更需要方法。','有了方法，勇气才会持续。」']]},
+ {n:'第1章',t:'心理舒适区 · 熟悉的应对剧本',free:1,icon:'🛋️',art:'art_comfort.jpg',cap:'真正的心理舒适区不是舒适的环境，而是熟悉的应对问题的方式。',
+  p:[['我们总以为心理舒适区就是「赖在床上刷手机、吃熟悉的外卖」。','陈海贤说：错。'],
+     ['「真正的心理舒适区，不是熟悉的环境，','而是我们熟悉的应对环境的固有方式。」'],
+     ['就像《肖申克的救赎》里的老布：','在监狱里活得像「知名校友」，','出狱后反而活不下去——因为他的应对方式失效了。'],
+     ['所以，','「改变的本质，是改变你的应对方式，','而不是换一个环境。」']]},
+ {n:'第2章',t:'心理免疫系统 · 改变的敌人',free:1,icon:'🛡️',art:'art_comfort.jpg',cap:'你的心理免疫系统，会在你改变时制造焦虑，把你劝回旧模式。',
+  p:[['为什么你总想改变，却总回到原地？'],
+     ['哈佛心理学家凯根发现：','人的心理有一套免疫系统，','会排斥新的行为方式，以维持心理结构的平衡。'],
+     ['「心理免疫系统的本质，是一套焦虑控制系统。」','当你用新方式行事，它会让你感到焦虑；','为了避免焦虑，你就用回了老办法。'],
+     ['所以你不是没毅力，','是你每一次想改变，','都在跟一套「保护你」的程序对抗。','看清它，是改变的第一步。']]},
+ {n:'第3章',t:'小步子原理 · 看脚下',free:1,icon:'🏮',art:'art_step.jpg',cap:'小步子原理的重点不是结果，而是此时此地的行动。',
+  p:[['黑夜里，小和尚问老和尚：天这么黑，路这么远，我们怎么走回去？'],
+     ['老和尚看了他很久，说了三个字：','「看脚下。」'],
+     ['「天是否黑、路是否远、有没有怪兽，','都是我们无法控制的。','我们唯一能控制的，是下一步脚踩在哪里才稳当。」'],
+     ['小步子原理：','在改变的路上迈出小小的一步，','获得一个小小的成功，','为下一步提供心理动力。','「不要想未来太过巨大的任务，','专注于眼前能做的一小步，并把它做好。」']]},
+ {n:'第4章',t:'奇迹提问 · 倒推第一步',free:1,icon:'🔮',art:'art_step.jpg',cap:'如果奇迹发生，问题解决了，你会看到哪些不同？从那里倒推回第一步。',
+  p:[['很多时候我们不是不知道该怎么改变，','而是被巨大的目标吓住了。'],
+     ['陈海贤教你「奇迹提问」：','假设明天醒来，你困扰的问题奇迹般地解决了，','你会看到哪些不同？'],
+     ['把这些「不同」写下来，','然后倒推：','为了这个不同，现在你能做的最小的一步是什么？'],
+     ['「用奇迹提问，找到第一个小小的改变，','并让它实现。','改变像多米诺骨牌，','最重要的是找到第一块，并把它推倒。」']]},
+ {n:'第5章',t:'僵固思维 vs 成长思维',free:1,icon:'🧱',art:'art_mind.jpg',cap:'怎么看待能力，比能力本身更重要。',
+  p:[['能力不能预测一切。','「有时候，怎么看待能力，要比能力本身更重要。」'],
+     ['僵固型思维认为：能力是固定的。','所以害怕失败，因为失败意味着「我很笨」。','遇到挑战，第一反应是逃避。'],
+     ['成长型思维认为：能力可以提升。','所以拥抱挑战，把失败看作学习的机会。'],
+     ['「僵固的人追求证明自己，','成长的人追求提升自己。','一个指向过去，一个指向未来。」']]},
+ {n:'第6章',t:'应该思维 · 放下重担',free:0,icon:'⛰️',art:'art_should.jpg',cap:'「我应该怎样」是别人的声音，「我想要什么」才是你的声音。',
+  p:[['「我应该更努力、应该更成功、应该被所有人喜欢……」','这些「应该」像巨石，压得你喘不过气。'],
+     ['应该思维的本质，','是「用别人的标准，来要求自己」。','它的反面，是创造性思维：','不是「我应该」，而是「我想要」。'],
+     ['「先承认现实就是如此，','我们才能停止与事实的无效纠缠，','把精力用在「我现在能做什么」上。」'],
+     ['从「应该」走向「想要」，','是你重新接管人生的开始。']]},
+ {n:'第7章',t:'课题分离 · 这是谁的课题',free:0,icon:'➗',art:'art_boundary.jpg',cap:'分清「我的事」和「别人的事」，是人际关系中最重要的一课。',
+  p:[['阿德勒心理学有一个经典概念：课题分离。'],
+     ['「人际烦恼的根源，','是干涉别人的课题，','或者让别人干涉自己的课题。」'],
+     ['怎么判断这是谁的课题？','很简单：','「这个选择带来的结果，最终由谁来承担？」'],
+     ['别人的评价，是别人的课题；','我的努力，是我的课题。','把别人的课题还给别人，','你才能轻松地走自己的路。']]},
+ {n:'第8章',t:'控制两分法 · 努力与放下',free:0,icon:'⚖️',art:'art_boundary.jpg',cap:'努力控制你能控制的事，接受你不能控制的事。',
+  p:[['陈海贤把它总结成「控制的两分法」：'],
+     ['「第一，努力控制你能控制的事；','第二，不要妄图控制你无法控制的事。」'],
+     ['考试、面试、表白、创业……','结果都有一部分不在你手里。'],
+     ['但你能控制：','你的准备、你的努力、你的专注。','「把精力放在你能改变的地方，','接受你不能改变的。','这就是成年人的成熟。」']]},
+ {n:'第9章',t:'转折期 · 结束、迷茫与重生',free:0,icon:'⛵',art:'art_turn.jpg',cap:'人生转折必然经历三个阶段：结束、迷茫、重生。停滞只是转弯。',
+  p:[['人生充满转折：毕业、离职、失恋、搬家、换城市……'],
+     ['陈海贤说：转折必然经历三个阶段：','结束、迷茫、重生。'],
+     ['「结束」意味着要离开熟悉的环境和身份；','「迷茫」是新旧自我交替时的混沌；','「重生」则带着新的自我重新出发。'],
+     ['「低谷不是坠落，转折是换跑道。','停滞只是转弯，弯路皆有意义。」'],
+     ['给自己时间，','允许迷茫，','你会发现自己已经渡过河，','站在新的岸边。']]},
+ {n:'第10章',t:'人生地图 · 绘制你的一生',free:0,icon:'🗺️',art:'art_map.jpg',cap:'人生的每个阶段都有自己的发展任务。理解地图，你才能走好当下的路。',
+  p:[['陈海贤在最后一章，展开了一张人生地图：'],
+     ['少年期的任务是学习与探索，','青年期的任务是建立亲密与事业，','中年期的任务是创造与传承，','老年期的任务是整合与释然。'],
+     ['每个阶段都有它的课题，','也有它的礼物。'],
+     ['「理解自己处在人生地图的哪个位置，','接纳这个阶段的任务，','你就不会总和自己较劲。」'],
+     ['最终你会发现：','「不是变得完美，才叫了不起；','而是无论处于什么阶段，','都愿意继续成长、继续向前，','那才叫了不起。」']]}
+];
+
+var QUIZ=[
+ {q:'《了不起的我》的作者是？',o:['陈海贤','武志红','曾奇峰'],a:0},
+ {q:'真正的心理舒适区是指？',o:['舒适的环境','熟悉的应对问题的方式','有钱有闲'],a:1},
+ {q:'为什么你总想改变却总回到原地？',o:['心理免疫系统保护旧模式','意志力太差','太懒'],a:0},
+ {q:'小步子原理的重点是？',o:['此时此地的行动','最终的成功','完美的计划'],a:0},
+ {q:'老和尚回答小和尚的三个字是？',o:['看脚下','向前走','莫回头'],a:0},
+ {q:'僵固型思维认为能力是？',o:['固定的','可以提升的','天生的'],a:0},
+ {q:'应该思维的本质是？',o:['用别人的标准要求自己','追求完美','自律'],a:0},
+ {q:'判断课题归属的方法是？',o:['结果由谁承担','谁先开口','谁更着急'],a:0},
+ {q:'控制的两分法是？',o:['控制能控制的，接受不能控制的','什么都要控制','放弃控制'],a:0},
+ {q:'人生转折必然经历的三个阶段是？',o:['结束、迷茫、重生','起点、过程、终点','开心、难过、平静'],a:0}
+];
+
+function renderToc(){
+  var el=document.getElementById('tocList');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='toc-item';
+    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 自我进化</small>')+'</span>';
+    var st=document.createElement('span');
+    if(c.free||UNLOCKED){st.className='st';st.textContent='可读';d.onclick=function(){goTo(i);};}
+    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
+    d.appendChild(st);
+    el.appendChild(d);
+  });
+}
+function renderChapters(){
+  var el=document.getElementById('chapters');el.innerHTML='';
+  CHAPS.forEach(function(c,i){
+    var d=document.createElement('div');d.className='chap';
+    d.id='chap-'+i;
+    d.innerHTML='<div class="k">'+c.n+' · REMARKABLE</div><h2>'+c.t+'</h2>';
+    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
+    else{
+      d.className+=' chapter-lock';
+      d.appendChild(chapBodyPreview(c,i));
+      var veil=document.createElement('div');veil.className='lock-veil';
+      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
+      d.appendChild(veil);
+    }
+    el.appendChild(d);
+  });
+  renderBadges();
+}
+function chapBody(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
+  var pwrap=document.createElement('div');
+  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div>';
+  h.appendChild(pwrap);
+  h.appendChild(mediaFor(i));
+  return h;
+}
+function chapBodyPreview(c,i){
+  var h=document.createElement('div');
+  var ps='';c.p.forEach(function(para,pi){
+    ps+='<p>';
+    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
+    ps+='</p>';
+  });
+  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
+  return h;
+}
+function mediaFor(i){
+  var h=document.createElement('div');
+  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
+  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
+  h.appendChild(im);h.appendChild(cap);
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 关于改变，你一直都有选择'));}
+  if(i===3){h.appendChild(audioBlock('voice_step.wav','🎧 看脚下 · 小步子原理'));}
+  if(i===7){h.appendChild(audioBlock('voice_boundary.wav','🎧 课题分离 · 心理学练习'));}
+  if(i===9){
+    var vb=document.createElement('div');vb.className='media-block';
+    vb.innerHTML='<div class="lbl">📺 讲书 · 直面自我发展的挑战，发掘了不起的内心潜力</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1vwiuBzE1t&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
+    h.appendChild(vb);
+  }
+  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
+  return h;
+}
+function audioBlock(src,lbl){
+  var d=document.createElement('div');d.className='media-block';
+  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
+  return d;
+}
+
+function gameFor(i){
+  var out=[];
+  if(i===0){out.push(gameSelfTest());}
+  if(i===1){out.push(gameComfort());}
+  if(i===2){out.push(gameImmune());}
+  if(i===3){out.push(gameStep());}
+  if(i===4){out.push(gameMiracle());}
+  if(i===5){out.push(gameMind());}
+  if(i===6){out.push(gameShould());}
+  if(i===7){out.push(gameBoundary());}
+  if(i===8){out.push(gameControl());}
+  if(i===9){out.push(gameTurn());out.push(gameMap());out.push(gameQuiz());}
+  return out;
+}
+
+/* 1 改变自测 */
+function gameSelfTest(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-selftest';
+  d.innerHTML='<h3>🚪 改变自测</h3><div class="gsub">陈海贤说：改变需要先看清自己。测测你卡在哪一步。</div>';
+  d.innerHTML+='<div id="stWrap"></div><div class="fb" id="stFb"></div>';
+  var qs=[
+    {q:'你想改变的事，卡在哪一步？',o:['根本不知道怎么做','知道但不行动','在行动但坚持不了'],w:1},
+    {q:'提到改变，你的第一反应是？',o:['太大了，做不到','先试试','马上开始'],w:2},
+    {q:'你觉得自己「没得选」吗？',o:['经常觉得没得选','有时','很少'],w:2},
+    {q:'你上一次「迈出一小步」是什么时候？',o:['很久以前','上周','今天'],w:2}
+  ];
+  var qi=0,score=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('stWrap');
+    if(qi>=qs.length){
+      var level = score>=5?'🔴 你被「大目标」和「没得选」卡住了。这本书专门治这个。':score>=3?'🟡 你有改变的意愿，但缺一个「看脚下」的方法。':'🟢 你的状态很好！往下读，把小步子原理变成习惯。';
+      w.innerHTML='<div style="font-size:16px;color:var(--gold)">评估完成 · 改变卡点 '+score+'/8<br><span style="color:var(--tx);font-size:14px">'+level+'</span></div>';
+      document.getElementById('stFb').innerHTML='<span class="fb good">记住：你一直都有选择。接下来，我们一步步解锁。</span>';
+      addPoints(4,'完成改变自测');badge('改变侦探','🚪');track('game',{g:'selftest',score:score});
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        b.className='opt ok';
+        if(oi===2)score+=cur.w;
+        qi++;setTimeout(renderQ,700);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 2 舒适区识别 */
+function gameComfort(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-comfort';
+  d.innerHTML='<h3>🛋️ 舒适区识别</h3><div class="gsub">判断下面哪些是「舒适环境」，哪些是「熟悉的应对方式」——后者才是真正的心理舒适区。</div>';
+  d.innerHTML+='<div class="trash" id="coWrap"></div><div class="fb" id="coFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('coWrap');
+    var items=[
+      {t:'🛏 赖床刷手机',s:'这是舒适环境，不是心理舒适区。'},
+      {t:'😤 习惯性抱怨',s:'熟悉的应对方式——这是真正的心理舒适区。'},
+      {t:'🚫 遇到困难就回避',s:'熟悉的应对方式——这是真正的心理舒适区。'},
+      {t:'🏠 住着舒服的房子',s:'这是舒适环境，不是心理舒适区。'},
+      {t:'🙅 总说「我做不到」',s:'熟悉的应对方式——这是真正的心理舒适区。'},
+      {t:'🍜 吃熟悉的外卖',s:'这只是习惯，本身无害。'}
+    ];
+    var n=0,right=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="coS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('coS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        if(it.s.indexOf('真正的心理舒适区')>=0)right++;
+        document.getElementById('coFb').textContent='已识别 '+n+' / '+items.length;
+        if(n===items.length){
+          document.getElementById('coFb').innerHTML='<span class="fb good">✅ 识别正确 '+right+' / 3。心理舒适区=熟悉的应对方式。看清它，才能离开它。</span>';
+          addPoints(6,'识别心理舒适区');badge('舒适区侦探','🛋️');track('game',{g:'comfort',score:right});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 3 心理免疫系统 */
+function gameImmune(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-immune';
+  d.innerHTML='<h3>🛡️ 心理免疫系统</h3><div class="gsub">识别那些「保护你」却在阻止你的旧模式，逐一解锁。</div>';
+  d.innerHTML+='<div class="trash" id="imWrap"></div><div class="fb" id="imFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('imWrap');
+    var items=[
+      {t:'📵 拖延',s:'拖延在保护你：避免失败的可能。'},
+      {t:'🙈 回避',s:'回避在保护你：不用面对不确定。'},
+      {t:'💬 找借口',s:'借口在保护你：失败了有台阶下。'},
+      {t:'🧊 冷漠',s:'冷漠在保护你：不会被拒绝伤害。'},
+      {t:'⏸ 完美主义',s:'完美主义在保护你：不完美就不开始。'},
+      {t:'🚪 待在舒适区',s:'它保护你的安全，也挡住了成长。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="imS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('imS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('imFb').textContent='已看清 '+n+' / '+items.length+' 个免疫机制';
+        if(n===items.length){
+          document.getElementById('imFb').innerHTML='<span class="fb good">🛡️ 看清是改变的第一步。这些模式曾保护过你，现在，你已经有能力保护自己了。</span>';
+          addPoints(6,'看清免疫系统');badge('免疫破解师','🛡️');track('game',{g:'immune',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 4 看脚下 */
+function gameStep(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-step';
+  d.innerHTML='<h3>🏮 看脚下 · 小步子</h3><div class="gsub">黑夜里，你唯一能控制的是下一步踩在哪里。走完这 7 步，就是一段路。</div>';
+  d.innerHTML+='<div class="lantern"><div class="glow"></div><div class="top"></div><div class="body"></div></div>';
+  d.innerHTML+='<div class="bar"><i id="stBar" style="width:0%"></i></div>';
+  d.innerHTML+='<div id="stpWrap" style="margin:10px 0"></div><div class="fb" id="stpFb">把大目标放一边，先走眼前这一步。</div>';
+  var steps=[
+    {t:'写下你的大目标',d:'例：想读完一本书 / 想换工作 / 想健身。'},
+    {t:'问：第一步是什么？',d:'不是整个计划，只是「今天」能做的第一件小事。'},
+    {t:'把第一步缩到最小',d:'小到不可能失败：翻开第一页 / 走 5 分钟。'},
+    {t:'今天就做它',d:'不等到明天，不等到有状态。'},
+    {t:'庆祝这个小成功',d:'给自己一个反馈：好样的，我做到了。'},
+    {t:'写下第二步',d:'站在已完成的第一步上，看下一步。'},
+    {t:'继续，别回头',d:'只看脚下，一步步走。'}
+  ];
+  var cur=0;
+  setTimeout(function(){renderStep();},0);
+  function renderStep(){
+    var w=document.getElementById('stpWrap');
+    if(cur>=steps.length){
+      document.getElementById('stBar').style.width='100%';
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🏮 7 步走完！灯笼照亮下一步，绰绰有余。现在，去做那个最小的一步。</div>';
+      document.getElementById('stpFb').innerHTML='<span class="fb good">改变像多米诺骨牌，找到第一块，推倒它。</span>';
+      addPoints(6,'完成看脚下练习');badge('小步子行者','🏮');track('game',{g:'step',score:steps.length});
+      return;
+    }
+    var s=steps[cur];
+    w.innerHTML='<div class="desc">'+(cur+1)+' / '+steps.length+' · '+s.t+'</div><div style="font-size:14px;color:var(--sub);margin-bottom:12px">'+s.d+'</div>';
+    var b=document.createElement('button');b.className='btn sm';b.textContent='这一步，我走';
+    b.onclick=function(){
+      document.getElementById('stBar').style.width=Math.round((cur+1)/steps.length*100)+'%';
+      cur++;renderStep();
+    };
+    w.appendChild(b);
+  }
+  return d;
+}
+
+/* 5 奇迹提问 */
+function gameMiracle(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-miracle';
+  d.innerHTML='<h3>🔮 奇迹提问</h3><div class="gsub">如果奇迹发生，你的问题解决了，你会看到哪些不同？倒推出今天的第一步。</div>';
+  d.innerHTML+='<div id="miWrap"></div><div class="fb" id="miFb"></div>';
+  var qs=[
+    {q:'假设明天醒来，你的问题奇迹般地解决了，你最可能看到的画面是？',o:['自己轻松地开始新的一天','问题还在','别人替你解决了'],a:0},
+    {q:'为了让这个画面成真，今天能做的最小一步是？',o:['等到有灵感再说','做一件 5 分钟的小事','列一个完美计划'],a:1},
+    {q:'奇迹提问的重点是？',o:['让行动发生','想象奇迹','等奇迹'],a:0}
+  ];
+  var qi=0,pts=0;
+  setTimeout(function(){renderQ();},0);
+  function renderQ(){
+    var w=document.getElementById('miWrap');
+    if(qi>=qs.length){
+      if(pts===3){addPoints(5,'奇迹提问全对');badge('奇迹规划师','🔮');}else{addPoints(2,'完成奇迹提问');}
+      track('game',{g:'miracle',score:pts});
+      w.innerHTML='<div style="font-size:15px;color:var(--gold)">🎉 完成：'+pts+' / 3 全对<br><span style="color:var(--sub);font-size:13px">从现在起，遇到难题就问：现在能做的最小一步是什么？</span></div>';
+      return;
+    }
+    var cur=qs[qi];
+    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
+    cur.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=function(){
+        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        if(oi===cur.a){b.className='opt ok';document.getElementById('miFb').innerHTML='<span class="fb good">✅ 对。</span>';pts++;}
+        else{b.className='opt no';document.getElementById('miFb').innerHTML='<span class="fb bad">❌ 正确答案：'+cur.o[cur.a]+'</span>';}
+        qi++;setTimeout(renderQ,1200);
+      };
+      w.appendChild(b);
+    });
+  }
+  return d;
+}
+
+/* 6 思维切换 */
+function gameMind(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-mind';
+  d.innerHTML='<h3>🧱 思维切换</h3><div class="gsub">把僵固的想法，翻译成成长的想法。</div>';
+  d.innerHTML+='<div class="pair-grid" id="mdGrid"></div><div class="fb" id="mdFb">已完成 0 / 5</div>';
+  var pairs=[
+    {q:'「我学不会这个」',a:'「我现在还没学会，但可以练」'},
+    {q:'「失败说明我很笨」',a:'「失败是学习的一部分」'},
+    {q:'「我不擅长当众讲话」',a:'「这是我可以提升的技能」'},
+    {q:'「我没什么天赋」',a:'「天赋可以靠努力培养」'},
+    {q:'「别人都比我强」',a:'「我只和昨天的自己比」'}
+  ];
+  var matched=0,sel=null,selEl=null;
+  setTimeout(function(){
+    var grid=document.getElementById('mdGrid');
+    pairs.forEach(function(p,pi){
+      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
+      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
+      qb.dataset.pi=pi;ab.dataset.pi=pi;
+      qb.onclick=function(){pick(pi,qb);};
+      ab.onclick=function(){pick(pi,ab);};
+      grid.appendChild(qb);grid.appendChild(ab);
+    });
+    function pick(pi,el){
+      if(el.classList.contains('matched'))return;
+      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
+      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
+      selEl.classList.remove('sel');
+      var qHalf=selEl===grid.children[sel*2];
+      var aHalf=el===grid.children[pi*2+1];
+      if(sel===pi&&qHalf!==aHalf){
+        var q=grid.children[pi*2],a=grid.children[pi*2+1];
+        q.className='pair matched';a.className='pair matched';
+        matched++;
+        document.getElementById('mdFb').innerHTML='已完成 '+matched+' / '+pairs.length;
+        if(matched===pairs.length){
+          document.getElementById('mdFb').innerHTML='<span class="fb good">🏆 思维升级完成！成长的人追求提升自己，而不是证明自己。</span>';
+          addPoints(8,'思维切换完成');badge('思维进化者','🧱');track('game',{g:'mind',score:pairs.length});
+        }
+      }else{document.getElementById('mdFb').innerHTML='<span class="fb bad">配错了，再试试。</span>';}
+      sel=null;selEl=null;
+    }
+  },0);
+  return d;
+}
+
+/* 7 应该思维清理 */
+function gameShould(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-should';
+  d.innerHTML='<h3>⛰️ 应该思维清理</h3><div class="gsub">放下「我应该」，听见「我想要」。逐个放下压着你的「应该」。</div>';
+  d.innerHTML+='<div class="trash" id="shWrap"></div><div class="fb" id="shFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('shWrap');
+    var items=[
+      {t:'😤 我应该被所有人喜欢',s:'换成：我喜欢自己，就够了。'},
+      {t:'🏆 我应该永远成功',s:'换成：失败是学习，我允许自己试错。'},
+      {t:'⏰ 我应该完美安排每一天',s:'换成：完成比完美更重要。'},
+      {t:'💰 我应该让所有人满意',s:'换成：我只为我的课题负责。'},
+      {t:'🚀 我应该立刻变优秀',s:'换成：我按自己的节奏成长。'},
+      {t:'🧘 我应该不生气不脆弱',s:'换成：情绪是真实的，我接纳它。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="shS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('shS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('shFb').textContent='已放下 '+n+' / '+items.length+' 块「应该」巨石';
+        if(n===items.length){
+          document.getElementById('shFb').innerHTML='<span class="fb good">⛰️ 巨石放下了！从「应该」走向「想要」，你重新接管了自己的人生。</span>';
+          addPoints(6,'放下应该思维');badge('卸石人','⛰️');track('game',{g:'should',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 8 课题分离 */
+function gameBoundary(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-boundary';
+  d.innerHTML='<h3>➗ 课题分离</h3><div class="gsub">判断这是谁的课题：结果由谁承担，就是谁的课题。</div>';
+  d.innerHTML+='<div class="trash" id="bdWrap"></div><div class="fb" id="bdFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('bdWrap');
+    var items=[
+      {t:'🙋 我的努力',s:'我的课题——我全权负责。'},
+      {t:'🗣 别人的评价',s:'别人的课题——还给他们。'},
+      {t:'💼 我的工作质量',s:'我的课题——我认真完成。'},
+      {t:'🌧 天气好坏',s:'老天爷的课题——无法控制。'},
+      {t:'😢 别人是否喜欢我',s:'别人的课题——还给他们。'},
+      {t:'📚 我的学习进度',s:'我的课题——我推进。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="bdS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('bdS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('bdFb').textContent='已分清 '+n+' / '+items.length+' 个课题';
+        if(n===items.length){
+          document.getElementById('bdFb').innerHTML='<span class="fb good">➗ 课题分离完成！管好自己的课题，把别人的课题还给别人。</span>';
+          addPoints(6,'课题分离完成');badge('边界守护者','➗');track('game',{g:'boundary',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 9 控制两分法 */
+function gameControl(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-control';
+  d.innerHTML='<h3>⚖️ 控制两分法</h3><div class="gsub">把一件事拆成两栏：能控制的 vs 不能控制的。专注前者。</div>';
+  d.innerHTML+='<div class="trash" id="ctWrap"></div><div class="fb" id="ctFb">把下面的卡片分到正确的栏里：点击「能控制」或「不能控制」。</div>';
+  setTimeout(function(){
+    var w=document.getElementById('ctWrap');
+    var items=[
+      {t:'📖 我的复习时间',a:1},
+      {t:'🎓 考试题目难度',a:0},
+      {t:'💪 我的努力程度',a:1},
+      {t:'🏁 比赛结果',a:0},
+      {t:'📝 我准备的充分度',a:1},
+      {t:'👥 对手的表现',a:0}
+    ];
+    var n=0,right=0;
+    items.forEach(function(it,ii){
+      var box=document.createElement('div');box.className='item';
+      box.innerHTML=it.t+'<br><small style="color:var(--dim);display:block;margin-top:6px">能控制 ✅ / 不能控制 ❌</small>';
+      box.style.minWidth='140px';
+      var done=false;
+      box.onclick=function(){
+        if(done)return;done=true;
+        n++;
+        var ans=window.prompt(it.t+'——输入 1（能控制）或 0（不能控制）：');
+        if(ans===String(it.a)){
+          right++;
+          box.className='item done';
+          box.innerHTML=it.t+'<br><small style="color:var(--green);display:block;margin-top:6px">✅ 正确</small>';
+        }else{
+          box.className='item done';
+          box.innerHTML=it.t+'<br><small style="color:var(--red);display:block;margin-top:6px">❌ 应为'+(it.a?'能控制':'不能控制')+'</small>';
+        }
+        document.getElementById('ctFb').textContent='已完成 '+n+' / '+items.length;
+        if(n===items.length){
+          document.getElementById('ctFb').innerHTML='<span class="fb good">⚖️ 判断完成：答对 '+right+' / '+items.length+'。记住——努力控制能控制的，接受不能控制的。</span>';
+          addPoints(6,'完成控制两分法');badge('控制大师','⚖️');track('game',{g:'control',score:right});
+        }
+      };
+      w.appendChild(box);
+    });
+  },0);
+  return d;
+}
+
+/* 10 转折期渡河 */
+function gameTurn(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-turn';
+  d.innerHTML='<h3>⛵ 转折期渡河</h3><div class="gsub">人生的转折像一条河：结束、迷茫、重生。划船渡过它。</div>';
+  d.innerHTML+='<div class="bar"><i id="tnBar" style="width:0%"></i></div>';
+  d.innerHTML+='<div style="text-align:center;display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="btn sm" onclick="turnRow()">⛵ 向前划</button></div>';
+  d.innerHTML+='<div class="fb" id="tnFb">你站在「结束」的岸边。</div>';
+  var stage=0;
+  window.turnRow=function(){
+    if(stage>=3)return;
+    stage++;
+    var msgs=[
+      '🏁 结束：你告别了旧的身份与环境。允许自己难过，这是正常的。',
+      '🌫 迷茫：新旧自我在交替，混沌是必经之路。别急着要答案。',
+      '🌅 重生：新的自我开始浮现。你带着全新的视角，重新出发。'
+    ];
+    document.getElementById('tnBar').style.width=Math.round(stage/3*100)+'%';
+    document.getElementById('tnFb').innerHTML='<span class="fb good">'+msgs[stage-1]+'</span>';
+    if(stage===3){
+      document.getElementById('tnFb').innerHTML='<span class="fb good">🌅 渡河完成！记住：低谷不是坠落，转折是换跑道。停滞只是转弯，弯路皆有意义。</span>';
+      addPoints(6,'渡过转折期');badge('渡河人','⛵');track('game',{g:'turn',stage:3});
+    }
+  };
+  return d;
+}
+
+/* 11 人生地图 */
+function gameMap(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-map';
+  d.innerHTML='<h3>🗺️ 人生地图</h3><div class="gsub">每个阶段都有自己的课题与礼物。点亮四个阶段，找到你的位置。</div>';
+  d.innerHTML+='<div class="trash" id="mpWrap"></div><div class="fb" id="mpFb"></div>';
+  setTimeout(function(){
+    var w=document.getElementById('mpWrap');
+    var items=[
+      {t:'🧒 少年期',s:'课题：学习与探索。礼物：好奇心。'},
+      {t:'🧑 青年期',s:'课题：亲密与事业。礼物：行动力。'},
+      {t:'👨 中年期',s:'课题：创造与传承。礼物：责任感。'},
+      {t:'👴 老年期',s:'课题：整合与释然。礼物：智慧。'}
+    ];
+    var n=0;
+    items.forEach(function(it,ii){
+      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="mpS'+ii+'">'+it.s+'</small>';
+      b.onclick=function(){
+        var s=document.getElementById('mpS'+ii);s.style.display='block';
+        b.className='item done';b.onclick=null;n++;
+        document.getElementById('mpFb').textContent='已点亮 '+n+' / '+items.length+' 个阶段';
+        if(n===items.length){
+          document.getElementById('mpFb').innerHTML='<span class="fb good">🗺️ 地图点亮！找到你所在的位置，接纳这个阶段的任务——每个阶段都值得好好活。</span>';
+          addPoints(6,'点亮人生地图');badge('地图绘制者','🗺️');track('game',{g:'map',score:items.length});
+        }
+      };
+      w.appendChild(b);
+    });
+  },0);
+  return d;
+}
+
+/* 12 读后小测 */
+function gameQuiz(){
+  var d=document.createElement('div');d.className='game';
+  d.id='g-quiz';
+  d.innerHTML='<h3>📝 读后小测 · 你开始改变了么？</h3><div class="gsub">10 题，检验你的自我发展学分。</div>';
+  d.innerHTML+='<div class="quiz-prog" id="quizProg"></div><div id="quizWrap"></div><div class="fb" id="quizFb"></div>';
+  var qi=0,score=0;
+  setTimeout(function(){
+    render();
+    function render(){
+      var prog=document.getElementById('quizProg');prog.innerHTML='';
+      QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
+      var w=document.getElementById('quizWrap');w.innerHTML='';
+      if(qi>=QUIZ.length){
+        var pct=Math.round(score/QUIZ.length*100);
+        w.innerHTML='<div style="font-size:18px;color:var(--gold);text-align:center">🎓 测验完成：'+score+' / '+QUIZ.length+'（'+pct+'%）</div>';
+        document.getElementById('quizFb').innerHTML=pct>=80?'<span class="fb good">🏆 自我发展满分！现在，去迈出你的第一小步吧。</span>':pct>=50?'<span class="fb">不错的开始，回看免费章节巩固知识点。</span>':'<span class="fb">建议再读一遍序章和第3章，理解「看脚下」的智慧。</span>';
+        addPoints(score>=8?10:5,'完成读后小测');badge('自我发展家','🌅');track('game',{g:'quiz',score:score,total:QUIZ.length});
+        return;
+      }
+      var cur=QUIZ[qi];
+      var qd=document.createElement('div');qd.className='desc';qd.textContent='第'+(qi+1)+'题：'+cur.q;
+      w.appendChild(qd);
+      cur.o.forEach(function(t,oi){
+        var b=document.createElement('button');b.className='opt';b.textContent=t;
+        b.onclick=function(){
+          w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          if(oi===cur.a){b.className='opt ok';score++;}
+          else{b.className='opt no';document.getElementById('quizFb').innerHTML='<span class="fb bad">正确答案：'+cur.o[cur.a]+'</span>';}
+          qi++;setTimeout(render,900);
+        };
+        w.appendChild(b);
+      });
+    }
+  },0);
+  return d;
+}
+
+function badge(name,icon){
+  if(BADGES[name])return;BADGES[name]=1;saveBadges();
+  toast('🏅 获得徽章：'+name);
+}
+function renderBadges(){
+  var list=[['🚪','改变侦探'],['🛋️','舒适区侦探'],['🛡️','免疫破解师'],['🏮','小步子行者'],['🔮','奇迹规划师'],['🧱','思维进化者'],['⛰️','卸石人'],['➗','边界守护者'],['⚖️','控制大师'],['⛵','渡河人'],['🗺️','地图绘制者'],['🌅','自我发展家']];
+  var host=document.getElementById('badgesHost');
+  if(!host){host=document.createElement('div');host.id='badgesHost';host.innerHTML='<div style="font-size:13px;color:var(--sub);margin:10px 0 6px">🏅 我的徽章墙</div><div class="badges"></div>';document.getElementById('chapters').appendChild(host);}
+  var bd=host.querySelector('.badges');bd.innerHTML='';
+  list.forEach(function(b){
+    var on=BADGES[b[1]];
+    var el=document.createElement('div');el.className='badge'+(on?' on':'');
+    el.innerHTML='<span class="bi">'+(on?b[0]:'🔒')+'</span>'+b[1];
+    bd.appendChild(el);
+  });
+}
+
+function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('codeBox').classList.add('hidden');document.getElementById('unlockOk').textContent='';}
+function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
+function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
+function verifyCode(){
+  var c=(document.getElementById('codeInput').value||'').trim();
+  if(c.length<6){document.getElementById('unlockHint').textContent='激活码格式不正确（至少 6 位）。';return;}
+  if(hashOk(c)){
+    document.getElementById('unlockOk').textContent='✅ 激活成功！全书已解锁。';
+    track('unlock',{method:'code'});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='激活码无效。提示：可联系平台获取；完成互动任务攒积分也能解锁。';
+  }
+}
+function hashOk(c){
+  if(c.toUpperCase()==='325FA149')return true;
+  if(c==='XQ2026')return true;
+  return false;
+}
+function unlockByPoints(){
+  if(POINTS>=50){
+    setPoints(POINTS-50);
+    document.getElementById('unlockOk').textContent='✅ 积分兑换成功！已扣除 50 积分，全书解锁。';
+    track('unlock',{method:'points',cost:50});
+    unlockAll();
+  }else{
+    document.getElementById('unlockHint').textContent='积分不足（当前 '+POINTS+' / 50）。完成免费章节的互动任务可快速攒分。';
+  }
+}
+function adminCheck(){
+  var pw=prompt('管理员口令：');
+  if(pw&&hashOk(pw.toUpperCase())){
+    localStorage.setItem(LSKEY_ADMIN,'1');
+    document.getElementById('unlockOk').textContent='✅ 管理员验证通过，全书解锁。';
+    unlockAll();
+  }else if(pw){document.getElementById('unlockHint').textContent='口令错误。';}
+}
+
+function goRead(){
+  var first=document.getElementById('chap-0');
+  if(first){first.scrollIntoView({behavior:'smooth'});}
+  track('read',{action:'start'});
+}
+function goTo(i){
+  var el=document.getElementById('chap-'+i);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+function playBgm(){
+  var a=document.getElementById('bgmEl');
+  if(!a){a=document.createElement('audio');a.id='bgmEl';a.src='bgm.wav';a.loop=true;a.volume=.4;document.body.appendChild(a);}
+  if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';track('audio',{src:'bgm.wav'});}
+  else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}
+}
+
+(function init(){
+  var btn=document.getElementById('btnUnlock');
+  btn.onclick=function(){UNLOCKED?toast('📖 全书已解锁'):openUnlock();};
+  document.getElementById('points').textContent=POINTS;
+  renderToc();renderChapters();
+  track('open',{});
+  var t0=Date.now();
+  window.addEventListener('beforeunload',function(){
+    var sec=Math.round((Date.now()-t0)/1000);
+    if(sec>=5){track('read',{action:'leave',sec:sec});}
+  });
+})();
+</script>
+</body>
+</html>
