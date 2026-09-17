@@ -339,7 +339,7 @@ function mediaFor(i){
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
   if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 亲爱的，外面没有别人'));}
-  if(i===0){h.appendChild(audioBlock('voice_who.wav','🎧 我是谁 · 冥想引导'));}
+  if(i===0){h.appendChild(audioBlock('voice_who.wav','🎧 我是谁 · 冥想引导'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 79分钟完整讲书 ·《遇见未知的自己》：真我、假我与找回自己</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1xgTkzwEMZ&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===8){h.appendChild(audioBlock('voice_surrender.wav','🎧 情绪臣服 · 练习引导'));}
   if(i===10){
     var vb=document.createElement('div');vb.className='media-block';
