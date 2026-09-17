@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《怎样选择成长股》· 菲利普·费雪 · 熙祺智书多媒体书</title>
+<style>
+:root{--bg:#04160f;--card:#0b2418;--card2:#0f3020;--gold:#e8b94a;--gold2:#c99a2e;--blue:#4f7cff;--text:#e9f0ff;--dim:#9fb2d9;--line:#1c4a33;--red:#ff6b6b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 120px;}
+.hero{position:relative;border-radius:0 0 30px 30px;overflow:hidden;margin:-1px -18px 0;padding:46px 24px 40px;text-align:center;background:linear-gradient(180deg,#0f3020,#04160f);}
+.hero img{width:100%;max-width:520px;border-radius:18px;border:2px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.6);}
+.badge{display:inline-block;margin:18px 0 10px;padding:6px 16px;border:1px solid var(--gold);color:var(--gold);border-radius:30px;font-size:13px;letter-spacing:2px;}
+.hero h1{font-size:34px;margin:8px 0 6px;color:#fff;text-shadow:0 2px 12px rgba(232,185,74,.25);}
+.hero .sub{color:var(--dim);font-size:15px;margin-bottom:14px;}
+.hero .meta{color:var(--gold);font-size:14px;margin-top:6px;}
+.free-note{margin-top:16px;font-size:13px;color:var(--dim);}
+.free-note b{color:var(--gold);}
+.toolbar{position:sticky;top:0;z-index:50;background:rgba(4,22,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin:14px -18px 0;padding:10px 18px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;}
+.tbtn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:13px;transition:.2s;}
+.tbtn:hover{border-color:var(--gold);color:var(--gold);}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;margin:22px 0;padding:24px 22px;box-shadow:0 6px 24px rgba(0,0,0,.25);}
+.sec h2{color:var(--gold);font-size:22px;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.sec .k{background:var(--gold);color:#04160f;border-radius:8px;padding:2px 10px;font-size:13px;font-weight:700;}
+.sec .lead{color:var(--dim);font-size:14px;margin-bottom:14px;}
+.sec .tag{margin:8px 4px 0 0;display:inline-block;font-size:12px;padding:2px 10px;border:1px solid var(--blue);color:#c3d2ff;border-radius:20px;}
+.sec.locked{opacity:.78;position:relative;}
+.sec.locked .lockbar{display:flex;align-items:center;gap:10px;background:rgba(232,185,74,.08);border:1px dashed var(--gold);border-radius:12px;padding:12px 14px;margin-top:14px;color:var(--gold);font-size:14px;cursor:pointer;}
+.sec.locked .lockbar:hover{background:rgba(232,185,74,.16);}
+.imgbox{border-radius:14px;overflow:hidden;margin:14px 0;border:1px solid var(--line);}
+.imgbox img{width:100%;display:block;}
+.imgbox .cap{font-size:12px;color:var(--dim);padding:8px 12px;background:rgba(0,0,0,.25);text-align:center;}
+.gold{color:var(--gold);}
+.mem{background:#071d13;border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0;color:#ffe9b8;}
+.voice{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0;cursor:pointer;}
+.voice .ic{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#04160f;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.voice .tx{flex:1;font-size:14px;}
+.voice .tx small{color:var(--dim);display:block;font-size:12px;}
+.video-box{border-radius:14px;overflow:hidden;margin:14px 0;border:1px solid var(--line);background:#000;}
+.video-box iframe{width:100%;aspect-ratio:16/9;border:0;display:block;}
+.lbl{color:var(--gold);font-size:13px;padding:10px 12px 0;}
+.game{background:var(--card2);border:1px solid var(--gold);border-radius:14px;padding:16px;margin:14px 0;}
+.game h4{color:var(--gold);font-size:16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+.game .gq{font-size:14px;color:var(--text);margin-bottom:10px;}
+.gopt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;margin:6px 0;cursor:pointer;font-size:14px;transition:.15s;}
+.gopt:hover{border-color:var(--gold);}
+.gopt.correct{background:rgba(79,124,255,.3);border-color:var(--blue);color:#d4deff;}
+.gopt.wrong{background:rgba(255,107,107,.22);border-color:var(--red);color:#ffc9c9;}
+.gbtn{background:var(--gold);color:#04160f;border:0;padding:9px 18px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;margin-top:8px;}
+.gfeed{font-size:13px;margin-top:8px;min-height:20px;}
+.gfeed.ok{color:#b9c8ff;}
+.gfeed.no{color:#ffc9c9;}
+.inp{width:100%;background:var(--card);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;font-size:14px;margin:6px 0;font-family:inherit;}
+.inp:focus{outline:none;border-color:var(--gold);}
+.prog{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue));width:0;z-index:99;transition:width .3s;}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.88);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:30px;font-size:14px;z-index:200;display:none;}
+.pts{color:var(--gold);font-weight:700;}
+footer{text-align:center;color:var(--dim);font-size:12px;margin-top:40px;padding:20px 0;}
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.flow span{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--blue);color:#c3d2ff;}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.bdg{font-size:12px;padding:5px 10px;border-radius:20px;border:1px solid var(--line);color:var(--dim);background:var(--card2);}
+.bdg.earned{border-color:var(--gold);color:var(--gold);background:rgba(232,185,74,.1);}
+@media(max-width:640px){.hero h1{font-size:27px;}.sec{padding:18px 16px;}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="toast" id="toast"></div>
+<div class="wrap">
+  <div class="hero">
+    <img src="art_cover.jpg" alt="怎样选择成长股封面">
+    <div class="badge">熙祺智书 · 价值投资专题</div>
+    <h1>怎样选择成长股</h1>
+    <div class="sub">十五要点 × 闲聊法 · 成长股投资的传世经典</div>
+    <div class="meta">菲利普·费雪 著 · 巴菲特血管里那 15% 的血液</div>
+    <div class="free-note">前 6 节免费试读 · 完整版需解锁 · <b>总 11 节 / 16 个互动游戏 / 12 枚徽章</b></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="tbtn" id="btnToc">📖 目录</button>
+    <button class="tbtn" id="btnVoice">🎧 音频</button>
+    <button class="tbtn" id="btnVideo">🎬 视频</button>
+    <button class="tbtn" id="btnGames">🎮 游戏</button>
+    <button class="tbtn" id="btnUnlock">🔓 解锁</button>
+    <button class="tbtn" id="btnBgm">🎵 背景乐</button>
+    <span style="margin-left:auto;font-size:13px;color:var(--dim);">积分 <b class="pts" id="ptsBox">0</b></span>
+  </div>
+
+  <div id="sections"></div>
+
+  <footer>熙祺智书 · 多媒体书 ｜ 读不完的书 · 看得进去的书 ｜ 《怎样选择成长股》互动版</footer>
+</div>
+
+<script>
+var FREE=6;
+var $=function(id){return document.getElementById(id)};
+var secs=[
+ {t:"序章 · 买得便宜，不如买得好",tag:["开篇","认知"],art:"art_cover.jpg",cap:"格雷厄姆教你避险，费雪教你赚钱",voice:["voice_open.wav","序章导听 · 巴菲特的另一半老师"],
+  lead:"巴菲特说：我的血管里 85% 流着格雷厄姆的血，15% 流着费雪的血。",
+  body:function(){return `<div class="mem">🔭 费雪是谁：<br>
+  🔹 菲利普·费雪（1907-2004）：成长股投资之父；<br>
+  🔹 1958 年出版《怎样选择成长股》，只讲一件事：怎么找到并拿住伟大的公司；<br>
+  🔹 他的客户从 1931 年持有到 1991 年，60 年跨越牛熊，收益惊人。</div>
+  <p>格雷厄姆教的是<b class="gold">买便宜货</b>：价格低于价值就买；费雪教的是<b class="gold">买好公司</b>：找到会持续长大的企业，跟着它一起长大。</p>
+  <p>巴菲特说：<b class="gold">买得便宜但公司平庸，不如买得好且公司伟大</b>——这就是费雪带给他的转变。</p>`},
+  flow:["理解：费雪教买好公司","记忆：十五要点、闲聊法、长期持有","联想：我买股票看价格还是看公司","练习：成长股判断题"]},
+ {t:"第1课 · 买股票 = 买公司",tag:["视角","本质"],art:"art_buy.jpg",cap:"你买的不是一张凭证，是一家公司的一部分",
+  lead:"费雪全书最根本的视角转换：股票不是赌桌上的筹码，是公司的所有权。",
+  body:function(){return `<p>大多数人的思维：股价会涨 → 我买 → 涨了卖。费雪的思维：<b class="gold">这家公司值不值得拥有 → 我买入并长期分享它的成长</b>。</p>
+  <div class="mem">🏢 三种看待股票的方式：<br>
+  🎲 赌徒看：筹码，赌涨跌；<br>
+  📊 交易者看：报价，抓波动；<br>
+  🏢 所有者看：公司，看生意——<b class="gold">费雪要你成为第三种人</b>。</div>
+  <p>买股票之前，先问自己三个问题：<b class="gold">这家公司卖什么？为什么客户买它的不买别人的？五年后它还卖得动吗？</b></p>
+  <p>想不清楚，就别买。费雪用一生证明：<b class="gold">长期回报来自公司成长，不是来自交易技巧</b>。</p>`},
+  flow:["理解：股票是公司所有权","记忆：公司、产品、客户、未来","联想：我能一句话说清持仓公司卖什么吗","练习：所有者视角题"]},
+ {t:"第2课 · 闲聊法：侦探式调研",tag:["调研","方法"],art:"art_talk.jpg",cap:"财报里听不到的真相，都在闲聊里",voice:["voice_talk.wav","第2课 · 闲聊法：怎么听到真话"],
+  lead:"费雪独创的调研方法：不靠高管，靠「闲聊」拼出公司真相。",
+  body:function(){return `<div class="video-box"><div class="lbl">🎬 第2课视频 · 费雪与成长股投资：闲聊法与管理层质量（译者胡恒博士访谈）</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1k88wzvEve&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>
+  <div class="mem">🕵️ 闲聊法怎么用：<br>
+  🔹 跟客户聊：它的产品好不好用？会不会继续买？<br>
+  🔹 跟供应商聊：它付款爽快吗？订单稳定吗？<br>
+  🔹 跟竞争对手聊：你最怕它什么？它强在哪？<br>
+  🔹 跟离职员工聊：内部管理真实什么样？<br>
+  💡 把四面八方听到的话拼起来，就是公司的真实画像。</div>
+  <p>为什么有效？因为<b class="gold">财报可以被修饰，但客户的抱怨、对手的忌惮、供应商的牢骚，很难全部造假</b>。</p>
+  <p>费雪说：一个优秀的投资者要像侦探——<b class="gold">决定买之前，把这家公司的上下游都聊一遍</b>。</p>`},
+  flow:["理解：闲聊法验证真相","记忆：客户、供应商、对手、员工","联想：我能去哪打听一家公司","练习：闲聊对象题"]},
+ {t:"第3课 · 十五要点（上）：生意与产品",tag:["选股","标准"],art:"art_market.jpg",cap:"先看市场有没有天花板，再看产品有没有护城河",
+  lead:"《怎样选择成长股》最著名的部分：筛选公司的十五个要点。先看生意本身。",
+  body:function(){return `<div class="mem">🌊 十五要点 · 生意篇：<br>
+  1️⃣ 市场潜力：产品或服务有没有足够大的市场，能让销售额多年持续增长？<br>
+  2️⃣ 产品纵深：现有产品线成功后，管理层有没有决心继续开发新产品？<br>
+  3️⃣ 研发投入：相对于公司规模，研发投入够不够？<br>
+  4️⃣ 销售能力：产品好，卖得出去吗？销售团队强不强？<br>
+  5️⃣ 利润率：利润率高不高？能不能持续改善？</div>
+  <p>费雪判断成长股，先看<b class="gold">天花板</b>：市场已经见顶、趋于饱和，再能干的团队也撑不起长期成长。<b class="gold">要买的是未来市场还很大、还在长大的公司</b>。</p>
+  <p>再看<b class="gold">护城河</b>：产品有没有独特优势？研发能不能持续领先？对手为什么抄不走？</p>
+  <p>一句话：先问市场够不够大，再问产品够不够好，最后问团队能不能卖出去。</p>`},
+  flow:["理解：先市场后产品","记忆：市场、纵深、研发、销售、利润率","联想：我关注的公司天花板在哪","练习：第一要点题"]},
+ {t:"第4课 · 十五要点（中）：管理层",tag:["管理层","诚信"],art:"art_manage.jpg",cap:"船往哪开，取决于船长是谁",
+  lead:"费雪说，买股票就是买管理层——十五要点里，有一半在考察人。",
+  body:function(){return `<div class="mem">🧭 十五要点 · 管理层篇：<br>
+  6️⃣ 成本控制：管理层有没有持续改善成本的能力？<br>
+  7️⃣ 长期视野：愿不愿意为长期竞争力牺牲短期利润（研发、产能）？<br>
+  8️⃣ 劳资关系：员工服不服它？优秀的人愿意留下吗？<br>
+  9️⃣ 管理深度：高管团队够不够强？一个人倒了公司会塌吗？<br>
+  🔟 成本分析：管理层是否真正理解自己生意的成本结构？<br>
+  1️⃣1️⃣ 行业地位：在行业里是不是被尊重的公司？</div>
+  <p>费雪最看重的一条：<b class="gold">管理层诚信</b>——这是毫无商量余地的红线。管理层不诚信，再好的报表都是地雷。</p>
+  <p>考察技巧：<b class="gold">好消息时口若悬河、坏消息时装聋作哑的管理层，一律拉黑</b>。真正优秀的管理层，在逆境里会主动把问题讲清楚。</p>
+  <p>记住：你买的是人和制度——<b class="gold">船往哪开，取决于船长是谁</b>。</p>`},
+  flow:["理解：买股票就是买管理层","记忆：诚信、长期、团队、成本、地位","联想：我佩服哪家公司的管理层","练习：管理层诚信题"]},
+ {t:"第5课 · 十五要点（下）：财务与纪律",tag:["财务","纪律"],art:"art_profit.jpg",cap:"利润不是越多越好，而是越稳越好、越真越好",
+  lead:"生意看完了，管理层看完了，最后用财务验证——十五要点的收尾三条。",
+  body:function(){return `<div class="mem">📈 十五要点 · 财务与纪律篇：<br>
+  1️⃣2️⃣ 盈余展望：愿不愿意牺牲短期利润，换长期竞争优势？<br>
+  1️⃣3️⃣ 股本扩张：扩张靠自身盈利滚动，还是靠不断增发摊薄股东？<br>
+  1️⃣4️⃣ 内部沟通：管理层对内部人讲话，和对股东一样诚实吗？<br>
+  1️⃣5️⃣ 绝对诚信：管理层诚信毋庸置疑——<b class="gold">这是红线，一票否决</b>。</div>
+  <p>费雪特别警惕一件事：<b class="gold">增发摊薄</b>。一家好公司如果总靠向股东要钱扩张，你的每一股价值都在被稀释。<b class="gold">优质成长股，应主要靠自身盈利滚动发展</b>。</p>
+  <p>还要警惕：为了季报好看就砍研发、砍广告、砍培训的公司——<b class="gold">它在透支未来，别碰</b>。</p>
+  <p>十五要点不是问卷，是过滤器：<b class="gold">任何一条硬伤，都足以让你放弃这支股票</b>。</p>`},
+  flow:["理解：财务验证生意与管理","记忆：盈余、摊薄、沟通、诚信","联想：我持仓的公司有没有增发摊薄","练习：财务纪律题"]},
+ {t:"第6课 · 何时买入：发现伟大公司的时机",tag:["时机","买入"],art:"art_timing.jpg",cap:"买入的最佳时机，是你真正看懂它的那一刻",
+  lead:"费雪认为，买入时机不是股价低，而是你确认它是好公司的时刻。",
+  body:function(){return `<div class="video-box"><div class="lbl">🎬 第6课视频 · 《怎样选择成长股》精读：15 点原则、闲聊法与长期持有</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1RNtdzvE8Y&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>
+  <div class="mem">⏱️ 费雪的买入观：<br>
+  🔹 不看大盘涨跌，不预测市场底部；<br>
+  🔹 买入时机 = 你通过十五要点确认它是伟大公司的那一刻；<br>
+  🔹 好公司遇到暂时挫折、股价下跌——那不是风险，是<b class="gold">打折</b>。</div>
+  <p>费雪从不等「完美买点」：<b class="gold">完美买点等不来，伟大公司会错过</b>。他更愿意在确认公司优秀后尽早买入，然后用时间化解价格波动。</p>
+  <p>反直觉但真实：<b class="gold">好公司股价大跌的时候，往往是研究它最好的时候</b>——因为那时的下跌，常常是市场情绪，而不是公司变坏。</p>
+  <p>行动：先确认公司，再谈价格。顺序反了，就是赌博。</p>`},
+  flow:["理解：先确认公司再谈价格","记忆：看懂、确认、买入、持有","联想：我错过过哪家伟大的公司","练习：买入时机题"]},
+ {t:"第7课 · 何时卖出：几乎不卖",tag:["卖出","长期"],art:"art_hold.jpg",cap:"真正的大钱，都是拿出来的，不是炒出来的",voice:["voice_hold.wav","第7课 · 卖出的艺术：几乎不卖"],
+  lead:"费雪最反直觉的观点：选对公司后，最好的操作是不操作。",
+  body:function(){return `<div class="mem">🌳 费雪的卖出三原则（只有这三种情况才卖）：<br>
+  1️⃣ 当初看错了：公司基本面已经变坏，买入理由消失；<br>
+  2️⃣ 公司变质：不再符合十五要点，成长逻辑被打破；<br>
+  3️⃣ 找到更优：有确定性明显更高、更好的公司需要换仓。<br>
+  ⛔ 以下都不是卖出理由：股价涨跌、市场恐慌、别人赚得比你快。</div>
+  <p>为什么几乎不卖？因为<b class="gold">伟大公司的成长需要十年以上的时间，卖出会打断复利</b>。</p>
+  <p>费雪曾持有摩托罗拉超过 20 年，期间经历多次大跌——他一股没卖。<b class="gold">时间站在好公司这边，你只需要不捣乱</b>。</p>
+  <p>记住巴菲特对费雪的总结：<b class="gold">我们最喜欢的持有期，是永远</b>。</p>`},
+  flow:["理解：选对后几乎不卖","记忆：变坏、变质、更优才卖","联想：我有没有过早卖掉过好公司","练习：卖出时机题"]},
+ {t:"第8课 · 少而精：集中与长期",tag:["组合","配置"],art:"art_garden.jpg",cap:"花园不用大，三株好苗胜过一片荒草",
+  lead:"费雪与格雷厄姆最大的分歧：格雷厄姆要分散，费雪要集中。",
+  body:function(){return `<div class="mem">🌱 费雪的组合观：<br>
+  🔹 反对过度分散：了解 50 家公司不如深研 5 家；<br>
+  🔹 集中持仓：真正懂的公司，值得重仓、值得拿久；<br>
+  🔹 数量上限：个人能力圈内，同时持有 3-8 家足够；<br>
+  🔹 前提：每家公司都经过十五要点 + 闲聊法验证。</div>
+  <p>费雪说：<b class="gold">把鸡蛋放在太多篮子里，你根本看不过来</b>。分散到你不懂的公司，等于分散给运气。</p>
+  <p>但集中不是梭哈：<b class="gold">集中是「深度研究后的重仓」，梭哈是「没有研究过的豪赌」</b>——区别在功课。</p>
+  <p>行动：写下你真正看懂的三家公司，然后只在这三家里选——<b class="gold">这就是费雪式组合的开始</b>。</p>`},
+  flow:["理解：集中来自深度研究","记忆：懂、重仓、拿久、3-8家","联想：我能深研几家公司","练习：组合观题"]},
+ {t:"第9课 · 避开五大陷阱",tag:["风险","避坑"],art:"",
+  lead:"费雪不但告诉你买什么，还告诉你千万别碰什么。",
+  body:function(){return `<div class="mem">🚧 费雪的五大陷阱：<br>
+  1️⃣ 明星产品依赖：公司只有一款爆品，爆品衰退公司就完了；<br>
+  2️⃣ 毛利率太薄：利润薄得像纸，一次成本波动就亏损；<br>
+  3️⃣ 研发不足：吃老本、不投入，护城河迟早被对手填平；<br>
+  4️⃣ 靠摊薄扩张：不断增发稀释股东，赚了钱也到不了你手里；<br>
+  5️⃣ 管理层不诚信：<b class="gold">这是绝对红线，一票否决</b>。</div>
+  <p>费雪对明星产品的警告最经典：<b class="gold">不要因为一家公司今天靠一款爆品成功，就假设它明天还能靠它成功</b>。</p>
+  <p>检验方法很简单：<b class="gold">问一句「如果这款产品卖不动了，这家公司还剩什么」</b>——答不上来，就别买。</p>
+  <p>投资的第一原则永远是：<b class="gold">先躲开会毁灭你的，再谈赚大钱</b>。</p>`},
+  flow:["理解：五大陷阱一票否决","记忆：爆品、薄利、研发、摊薄、诚信","联想：我踩过哪个坑","练习：陷阱判断题"]},
+ {t:"终章 · 费雪投资法则",tag:["收官","行动"],art:"art_compass.jpg",cap:"投资不是靠天赋，是靠纪律",voice:["voice_rules.wav","终章 · 费雪五句话"],
+  lead:"把费雪一生的智慧浓缩成五句话，今晚就开始执行。",
+  body:function(){return `<div class="mem">📜 费雪投资五法则：<br>
+  1️⃣ 买股票就是买公司，买它未来多年的成长；<br>
+  2️⃣ 用十五要点筛选：市场、产品、管理层、财务，一条都不能少；<br>
+  3️⃣ 用闲聊法验证真相，别只信财报；<br>
+  4️⃣ 好公司要集中、要长期，不要轻易卖；<br>
+  5️⃣ 永远避开五大陷阱，诚信红线一票否决。</div>
+  <p>费雪用这套方法，在股市里赚了整整六十年。他留给世界的最后一句话是：<b class="gold">投资不是靠天赋，而是靠纪律——选对公司、验证真相、长期持有</b>。</p>
+  <p>现在写下你的行动卡：① 我最看好的三家公司；② 每家公司的十五要点打分；③ 我承诺的最短持有年限。<b class="gold">这一刻，你已经是费雪的门徒。</b></p>`},
+  flow:["理解：五法则缺一不可","记忆：公司、要点、闲聊、集中、避坑","联想：我先执行哪一条","练习：五法则填空"]}
+];
+
+var games=[
+ {sec:0,title:"巴菲特与费雪",type:"choice",
+  q:"巴菲特说自己血管里 15% 流着谁的血？",
+  opts:[{t:"彼得·林奇",r:0},{t:"菲利普·费雪",r:1},{t:"约翰·博格",r:0},{t:"索罗斯",r:0}],
+  feed:"对！85% 格雷厄姆 + 15% 费雪——避险与成长，缺一不可。"},
+ {sec:0,title:"费雪教什么",type:"choice",
+  q:"与格雷厄姆教「买便宜」不同，费雪教的是？",
+  opts:[{t:"买好公司，跟它一起成长",r:1},{t:"预测行情涨跌",r:0},{t:"频繁交易赚差价",r:0},{t:"借钱加杠杆",r:0}],
+  feed:"正确！格雷厄姆买便宜货，费雪买好公司。"},
+ {sec:1,title:"买股票是什么",type:"choice",
+  q:"费雪认为，买股票本质上是？",
+  opts:[{t:"买一家公司的一部分",r:1},{t:"赌一张涨跌纸片",r:0},{t:"跟庄家的对手盘",r:0},{t:"存一笔定期存款",r:0}],
+  feed:"对！你是所有者，不是赌徒——先看生意，再看价格。"},
+ {sec:1,title:"三问自查",type:"choice",
+  q:"费雪式买入前，以下哪个问题最重要？",
+  opts:[{t:"公司卖什么、为什么客户买它、五年后还卖得动吗",r:1},{t:"明天会不会涨停",r:0},{t:"主力资金流向",r:0},{t:"今天大盘什么颜色",r:0}],
+  feed:"正确！想不清公司怎么赚钱，就别买。"},
+ {sec:2,title:"闲聊对象",type:"choice",
+  q:"以下哪组是费雪闲聊法的主要对象？",
+  opts:[{t:"客户、供应商、竞争对手、离职员工",r:1},{t:"股吧网友",r:0},{t:"荐股群群主",r:0},{t:"路过的路人",r:0}],
+  feed:"对！把上下游的话拼起来，就是公司的真实画像。"},
+ {sec:2,title:"闲聊法作用",type:"choice",
+  q:"闲聊法最大的价值是什么？",
+  opts:[{t:"听到财报里听不到的真话",r:1},{t:"打探内幕消息",r:0},{t:"预测下周股价",r:0},{t:"认识更多朋友",r:0}],
+  feed:"正确！财报可修饰，客户的抱怨和对手的忌惮很难全造假。"},
+ {sec:3,title:"第一要点",type:"choice",
+  q:"十五要点的第一条是看什么？",
+  opts:[{t:"产品或服务的市场潜力够不够大",r:1},{t:"K线形态",r:0},{t:"市盈率高低",r:0},{t:"分红多少",r:0}],
+  feed:"对！先看天花板——市场饱和了，再能干的团队也白搭。"},
+ {sec:3,title:"护城河",type:"choice",
+  q:"费雪看研发投入，是为了判断什么？",
+  opts:[{t:"公司有没有持续领先的护城河",r:1},{t:"股价短期波动",r:0},{t:"管理层工资",r:0},{t:"办公室装修",r:0}],
+  feed:"正确！研发不足、吃老本，护城河迟早被对手填平。"},
+ {sec:4,title:"管理层红线",type:"choice",
+  q:"十五要点中，毫无商量余地的红线是？",
+  opts:[{t:"管理层诚信",r:1},{t:"分红比例",r:0},{t:"股价高低",r:0},{t:"员工人数",r:0}],
+  feed:"对！管理层不诚信，再好的报表都是地雷。"},
+ {sec:4,title:"管理层考察",type:"choice",
+  q:"好消息口若悬河、坏消息装聋作哑的管理层，应该？",
+  opts:[{t:"直接拉黑",r:1},{t:"加倍买入",r:0},{t:"听他们的话",r:0},{t:"跟着抄作业",r:0}],
+  feed:"正确！真优秀的管理层，逆境里会主动把问题讲清楚。"},
+ {sec:5,title:"摊薄警惕",type:"choice",
+  q:"费雪最警惕的财务行为是什么？",
+  opts:[{t:"靠不断增发股票摊薄股东",r:1},{t:"提高分红",r:0},{t:"回购股票",r:0},{t:"加大研发",r:0}],
+  feed:"对！好公司应靠自身盈利滚动发展，而不是总向股东要钱。"},
+ {sec:5,title:"透支未来",type:"choice",
+  q:"为季报好看就砍研发、砍广告的公司，费雪怎么看？",
+  opts:[{t:"别碰，它在透支未来",r:1},{t:"赶紧买",r:0},{t:"短期可炒",r:0},{t:"无所谓的",r:0}],
+  feed:"正确！短期利润上去了，长期竞争力下来了。"},
+ {sec:6,title:"买入时机",type:"choice",
+  q:"费雪认为买入的最佳时机是？",
+  opts:[{t:"确认它是伟大公司的那一刻",r:1},{t:"预测到市场底部",r:0},{t:"大盘涨停那天",r:0},{t:"别人都在卖的时候",r:0}],
+  feed:"对！先确认公司，再谈价格——顺序反了就是赌博。"},
+ {sec:7,title:"何时卖出",type:"choice",
+  q:"以下哪种情况，费雪才会卖出？",
+  opts:[{t:"公司基本面变坏，买入理由消失",r:1},{t:"股价跌了10%",r:0},{t:"市场恐慌",r:0},{t:"别人赚得比我快",r:0}],
+  feed:"正确！只有看错、变质、找到更优三种情况才卖。"},
+ {sec:8,title:"组合观",type:"choice",
+  q:"费雪反对过度分散的原因是什么？",
+  opts:[{t:"看不过来，分散给不懂的公司等于分散给运气",r:1},{t:"分散会亏钱",r:0},{t:"集中一定赚钱",r:0},{t:"手续费太高",r:0}],
+  feed:"对！集中是深度研究后的重仓，梭哈是没有研究的豪赌。"},
+ {sec:10,title:"五法则填空",type:"input",
+  q:"终章五法则之一：买股票就是买（？），买它未来多年的成长",
+  ans:"公司",feed:"对！你是所有者不是赌徒——盯住公司，别盯报价。"}
+];
+
+var badges=["🔭 成长窥探者","🏢 公司主人","🕵️ 闲聊侦探","🌊 市场远航者","🧭 管理层鉴定师","📈 盈利质检员","⏱️ 时机猎手","🌳 长期主义者","🌱 园丁投资者","🚧 陷阱规避者","🔓 解锁勇士","🏆 完读大师"];
+var earned={};
+
+function render(){
+  var h="";
+  for(var i=0;i<secs.length;i++){
+    var s=secs[i], locked=i>=FREE && !isUnlocked();
+    h+=`<div class="sec ${locked?'locked':''}" id="sec${i}">
+      <h2><span class="k">${i<FREE?'免费':'VIP'}</span>${s.t}</h2>
+      <div>${s.tag.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="lead">${s.lead}</div>`;
+    if(i===0){h+=`<div class="video-box"><div class="lbl">🎬 序章视频 · 巴菲特的「另一半老师」：费雪与成长股的诞生</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqcizoEwy&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(i===2){h+=`<div class="video-box"><div class="lbl">🎬 第2课视频 · 费雪与成长股投资：闲聊法与管理层质量</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1k88wzvEve&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(i===6){h+=`<div class="video-box"><div class="lbl">🎬 第6课视频 · 《怎样选择成长股》精读：15 点原则、闲聊法与长期持有</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1RNtdzvE8Y&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(s.voice){h+=`<div class="voice" onclick="playV('${s.voice[0]}',this)"><div class="ic">▶</div><div class="tx">${s.voice[1]}<small>点击播放 · 语音讲书</small></div></div>`;}
+    if(s.art){h+=`<div class="imgbox"><img src="${s.art}" alt=""><div class="cap">${s.cap}</div></div>`;}
+    h+=`<div class="flow">${s.flow.map(f=>`<span>${f}</span>`).join('')}</div>`;
+    h+=s.body();
+    if(locked){h+=`<div class="lockbar" onclick="unlock()">🔒 本节为付费内容，点击解锁完整版（管理员口令或激活码）</div>`;}
+    h+=`</div>`;
+  }
+  $("sections").innerHTML=h;
+  renderGames();
+  loadPts();
+  updProg();
+}
+function renderGames(){
+  for(var i=0;i<games.length;i++){
+    var g=games[i], holder=$("sec"+g.sec);
+    if(!holder) continue;
+    var box=document.createElement("div");box.className="game";box.id="game"+i;
+    box.innerHTML=`<h4>🎮 ${g.title}<span>游戏 ${i+1}/${games.length}</span></h4><div class="gq">${g.q}</div><div id="gg${i}"></div><div class="gfeed" id="gf${i}"></div><div class="badge-row" id="gb${i}"></div>`;
+    holder.appendChild(box);
+    var body=$("gg"+i);
+    if(g.type==="choice"){
+      g.opts.forEach((o,oi)=>{
+        var b=document.createElement("button");b.className="gopt";b.textContent=o.t;
+        b.onclick=function(){pick(i,oi)};
+        body.appendChild(b);
+      });
+    }else if(g.type==="input"){
+      var inp=document.createElement("input");inp.className="inp";inp.placeholder="输入你的答案…";
+      var btn=document.createElement("button");btn.className="gbtn";btn.textContent="提交";
+      btn.onclick=function(){checkInput(i,inp.value)};
+      body.appendChild(inp);body.appendChild(btn);
+    }
+  }
+}
+function pick(gi,oi){
+  var g=games[gi],o=g.opts[oi],feed=$("gf"+gi);
+  var btns=$("gg"+gi).querySelectorAll(".gopt");
+  btns.forEach(b=>{b.disabled=true;b.classList.remove("correct","wrong");});
+  btns[oi].classList.add(o.r?"correct":"wrong");
+  if(o.r){feed.className="gfeed ok";feed.textContent="✅ "+g.feed;earnBadge(gi);}
+  else{feed.className="gfeed no";feed.textContent="❌ 再想想。提示："+g.feed;btns[g.opts.findIndex(x=>x.r===1)].classList.add("correct");}
+}
+function checkInput(gi,val){
+  var g=games[gi],feed=$("gf"+gi);
+  var v=(val||"").trim();
+  if(v.indexOf(g.ans)>=0 || g.ans.indexOf(v)>=0){feed.className="gfeed ok";feed.textContent="✅ "+g.feed;earnBadge(gi);}
+  else{feed.className="gfeed no";feed.textContent="❌ 答案约是 "+g.ans+"。再试试看。"}
+}
+function earnBadge(gi){
+  var g=games[gi];
+  if(!earned[gi]){earned[gi]=1;saveBadges();
+    addPts(10);
+    var bl=$("gb"+gi);if(bl)bl.innerHTML=`<span class="bdg earned">🏅 已通关 · +10积分</span>`;
+    toast("🎮 通关「"+g.title+"」 +10积分");
+    track("game",g.title);
+  }
+}
+function isUnlocked(){
+  try{return localStorage.getItem("xz_admin")==="1"||localStorage.getItem("xz_unlock_growth")==="1";}catch(e){return false}
+}
+function unlock(){
+  var p=prompt("请输入管理员口令或激活码：");
+  if(!p) return;
+  if(p==="xiqi-admin-2026"){try{localStorage.setItem("xz_admin","1");localStorage.setItem("xz_unlock_growth","1");}catch(e){};render();toast("🔓 管理员权限已生效，全部解锁");return;}
+  if(/^XQ2026/i.test(p)||/^[A-Z0-9]{8}$/.test(p)){try{localStorage.setItem("xz_unlock_growth","1");}catch(e){};render();toast("🔓 激活成功，全书已解锁");track("unlock",p);return;}
+  toast("❌ 口令不正确");
+}
+function playV(src,el){
+  var a=el.querySelector("audio");
+  if(a){if(a.paused)a.play();else a.pause();return;}
+  a=document.createElement("audio");a.src=src;a.controls=true;a.style.width="100%";a.style.marginTop="8px";
+  el.appendChild(a);a.play();
+  track("audio",src);
+}
+function loadPts(){
+  var p=0;try{p=parseInt(localStorage.getItem("xz_points"))||0;}catch(e){}
+  $("ptsBox").textContent=p;
+}
+function addPts(n){
+  var p=0;try{p=parseInt(localStorage.getItem("xz_points"))||0;}catch(e){}
+  p+=n;try{localStorage.setItem("xz_points",p);}catch(e){}
+  $("ptsBox").textContent=p;track("points",String(n));
+}
+function updProg(){
+  var h=document.documentElement.scrollHeight-innerHeight;
+  $("prog").style.width=(innerHeight>h?100:(scrollY/h*100))+"%";
+}
+addEventListener("scroll",updProg);
+function track(ev,val){
+  try{
+    var vid=localStorage.getItem("xiqi_vid")||("v_"+Date.now()+"_"+Math.random().toString(36).slice(2,8));
+    localStorage.setItem("xiqi_vid",vid);
+    fetch("https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({vid:vid,event:ev,book:"growth",value:val||""})}).catch(function(){});
+  }catch(e){}
+}
+function saveBadges(){try{localStorage.setItem("xz_badges_growth",JSON.stringify(earned));}catch(e){}}
+function loadBadges(){try{var v=localStorage.getItem("xz_badges_growth");if(v)earned=JSON.parse(v);}catch(e){}}
+document.addEventListener("click",function(e){
+  if(e.target.classList&&e.target.classList.contains("tog")){
+    var q=e.target.closest(".qcard");q.classList.toggle("open");
+    e.target.textContent=q.classList.contains("open")?"收起":"展开";
+  }
+});
+$("btnToc").onclick=function(){scrollTo(0,0);};
+$("btnVoice").onclick=function(){var v=document.querySelector(".voice");if(v)v.scrollIntoView({behavior:"smooth"});};
+$("btnVideo").onclick=function(){var v=document.querySelector(".video-box");if(v)v.scrollIntoView({behavior:"smooth"});};
+$("btnGames").onclick=function(){var g=document.querySelector(".game");if(g)g.scrollIntoView({behavior:"smooth"});};
+$("btnUnlock").onclick=function(){unlock();};
+var bgm=new Audio("bgm.wav");bgm.loop=true;bgm.volume=0.35;
+var bgmOn=false;
+$("btnBgm").onclick=function(){
+  if(!bgmOn){bgm.play().then(function(){bgmOn=true;$("btnBgm").textContent="🎵 关背景乐";toast("🎵 背景音乐已开启");}).catch(function(){toast("点击页面任意处后再试");});}
+  else{bgm.pause();bgmOn=false;$("btnBgm").textContent="🎵 背景乐";toast("背景音乐已关闭");}
+};
+document.addEventListener("click",function(){if(bgmOn&&bgm.paused)bgm.play().catch(function(){});});
+function toast(msg){var t=$("toast");t.textContent=msg;t.style.display="block";clearTimeout(t._h);t._h=setTimeout(function(){t.style.display="none"},1800);}
+
+loadBadges();render();
+track("view");
+</script>
+</body>
+</html>
