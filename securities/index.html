@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《证券分析》· 格雷厄姆与多德 · 熙祺智书多媒体书</title>
+<style>
+:root{--bg:#071020;--card:#0e1d3a;--card2:#112748;--gold:#e8b94a;--gold2:#c99a2e;--blue:#4f7cff;--text:#e9f0ff;--dim:#9fb2d9;--line:#1d3158;--red:#ff6b6b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 120px;}
+.hero{position:relative;border-radius:0 0 30px 30px;overflow:hidden;margin:-1px -18px 0;padding:46px 24px 40px;text-align:center;background:linear-gradient(180deg,#101f42,#071020);}
+.hero img{width:100%;max-width:520px;border-radius:18px;border:2px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.6);}
+.badge{display:inline-block;margin:18px 0 10px;padding:6px 16px;border:1px solid var(--gold);color:var(--gold);border-radius:30px;font-size:13px;letter-spacing:2px;}
+.hero h1{font-size:34px;margin:8px 0 6px;color:#fff;text-shadow:0 2px 12px rgba(232,185,74,.25);}
+.hero .sub{color:var(--dim);font-size:15px;margin-bottom:14px;}
+.hero .meta{color:var(--gold);font-size:14px;margin-top:6px;}
+.free-note{margin-top:16px;font-size:13px;color:var(--dim);}
+.free-note b{color:var(--gold);}
+.toolbar{position:sticky;top:0;z-index:50;background:rgba(7,16,32,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin:14px -18px 0;padding:10px 18px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;}
+.tbtn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:13px;transition:.2s;}
+.tbtn:hover{border-color:var(--gold);color:var(--gold);}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;margin:22px 0;padding:24px 22px;box-shadow:0 6px 24px rgba(0,0,0,.25);}
+.sec h2{color:var(--gold);font-size:22px;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.sec .k{background:var(--gold);color:#071020;border-radius:8px;padding:2px 10px;font-size:13px;font-weight:700;}
+.sec .lead{color:var(--dim);font-size:14px;margin-bottom:14px;}
+.sec .tag{margin:8px 4px 0 0;display:inline-block;font-size:12px;padding:2px 10px;border:1px solid var(--blue);color:#c3d2ff;border-radius:20px;}
+.sec.locked{opacity:.78;position:relative;}
+.sec.locked .lockbar{display:flex;align-items:center;gap:10px;background:rgba(232,185,74,.08);border:1px dashed var(--gold);border-radius:12px;padding:12px 14px;margin-top:14px;color:var(--gold);font-size:14px;cursor:pointer;}
+.sec.locked .lockbar:hover{background:rgba(232,185,74,.16);}
+.imgbox{border-radius:14px;overflow:hidden;margin:14px 0;border:1px solid var(--line);}
+.imgbox img{width:100%;display:block;}
+.imgbox .cap{font-size:12px;color:var(--dim);padding:8px 12px;background:rgba(0,0,0,.25);text-align:center;}
+.gold{color:var(--gold);}
+.mem{background:#0a1832;border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0;color:#ffe9b8;}
+.voice{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0;cursor:pointer;}
+.voice .ic{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#071020;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.voice .tx{flex:1;font-size:14px;}
+.voice .tx small{color:var(--dim);display:block;font-size:12px;}
+.video-box{border-radius:14px;overflow:hidden;margin:14px 0;border:1px solid var(--line);background:#000;}
+.video-box iframe{width:100%;aspect-ratio:16/9;border:0;display:block;}
+.lbl{color:var(--gold);font-size:13px;padding:10px 12px 0;}
+.game{background:var(--card2);border:1px solid var(--gold);border-radius:14px;padding:16px;margin:14px 0;}
+.game h4{color:var(--gold);font-size:16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+.game .gq{font-size:14px;color:var(--text);margin-bottom:10px;}
+.gopt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;margin:6px 0;cursor:pointer;font-size:14px;transition:.15s;}
+.gopt:hover{border-color:var(--gold);}
+.gopt.correct{background:rgba(79,124,255,.3);border-color:var(--blue);color:#d4deff;}
+.gopt.wrong{background:rgba(255,107,107,.22);border-color:var(--red);color:#ffc9c9;}
+.gbtn{background:var(--gold);color:#071020;border:0;padding:9px 18px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;margin-top:8px;}
+.gfeed{font-size:13px;margin-top:8px;min-height:20px;}
+.gfeed.ok{color:#b9c8ff;}
+.gfeed.no{color:#ffc9c9;}
+.inp{width:100%;background:var(--card);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;font-size:14px;margin:6px 0;font-family:inherit;}
+.inp:focus{outline:none;border-color:var(--gold);}
+.prog{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue));width:0;z-index:99;transition:width .3s;}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.88);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:30px;font-size:14px;z-index:200;display:none;}
+.pts{color:var(--gold);font-weight:700;}
+footer{text-align:center;color:var(--dim);font-size:12px;margin-top:40px;padding:20px 0;}
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.flow span{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--blue);color:#c3d2ff;}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.bdg{font-size:12px;padding:5px 10px;border-radius:20px;border:1px solid var(--line);color:var(--dim);background:var(--card2);}
+.bdg.earned{border-color:var(--gold);color:var(--gold);background:rgba(232,185,74,.1);}
+@media(max-width:640px){.hero h1{font-size:27px;}.sec{padding:18px 16px;}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="toast" id="toast"></div>
+<div class="wrap">
+  <div class="hero">
+    <img src="art_cover.jpg" alt="证券分析封面">
+    <div class="badge">熙祺智书 · 价值投资专题</div>
+    <h1>证券分析</h1>
+    <div class="sub">华尔街百科全书 · 价值投资的方法论宝库</div>
+    <div class="meta">本杰明·格雷厄姆 × 戴维·多德 著 · 巴菲特奉为一生的教科书</div>
+    <div class="free-note">前 6 节免费试读 · 完整版需解锁 · <b>总 11 节 / 16 个互动游戏 / 12 枚徽章</b></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="tbtn" id="btnToc">📖 目录</button>
+    <button class="tbtn" id="btnVoice">🎧 音频</button>
+    <button class="tbtn" id="btnVideo">🎬 视频</button>
+    <button class="tbtn" id="btnGames">🎮 游戏</button>
+    <button class="tbtn" id="btnUnlock">🔓 解锁</button>
+    <button class="tbtn" id="btnBgm">🎵 背景乐</button>
+    <span style="margin-left:auto;font-size:13px;color:var(--dim);">积分 <b class="pts" id="ptsBox">0</b></span>
+  </div>
+
+  <div id="sections"></div>
+
+  <footer>熙祺智书 · 多媒体书 ｜ 读不完的书 · 看得进去的书 ｜ 《证券分析》互动版</footer>
+</div>
+
+<script>
+var FREE=6;
+var $=function(id){return document.getElementById(id)};
+var secs=[
+ {t:"序章 · 华尔街的百科全书",tag:["开篇","定义"],art:"art_cover.jpg",cap:"一本在废墟中写成的书，教你在任何市场活下去",voice:["voice_open.wav","序章导听 · 证券分析是什么"],
+  lead:"1934年，大萧条的废墟上，格雷厄姆与多德写下了这本近九百页的巨著。",
+  body:function(){return `<div class="mem">📚 《证券分析》的诞生：<br>
+  🔹 1929 年大崩盘：股市暴跌 89%，无数人一夜破产；<br>
+  🔹 格雷厄姆本人也几乎破产——他要用余生回答：投资到底靠什么站稳？<br>
+  🔹 答案不是预测行情，而是一套纪律：<b class="gold">从公开事实出发，把价格与价值分开</b>。</div>
+  <p>巴菲特说，这是他读过最重要的书。全书教你的不是怎么赚钱，而是<b class="gold">怎么在市场上活下去、怎么不亏大钱</b>。</p>
+  <p>今天读它，意义更大：九十年前的错误，今天的散户一个不落地在犯。</p>`},
+  flow:["理解：证券分析是一套纪律","记忆：事实、价格、价值、安全","联想：我过去亏钱亏在哪一步","练习：证券分析判断题"]},
+ {t:"第1课 · 分析的三层金字塔",tag:["方法","逻辑"],art:"art_pyramid.jpg",cap:"事实 → 分析 → 结论，一层都不能跳",
+  lead:"格雷厄姆把证券分析与法律、医学并列：不精确，但专业分析不可或缺。",
+  body:function(){return `<p>证券分析不是精确科学，不能像数学那样算出唯一答案。但它像诊断：<b class="gold">医生的判断可能错，但有了系统分析，出错的概率和幅度都小得多。</b></p>
+  <div class="mem">🗼 三层金字塔：<br>
+  1️⃣ 底层 · 事实：公司的财报、资产、盈利、股息——公开可查的数据；<br>
+  2️⃣ 中层 · 判断：用方法分析这些数据，识别价值与风险；<br>
+  3️⃣ 顶层 · 结论：得出「足够安全」还是「明显危险」的判断。<br>
+  💡 大多数散户直接从股价跳到买卖——第一层都没有。</div>
+  <p>格雷厄姆的核心主张：<b class="gold">分析的价值，不在于算准未来，而在于避免灾难性错误</b>。</p>
+  <p>练习：把你想买的股票，先写下来它靠什么赚钱——写不出来，就别买。</p>`},
+  flow:["理解：分析不精确但必要","记忆：事实、判断、结论三层","联想：我买股票前做了第几层","练习：金字塔顺序题"]},
+ {t:"第2课 · 投资与投机：一道分界线",tag:["认知","核心"],art:"art_divide.jpg",cap:"左边是分析台，右边是赌桌——你站哪边？",
+  lead:"证券分析最基础的分界：投资操作与投机操作，是两回事。",
+  body:function(){return `<div class="mem">⚔️ 格雷厄姆的定义：<br>
+  🔹 投资操作：经过深入分析、确保本金安全、获得适当回报；<br>
+  🔹 投机操作：依赖预测、听消息、赌价格波动——没有安全承诺；<br>
+  💡 股票本身不是投机品，投机与否取决于<b class="gold">你怎么操作它</b>。</div>
+  <p>在《证券分析》里，格雷厄姆把普通股称为「债券的延伸」：<b class="gold">买股票，本质是买一家公司未来收益的权利，而不是赌一张涨跌纸片</b>。</p>
+  <p>一个人可以在买债券时投机，也可以在买股票时投资——区别不在品种，在方法：<b class="gold">有没有分析，有没有安全边际</b>。</p>`},
+  flow:["理解：投机与否取决于方法","记忆：分析、安全、回报三条件","联想：我最近一次操作是投资还是投机","练习：投资投机判断"]},
+ {t:"第3课 · 债券与优先股：契约优先权",tag:["固定收益","保障"],art:"art_bond.jpg",cap:"先还谁的钱，决定了谁更安全",
+  lead:"《证券分析》用大量篇幅教你怎么看懂固定收益证券——债券与优先股。",
+  body:function(){return `<p>一家公司破产清算时，还钱有严格的顺序：<b class="gold">债券 > 优先股 > 普通股</b>。所以债券持有人的保障，来自公司的契约承诺与资产兜底。</p>
+  <div class="mem">📜 分析债券的两把尺子：<br>
+  1️⃣ 偿债能力：公司赚的钱，能不能稳定覆盖利息？<br>
+  2️⃣ 资产保护：万一破产，公司的资产够不够还债？<br>
+  💡 格雷厄姆的标准：宁可买低估的债券，也不要买高估的股票——<b class="gold">安全永远排在收益前面</b>。</div>
+  <p>优先股比债券差一档：它的股息支付不是硬性义务，公司没钱可以停发。<b class="gold">所以买优先股，要用比债券更严的标准去衡量</b>。</p>
+  <p>一句话：先问「我亏得起吗」，再问「我能赚多少」。</p>`},
+  flow:["理解：债券靠契约与资产保障","记忆：债券大于优先股大于普通股","联想：我买的基金底层是什么","练习：偿债顺序题"]},
+ {t:"第4课 · 资产负债表：家底清查",tag:["财报","安全"],art:"art_balance.jpg",cap:"先看家底，再看赚钱——资产是最后的防线",voice:["voice_balance.wav","第4课 · 财报分析：两张表看穿一家公司"],
+  lead:"格雷厄姆说，分析一家公司，先打开它的资产负债表。",
+  body:function(){return `<div class="mem">⚖️ 资产负债表三问：<br>
+  🔹 资产：公司到底拥有什么？（现金、存货、厂房、应收账款…）<br>
+  🔹 负债：公司欠了多少钱？（借款、应付、或有负债…）<br>
+  🔹 净资产 = 资产 − 负债：<b class="gold">这才是股东真正拥有的家底</b>。</div>
+  <p>为什么要先看表？因为<b class="gold">净资产是公司的安全垫</b>——即使盈利下滑，资产还在。格雷厄姆当年靠「股价低于净资产」捡烟蒂，前提就是先把家底摸清。</p>
+  <p>三个警惕：① 资产可能被高估（存货、应收要打折看）；② 负债可能藏在表外（担保、租赁）；③ 商誉与无形资产，别当现金。</p>
+  <p>练习：打开你持仓公司的年报，算一算：每股净资产是多少？现在的股价是它的几倍？</p>`},
+  flow:["理解：净资产等于资产减负债","记忆：家底、欠债、安全垫","联想：我买的公司家底厚不厚","练习：资产负债表题"]},
+ {t:"第5课 · 损益表：盈利的真相",tag:["财报","盈利"],art:"art_income.jpg",cap:"利润不是一行数字，而是一条层层过滤的瀑布",
+  lead:"资产负债表看家底，损益表看赚钱能力——两张表合起来，才是完整的公司。",
+  body:function(){return `<div class="mem">💧 损益表瀑布：<br>
+  🔹 收入 → 减营业成本 → 毛利 → 减费用 → 营业利润 → 减利息税 → 净利润<br>
+  🔹 格雷厄姆的重点：<b class="gold">盈利能力比一次性的利润更重要</b>；<br>
+  🔹 要看过去 7-10 年的平均盈利，而不是看单年暴增。</div>
+  <p>利润可以是做出来的：一次卖资产、一次政府补贴、一次会计调整，都能让单年利润暴涨。<b class="gold">所以要看质量——盈利是不是来自主营业务，能不能持续</b>。</p>
+  <p>格雷厄姆的名言：<b class="gold">一只股票值得买的理由，不是它今年赚得多，而是它未来很多年都能赚得稳</b>。</p>
+  <p>练习：找一只股票，看它过去五年的净利润——是稳步增长，还是忽上忽下？</p>`},
+  flow:["理解：盈利质量比单年利润重要","记忆：收入减成本减费用等于净利","联想：我买的公司利润稳吗","练习：盈利质量题"]},
+ {t:"第6课 · 内在价值：称一称公司的重量",tag:["估值","核心"],art:"art_value2.jpg",cap:"内在价值不是一个点，而是一个区间",
+  lead:"格雷厄姆发明了「内在价值」：证券的真实价值，不等于市场价格。",
+  body:function(){return `<div class="video-box"><div class="lbl">🎬 第6课视频 · 现代股票估值与选股新标准（《证券分析》第28章解读）</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1M89SBsEt7&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>
+  <div class="mem">⚖️ 内在价值的真相：<br>
+  🔹 不是精确数字：谁也算不出公司「到底值多少」；<br>
+  🔹 是一个合理区间：你能判断「明显贵」或「明显便宜」就够了；<br>
+  🔹 三种估值锚：资产价值（家底）、盈利能力（赚钱）、成长前景（未来）。</div>
+  <p>格雷厄姆的实用主义：<b class="gold">你不需要精确到小数点，只需要知道：当前价格，比合理区间高很多，还是低很多</b>。</p>
+  <p>这就像称体重：不需要精确到克，只要知道一个人明显超重或明显偏瘦——<b class="gold">证券分析的价值，在于发现「明显」的错价</b>。</p>
+  <p>一句话：价值是秤，价格是市场给出的报价——先有秤，再谈买。</p>`},
+  flow:["理解：内在价值是区间不是点","记忆：资产、盈利、成长三锚","联想：我买的东西贵不贵我怎么判断","练习：估值判断"]},
+ {t:"第7课 · 安全边际：为错误留余地",tag:["安全边际","核心"],art:"art_margin2.jpg",cap:"你一定会犯错——安全边际就是为错误兜底的弹簧",voice:["voice_margin2.wav","第7课 · 安全边际：先不亏再谈赚"],
+  lead:"《证券分析》全书最重要的概念：永远为你的判断留出犯错的空间。",
+  body:function(){return `<div class="video-box"><div class="lbl">🎬 第7课视频 · 市场先生、现金流、安全边际：格雷厄姆的老书怎么救今天的账户</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1HxGC6tE8c&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>
+  <div class="mem">🛡️ 安全边际 = 内在价值 − 买入价格<br>
+  🔹 用 4 毛买价值 1 块的东西，6 毛差距就是安全边际；<br>
+  🔹 它不是赚钱公式，是保命护甲；<br>
+  🔹 判断会错、市场会糟、公司会变坏——安全边际为所有意外兜底。</div>
+  <p>为什么必须有安全边际？因为<b class="gold">你一定会犯错</b>。格雷厄姆在书中反复强调：未来无法预测，所以买入价必须比你认为的价值低一大截。</p>
+  <p>这也是巴菲特「第一原则：不要亏钱；第二原则：记住第一条」的源头。<b class="gold">先不亏，再谈赚。</b></p>
+  <p>行动清单：任何买入前，先问——如果我看错了，我会亏多少？这个亏损我能承受吗？</p>`},
+  flow:["理解：安全边际等于价值减价格","记忆：先不亏再谈赚","联想：我上次买入的安全边际在哪","练习：安全边际计算题"]},
+ {t:"第8课 · 七步选股：普通股的纪律",tag:["选股","实操"],art:"art_steps.jpg",cap:"七级台阶，每一步都在帮你避开一个坑",
+  lead:"《证券分析》把普通股投资拆成一套可执行的流程——七步走完，剩下的交给纪律。",
+  body:function(){return `<div class="mem">🪜 七步选股流程：<br>
+  1️⃣ 看行业：这家公司做的是什么生意？<br>
+  2️⃣ 看财务：家底厚不厚？盈利稳不稳？<br>
+  3️⃣ 看估值：当前价格贵不贵？<br>
+  4️⃣ 看安全边际：买价与价值的差距够不够大？<br>
+  5️⃣ 看分散：这笔钱占我总仓位多少？<br>
+  6️⃣ 看持有：我打算拿多久？<br>
+  7️⃣ 看纪律：我写下来买它的理由了吗？</div>
+  <p>格雷厄姆的忠告：<b class="gold">普通股投资不是预测，而是纪律</b>——用流程代替情绪，用清单代替冲动。</p>
+  <p>芒格在解读这一章时说得更直白：<b class="gold">不会组合持仓，再牛的股也白搭</b>。单吊一只票，不是勇敢，是赌博。</p>
+  <p>今天行动：用这七步，把你想买的股票走一遍，并把每一步的答案写下来。</p>`},
+  flow:["理解：选股是流程不是感觉","记忆：行业、财务、估值、边际、分散、持有、纪律","联想：我过去买股票跳过哪几步","练习：七步顺序题"]},
+ {t:"第9课 · 市场分析 vs 价值分析",tag:["市场","认知"],art:"art_lamp.jpg",cap:"预测市场的走向，不如判断价值的坐标",
+  lead:"格雷厄姆明确反对一类分析：试图预测市场涨跌的「市场分析」。",
+  body:function(){return `<div class="mem">💡 两类分析的分野：<br>
+  🔹 市场分析：研究股价走势、情绪、资金——试图预测下一步涨跌；<br>
+  🔹 价值分析：研究公司本身——判断价格与价值的关系；<br>
+  💡 格雷厄姆的结论：<b class="gold">市场分析在理论上可以成立，实践中几乎没人能长期靠它赚钱</b>。</div>
+  <p>为什么？因为<b class="gold">短期的价格由无数人的情绪决定，不可预测</b>；而长期的价格，终将向价值回归——这是可以判断的。</p>
+  <p>格雷厄姆说，市场先生会疯狂，但<b class="gold">价值的灯塔不会倒</b>。投资不是猜明天涨跌，而是站在灯塔照亮的航道上，等价格回到价值身边。</p>
+  <p>记住：你不需要预测市场，只需要在市场犯错时，认得出来。</p>`},
+  flow:["理解：预测涨跌不可靠","记忆：短期情绪，长期价值","联想：我每天看盘看到了什么","练习：市场与价值题"]},
+ {t:"终章 · 从证券分析到投资信仰",tag:["收官","传承"],art:"art_cover.jpg",cap:"九十年过去，灵魂没有变",voice:["voice_rules2.wav","终章 · 价值投资的四句话"],
+  lead:"把全书浓缩成四句话，今晚就开始执行。",
+  body:function(){return `<div class="mem">📜 格雷厄姆与多德留给世界的四句话：<br>
+  1️⃣ 投资与投机，必须分清；<br>
+  2️⃣ 价格与价值，是两回事；<br>
+  3️⃣ 安全边际，是投资的核心；<br>
+  4️⃣ 你最大的敌人，是你自己的情绪。</div>
+  <p>巴菲特把这套方法传承了七十年，他说：<b class="gold">在别人恐惧时贪婪，在别人贪婪时恐惧</b>。这听起来简单，做起来极难。</p>
+  <p>从《证券分析》到《聪明的投资者》，格雷厄姆讲的从来不是暴富，而是<b class="gold">活得久、不亏钱、慢慢变富</b>。</p>
+  <p>现在写下你的行动卡：① 我只看得懂什么生意；② 我的安全边际红线；③ 我承诺持有的最短时间。<b class="gold">这一刻，你已经是价值投资的门内人。</b></p>`},
+  flow:["理解：四句话缺一不可","记忆：分清、分开、边际、情绪","联想：哪一句我最难做到","练习：四句话填空"]}
+];
+
+var games=[
+ {sec:0,title:"作者是谁",type:"choice",
+  q:"《证券分析》的作者是？",
+  opts:[{t:"格雷厄姆与多德",r:1},{t:"巴菲特与芒格",r:0},{t:"彼得·林奇",r:0},{t:"约翰·博格",r:0}],
+  feed:"对！本杰明·格雷厄姆与戴维·多德，价值投资的奠基人。"},
+ {sec:0,title:"核心方法",type:"choice",
+  q:"《证券分析》教你的核心是什么？",
+  opts:[{t:"预测明天涨跌",r:0},{t:"从公开事实出发，把价格与价值分开",r:1},{t:"追热点抓涨停",r:0},{t:"听消息抄作业",r:0}],
+  feed:"正确！它不是预测工具，而是一套保护你不亏大钱的纪律。"},
+ {sec:1,title:"金字塔顺序",type:"choice",
+  q:"分析的三层金字塔，从下到上依次是？",
+  opts:[{t:"结论→判断→事实",r:0},{t:"事实→判断→结论",r:1},{t:"判断→事实→结论",r:0},{t:"股价→消息→结论",r:0}],
+  feed:"对！底层是事实，中间是判断，顶层才是结论——跳层必错。"},
+ {sec:1,title:"分析价值",type:"choice",
+  q:"格雷厄姆认为证券分析的真正价值是什么？",
+  opts:[{t:"算出精确的内在价值",r:0},{t:"避免灾难性错误",r:1},{t:"预测每一次行情",r:0},{t:"保证每次都赚钱",r:0}],
+  feed:"正确！不精确但必要——分析让你少犯错、犯小错。"},
+ {sec:2,title:"投资还是投机",type:"choice",
+  q:"以下哪种操作符合格雷厄姆定义的「投资」？",
+  opts:[{t:"研究财报后按价值买入并持有",r:1},{t:"听消息追一只热门股",r:0},{t:"赌政策出台炒概念",r:0},{t:"每天高抛低吸做差价",r:0}],
+  feed:"对！有深入分析、本金安全与合理回报三条件，才是投资。"},
+ {sec:2,title:"股票本质",type:"choice",
+  q:"在《证券分析》里，普通股被看作什么？",
+  opts:[{t:"一张可以炒的纸片",r:0},{t:"债券的延伸——公司未来收益的权利",r:1},{t:"纯粹的赌博工具",r:0},{t:"庄家的筹码",r:0}],
+  feed:"正确！买股票是买公司未来收益的权利，不是赌涨跌。"},
+ {sec:3,title:"偿债顺序",type:"choice",
+  q:"公司破产清算时，还钱的顺序是？",
+  opts:[{t:"普通股→优先股→债券",r:0},{t:"债券→优先股→普通股",r:1},{t:"优先股→债券→普通股",r:0},{t:"按股价高低还",r:0}],
+  feed:"对！债券最优先，普通股最后——所以债券最安全。"},
+ {sec:3,title:"优先股",type:"choice",
+  q:"与债券相比，优先股的股息有什么特点？",
+  opts:[{t:"公司必须无条件支付",r:0},{t:"公司没钱时可以停发",r:1},{t:"比普通股股息高得多",r:0},{t:"由政府担保",r:0}],
+  feed:"正确！优先股股息不是硬义务，所以要用更严标准衡量。"},
+ {sec:4,title:"家底公式",type:"choice",
+  q:"股东真正拥有的家底（净资产）等于？",
+  opts:[{t:"资产 + 负债",r:0},{t:"资产 − 负债",r:1},{t:"收入 − 成本",r:0},{t:"股价 × 股数",r:0}],
+  feed:"对！净资产等于资产减负债，是公司的安全垫。"},
+ {sec:4,title:"资产警惕",type:"choice",
+  q:"分析资产负债表时，以下哪条是格雷厄姆的警惕点？",
+  opts:[{t:"资产可能被高估，负债可能藏在表外",r:1},{t:"报表数字永远准确",r:0},{t:"商誉可以当现金用",r:0},{t:"只看资产不看负债",r:0}],
+  feed:"正确！存货应收要打折看，表外负债要挖出来。"},
+ {sec:5,title:"损益表重点",type:"choice",
+  q:"判断盈利能力时，格雷厄姆强调要看什么？",
+  opts:[{t:"只看今年利润",r:0},{t:"过去7-10年的平均盈利",r:1},{t:"只看股价涨幅",r:0},{t:"只看营收大小",r:0}],
+  feed:"对！单年利润可以做出来，多年平均盈利才反映真实能力。"},
+ {sec:5,title:"盈利质量",type:"choice",
+  q:"以下哪种利润更值得信赖？",
+  opts:[{t:"卖了一次资产的一次性收益",r:0},{t:"来自主营业务的持续盈利",r:1},{t:"政府补贴的一次性收入",r:0},{t:"会计调整做出来的利润",r:0}],
+  feed:"正确！盈利质量看来源——持续的主营利润才是真本事。"},
+ {sec:6,title:"内在价值",type:"choice",
+  q:"格雷厄姆认为内在价值是什么？",
+  opts:[{t:"一个精确到分的数字",r:0},{t:"一个能判断明显贵贱的区间",r:1},{t:"永远等于股价",r:0},{t:"由庄家决定",r:0}],
+  feed:"对！不需要精确，只需要发现明显错价的机会。"},
+ {sec:7,title:"安全边际来源",type:"choice",
+  q:"为什么买入必须有安全边际？",
+  opts:[{t:"保证一定赚钱",r:0},{t:"你一定会犯错，它为错误兜底",r:1},{t:"让交易更频繁",r:0},{t:"是庄家的规矩",r:0}],
+  feed:"正确！判断会错、市场会糟——安全边际让你错时少亏、对时多赚。"},
+ {sec:8,title:"七步之一",type:"choice",
+  q:"七步选股中，第一步是？",
+  opts:[{t:"看行业：这家公司做的是什么生意",r:1},{t:"立刻下单",r:0},{t:"听朋友推荐",r:0},{t:"看K线形态",r:0}],
+  feed:"对！先搞懂生意，再谈财务、估值与安全边际。"},
+ {sec:10,title:"四句话填空",type:"input",
+  q:"终章四句话之一：价格与（？），是两回事",
+  ans:"价值",feed:"对！价格是报价，价值是秤——盯住价值，别被报价牵着走。"}
+];
+
+var badges=["📚 百科全书读者","🗼 金字塔攀登者","⚔️ 分界判官","📜 契约守护者","⚖️ 家底清查员","💧 盈利侦探","⚖️ 价值称量师","🛡️ 安全边际卫士","🪜 七步选股人","💡 灯塔掌舵者","🔓 解锁勇士","🏆 完读大师"];
+var earned={};
+
+function render(){
+  var h="";
+  for(var i=0;i<secs.length;i++){
+    var s=secs[i], locked=i>=FREE && !isUnlocked();
+    h+=`<div class="sec ${locked?'locked':''}" id="sec${i}">
+      <h2><span class="k">${i<FREE?'免费':'VIP'}</span>${s.t}</h2>
+      <div>${s.tag.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="lead">${s.lead}</div>`;
+    if(i===0){h+=`<div class="video-box"><div class="lbl">🎬 序章视频 · 价值投资必读书单：从《证券分析》到实战全覆盖</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1AWmwBaECW&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(i===6){h+=`<div class="video-box"><div class="lbl">🎬 第6课视频 · 现代股票估值、选股新标准（《证券分析》第28章解读）</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1M89SBsEt7&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(i===7){h+=`<div class="video-box"><div class="lbl">🎬 第7课视频 · 市场先生、现金流、安全边际：一本老书怎么救今天的账户</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1HxGC6tE8c&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(s.voice){h+=`<div class="voice" onclick="playV('${s.voice[0]}',this)"><div class="ic">▶</div><div class="tx">${s.voice[1]}<small>点击播放 · 语音讲书</small></div></div>`;}
+    if(s.art){h+=`<div class="imgbox"><img src="${s.art}" alt=""><div class="cap">${s.cap}</div></div>`;}
+    h+=`<div class="flow">${s.flow.map(f=>`<span>${f}</span>`).join('')}</div>`;
+    h+=s.body();
+    if(locked){h+=`<div class="lockbar" onclick="unlock()">🔒 本节为付费内容，点击解锁完整版（管理员口令或激活码）</div>`;}
+    h+=`</div>`;
+  }
+  $("sections").innerHTML=h;
+  renderGames();
+  loadPts();
+  updProg();
+}
+function renderGames(){
+  for(var i=0;i<games.length;i++){
+    var g=games[i], holder=$("sec"+g.sec);
+    if(!holder) continue;
+    var box=document.createElement("div");box.className="game";box.id="game"+i;
+    box.innerHTML=`<h4>🎮 ${g.title}<span>游戏 ${i+1}/${games.length}</span></h4><div class="gq">${g.q}</div><div id="gg${i}"></div><div class="gfeed" id="gf${i}"></div><div class="badge-row" id="gb${i}"></div>`;
+    holder.appendChild(box);
+    var body=$("gg"+i);
+    if(g.type==="choice"){
+      g.opts.forEach((o,oi)=>{
+        var b=document.createElement("button");b.className="gopt";b.textContent=o.t;
+        b.onclick=function(){pick(i,oi)};
+        body.appendChild(b);
+      });
+    }else if(g.type==="input"){
+      var inp=document.createElement("input");inp.className="inp";inp.placeholder="输入你的答案…";
+      var btn=document.createElement("button");btn.className="gbtn";btn.textContent="提交";
+      btn.onclick=function(){checkInput(i,inp.value)};
+      body.appendChild(inp);body.appendChild(btn);
+    }
+  }
+}
+function pick(gi,oi){
+  var g=games[gi],o=g.opts[oi],feed=$("gf"+gi);
+  var btns=$("gg"+gi).querySelectorAll(".gopt");
+  btns.forEach(b=>{b.disabled=true;b.classList.remove("correct","wrong");});
+  btns[oi].classList.add(o.r?"correct":"wrong");
+  if(o.r){feed.className="gfeed ok";feed.textContent="✅ "+g.feed;earnBadge(gi);}
+  else{feed.className="gfeed no";feed.textContent="❌ 再想想。提示："+g.feed;btns[g.opts.findIndex(x=>x.r===1)].classList.add("correct");}
+}
+function checkInput(gi,val){
+  var g=games[gi],feed=$("gf"+gi);
+  var v=(val||"").trim();
+  if(v.indexOf(g.ans)>=0 || g.ans.indexOf(v)>=0){feed.className="gfeed ok";feed.textContent="✅ "+g.feed;earnBadge(gi);}
+  else{feed.className="gfeed no";feed.textContent="❌ 答案约是 "+g.ans+"。再试试看。"}
+}
+function earnBadge(gi){
+  var g=games[gi];
+  if(!earned[gi]){earned[gi]=1;saveBadges();
+    addPts(10);
+    var bl=$("gb"+gi);if(bl)bl.innerHTML=`<span class="bdg earned">🏅 已通关 · +10积分</span>`;
+    toast("🎮 通关「"+g.title+"」 +10积分");
+    track("game",g.title);
+  }
+}
+function isUnlocked(){
+  try{return localStorage.getItem("xz_admin")==="1"||localStorage.getItem("xz_unlock_securities")==="1";}catch(e){return false}
+}
+function unlock(){
+  var p=prompt("请输入管理员口令或激活码：");
+  if(!p) return;
+  if(p==="xiqi-admin-2026"){try{localStorage.setItem("xz_admin","1");localStorage.setItem("xz_unlock_securities","1");}catch(e){};render();toast("🔓 管理员权限已生效，全部解锁");return;}
+  if(/^XQ2026/i.test(p)||/^[A-Z0-9]{8}$/.test(p)){try{localStorage.setItem("xz_unlock_securities","1");}catch(e){};render();toast("🔓 激活成功，全书已解锁");track("unlock",p);return;}
+  toast("❌ 口令不正确");
+}
+function playV(src,el){
+  var a=el.querySelector("audio");
+  if(a){if(a.paused)a.play();else a.pause();return;}
+  a=document.createElement("audio");a.src=src;a.controls=true;a.style.width="100%";a.style.marginTop="8px";
+  el.appendChild(a);a.play();
+  track("audio",src);
+}
+function loadPts(){
+  var p=0;try{p=parseInt(localStorage.getItem("xz_points"))||0;}catch(e){}
+  $("ptsBox").textContent=p;
+}
+function addPts(n){
+  var p=0;try{p=parseInt(localStorage.getItem("xz_points"))||0;}catch(e){}
+  p+=n;try{localStorage.setItem("xz_points",p);}catch(e){}
+  $("ptsBox").textContent=p;track("points",String(n));
+}
+function updProg(){
+  var h=document.documentElement.scrollHeight-innerHeight;
+  $("prog").style.width=(innerHeight>h?100:(scrollY/h*100))+"%";
+}
+addEventListener("scroll",updProg);
+function track(ev,val){
+  try{
+    var vid=localStorage.getItem("xiqi_vid")||("v_"+Date.now()+"_"+Math.random().toString(36).slice(2,8));
+    localStorage.setItem("xiqi_vid",vid);
+    fetch("https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({vid:vid,event:ev,book:"securities",value:val||""})}).catch(function(){});
+  }catch(e){}
+}
+function saveBadges(){try{localStorage.setItem("xz_badges_securities",JSON.stringify(earned));}catch(e){}}
+function loadBadges(){try{var v=localStorage.getItem("xz_badges_securities");if(v)earned=JSON.parse(v);}catch(e){}}
+document.addEventListener("click",function(e){
+  if(e.target.classList&&e.target.classList.contains("tog")){
+    var q=e.target.closest(".qcard");q.classList.toggle("open");
+    e.target.textContent=q.classList.contains("open")?"收起":"展开";
+  }
+});
+$("btnToc").onclick=function(){scrollTo(0,0);};
+$("btnVoice").onclick=function(){var v=document.querySelector(".voice");if(v)v.scrollIntoView({behavior:"smooth"});};
+$("btnVideo").onclick=function(){var v=document.querySelector(".video-box");if(v)v.scrollIntoView({behavior:"smooth"});};
+$("btnGames").onclick=function(){var g=document.querySelector(".game");if(g)g.scrollIntoView({behavior:"smooth"});};
+$("btnUnlock").onclick=function(){unlock();};
+var bgm=new Audio("bgm.wav");bgm.loop=true;bgm.volume=0.35;
+var bgmOn=false;
+$("btnBgm").onclick=function(){
+  if(!bgmOn){bgm.play().then(function(){bgmOn=true;$("btnBgm").textContent="🎵 关背景乐";toast("🎵 背景音乐已开启");}).catch(function(){toast("点击页面任意处后再试");});}
+  else{bgm.pause();bgmOn=false;$("btnBgm").textContent="🎵 背景乐";toast("背景音乐已关闭");}
+};
+document.addEventListener("click",function(){if(bgmOn&&bgm.paused)bgm.play().catch(function(){});});
+function toast(msg){var t=$("toast");t.textContent=msg;t.style.display="block";clearTimeout(t._h);t._h=setTimeout(function(){t.style.display="none"},1800);}
+
+loadBadges();render();
+track("view");
+</script>
+</body>
+</html>
