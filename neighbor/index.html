@@ -364,7 +364,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 真正的富人你根本看不出来'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 真正的富人你根本看不出来'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 精读 · 颠覆认知的财富真相：节制+积累，普通人的财富密码</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1zP21BgEzh&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===2){h.appendChild(audioBlock('voice_save.wav','🎧 量入为出 · 节俭是第一习惯'));}
   if(i===6){h.appendChild(audioBlock('voice_asset.wav','🎧 让资产为你工作'));}
   if(i===10){
