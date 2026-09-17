@@ -351,7 +351,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 两个爸爸的故事'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 两个爸爸的故事'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 双语音讲书 · 为什么多数人跳不出穷人思维？</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1tSNuzBEsU&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===2){h.appendChild(audioBlock('voice_asset.wav','🎧 核心定义 · 什么是资产与负债'));}
   if(i===8){h.appendChild(audioBlock('voice_free.wav','🎧 财务自由 · 让钱为你工作'));}
   if(i===10){
