@@ -324,7 +324,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 你的想法，由你说了算'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 你的想法，由你说了算'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 认知行为疗法入门 · 3个工具20分钟抓住自动思维陷阱</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1SHp4zaE9G&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===2){h.appendChild(audioBlock('voice_abc.wav','🎧 ABC 模型 · 想法决定情绪'));}
   if(i===4){h.appendChild(audioBlock('voice_dispute.wav','🎧 反驳练习 · 苏格拉底式提问'));}
   if(i===10){
