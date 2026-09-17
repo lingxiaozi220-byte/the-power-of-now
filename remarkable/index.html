@@ -328,7 +328,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 关于改变，你一直都有选择'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 关于改变，你一直都有选择'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 章节精读 · 检验人生假设：看清自我限制的规则</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1woRDBUEwo&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===3){h.appendChild(audioBlock('voice_step.wav','🎧 看脚下 · 小步子原理'));}
   if(i===7){h.appendChild(audioBlock('voice_boundary.wav','🎧 课题分离 · 心理学练习'));}
   if(i===9){
