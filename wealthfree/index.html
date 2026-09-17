@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《财富自由之路》· 李笑来 · 熙祺智书多媒体书</title>
+<style>
+:root{--bg:#08130d;--card:#0e2117;--card2:#12291d;--gold:#f5c76a;--gold2:#e6a944;--green:#2e8b57;--text:#e8f2e9;--dim:#9fbfa8;--line:#1f4a33;--red:#ff6b6b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 120px;}
+.hero{position:relative;border-radius:0 0 30px 30px;overflow:hidden;margin:-1px -18px 0;padding:46px 24px 40px;text-align:center;background:linear-gradient(180deg,#0c2418,#08130d);}
+.hero img{width:100%;max-width:520px;border-radius:18px;border:2px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.6);}
+.badge{display:inline-block;margin:18px 0 10px;padding:6px 16px;border:1px solid var(--gold);color:var(--gold);border-radius:30px;font-size:13px;letter-spacing:2px;}
+.hero h1{font-size:34px;margin:8px 0 6px;color:#fff;text-shadow:0 2px 12px rgba(245,199,106,.25);}
+.hero .sub{color:var(--dim);font-size:15px;margin-bottom:14px;}
+.hero .meta{color:var(--gold);font-size:14px;margin-top:6px;}
+.free-note{margin-top:16px;font-size:13px;color:var(--dim);}
+.free-note b{color:var(--gold);}
+.toolbar{position:sticky;top:0;z-index:50;background:rgba(8,19,13,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin:14px -18px 0;padding:10px 18px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;}
+.tbtn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:13px;transition:.2s;}
+.tbtn:hover{border-color:var(--gold);color:var(--gold);}
+.tbtn.on{background:var(--gold);color:#08130d;border-color:var(--gold);}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;margin:22px 0;padding:24px 22px;box-shadow:0 6px 24px rgba(0,0,0,.25);}
+.sec h2{color:var(--gold);font-size:22px;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.sec .k{background:var(--gold);color:#08130d;border-radius:8px;padding:2px 10px;font-size:13px;font-weight:700;}
+.sec .lead{color:var(--dim);font-size:14px;margin-bottom:14px;}
+.sec .tag{margin:8px 4px 0 0;display:inline-block;font-size:12px;padding:2px 10px;border:1px solid var(--green);color:#9fd8b4;border-radius:20px;}
+.sec.locked{opacity:.78;position:relative;}
+.sec.locked .lockbar{display:flex;align-items:center;gap:10px;background:rgba(245,199,106,.08);border:1px dashed var(--gold);border-radius:12px;padding:12px 14px;margin-top:14px;color:var(--gold);font-size:14px;cursor:pointer;}
+.sec.locked .lockbar:hover{background:rgba(245,199,106,.16);}
+.imgbox{border-radius:14px;overflow:hidden;margin:14px 0;border:1px solid var(--line);}
+.imgbox img{width:100%;display:block;}
+.imgbox .cap{font-size:12px;color:var(--dim);padding:8px 12px;background:rgba(0,0,0,.25);text-align:center;}
+.gold{color:var(--gold);}
+.poem{background:#0a1a11;border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0;font-style:normal;color:#e6d9b8;}
+.voice{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0;cursor:pointer;}
+.voice .ic{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#08130d;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.voice .tx{flex:1;font-size:14px;}
+.voice .tx small{color:var(--dim);display:block;font-size:12px;}
+.video-box{border-radius:14px;overflow:hidden;margin:14px 0;border:1px solid var(--line);background:#000;}
+.video-box iframe{width:100%;aspect-ratio:16/9;border:0;display:block;}
+.lbl{color:var(--gold);font-size:13px;padding:10px 12px 0;}
+.game{background:var(--card2);border:1px solid var(--gold);border-radius:14px;padding:16px;margin:14px 0;}
+.game h4{color:var(--gold);font-size:16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+.game .gq{font-size:14px;color:var(--text);margin-bottom:10px;}
+.gopt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;margin:6px 0;cursor:pointer;font-size:14px;transition:.15s;}
+.gopt:hover{border-color:var(--gold);}
+.gopt.correct{background:rgba(46,139,87,.35);border-color:var(--green);color:#bff0cf;}
+.gopt.wrong{background:rgba(255,107,107,.22);border-color:var(--red);color:#ffc9c9;}
+.gbtn{background:var(--gold);color:#08130d;border:0;padding:9px 18px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;margin-top:8px;}
+.gbtn.sec2{background:var(--card);border:1px solid var(--line);color:var(--text);}
+.gfeed{font-size:13px;margin-top:8px;min-height:20px;}
+.gfeed.ok{color:#9fd8b4;}
+.gfeed.no{color:#ffc9c9;}
+.inp{width:100%;background:var(--card);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;font-size:14px;margin:6px 0;font-family:inherit;}
+.inp:focus{outline:none;border-color:var(--gold);}
+.qcard{background:#0a1a11;border-radius:12px;padding:14px 16px;margin:10px 0;border:1px solid var(--line);}
+.qcard .q{font-size:15px;color:var(--gold);margin-bottom:8px;}
+.qcard .a{color:var(--dim);font-size:13px;margin-top:6px;display:none;}
+.qcard.open .a{display:block;}
+.qcard .tog{color:var(--gold);font-size:13px;cursor:pointer;text-decoration:underline;}
+.prog{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--green));width:0;z-index:99;transition:width .3s;}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.88);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:30px;font-size:14px;z-index:200;display:none;}
+.pts{color:var(--gold);font-weight:700;}
+footer{text-align:center;color:var(--dim);font-size:12px;margin-top:40px;padding:20px 0;}
+.mem{background:linear-gradient(135deg,#0c2418,#12291d);border:1px solid var(--gold);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:15px;color:#ffe9b8;}
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.flow span{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--green);color:#9fd8b4;}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.bdg{font-size:12px;padding:5px 10px;border-radius:20px;border:1px solid var(--line);color:var(--dim);background:var(--card2);}
+.bdg.earned{border-color:var(--gold);color:var(--gold);background:rgba(245,199,106,.1);}
+@media(max-width:640px){.hero h1{font-size:27px;}.sec{padding:18px 16px;}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="toast" id="toast"></div>
+<div class="wrap">
+  <div class="hero">
+    <img src="art_cover.jpg" alt="财富自由之路封面">
+    <div class="badge">熙祺智书 · 财商专题</div>
+    <h1>财富自由之路</h1>
+    <div class="sub">升级你的个人操作系统 · 让时间为你复利</div>
+    <div class="meta">李笑来 著 · 多媒体互动版</div>
+    <div class="free-note">前 6 节免费试读 · 完整版需解锁 · <b>总 12 节 / 14 个互动游戏 / 14 枚徽章</b></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="tbtn" id="btnToc">📖 目录</button>
+    <button class="tbtn" id="btnVoice">🎧 音频</button>
+    <button class="tbtn" id="btnVideo">🎬 视频</button>
+    <button class="tbtn" id="btnGames">🎮 游戏</button>
+    <button class="tbtn" id="btnUnlock">🔓 解锁</button>
+    <span style="margin-left:auto;font-size:13px;color:var(--dim);">积分 <b class="pts" id="ptsBox">0</b></span>
+  </div>
+
+  <div id="sections"></div>
+
+  <footer>熙祺智书 · 多媒体书 ｜ 读不完的书 · 看得进去的书 ｜ 《财富自由之路》互动版</footer>
+</div>
+
+<script>
+var FREE=6;
+var $=function(id){return document.getElementById(id)};
+var secs=[
+ {t:"序章 · 财富自由的真相",tag:["开篇","核心定义"],art:"art_cover.jpg",cap:"财富自由 = 不再为生活必需出售时间",voice:["voice_open.wav","序章导听 · 重新定义财富自由"],
+  lead:"大多数人追求财富自由，却从没想过：财富自由不是钱多到花不完，而是你终于不再为了生存，被迫出售自己的时间。",
+  body:function(){return `<div class="mem">🎯 核心定义：个人财富自由，指再也不用为了满足生活必需，被迫出售自己的时间。</div>
+  <p>李笑来在《财富自由之路》里开篇就颠覆了一个常识：财富自由不是人生的终点，而只是一个<b class="gold">里程碑</b>——过了这个里程碑，你依然要成长，只是从此不用再为钱出卖时间。</p>
+  <p>既然是里程碑，那之前的路就有等级。大多数人一辈子困在“用时间换钱”的循环里：上班、领工资、花掉、再上班。不是因为懒，而是因为<b class="gold">从没看清自己正在出售什么</b>。</p>
+  <p>这本书不教你怎么炒股，它教你一件事：<b class="gold">升级你的个人商业模式</b>。看清自己在卖什么，然后一步步换到更高级的卖法。</p>`},
+  flow:["理解：财富自由=时间自主权","记忆：里程碑而非终点","联想：我每天在卖什么","练习：算清我的时间账"]},
+ {t:"第1课 · 三种个人商业模式",tag:["商业模式","核心框架"],art:"art_model.jpg",cap:"一份时间卖一次 · 一份时间卖多次 · 买他人时间再卖",
+  lead:"决定财富天花板的，不是努力程度，而是你出售时间的方式。",
+  body:function(){return `<p>李笑来把个人赚钱方式分成三种<b class="gold">商业模式</b>，它们直接决定了你的财富上限：</p>
+  <div class="mem">🔹 第一种：一份时间出售一次 —— 打工者。上8小时班拿8小时钱，停手即停收。<br>
+  🔹 第二种：同一份时间出售很多次 —— 创作者。写一本书、录一门课，一份时间被复制卖给无数人。<br>
+  🔹 第三种：购买他人的时间再卖出去 —— 创业者与投资者。让系统和别人的时间为钱工作。</div>
+  <p>第一种模式的天花板肉眼可见：一天只有24小时。哪怕时薪再高，你能卖的时间总量是固定的。<b class="gold">真正拉开差距的，是模式的升级</b>，而不是在同一模式里更拼命。</p>
+  <p>李笑来还给打工者一条最实用的建议：<b class="gold">把同一份时间卖两次</b>——一次卖给老板换工资，一次卖给自己换成长。借老板的平台和钱，给自己练习。</p>`},
+  flow:["理解：三种时间出售方式","记忆：卖一次/卖多次/买时间","联想：我属于第几种","练习：商业模式识别器"]},
+ {t:"第2课 · 注意力是最宝贵的财富",tag:["资源观","反常识"],art:"art_attention.jpg",cap:"注意力 &gt; 时间 &gt; 金钱",
+  lead:"钱可以再生，时间本质上不属于你，只有注意力，完完全全是你自己的。",
+  voice:["voice_attention.wav","第2课 · 注意力审计"],
+  body:function(){return `<div class="mem">💰 金钱可以再生，⏳ 时间本质上不属于你（它自顾自流逝），👁️ 只有<b class="gold">注意力</b>——完完全全是你自己的资源。</div>
+  <p>这是全书最颠覆的一课。李笑来说：你把注意力放在哪里，你的人生就会长成什么样。注意力是你唯一可以主动支配的、能产生价值的生产资料。</p>
+  <p>可大多数人的注意力去了哪？三个大坑：</p>
+  <div class="qcard"><div class="q">🕳️ 坑一：凑热闹</div><div class="a">别人家的事，跟你毫无关系，却消耗你最多的注意力和情绪。</div><span class="tog">展开</span></div>
+  <div class="qcard"><div class="q">🕳️ 坑二：随大流</div><div class="a">什么火追什么，注意力永远被别人牵着走，从未积累属于自己的能力。</div><span class="tog">展开</span></div>
+  <div class="qcard"><div class="q">🕳️ 坑三：操碎别人的心</div><div class="a">明星八卦、同事是非，操心一万件与自己无关的事。</div><span class="tog">展开</span></div>
+  <p>高手只把注意力放在三件事上：<b class="gold">放在自己的成长上、放在真正重要的人身上、放在能产生复利的事情上</b>。</p>`},
+  flow:["理解：注意力是最稀缺资源","记忆：注意力>时间>金钱","联想：今天注意力去了哪","练习：注意力大坑识别"]},
+ {t:"第3课 · 复利曲线：成长的拐点",tag:["复利","长期"],art:"art_compound.jpg",cap:"前期平缓，拐点之后陡峭攀升",
+  lead:"你所有的积累，都在等待那条复利曲线拐点的到来。",
+  body:function(){return `<p>李笑来讲了一条<b class="gold">复利成长曲线</b>：前期很长一段时间，你的成长慢得几乎看不见，像一条平缓的虚线；但只要方向对、持续做，到达某个拐点之后，曲线会陡峭向上，指数爆发。</p>
+  <p>可惜大多数人死在拐点之前——因为<b class="gold">看不到即时反馈就放弃了</b>。读书没感觉、学习没回报、健身没变化，于是退回原地。</p>
+  <div class="mem">📈 复利的真相：前期慢是正常的，不是你没用，是还没到拐点。<br>
+  📉 唯一的失败，是在拐点前下车。</div>
+  <p>怎么保证能撑到拐点？李笑来的答案很朴素：<b class="gold">做正确的事，且长期持续</b>。方向错了，越坚持越糟；方向对了，慢也终将爆发。</p>`},
+  flow:["理解：复利曲线的形状","记忆：拐点前不要下车","联想：我正处在曲线哪段","练习：复利拐点计算器"]},
+ {t:"第4课 · 元认知：思考你的思考",tag:["认知","核心能力"],art:"art_meta.jpg",cap:"元认知 = 大脑里的操作系统升级器",
+  lead:"普通人被情绪和习惯牵着走，高手站在高处，看着自己的大脑运转。",
+  voice:["voice_meta.wav","第4课 · 元认知"],
+  body:function(){return `<p>这是全书最硬核的概念：<b class="gold">元认知</b>。简单说，就是<b class="gold">思考你的思考</b>的能力。</p>
+  <p>当你想生气时，元认知让你停一停：我为什么生气？这个情绪对我有利吗？当你拖延时，元认知让你看见：我在逃避什么？</p>
+  <p>李笑来把大脑比作<b class="gold">操作系统</b>：普通人的操作系统装好就不更新了，运行的是出厂自带的情绪反应；而元认知，就是系统的<b class="gold">升级能力</b>——它能观察系统哪里卡顿、哪里该打补丁。</p>
+  <div class="mem">🧠 没有元认知的人：被情绪驱动，事后后悔。<br>
+  🧠 有元认知的人：看见情绪，选择反应，复盘改进。<br>
+  每次升级操作系统，你就和昨天的自己拉开一个身位。</div>
+  <p>元认知是财富自由之路上最容易被忽略、却最值钱的能力——因为<b class="gold">它让一切学习真正发生</b>。</p>`},
+  flow:["理解：元认知=思考思考","记忆：大脑是操作系统","联想：今天哪次反应没经过思考","练习：元认知镜子"]},
+ {t:"第5课 · 活在未来",tag:["时间观","行动"],art:"art_future.jpg",cap:"用未来的标准，指导今天的选择",
+  lead:"如果你能预判未来，然后用未来指导现在，你的人生就开始有了复利。",
+  body:function(){return `<p>“活在未来”是李笑来最著名的概念之一。它的操作极其具体，一共七步：</p>
+  <div class="mem">1️⃣ 你对未来有个判断（比如：内容能力未来会越来越值钱）。<br>
+  2️⃣ 那个判断代表趋势（不是凭空幻想，而是可推理的趋势）。<br>
+  3️⃣ 你笃信那个趋势一定会发生。<br>
+  4️⃣ 你按那个趋势行动（现在就练内容能力）。<br>
+  5️⃣ 因为行动，你更接近那个未来。<br>
+  6️⃣ 未来如约而至时，你已经在其中。<br>
+  7️⃣ 于是你提前活在了未来。</div>
+  <p>大多数人活在过去（懊悔）、活在当下（消费），只有极少数人<b class="gold">活在未来</b>（投资与积累）。</p>
+  <p>想活在未来，先要<b class="gold">放弃百分之百的安全感</b>——永远等100%确定再行动的人，永远只能跟在别人后面。</p>`},
+  flow:["理解：用未来指导现在","记忆：趋势-笃信-行动七步","联想：哪个趋势我笃信","练习：我的未来判断卡"]},
+ {t:"第6课 · 多维竞争",tag:["竞争力","策略"],art:"art_dimension.jpg",cap:"在多个维度做到前20%，你就是前1%",
+  lead:"单维度的竞争是死磕，多维度的组合是降维打击。",
+  body:function(){return `<p>李笑来提出一个改变竞争策略的框架：<b class="gold">多维竞争力</b>。</p>
+  <p>在一个维度上做到第一极难，但如果你在<b class="gold">两三个维度上都做到前20%</b>，把它们组合起来，你很可能就是前1%——因为大部分人只会在一个维度上跟你拼。</p>
+  <div class="mem">🎯 案例：一个写作好的人（前20%）+ 懂编程（前20%）+ 懂投资（前20%）——三者的交集，是全行业稀缺的人。</div>
+  <p>关键是：<b class="gold">先在至少一个维度上足够强</b>（有立足点），再叠加其他维度。没有一个维度及格就去铺多个维度，那是平庸的另一种说法。</p>
+  <p>多维竞争的底层，其实是<b class="gold">跨界</b>：每个维度都是你独特的护城河，别人很难同时补齐。</p>`},
+  flow:["理解：多维=降维打击","记忆：两三个前20%的交叉","联想：我的维度有哪些","练习：多维技能雷达"]},
+ {t:"第7课 · 长期主义与定投",tag:["长期","投资思维"],art:"art_long.jpg",cap:"定投的不仅是钱，更是你的注意力与成长",
+  lead:"把定投思维用在自己身上：每月定投成长，复利终会兑现。",
+  body:function(){return `<p>李笑来的投资方法论浓缩成两个字：<b class="gold">定投</b>。定期、定额、长期，买入的是“未来会更好”的资产——而最重要的资产，是你自己。</p>
+  <div class="mem">🌱 定投思维三件套：<br>
+  🔹 选对标的：值得长期持有的资产（知识、健康、技能、真正的好公司）。<br>
+  🔹 固定节奏：每月/每周固定投入，不看短期波动。<br>
+  🔹 穿越周期：牛熊都继续，因为你在赌长期趋势，而不是短期涨跌。</div>
+  <p>大多数人做不到定投，因为三个心魔：<b class="gold">怕跌、想快、贪多</b>。李笑来的解药是：把注意力从“价格”挪到“价值”上——你买的是一个长期必然增值的东西，短期波动只是噪音。</p>
+  <p>对自己也一样：<b class="gold">每天定投1小时给成长</b>，十年后你会感谢今天开始播种的自己。</p>`},
+  flow:["理解：定投=长期+节奏+穿越周期","记忆：选对标的/固定节奏/穿越周期","联想：我该定投什么","练习：定投模拟器"]},
+ {t:"第8课 · 升级你的操作系统",tag:["系统","行动"],art:"art_os.jpg",cap:"价值观 → 概念 → 方法论 → 践行，四层都在升级",
+  lead:"你的大脑是一台电脑，操作系统版本决定了你的全部表现。",
+  body:function(){return `<p>李笑来把人的“操作系统”拆成四层：<b class="gold">价值观（什么更重要）→ 概念（怎么理解世界）→ 方法论（怎么做）→ 践行（真去做）</b>。</p>
+  <p>升级操作系统，就是逐层修正：</p>
+  <div class="qcard"><div class="q">🔧 升级价值观</div><div class="a">不断问“什么更重要”，把“赚钱”替换成“值钱”，把“快”替换成“正确”。价值观是操作系统的内核。</div><span class="tog">展开</span></div>
+  <div class="qcard"><div class="q">🔧 升级概念</div><div class="a">概念不清则行动混乱。“财富”“自由”“投资”这些词，你定义得越清晰，行动越有力。</div><span class="tog">展开</span></div>
+  <div class="qcard"><div class="q">🔧 升级方法论</div><div class="a">方法论是把概念落地：怎么学、怎么练、怎么复盘，都要有可执行的步骤。</div><span class="tog">展开</span></div>
+  <div class="qcard"><div class="q">🔧 升级践行</div><div class="a">最后一层最关键——知道再多不践行，等于没升级。操作系统再新，不开机也没用。</div><span class="tog">展开</span></div>
+  <p>元认知负责给这套系统<b class="gold">装升级包</b>：发现旧概念有 bug，就重装；发现方法论失效，就换版本。</p>`},
+  flow:["理解：操作系统四层结构","记忆：价值观-概念-方法-践行","联想：我哪层最该升级","练习：升级清单"]},
+ {t:"第9课 · 把时间当作朋友",tag:["心态","习惯"],art:"art_future.jpg",cap:"时间不可管理，能管理的是你自己",
+  lead:"时间对谁都一样，不一样的是：谁在跟时间做朋友，谁在与时间为敌。",
+  body:function(){return `<p>李笑来早年的书名就叫《把时间当作朋友》。核心观点：<b class="gold">时间无法被管理，能被管理的只有你自己</b>。</p>
+  <div class="mem">🤝 与时间为敌的人：拖延、焦虑、一边懊悔过去一边担心未来，时间全花在对抗上。<br>
+  🤝 与时间为友的人：此刻专注、长期坚持、把时间投入复利，时间成为最好的盟友。</div>
+  <p>具体怎么做？三个习惯：</p>
+  <p>🔹 <b class="gold">记录时间</b>：连续记录一周，你会被自己浪费的时间吓到。</p>
+  <p>🔹 <b class="gold">专注当下</b>：一次只做一件事，做此刻正在做的事。</p>
+  <p>🔹 <b class="gold">长期主义</b>：用十年后的眼光看今天，今天的投入就不再是牺牲，而是播种。</p>
+  <p>时间是不可再生资源，但它是<b class="gold">最公平的复利引擎</b>——早一点开始，拐点就早一点到来。</p>`},
+  flow:["理解：管理自己而非时间","记忆：记录-专注-长期","联想：我与时间的关系","练习：24小时时间账"]},
+ {t:"终章 · 你的成长计划",tag:["收官","行动"],art:"art_plan.jpg",cap:"读完全书，只做一件事：写下第一个行动",
+  voice:["voice_plan.wav","终章 · 成长计划"],
+  lead:"财富自由不是终点，而是成长路上的里程碑。现在，轮到你了。",
+  body:function(){return `<p>全书最值钱的一句话，是李笑来在结尾反复强调的：<b class="gold">知道和做到之间，隔着整个人生</b>。</p>
+  <div class="mem">🎯 今晚就做的三件事：<br>
+  1️⃣ 算清你的时薪，看清你正在卖什么。<br>
+  2️⃣ 把注意力从三个大坑里夺回来，投入第一件能产生复利的事。<br>
+  3️⃣ 写下一个“未来判断”，按它行动，活在未来。</div>
+  <p>十年后，你会感谢今天开始升级系统的自己。这条复利曲线，只有开始的人才能等到拐点。</p>
+  <p>现在，打开你的成长计划，写下第一个行动。<b class="gold">从今天开始。</b></p>`},
+  flow:["理解：知道≠做到","记忆：时薪-注意力-未来判断","联想：我的里程碑","练习：写下第一个行动"]}
+];
+
+var games=[
+ {sec:0,title:"商业模式识别器",type:"choice",
+  q:"下面哪种描述属于“第二种个人商业模式”（同一份时间出售很多次）？",
+  opts:[{t:"程序员每天上班8小时领工资",r:0},{t:"作家写一本书，版税持续卖出很多年",r:1},{t:"老板雇佣10个人帮公司赚钱",r:0},{t:"外卖员按单计酬",r:0}],
+  feed:"对！写书、录课、做软件，一份时间被复制无数次——这就是把时间卖多次的复利模式。"},
+ {sec:0,title:"财富自由判断题",type:"choice",
+  q:"按照李笑来的定义，以下哪种状态最接近“财富自由”？",
+  opts:[{t:"银行里有5000万存款",r:0},{t:"不再为了生活必需被迫出售自己的时间",r:1},{t:"天天不上班到处旅游",r:0},{t:"年薪百万的高管",r:0}],
+  feed:"正确！财富自由=时间自主权，不是数字大小，而是你不再被迫卖时间。"},
+ {sec:1,title:"商业模式识别器 II",type:"choice",
+  q:"“购买他人的时间再卖出去”最典型的是哪种人？",
+  opts:[{t:"自由职业者接单",r:0},{t:"创业者雇佣团队",r:1},{t:"公务员",r:0},{t:"网红直播带货（自产内容）",r:0}],
+  feed:"对！创业者购买团队的时间，组织成产品或服务再卖出——第三种商业模式。"},
+ {sec:1,title:"时薪计算器",type:"input",
+  q:"假设你月薪8000元，每月工作22天、每天8小时，你的时薪是多少元？（整数）",
+  ans:"45",feed:"8000 ÷ (22×8) ≈ 45.5 元/小时。看清时薪，才能看清时间账。"},
+ {sec:2,title:"注意力大坑识别",type:"choice",
+  q:"以下哪个不是李笑来说的“注意力三大坑”？",
+  opts:[{t:"凑热闹",r:0},{t:"随大流",r:0},{t:"操碎别人的心",r:0},{t:"专注自己的成长",r:1}],
+  feed:"正确！专注成长恰恰是注意力的最佳去处。"},
+ {sec:2,title:"资源排序",type:"choice",
+  q:"按李笑来的价值观，以下排序正确的是？",
+  opts:[{t:"金钱 > 时间 > 注意力",r:0},{t:"注意力 > 时间 > 金钱",r:1},{t:"时间 > 注意力 > 金钱",r:0},{t:"三者一样重要",r:0}],
+  feed:"对！注意力最宝贵——它完完全全属于你，且能产生复利。"},
+ {sec:3,title:"复利拐点计算器",type:"input",
+  q:"按“72法则”：复利年化10%，资产翻倍大约需要多少年？（72÷10）",
+  ans:"7",feed:"约7.2年！这就是复利的威力——前提是你等得到拐点。"},
+ {sec:3,title:"拐点判断",type:"choice",
+  q:"复利成长曲线前期的特征是？",
+  opts:[{t:"陡峭上升",r:0},{t:"平缓甚至看不见增长",r:1},{t:"一直在下跌",r:0},{t:"直线上升",r:0}],
+  feed:"对！前期平缓是常态，拐点在坚持之后。"},
+ {sec:4,title:"元认知镜子",type:"choice",
+  q:"以下哪个反应体现了“元认知”？",
+  opts:[{t:"被同事一句话气到当场发火",r:0},{t:"生气前停一秒：我为什么生气？这值得吗？",r:1},{t:"刷到负面新闻后emo一整天",r:0},{t:"熬夜打游戏停不下来",r:0}],
+  feed:"正确！看见自己的情绪并选择反应，就是元认知在工作。"},
+ {sec:4,title:"系统比喻",type:"choice",
+  q:"李笑来把大脑比作什么？",
+  opts:[{t:"银行账户",r:0},{t:"操作系统",r:1},{t:"肌肉",r:0},{t:"地图",r:0}],
+  feed:"对！大脑是操作系统，元认知就是系统升级的能力。"},
+ {sec:5,title:"活在未来判断",type:"choice",
+  q:"“活在未来”的第一步是什么？",
+  opts:[{t:"马上辞职创业",r:0},{t:"对未来做一个判断",r:1},{t:"算命",r:0},{t:"等到确定再行动",r:0}],
+  feed:"正确！先有判断（基于趋势），再笃信、行动，最后提前活在未来。"},
+ {sec:5,title:"安全感悖论",type:"choice",
+  q:"要活在未来，必须放弃什么？",
+  opts:[{t:"所有存款",r:0},{t:"百分之百的安全感",r:1},{t:"朋友",r:0},{t:"学习",r:0}],
+  feed:"对！永远等100%确定的人，只能永远跟在别人后面。"},
+ {sec:6,title:"多维竞争力判断",type:"choice",
+  q:"“写作前20% + 编程前20% + 投资前20%”意味着什么？",
+  opts:[{t:"三个领域都很平庸",r:0},{t:"三者的交叉可能让你成为前1%",r:1},{t:"学的东西太杂",r:0},{t:"应该只留一个维度",r:0}],
+  feed:"正确！多维交叉=稀缺=降维打击。"},
+ {sec:7,title:"定投三件套",type:"choice",
+  q:"以下哪项不是李笑来的“定投思维三件套”？",
+  opts:[{t:"选对标的",r:0},{t:"固定节奏",r:0},{t:"穿越周期",r:0},{t:"追涨杀跌",r:1}],
+  feed:"对！追涨杀跌是定投的反面——定投恰恰要求不看短期波动。"}
+];
+
+var badges=["👁️ 看清注意力","💼 商业模式大师","📈 复利信徒","🧠 元认知觉醒","🚀 活在未来","🧩 多维玩家","🌱 定投人生","🖥️ 系统升级师","⏳ 时间之友","🎯 行动者","🔓 解锁勇士","🏆 完读大师"];
+var earned={};
+
+/* 渲染 */
+function render(){
+  var h="";
+  for(var i=0;i<secs.length;i++){
+    var s=secs[i], locked=i>=FREE && !isUnlocked();
+    h+=`<div class="sec ${locked?'locked':''}" id="sec${i}">
+      <h2><span class="k">${i<FREE?'免费':'VIP'}</span>${s.t}</h2>
+      <div>${s.tag.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="lead">${s.lead}</div>`;
+    if(i===0){h+=`<div class="video-box"><div class="lbl">🎬 二十分钟读懂《财富自由之路》</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1AJKPzmE2h&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(i===1){h+=`<div class="video-box"><div class="lbl">🎬 财富自由之路（下）搞钱篇：没钱怎么投资</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1vWVRzaE5n&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(s.voice){h+=`<div class="voice" onclick="playV('${s.voice[0]}',this)"><div class="ic">▶</div><div class="tx">${s.voice[1]}<small>点击播放 · 语音讲书</small></div></div>`;}
+    h+=`<div class="imgbox"><img src="${s.art}" alt=""><div class="cap">${s.cap}</div></div>`;
+    h+=`<div class="flow">${s.flow.map(f=>`<span>${f}</span>`).join('')}</div>`;
+    h+=s.body();
+    if(locked){h+=`<div class="lockbar" onclick="unlock()">🔒 本节为付费内容，点击解锁完整版（管理员口令或激活码）</div>`;}
+    h+=`</div>`;
+  }
+  $("sections").innerHTML=h;
+  renderGames();
+  renderBadges();
+  loadPts();
+  updProg();
+}
+function renderGames(){
+  for(var i=0;i<games.length;i++){
+    var g=games[i], holder=$("sec"+g.sec);
+    if(!holder) continue;
+    var box=document.createElement("div");box.className="game";box.id="game"+i;
+    box.innerHTML=`<h4>🎮 ${g.title}<span>游戏 ${i+1}/${games.length}</span></h4><div class="gq">${g.q}</div><div id="gg${i}"></div><div class="gfeed" id="gf${i}"></div><div class="badge-row" id="gb${i}"></div>`;
+    holder.appendChild(box);
+    var body=$("gg"+i);
+    if(g.type==="choice"){
+      g.opts.forEach((o,oi)=>{
+        var b=document.createElement("button");b.className="gopt";b.textContent=o.t;
+        b.onclick=function(){pick(i,oi)};
+        body.appendChild(b);
+      });
+    }else if(g.type==="input"){
+      var inp=document.createElement("input");inp.className="inp";inp.placeholder="输入你的答案…";
+      var btn=document.createElement("button");btn.className="gbtn";btn.textContent="提交";
+      btn.onclick=function(){checkInput(i,inp.value)};
+      body.appendChild(inp);body.appendChild(btn);
+    }
+  }
+}
+function pick(gi,oi){
+  var g=games[gi],o=g.opts[oi],feed=$("gf"+gi);
+  var btns=$("gg"+gi).querySelectorAll(".gopt");
+  btns.forEach(b=>{b.disabled=true;b.classList.remove("correct","wrong");});
+  btns[oi].classList.add(o.r?"correct":"wrong");
+  if(o.r){feed.className="gfeed ok";feed.textContent="✅ "+g.feed;earnBadge(gi);}
+  else{feed.className="gfeed no";feed.textContent="❌ 再想想。提示："+g.feed;btns[g.opts.findIndex(x=>x.r===1)].classList.add("correct");}
+}
+function checkInput(gi,val){
+  var g=games[gi],feed=$("gf"+gi);
+  var v=val.trim().replace(/[^0-9.]/g,"");
+  if(Math.abs(parseFloat(v)-parseFloat(g.ans))<0.1){feed.className="gfeed ok";feed.textContent="✅ "+g.feed;earnBadge(gi);}
+  else{feed.className="gfeed no";feed.textContent="❌ 答案约是 "+g.ans+"。再试试看。"}
+}
+function earnBadge(gi){
+  var g=games[gi];
+  if(!earned[gi]){earned[gi]=1;saveBadges();
+    addPts(10);
+    var bl=$("gb"+gi);bl.innerHTML=`<span class="bdg earned">🏅 已通关 · +10积分</span>`;
+    toast("🎮 通关「"+g.title+"」 +10积分");
+    track("game",g.title);
+  }
+}
+function renderBadges(){
+  var map={0:2,1:4,2:6,3:8,4:10,5:12,6:13,7:14};
+  for(var gi in map){var holder=$("gb"+gi);if(!holder)continue;if(earned[gi])holder.innerHTML=`<span class="bdg earned">🏅 已通关 · +10积分</span>`;}
+}
+/* 解锁 */
+function isUnlocked(){
+  try{return localStorage.getItem("xz_admin")==="1"||localStorage.getItem("xz_unlock_wealthfree")==="1";}catch(e){return false}
+}
+function unlock(){
+  var p=prompt("请输入管理员口令或激活码：");
+  if(!p) return;
+  if(p==="xiqi-admin-2026"){try{localStorage.setItem("xz_admin","1");localStorage.setItem("xz_unlock_wealthfree","1");}catch(e){};render();toast("🔓 管理员权限已生效，全部解锁");return;}
+  if(/^XQ2026/i.test(p)||/^[A-Z0-9]{8}$/.test(p)){try{localStorage.setItem("xz_unlock_wealthfree","1");}catch(e){};render();toast("🔓 激活成功，全书已解锁");track("unlock",p);return;}
+  toast("❌ 口令不正确");
+}
+/* 音频 */
+function playV(src,el){
+  var a=el.querySelector("audio");
+  if(a){if(a.paused)a.play();else a.pause();return;}
+  a=document.createElement("audio");a.src=src;a.controls=true;a.style.width="100%";a.style.marginTop="8px";
+  el.appendChild(a);a.play();
+  track("audio",src);
+}
+/* 积分 */
+function loadPts(){
+  var p=0;try{p=parseInt(localStorage.getItem("xz_points"))||0;}catch(e){}
+  $("ptsBox").textContent=p;
+}
+function addPts(n){
+  var p=0;try{p=parseInt(localStorage.getItem("xz_points"))||0;}catch(e){}
+  p+=n;try{localStorage.setItem("xz_points",p);}catch(e){}
+  $("ptsBox").textContent=p;track("points",String(n));
+}
+/* 进度 */
+function updProg(){
+  var h=document.documentElement.scrollHeight-innerHeight;
+  $("prog").style.width=(innerHeight>h?100:(scrollY/h*100))+"%";
+}
+addEventListener("scroll",updProg);
+/* 埋点 */
+function track(ev,val){
+  try{
+    var vid=localStorage.getItem("xiqi_vid")||("v_"+Date.now()+"_"+Math.random().toString(36).slice(2,8));
+    localStorage.setItem("xiqi_vid",vid);
+    fetch("https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({vid:vid,event:ev,book:"wealthfree",value:val||""})}).catch(function(){});
+  }catch(e){}
+}
+/* 徽章存储 */
+function saveBadges(){try{localStorage.setItem("xz_badges_wealthfree",JSON.stringify(earned));}catch(e){}}
+function loadBadges(){try{var v=localStorage.getItem("xz_badges_wealthfree");if(v)earned=JSON.parse(v);}catch(e){}}
+/* 问答折叠 */
+document.addEventListener("click",function(e){
+  if(e.target.classList&&e.target.classList.contains("tog")){
+    var q=e.target.closest(".qcard");q.classList.toggle("open");
+    e.target.textContent=q.classList.contains("open")?"收起":"展开";
+  }
+});
+/* 工具栏 */
+$("btnToc").onclick=function(){scrollTo(0,0);};
+$("btnVoice").onclick=function(){var v=document.querySelector(".voice");if(v)v.scrollIntoView({behavior:"smooth"});};
+$("btnVideo").onclick=function(){var v=document.querySelector(".video-box");if(v)v.scrollIntoView({behavior:"smooth"});};
+$("btnGames").onclick=function(){var g=document.querySelector(".game");if(g)g.scrollIntoView({behavior:"smooth"});};
+$("btnUnlock").onclick=function(){unlock();};
+function toast(msg){var t=$("toast");t.textContent=msg;t.style.display="block";clearTimeout(t._h);t._h=setTimeout(function(){t.style.display="none"},1800);}
+
+loadBadges();render();
+track("view");
+</script>
+</body>
+</html>
