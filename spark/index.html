@@ -333,7 +333,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 运动的革命'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 运动的革命'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 讲书 · 为什么运动比任何抗抑郁药都全面？</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1Fi5q65Eqa&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===2){h.appendChild(audioBlock('voice_walk.wav','🎧 健走引导 · 跟着教练走'));}
   if(i===4){h.appendChild(audioBlock('voice_run.wav','🎧 跑步独白 · 给大脑施肥'));}
   if(i===8){
