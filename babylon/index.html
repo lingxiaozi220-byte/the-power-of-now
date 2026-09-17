@@ -259,11 +259,11 @@ var CHAPS=[
      ['「今天种下树，','明天好乘凉。」','趁还年轻有力，','就为走不动的那一天播种。'],
      ['具体做法：','① 长期储蓄与稳健投资，','让资产自己长大；','② 为家人留足保障；','③ 让收入在你不工作时','依然继续。'],
      ['「财富的意义，','是让你和你在乎的人，','在任何年纪都有选择的底气。」']]},
- {n:'妙方七',t:'提升赚钱能力：技能是随身携带的财富',free:0,icon:'🔨',art:'art_skill.jpg',cap:'欲望要具体：'我要变富'是弱愿望，'我要赚五个金币'才可执行。',
+ {n:'妙方七',t:'提升赚钱能力：技能是随身携带的财富',free:0,icon:'🔨',art:'art_skill.jpg',cap:'欲望要具体：“我要变富”是弱愿望，“我要赚五个金币”才可执行。',
   learn:['理解','联想','练习'],
   p:[['第七道妙方：<b>提升你的赚钱能力</b>。'],
      ['阿卡德讲过一个年轻人：','两个月里六次请求加薪，','都被拒绝。','他有强烈的愿望，','却没有任何底牌。'],
-     ['「愿望要具体：',''我要变富'是弱愿望，',''我要多赚五个金币'','是可执行的目标。」'],
+     ['「愿望要具体：','“我要变富”是弱愿望，','“我要多赚五个金币”是可执行的目标。」'],
      ['让自己变得更值钱：','① 精通一门技能，','做同行里最好的人；','② 每天学习、精进，','像工匠打磨工具一样打磨自己；','③ 主动创造价值，','成为别人离不开的人。'],
      ['「技能是随身携带的财富，','别人偷不走，','也永远不会贬值。」']]},
  {n:'法则',t:'五大黄金法则',free:0,icon:'📜',art:'art_laws.jpg',cap:'黄金有它自己的脾气：它只待在懂它的人身边。',
@@ -360,7 +360,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 巴比伦首富的传说'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 巴比伦首富的传说'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 讲书 · 巴比伦最富有的人：7个秘诀摆脱隐形贫困</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1gj4MzZEG7&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===1){h.appendChild(audioBlock('voice_save.wav','🎧 前两道妙方 · 存下十分之一与控制支出'));}
   if(i===8){h.appendChild(audioBlock('voice_laws.wav','🎧 五大黄金法则'));}
   if(i===10){
