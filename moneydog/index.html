@@ -358,7 +358,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 会说话的小狗钱钱'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 会说话的小狗钱钱'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 动画童话 ·《小狗钱钱》全20集（孩子和大人都能看的金钱启蒙）</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1wh41177Xg&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===2){h.appendChild(audioBlock('voice_goal.wav','🎧 梦想课 · 写下十个梦想'));}
   if(i===4){h.appendChild(audioBlock('voice_goose.wav','🎧 金鹅寓言 · 鹅与金蛋'));}
   if(i===10){
