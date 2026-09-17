@@ -372,7 +372,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 求道者独白'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 求道者独白'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 30分钟读一本书 · 细读悉达多：寻找自我之旅</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1VR6KB3E62&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===6){h.appendChild(audioBlock('voice_river.wav','🎧 河流冥想 · 跟随倾听'));}
   if(i===8){h.appendChild(audioBlock('voice_om.wav','🎧 唵 · 唱诵聆听'));}
   if(i===7){
