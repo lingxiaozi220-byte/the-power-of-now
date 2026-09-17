@@ -119,6 +119,9 @@ audio{width:100%;height:38px;margin-top:10px}
 .wall-box .w-code button{width:100%;border:none;border-radius:10px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;background:#4a6b4a;color:#fff;margin-top:8px}
 .wall-box .w-x{background:none;border:none;color:#7a7160;font-size:13px;cursor:pointer;margin-top:14px;text-decoration:underline}
 .w-ok{font-size:13px;font-weight:700;margin-top:8px;min-height:20px;text-align:center}
+.video-block{margin-top:12px;background:#2c3a3a;border-radius:16px;padding:12px}
+.video-block .lbl{color:#f4d58a;font-size:13.5px;font-weight:700;margin-bottom:8px}
+.video-block iframe{width:100%;aspect-ratio:16/9;border:none;border-radius:10px;background:#000;display:block}
 .foot{text-align:center;font-size:12px;color:#a59c89;margin-top:30px}
 @media(max-width:480px){.poem-lines{font-size:17px}.hero .t1{font-size:24px}}
 </style>
@@ -183,6 +186,7 @@ function listSec(g){var units={};P.filter(function(p){return p.grade===g}).forEa
  for(var u in units){h+='<div class="unit">'+u+'</div><div class="poem-list">';units[u].forEach(function(p){var d=S.done.indexOf(p.id)>=0;h+='<div class="poem-item'+(isLocked(p.id)?' locked':'')+'" onclick="openPoem('+p.id+')">'+lockBadge(p.id)+'<img src="'+p.img+'" alt=""><div class="pi"><div class="pt">'+p.title+(d?'<span class="done">✓</span>':'')+'</div><div class="pa">['+p.dyn+']'+p.author+'</div></div></div>';});h+='</div>';}
  $('app').innerHTML=h;
 }
+var V={1:"BV1YG87zAEot",2:"BV1iuQwYKEty",3:"BV1iuQwYKEty",4:"BV12Bvve4EdY",5:"BV1YG87zAEot",6:"BV1YG87zAEot",7:"BV1YG87zAEot",8:"BV1YG87zAEot",9:"BV1YG87zAEot",10:"BV1mj7Wz6ELs",11:"BV1hktbzsEEM",12:"BV1eDn2z4Eoz",13:"BV1eDn2z4Eoz",14:"BV1eDn2z4Eoz",15:"BV1PNhnzbE21",16:"BV1Qy8CzTE1Q",17:"BV1hktbzsEEM",18:"BV1hktbzsEEM",19:"BV1hktbzsEEM",20:"BV1hktbzsEEM"};
 function openPoem(id){if(isLocked(id)){openWall();return;}var p=P.find(function(x){return x.id===id});var done=S.done.indexOf(id)>=0;
  var g='';
  if(p.game.type==='fill'){g='<div class="game-box fill" id="g'+p.id+'"><div class="gq">✏️ 背诗填空：'+p.game.q+'</div><div class="gopts">'+p.game.opts.map(function(o,i){return '<button onclick="fillA('+p.id+','+i+')">'+o+'</button>'}).join('')+'</div><div class="gf" id="gf'+p.id+'">选一选，填进空里。</div></div>';}
@@ -195,6 +199,7 @@ function openPoem(id){if(isLocked(id)){openWall();return;}var p=P.find(function(
  +'<div class="notes">'+p.notes.map(function(n){return '<span>'+n[0]+'：'+n[1]+'</span>'}).join('')+'</div>'
  +'<div class="poet"><b>📖 诗人</b>'+p.poet+'</div>'
  +'<audio controls preload="none" src="'+p.audio+'"></audio>'
+ +'<div class="video-block"><div class="lbl">🎬 动画讲解 · 看动画学古诗</div><iframe src="https://player.bilibili.com/player.html?bvid='+V[id]+'&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy" title="'+p.title+'动画讲解"></iframe></div>'
  +g
  +'<div class="daka"><button id="dk'+p.id+'" class="'+(done?'on':'')+'" onclick="daka('+p.id+')">'+(done?'✓ 已会背，太棒了':'📖 我已会背这首诗')+'</button><span class="pts">+10 分</span></div>'
  +'</div>';
