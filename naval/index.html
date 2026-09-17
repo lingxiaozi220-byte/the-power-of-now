@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《纳瓦尔宝典》· 埃里克·乔根森 · 熙祺智书多媒体书</title>
+<style>
+:root{--bg:#0d0a1c;--card:#161030;--card2:#1c1440;--gold:#f0c96a;--gold2:#d9a844;--purple:#7c5cff;--text:#eae6f8;--dim:#a99fc9;--line:#2d2352;--red:#ff6b6b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 120px;}
+.hero{position:relative;border-radius:0 0 30px 30px;overflow:hidden;margin:-1px -18px 0;padding:46px 24px 40px;text-align:center;background:linear-gradient(180deg,#1a1140,#0d0a1c);}
+.hero img{width:100%;max-width:520px;border-radius:18px;border:2px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.6);}
+.badge{display:inline-block;margin:18px 0 10px;padding:6px 16px;border:1px solid var(--gold);color:var(--gold);border-radius:30px;font-size:13px;letter-spacing:2px;}
+.hero h1{font-size:34px;margin:8px 0 6px;color:#fff;text-shadow:0 2px 12px rgba(240,201,106,.25);}
+.hero .sub{color:var(--dim);font-size:15px;margin-bottom:14px;}
+.hero .meta{color:var(--gold);font-size:14px;margin-top:6px;}
+.free-note{margin-top:16px;font-size:13px;color:var(--dim);}
+.free-note b{color:var(--gold);}
+.toolbar{position:sticky;top:0;z-index:50;background:rgba(13,10,28,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin:14px -18px 0;padding:10px 18px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;}
+.tbtn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:13px;transition:.2s;}
+.tbtn:hover{border-color:var(--gold);color:var(--gold);}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;margin:22px 0;padding:24px 22px;box-shadow:0 6px 24px rgba(0,0,0,.25);}
+.sec h2{color:var(--gold);font-size:22px;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.sec .k{background:var(--gold);color:#0d0a1c;border-radius:8px;padding:2px 10px;font-size:13px;font-weight:700;}
+.sec .lead{color:var(--dim);font-size:14px;margin-bottom:14px;}
+.sec .tag{margin:8px 4px 0 0;display:inline-block;font-size:12px;padding:2px 10px;border:1px solid var(--purple);color:#c9bcff;border-radius:20px;}
+.sec.locked{opacity:.78;position:relative;}
+.sec.locked .lockbar{display:flex;align-items:center;gap:10px;background:rgba(240,201,106,.08);border:1px dashed var(--gold);border-radius:12px;padding:12px 14px;margin-top:14px;color:var(--gold);font-size:14px;cursor:pointer;}
+.sec.locked .lockbar:hover{background:rgba(240,201,106,.16);}
+.imgbox{border-radius:14px;overflow:hidden;margin:14px 0;border:1px solid var(--line);}
+.imgbox img{width:100%;display:block;}
+.imgbox .cap{font-size:12px;color:var(--dim);padding:8px 12px;background:rgba(0,0,0,.25);text-align:center;}
+.gold{color:var(--gold);}
+.mem{background:#0f0a24;border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0;color:#ffe9b8;}
+.voice{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0;cursor:pointer;}
+.voice .ic{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#0d0a1c;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.voice .tx{flex:1;font-size:14px;}
+.voice .tx small{color:var(--dim);display:block;font-size:12px;}
+.video-box{border-radius:14px;overflow:hidden;margin:14px 0;border:1px solid var(--line);background:#000;}
+.video-box iframe{width:100%;aspect-ratio:16/9;border:0;display:block;}
+.lbl{color:var(--gold);font-size:13px;padding:10px 12px 0;}
+.game{background:var(--card2);border:1px solid var(--gold);border-radius:14px;padding:16px;margin:14px 0;}
+.game h4{color:var(--gold);font-size:16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+.game .gq{font-size:14px;color:var(--text);margin-bottom:10px;}
+.gopt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;margin:6px 0;cursor:pointer;font-size:14px;transition:.15s;}
+.gopt:hover{border-color:var(--gold);}
+.gopt.correct{background:rgba(124,92,255,.3);border-color:var(--purple);color:#dcd2ff;}
+.gopt.wrong{background:rgba(255,107,107,.22);border-color:var(--red);color:#ffc9c9;}
+.gbtn{background:var(--gold);color:#0d0a1c;border:0;padding:9px 18px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;margin-top:8px;}
+.gfeed{font-size:13px;margin-top:8px;min-height:20px;}
+.gfeed.ok{color:#b9a7ff;}
+.gfeed.no{color:#ffc9c9;}
+.inp{width:100%;background:var(--card);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;font-size:14px;margin:6px 0;font-family:inherit;}
+.inp:focus{outline:none;border-color:var(--gold);}
+.qcard{background:#0f0a24;border-radius:12px;padding:14px 16px;margin:10px 0;border:1px solid var(--line);}
+.qcard .q{font-size:15px;color:var(--gold);margin-bottom:8px;}
+.qcard .a{color:var(--dim);font-size:13px;margin-top:6px;display:none;}
+.qcard.open .a{display:block;}
+.qcard .tog{color:var(--gold);font-size:13px;cursor:pointer;text-decoration:underline;}
+.prog{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--purple));width:0;z-index:99;transition:width .3s;}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.88);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:30px;font-size:14px;z-index:200;display:none;}
+.pts{color:var(--gold);font-weight:700;}
+footer{text-align:center;color:var(--dim);font-size:12px;margin-top:40px;padding:20px 0;}
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.flow span{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--purple);color:#c9bcff;}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.bdg{font-size:12px;padding:5px 10px;border-radius:20px;border:1px solid var(--line);color:var(--dim);background:var(--card2);}
+.bdg.earned{border-color:var(--gold);color:var(--gold);background:rgba(240,201,106,.1);}
+@media(max-width:640px){.hero h1{font-size:27px;}.sec{padding:18px 16px;}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="toast" id="toast"></div>
+<div class="wrap">
+  <div class="hero">
+    <img src="art_cover.jpg" alt="纳瓦尔宝典封面">
+    <div class="badge">熙祺智书 · 财商专题</div>
+    <h1>纳瓦尔宝典</h1>
+    <div class="sub">财富与幸福的人生指南 · 专长 + 杠杆 + 判断力</div>
+    <div class="meta">埃里克·乔根森 编著 · 多媒体互动版</div>
+    <div class="free-note">前 6 节免费试读 · 完整版需解锁 · <b>总 12 节 / 14 个互动游戏 / 14 枚徽章</b></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="tbtn" id="btnToc">📖 目录</button>
+    <button class="tbtn" id="btnVoice">🎧 音频</button>
+    <button class="tbtn" id="btnVideo">🎬 视频</button>
+    <button class="tbtn" id="btnGames">🎮 游戏</button>
+    <button class="tbtn" id="btnUnlock">🔓 解锁</button>
+    <span style="margin-left:auto;font-size:13px;color:var(--dim);">积分 <b class="pts" id="ptsBox">0</b></span>
+  </div>
+
+  <div id="sections"></div>
+
+  <footer>熙祺智书 · 多媒体书 ｜ 读不完的书 · 看得进去的书 ｜ 《纳瓦尔宝典》互动版</footer>
+</div>
+
+<script>
+var FREE=6;
+var $=function(id){return document.getElementById(id)};
+var secs=[
+ {t:"序章 · 财富是习得的技能",tag:["开篇","财富观"],art:"art_cover.jpg",cap:"致富不是靠运气，而是一门可以习得的技能",voice:["voice_open.wav","序章导听 · 财富与幸福"],
+  lead:"纳瓦尔说：如果无法下定决心，就无法学习如何赚钱；因为赚钱，是一门可以习得的技能。",
+  body:function(){return `<div class="mem">🎯 财富的定义：财富 = 在你睡觉时依然能为你赚钱的资产。<br>
+  💰 金钱 ≠ 财富：金钱是你转移时间和财富的能力，财富是能持续产生价值的资产。</div>
+  <p>这本书不是教你如何快速赚钱，而是讲清财富创造的<b class="gold">底层公式</b>：<b class="gold">专长 × 责任感 × 杠杆</b>。</p>
+  <p>纳瓦尔把人生分为两条线：一条是<b class="gold">财富线</b>（怎么创造价值、积累资产），一条是<b class="gold">幸福线</b>（怎么减少欲望、活在当下）。多数人只盯着前者，却忘了后者的目的。</p>
+  <p>这本书在硅谷被奉为“人生操作系统”——因为它不提供答案，而是提供<b class="gold">思考问题的框架</b>。</p>`},
+  flow:["理解：财富=睡觉时也能赚钱的资产","记忆：专长×责任×杠杆","联想：我现在的资产是什么","练习：财富定义判断"]},
+ {t:"第1课 · 杠杆：致富的放大器",tag:["杠杆","核心概念"],art:"art_leverage.jpg",cap:"劳动力 · 资本 · 代码与媒体（无需许可）",
+  lead:"努力是支点，杠杆是放大器。没有杠杆的努力，只能换来线性收入。",
+  voice:["voice_leverage.wav","第1课 · 三种杠杆"],
+  body:function(){return `<p>纳瓦尔说，致富这台机器有三个关键齿轮：<b class="gold">专长、责任感、杠杆</b>。其中杠杆决定了你努力的放大倍数：</p>
+  <div class="mem">🔧 杠杆一：劳动力 —— 让别人为你工作（需要领导力，门槛最高）。<br>
+  🔧 杠杆二：资本 —— 用钱生钱（需要先有钱）。<br>
+  🔧 杠杆三：代码与媒体 —— 零边际成本复制（写一次，服务百万人）。</div>
+  <p>第三种杠杆是<b class="gold">新杠杆</b>，它最大的特点是<b class="gold">无需许可</b>：不需要老板批准、不需要背景关系，任何人只要会用电脑，就能使用它。</p>
+  <p>纳瓦尔给普通人的建议：<b class="gold">不会编程，就去写书、写博客、录视频、做播客</b>。这是普通人唯一不需要背景就能撬动财富的方式。</p>`},
+  flow:["理解：三种杠杆的放大原理","记忆：代码与媒体=无需许可","联想：我能用哪个杠杆","练习：杠杆识别器"]},
+ {t:"第2课 · 专长：无法被培训的独特价值",tag:["专长","定位"],art:"art_special.jpg",cap:"专长 = 玩着玩着就比别人强的东西",
+  lead:"专长无法被培训，只能靠热爱与积累长出来——这是你最大的护城河。",
+  body:function(){return `<p>纳瓦尔对专长的定义极其苛刻：<b class="gold">无法通过培训获得的知识</b>。如果可以被培训，那就意味着别人也能学会，你的优势就会被稀释。</p>
+  <div class="mem">🎯 怎么找到专长？<br>
+  🔹 你玩着玩着就比别人强的东西；<br>
+  🔹 你觉得毫不费力、别人觉得很难的事；<br>
+  🔹 小时候就喜欢做的事，往往藏着你的天赋。<br>
+  专长往往来自你的好奇心、你的独特经历、你的天生特质——它无法被标准化复制。</div>
+  <p>专长要和<b class="gold">杠杆</b>结合才有威力：专长是你的独特性，杠杆把你的独特性放大一千倍。没有杠杆，专长只能换一份高薪；有了杠杆，专长能变成资产。</p>`},
+  flow:["理解：专长不可培训","记忆：玩着玩着就比别人强","联想：我有什么独特之处","练习：专长识别"]},
+ {t:"第3课 · 判断力：比努力更重要",tag:["判断力","决策"],art:"art_judgment.jpg",cap:"努力决定下限，判断力决定上限",
+  lead:"一千天的无效努力，抵不过一次正确的决策。",
+  body:function(){return `<p>纳瓦尔有句被引用最多的话：<b class="gold">财富不是对努力的奖赏，而是对判断力的补偿</b>。</p>
+  <div class="mem">🧭 短期靠运气，中期靠努力，长期靠判断力。<br>
+  一个正确的决策，可能抵得上十年的努力；而方向错了，越努力离目标越远。</div>
+  <p>怎么训练判断力？纳瓦尔给的方法朴素而硬核：</p>
+  <p>🔹 <b class="gold">清晰的思考</b>：先放下立场和情绪，看清事实再下结论。夸一个人“思路清晰”，是极高的评价。</p>
+  <p>🔹 <b class="gold">第一性原理</b>：把问题拆到最底层，从物理事实出发重建答案，而不是被“别人都这么说”带着走。</p>
+  <p>🔹 <b class="gold">长期视角</b>：做决策时问自己——十年后回头看，这个选择还正确吗？</p>`},
+  flow:["理解：判断力>努力","记忆：财富是对判断的补偿","联想：最近哪个决策可以更好","练习：判断力场景题"]},
+ {t:"第4课 · 把自己产品化",tag:["产品化","公式"],art:"art_productize.jpg",cap:"把自己产品化 = 专长 × 杠杆 × 责任感",
+  lead:"“把自己产品化”是纳瓦尔宝典的浓缩：你既是产品，也是创造产品的人。",
+  body:function(){return `<p>如果有人要你用一句话总结《纳瓦尔宝典》，那就是：<b class="gold">把自己产品化</b>（Productize Yourself）。</p>
+  <div class="mem">🧩 公式拆解：<br>
+  “自己” = 你的专长、你的独特性、你的责任感。<br>
+  “产品化” = 用杠杆（代码/媒体/资本）把你的价值放大、规模化。<br>
+  合起来：找到你独特的能力，把它做成能持续为别人创造价值、能规模化复制的东西。</div>
+  <p>“产品化”有两条腿：<b class="gold">规模化</b>（服务很多人）和<b class="gold">零边际成本</b>（服务第1000个人和第一个成本一样）。写作、录课、做软件、做产品，都是产品化的路径。</p>
+  <p>普通人最容易上手的起点：<b class="gold">公开输出</b>——把你会的东西，持续写出来、录出来、分享出来。你的专长会在输出中被看见、被放大。</p>`},
+  flow:["理解：自己是产品+产品经理","记忆：专长×杠杆×责任","联想：我的第一个产品是什么","练习：产品化公式题"]},
+ {t:"第5课 · 复利与长期主义",tag:["复利","长期"],art:"art_compound.jpg",cap:"在正确的道路上，耐心是唯一的捷径",
+  lead:"复利不仅适用于金钱，更适用于知识、信任、健康与人脉。",
+  body:function(){return `<p>纳瓦尔是复利的狂热信徒。他说：<b class="gold">生活中所有的回报，无论是财富、人际关系，还是知识，都来自复利</b>。</p>
+  <div class="mem">📈 复利的四种形态：<br>
+  🔹 金钱复利：本金 × 时间 × 收益率。<br>
+  🔹 知识复利：读过的书互相连接，知识网络指数增长。<br>
+  🔹 信任复利：长期靠谱，信任指数累积。<br>
+  🔹 健康复利：今天的锻炼，是十年后身体的本金。</div>
+  <p>复利的前提是<b class="gold">长期待在正确的赛道上</b>。纳瓦尔建议：选择一个可以玩几十年的游戏，和一群可以共事几十年的人。</p>
+  <p>真正的高手，不是跑得快，而是<b class="gold">把复利时间拉得足够长</b>，并且不中断。</p>`},
+  flow:["理解：复利适用于一切长期资产","记忆：金钱/知识/信任/健康","联想：我的复利赛道是什么","练习：复利计算器"]},
+ {t:"第6课 · 时间主权与被动收入",tag:["自由","收入"],art:"art_freedom.jpg",cap:"出租时间的人，永远摸不到财富自由的边",
+  lead:"用时间换钱，上限是24小时；用资产换钱，上限是无限。",
+  body:function(){return `<p>纳瓦尔反复强调一个残酷事实：<b class="gold">靠出租时间，你永远无法致富</b>。因为你的时间是有限的，而财富需要的是可规模化的资产。</p>
+  <div class="mem">⏳ 时间主权的三个等级：<br>
+  Lv.1 出卖时间：上班领工资，时间卖给公司。<br>
+  Lv.2 交易时间：自由职业，按项目卖时间（只是卖得更贵）。<br>
+  Lv.3 拥有资产：产品/股权/版权持续产生收入，时间完全归自己。</div>
+  <p>纳瓦尔的目标不是“提早退休”，而是<b class="gold">提早拥有自由</b>：对时间的完全支配权。他说，退休不是停止工作，而是<b class="gold">不再为想象中未来的自己牺牲今天</b>。</p>
+  <p>通往时间主权的路径：用专长做产品，用杠杆放大，让资产为你工作——而不是你为工资工作。</p>`},
+  flow:["理解：出租时间=上限锁死","记忆：出卖→交易→拥有资产","联想：我的收入属于哪级","练习：被动收入判断"]},
+ {t:"第7课 · 幸福是技能",tag:["幸福","心法"],art:"art_happiness.jpg",cap:"欲望是痛苦的来源，幸福是减少欲望",
+  lead:"幸福不是运气，不是命中注定，而是一门可以习得的技能。",
+  voice:["voice_happiness.wav","第7课 · 幸福的练习"],
+  body:function(){return `<p>《纳瓦尔宝典》后半部分，认真讨论了幸福。纳瓦尔给了一个极简公式：</p>
+  <div class="mem">💛 欲望 = 痛苦的来源。<br>
+  幸福 = 选择你的欲望，而不是被欲望选择。<br>
+  当你不再追逐外界的认可，内心就开始安静。</div>
+  <p>纳瓦尔把幸福拆成可练习的动作：</p>
+  <p>🔹 <b class="gold">活在当下</b>：幸福不是未来的目标，而是当下的状态。练习冥想，就是练习回到当下。</p>
+  <p>🔹 <b class="gold">减少嫉妒</b>：嫉妒是幸福的头号杀手。把自己从比较的游戏中抽离出来。</p>
+  <p>🔹 <b class="gold">接受现状</b>：接受不是认命，而是“看清现状，然后从现状出发行动”。</p>
+  <p>财富自由的目的，从来不只是钱，而是让你有时间和自由去练习幸福。</p>`},
+  flow:["理解：幸福=减少欲望","记忆：选择欲望而非被欲望选择","联想：我在追逐什么欲望","练习：幸福公式判断"]},
+ {t:"第8课 · 阅读系统：读什么比怎么读更重要",tag:["阅读","学习"],art:"art_reading.jpg",cap:"阅读是一切能力的基础，也是最低成本的杠杆",
+  lead:"读书，是用别人的时间，给自己的人生装系统。",
+  body:function(){return `<p>纳瓦尔是个狂热的阅读者，他分享了一套<b class="gold">阅读系统</b>：</p>
+  <div class="mem">📚 读什么比怎么读更重要：<br>
+  🔹 优先读经典（经得起时间检验的书）；<br>
+  🔹 读数学和科学（最接近真相的语言）；<br>
+  🔹 读哲学（学会如何思考）；<br>
+  🔹 少读新闻和畅销速朽书。</div>
+  <p>怎么读？纳瓦尔的方法很朴素：<b class="gold">直接读原文，别只读解读</b>；跳读、泛读都行，关键是持续读；读到好想法就停下来思考，让书里的东西和你的经验连接。</p>
+  <p>他还说：<b class="gold">你读过的每一本好书，都是你思维操作系统的一次升级</b>。而阅读，是普通人能拥有的最低成本、最高回报的杠杆。</p>`},
+  flow:["理解：阅读=给大脑装系统","记忆：经典>新闻，原文>解读","联想：我的阅读清单该删什么","练习：阅读优先级判断"]},
+ {t:"第9课 · 人生优先级：唯一最重要的公式",tag:["优先级","选择"],art:"art_plan.jpg",cap:"人生 = 健康 + 财富 + 关系 + 幸福",
+  lead:"把你的人生目标写下来，然后每天只做最重要的一两件事。",
+  body:function(){return `<p>纳瓦尔把自己的人生优先级公开过，这条公式被广泛流传：</p>
+  <div class="mem">👑 健康 &gt; 幸福 &gt; 财富 ？<br>
+  纳瓦尔的排序：<b class="gold">第一是健康</b>（身体是一切的载体），第二是<b class="gold">幸福</b>（内心状态），第三是<b class="gold">财富</b>（实现前两者的自由），第四是<b class="gold">关系</b>（与重要的人深度连接）。</div>
+  <p>为什么这个排序重要？因为大多数人把顺序搞反了：<b class="gold">用健康换财富，再用财富换健康</b>——最后两头落空。</p>
+  <p>纳瓦尔的建议：<b class="gold">每天醒来，先想清楚今天最重要的一件事</b>。人生不是做更多的事，而是把重要的事做对、做久。</p>`},
+  flow:["理解：健康>幸福>财富>关系","记忆：先想最重要的一件事","联想：我的优先级对吗","练习：优先级排序题"]},
+ {t:"终章 · 行动地图：从今天开始",tag:["收官","行动"],art:"art_plan.jpg",cap:"知道和做到之间，隔着整个人生",
+  voice:["voice_plan.wav","终章 · 行动地图"],
+  lead:"读完这本书，重要的不是记住多少金句，而是今晚开始做哪一件事。",
+  body:function(){return `<p>最后，纳瓦尔给了每个人一张<b class="gold">行动地图</b>：</p>
+  <div class="mem">🚀 本周就能做的三件事：<br>
+  1️⃣ 写下你的专长清单：玩着玩着就比别人强的是什么？<br>
+  2️⃣ 开始公开输出：开一个账号，持续写/录你的专长。<br>
+  3️⃣ 每天留30分钟：读书、冥想、健身——给复利播种。</div>
+  <p>判断力让你选对方向，专长让你不可替代，杠杆让你放大，复利让时间站在你这边，而幸福让这一切值得。</p>
+  <p><b class="gold">把自己产品化——现在就开始。</b></p>`},
+  flow:["理解：行动>知道","记忆：专长-输出-播种","联想：我的第一份行动","练习：写下第一个行动"]}
+];
+
+var games=[
+ {sec:0,title:"财富定义判断",type:"choice",
+  q:"按纳瓦尔的定义，以下哪项属于“财富”？",
+  opts:[{t:"你银行账户里的现金余额",r:0},{t:"在你睡觉时依然能为你赚钱的资产",r:1},{t:"你的年薪数字",r:0},{t:"你的消费水平",r:0}],
+  feed:"对！财富是睡觉时也能赚钱的资产；现金和工资只是金钱，不是财富。"},
+ {sec:0,title:"致富公式",type:"choice",
+  q:"纳瓦尔认为财富创造的底层公式是？",
+  opts:[{t:"努力 × 加班 × 坚持",r:0},{t:"专长 × 责任感 × 杠杆",r:1},{t:"运气 × 风口 × 人脉",r:0},{t:"投资 × 内幕 × 梭哈",r:0}],
+  feed:"正确！专长提供独特性，责任感绑定利益，杠杆放大结果。"},
+ {sec:1,title:"杠杆识别器",type:"choice",
+  q:"写一本畅销书、录一门课被反复售卖，属于哪种杠杆？",
+  opts:[{t:"劳动力杠杆",r:0},{t:"资本杠杆",r:0},{t:"代码与媒体杠杆（零边际成本）",r:1},{t:"没有杠杆",r:0}],
+  feed:"对！书和课是零边际成本的媒体杠杆——写一次，卖无数次。"},
+ {sec:1,title:"新杠杆特点",type:"choice",
+  q:"纳瓦尔说代码与媒体杠杆最大的特点是什么？",
+  opts:[{t:"需要很多启动资金",r:0},{t:"使用它不需要任何人的许可",r:1},{t:"只有程序员才能用",r:0},{t:"已经被淘汰",r:0}],
+  feed:"正确！无需许可——这是普通人唯一不需要背景和关系就能撬动的杠杆。"},
+ {sec:2,title:"专长识别",type:"choice",
+  q:"以下哪个最符合纳瓦尔定义的“专长”？",
+  opts:[{t:"考了CPA证书的技能",r:0},{t:"玩着玩着就比别人强、无法被培训的独特能力",r:1},{t:"公司培训教会的流程",r:0},{t:"人人都能学的Excel",r:0}],
+  feed:"对！专长无法通过培训获得——证书和培训能教的是技能，不是专长。"},
+ {sec:3,title:"判断力场景",type:"choice",
+  q:"“财富不是对努力的奖赏，而是对什么的补偿？”",
+  opts:[{t:"运气",r:0},{t:"判断力",r:1},{t:"关系",r:0},{t:"学历",r:0}],
+  feed:"正确！一个正确的决策抵得上十年努力。"},
+ {sec:4,title:"产品化公式",type:"choice",
+  q:"“把自己产品化”=？",
+  opts:[{t:"做直播带货",r:0},{t:"专长 × 杠杆 × 责任感",r:1},{t:"包装自己骗流量",r:0},{t:"多打几份工",r:0}],
+  feed:"对！专长=独特性，产品化=规模化复制。"},
+ {sec:4,title:"普通人起点",type:"choice",
+  q:"纳瓦尔给普通人最建议的“产品化”起点是什么？",
+  opts:[{t:"先存一百万再开始",r:0},{t:"公开输出：持续写/录你的专长",r:1},{t:"借钱创业",r:0},{t:"等风口",r:0}],
+  feed:"正确！公开输出是零成本、无需许可的产品化第一步。"},
+ {sec:5,title:"复利计算器",type:"input",
+  q:"按“72法则”：年化收益12%，资产翻倍大约需要多少年？（72÷12）",
+  ans:"6",feed:"6年！复利靠时间发酵，越早开始越早翻倍。"},
+ {sec:6,title:"被动收入判断",type:"choice",
+  q:"以下哪种收入属于“拥有资产”的时间主权等级？",
+  opts:[{t:"月薪工资",r:0},{t:"股票分红和版税收入",r:1},{t:"接单的自由职业费",r:0},{t:"加班费",r:0}],
+  feed:"对！分红和版税是资产产生的被动收入，睡觉时也在进账。"},
+ {sec:7,title:"幸福公式",type:"choice",
+  q:"纳瓦尔的幸福公式核心是什么？",
+  opts:[{t:"欲望越多越幸福",r:0},{t:"欲望是痛苦的来源，幸福是减少欲望",r:1},{t:"幸福=拥有更多",r:0},{t:"幸福=比别人强",r:0}],
+  feed:"正确！选择你的欲望，而不是被欲望选择。"},
+ {sec:7,title:"嫉妒解药",type:"choice",
+  q:"纳瓦尔说幸福的头号杀手是什么？",
+  opts:[{t:"贫穷",r:0},{t:"嫉妒",r:1},{t:"加班",r:0},{t:"孤独",r:0}],
+  feed:"对！嫉妒是把注意力从自己身上偷走，从比较的游戏中抽离出来。"},
+ {sec:8,title:"阅读优先级",type:"choice",
+  q:"纳瓦尔的阅读系统建议优先读什么？",
+  opts:[{t:"最新的新闻资讯",r:0},{t:"经得起时间检验的经典",r:1},{t:"别人的读书笔记",r:0},{t:"成功学速成书",r:0}],
+  feed:"正确！经典=经过时间检验的真相，读原文比读解读更重要。"},
+ {sec:9,title:"优先级排序",type:"choice",
+  q:"按纳瓦尔的人生优先级公式，正确的排序是？",
+  opts:[{t:"财富>关系>健康>幸福",r:0},{t:"健康>幸福>财富>关系",r:1},{t:"关系>财富>健康>幸福",r:0},{t:"幸福>财富>健康>关系",r:0}],
+  feed:"对！健康是载体，幸福是目的，财富是实现两者的自由，关系是与重要的人同行。"}
+];
+
+var badges=["🎯 财富觉醒","🔧 杠杆玩家","🌟 专长猎手","🧭 判断力大师","🧩 产品化高手","📈 复利信徒","⏳ 时间主权者","💛 幸福练习者","📚 阅读系统师","👑 优先级王者","🔓 解锁勇士","🏆 完读大师"];
+var earned={};
+
+function render(){
+  var h="";
+  for(var i=0;i<secs.length;i++){
+    var s=secs[i], locked=i>=FREE && !isUnlocked();
+    h+=`<div class="sec ${locked?'locked':''}" id="sec${i}">
+      <h2><span class="k">${i<FREE?'免费':'VIP'}</span>${s.t}</h2>
+      <div>${s.tag.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="lead">${s.lead}</div>`;
+    if(i===0){h+=`<div class="video-box"><div class="lbl">🎬 纳瓦尔宝典导读：专长+杠杆=财富自由</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1yt9FBkEtD&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(i===1){h+=`<div class="video-box"><div class="lbl">🎬 纳瓦尔宝典万字精读：财富与幸福的双重跃迁</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1K4MfzEEEZ&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe></div>`;}
+    if(s.voice){h+=`<div class="voice" onclick="playV('${s.voice[0]}',this)"><div class="ic">▶</div><div class="tx">${s.voice[1]}<small>点击播放 · 语音讲书</small></div></div>`;}
+    h+=`<div class="imgbox"><img src="${s.art}" alt=""><div class="cap">${s.cap}</div></div>`;
+    h+=`<div class="flow">${s.flow.map(f=>`<span>${f}</span>`).join('')}</div>`;
+    h+=s.body();
+    if(locked){h+=`<div class="lockbar" onclick="unlock()">🔒 本节为付费内容，点击解锁完整版（管理员口令或激活码）</div>`;}
+    h+=`</div>`;
+  }
+  $("sections").innerHTML=h;
+  renderGames();
+  loadPts();
+  updProg();
+}
+function renderGames(){
+  for(var i=0;i<games.length;i++){
+    var g=games[i], holder=$("sec"+g.sec);
+    if(!holder) continue;
+    var box=document.createElement("div");box.className="game";box.id="game"+i;
+    box.innerHTML=`<h4>🎮 ${g.title}<span>游戏 ${i+1}/${games.length}</span></h4><div class="gq">${g.q}</div><div id="gg${i}"></div><div class="gfeed" id="gf${i}"></div><div class="badge-row" id="gb${i}"></div>`;
+    holder.appendChild(box);
+    var body=$("gg"+i);
+    if(g.type==="choice"){
+      g.opts.forEach((o,oi)=>{
+        var b=document.createElement("button");b.className="gopt";b.textContent=o.t;
+        b.onclick=function(){pick(i,oi)};
+        body.appendChild(b);
+      });
+    }else if(g.type==="input"){
+      var inp=document.createElement("input");inp.className="inp";inp.placeholder="输入你的答案…";
+      var btn=document.createElement("button");btn.className="gbtn";btn.textContent="提交";
+      btn.onclick=function(){checkInput(i,inp.value)};
+      body.appendChild(inp);body.appendChild(btn);
+    }
+  }
+}
+function pick(gi,oi){
+  var g=games[gi],o=g.opts[oi],feed=$("gf"+gi);
+  var btns=$("gg"+gi).querySelectorAll(".gopt");
+  btns.forEach(b=>{b.disabled=true;b.classList.remove("correct","wrong");});
+  btns[oi].classList.add(o.r?"correct":"wrong");
+  if(o.r){feed.className="gfeed ok";feed.textContent="✅ "+g.feed;earnBadge(gi);}
+  else{feed.className="gfeed no";feed.textContent="❌ 再想想。提示："+g.feed;btns[g.opts.findIndex(x=>x.r===1)].classList.add("correct");}
+}
+function checkInput(gi,val){
+  var g=games[gi],feed=$("gf"+gi);
+  var v=val.trim().replace(/[^0-9.]/g,"");
+  if(Math.abs(parseFloat(v)-parseFloat(g.ans))<0.1){feed.className="gfeed ok";feed.textContent="✅ "+g.feed;earnBadge(gi);}
+  else{feed.className="gfeed no";feed.textContent="❌ 答案约是 "+g.ans+"。再试试看。"}
+}
+function earnBadge(gi){
+  var g=games[gi];
+  if(!earned[gi]){earned[gi]=1;saveBadges();
+    addPts(10);
+    var bl=$("gb"+gi);if(bl)bl.innerHTML=`<span class="bdg earned">🏅 已通关 · +10积分</span>`;
+    toast("🎮 通关「"+g.title+"」 +10积分");
+    track("game",g.title);
+  }
+}
+function isUnlocked(){
+  try{return localStorage.getItem("xz_admin")==="1"||localStorage.getItem("xz_unlock_naval")==="1";}catch(e){return false}
+}
+function unlock(){
+  var p=prompt("请输入管理员口令或激活码：");
+  if(!p) return;
+  if(p==="xiqi-admin-2026"){try{localStorage.setItem("xz_admin","1");localStorage.setItem("xz_unlock_naval","1");}catch(e){};render();toast("🔓 管理员权限已生效，全部解锁");return;}
+  if(/^XQ2026/i.test(p)||/^[A-Z0-9]{8}$/.test(p)){try{localStorage.setItem("xz_unlock_naval","1");}catch(e){};render();toast("🔓 激活成功，全书已解锁");track("unlock",p);return;}
+  toast("❌ 口令不正确");
+}
+function playV(src,el){
+  var a=el.querySelector("audio");
+  if(a){if(a.paused)a.play();else a.pause();return;}
+  a=document.createElement("audio");a.src=src;a.controls=true;a.style.width="100%";a.style.marginTop="8px";
+  el.appendChild(a);a.play();
+  track("audio",src);
+}
+function loadPts(){
+  var p=0;try{p=parseInt(localStorage.getItem("xz_points"))||0;}catch(e){}
+  $("ptsBox").textContent=p;
+}
+function addPts(n){
+  var p=0;try{p=parseInt(localStorage.getItem("xz_points"))||0;}catch(e){}
+  p+=n;try{localStorage.setItem("xz_points",p);}catch(e){}
+  $("ptsBox").textContent=p;track("points",String(n));
+}
+function updProg(){
+  var h=document.documentElement.scrollHeight-innerHeight;
+  $("prog").style.width=(innerHeight>h?100:(scrollY/h*100))+"%";
+}
+addEventListener("scroll",updProg);
+function track(ev,val){
+  try{
+    var vid=localStorage.getItem("xiqi_vid")||("v_"+Date.now()+"_"+Math.random().toString(36).slice(2,8));
+    localStorage.setItem("xiqi_vid",vid);
+    fetch("https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({vid:vid,event:ev,book:"naval",value:val||""})}).catch(function(){});
+  }catch(e){}
+}
+function saveBadges(){try{localStorage.setItem("xz_badges_naval",JSON.stringify(earned));}catch(e){}}
+function loadBadges(){try{var v=localStorage.getItem("xz_badges_naval");if(v)earned=JSON.parse(v);}catch(e){}}
+document.addEventListener("click",function(e){
+  if(e.target.classList&&e.target.classList.contains("tog")){
+    var q=e.target.closest(".qcard");q.classList.toggle("open");
+    e.target.textContent=q.classList.contains("open")?"收起":"展开";
+  }
+});
+$("btnToc").onclick=function(){scrollTo(0,0);};
+$("btnVoice").onclick=function(){var v=document.querySelector(".voice");if(v)v.scrollIntoView({behavior:"smooth"});};
+$("btnVideo").onclick=function(){var v=document.querySelector(".video-box");if(v)v.scrollIntoView({behavior:"smooth"});};
+$("btnGames").onclick=function(){var g=document.querySelector(".game");if(g)g.scrollIntoView({behavior:"smooth"});};
+$("btnUnlock").onclick=function(){unlock();};
+function toast(msg){var t=$("toast");t.textContent=msg;t.style.display="block";clearTimeout(t._h);t._h=setTimeout(function(){t.style.display="none"},1800);}
+
+loadBadges();render();
+track("view");
+</script>
+</body>
+</html>
