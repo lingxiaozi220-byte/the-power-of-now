@@ -359,7 +359,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 七年计划'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 七年计划'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 30分钟精读 · 金鹅账户储蓄法+复利投资：7年赚到1000万</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1RN8wzQExh&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===2){h.appendChild(audioBlock('voice_safety.wav','🎧 保障与安全 · 先垫安全垫再养鹅'));}
   if(i===5){h.appendChild(audioBlock('voice_free.wav','🎧 四支柱 · 梦想目标价值观策略'));}
   if(i===10){
