@@ -322,7 +322,7 @@ function mediaFor(i){
   var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 投机之王的一生'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 投机之王的一生'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 62分钟深度解读 · 金融交易必读神作《股票大作手回忆录》</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1o5mdBTEiH&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===4){h.appendChild(audioBlock('voice_market.wav','🎧 第一课 · 市场永远是对的'));}
   if(i===5){h.appendChild(audioBlock('voice_cut.wav','🎧 铁律 · 截断亏损，让利润奔跑'));}
   if(i===10){
