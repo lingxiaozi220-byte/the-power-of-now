@@ -377,7 +377,7 @@ function mediaFor(i){
   var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
   h.appendChild(im);h.appendChild(cap);
   // 音频
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 深夜电台朗读'));}
+  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 深夜电台朗读'));}if(i===0){var vb0=document.createElement('div');vb0.className='media-block';vb0.innerHTML='<div class="lbl">📺 电影切片 ·《和平战士》经典台词集（原著同名电影，1.7万人在看）</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1NV411o7Yj&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';h.appendChild(vb0);}
   if(i===2){h.appendChild(audioBlock('voice_three.wav','🎧 苏格拉底三问 · 聆听'));}
   if(i===3){h.appendChild(audioBlock('voice_breath.wav','🎧 呼吸练习引导 · 跟练'));}
   // 视频（第8章）
