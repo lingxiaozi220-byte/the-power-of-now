@@ -518,7 +518,7 @@ try{S=JSON.parse(localStorage.getItem("miracle_state")||"{}");}catch(e){}
 S.coins=S.coins||0;S.ach=S.ach||{};S.quiz=S.quiz||{};S.test=S.test||{};S.ch30=S.ch30||{};
 var UN={free:5,unlocked:false,secret:'xiqi_miracle_2026_sa'};
 (function(){try{var u=JSON.parse(localStorage.getItem('miracle_unlock')||'{}');if(u&&u.unlocked)UN.unlocked=true;}catch(e){}})();
-(function(){try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('xz_admin','1')}}catch(e){}try{if(localStorage.getItem('xz_admin')==='1'){UN.unlocked=true;localStorage.setItem('miracle_unlock',JSON.stringify({unlocked:true,t:Date.now()}))}}catch(e){}})();
+(function(){try{if(localStorage.getItem('xz_admin')==='1'){UN.unlocked=true;localStorage.setItem('miracle_unlock',JSON.stringify({unlocked:true,t:Date.now()}))}}catch(e){}})();
 function save(){try{localStorage.setItem("miracle_state",JSON.stringify(S));}catch(e){}}
 function toast(t){var e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(function(){e.classList.remove("on")},2600);}
 function $id(i){return document.getElementById(i)}
