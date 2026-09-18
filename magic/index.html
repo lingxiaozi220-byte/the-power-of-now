@@ -309,7 +309,7 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 <script>
 const SLUG='magic';
 const FREE=6;
-let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1' || new URLSearchParams(location.search).get('admin')==='1';
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
 const games=[
  {ico:'🔮',t:'股市稳赚序章',d:'神奇公式来历',qs:[{q:'格林布拉特创立哥谭资本用了多少钱？',opts:['700万美元','7亿美元','7万美元'],a:0},{q:'哥谭资本前十年年化回报约？',opts:['50%','10%','3%'],a:0},{q:'《股市稳赚》的目标读者是？',opts:['上初中的孩子都能看懂','专业基金经理','量化博士'],a:0}]},
  {ico:'🍬',t:'买股票是什么',d:'公司vs代码',qs:[{q:'买股票的本质是？',opts:['买下一家公司的一部分生意','买一串代码','赌它涨'],a:0},{q:'一家店一年赚100万，你花500万买下，回报率是？',opts:['20%','5%','50%'],a:0},{q:'喜诗糖果案例说明什么？',opts:['好生意值得买','糖果好吃','要会开店'],a:0}]},
