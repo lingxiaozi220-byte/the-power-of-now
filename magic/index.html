@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《股市稳赚》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0c0e13;--card:#141823;--gold:#d4af37;--gold2:#f0d98c;--text:#e8edf4;--muted:#8b949e;--line:#2a303c;--green:#2ea043;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,19,.05) 0%,rgba(12,14,19,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,175,55,.06);border:1px dashed rgba(212,175,55,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#b8860b);color:#111;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(46,160,67,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(12,14,19,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,175,55,.1);color:var(--gold)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+.pill{display:inline-block;background:rgba(46,160,67,.12);color:var(--green);border:1px solid rgba(46,160,67,.4);border-radius:20px;padding:1px 10px;font-size:12px;margin-right:6px}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《股市稳赚》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 3 个精讲视频 · 4 段语音领读 · 12 枚成就徽章。前 6 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>股市稳赚</h1>
+    <p>乔尔·格林布拉特 · 哥谭资本创始人 · 神奇公式</p>
+    <span class="tag">神奇公式</span><span class="tag">资本回报率</span><span class="tag">收益率</span><span class="tag">每年再平衡</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 先看这个</div>
+  <div class="card">
+    <p>普通人靠<span class="q">“神奇公式”</span>战胜股市？揭秘年化 30% 的《股市稳赚》秘诀。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1HguTzwEt1&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 股市稳赚：神奇公式的由来（免费）</div>
+  <div class="card">
+    <h3>理解 · 一个能写进初中课本的赚钱方法</h3>
+    <p>乔尔·格林布拉特，1985 年用 700 万美元创立哥谭资本，前十年年化回报率超过 50%，二十年把 100 万滚成 8 亿多，<span class="gold">几乎不用杠杆</span>。</p>
+    <p>2005 年，他把方法写成一本书，明说：<span class="q">“简单到我的几个上初中的孩子都能看懂，并且靠它赚钱。”</span>这就是《股市稳赚》。</p>
+    <div class="mini">🎩 <b>核心一句话：</b>用合理的价格买好公司，然后什么都不用干，一年换一次。</div>
+    <div class="imgbox"><img src="art_book.jpg" alt="小书战胜市场"></div>
+    <h3>记忆 · 金句卡</h3>
+    <p>「伟大的投资策略，往往是简单的。人们之所以对好方法敬而远之，常常只是因为——它太简单了。」</p>
+    <h3>联想 · 与卡拉曼的呼应</h3>
+    <p>格林布拉特是格雷厄姆的学生、卡拉曼的同路人：都是<span class="gold">“好公司 + 便宜价格”</span>，只是他把这套思想压缩成了一个可以机械执行的公式。</p>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「股市稳赚序章」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 买股票就是买公司（免费）</div>
+  <div class="card">
+    <h3>理解 · 扔掉“代码”思维</h3>
+    <p>大多数人看到的是股票代码和跳动的数字。格林布拉特说：<span class="q">“买股票，就是买下一家公司的一部分生意。”</span></p>
+    <p>如果一家糖果店一年赚 100 万，你花 500 万买下整家店，你的回报是 20%。<span class="gold">股票只是这家店的一张“分红凭证”</span>。</p>
+    <div class="mini">🍬 <b>经典案例：喜诗糖果</b>——巴菲特 1972 年买下喜诗糖果，靠的正是“这是一门好生意”，而不是“它会涨”。</div>
+    <div class="imgbox"><img src="art_company.jpg" alt="买股票就是买公司"></div>
+    <h3>记忆 · 思维转换表</h3>
+    <table>
+      <tr><th>错误思维</th><th>正确思维</th></tr>
+      <tr><td>股票是一串代码</td><td>股票是一份生意</td></tr>
+      <tr><td>关心明天涨跌</td><td>关心生意赚不赚钱</td></tr>
+      <tr><td>跟着消息买卖</td><td>按生意价值定价</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「买股票是什么」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 市场先生：报价不是价值（免费）</div>
+  <div class="card">
+    <h3>理解 · 市场是个情绪化的疯子</h3>
+    <p>格雷厄姆说，市场先生每天来你家报价：<span class="q">“有时亢奋出高价，有时沮丧报低价。”</span>你可以听，也可以不理。</p>
+    <p>格林布拉特的补充：<span class="gold">报价是情绪，价值是生意</span>。市场先生的疯癫，恰恰是神奇公式捡便宜的机会来源。</p>
+    <div class="mini">😈 <b>思维翻转：</b>市场先生是你的仆人，不是你的老师。他出低价时，是你买；他出高价时，是你卖。</div>
+    <div class="imgbox"><img src="art_market.jpg" alt="市场先生"></div>
+    <h3>记忆 · 市场先生使用手册</h3>
+    <table>
+      <tr><th>他亢奋</th><th>他沮丧</th></tr>
+      <tr><td>报价离谱地高</td><td>报价离谱地低</td></tr>
+      <tr><td>你可以卖给他</td><td>你可以从他手里买</td></tr>
+      <tr><td>但别跟着他疯</td><td>也别被他吓跑</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「市场先生识别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 风险与组合：先别亏，再谈赚（免费）</div>
+  <div class="card">
+    <h3>理解 · 波动不是风险，亏钱才是</h3>
+    <p>格林布拉特说：<span class="q">“风险，是本金永久损失的可能性；波动，只是价格来回晃。”</span></p>
+    <p>一个组合如果足够分散（他建议买 20-30 只股票），单只股票翻车也不会伤筋动骨——<span class="gold">分散，是唯一免费的午餐</span>。</p>
+    <div class="mini">🧺 <b>思维翻转：</b>押一只“肯定涨”的股票，比分散买 20 只“可能涨”的股票危险得多。你赌的是确定性，不是数量。</div>
+    <div class="imgbox"><img src="art_portfolio.jpg" alt="投资组合"></div>
+    <h3>记忆 · 市场有效假说的反驳</h3>
+    <p>学院派说“市场永远有效，没人能战胜”。格林布拉特的证据：<span class="gold">1988-2004 年，神奇公式年化 30.8%，同期标普 500 只有 12.4%</span>。</p>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「分散组合」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 神奇公式：只需要盯住两个数字（免费）</div>
+  <div class="card">
+    <h3>理解 · 两个筛子</h3>
+    <table>
+      <tr><th>筛子</th><th>衡量什么</th><th>人话</th></tr>
+      <tr><td>资本回报率</td><td>公司好不好</td><td>一块钱本钱能赚回几块钱</td></tr>
+      <tr><td>收益率</td><td>股票便不便宜</td><td>买下整家公司，一年回报几成</td></tr>
+    </table>
+    <p><span class="q">“找到好业务，同时价格便宜的股票——这就是神奇公式的全部。”</span></p>
+    <div class="mini">🎩 <b>操作口诀：</b>每个指标全市场排名 → 两个名次相加 → 得分最低的前 20-30 家 → 平均买入 → 一年后换新。</div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1UK41157zw&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_formula.jpg" alt="神奇公式"></div>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_formula')">▶ 语音领读 · 神奇公式</button></div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「两个数字」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 资本回报率：怎么才算好公司（免费）</div>
+  <div class="card">
+    <h3>理解 · 用最少的本钱，赚最多的利润</h3>
+    <p>同样一年赚 15 万：<span class="gold">A 店投 10 万，B 店投 100 万</span>——谁是更好的生意？A 店。因为它的每块钱本钱，产出更高。</p>
+    <p>好公司背后往往有<span class="gold">别人学不来的东西</span>：品牌、专利、网络效应、独特的运营诀窍。</p>
+    <div class="mini">🏪 <b>计算口径：</b>资本回报率 ≈ 息税前利润（EBIT）÷ 有形资本（净营运资本 + 净固定资产）。剔除利息和税率，才看得出生意本身赚不赚。</div>
+    <div class="imgbox"><img src="art_roe.jpg" alt="资本回报率"></div>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_roe')">▶ 语音领读 · 好公司</button></div>
+    <h3>记忆 · 糖果店对比</h3>
+    <p>两家店都赚 100 万：一家靠 20 万美元存货设备，另一家要砸 2000 万。你愿意拥有哪一家？<span class="gold">答案写在资本回报率里。</span></p>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「资本回报率计算」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 7-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：收益率与便宜价格、排名与再平衡、为什么神奇公式有效、坚持三年 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 7-10 课完整内容（收益率、排名与再平衡、行为金融、坚持三年）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 1 个大师对谈视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 7 课 · 收益率：怎么才算便宜</div>
+  <div class="card">
+    <h3>理解 · 把市盈率倒过来看</h3>
+    <p>市盈率 = 价格 ÷ 每股盈利。倒过来，就是<span class="q">收益率 = 盈利 ÷ 价格</span>：你花 10 块买入一年赚 1 块的生意，收益率就是 10%。</p>
+    <p>格林布拉特用<span class="gold">息税前利润 ÷ 企业价值</span>，比市盈率更干净：<span class="gold">不吃利息和税率的亏，也不被现金和负债骗</span>。</p>
+    <div class="mini">🏷️ <b>思维翻转：</b>收益率不是“赚了百分之几”，而是“这生意一年给你吐多少钱，值不值这个价”。越高越便宜。</div>
+    <div class="imgbox"><img src="art_yield.jpg" alt="收益率"></div>
+    <h3>记忆 · 两个口径</h3>
+    <table>
+      <tr><th>口径</th><th>公式</th><th>优点</th></tr>
+      <tr><td>市盈率 P/E</td><td>股价 ÷ 每股盈利</td><td>简单直观</td></tr>
+      <tr><td>收益率 EY</td><td>EBIT ÷ 企业价值</td><td>剔除负债与税率干扰</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「收益率排序」</button>
+  </div>
+
+  <div class="sec-t">第 8 课 · 排名与再平衡：机械化执行</div>
+  <div class="card">
+    <h3>理解 · 组合不是选出来的，是排出来的</h3>
+    <p>把全市场每家公司：按资本回报率排名、按收益率排名，<span class="q">两个名次相加，得分最低的前 20-30 家</span>就是你的买入名单。</p>
+    <p>然后<span class="gold">平均分配资金买入，持有一年，到期卖出，重新排名换新</span>——周而复始。</p>
+    <div class="mini">🔄 <b>为什么一年？</b>给价值回归留时间，也给自己一个“不手痒”的纪律：中间什么都不做。</div>
+    <div class="imgbox"><img src="art_rebalance.jpg" alt="每年再平衡"></div>
+    <h3>记忆 · 执行三步</h3>
+    <p>① 每年同一天排名 → ② 买前 20-30 家平均分配 → ③ 卖掉不再上榜的，买入新上榜的。</p>
+    <button class="btn" onclick="openGame(10)">🎮 练习：游戏「每年再平衡」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 为什么有效：人性是公式最好的朋友</div>
+  <div class="card">
+    <h3>理解 · 战胜的不是市场，是自己的情绪</h3>
+    <p>神奇公式有效，恰恰因为<span class="gold">大多数人做不到</span>：大涨时追进去，大跌时割出来，热门股越贵越买。</p>
+    <p>公式的回报，一半来自便宜的好公司，另一半来自<span class="q">“别人犯的错”</span>——行为金融学里的过度反应、羊群效应、损失厌恶。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1yz421m7j3&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_psych.jpg" alt="行为金融"></div>
+    <h3>记忆 · 三个心理陷阱</h3>
+    <table>
+      <tr><th>陷阱</th><th>表现</th></tr>
+      <tr><td>追涨杀跌</td><td>涨了才敢买，跌了只想跑</td></tr>
+      <tr><td>损失厌恶</td><td>亏 100 的痛苦 &gt; 赚 100 的快乐</td></tr>
+      <tr><td>羊群效应</td><td>别人买什么我就买什么</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(11)">🎮 练习：游戏「行为偏差识别」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 坚持三年：真正的护城河</div>
+  <div class="card">
+    <h3>理解 · 最难的不是公式，是忍住</h3>
+    <p>1988-2004 年回测，神奇公式年化 30.8%，但<span class="gold">只看其中任何一两年，它可能跑输大盘，甚至亏钱</span>。</p>
+    <p>格林布拉特说：<span class="q">“这套方法需要至少坚持三年，最好是五到十年。绝大多数人，正是在最不该放弃的那一年放弃了。”</span></p>
+    <div class="mini">⏳ <b>思维翻转：</b>公式回测的收益里，含着一项“坚持奖”。中途退出的人，把这份钱留给了坚持的人。</div>
+    <div class="imgbox"><img src="art_hold.jpg" alt="坚持三年"></div>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_hold')">▶ 语音领读 · 坚持</button></div>
+    <h3>记忆 · 两条规则重述</h3>
+    <p>① 找到好公司（资本回报率高）② 用便宜价格买入（收益率高）——然后忍住，每年只动一次手。</p>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：格林布拉特传人挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」价值投资专题。配套阅读：《安全边际》《投资最重要的事》《聪明的投资者》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='magic';
+const FREE=6;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1' || new URLSearchParams(location.search).get('admin')==='1';
+const games=[
+ {ico:'🔮',t:'股市稳赚序章',d:'神奇公式来历',qs:[{q:'格林布拉特创立哥谭资本用了多少钱？',opts:['700万美元','7亿美元','7万美元'],a:0},{q:'哥谭资本前十年年化回报约？',opts:['50%','10%','3%'],a:0},{q:'《股市稳赚》的目标读者是？',opts:['上初中的孩子都能看懂','专业基金经理','量化博士'],a:0}]},
+ {ico:'🍬',t:'买股票是什么',d:'公司vs代码',qs:[{q:'买股票的本质是？',opts:['买下一家公司的一部分生意','买一串代码','赌它涨'],a:0},{q:'一家店一年赚100万，你花500万买下，回报率是？',opts:['20%','5%','50%'],a:0},{q:'喜诗糖果案例说明什么？',opts:['好生意值得买','糖果好吃','要会开店'],a:0}]},
+ {ico:'😈',t:'市场先生识别',d:'报价≠价值',qs:[{q:'市场先生报价的本质是？',opts:['情绪','客观价值','官方定价'],a:0},{q:'他沮丧报低价时，你应该？',opts:['从他手里买','跟着卖','躲起来'],a:0},{q:'市场先生是？',opts:['仆人不是老师','老师不是仆人','天气预报'],a:0}]},
+ {ico:'🚨',t:'风险 vs 波动',d:'分清两者',qs:[{q:'真正的风险是？',opts:['本金永久损失的可能','价格来回晃','错过涨停'],a:0},{q:'波动对长期投资者是？',opts:['机会不是风险','灾难','亏损'],a:0},{q:'分散投资的作用是？',opts:['单只翻车不伤筋动骨','保证暴富','增加风险'],a:0}]},
+ {ico:'🧺',t:'分散组合',d:'免费的午餐',qs:[{q:'格林布拉特建议买多少只？',opts:['20-30只','1-2只','1000只'],a:0},{q:'押一只“肯定涨”的股票，本质是？',opts:['赌确定性，风险极高','稳健策略','分散投资'],a:0},{q:'市场有效假说认为？',opts:['没人能长期战胜市场','人人能战胜','市场是随机的'],a:0}]},
+ {ico:'🎩',t:'两个数字',d:'神奇公式双筛子',qs:[{q:'资本回报率衡量？',opts:['公司好不好','股票便不便宜','新闻多不多'],a:0},{q:'收益率衡量？',opts:['价格便不便宜','老板帅不帅','涨得快不快'],a:0},{q:'神奇公式的全部就是？',opts:['好公司+便宜价格','看图炒股','内幕消息'],a:0}]},
+ {ico:'🏪',t:'资本回报率计算',d:'好公司怎么算',qs:[{q:'同样赚15万，投10万和投100万，谁更好？',opts:['投10万的','投100万的','一样'],a:0},{q:'资本回报率的分母是？',opts:['有形资本','市值','股数'],a:0},{q:'分子用哪个利润？',opts:['息税前利润EBIT','净利润','毛利'],a:0}]},
+ {ico:'🏷️',t:'收益率排序',d:'便宜不便宜',qs:[{q:'收益率=盈利÷价格，10块买年赚1块的生意，收益率？',opts:['10%','1%','100%'],a:0},{q:'格林布拉特用哪个分母？',opts:['企业价值','市值','净资产'],a:0},{q:'收益率越高说明？',opts:['越便宜','越贵','越大盘'],a:0}]},
+ {ico:'📊',t:'综合排名赛',d:'排名相加',qs:[{q:'两个名次相加，得分越低？',opts:['越值得买','越贵','越危险'],a:0},{q:'买入名单取前多少名？',opts:['20-30家','3家','100家'],a:0},{q:'资金如何分配？',opts:['平均分配','梭哈第一名','按心情'],a:0}]},
+ {ico:'🔍',t:'财报侦探',d:'看懂数字',qs:[{q:'为什么用EBIT？',opts:['剔除利息税率干扰','数字更大','更好看'],a:0},{q:'企业价值≈？',opts:['市值+有息负债-现金','市值','营收'],a:0},{q:'市盈率倒过来是？',opts:['收益率','市净率','换手率'],a:0}]},
+ {ico:'🔄',t:'每年再平衡',d:'一年只动一次手',qs:[{q:'神奇公式多久调一次仓？',opts:['一年','每天','一分钟'],a:0},{q:'到期后做什么？',opts:['重新排名换新组合','永远不动','全部卖掉'],a:0},{q:'中间波动怎么办？',opts:['什么都不做','赶紧割肉','加杠杆抄底'],a:0}]},
+ {ico:'🧠',t:'行为偏差识别',d:'人性陷阱',qs:[{q:'涨了才敢买、跌了想跑，是？',opts:['追涨杀跌','理性','价值投资'],a:0},{q:'亏100的痛苦大于赚100的快乐，是？',opts:['损失厌恶','乐观偏差','幸存者偏差'],a:0},{q:'别人买什么我买什么，是？',opts:['羊群效应','独立思考','分散投资'],a:0}]},
+ {ico:'🎢',t:'情绪测验',d:'你扛得住吗',qs:[{q:'买入后一年跌20%，神奇公式信徒应该？',opts:['检查基本面，按纪律持有','立刻割肉','骂市场'],a:0},{q:'别人都在追热门股，你应该？',opts:['按公式执行','一起追','鄙视他们'],a:0},{q:'公式跑输大盘一年，说明？',opts:['正常，坚持三五年再看','公式失效','赶紧放弃'],a:0}]},
+ {ico:'⏳',t:'三年坚持模拟',d:'回测数字',qs:[{q:'1988-2004年神奇公式年化约？',opts:['30.8%','10%','-5%'],a:0},{q:'同期标普500年化约？',opts:['12.4%','30.8%','40%'],a:0},{q:'中途放弃的人？',opts:['把超额收益留给了坚持的人','一样赚钱','不会亏'],a:0}]},
+ {ico:'📖',t:'术语配对',d:'核心概念',qs:[{q:'资本回报率对应？',opts:['好公司','便宜价格','大盘走势'],a:0},{q:'收益率对应？',opts:['便宜价格','好公司','管理层'],a:0},{q:'神奇公式的回报一半来自？',opts:['别人犯的错','运气','内幕'],a:0}]},
+ {ico:'👑',t:'格林布拉特传人挑战',d:'10题综合测验',qs:[{q:'买股票的本质是？',opts:['买生意','买代码','赌涨跌'],a:0},{q:'资本回报率衡量？',opts:['公司好不好','贵不贵','热不热'],a:0},{q:'收益率衡量？',opts:['便不便宜','好不好','大不大'],a:0},{q:'综合排名取前多少？',opts:['20-30家','1家','500家'],a:0},{q:'多久调仓一次？',opts:['一年','一天','从不'],a:0},{q:'市场先生是？',opts:['仆人','老师','老板'],a:0},{q:'真正的风险是？',opts:['本金永久损失','波动','踏空'],a:0},{q:'为什么公式有效？',opts:['人性犯错','公式神秘','数据作弊'],a:0},{q:'需要坚持多久？',opts:['至少三年','三天','三分钟'],a:0},{q:'格林布拉特用什么分母算收益率？',opts:['企业价值','市值','净资产'],a:0}]}
+];
+const badges=['📕','📈','🍬','😈','🧺','🎩','🏪','🏷️','🔄','🧠','⏳','👑'];
+const badgeNames=['翻开序章','公式信徒','公司买家','先生驯服者','组合建筑师','双指标大师','好公司猎手','便宜价侦探','再平衡行者','情绪免疫者','三年守望者','格林布拉特传人'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=6&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
