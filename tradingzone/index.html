@@ -1212,7 +1212,7 @@ function setAch(k){var ach=JSON.parse(localStorage.getItem('tz_ach')||'{}');ach[
 (function(){
   setPoints(getPoints());
   if(!localStorage.getItem('tz_visited')){localStorage.setItem('tz_visited','1');addPoints(10,'新读者见面礼')}
-  try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('xz_admin','1')}}catch(e){}
+  
   try{if(localStorage.getItem('xz_admin')==='1'){localStorage.setItem(UNLOCK_KEY,'1')}}catch(e){}
   if(isUnlocked()){unlockAll();setAch('read')}else{lockSections()}
   drawCurves();
