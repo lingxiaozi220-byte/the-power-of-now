@@ -316,7 +316,7 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 <script>
 const SLUG='safety';
 const FREE=6;
-let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1' || new URLSearchParams(location.search).get('admin')==='1';
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
 const games=[
  {ico:'🛡️',t:'第一原则',d:'不亏钱思维测试',qs:[{q:'卡拉曼投资第一原则是？',opts:['永远不要亏钱','抓住每个热点','满仓进攻'],a:0},{q:'先亏50%后，要涨多少才回本？',opts:['100%','50%','30%'],a:0},{q:'不亏钱为什么重要？',opts:['复利的前提是本金还在','为了名声','避免被骂'],a:0}]},
  {ico:'🛒',t:'投资 vs 投机',d:'判断交易性质',qs:[{q:'“价格远低于价值买入”属于？',opts:['投资','投机','赌博'],a:0},{q:'“赌它明天涨”属于？',opts:['投机','投资','研究'],a:0},{q:'价值投资的回报来源是？',opts:['价值回归','市场情绪','运气'],a:0}]},
