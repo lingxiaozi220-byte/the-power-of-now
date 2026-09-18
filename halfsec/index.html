@@ -416,7 +416,7 @@ var S={};
 try{S=JSON.parse(localStorage.getItem("halfsec_state")||"{}");}catch(e){}
 var UN={free:5,unlocked:false,secret:'xiqi_halfsec_2026_fx'};
 (function(){try{var u=JSON.parse(localStorage.getItem('halfsec_unlock')||'{}');if(u&&u.unlocked)UN.unlocked=true;}catch(e){}})();
-(function(){try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('xz_admin','1')}}catch(e){}})();
+(function(){})();
 (function(){try{if(localStorage.getItem('xz_admin')==='1'){localStorage.setItem('halfsec_unlock',JSON.stringify({unlocked:true,t:Date.now()}));UN.unlocked=true;}}catch(e){}})();
 function save(){try{localStorage.setItem("halfsec_state",JSON.stringify(S));}catch(e){}}
 function $id(i){return document.getElementById(i)}
