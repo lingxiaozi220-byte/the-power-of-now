@@ -424,7 +424,7 @@ S.coins=S.coins||0;S.ach=S.ach||{};S.quiz=S.quiz||{};S.readActs=S.readActs||{};
 var JINGU={free:4,unlocked:false,secret:'xiqi_jing_2026_sw'};
 (function(){try{var u=JSON.parse(localStorage.getItem('jing_unlock')||'{}');if(u&&u.unlocked)JINGU.unlocked=true;}catch(e){}})();
 /* 全局管理员最高权限：URL ?admin=1 或本地标记 xz_admin=1 → 直接解锁全书 */
-(function(){try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('xz_admin','1')}}catch(e){}try{if(localStorage.getItem('xz_admin')==='1'){JINGU.unlocked=true;localStorage.setItem('jing_unlock',JSON.stringify({unlocked:true,t:Date.now()}))}}catch(e){}})();
+(function(){try{if(localStorage.getItem('xz_admin')==='1'){JINGU.unlocked=true;localStorage.setItem('jing_unlock',JSON.stringify({unlocked:true,t:Date.now()}))}}catch(e){}})();
 
 function save(){try{localStorage.setItem("jing_state",JSON.stringify(S));}catch(e){}}
 function toast(t){var e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(function(){e.classList.remove("on")},2600);}
