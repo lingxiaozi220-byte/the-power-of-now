@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《投资最重要的事》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--gold:#d4af37;--gold2:#f0d98c;--text:#e6edf3;--muted:#8b949e;--line:#30363d;--green:#2ea043;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:20px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,17,23,.1) 0%,rgba(13,17,23,.95) 100%)}
+.hero .txt{position:absolute;left:24px;right:24px;bottom:20px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:14px;color:var(--muted)}
+.tag{display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:26px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:16px;margin-bottom:8px}
+.card p{font-size:14.5px;color:var(--text)}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.imgbox{border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#b8860b);color:#111;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(46,160,67,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(13,17,23,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,175,55,.1);color:var(--gold)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《投资最重要的事》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 3 个精讲视频 · 4 段语音领读 · 12 枚成就徽章。前 6 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>投资最重要的事</h1>
+    <p>霍华德·马克斯 · 橡树资本创始人投资备忘录精华</p>
+    <span class="tag">第二层思维</span><span class="tag">周期钟摆</span><span class="tag">风险控制</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">开场视频 · 先看这个</div>
+  <div class="card">
+    <p>霍华德·马克斯 60 分钟分享 78 年投资智慧——橡树资本创始人的完整投资哲学全景。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1CjcUzfEFV&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 第二层思维（免费）</div>
+  <div class="card">
+    <h3>理解 · 超额收益来自多想一步</h3>
+    <p>第一层思维说：<span class="q">“这是一家好公司，买！”</span>第二层思维追问：<span class="q">“人人都知道它好，价格已经反映了这个好，那还能赚钱吗？”</span>马克斯说，想取得卓越投资结果，你必须比大众想得更深、更远、更独立。市场已经知道的信息，不会让你赚钱。</p>
+    <div class="imgbox"><img src="art_think.jpg" alt="第二层思维"></div>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 第二层思维</button></div>
+    <h3>记忆 · 金句卡</h3>
+    <p>「第一层思维说：这是一家好公司，让我们买进股票吧。第二层思维说：这是一家好公司，但人人都认为它是一家好公司，于是它不是一家好股票。」</p>
+    <h3>联想 · 财报利好</h3>
+    <p>财报超预期，股价却跌——因为市场早把预期打进了价格。第二层思维永远多问一句：好消息被消化了吗？涨过头了吗？大家是不是都知道了？</p>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「第二层思维训练」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 理解市场（免费）</div>
+  <div class="card">
+    <h3>理解 · 市场有效，但从不完全有效</h3>
+    <p>马克斯说：市场是高度有效的，<span class="q">“因为参与者的多样化与信息的快速流动，错误定价会被迅速纠正”</span>。但市场永远不完全有效——因为情绪、贪婪与恐惧会制造极端。无效之处，就是超额收益的来源。</p>
+    <div class="imgbox"><img src="art_value.jpg" alt="价值与价格"></div>
+    <h3>记忆 · 金句卡</h3>
+    <p>「我坚定地相信，有效市场假说基本上是成立的，但它的正确性仅限于‘人们没有意识到市场不完全有效’的那一刻。」</p>
+    <h3>联想 · 价值与价格</h3>
+    <p>价值是内在的锚，价格是情绪的风。好公司≠好股票，贵的好公司不是好投资；便宜的好公司才是。买资产，核心是价格与价值的差距。</p>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「价值价格辨别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 风险（免费）</div>
+  <div class="card">
+    <h3>理解 · 风险不是波动，是永久损失的可能</h3>
+    <p>多数人把风险等同于波动，马克斯说：真正的风险是<span class="q">“本金永久损失的可能性”</span>。最大的风险，往往出现在人人都觉得风险很小的时候——牛市顶部，风险最大；熊市底部，风险反而小。</p>
+    <div class="imgbox"><img src="art_risk.jpg" alt="风险"></div>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_risk')">▶ 语音领读 · 风险</button></div>
+    <h3>记忆 · 金句卡</h3>
+    <p>「风险意味着结果的不确定性，而最大的风险，恰恰是所有人都觉得没有风险的时候。」</p>
+    <h3>联想 · 高风险高收益？</h3>
+    <p>高风险资产并不保证高收益——它只意味着结果更不确定。承担风险的正确姿势：先评估自己能否承受永久损失，再决定下多少注。</p>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「风险识别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 周期（免费）</div>
+  <div class="card">
+    <h3>理解 · 万物皆周期，树长不到天上</h3>
+    <p>马克斯说：<span class="q">“我们永远不知道未来会发生什么，但我们可以知道自己现在处于周期的哪个位置。”</span>经济、信贷、情绪、市场都有自己的周期——上涨本身就在为下跌播种，崩溃本身也在孕育反弹。</p>
+    <div class="imgbox"><img src="art_cycle.jpg" alt="周期"></div>
+    <h3>记忆 · 周期四阶段</h3>
+    <table>
+      <tr><th>阶段</th><th>特征</th><th>正确动作</th></tr>
+      <tr><td>复苏期</td><td>人人悲观、价格便宜</td><td>大胆布局（别人恐惧我贪婪）</td></tr>
+      <tr><td>乐观期</td><td>信心回升、价格合理</td><td>继续持有、耐心等待</td></tr>
+      <tr><td>狂热期</td><td>人人贪婪、价格泡沫</td><td>分批撤退（别人贪婪我恐惧）</td></tr>
+      <tr><td>萧条期</td><td>恐慌抛售、无人敢买</td><td>囤积现金、等待黄金坑</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「周期阶段判断」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 钟摆（免费）</div>
+  <div class="card">
+    <h3>理解 · 市场从不停在中间</h3>
+    <p>市场是一架钟摆，在<span class="q">“贪婪—乐观—自信—恐惧—悲观—绝望”</span>之间摆动，几乎从不在合理估值处停留。钟摆的意义：永远不要预测它何时反转，而是识别自己现在站在哪一端。</p>
+    <div class="imgbox"><img src="art_pendulum.jpg" alt="钟摆"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Ck4y1d7NF&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <h3>记忆 · 金句卡</h3>
+    <p>「钟摆永远向两个方向摆动，但它几乎从不停留在中间。这是人性的写照。」</p>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「钟摆定位」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 6 课 · 逆向投资</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可继续阅读全部 5 节课 + 12 个游戏</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">付费解锁后你将获得：第 6-10 课完整内容（逆向投资、安全边际、知道自己不知道、防御型投资、最重要的事清单）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 2 个精讲视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 6 课 · 逆向投资</div>
+  <div class="card">
+    <h3>理解 · 别人贪婪我恐惧</h3>
+    <p>马克斯说：<span class="q">“成功投资的秘诀在于逆向而行：当别人都在卖出时，你要买进；当别人都在买进时，你要卖出。”</span>逆向不是为反而反，而是因为市场情绪极端时，价格与价值严重背离——这时候，正确的少数人才能赚钱。</p>
+    <div class="imgbox"><img src="art_reverse.jpg" alt="逆向投资"></div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「逆向判断」</button>
+  </div>
+
+  <div class="sec-t">第 7 课 · 安全边际</div>
+  <div class="card">
+    <h3>理解 · 买得足够便宜，错了也亏不了多少</h3>
+    <p>格雷厄姆传给巴菲特，巴菲特传给马克斯：<span class="q">“安全边际是应对不确定性的唯一武器。”</span>以远低于内在价值的价格买入，即使判断错了、市场崩了，你的损失也有限；判断对了，收益巨大。安全边际让「正确」不再必要。</p>
+    <div class="imgbox"><img src="art_margin.jpg" alt="安全边际"></div>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_margin')">▶ 语音领读 · 安全边际</button></div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「安全边际选择」</button>
+  </div>
+
+  <div class="sec-t">第 8 课 · 知道自己不知道</div>
+  <div class="card">
+    <h3>理解 · 谦逊是投资的第一美德</h3>
+    <p>马克斯反复强调：<span class="q">“预测未来是徒劳的，重要的是知道自己不知道。”</span>承认无法预测，就不会满仓赌方向；承认自己可能错，就会留有余地、分批操作。知道自己不知道，比知道更重要。</p>
+    <div class="imgbox"><img src="art_unknow.jpg" alt="知道自己不知道"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1dEpYzZEGZ&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <button class="btn" onclick="openGame(9)">🎮 练习：游戏「知道自己不知道」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 防御型投资</div>
+  <div class="card">
+    <h3>理解 · 先求不败，再求胜</h3>
+    <p>进攻型投资追求「最大涨幅」，防御型投资追求「最小回撤」。马克斯说：<span class="q">“投资最重要的不是做对，而是不犯大错。”</span>在牌桌上活下来，比赢一把重要得多——复利最怕的是本金的大幅亏损。</p>
+    <div class="imgbox"><img src="art_defense.jpg" alt="防御型投资"></div>
+    <button class="btn" onclick="openGame(10)">🎮 练习：游戏「防御型投资选择」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 最重要的事清单</div>
+  <div class="card">
+    <h3>记忆 · 马克斯终身清单</h3>
+    <table>
+      <tr><th>最重要的事</th><th>一句话</th></tr>
+      <tr><td>不是进攻，是防守</td><td>先不亏钱，再谈赚钱</td></tr>
+      <tr><td>不是追求伟大，是避免重大错误</td><td>少犯错就是赢家</td></tr>
+      <tr><td>不是买最好的公司，是买最划算的资产</td><td>好价格比好公司重要</td></tr>
+      <tr><td>不是预测未来，是判断现在</td><td>认清周期位置比预测拐点有用</td></tr>
+      <tr><td>不是买在最低点，是确保不被迫卖出</td><td>留足弹药，活到黎明</td></tr>
+      <tr><td>不是战胜市场，是战胜自己</td><td>克服贪婪与恐惧</td></tr>
+    </table>
+    <div class="imgbox"><img src="art_compass.jpg" alt="最重要的事清单"></div>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_list')">▶ 语音领读 · 最重要的事</button></div>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：马克斯传人挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」价值投资专题。配套阅读：《周期》（霍华德·马克斯）《穷查理宝典》《聪明的投资者》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='marks';
+const FREE=6;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1' || new URLSearchParams(location.search).get('admin')==='1';
+const games=[
+ {ico:'🧠',t:'第二层思维训练',d:'情景→第二层追问',qs:[{q:'一家好公司，人人都知道它好。第二层思维会？',opts:['追问价格是否已反映利好','直接买入','跟随大众'],a:0},{q:'财报超预期但股价下跌，最可能的原因是？',opts:['利好早已被市场消化','财报造假','散户太多'],a:0},{q:'超额收益的来源是？',opts:['比大众多想一步','更多内幕消息','更频繁交易'],a:0}]},
+ {ico:'🪜',t:'第一层 vs 第二层',d:'判断思维层级',qs:[{q:'“经济要衰退，全部卖出”属于？',opts:['第一层思维','第二层思维','深度分析'],a:0},{q:'“衰退预期是否已被价格反映？”属于？',opts:['第二层思维','第一层思维','废话'],a:0},{q:'市场共识能带来超额收益吗？',opts:['不能，共识已定价','能，人多力量大','取决于运气'],a:0}]},
+ {ico:'🚨',t:'风险识别',d:'哪些是真风险',qs:[{q:'投资中的真正风险是？',opts:['本金永久损失的可能','股价每天波动','错过涨停'],a:0},{q:'何时风险最大？',opts:['人人觉得没风险时','人人恐慌时','熊市底部'],a:0},{q:'高风险资产意味着？',opts:['结果更不确定，不等于更高收益','必然更高收益','风险可控'],a:0}]},
+ {ico:'🔄',t:'周期阶段判断',d:'复苏/乐观/狂热/萧条',qs:[{q:'人人悲观、价格便宜，是周期的？',opts:['复苏期','狂热期','高峰'],a:0},{q:'人人贪婪、价格泡沫，是？',opts:['狂热期','萧条期','低谷'],a:0},{q:'狂热期正确动作是？',opts:['分批撤退','满仓加码','借钱买入'],a:0}]},
+ {ico:'⏰',t:'钟摆定位',d:'情绪→摆向',qs:[{q:'市场钟摆几乎从不？',opts:['停在中间合理位','摆向两端','反复摆动'],a:0},{q:'绝望抛售时，钟摆位于？',opts:['恐惧端，接近底部','贪婪端','中间'],a:0},{q:'钟摆理论的启示？',opts:['识别当前位置而非预测反转','预测精确拐点','追涨杀跌'],a:0}]},
+ {ico:'🔥',t:'逆向判断',d:'别人贪婪/恐惧时',qs:[{q:'别人恐慌抛售时，你应该？',opts:['寻找被错杀的好资产','跟着抛','不看市场'],a:0},{q:'逆向投资的本质是？',opts:['价格偏离价值时反向操作','为反而反','逆势抄底一切'],a:0},{q:'什么时候逆向最危险？',opts:['在合理估值处强行反向','极端情绪时','无人关注时'],a:0}]},
+ {ico:'🛡️',t:'安全边际选择',d:'买得更便宜',qs:[{q:'安全边际的作用是？',opts:['判断错了也亏不多','保证不跌','提高杠杆'],a:0},{q:'内在价值10元的公司，最好在？',opts:['6-7元买入','10元买入','12元买入'],a:0},{q:'安全边际让什么不再必要？',opts:['永远正确','长期持有','深度研究'],a:0}]},
+ {ico:'⚖️',t:'价值价格辨别',d:'好公司≠好股票',qs:[{q:'好公司何时不是好投资？',opts:['价格已远超价值时','股价下跌时','行业景气时'],a:0},{q:'买资产的核心是？',opts:['价格与价值的差距','公司名气','股价走势'],a:0},{q:'市场有效但不完全有效，因为？',opts:['情绪制造极端定价','信息绝对对称','政府调控'],a:0}]},
+ {ico:'🙏',t:'知道自己不知道',d:'承认未知',qs:[{q:'马克斯对预测的态度？',opts:['预测是徒劳的，应判断现在','必须精准预测','靠运气预测'],a:0},{q:'承认无法预测会带来？',opts:['留余地、分批操作、不赌方向','胆小怕事','错过机会'],a:0},{q:'知道自己不知道意味着？',opts:['保持谦逊与敬畏','停止学习','怀疑一切'],a:0}]},
+ {ico:'🏰',t:'防御型投资选择',d:'先求不败再求胜',qs:[{q:'防御型投资追求？',opts:['最小回撤','最大涨幅','最快翻倍'],a:0},{q:'复利最怕的是？',opts:['本金大幅亏损','慢速增长','手续费'],a:0},{q:'进攻型vs防御型，长期谁赢？',opts:['控制回撤的防御者更易穿越牛熊','进攻者永远赢','差不多'],a:0}]},
+ {ico:'🧭',t:'最重要的事清单',d:'马克斯核心原则',qs:[{q:'投资最重要的事是？',opts:['不亏钱（防守优先）','抓涨停','抄底'],a:0},{q:'买最好的公司还是最划算的资产？',opts:['最划算的资产','最好的公司','最热门的'],a:0},{q:'战胜市场的前提是？',opts:['战胜自己的贪婪恐惧','预测准','消息灵'],a:0}]},
+ {ico:'📜',t:'备忘录金句补全',d:'记忆核心观点',qs:[{q:'“规则一，______；规则二，记住规则一。”？',opts:['不亏钱','快赚钱','多买'],a:0},{q:'“最大的风险出现在______。”？',opts:['人人觉得没风险时','股灾当天','熊市底部'],a:0},{q:'“树不会______。”？',opts:['长到天上','结果','落叶'],a:0}]},
+ {ico:'🏛️',t:'大师背景问答',d:'认识橡树资本',qs:[{q:'马克斯是哪个机构的创始人？',opts:['橡树资本','桥水基金','文艺复兴'],a:0},{q:'巴菲特如何评价马克斯的备忘录？',opts:['每次第一时间打开读','从不阅读','偶尔看看'],a:0},{q:'马克斯最擅长的领域？',opts:['困境证券与价值投资','量化交易','短线'],a:0}]},
+ {ico:'💣',t:'泡沫识别',d:'历史泡沫教训',qs:[{q:'“漂亮50”泡沫的本质是？',opts:['优质公司被炒到天价','公司破产','政策失误'],a:0},{q:'互联网泡沫期间最危险的行为？',opts:['相信市梦率忽略盈利','轻仓观望','持有现金'],a:0},{q:'泡沫破灭的规律？',opts:['树长不到天上，必然均值回归','永续上涨','政府兜底'],a:0}]},
+ {ico:'⚔️',t:'攻守平衡',d:'组合配置智慧',qs:[{q:'牛市高潮时正确的组合动作？',opts:['降低仓位、保留现金','满仓融资','全部卖出'],a:0},{q:'熊市低谷时？',opts:['分批买入优质资产','清仓离场','抄底垃圾股'],a:0},{q:'攻守平衡的本质？',opts:['让亏损可承受、让盈利可奔跑','永远满仓','永远空仓'],a:0}]},
+ {ico:'👑',t:'马克斯传人挑战',d:'10题综合测验',qs:[{q:'投资最重要的事是什么？',opts:['理解风险与控制风险','预测股市','抓热点'],a:0},{q:'第二层思维与第一层的区别？',opts:['多追问价格是否反映预期','信息更多','操作更快'],a:0},{q:'真正风险是什么？',opts:['本金永久损失的可能','股价波动','错过机会'],a:0},{q:'市场钟摆几乎从不？',opts:['停在中间','摆动','反转'],a:0},{q:'安全边际的意义？',opts:['判断错了也不亏大钱','保证上涨','降低手续费'],a:0},{q:'周期判断的价值？',opts:['知道自己处在什么位置','精准预测拐点','抓涨停'],a:0},{q:'逆向投资的前提？',opts:['价格严重偏离价值','市场永远错','消息面利空'],a:0},{q:'防御型投资核心？',opts:['先求不败再求胜','追求最大涨幅','满仓进攻'],a:0},{q:'马克斯对预测的态度？',opts:['承认无法预测，判断当下','必须预测','听专家'],a:0},{q:'最重要的事清单第一条？',opts:['不亏钱（防守）','多赚钱（进攻）','跑得快'],a:0}]}
+];
+const badges=['📖','🧠','⚖️','🚨','🔄','⏰','🔥','🛡️','🙏','🏰','🧭','👑'];
+const badgeNames=['打开备忘录','第二层思维','价值猎手','风险管家','周期旅人','钟摆观察者','逆向先锋','安全边际','谦逊者','防御大师','清单信徒','马克斯传人'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=6&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
