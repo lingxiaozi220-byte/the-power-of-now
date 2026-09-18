@@ -272,7 +272,7 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 <script>
 const SLUG='poorcharlie';
 const FREE=6;
-let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1' || new URLSearchParams(location.search).get('admin')==='1';
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
 const games=[
  {ico:'🔨',t:'锤子人诊断',d:'识别单一思维陷阱',qs:[{q:'手里只有锤子的人看什么都像？',opts:['钉子','金子','朋友'],a:0},{q:'程序员只用代码思维看一切问题，属于？',opts:['锤子综合症','多元思维','专业优势'],a:0},{q:'多元思维模型的本质是？',opts:['跨学科织成思维格栅','会很多技能','懂很多术语'],a:0}]},
  {ico:'🧩',t:'模型配配对',d:'学科→核心模型',qs:[{q:'物理学给投资的启示？',opts:['惯性/临界点/均值回归','炒股靠玄学','无所谓'],a:0},{q:'生物学的启示？',opts:['企业如物种竞争进化','一切听天由命','弱肉强食无规律'],a:0},{q:'心理学的启示？',opts:['从众与情绪放大波动','人都是理性的','市场永远对'],a:0}]},
