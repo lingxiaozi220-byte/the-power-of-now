@@ -217,7 +217,7 @@ var DONE={};
 try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
 
 function isAdminParam(){
-  try{var m=new URLSearchParams(location.search).get('admin');return m==='1';}catch(e){return false;}
+  return false;
 }
 function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
 function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
