@@ -193,7 +193,7 @@ var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(L
 var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
 var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
 
-function isAdminParam(){try{return new URLSearchParams(location.search).get('admin')==='1';}catch(e){return false;}}
+function isAdminParam(){return false;}
 function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
 function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
 function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
