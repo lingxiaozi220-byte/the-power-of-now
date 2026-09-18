@@ -280,7 +280,7 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 <script>
 const SLUG='letters';
 const FREE=6;
-let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1' || new URLSearchParams(location.search).get('admin')==='1';
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
 const games=[
  {ico:'🏢',t:'企业所有者',d:'哪些是"买公司"思维？',qs:[{q:'有人劝你"股票就是赌一把"，你怎么看？',opts:['股票是公司的部分所有权，赌的是企业未来','股票只是代码，涨跌全看运气','股票就是数字游戏'],a:0},{q:'买可口可乐股票，你实际拥有的是？',opts:['公司未来现金流的份额','一张彩票','一天的行情波动'],a:0}]},
  {ico:'🎭',t:'市场先生情绪卡',d:'识别该买还是该卖',qs:[{q:'市场先生今天极度恐慌，报出远低于价值的价格，你该？',opts:['兴奋，准备买入','跟着恐慌卖出','假装没看见'],a:0},{q:'市场先生狂热，人人都喊"这次不一样"，你该？',opts:['保持冷静，评估价值','赶紧追涨','借钱加仓'],a:0},{q:'市场短期是投票机，长期是？',opts:['称重机','老虎机','印钞机'],a:0}]},
