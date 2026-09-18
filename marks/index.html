@@ -272,7 +272,7 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 <script>
 const SLUG='marks';
 const FREE=6;
-let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1' || new URLSearchParams(location.search).get('admin')==='1';
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
 const games=[
  {ico:'🧠',t:'第二层思维训练',d:'情景→第二层追问',qs:[{q:'一家好公司，人人都知道它好。第二层思维会？',opts:['追问价格是否已反映利好','直接买入','跟随大众'],a:0},{q:'财报超预期但股价下跌，最可能的原因是？',opts:['利好早已被市场消化','财报造假','散户太多'],a:0},{q:'超额收益的来源是？',opts:['比大众多想一步','更多内幕消息','更频繁交易'],a:0}]},
  {ico:'🪜',t:'第一层 vs 第二层',d:'判断思维层级',qs:[{q:'“经济要衰退，全部卖出”属于？',opts:['第一层思维','第二层思维','深度分析'],a:0},{q:'“衰退预期是否已被价格反映？”属于？',opts:['第二层思维','第一层思维','废话'],a:0},{q:'市场共识能带来超额收益吗？',opts:['不能，共识已定价','能，人多力量大','取决于运气'],a:0}]},
