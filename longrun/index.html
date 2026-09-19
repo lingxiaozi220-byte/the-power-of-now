@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《股市长线法宝》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0f0d08;--card:#1a1710;--gold:#d4af37;--gold2:#f0d98c;--text:#e8edf4;--muted:#8b8478;--line:#2e2a20;--green:#2ea043;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,13,8,.05) 0%,rgba(15,13,8,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,175,55,.06);border:1px dashed rgba(212,175,55,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#b8860b);color:#111;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(46,160,67,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(15,13,8,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,175,55,.1);color:var(--gold)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《股市长线法宝》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 5 个精讲视频 · 2 段语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>股市长线法宝</h1>
+    <p>杰里米·西格尔 · 沃顿商学院 · 200年数据 · 长期投资圣经</p>
+    <span class="tag">西格尔常量</span><span class="tag">长期持有</span><span class="tag">指数基金</span><span class="tag">复利</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 200年数据揭示的秘密</div>
+  <div class="card">
+    <p>西格尔教授研究了美国200年的股市数据，<span class="q">发现了一个惊人的秘密。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1ZUmpYsEZ4&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 西格尔常量：6.9%的奇迹（免费）</div>
+  <div class="card">
+    <h3>理解 · 200年不变的数字</h3>
+    <p>西格尔研究了1802年到2021年的数据，发现：<span class="q">剔除通胀后，股票实际年化收益6.9%。</span></p>
+    <p>不管是内战、大萧条、世界大战、互联网泡沫，<span class="gold">这个数字惊人地稳定。</span></p>
+    <div class="imgbox"><img src="art_constant.jpg" alt="西格尔常量"></div>
+    <div class="mini">📊 <b>关键：</b>6.9%不是预测，是200年的历史。它代表人类生产力的长期增长。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「西格尔常量」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 短期危险，长期安全（免费）</div>
+  <div class="card">
+    <h3>理解 · 时间是朋友</h3>
+    <p>短期来看，股票像过山车，最危险。<span class="q">但持有5年以上，股票开始变安全；持有30年，股票最安全。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1BK421C7QH&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_shortlong.jpg" alt="短期与长期"></div>
+    <h3>记忆 · 不同持有期的风险</h3>
+    <table>
+      <tr><th>持有期</th><th>股票风险</th></tr>
+      <tr><td>1年</td><td>很高</td></tr>
+      <tr><td>5年</td><td>开始变低</td></tr>
+      <tr><td>10年</td><td>低于债券</td></tr>
+      <tr><td>30年</td><td>几乎无风险</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「时间与风险」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 股票 vs 债券 vs 黄金（免费）</div>
+  <div class="card">
+    <h3>理解 · 碾压式完胜</h3>
+    <p>200年数据显示：<span class="q">股票不仅收益最高，长期来看还比债券更安全。</span></p>
+    <div class="imgbox"><img src="art_compare.jpg" alt="资产对比"></div>
+    <h3>记忆 · 200年实际收益</h3>
+    <table>
+      <tr><th>资产</th><th>年化实际收益</th></tr>
+      <tr><td>股票</td><td>6.9%</td></tr>
+      <tr><td>长期债券</td><td>3.5%</td></tr>
+      <tr><td>短期债券</td><td>2.7%</td></tr>
+      <tr><td>黄金</td><td>0.7%</td></tr>
+      <tr><td>现金</td><td>-1.4%</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「资产选择」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 1美元变70万的奇迹（免费）</div>
+  <div class="card">
+    <h3>理解 · 复利的力量</h3>
+    <p>1802年投1美元买股票，股息再投资，200年后变成多少钱？<span class="q">超过70万美元。</span></p>
+    <p>同期投债券变成1万美元，黄金变成3美元，现金变成0.05美分。</p>
+    <div class="imgbox"><img src="art_dollar.jpg" alt="1美元变70万"></div>
+    <div class="mini">💵 <b>启示：</b>复利需要时间。越早开始，雪球越大。巴菲特99%的财富是50岁后赚的。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「复利计算」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 被动投资：指数基金（免费）</div>
+  <div class="card">
+    <h3>理解 · 别试图战胜市场</h3>
+    <p>西格尔说：<span class="q">个人投资者很难战胜大盘。最好的办法是买指数基金。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1UQ8nzAEv7&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_index.jpg" alt="指数基金"></div>
+    <h3>记忆 · 指数基金的优势</h3>
+    <table>
+      <tr><th>优势</th><th>说明</th></tr>
+      <tr><td>便宜</td><td>费用低</td></tr>
+      <tr><td>分散</td><td>一篮子股票</td></tr>
+      <tr><td>透明</td><td>买什么都知道</td></tr>
+      <tr><td>省心</td><td>不用选股</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「指数基金」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 均值回归：涨多必跌（免费）</div>
+  <div class="card">
+    <h3>理解 · 什么都会回归</h3>
+    <p>西格尔发现：<span class="q">股票长期收益会回归到6.9%左右。涨多了会跌，跌多了会涨。</span></p>
+    <div class="imgbox"><img src="art_regression.jpg" alt="均值回归"></div>
+    <div class="mini">📈 <b>启示：</b>热门行业长期收益往往不如老行业。别追热点，买稳健的。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「均值回归」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 7-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：股息再投资、长期持有、投资总结 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 7-10 课完整内容（股息再投资、长期持有、投资总结）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 实战视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 7 课 · 股息再投资：雪球滚起来</div>
+  <div class="card">
+    <h3>理解 · 股息是复利的发动机</h3>
+    <p>西格尔发现：<span class="q">长期收益的一大半来自股息再投资。</span></p>
+    <p>股息再投资 = 用分红继续买股票 = 复利加速。</p>
+    <div class="imgbox"><img src="art_dividend.jpg" alt="股息再投资"></div>
+    <h3>记忆 · 股息再投资的力量</h3>
+    <table>
+      <tr><th>时期</th><th>总收益</th><th>价格收益</th><th>股息收益</th></tr>
+      <tr><td>1802-2021</td><td>70万倍</td><td>约1万倍</td><td>约70倍</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「股息再投资」</button>
+  </div>
+
+  <div class="sec-t">第 8 课 · 长期持有：时间是朋友</div>
+  <div class="card">
+    <h3>理解 · 别折腾</h3>
+    <p>西格尔发现：<span class="q">频繁交易的人长期跑不赢指数基金。</span></p>
+    <p>最好的策略是：<span class="gold">买入，持有，别动。</span></p>
+    <div class="imgbox"><img src="art_hold.jpg" alt="长期持有"></div>
+    <div class="mini">⏳ <b>启示：</b>投资不是比谁聪明，是比谁能坐得住。巴菲特说："我最喜欢的持有期是永远。"</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「长期持有」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 科技股泡沫的教训</div>
+  <div class="card">
+    <h3>理解 · 热门不等于赚钱</h3>
+    <p>2000年互联网泡沫，大家都在买科技股。<span class="q">但西格尔发现，长期收益最好的不是科技股，是传统消费股。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1m9wVz6Ene&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <h3>记忆 · 增长率陷阱</h3>
+    <table>
+      <tr><th>错误</th><th>正确</th></tr>
+      <tr><td>买热门行业</td><td>买稳健行业</td></tr>
+      <tr><td>追高成长</td><td>买合理估值</td></tr>
+      <tr><td>听故事</td><td>看数据</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(9)">🎮 练习：游戏「泡沫识别」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 西格尔的投资清单（总结）</div>
+  <div class="card">
+    <h3>理解 · 一份清单走完一生</h3>
+    <p>西格尔的投资体系，浓缩成一张清单：</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="投资清单"></div>
+    <h3>记忆 · 西格尔六问</h3>
+    <table>
+      <tr><th>问题</th><th>通过标准</th></tr>
+      <tr><td>持有期够长吗？</td><td>至少10年</td></tr>
+      <tr><td>买的是股票吗？</td><td>长期最优资产</td></tr>
+      <tr><td>是指数基金吗？</td><td>别折腾选股</td></tr>
+      <tr><td>股息再投资了吗？</td><td>复利发动机</td></tr>
+      <tr><td>别追热点了吗？</td><td>增长率陷阱</td></tr>
+      <tr><td>坐得住吗？</td><td>时间是朋友</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：西格尔传人挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《投资最重要的事》《巴菲特致股东的信》《共同基金常识》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='longrun';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'📊',t:'西格尔常量',d:'6.9%的奇迹',qs:[{q:'西格尔常量是？',opts:['6.9%','10%','20%'],a:0},{q:'研究了多少年？',opts:['200年','50年','100年'],a:0},{q:'这个数字是？',opts:['长期实际年化','预测收益','通货膨胀'],a:0}]},
+ {ico:'⏱️',t:'时间与风险',d:'短期危险长期安全',qs:[{q:'持有1年股票？',opts:['很危险','很安全','无风险'],a:0},{q:'持有30年股票？',opts:['最安全','很危险','无风险'],a:0},{q:'时间让股票？',opts:['更安全','更危险','不变'],a:0}]},
+ {ico:'🚀',t:'资产选择',d:'股票vs债券vs黄金',qs:[{q:'200年实际收益最高？',opts:['股票','债券','黄金'],a:0},{q:'长期比债券还安全？',opts:['股票','黄金','现金'],a:0},{q:'现金长期？',opts:['贬值','升值','不变'],a:0}]},
+ {ico:'💵',t:'复利计算',d:'1美元变70万',qs:[{q:'1802年1美元股票？',opts:['70万美元','1万美元','3美元'],a:0},{q:'最大功臣？',opts:['股息再投资','低价买入','杠杆'],a:0},{q:'复利需要？',opts:['时间','运气','杠杆'],a:0}]},
+ {ico:'🧺',t:'指数基金',d:'别试图战胜市场',qs:[{q:'西格尔推荐？',opts:['指数基金','选股','择时'],a:0},{q:'指数基金优势？',opts:['便宜分散','收益最高','最刺激'],a:0},{q:'频繁交易？',opts:['跑不赢指数','跑赢指数','一样'],a:0}]},
+ {ico:'📈',t:'均值回归',d:'涨多必跌',qs:[{q:'股票长期收益？',opts:['回归6.9%','越来越高','越来越低'],a:0},{q:'热门行业长期？',opts:['往往一般','总是最好','最差'],a:0},{q:'追热点？',opts:['容易亏','容易赚','无所谓'],a:0}]},
+ {ico:'📊',t:'综合判断',d:'投资直觉',qs:[{q:'西格尔是哪的教授？',opts:['沃顿商学院','哈佛','斯坦福'],a:0},{q:'他研究多少年数据？',opts:['200年','50年','100年'],a:0},{q:'他最推荐？',opts:['指数基金','选股','择时'],a:0}]},
+ {ico:'🌱',t:'股息再投资',d:'复利发动机',qs:[{q:'股息再投资？',opts:['用分红继续买','拿现金花了','存银行'],a:0},{q:'长期收益一大半来自？',opts:['股息再投资','价差','运气'],a:0},{q:'股息再投资让？',opts:['复利加速','收益变慢','没区别'],a:0}]},
+ {ico:'🪑',t:'长期持有',d:'别折腾',qs:[{q:'最好的策略？',opts:['买入持有别动','频繁交易','追涨杀跌'],a:0},{q:'巴菲特最喜欢的持有期？',opts:['永远','一年','一天'],a:0},{q:'投资比的是？',opts:['坐得住','聪明','快'],a:0}]},
+ {ico:'⚠️',t:'泡沫识别',d:'热门不等于赚钱',qs:[{q:'2000年谁涨最好？',opts:['传统消费股','科技股','互联网股'],a:0},{q:'增长率陷阱？',opts:['追热门行业','买稳健','长期持有'],a:0},{q:'听故事不如？',opts:['看数据','听消息','跟热点'],a:0}]},
+ {ico:'🧭',t:'人性测验',d:'长期的品格',qs:[{q:'投资需要？',opts:['耐心+纪律','内幕','杠杆'],a:0},{q:'大多数人为什么赚不到？',opts:['坐不住','太聪明','没时间'],a:0},{q:'西格尔认为投资是？',opts:['长期游戏','短期赌博','投机'],a:0}]},
+ {ico:'⏳',t:'时间模拟',d:'长期主义',qs:[{q:'西格尔建议持有？',opts:['至少10年','至少1年','至少1天'],a:0},{q:'短期波动怎么办？',opts:['忽略','卖了','加杠杆'],a:0},{q:'他说时间是？',opts:['朋友','敌人','无所谓'],a:0}]},
+ {ico:'🎯',t:'关键判断',d:'什么时候出手',qs:[{q:'西格尔喜欢买？',opts:['指数基金','热门股','概念股'],a:0},{q:'不喜欢？',opts:['频繁交易','长期持有','股息再投资'],a:0},{q:'投资第一步是？',opts:['买入指数基金','看K线','听消息'],a:0}]},
+ {ico:'💎',t:'价值判断',d:'什么是真价值',qs:[{q:'真价值来自？',opts:['企业长期赚钱','股价涨','消息面'],a:0},{q:'价格围绕什么？',opts:['价值波动','K线','情绪'],a:0},{q:'买错了怎么办？',opts:['长期持有等回归','死扛','加仓'],a:0}]},
+ {ico:'📖',t:'术语配对',d:'核心概念',qs:[{q:'西格尔常量讲的是？',opts:['6.9%长期收益','市场情绪','安全边际'],a:0},{q:'均值回归讲的是？',opts:['涨多必跌','公司好坏','估值高低'],a:0},{q:'指数基金讲的是？',opts:['被动投资','主动选股','短线交易'],a:0}]},
+ {ico:'👑',t:'西格尔传人挑战',d:'10题综合测验',qs:[{q:'西格尔是哪的教授？',opts:['沃顿商学院','哈佛','斯坦福'],a:0},{q:'西格尔常量？',opts:['6.9%','10%','20%'],a:0},{q:'他研究多少年数据？',opts:['200年','50年','100年'],a:0},{q:'1802年1美元股票？',opts:['70万美元','1万美元','3美元'],a:0},{q:'长期最安全的资产？',opts:['股票','债券','黄金'],a:0},{q:'他最推荐？',opts:['指数基金','选股','择时'],a:0},{q:'股息再投资是？',opts:['复利发动机','浪费时间','没用'],a:0},{q:'增长率陷阱指？',opts:['追热门行业','买稳健','长期持有'],a:0},{q:'巴菲特最喜欢的持有期？',opts:['永远','一年','一天'],a:0},{q:'他说时间是？',opts:['朋友','敌人','无所谓'],a:0}]}
+];
+const badges=['📕','📊','⏱️','🚀','💵','🧺','📈','🌱','🪑','⚠️','🧭','👑'];
+const badgeNames=['翻开序章','西格尔常量者','时间风险者','资产选择者','复利奇迹者','指数基金信徒','均值回归者','股息再投资者','长期持有者','泡沫识别者','理性品格者','西格尔传人'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
