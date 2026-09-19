@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《笑傲股市》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0f0d08;--card:#1a1710;--gold:#d4af37;--gold2:#f0d98c;--text:#e8edf4;--muted:#8b8478;--line:#2e2a20;--green:#2ea043;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,13,8,.05) 0%,rgba(15,13,8,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#b8860b);color:#111;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(46,160,67,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(15,13,8,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,175,55,.1);color:var(--gold)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《笑傲股市》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 8 个精讲视频 · 2 段语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>笑傲股市</h1>
+    <p>威廉·欧奈尔 · CAN SLIM 选股法 · 趋势投资</p>
+    <span class="tag">CAN SLIM</span><span class="tag">杯柄形态</span><span class="tag">趋势投资</span><span class="tag">成长股</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 华尔街操盘大师</div>
+  <div class="card">
+    <p>欧奈尔研究了100年来最牛的600只股票，总结出<span class="q">CAN SLIM选股法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1RRVc6hEku&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 什么是 CAN SLIM（免费）</div>
+  <div class="card">
+    <h3>理解 · 欧奈尔的7个字母</h3>
+    <p>CAN SLIM 是7个字母，代表选股的7个维度：</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1zky9BbELi&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_canslim.jpg" alt="CAN SLIM"></div>
+    <table>
+      <tr><th>字母</th><th>含义</th></tr>
+      <tr><td>C</td><td>当季每股收益</td></tr>
+      <tr><td>A</td><td>年度收益增长率</td></tr>
+      <tr><td>N</td><td>新产品、新管理层、股价新高</td></tr>
+      <tr><td>S</td><td>供给与需求</td></tr>
+      <tr><td>L</td><td>行业领军股</td></tr>
+      <tr><td>I</td><td>机构认同度</td></tr>
+      <tr><td>M</td><td>判断市场走势</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「什么是CAN SLIM」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · C：当季每股收益（免费）</div>
+  <div class="card">
+    <h3>理解 · 当季收益要爆发</h3>
+    <p>欧奈尔说：<span class="q">当季每股收益至少增长18-20%，甚至50-100%。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1KWtGzYEUX&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_c.jpg" alt="当季收益"></div>
+    <div class="mini">📊 <b>关键：</b>大牛股启动前，当季收益都在爆发式增长。比如宁德时代单季利润增速从30%跳到100%+，股价一年翻3倍。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「C：当季收益」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · A：年度收益增长率（免费）</div>
+  <div class="card">
+    <h3>理解 · 长期增长</h3>
+    <p>欧奈尔说：<span class="q">过去3-5年年度收益增长率至少25%。</span></p>
+    <div class="imgbox"><img src="art_a.jpg" alt="年度收益"></div>
+    <div class="mini">📈 <b>关键：</b>不只看当季，还要看过去3-5年的年度增长。ROE>17%更好。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「A：年度收益」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · N：新产品、新管理层、股价新高（免费）</div>
+  <div class="card">
+    <h3>理解 · 新东西带来新股价</h3>
+    <p>欧奈尔说：<span class="q">大牛股都有新东西——新产品、新管理层、股价新高。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1TWtGzYEnr&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_n.jpg" alt="N"></div>
+    <div class="mini">✨ <b>启示：</b>股价创新高不是风险，而是强势的表现。欧奈尔说："买得贵，才能卖得更贵。"</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「N：新东西」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · S：供给与需求（免费）</div>
+  <div class="card">
+    <h3>理解 · 流通盘与交易量</h3>
+    <p>欧奈尔说：<span class="q">小盘股更容易涨，因为供给少。</span></p>
+    <div class="imgbox"><img src="art_s.jpg" alt="供给与需求"></div>
+    <div class="mini">⚖️ <b>关键：</b>流通盘小+需求大=涨得快。但也要看交易量是否放大。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「S：供需」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · L：行业领军股（免费）</div>
+  <div class="card">
+    <h3>理解 · 买龙头，不买跟风</h3>
+    <p>欧奈尔说：<span class="q">买行业里最强的领军股，不买跟风股。</span></p>
+    <div class="imgbox"><img src="art_l.jpg" alt="行业领军股"></div>
+    <div class="mini">🏆 <b>关键：</b>相对强度RS Rating>80才是领军股。买龙头，不要买"便宜"的跟风股。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「L：领军股」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 7-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：I：机构认同度、M：市场走势、杯柄形态买入、卖出规则 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 7-10 课完整内容（I：机构认同度、M：市场走势、杯柄形态买入、卖出规则）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 实战视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 7 课 · I：机构认同度</div>
+  <div class="card">
+    <h3>理解 · 机构在买</h3>
+    <p>欧奈尔说：<span class="q">机构投资者在买，说明有大资金认可。</span></p>
+    <div class="imgbox"><img src="art_i.jpg" alt="机构认同度"></div>
+    <div class="mini">🏦 <b>关键：</b>但不要太多——太多机构持有，反而涨不动。要"适度"的机构认同。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「I：机构认同」</button>
+  </div>
+
+  <div class="sec-t">第 8 课 · M：判断市场走势</div>
+  <div class="card">
+    <h3>理解 · 顺势而为</h3>
+    <p>欧奈尔说：<span class="q">判断市场走势，顺势而为。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1SiV3zeEBf&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">📊 <b>关键：</b>75%的股票跟着大盘走。大盘不好，再好的股票也涨不动。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「M：市场走势」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 杯柄形态与买入时机</div>
+  <div class="card">
+    <h3>理解 · 杯柄形态</h3>
+    <p>欧奈尔说：<span class="q">杯柄形态是最重要的买入形态。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Jk5nzLEKc&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_cuphandle.jpg" alt="杯柄形态"></div>
+    <div class="mini">☕ <b>关键：</b>股价形成杯子形态后，在杯柄突破时买入。这是欧奈尔最经典的买入信号。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「杯柄形态」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 卖出规则与投资清单</div>
+  <div class="card">
+    <h3>理解 · 什么时候卖</h3>
+    <p>欧奈尔说：<span class="q">亏损8%必须止损，盈利要让利润奔跑。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1zSHUeJEz2&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_sell.jpg" alt="卖出规则"></div>
+    <h3>记忆 · 卖出规则</h3>
+    <table>
+      <tr><th>规则</th><th>说明</th></tr>
+      <tr><td>止损</td><td>亏损8%必须卖</td></tr>
+      <tr><td>止盈</td><td>盈利20-25%可以考虑卖</td></tr>
+      <tr><td>新高卖出</td><td>放量冲高回落卖</td></tr>
+      <tr><td>基本面恶化</td><td>公司不再符合CAN SLIM卖</td></tr>
+    </table>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="投资清单"></div>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：CAN SLIM大师挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《怎样选择成长股》《彼得·林奇的成功投资》《笑傲股市》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='canslim';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🔤',t:'什么是CAN SLIM',d:'7个字母选股法',qs:[{q:'CAN SLIM是？',opts:['7个字母选股法','1个字母','10个字母'],a:0},{q:'C是？',opts:['当季每股收益','年度收益','新产品'],a:0},{q:'M是？',opts:['判断市场走势','年度收益','新产品'],a:0}]},
+ {ico:'📊',t:'C：当季收益',d:'当季收益要爆发',qs:[{q:'C要求？',opts:['当季收益增长18-20%','当季收益下滑','没要求'],a:0},{q:'大牛股启动前？',opts:['当季收益爆发','当季收益下滑','没变化'],a:0},{q:'宁德时代案例？',opts:['单季利润增速从30%到100%','一直30%','一直100%'],a:0}]},
+ {ico:'📈',t:'A：年度收益',d:'长期增长',qs:[{q:'A要求？',opts:['过去3-5年年度增长至少25%','年度增长10%','年度下滑'],a:0},{q:'ROE要？',opts:['>17%','<17%','没要求'],a:0},{q:'不只看？',opts:['当季，还要看年度','只看当季','只看股价'],a:0}]},
+ {ico:'✨',t:'N：新东西',d:'新产品新管理层股价新高',qs:[{q:'N包括？',opts:['新产品+新管理层+股价新高','只有新产品','只有股价'],a:0},{q:'欧奈尔说？',opts:['买得贵才能卖得更贵','买便宜','买跌'],a:0},{q:'股价创新高？',opts:['是强势表现','是风险','没区别'],a:0}]},
+ {ico:'⚖️',t:'S：供需',d:'流通盘与交易量',qs:[{q:'S讲？',opts:['供给与需求','当季收益','年度收益'],a:0},{q:'小盘股？',opts:['更容易涨','更难涨','没区别'],a:0},{q:'交易量要？',opts:['放大','缩小','没要求'],a:0}]},
+ {ico:'🏆',t:'L：领军股',d:'买龙头不买跟风',qs:[{q:'L讲？',opts:['行业领军股','跟风股','冷门股'],a:0},{q:'RS Rating要？',opts:['>80','<80','没要求'],a:0},{q:'买龙头？',opts:['是','不是','没区别'],a:0}]},
+ {ico:'🏦',t:'I：机构认同',d:'机构在买',qs:[{q:'I讲？',opts:['机构认同度','当季收益','年度收益'],a:0},{q:'机构持有？',opts:['适度最好','越多越好','越少越好'],a:0},{q:'太多机构？',opts:['涨不动','涨得快','没区别'],a:0}]},
+ {ico:'📉',t:'M：市场走势',d:'顺势而为',qs:[{q:'M讲？',opts:['判断市场走势','当季收益','年度收益'],a:0},{q:'75%股票？',opts:['跟着大盘走','不跟大盘','反着大盘走'],a:0},{q:'大盘不好？',opts:['再好的股票也涨不动','好股票照涨','没区别'],a:0}]},
+ {ico:'☕',t:'杯柄形态',d:'欧奈尔经典买入形态',qs:[{q:'杯柄形态？',opts:['欧奈尔最经典买入形态','随便形态','卖出形态'],a:0},{q:'什么时候买？',opts:['杯柄突破时','杯柄形成时','底部时'],a:0},{q:'形态像？',opts:['杯子+柄','三角形','头肩顶'],a:0}]},
+ {ico:'🛑',t:'卖出规则',d:'什么时候卖',qs:[{q:'止损？',opts:['亏损8%必须卖','亏损20%','不止损'],a:0},{q:'止盈？',opts:['盈利20-25%考虑卖','盈利10%','不止盈'],a:0},{q:'基本面恶化？',opts:['卖','持有','加仓'],a:0}]},
+ {ico:'🧠',t:'人性测验',d:'长期的品格',qs:[{q:'投资需要？',opts:['纪律+止损','内幕','杠杆'],a:0},{q:'大多数人为什么亏？',opts:['不止损','太聪明','没时间'],a:0},{q:'欧奈尔认为投资是？',opts:['纪律','内幕','运气'],a:0}]},
+ {ico:'⏳',t:'时间模拟',d:'趋势交易',qs:[{q:'欧奈尔建议？',opts:['顺势而为','逆势抄底','长期死扛'],a:0},{q:'趋势破了？',opts:['卖了','持有','加仓'],a:0},{q:'他是？',opts:['趋势投资大师','价值投资之父','量化投资之父'],a:0}]},
+ {ico:'🎯',t:'关键判断',d:'什么时候出手',qs:[{q:'欧奈尔喜欢买？',opts:['CAN SLIM符合+杯柄突破','便宜好公司','热门成长'],a:0},{q:'不喜欢？',opts:['追热门低价','CAN SLIM','杯柄突破'],a:0},{q:'投资第一步是？',opts:['找CAN SLIM符合的股票','看K线','听消息'],a:0}]},
+ {ico:'💎',t:'价值判断',d:'什么是真价值',qs:[{q:'真价值来自？',opts:['CAN SLIM符合+趋势强','股价涨','消息面'],a:0},{q:'价格围绕什么？',opts:['趋势','价值','情绪'],a:0},{q:'买错了怎么办？',opts:['8%止损','死扛','加仓'],a:0}]},
+ {ico:'📖',t:'术语配对',d:'核心概念',qs:[{q:'CAN SLIM讲的是？',opts:['7个字母选股法','价值投资','分散投资'],a:0},{q:'杯柄形态讲的是？',opts:['买入形态','卖出形态','K线'],a:0},{q:'止损讲的是？',opts:['风险控制','盈利','买入'],a:0}]},
+ {ico:'👑',t:'CAN SLIM大师挑战',d:'10题综合测验',qs:[{q:'欧奈尔是谁？',opts:['趋势投资大师','价值投资之父','量化投资之父'],a:0},{q:'他总结了？',opts:['CAN SLIM 7个字母','15个要点','10个要点'],a:0},{q:'C是？',opts:['当季每股收益','年度收益','新产品'],a:0},{q:'A是？',opts:['年度收益增长率','当季收益','新产品'],a:0},{q:'N是？',opts:['新产品新管理层股价新高','当季收益','年度收益'],a:0},{q:'S是？',opts:['供给与需求','当季收益','年度收益'],a:0},{q:'L是？',opts:['行业领军股','当季收益','年度收益'],a:0},{q:'I是？',opts:['机构认同度','当季收益','年度收益'],a:0},{q:'M是？',opts:['判断市场走势','当季收益','年度收益'],a:0},{q:'止损？',opts:['亏损8%必须卖','亏损20%','不止损'],a:0}]}
+];
+const badges=['📕','🔤','📊','📈','✨','⚖️','🏆','🏦','📉','☕','🛑','👑'];
+const badgeNames=['翻开序章','CAN SLIM理解者','C：当季收益掌握者','A：年度收益掌握者','N：新东西掌握者','S：供需掌握者','L：领军股掌握者','I：机构认同掌握者','M：市场走势掌握者','杯柄形态掌握者','卖出规则掌握者','CAN SLIM大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
