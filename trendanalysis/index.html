@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《股市趋势技术分析》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0f0d08;--card:#1a1710;--gold:#d4af37;--gold2:#f0d98c;--text:#e8edf4;--muted:#8b8478;--line:#2e2a20;--green:#2ea043;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,13,8,.05) 0%,rgba(15,13,8,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#b8860b);color:#111;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(46,160,67,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(15,13,8,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,175,55,.1);color:var(--gold)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《股市趋势技术分析》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 8 个精讲视频 · 2 段语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>股市趋势技术分析</h1>
+    <p>爱德华兹 & 迈吉 · 技术分析圣经 · 道氏理论</p>
+    <span class="tag">道氏理论</span><span class="tag">趋势线</span><span class="tag">头肩顶</span><span class="tag">支撑阻力</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 技术分析圣经</div>
+  <div class="card">
+    <p>技术分析圣经，写了70年。<span class="q">市场最大的机会，不在预测未来，而在识别趋势、跟随趋势、坚持执行。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1CKCYBzEmb&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 道氏理论（免费）</div>
+  <div class="card">
+    <h3>理解 · 技术分析的源头</h3>
+    <p>道氏理论是所有技术分析的源头：<span class="q">价格包容消化一切，价格以趋势方式演变，成交量跟随趋势。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1YZjh6QE6d&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_dow.jpg" alt="道氏理论"></div>
+    <div class="mini">🌊 <b>关键：</b>市场如同海浪，一浪推着一浪。趋势有惯性，一旦形成不会轻易掉头。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「道氏理论」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 三大趋势（免费）</div>
+  <div class="card">
+    <h3>理解 · 海浪、波浪、涟漪</h3>
+    <p>道氏理论说市场有三种趋势：<span class="q">基本趋势（海浪）、次要趋势（波浪）、小趋势（涟漪）。</span></p>
+    <div class="imgbox"><img src="art_three.jpg" alt="三大趋势"></div>
+    <table>
+      <tr><th>趋势</th><th>持续时间</th><th>比喻</th></tr>
+      <tr><td>基本趋势</td><td>1年到数年</td><td>大海浪潮</td></tr>
+      <tr><td>次要趋势</td><td>3周到数月</td><td>起伏波浪</td></tr>
+      <tr><td>小趋势</td><td>不到3周</td><td>细碎涟漪</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「三大趋势」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 趋势线（免费）</div>
+  <div class="card">
+    <h3>理解 · 两点成线，三点确认</h3>
+    <p>上涨趋势线连接两个低点，下降趋势线连接两个高点。<span class="q">两点成线，三点确认。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1CJW4zoEL9&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_trendline.jpg" alt="趋势线"></div>
+    <div class="mini">📏 <b>关键：</b>趋势线不是那条线本身，而是市场参与者共同认可的价格区域。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「趋势线」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 支撑与阻力（免费）</div>
+  <div class="card">
+    <h3>理解 · 地板和天花板</h3>
+    <p>支撑是地板，阻力是天花板。<span class="q">支撑被突破后变成阻力，阻力被突破后变成支撑。</span></p>
+    <div class="imgbox"><img src="art_sr.jpg" alt="支撑与阻力"></div>
+    <div class="mini">🏠 <b>关键：</b>支撑和阻力不是固定的，它们会互换。价格在支撑处反弹，在阻力处回落。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「支撑与阻力」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 头肩顶与头肩底（免费）</div>
+  <div class="card">
+    <h3>理解 · 最经典反转形态</h3>
+    <p>头肩顶：<span class="q">左肩+头部+右肩，跌破颈线确认反转。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kjgBzHEGo&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_headshoulders.jpg" alt="头肩顶"></div>
+    <div class="mini">🧑‍🦰 <b>关键：</b>左肩成交量最大，头部次之，右肩最小。跌破颈线=正式反转。头肩底反过来。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「头肩顶与头肩底」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 持续形态：三角形与旗形（免费）</div>
+  <div class="card">
+    <h3>理解 · 趋势中的休息</h3>
+    <p>持续形态：<span class="q">三角形、旗形、楔形——趋势中的整理，不是反转。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1wcx4zZEWG&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_triangle.jpg" alt="三角形旗形"></div>
+    <div class="mini">📐 <b>关键：</b>整理期间成交量缩小，突破时放量才可靠。向上突破看涨，向下突破看跌。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「持续形态」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 7-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：成交量跟随趋势、突破与回抽、移动止损、实战清单 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 7-10 课完整内容（成交量跟随趋势、突破与回抽、移动止损、实战清单）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 实战视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 7 课 · 成交量跟随趋势</div>
+  <div class="card">
+    <h3>理解 · 成交量是验证</h3>
+    <p>道氏理论说：<span class="q">成交量跟随趋势。上涨放量，下跌缩量=健康。</span></p>
+    <div class="imgbox"><img src="art_volume.jpg" alt="成交量"></div>
+    <div class="mini">📊 <b>关键：</b>突破必须放量才可靠。无量突破=假突破。成交量是趋势的验证器。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「成交量跟随趋势」</button>
+  </div>
+
+  <div class="sec-t">第 8 课 · 突破与回抽</div>
+  <div class="card">
+    <h3>理解 · 突破后回抽是好买点</h3>
+    <p>突破颈线后，经常会有回抽。<span class="q">回抽颈线时，是理想的入场点。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1AmSSBMEd1&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_breakout.jpg" alt="突破与回抽"></div>
+    <div class="mini">🎯 <b>关键：</b>有效突破的标准：突破3%或3天不回。回抽确认后再买，胜率更高。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「突破与回抽」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 移动止损</div>
+  <div class="card">
+    <h3>理解 · 让利润奔跑</h3>
+    <p>迈吉说：<span class="q">止损跟着趋势线走，趋势线破了就卖。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1X2kZBsE7K&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">📈 <b>关键：</b>买入后设初始止损。盈利后把止损上移到趋势线，让利润奔跑但保护本金。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「移动止损」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 实战清单</div>
+  <div class="card">
+    <h3>理解 · 迈吉投资清单</h3>
+    <p>迈吉说：<span class="q">技术分析只是工具，纪律和耐心才是关键。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1g6w9eAET8&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="实战清单"></div>
+    <table>
+      <tr><th>检查项</th><th>说明</th></tr>
+      <tr><td>看大趋势</td><td>大方向是涨是跌？</td></tr>
+      <tr><td>找形态</td><td>有没有经典形态？</td></tr>
+      <tr><td>看成交量</td><td>突破放量了吗？</td></tr>
+      <tr><td>设止损</td><td>错了在哪里卖？</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：技术分析大师挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《日本蜡烛图技术》《期货市场技术分析》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='trendanalysis';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🌊',t:'道氏理论',d:'技术分析源头',qs:[{q:'道氏理论说价格？',opts:['包容消化一切','随机','只看基本面'],a:0},{q:'价格以？',opts:['趋势方式演变','随机方式','横盘方式'],a:0},{q:'成交量？',opts:['跟随趋势','与趋势无关','反着趋势'],a:0}]},
+ {ico:'🌊',t:'三大趋势',d:'海浪波浪涟漪',qs:[{q:'基本趋势持续？',opts:['1年到数年','3周到数月','不到3周'],a:0},{q:'次要趋势持续？',opts:['3周到数月','1年到数年','不到3周'],a:0},{q:'小趋势持续？',opts:['不到3周','3周到数月','1年到数年'],a:0}]},
+ {ico:'📏',t:'趋势线',d:'两点成线三点确认',qs:[{q:'上涨趋势线连接？',opts:['两个低点','两个高点','随便'],a:0},{q:'趋势线确认需要？',opts:['三点','两点','一点'],a:0},{q:'趋势线是？',opts:['市场共同认可的价格区域','随便画的线','技术指标'],a:0}]},
+ {ico:'🏠',t:'支撑与阻力',d:'地板和天花板',qs:[{q:'支撑是？',opts:['地板','天花板','墙壁'],a:0},{q:'阻力是？',opts:['天花板','地板','墙壁'],a:0},{q:'支撑被突破后？',opts:['变成阻力','变成支撑','没变化'],a:0}]},
+ {ico:'🧑‍🦰',t:'头肩顶与头肩底',d:'最经典反转形态',qs:[{q:'头肩顶有？',opts:['左肩+头部+右肩','左肩+右肩','只有头部'],a:0},{q:'跌破什么确认？',opts:['颈线','趋势线','均线'],a:0},{q:'头肩顶是？',opts:['看跌反转','看涨反转','持续形态'],a:0}]},
+ {ico:'📐',t:'持续形态',d:'趋势中的休息',qs:[{q:'持续形态包括？',opts:['三角形/旗形/楔形','头肩顶','双顶'],a:0},{q:'整理期间成交量？',opts:['缩小','放大','没变化'],a:0},{q:'突破时要？',opts:['放量','缩量','没要求'],a:0}]},
+ {ico:'📊',t:'成交量跟随趋势',d:'成交量是验证',qs:[{q:'上涨要？',opts:['放量','缩量','没要求'],a:0},{q:'无量突破？',opts:['假突破','真突破','没区别'],a:0},{q:'成交量是？',opts:['趋势的验证器','没用','反着看'],a:0}]},
+ {ico:'🎯',t:'突破与回抽',d:'回抽是好买点',qs:[{q:'突破后经常？',opts:['回抽颈线','直接涨','直接跌'],a:0},{q:'有效突破标准？',opts:['突破3%或3天不回','突破1%','没标准'],a:0},{q:'回抽确认后？',opts:['再买胜率更高','不要买','随便买'],a:0}]},
+ {ico:'📈',t:'移动止损',d:'让利润奔跑',qs:[{q:'买入后要？',opts:['设初始止损','不设止损','设止盈'],a:0},{q:'盈利后止损？',opts:['上移到趋势线','不动','下移'],a:0},{q:'迈吉强调？',opts:['纪律和耐心','内幕','杠杆'],a:0}]},
+ {ico:'🛡️',t:'止损练习',d:'纪律第一',qs:[{q:'技术分析是？',opts:['工具','全部','没用'],a:0},{q:'看错了怎么办？',opts:['止损','死扛','加仓'],a:0},{q:'迈吉是？',opts:['技术分析之父','价值投资之父','量化投资之父'],a:0}]},
+ {ico:'🧠',t:'人性测验',d:'跟随趋势',qs:[{q:'大多数人为什么亏？',opts:['逆势抄底','太聪明','没时间'],a:0},{q:'趋势有？',opts:['惯性','随机','没惯性'],a:0},{q:'交易需要？',opts:['纪律','内幕','杠杆'],a:0}]},
+ {ico:'⏳',t:'时间模拟',d:'等待与执行',qs:[{q:'迈吉建议？',opts:['跟随趋势','逆势抄底','长期死扛'],a:0},{q:'趋势破了？',opts:['卖了','持有','加仓'],a:0},{q:'他是？',opts:['技术分析之父','价值投资之父','量化投资之父'],a:0}]},
+ {ico:'🎯',t:'关键判断',d:'什么时候出手',qs:[{q:'迈吉喜欢？',opts:['趋势跟随','抄底','听消息'],a:0},{q:'不喜欢？',opts:['预测顶部和底部','跟随趋势','设止损'],a:0},{q:'交易第一步是？',opts:['判断趋势','看K线','听消息'],a:0}]},
+ {ico:'💎',t:'价值判断',d:'什么是真信号',qs:[{q:'真信号来自？',opts:['趋势+形态+成交量','单根K线','消息面'],a:0},{q:'价格围绕什么？',opts:['趋势','价值','情绪'],a:0},{q:'买错了怎么办？',opts:['止损','死扛','加仓'],a:0}]},
+ {ico:'📖',t:'术语配对',d:'核心概念',qs:[{q:'道氏理论讲的是？',opts:['技术分析源头','价值投资','分散投资'],a:0},{q:'头肩顶讲的是？',opts:['反转形态','持续形态','K线'],a:0},{q:'颈线讲的是？',opts:['头肩形态确认线','趋势线','均线'],a:0}]},
+ {ico:'👑',t:'技术分析大师挑战',d:'10题综合测验',qs:[{q:'道氏理论之父是？',opts:['查尔斯·道','巴菲特','索罗斯'],a:0},{q:'技术分析之父是？',opts:['约翰·迈吉','巴菲特','索罗斯'],a:0},{q:'基本趋势持续？',opts:['1年到数年','3周到数月','不到3周'],a:0},{q:'趋势线需要？',opts:['三点确认','两点','一点'],a:0},{q:'支撑被突破后？',opts:['变成阻力','变成支撑','没变化'],a:0},{q:'头肩顶跌破？',opts:['颈线','趋势线','均线'],a:0},{q:'持续形态包括？',opts:['三角形/旗形','头肩顶','双顶'],a:0},{q:'突破要？',opts:['放量','缩量','没要求'],a:0},{q:'迈吉强调？',opts:['纪律和耐心','内幕','杠杆'],a:0},{q:'移动止损是？',opts:['跟着趋势线走','不动','下移'],a:0}]}
+];
+const badges=['📕','🌊','🌊','📏','🏠','🧑‍🦰','📐','📊','🎯','📈','🛡️','👑'];
+const badgeNames=['翻开序章','道氏理论掌握者','三大趋势掌握者','趋势线掌握者','支撑阻力掌握者','头肩形态掌握者','持续形态掌握者','成交量掌握者','突破回抽掌握者','移动止损掌握者','止损纪律掌握者','技术分析大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
