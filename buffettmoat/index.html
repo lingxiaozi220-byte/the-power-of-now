@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《巴菲特的护城河》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0f0d08;--card:#1a1710;--gold:#d4af37;--gold2:#f0d98c;--text:#e8edf4;--muted:#8b8478;--line:#2e2a20;--green:#2ea043;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,13,8,.05) 0%,rgba(15,13,8,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,175,55,.06);border:1px dashed rgba(212,175,55,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#b8860b);color:#111;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(46,160,67,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(15,13,8,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,175,55,.1);color:var(--gold)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《巴菲特的护城河》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 2 段语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>巴菲特的护城河</h1>
+    <p>帕特·多尔西 · 晨星公司 · 识别真假护城河</p>
+    <span class="tag">四种护城河</span><span class="tag">品牌溢价</span><span class="tag">真假识别</span><span class="tag">财务指标</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 有声书全集</div>
+  <div class="card">
+    <p>多尔西说：<span class="q">只有四种真正的护城河。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Rx4y1e7ms&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 什么是经济护城河（免费）</div>
+  <div class="card">
+    <h3>理解 · 巴菲特的比喻</h3>
+    <p>巴菲特说：<span class="q">我喜欢的是那种有宽阔护城河的城堡。</span></p>
+    <div class="imgbox"><img src="art_moat.jpg" alt="经济护城河"></div>
+    <div class="mini">⚠️ <b>关键：</b>护城河是企业抵御竞争的可持续优势。没护城河的公司，迟早被竞争对手打回原形。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「经济护城河」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 四种护城河总览（免费）</div>
+  <div class="card">
+    <h3>理解 · 多尔西的四种护城河</h3>
+    <p>多尔西总结了四种真正的护城河：</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1DmRZYtEpA&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <table>
+      <tr><th>护城河类型</th><th>例子</th></tr>
+      <tr><td>无形资产</td><td>可口可乐、专利药</td></tr>
+      <tr><td>转换成本</td><td>银行账户、企业软件</td></tr>
+      <tr><td>网络效应</td><td>微信、淘宝</td></tr>
+      <tr><td>成本优势</td><td>西南航空、沃尔玛</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「四种护城河」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 无形资产详解（免费）</div>
+  <div class="card">
+    <h3>理解 · 品牌、专利、特许经营权</h3>
+    <p>无形资产包括：<span class="q">品牌、专利、政府特许经营权。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Eixye7Eh7&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_brand.jpg" alt="品牌溢价"></div>
+    <div class="mini">💡 <b>关键：</b>不是所有品牌都是护城河。只有消费者愿意为品牌多付钱时，品牌才是护城河。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「无形资产」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 品牌溢价（免费）</div>
+  <div class="card">
+    <h3>理解 · 品牌能卖高价</h3>
+    <p>多尔西说：<span class="q">品牌要能带来溢价，才是护城河。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1yy3K6dEv6&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏷️ <b>启示：</b>可口可乐比超市自有品牌贵30%，但还是卖得最好。这就是品牌护城河。福特品牌有名，但不能带来溢价，不是护城河。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「品牌溢价」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 转换成本详解（免费）</div>
+  <div class="card">
+    <h3>理解 · 换供应商太麻烦</h3>
+    <p>转换成本：<span class="q">用户换供应商要付出的代价。</span></p>
+    <div class="imgbox"><img src="art_switch.jpg" alt="转换成本"></div>
+    <div class="mini">🔄 <b>启示：</b>银行账户换起来麻烦，所以银行有护城河。企业软件换起来麻烦，所以SAP有护城河。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「转换成本」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 网络效应详解（免费）</div>
+  <div class="card">
+    <h3>理解 · 用户越多越值钱</h3>
+    <p>网络效应：<span class="q">用户越多，产品越值钱。</span></p>
+    <div class="imgbox"><img src="art_network.jpg" alt="网络效应"></div>
+    <div class="mini">🌐 <b>启示：</b>微信用户越多，越离不开微信。淘宝买家越多，卖家越多；卖家越多，买家越多。飞轮转起来。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「网络效应」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 7-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：成本优势详解、真假护城河识别、财务指标识别护城河、投资清单 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 7-10 课完整内容（成本优势详解、真假护城河识别、财务指标识别护城河、投资清单）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 实战视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 7 课 · 成本优势详解</div>
+  <div class="card">
+    <h3>理解 · 比同行成本更低</h3>
+    <p>成本优势：<span class="q">公司比同行成本更低。</span></p>
+    <div class="imgbox"><img src="art_cost.jpg" alt="成本优势"></div>
+    <h3>记忆 · 成本优势的来源</h3>
+    <table>
+      <tr><th>来源</th><th>例子</th></tr>
+      <tr><td>流程优势</td><td>西南航空（只用737）</td></tr>
+      <tr><td>规模优势</td><td>沃尔玛</td></tr>
+      <tr><td>独特资源</td><td>低成本矿</td></tr>
+      <tr><td>地理位置</td><td>当地水泥公司</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「成本优势」</button>
+  </div>
+
+  <div class="sec-t">第 8 课 · 真假护城河识别</div>
+  <div class="card">
+    <h3>理解 · 别被假护城河骗了</h3>
+    <p>多尔西提醒：<span class="q">很多人把好产品、高市场份额当成护城河，但那不是真护城河。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1orFNzfE5z&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_real.jpg" alt="真假护城河"></div>
+    <h3>记忆 · 真假护城河</h3>
+    <table>
+      <tr><th>真护城河</th><th>假护城河</th></tr>
+      <tr><td>品牌能带来溢价</td><td>只是有名</td></tr>
+      <tr><td>持续高ROIC</td><td>只是短期高增长</td></tr>
+      <tr><td>竞争对手进不来</td><td>只是现在领先</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「真假护城河」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 财务指标识别护城河</div>
+  <div class="card">
+    <h3>理解 · 用财务指标识别</h3>
+    <p>多尔西说：<span class="q">看财务指标，就能识别有没有护城河。</span></p>
+    <div class="imgbox"><img src="art_finance.jpg" alt="财务指标"></div>
+    <table>
+      <tr><th>指标</th><th>说明</th></tr>
+      <tr><td>ROE</td><td>净资产收益率</td></tr>
+      <tr><td>ROA</td><td>资产收益率</td></tr>
+      <tr><td>ROIC</td><td>资本回报率，持续>15%说明有护城河</td></tr>
+    </table>
+    <div class="mini">📊 <b>关键：</b>ROIC 持续高于15%，说明有护城河。ROE高但靠杠杆，不是真护城河。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「财务指标」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 多尔西投资清单（总结）</div>
+  <div class="card">
+    <h3>理解 · 一份清单选股票</h3>
+    <p>多尔西的投资清单，浓缩成十问：</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1oEaozEEuK&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="投资清单"></div>
+    <h3>记忆 · 多尔西十问</h3>
+    <table>
+      <tr><th>问题</th><th>通过标准</th></tr>
+      <tr><td>有护城河吗？</td><td>四种护城河之一</td></tr>
+      <tr><td>是真护城河吗？</td><td>不是假护城河</td></tr>
+      <tr><td>ROIC高吗？</td><td>持续>15%</td></tr>
+      <tr><td>品牌能溢价吗？</td><td>消费者愿意多付钱</td></tr>
+      <tr><td>转换成本高吗？</td><td>用户不愿换</td></tr>
+      <tr><td>有网络效应吗？</td><td>用户越多越值钱</td></tr>
+      <tr><td>有成本优势吗？</td><td>比同行成本低</td></tr>
+      <tr><td>价格便宜吗？</td><td>有安全边际</td></tr>
+      <tr><td>看得懂吗？</td><td>在能力圈内</td></tr>
+      <tr><td>能长期持有吗？</td><td>时间是朋友</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：护城河识别大师挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《股市真规则》《巴菲特致股东的信》《巴菲特之道》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='buffettmoat';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🏰',t:'经济护城河',d:'巴菲特的比喻',qs:[{q:'巴菲特比喻？',opts:['有护城河的城堡','公司财务','行业规模'],a:0},{q:'护城河是？',opts:['可持续竞争优势','短期热点','市场情绪'],a:0},{q:'没护城河的公司？',opts:['迟早被打回原形','一直赚钱','没区别'],a:0}]},
+ {ico:'🔮',t:'四种护城河',d:'总览',qs:[{q:'多尔西总结了？',opts:['四种护城河','两种护城河','六种护城河'],a:0},{q:'哪一种是品牌？',opts:['无形资产','转换成本','网络效应'],a:0},{q:'哪一种是微信？',opts:['网络效应','无形资产','成本优势'],a:0}]},
+ {ico:'🏷️',t:'无形资产',d:'品牌专利特许经营',qs:[{q:'无形资产包括？',opts:['品牌+专利+特许经营','厂房+设备+土地','员工+客户+产品'],a:0},{q:'可口可乐的护城河？',opts:['品牌','成本','转换成本'],a:0},{q:'专利药的护城河？',opts:['专利','品牌','网络效应'],a:0}]},
+ {ico:'💰',t:'品牌溢价',d:'品牌能卖高价',qs:[{q:'品牌护城河的关键？',opts:['能带来溢价','只是有名','销量大'],a:0},{q:'可口可乐比自有品牌？',opts:['贵30%','便宜30%','一样'],a:0},{q:'福特品牌是护城河吗？',opts:['不是，不能溢价','是，有名','不知道'],a:0}]},
+ {ico:'🔄',t:'转换成本',d:'换供应商太麻烦',qs:[{q:'银行账户护城河？',opts:['转换成本','品牌','网络效应'],a:0},{q:'SAP护城河？',opts:['转换成本','成本','品牌'],a:0},{q:'转换成本让用户？',opts:['不愿换','随便换','没影响'],a:0}]},
+ {ico:'🌐',t:'网络效应',d:'用户越多越值钱',qs:[{q:'微信护城河？',opts:['网络效应','品牌','成本'],a:0},{q:'网络效应是？',opts:['用户越多越值钱','用户越多越不值钱','没区别'],a:0},{q:'淘宝飞轮？',opts:['买家多→卖家多→买家更多','买家多→卖家少','没飞轮'],a:0}]},
+ {ico:'💵',t:'成本优势',d:'比同行成本更低',qs:[{q:'西南航空护城河？',opts:['流程成本优势','品牌','网络效应'],a:0},{q:'沃尔玛护城河？',opts:['规模成本优势','品牌','转换成本'],a:0},{q:'成本优势让公司？',opts:['可以打价格战','不能','没区别'],a:0}]},
+ {ico:'🎭',t:'真假护城河',d:'别被假护城河骗了',qs:[{q:'假护城河包括？',opts:['只是有名','品牌溢价','持续高ROIC'],a:0},{q:'真护城河？',opts:['能持续带来高回报','短期高增长','高市场份额'],a:0},{q:'好产品是护城河吗？',opts:['不一定，要看能不能持续','一定是','一定不是'],a:0}]},
+ {ico:'📊',t:'财务指标',d:'用指标识别护城河',qs:[{q:'ROIC持续>15%说明？',opts:['有护城河','没护城河','不知道'],a:0},{q:'ROE高但靠杠杆？',opts:['不是真护城河','是真护城河','不知道'],a:0},{q:'自由现金流持续为正？',opts:['真赚钱','假赚钱','没区别'],a:0}]},
+ {ico:'🧠',t:'人性测验',d:'长期的品格',qs:[{q:'投资需要？',opts:['耐心+纪律','内幕','杠杆'],a:0},{q:'大多数人为什么赚不到？',opts:['追热门买太贵','太聪明','没时间'],a:0},{q:'多尔西认为投资是？',opts:['常识','智慧','运气'],a:0}]},
+ {ico:'⏳',t:'时间模拟',d:'长期主义',qs:[{q:'多尔西建议持有？',opts:['长期','短期','一天'],a:0},{q:'短期波动怎么办？',opts:['忽略','卖了','加杠杆'],a:0},{q:'他说护城河是？',opts:['持续优势','短期热点','无所谓'],a:0}]},
+ {ico:'🎯',t:'关键判断',d:'什么时候出手',qs:[{q:'多尔西喜欢买？',opts:['有真护城河+便宜','热门成长','新兴市场'],a:0},{q:'不喜欢？',opts:['追热门','买便宜','长期持有'],a:0},{q:'投资第一步是？',opts:['找真护城河','看K线','听消息'],a:0}]},
+ {ico:'💎',t:'价值判断',d:'什么是真价值',qs:[{q:'真价值来自？',opts:['有真护城河+稳定赚钱','股价涨','消息面'],a:0},{q:'价格围绕什么？',opts:['价值波动','K线','情绪'],a:0},{q:'买错了怎么办？',opts:['长期持有等回归','死扛','加仓'],a:0}]},
+ {ico:'📖',t:'术语配对',d:'核心概念',qs:[{q:'护城河讲的是？',opts:['持续竞争优势','市场情绪','安全边际'],a:0},{q:'转换成本讲的是？',opts:['换供应商太麻烦','网络效应','成本优势'],a:0},{q:'网络效应讲的是？',opts:['用户越多越值钱','品牌','专利'],a:0}]},
+ {ico:'🏗️',t:'构建模型',d:'用护城河思维',qs:[{q:'判断一家公司？',opts:['有没有真护城河','股价涨没涨','K线好看不'],a:0},{q:'先看什么？',opts:['真护城河再看价格','先看价格再看护城河','随便'],a:0},{q:'没有真护城河？',opts:['不碰','便宜就买','涨了就买'],a:0}]},
+ {ico:'👑',t:'护城河识别大师挑战',d:'10题综合测验',qs:[{q:'多尔西是谁？',opts:['晨星公司前主管','巴菲特','格雷厄姆'],a:0},{q:'他总结了几种护城河？',opts:['四种','两种','六种'],a:0},{q:'可口可乐护城河？',opts:['无形资产','成本','网络效应'],a:0},{q:'微信护城河？',opts:['网络效应','品牌','成本'],a:0},{q:'银行账户护城河？',opts:['转换成本','品牌','成本'],a:0},{q:'西南航空护城河？',opts:['成本优势','品牌','网络效应'],a:0},{q:'ROIC持续>15%说明？',opts:['有护城河','没护城河','不知道'],a:0},{q:'品牌护城河关键？',opts:['能带来溢价','只是有名','销量大'],a:0},{q:'假护城河？',opts:['只是有名','品牌溢价','持续高ROIC'],a:0},{q:'投资第一步是？',opts:['找真护城河','看K线','听消息'],a:0}]}
+];
+const badges=['📕','🏰','🔮','🏷️','💰','🔄','🌐','💵','🎭','📊','🧭','👑'];
+const badgeNames=['翻开序章','经济护城河者','四种护城河者','无形资产者','品牌溢价者','转换成本者','网络效应者','成本优势者','真假护城河者','财务指标者','理性品格者','护城河识别大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
