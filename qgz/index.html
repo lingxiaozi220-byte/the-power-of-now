@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《投资中最简单的事》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0c0e13;--card:#141823;--gold:#d4af37;--gold2:#f0d98c;--text:#e8edf4;--muted:#8b949e;--line:#2a303c;--green:#2ea043;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,19,.05) 0%,rgba(12,14,19,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,175,55,.06);border:1px dashed rgba(212,175,55,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#b8860b);color:#111;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(46,160,67,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(12,14,19,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,175,55,.1);color:var(--gold)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+.pill{display:inline-block;background:rgba(46,160,67,.12);color:var(--green);border:1px solid rgba(46,160,67,.4);border-radius:20px;padding:1px 10px;font-size:12px;margin-right:6px}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《投资中最简单的事》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 5 个精讲视频 · 4 段语音领读 · 12 枚成就徽章。前 6 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>投资中最简单的事</h1>
+    <p>邱国鹭 · 高毅资产创始人 · A股价值投资本土化</p>
+    <span class="tag">便宜是硬道理</span><span class="tag">定价权</span><span class="tag">数月亮</span><span class="tag">逆向投资</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 先看这个</div>
+  <div class="card">
+    <p>高毅资产邱国鹭，20年投资经验，把复杂的价值投资浓缩成三件事：<span class="q">便宜、好公司、逆向买</span>。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1JQ3KzwE7P&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 便宜是硬道理（免费）</div>
+  <div class="card">
+    <h3>理解 · 价格是你付出的，价值是你得到的</h3>
+    <p>邱国鹭最核心的一句话：<span class="q">“便宜是硬道理。”</span></p>
+    <p>再好的公司，买贵了也是烂投资。<span class="gold">安全边际，就是用五毛钱买一块钱的东西</span>。</p>
+    <div class="mini">💰 <b>思维翻转：</b>价格和价值是两回事。你花10块钱买一年赚1块的生意，回报10%；花100块买同样的生意，回报只有1%。</div>
+    <div class="imgbox"><img src="art_cheap.jpg" alt="便宜是硬道理"></div>
+    <h3>记忆 · 金句卡</h3>
+    <p>「投资的秘诀，就在于以40美分的价格，买入价值1美元的东西。」</p>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_cheap')">▶ 语音领读 · 便宜</button></div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「价格vs价值」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 定价权是核心竞争力（免费）</div>
+  <div class="card">
+    <h3>理解 · 能涨价还不丢客户的公司</h3>
+    <p>邱国鹭说：<span class="q">“定价权是核心竞争力。”</span></p>
+    <p>什么是定价权？<span class="gold">涨价了客户还抢着买</span>。茅台涨价，你还抢着买；路边摊涨价，你立刻走人。</p>
+    <div class="mini">👑 <b>两个标准：</b>① 做的事能不断复制（麦当劳开遍全球）② 做的事别人复制不了（品牌、专利、牌照、独占资源）。</div>
+    <div class="imgbox"><img src="art_price.jpg" alt="定价权"></div>
+    <h3>记忆 · 定价权的来源</h3>
+    <table>
+      <tr><th>来源</th><th>例子</th></tr>
+      <tr><td>品牌</td><td>茅台、可口可乐</td></tr>
+      <tr><td>牌照</td><td>免税、金融、电信</td></tr>
+      <tr><td>专利</td><td>医药、科技</td></tr>
+      <tr><td>规模</td><td>成本最低的龙头</td></tr>
+    </table>
+    <div class="audio-row"><button class="btn" onclick="playVoice('voice_price')">▶ 语音领读 · 定价权</button></div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「定价权识别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 数月亮，不数星星（免费）</div>
+  <div class="card">
+    <h3>理解 · 选行业格局清晰的</h3>
+    <p>邱国鹭说：<span class="q">“宁数月亮，不数星星。”</span></p>
+    <p>月亮是什么？<span class="gold">行业里已经跑出来的老大</span>。星星是什么？几百家小公司混战，谁也不知道谁能赢。</p>
+    <div class="mini">🌙 <b>买房比喻：</b>公司是房子，行业是小区。房子再好，小区嘈杂混乱，住着也难受。选行业格局清晰的，再选里面的龙头。</div>
+    <div class="imgbox"><img src="art_moon.jpg" alt="数月亮"></div>
+    <h3>记忆 · 月亮型 vs 星星型行业</h3>
+    <table>
+      <tr><th>月亮型（好）</th><th>星星型（差）</th></tr>
+      <tr><td>一两家垄断</td><td>几百家混战</td></tr>
+      <tr><td>利润稳定</td><td>价格战打不停</td></tr>
+      <tr><td>龙头躺赚</td><td>谁都不赚钱</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「月亮星星」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 胜而后求战（免费）</div>
+  <div class="card">
+    <h3>理解 · 别赌未来的胜者</h3>
+    <p>邱国鹭说：<span class="q">“胜而后求战，不要战而后求胜。”</span></p>
+    <p>别在百舸争流的时候赌谁赢——等谁已经赢了，再买它。<span class="gold">赌未来的胜者，胜率低、代价大</span>；买已经赢的人，虽然贵一点，但稳。</p>
+    <div class="mini">🏇 <b>类比：</b>赛马比赛，别在起跑时押注谁会赢；等它冲过终点线，再买它的下一注。</div>
+    <div class="imgbox"><img src="art_win.jpg" alt="胜而后求战"></div>
+    <h3>记忆 · 两种买法对比</h3>
+    <table>
+      <tr><th>赌未来胜者</th><th>买已胜者</th></tr>
+      <tr><td>便宜但风险大</td><td>贵一点但稳</td></tr>
+      <tr><td>赌错了归零</td><td>输了也有限</td></tr>
+      <tr><td>适合VC</td><td>适合二级市场</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「谁是赢家」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 人弃我取，逆向投资（免费）</div>
+  <div class="card">
+    <h3>理解 · 超额收益的来源</h3>
+    <p>邱国鹭说：<span class="q">“人弃我取，逆向投资。”</span></p>
+    <p>大家都在恐慌抛售时，往往是机会；大家都在狂热追涨时，往往是风险。<span class="gold">但逆向不是盲目抄底，要分清楚是真坏了还是被错杀了。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1BuxDeFEat&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_contrarian.jpg" alt="逆向投资"></div>
+    <div class="mini">🔍 <b>三个判断：</b>① 股价暴跌是因为基本面恶化，还是情绪过度反应？② 问题是短期能解决的，还是长期致命的？③ 估值是否已经足够低？</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「逆向判断」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 以实业的眼光做投资（免费）</div>
+  <div class="card">
+    <h3>理解 · 你是在买下一门生意</h3>
+    <p>邱国鹭说：<span class="q">“把买股票当成盘下一门实业。”</span></p>
+    <p>不要只看K线，要问：<span class="gold">这门生意十年后还在吗？它靠什么赚钱？老板靠谱吗？成本涨了它能传导下去吗？</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1S1GD6oEtL&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_factory.jpg" alt="实业眼光"></div>
+    <h3>记忆 · 股市赚两种钱</h3>
+    <table>
+      <tr><th>钱从哪来</th><th>说明</th></tr>
+      <tr><td>企业成长的钱</td><td>公司越赚越多，股价跟着涨</td></tr>
+      <tr><td>别人犯错的钱</td><td>市场情绪错杀，你捡便宜</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「实业家思维」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 7-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：护城河五种形态、买在分歧卖在一致、价值陷阱与成长陷阱、逆向投资是品格 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 7-10 课完整内容（护城河五种形态、分歧与一致、价值陷阱、逆向品格）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 实战案例视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 7 课 · 护城河五种形态</div>
+  <div class="card">
+    <h3>理解 · 竞争对手打不进来的墙</h3>
+    <p>邱国鹭把护城河分成五种：<span class="q">品牌、牌照、专利、规模、网络效应</span>。</p>
+    <p>有护城河的公司，能<span class="gold">长期维持高利润率</span>；没护城河的，今天赚钱明天就被新对手打垮。</p>
+    <div class="imgbox"><img src="art_moat.jpg" alt="护城河"></div>
+    <h3>记忆 · 护城河五问</h3>
+    <table>
+      <tr><th>问题</th><th>有护城河</th></tr>
+      <tr><td>别人能轻易复制吗？</td><td>不能</td></tr>
+      <tr><td>涨价客户会走吗？</td><td>不会</td></tr>
+      <tr><td>新对手敢来吗？</td><td>不敢</td></tr>
+      <tr><td>利润率能维持吗？</td><td>能</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「护城河识别」</button>
+  </div>
+
+  <div class="sec-t">第 8 课 · 买在分歧，卖在一致</div>
+  <div class="card">
+    <h3>理解 · 情绪的拐点就是收益的拐点</h3>
+    <p>邱国鹭说：<span class="q">“买在分歧，卖在一致。”</span></p>
+    <p>当所有人都看多时，股价已经涨完了；当所有人都看空时，股价已经跌透了。<span class="gold">超额收益，来自于大家意见不统一的时候，你敢下注</span>。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1PvG66REa5&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_divide.jpg" alt="分歧与一致"></div>
+    <h3>记忆 · 两种情绪周期</h3>
+    <table>
+      <tr><th>一致看多</th><th>一致看空</th></tr>
+      <tr><td>新闻全是利好</td><td>新闻全是利空</td></tr>
+      <tr><td>人人都在买</td><td>人人都在卖</td></tr>
+      <tr><td>你该卖</td><td>你该买</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「情绪拐点」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 价值陷阱与成长陷阱</div>
+  <div class="card">
+    <h3>理解 · 便宜有便宜的原因，贵有贵的道理</h3>
+    <p><span class="q">价值陷阱：</span>看起来便宜，其实是因为公司真的不行了，越买越便宜。</p>
+    <p><span class="q">成长陷阱：</span>看起来高增长，其实是烧钱换增长，一旦停烧就垮。</p>
+    <div class="mini">⚠️ <b>如何避开：</b>便宜要配合“问题是短期的”；成长要配合“能自己造血”。两个陷阱都来自同一个错：只看一个维度。</div>
+    <div class="imgbox"><img src="art_twomoney.jpg" alt="两种钱"></div>
+    <h3>记忆 · 两个陷阱的区别</h3>
+    <table>
+      <tr><th>价值陷阱</th><th>成长陷阱</th></tr>
+      <tr><td>便宜但烂</td><td>贵但虚</td></tr>
+      <tr><td>基本面真坏了</td><td>增长不可持续</td></tr>
+      <tr><td>越跌越买越亏</td><td>越涨越买越套</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(9)">🎮 练习：游戏「陷阱识别」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 逆向投资是一种品格（总结）</div>
+  <div class="card">
+    <h3>理解 · 不是技巧，是修行</h3>
+    <p>邱国鹭说：<span class="q">“逆向投资不是一种技能，而是一种品格。”</span></p>
+    <p>技能可以学，品格只能修。<span class="gold">在所有人都恐慌时敢买，在所有人都狂热时敢卖——这需要的不是聪明，是定力</span>。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqLo6MEVL&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_compass.jpg" alt="投资指南针"></div>
+    <div class="mini">🧭 <b>总结一句话：</b>用便宜的价格，买有定价权的好公司，在大家恐慌时买入，然后拿住。就这么简单，但做到的人极少。</div>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：邱国鹭传人挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《价值》《股市稳赚》《投资最重要的事》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='qgz';
+const FREE=6;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'💰',t:'价格vs价值',d:'便宜是硬道理',qs:[{q:'邱国鹭最核心的一句话是？',opts:['便宜是硬道理','成长是硬道理','趋势是硬道理'],a:0},{q:'安全边际是什么？',opts:['用五毛买一块的东西','涨了才买','别人买我也买'],a:0},{q:'再好的公司买贵了会怎样？',opts:['也是烂投资','照样赚','无所谓'],a:0}]},
+ {ico:'👑',t:'定价权识别',d:'能涨价不丢客户',qs:[{q:'什么是定价权？',opts:['涨价客户还抢着买','价格不能动','便宜卖货'],a:0},{q:'茅台为什么有定价权？',opts:['涨价大家还抢','酒不好喝','没人喝'],a:0},{q:'定价权的来源不包括？',opts:['路边摊','品牌','牌照'],a:0}]},
+ {ico:'🌙',t:'月亮星星',d:'数月亮不数星星',qs:[{q:'“数月亮”指？',opts:['选行业龙头老大','选小盘股','选热门股'],a:0},{q:'星星型行业特点是？',opts:['几百家混战','一家垄断','利润稳定'],a:0},{q:'买房比喻中小区代表？',opts:['行业','房子','装修'],a:0}]},
+ {ico:'🏇',t:'谁是赢家',d:'胜而后求战',qs:[{q:'“胜而后求战”指？',opts:['等赢家出来再买','赌谁会赢','买赛道'],a:0},{q:'赌未来胜者的风险是？',opts:['赌错了归零','稳赚','小亏'],a:0},{q:'二级市场适合买？',opts:['已经赢的人','还在竞争的','刚创业的'],a:0}]},
+ {ico:'🔄',t:'逆向判断',d:'人弃我取',qs:[{q:'大家都恐慌抛售时应该？',opts:['看是不是错杀，敢买','跟着卖','躲起来'],a:0},{q:'逆向投资的关键是？',opts:['分清真坏了还是被错杀','什么都买','越跌越买'],a:0},{q:'真的基本面恶化时应该？',opts:['别接飞刀','抄底','加仓'],a:0}]},
+ {ico:'🏭',t:'实业家思维',d:'买股票=买生意',qs:[{q:'邱国鹭说买股票像？',opts:['盘下一门实业','买彩票','赌大小'],a:0},{q:'要问的问题不包括？',opts:['明天涨几个点','十年后还在吗','靠什么赚钱'],a:0},{q:'股市赚哪两种钱？',opts:['企业成长+别人犯错','政策+内幕','运气+杠杆'],a:0}]},
+ {ico:'📊',t:'综合判断',d:'投资直觉',qs:[{q:'高毅资产创始人是？',opts:['邱国鹭','张磊','但斌'],a:0},{q:'邱国鹭从业约？',opts:['20年','2年','200天'],a:0},{q:'本书讲的是哪种投资？',opts:['价值投资','量化交易','趋势跟踪'],a:0}]},
+ {ico:'🏰',t:'护城河识别',d:'五种形态',qs:[{q:'下列哪个不是护城河？',opts:['网红流量','品牌','牌照'],a:0},{q:'有护城河的公司能？',opts:['长期维持高利润','随时被打垮','不赚钱'],a:0},{q:'别人能轻易复制说明？',opts:['没有护城河','护城河很深','很安全'],a:0}]},
+ {ico:'📈',t:'情绪拐点',d:'买在分歧卖在一致',qs:[{q:'大家一致看多时应该？',opts:['考虑卖','赶紧买','加仓'],a:0},{q:'大家一致看空时应该？',opts:['看是不是错杀','跟着卖','永不买'],a:0},{q:'超额收益来自？',opts:['意见不统一时敢下注','跟着大多数','永远不动'],a:0}]},
+ {ico:'⚠️',t:'陷阱识别',d:'价值vs成长陷阱',qs:[{q:'价值陷阱指？',opts:['便宜但真坏了','贵但好','涨太快'],a:0},{q:'成长陷阱指？',opts:['烧钱换增长不可持续','便宜货','好公司'],a:0},{q:'避开两个陷阱的关键是？',opts:['不只看一个维度','只看市盈率','只看增速'],a:0}]},
+ {ico:'🧠',t:'人性测验',d:'逆向的品格',qs:[{q:'逆向投资是？',opts:['品格不是技能','可以速成','不需要练'],a:0},{q:'所有人恐慌时敢买需要？',opts:['定力','聪明','消息'],a:0},{q:'大多数人为什么做不到逆向？',opts:['害怕亏钱','太聪明','没时间'],a:0}]},
+ {ico:'⏱️',t:'时间模拟',d:'长期持有',qs:[{q:'价值投资需要？',opts:['长期持有','每天交易','短线波段'],a:0},{q:'短期波动怎么办？',opts:['忽略它','追涨杀跌','割肉'],a:0},{q:'好公司拿住需要？',opts:['定力和纪律','运气','杠杆'],a:0}]},
+ {ico:'🎯',t:'关键判断',d:'什么时候出手',qs:[{q:'邱国鹭说什么时候买？',opts:['价值低估时','涨的时候','大家都买时'],a:0},{q:'什么时候卖？',opts:['价值明显高估或基本面质变','永远不卖','跌了就卖'],a:0},{q:'大多数人什么时候买？',opts:['涨了才敢买','跌了就抄底','按价值买'],a:0}]},
+ {ico:'💎',t:'价值判断',d:'什么是真价值',qs:[{q:'真价值来自？',opts:['企业持续赚钱能力','股价上涨','政策利好'],a:0},{q:'价格围绕什么波动？',opts:['价值','消息','K线'],a:0},{q:'便宜和好公司哪个重要？',opts:['都重要，缺一不可','便宜就行','好公司就行'],a:0}]},
+ {ico:'📖',t:'术语配对',d:'核心概念',qs:[{q:'“便宜是硬道理”讲的是？',opts:['估值','品质','时机'],a:0},{q:'“定价权”讲的是？',opts:['品质','估值','时机'],a:0},{q:'“人弃我取”讲的是？',opts:['时机','估值','品质'],a:0}]},
+ {ico:'👑',t:'邱国鹭传人挑战',d:'10题综合测验',qs:[{q:'邱国鹭是哪家机构创始人？',opts:['高毅资产','高瓴资本','景林'],a:0},{q:'最核心一句话？',opts:['便宜是硬道理','成长至上','趋势为王'],a:0},{q:'定价权是？',opts:['核心竞争力','成本优势','规模效应'],a:0},{q:'“数月亮”指？',opts:['选行业龙头','选小盘股','选热门股'],a:0},{q:'逆向投资是？',opts:['品格','技能','运气'],a:0},{q:'买在什么？',opts:['分歧','一致','高潮'],a:0},{q:'卖在什么？',opts:['一致','分歧','恐慌'],a:0},{q:'价值陷阱是？',opts:['便宜但真坏了','贵但好','便宜的好货'],a:0},{q:'股市赚哪两种钱？',opts:['企业成长+别人犯错','政策+内幕','杠杆+消息'],a:0},{q:'以什么眼光做投资？',opts:['实业','投机','赌博'],a:0}]}
+];
+const badges=['📕','💰','👑','🌙','🏇','🔄','🏭','🏰','📈','⚠️','🧠','👑'];
+const badgeNames=['翻开序章','便宜信徒','定价权猎人','月亮观察者','胜战策略家','逆向投资者','实业家','护城河守护者','情绪拐点捕手','陷阱识别者','逆向品格者','邱国鹭传人'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=6&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
