@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>《价值》多媒体精读 | 熙祺智书</title>
 <style>
-:root{--bg:#0c0e13;--card:#141823;--gold:#d4af37;--gold2:#f0d98c;--text:#e8edf4;--muted:#8b949e;--line:#2a303c;--green:#2ea043;--red:#f85149;--blue:#58a6ff}
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
 .wrap{max-width:900px;margin:0 auto;padding:14px}
 .hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
 .hero img{width:100%;display:block}
-.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,19,.05) 0%,rgba(12,14,19,.96) 100%)}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
 .hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
 .hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
 .hero p{font-size:13.5px;color:#c9d1d9}
-.tag{display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
 .sec{margin:24px 0}
 .sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
@@ -24,14 +24,14 @@ body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft
 .card h3:first-child{margin-top:0}
 .card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
 .q{color:var(--gold);font-weight:700;font-style:italic}
-.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,175,55,.06);border:1px dashed rgba(212,175,55,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
 .mini b{color:var(--gold2)}
 .imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
 .imgbox img{width:100%;display:block}
 .video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
 .video iframe{position:absolute;inset:0;width:100%;height:100%}
 .audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
-.btn{background:linear-gradient(135deg,var(--gold),#b8860b);color:#111;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
 .btn:hover{filter:brightness(1.1)}
 .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
 .games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
@@ -46,18 +46,18 @@ body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft
 .mbox h3{color:var(--gold2);margin-bottom:12px}
 .mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
 .mbox .opt:hover{border-color:var(--gold)}
-.mbox .opt.correct{background:rgba(46,160,67,.15);border-color:var(--green)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
 .mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
 .badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
 .badge.got{opacity:1;border-color:var(--gold)}
 .badge .bico{font-size:30px}
 .badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
-.progress{position:sticky;top:0;background:rgba(12,14,19,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
 .progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
 .progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
 .progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
-.lock{display:flex;align-items:center;gap:10px;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
 input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
 input:focus{border-color:var(--gold)}
 .quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
@@ -65,10 +65,8 @@ input:focus{border-color:var(--gold)}
 .notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
 table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
 th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
-th{background:rgba(212,175,55,.1);color:var(--gold)}
-.gold{color:var(--gold)}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
 .muted{color:var(--muted)}
-.pill{display:inline-block;background:rgba(46,160,67,.12);color:var(--green);border:1px solid rgba(46,160,67,.4);border-radius:20px;padding:1px 10px;font-size:12px;margin-right:6px}
 @media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
 </style>
 </head>
@@ -79,23 +77,23 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 </div>
 <div class="wrap">
 
-<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 5 个精讲视频 · 5 段语音领读 · 12 枚成就徽章。前 6 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
 
 <div class="hero">
   <img src="art_cover.jpg" alt="封面">
   <div class="mask"></div>
   <div class="txt">
     <h1>价值</h1>
-    <p>张磊 · 高瓴资本创始人 · 长期主义</p>
-    <span class="tag">长期主义</span><span class="tag">时间的朋友</span><span class="tag">动态护城河</span><span class="tag">价值投资</span>
+    <p>张磊 · 做时间的朋友，与伟大格局观者同行</p>
+    <span class="tag">长期主义</span><span class="tag">三把火</span><span class="tag">时间的朋友</span><span class="tag">价值投资</span><span class="tag">第一性原理</span>
   </div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">🎬 开场视频 · 先看这个</div>
+  <div class="sec-t">🎬 开场视频 · 张磊和他的朋友们聊《价值》</div>
   <div class="card">
-    <p>高瓴资本张磊，从 2000 万美元起步，15 年做到 5000 亿美元。他说：<span class="q">“我们是创业者，恰巧是投资人。”</span></p>
-    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1GhkKByEv1&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <p>真正的投资不是炒股，<span class="q">而是把时间和信念投入能长期产生价值的事情中。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1qYTWzYEB3&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
     <div class="audio-row">
       <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
       <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
@@ -104,113 +102,91 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 </div>
 
 <div class="sec">
-  <div class="sec-t">第 1 课 · 三把火：知识、能力、价值观（免费）</div>
+  <div class="sec-t">第 1 课 · 三把火理论（免费）</div>
   <div class="card">
-    <h3>理解 · 投资人的三重修炼</h3>
-    <p>张磊说，真正的投资人要点燃三把火：<span class="q">对知识的渴望、对能力的打磨、对价值观的坚守</span>。</p>
-    <p>没有知识，看不懂生意；没有能力，拿不住机会；没有价值观，<span class="gold">赚快钱的路比走正道短得多，但终点也差得多</span>。</p>
-    <div class="mini">🔥 <b>核心一句话：</b>价值观是底线，知识是工具，能力是手艺——三者缺一不可。</div>
+    <h3>理解 · 什么最重要</h3>
+    <p><span class="q">凡能被火烧掉的都不重要——金钱、房子、物质财富。烧不掉的才重要：知识、能力、价值观。</span></p>
     <div class="imgbox"><img src="art_fire.jpg" alt="三把火"></div>
-    <h3>记忆 · 金句卡</h3>
-    <p>「投资不是比谁赚得多，而是比谁活得久、走得远。」</p>
-    <div class="audio-row"><button class="btn" onclick="playVoice('voice_fire')">▶ 语音领读 · 三把火</button></div>
+    <div class="mini">🔥 <b>关键：</b>支撑三把火的是理性的好奇、诚实与独立。投资最贵的不是钱，是时间。</div>
     <button class="btn" onclick="openGame(0)">🎮 练习：游戏「三把火」</button>
   </div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">第 2 课 · 弱水三千，只取一瓢（免费）</div>
+  <div class="sec-t">第 2 课 · 长期主义（免费）</div>
   <div class="card">
-    <h3>理解 · 能力圈：知道自己不知道什么</h3>
-    <p>市场上机会千千万，张磊说：<span class="q">“弱水三千，只取一瓢饮。”</span></p>
-    <p>高瓴只投自己真正懂的领域：<span class="gold">消费、医药、科技、企业服务</span>。看不懂的，再热门也不碰。</p>
-    <div class="mini">🛖 <b>巴菲特的呼应：</b>“对你的能力圈来说，最重要的不是它有多大，而是你如何界定它的边界。”</div>
-    <div class="imgbox"><img src="art_scoop.jpg" alt="弱水三千"></div>
-    <h3>记忆 · 能力圈三问</h3>
-    <table>
-      <tr><th>问题</th><th>判断</th></tr>
-      <tr><td>这门生意我能用一句话说清吗？</td><td>说不清=看不懂</td></tr>
-      <tr><td>它靠什么赚钱，十年后还在吗？</td><td>看不懂=别投</td></tr>
-      <tr><td>我比市场上大多数人懂它吗？</td><td>不懂=没有优势</td></tr>
-    </table>
-    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「能力圈判断」</button>
+    <h3>理解 · 做时间的朋友</h3>
+    <p><span class="q">长期主义不是拿住不放，而是暴力计算：每次决策问自己，十年后这个行业会是什么样？谁活下来？</span></p>
+    <div class="imgbox"><img src="art_snowball.jpg" alt="长期主义"></div>
+    <div class="mini">⏳ <b>关键：</b>放弃及时满足，学会延期满足。流水不争先，争的是滔滔不绝。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「长期主义」</button>
   </div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">第 3 课 · 长期主义：做时间的朋友（免费）</div>
+  <div class="sec-t">第 3 课 · 动态护城河（免费）</div>
   <div class="card">
-    <h3>理解 · 流水不争先，争的是滔滔不绝</h3>
-    <p>张磊在北大演讲中说：<span class="q">“流水不争先，争的是滔滔不绝。”</span></p>
-    <p>投资不是比谁一年赚最多，而是比谁<span class="gold">十年、二十年、三十年一直留在牌桌上</span>。</p>
-    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV19EN9zqES6&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
-    <div class="imgbox"><img src="art_long.jpg" alt="长期主义"></div>
-    <div class="mini">⏳ <b>思维翻转：</b>时间是好生意的朋友，烂生意的敌人。好公司，越拿越值钱；烂公司，越等越完蛋。</div>
-    <div class="audio-row"><button class="btn" onclick="playVoice('voice_long')">▶ 语音领读 · 长期主义</button></div>
-    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「长期 vs 短期」</button>
-  </div>
-</div>
-
-<div class="sec">
-  <div class="sec-t">第 4 课 · 发现价值与创造价值（免费）</div>
-  <div class="card">
-    <h3>理解 · 不只是发现，更是创造</h3>
-    <p>传统价值投资是“发现被低估的好公司”。张磊说：<span class="q">“我们不仅要发现价值，更要帮助企业创造价值。”</span></p>
-    <p>高瓴投了之后不是坐等升值，而是<span class="gold">帮企业数字化、帮它降本增效、帮它连接资源</span>——让好公司变得更好。</p>
-    <div class="mini">🔨 <b>经典案例：百丽国际</b>——高瓴买下百丽后，不是拆分出售，而是用数字化改造这家传统鞋企，帮它跟上新零售。</div>
-    <div class="imgbox"><img src="art_craft.jpg" alt="发现与创造价值"></div>
-    <h3>记忆 · 两种投资人</h3>
-    <table>
-      <tr><th>发现型</th><th>创造型</th></tr>
-      <tr><td>找便宜货</td><td>做好生意</td></tr>
-      <tr><td>坐等升值</td><td>主动赋能</td></tr>
-      <tr><td>赚差价</td><td>赚成长</td></tr>
-    </table>
-    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「发现 vs 创造」</button>
-  </div>
-</div>
-
-<div class="sec">
-  <div class="sec-t">第 5 课 · 研究驱动：关键时点与关键变化（免费）</div>
-  <div class="card">
-    <h3>理解 · 投资是研究的副产品</h3>
-    <p>张磊说：<span class="q">“长期研究，就是在关键时点、做关键变化的判断。”</span></p>
-    <p>独立研究 = <span class="gold">独特视角 + 数据洞察</span>。不是跟风看研报，而是自己钻到行业里去看：技术变了什么？需求变了什么？谁在真正解决问题？</p>
-    <div class="mini">🔍 <b>研究方法论：</b>① 看10年行业数据 ② 访谈20个从业者 ③ 问3个问题：什么变了？谁受益了？能持续多久？</div>
-    <div class="imgbox"><img src="art_research.jpg" alt="研究驱动"></div>
-    <h3>记忆 · 长期研究 vs 短期交易</h3>
-    <table>
-      <tr><th>短期交易</th><th>长期研究</th></tr>
-      <tr><td>看K线</td><td>看10年产业趋势</td></tr>
-      <tr><td>听消息</td><td>做独立调研</td></tr>
-      <tr><td>赚波动的钱</td><td>赚成长的钱</td></tr>
-    </table>
-    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「研究步骤」</button>
-  </div>
-</div>
-
-<div class="sec">
-  <div class="sec-t">第 6 课 · 动态护城河（免费）</div>
-  <div class="card">
-    <h3>理解 · 世界上唯一的护城河</h3>
-    <p>张磊说：<span class="q">“世界上只有一条护城河，就是不断创新、疯狂地创造价值。”</span></p>
-    <p>传统护城河是“静态”的——品牌、专利、规模。张磊说这不够：<span class="gold">真正的护城河是企业持续进化的能力</span>，是流动的、生长的。</p>
-    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1KSptzAEuk&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <h3>理解 · 唯一护城河是创造价值</h3>
+    <p><span class="q">世界上只有一条护城河：企业家不断创造长期价值。静态壁垒会过时，动态创新才是真壁垒。</span></p>
     <div class="imgbox"><img src="art_moat.jpg" alt="动态护城河"></div>
-    <div class="mini">🏰 <b>思维翻转：</b>静态护城河会被时间磨平，动态护城河越流越宽。投资要投“会进化的企业”，不是“有城墙的企业”。</div>
-    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「护城河识别」</button>
+    <div class="mini">🏰 <b>关键：</b>真正的好公司靠持续创新从内部颠覆自己，而不是守着一亩三分地。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「动态护城河」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 价值投资进化论（免费）</div>
+  <div class="card">
+    <h3>理解 · 从发现价值到创造价值</h3>
+    <p><span class="q">价值投资 1.0 发现价值（捡便宜）→ 2.0 发现+创造价值 → 3.0 长期结构性价值投资：反套利、反投机、反零和博弈。</span></p>
+    <div class="imgbox"><img src="art_evo.jpg" alt="价值投资进化"></div>
+    <div class="mini">🪜 <b>关键：</b>高瓴投京东、投腾讯——不赌差价，赌长期结构性价值，与企业共同成长。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「价值投资进化」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 研究驱动（免费）</div>
+  <div class="card">
+    <h3>理解 · 让认知变现</h3>
+    <p><span class="q">高瓴的钱不是拍脑袋投的，是研究员用脚跑、用脑子想硬挖出来的。一个行业蹲大半年，上下游全摸清。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1iWG264E1k&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🔬 <b>关键：</b>研究驱动三形式：深度研究、长期研究、独立研究。第一性原理，回到本质。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「研究驱动」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 与伟大格局观者同行（免费）</div>
+  <div class="card">
+    <h3>理解 · 选择比努力重要</h3>
+    <p><span class="q">与谁同行，比要去的远方更重要。与拥有伟大格局观的创业者肝胆相照，甘苦与共。</span></p>
+    <div class="imgbox"><img src="art_peer.jpg" alt="同行者"></div>
+    <div class="mini">🤝 <b>关键：</b>选人三标准：格局、诚信、执行力。价值观放在利润前面。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「伟大格局观」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 第一性原理（免费）</div>
+  <div class="card">
+    <h3>理解 · 回到本质思考</h3>
+    <p><span class="q">第一性原理：剥离表象，问这件事的本质是什么。不跟风、不迷信权威，用最基础的道理推导。</span></p>
+    <div class="imgbox"><img src="art_tree.jpg" alt="第一性原理"></div>
+    <div class="mini">🌳 <b>关键：</b>把复杂问题拆到最基础原理再重建。真正有价值的投资，都是独立思考的结果。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「第一性原理」</button>
   </div>
 </div>
 
 <div class="sec" id="locked">
-  <div class="sec-t">第 7-10 课 · 付费内容</div>
-  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：七大高瓴公式、选择比努力重要、人才与组织、做难而正确的事 + 全部游戏与徽章</div>
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：选择与努力、长期结构性价值投资、每个人都是价值投资者 + 全部游戏与徽章</div>
 </div>
 
 <div class="sec">
   <div class="sec-t">🔓 解锁 · 开通全部内容</div>
   <div class="card">
-    <p style="font-size:14px">解锁你将获得：第 7-10 课完整内容（七大公式、选择、人才组织、难而正确）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 45倍回报实战视频。</p>
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（选择比努力重要、长期结构性价值投资、每个人都是价值投资者）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
     <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
     <div class="audio-row">
       <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
@@ -221,66 +197,37 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 </div>
 
 <div class="sec" id="secExtra" style="display:none">
-  <div class="sec-t">第 7 课 · 七大高瓴公式</div>
+  <div class="sec-t">第 8 课 · 选择与努力</div>
   <div class="card">
-    <h3>理解 · 把投资方法论公式化</h3>
-    <p>张磊把高瓴的投资哲学提炼成七条公式：<span class="q">长期主义、能力圈、研究驱动、价值创造、动态护城河、人才组织、难而正确</span>。</p>
-    <p>这七条不是孤立的，而是<span class="gold">层层递进的系统</span>：价值观决定方向，研究决定标的，能力圈决定边界，长期主义决定持有。</p>
-    <div class="imgbox"><img src="art_formula.jpg" alt="七大公式"></div>
-    <h3>记忆 · 公式速记表</h3>
+    <h3>理解 · 把时间投入正确的事</h3>
+    <p><span class="q">选择比努力重要，与谁同行比去远方重要。选对赛道，努力才有复利。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1vW36zEEGN&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>找最好的公司，做时间的朋友。花足够多的时间，陪伴企业成长。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「选择与努力」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 长期结构性价值投资</div>
+  <div class="card">
+    <h3>理解 · 反套利反投机</h3>
+    <p><span class="q">核心是格局观：不断颠覆自身、重塑产业、为社会持续创造价值。不做零和游戏，做正和游戏。</span></p>
+    <div class="imgbox"><img src="art_moat.jpg" alt="结构性价值"></div>
+    <div class="mini">🌊 <b>关键：</b>投资=投人+投事+投未来。与优秀的创业者同行，赚企业成长的钱。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「结构性价值」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 每个人都是价值投资者</div>
+  <div class="card">
+    <h3>理解 · 投资自己的人生</h3>
+    <p>学生把时间投入学习=价值投资；职场人把精力投入工作=价值投资；创业者把信念投入解决社会痛点=价值投资。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="价值投资清单"></div>
     <table>
-      <tr><th>公式</th><th>核心</th></tr>
-      <tr><td>长期主义</td><td>做时间的朋友</td></tr>
-      <tr><td>能力圈</td><td>弱水三千只取一瓢</td></tr>
-      <tr><td>研究驱动</td><td>关键时点+关键变化</td></tr>
-      <tr><td>价值创造</td><td>发现+帮助企业创造</td></tr>
-      <tr><td>动态护城河</td><td>不断创新才是唯一护城河</td></tr>
-      <tr><td>人才组织</td><td>选对人比投对项目更重要</td></tr>
-      <tr><td>难而正确</td><td>做对的事，把事做对</td></tr>
+      <tr><th>维度</th><th>问什么</th></tr>
+      <tr><td>时间</td><td>我把它投向了长期价值吗？</td></tr>
+      <tr><td>同行</td><td>我与谁同行？他们格局大吗？</td></tr>
+      <tr><td>护城河</td><td>我/公司靠什么长期创造价值？</td></tr>
+      <tr><td>复利</td><td>这个选择十年后还成立吗？</td></tr>
     </table>
-    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「公式匹配」</button>
-  </div>
-
-  <div class="sec-t">第 8 课 · 选择比努力重要，与谁同行比远方重要</div>
-  <div class="card">
-    <h3>理解 · 选择的权重远大于努力</h3>
-    <p>张磊说：<span class="q">“选择比努力更重要，与谁同行比要去的远方更重要。”</span></p>
-    <p>在关键时点，选对赛道、选对人、选对节奏，比闷头努力一百倍都重要。<span class="gold">方向错了，越努力越偏离</span>。</p>
-    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV19NNez1Ez5&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
-    <div class="imgbox"><img src="art_choice.jpg" alt="选择"></div>
-    <div class="audio-row"><button class="btn" onclick="playVoice('voice_choice')">▶ 语音领读 · 选择</button></div>
-    <h3>记忆 · 选择 vs 努力</h3>
-    <p>① 赛道选错：再努力也是红海厮杀 ② 人选错：内耗大于产出 ③ 节奏选错：好项目也被拖死。</p>
-    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「岔路口抉择」</button>
-  </div>
-
-  <div class="sec-t">第 9 课 · 人才与组织：选对人是第一性原理</div>
-  <div class="card">
-    <h3>理解 · 投人先于投事</h3>
-    <p>张磊说：<span class="q">“在关键时点，把钱投给对的人，比把钱投给对的事更重要。”</span></p>
-    <p>因为对的人会把事做对，错的人会把对的事做错。高瓴看项目，<span class="gold">先看人：学习能力、格局、价值观、韧性</span>。</p>
-    <div class="mini">🌳 <b>组织观：</b>高瓴像一个“超级联结器”，把被投企业的人、技术、资源连接成网——1+1&gt;10。</div>
-    <div class="imgbox"><img src="art_people.jpg" alt="人才与组织"></div>
-    <h3>记忆 · 看人四维度</h3>
-    <table>
-      <tr><th>维度</th><th>为什么重要</th></tr>
-      <tr><td>学习能力</td><td>行业变快，不学习就被淘汰</td></tr>
-      <tr><td>格局</td><td>能看多远，才能做多大</td></tr>
-      <tr><td>价值观</td><td>底线决定能走多远</td></tr>
-      <tr><td>韧性</td><td>创业路上全是坑，扛不住就出局</td></tr>
-    </table>
-    <button class="btn" onclick="openGame(9)">🎮 练习：游戏「识人四问」</button>
-  </div>
-
-  <div class="sec-t">第 10 课 · 做难而正确的事（总结）</div>
-  <div class="card">
-    <h3>理解 · 正确但难的事，才是真正的护城河</h3>
-    <p>张磊说：<span class="q">“我们总是选择困难的事——正确的路往往不好走。”</span></p>
-    <p>容易的事大家都做，<span class="gold">正确但难的事，才是超额收益的来源</span>。因为难，所以少有人走；因为少有人走，所以有价值。</p>
-    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1jz4y1w7rm&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
-    <div class="imgbox"><img src="art_summary.jpg" alt="做难而正确的事"></div>
-    <div class="mini">⛰️ <b>总结一句话：</b>用长期主义选方向，用研究驱动找标的，用能力圈守边界，用价值创造做赋能，用动态护城河投进化的企业——做难而正确的事。</div>
-    <button class="btn" onclick="openGame(15)">🎮 终局测验：张磊传人挑战</button>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：价值投资大师挑战</button>
   </div>
 </div>
 
@@ -297,7 +244,7 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 <div class="sec">
   <div class="sec-t">📌 更多推荐</div>
   <div class="card">
-    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《穷查理宝典》《安全边际》《股市稳赚》。</p>
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《投资中最简单的事》《滚雪球》《周期》。</p>
   </div>
 </div>
 
@@ -310,28 +257,28 @@ th{background:rgba(212,175,55,.1);color:var(--gold)}
 
 <script>
 const SLUG='value';
-const FREE=6;
+const FREE=7;
 let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
 const games=[
- {ico:'🔥',t:'三把火',d:'知识/能力/价值观',qs:[{q:'投资人要点燃哪三把火？',opts:['知识、能力、价值观','运气、人脉、资金','技术、消息、政策'],a:0},{q:'没有价值观的投资会怎样？',opts:['赚快钱但终点差','赚得更多','更自由'],a:0},{q:'三把火中哪一把是底线？',opts:['价值观','知识','能力'],a:0}]},
- {ico:'🛖',t:'能力圈判断',d:'弱水三千只取一瓢',qs:[{q:'张磊说的“只取一瓢”指？',opts:['只投自己懂的领域','只投热门股票','只投小盘股'],a:0},{q:'能力圈最重要的是？',opts:['知道边界在哪','圈越大越好','不需要边界'],a:0},{q:'看不懂的生意应该？',opts:['不碰','小仓位试','跟风买'],a:0}]},
- {ico:'⏳',t:'长期vs短期',d:'做时间的朋友',qs:[{q:'张磊的名言“流水不争先”下一句是？',opts:['争的是滔滔不绝','争的是速度','争的是规模'],a:0},{q:'时间是谁的朋友？',opts:['好生意的朋友，烂生意的敌人','所有人的朋友','没人的朋友'],a:0},{q:'投资比的是什么？',opts:['谁活得久走得远','谁一年赚最多','谁操作最快'],a:0}]},
- {ico:'🔨',t:'发现vs创造',d:'价值投资升级版',qs:[{q:'传统价值投资做什么？',opts:['发现被低估的好公司','帮企业改造','追涨杀跌'],a:0},{q:'张磊的创新是？',opts:['不仅发现价值，更帮助创造价值','只赚差价','只投蓝筹'],a:0},{q:'百丽案例说明？',opts:['用数字化改造传统企业','拆分出售','关门大吉'],a:0}]},
- {ico:'🔍',t:'研究步骤',d:'关键时点+关键变化',qs:[{q:'长期研究的核心是？',opts:['关键时点做关键变化的判断','每天盯盘','听小道消息'],a:0},{q:'独立研究=？',opts:['独特视角+数据洞察','抄研报','跟风买'],a:0},{q:'看行业要看多少年数据？',opts:['10年','10天','10分钟'],a:0}]},
- {ico:'🏰',t:'护城河识别',d:'动态vs静态',qs:[{q:'张磊说世界上唯一的护城河是？',opts:['不断创新、疯狂创造价值','品牌规模专利','政策壁垒'],a:0},{q:'静态护城河的问题是？',opts:['会被时间磨平','永远不会消失','越变越宽'],a:0},{q:'应该投什么样的企业？',opts:['会进化的企业','有城墙但不变的','有垄断的'],a:0}]},
- {ico:'📊',t:'综合判断',d:'投资直觉',qs:[{q:'高瓴重仓哪四大领域？',opts:['消费/医药/科技/企业服务','房地产/煤炭/金融','农业/矿业/军工'],a:0},{q:'“做时间的朋友”意味着？',opts:['长期持有好生意','做短线交易','频繁换股'],a:0},{q:'张磊2005年起步资金约？',opts:['2000万美元','2000亿','200万'],a:0}]},
- {ico:'📜',t:'公式匹配',d:'七大高瓴公式',qs:[{q:'“弱水三千只取一瓢”对应？',opts:['能力圈','长期主义','价值创造'],a:0},{q:'“流水不争先”对应？',opts:['长期主义','人才组织','研究驱动'],a:0},{q:'“不断创新创造价值”对应？',opts:['动态护城河','能力圈','难而正确'],a:0}]},
- {ico:'🧭',t:'岔路口抉择',d:'选择比努力重要',qs:[{q:'张磊说选择和努力谁更重要？',opts:['选择比努力重要','努力比选择重要','一样重要'],a:0},{q:'“与谁同行”比什么重要？',opts:['比要去的远方','比钱','比时间'],a:0},{q:'赛道选错会怎样？',opts:['再努力也是红海厮杀','一样成功','没关系'],a:0}]},
- {ico:'🌳',t:'识人四问',d:'选对人是第一性原理',qs:[{q:'高瓴看项目先看什么？',opts:['人','项目规模','财务报表'],a:0},{q:'哪一项不是看人四维度？',opts:['外貌','学习能力','韧性'],a:0},{q:'对的人能怎样？',opts:['把事做对','把事做错','不做事'],a:0}]},
- {ico:'🧠',t:'人性测验',d:'长期主义的敌人',qs:[{q:'买入后大跌20%，长期主义者应该？',opts:['检查基本面，按研究持有','立刻割肉','骂市场'],a:0},{q:'热门股疯涨时，长期主义者应该？',opts:['按自己的能力圈和研究决策','跟着追','鄙视它'],a:0},{q:'短期跑输大盘说明？',opts:['正常，长期看价值回归','策略失效','赶紧换股'],a:0}]},
- {ico:'⏱️',t:'时间模拟',d:'15年5000亿',qs:[{q:'高瓴从2000万美元做到约？',opts:['5000亿美元','5000万','5亿'],a:0},{q:'这段路走了约？',opts:['15年+','15个月','15天'],a:0},{q:'这个数字说明？',opts:['长期主义+复利的力量','运气好','杠杆大'],a:0}]},
- {ico:'🎯',t:'关键时点',d:'什么时候出手',qs:[{q:'张磊说什么时候出手最重要？',opts:['关键时点','每天都买','永远不动'],a:0},{q:'关键时点的判断靠什么？',opts:['长期研究和独立洞察','K线','内幕消息'],a:0},{q:'大多数人在关键时点做什么？',opts:['恐慌或贪婪','冷静研究','按计划执行'],a:0}]},
- {ico:'💎',t:'价值判断',d:'什么是真价值',qs:[{q:'真价值来自？',opts:['企业持续创造价值','股价上涨','政策利好'],a:0},{q:'高瓴投资的本质是？',opts:['帮助企业成长','炒短线','套利'],a:0},{q:'价值和价格的关系？',opts:['价格围绕价值波动','价格=价值','价格无关'],a:0}]},
- {ico:'📖',t:'术语配对',d:'核心概念',qs:[{q:'能力圈对应？',opts:['弱水三千只取一瓢','流水不争先','做难而正确'],a:0},{q:'动态护城河对应？',opts:['不断创新','只投懂的','选对人'],a:0},{q:'第一性原理对应？',opts:['回到事物本质思考','看K线','跟风'],a:0}]},
- {ico:'👑',t:'张磊传人挑战',d:'10题综合测验',qs:[{q:'投资人三把火不包括？',opts:['运气','知识','价值观'],a:0},{q:'能力圈强调？',opts:['知道边界','圈越大越好','不需要研究'],a:0},{q:'长期主义的核心是？',opts:['做时间的朋友','短线交易','频繁操作'],a:0},{q:'张磊说唯一的护城河是？',opts:['不断创新创造价值','品牌','规模'],a:0},{q:'选择和努力谁更重要？',opts:['选择','努力','一样'],a:0},{q:'高瓴看项目先看？',opts:['人','财务','赛道'],a:0},{q:'“难而正确”意味着？',opts:['做对的事，不怕难','做容易的事','做快钱'],a:0},{q:'高瓴重仓哪四大领域？',opts:['消费/医药/科技/企服','地产/煤炭/金融','农业/矿业'],a:0},{q:'长期研究的核心是？',opts:['关键时点+关键变化','每天盯盘','听消息'],a:0},{q:'张磊说投资是？',opts:['研究的副产品','赌博','运气'],a:0}]}
+ {ico:'🔥',t:'三把火',d:'什么最重要',qs:[{q:'能烧掉？',opts:['不重要','最重要','无所谓'],a:0},{q:'烧不掉？',opts:['知识能力价值观','金钱房子','车子'],a:0},{q:'支撑三把火？',opts:['好奇诚实独立','贪婪恐惧','消息内幕'],a:0}]},
+ {ico:'⏳',t:'长期主义',d:'做时间的朋友',qs:[{q:'长期主义=？',opts:['暴力计算','拿住不放','懒'],a:0},{q:'每次决策问？',opts:['十年后行业','明天涨停','代码好吗'],a:0},{q:'及时满足？',opts:['放弃','追求','无所谓'],a:0}]},
+ {ico:'🏰',t:'动态护城河',d:'唯一壁垒',qs:[{q:'唯一护城河？',opts:['创造价值','大资金','关系'],a:0},{q:'静态壁垒？',opts:['会过时','永远有效','无所谓'],a:0},{q:'好公司？',opts:['内部颠覆自己','守地盘','吃老本'],a:0}]},
+ {ico:'🪜',t:'价值投资进化',d:'1.0到3.0',qs:[{q:'1.0？',opts:['发现价值','创造价值','投机'],a:0},{q:'3.0？',opts:['结构性价值','捡便宜','炒概念'],a:0},{q:'反？',opts:['套利投机零和','赚钱','亏钱'],a:0}]},
+ {ico:'🔬',t:'研究驱动',d:'让认知变现',qs:[{q:'高瓴投？',opts:['研究挖出来的','拍脑袋','听消息'],a:0},{q:'研究形式？',opts:['深度长期独立','抄作业','看标题'],a:0},{q:'第一性原理？',opts:['回到本质','看表面','跟风'],a:0}]},
+ {ico:'🤝',t:'伟大格局观',d:'选择同行者',qs:[{q:'选择比？',opts:['努力重要','运气重要','天赋重要'],a:0},{q:'同行比？',opts:['远方重要','速度重要','路线重要'],a:0},{q:'价值观放在？',opts:['利润前面','利润后面','无所谓'],a:0}]},
+ {ico:'🌳',t:'第一性原理',d:'本质思考',qs:[{q:'第一性原理=？',opts:['剥离表象看本质','看K线','听大V'],a:0},{q:'不？',opts:['跟风','研究','思考'],a:0},{q:'有价值投资？',opts:['独立思考的结果','抄来的','赌来的'],a:0}]},
+ {ico:'🧭',t:'选择与努力',d:'方向大于速度',qs:[{q:'选对赛道？',opts:['努力有复利','努力白费','无所谓'],a:0},{q:'找最好的？',opts:['公司做时间朋友','股票炒波段','消息快车'],a:0},{q:'花时间？',opts:['研究持有陪伴','盯盘','打听'],a:0}]},
+ {ico:'🌊',t:'结构性价值',d:'正和游戏',qs:[{q:'核心？',opts:['格局观','仓位','代码'],a:0},{q:'零和博弈？',opts:['反','做','喜欢'],a:0},{q:'投资=？',opts:['投人投事投未来','投代码','投运气'],a:0}]},
+ {ico:'💡',t:'认知升级',d:'大师思维',qs:[{q:'投资最贵？',opts:['是时间','是金钱','是胆量'],a:0},{q:'流水不争先？',opts:['争滔滔不绝','争第一名','争速度'],a:0},{q:'价值观是？',opts:['企业核心','装饰','口号'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'出手前问四句',qs:[{q:'十年后？',opts:['行业什么样','股价多少','我赚多少'],a:0},{q:'谁活下来？',opts:['最终赢家','今天热点','明天概念'],a:0},{q:'与他同行？',opts:['格局够吗','钱多吗','话多吗'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'三把火=？',opts:['知识能力价值观','火灾','火焰山'],a:0},{q:'时间的朋友=？',opts:['长期主义','短线客','赌徒'],a:0},{q:'护城河=？',opts:['创造价值','城墙','河水'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'先立价值观',qs:[{q:'第一？',opts:['价值观','利润','规模'],a:0},{q:'诚实独立？',opts:['支撑长期','妨碍赚钱','无所谓'],a:0},{q:'反投机？',opts:['坚持','参与','热爱'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查习惯',qs:[{q:'我长期主义？',opts:['有信念','只追快','无所谓'],a:0},{q:'我研究？',opts:['深度研究','看标题','听消息'],a:0},{q:'我同行？',opts:['选格局者','随便','利益'],a:0}]},
+ {ico:'🎓',t:'智慧检验',d:'大师金句',qs:[{q:'时间的朋友？',opts:['做','不做','躲'],a:0},{q:'与谁同行？',opts:['伟大格局观者','投机者','赌徒'],a:0},{q:'价值投资？',opts:['每个人的事','专家的事','富人的事'],a:0}]},
+ {ico:'👑',t:'价值投资大师挑战',d:'10题综合测验',qs:[{q:'三把火？',opts:['知识能力价值观','金钱房子车子','名利'],a:0},{q:'长期主义？',opts:['暴力计算','拿住不放','懒'],a:0},{q:'唯一护城河？',opts:['创造价值','大资金','关系'],a:0},{q:'3.0？',opts:['结构性价值','捡便宜','炒概念'],a:0},{q:'高瓴投？',opts:['研究挖出来的','拍脑袋','听消息'],a:0},{q:'选择比？',opts:['努力重要','运气重要','天赋重要'],a:0},{q:'第一性原理？',opts:['本质思考','看表面','跟风'],a:0},{q:'零和博弈？',opts:['反','做','喜欢'],a:0},{q:'投资最贵？',opts:['时间','金钱','胆量'],a:0},{q:'价值投资？',opts:['每个人的事','专家的事','富人的事'],a:0}]}
 ];
-const badges=['📕','🔥','🛖','⏳','🔨','🔍','🏰','📜','🧭','🌳','🧠','👑'];
-const badgeNames=['翻开序章','三把火点燃者','能力圈守门人','时间的朋友','价值创造者','研究驱动者','护城河守护者','公式大师','岔路抉择人','识人伯乐','长期主义者','张磊传人'];
+const badges=['📕','🔥','⏳','🏰','🪜','🔬','🤝','🌳','🧭','🌊','💡','👑'];
+const badgeNames=['翻开序章','三把火觉醒者','时间的朋友','护城河信徒','价值进化者','研究狂人','格局观同行者','本质思考者','方向选择者','结构投资者','认知升级者','价值投资大师'];
 let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
 function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
 function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
@@ -342,7 +289,7 @@ function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUp
 function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
 function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
 function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
-function openGame(i){if(i>=6&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
 function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
 function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
 setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
