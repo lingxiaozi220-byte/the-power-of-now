@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《巴菲特与索罗斯的投资习惯》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《巴菲特与索罗斯的投资习惯》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>巴菲特与索罗斯的投资习惯</h1>
+    <p>马克·泰尔 · 两位大师共同的 23 个投资习惯</p>
+    <span class="tag">23个习惯</span><span class="tag">保住本金</span><span class="tag">概率思维</span><span class="tag">独立思考</span><span class="tag">风险优先</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 股神巴菲特高清纪录片</div>
+  <div class="card">
+    <p>两位大师风格迥异，习惯却高度一致：<span class="q">不亏钱是第一原则，投资是概率游戏，自己做决策并承担全部责任。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV14SBKBoEnN&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 23 个习惯（免费）</div>
+  <div class="card">
+    <h3>理解 · 大师的共同点</h3>
+    <p><span class="q">马克·泰尔拆解两位大师，提炼出 23 个共同习惯：7 个基本、8 个风险、3 个市场、5 个其他。</span></p>
+    <div class="mini">⚙️ <b>关键：</b>成功不是靠天赋或运气，而是可复制的习惯系统。投资先修习惯，再谈技巧。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「23个习惯」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 第一原则：不亏钱（免费）</div>
+  <div class="card">
+    <h3>理解 · 保住本金是起点</h3>
+    <p><span class="q">巴菲特第一原则：不要亏钱。索罗斯：我不在乎对错，只在乎赚多少、赔多少。</span></p>
+    <div class="imgbox"><img src="art_capital.jpg" alt="保住本金"></div>
+    <div class="mini">🛡️ <b>关键：</b>亏 50% 要涨 100% 才回本。避免大亏，永远比赚快钱重要。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「不亏钱」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 投资是概率游戏（免费）</div>
+  <div class="card">
+    <h3>理解 · 胜率 × 赔率 × 下注比例</h3>
+    <p><span class="q">每次出手先算期望：赢时赚多少、输时亏多少、概率几何。赔率不对称才值得下注。</span></p>
+    <div class="imgbox"><img src="art_prob.jpg" alt="概率游戏"></div>
+    <div class="mini">🎲 <b>关键：</b>输小赢大=正期望系统。单次结果不重要，长期执行系统才重要。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「概率思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 独立思考（免费）</div>
+  <div class="card">
+    <h3>理解 · 不听消息，自己研究</h3>
+    <p><span class="q">大师从不跟风。巴菲特只买自己懂的；索罗斯在所有人恐慌时下重注。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1BvKJzQEJf&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_think.jpg" alt="独立思考"></div>
+    <div class="mini">🧠 <b>关键：</b>市场噪音是亏损之源。独立研究+自己的判断框架=真正的护城河。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「独立思考」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 自己负责（免费）</div>
+  <div class="card">
+    <h3>理解 · 为自己的决策负责</h3>
+    <p><span class="q">亏损时别怪市场、别怪消息、别怪庄家——决策是你做的，责任是你的。</span></p>
+    <div class="imgbox"><img src="art_responsible.jpg" alt="自己负责"></div>
+    <div class="mini">🚗 <b>关键：</b>承担责任→复盘→改进。推卸责任的人永远无法成长。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「自己负责」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 风险优先（免费）</div>
+  <div class="card">
+    <h3>理解 · 先问亏多少</h3>
+    <p><span class="q">索罗斯：先想最坏情况亏多少、怎么止损，再谈能赚多少。风险控制永远在盈利之前。</span></p>
+    <div class="imgbox"><img src="art_risk.jpg" alt="风险优先"></div>
+    <div class="mini">⚠️ <b>关键：</b>每笔交易预设止损位。活着，才有资格谈盈利。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「风险优先」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 大师的分野（免费）</div>
+  <div class="card">
+    <h3>理解 · 价值派 vs 投机派</h3>
+    <p><span class="q">巴菲特：买便宜的好公司，长期持有。索罗斯：利用市场失衡，灵活进出。殊途同归：都有系统、守纪律。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1FYubzdEor&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🔀 <b>关键：</b>选哪种风格都行，关键是"知行合一"。没有系统才是最大的风险。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「大师分野」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：习惯养成法、打造自己的投资系统、投资习惯实战清单 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（习惯养成法、投资系统、实战清单）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 习惯养成法</div>
+  <div class="card">
+    <h3>理解 · 从意识到习惯</h3>
+    <p><span class="q">21 天养成一个动作，90 天养成一个习惯。先改变环境，再改变行为。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1GajXzFEQj&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_habit.jpg" alt="习惯养成"></div>
+    <div class="mini">📅 <b>关键：</b>把投资习惯写进日历：每天研究 30 分钟、每周复盘一次、每月检查组合。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「习惯养成」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 打造你的投资系统</div>
+  <div class="card">
+    <h3>理解 · 系统代替冲动</h3>
+    <p><span class="q">规则明确：买什么、买多少、何时止损、何时卖出。用系统隔离情绪。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1sF4cz4Eu4&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛠️ <b>关键：</b>系统三件套：选股规则、仓位规则、止损规则。没有规则就不交易。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「投资系统」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 投资习惯实战清单</div>
+  <div class="card">
+    <h3>理解 · 从读到做到</h3>
+    <p>一套可执行的清单：<span class="q">保本金 → 算概率 → 立系统 → 独研究 → 预止损 → 勤复盘 → 守纪律。</span></p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="实战清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1 保本金</td><td>任何交易先设最大可接受亏损</td></tr>
+      <tr><td>2 算概率</td><td>写清胜率、赔率、期望值</td></tr>
+      <tr><td>3 立系统</td><td>写死选股/仓位/止损规则</td></tr>
+      <tr><td>4 独研究</td><td>自己调研，不跟消息</td></tr>
+      <tr><td>5 预止损</td><td>进场前定好止损位</td></tr>
+      <tr><td>6 勤复盘</td><td>每周复盘，找系统漏洞</td></tr>
+      <tr><td>7 守纪律</td><td>规则外的事一律不做</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：投资习惯大师挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《滚雪球》《巴菲特之道》《以交易为生》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='habits';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'⚙️',t:'23个习惯',d:'大师共同点',qs:[{q:'成功靠？',opts:['可复制习惯','天赋','运气'],a:0},{q:'23习惯分？',opts:['7+8+3+5','一样','10个'],a:0},{q:'先修？',opts:['习惯','技巧','消息'],a:0}]},
+ {ico:'🛡️',t:'不亏钱',d:'第一原则',qs:[{q:'第一原则？',opts:['不亏钱','赚快钱','梭哈'],a:0},{q:'亏50%要涨？',opts:['100%','50%','10%'],a:0},{q:'索罗斯在乎？',opts:['赚多少赔多少','对错','面子'],a:0}]},
+ {ico:'🎲',t:'概率思维',d:'期望值',qs:[{q:'出手先算？',opts:['期望值','别人意见','K线'],a:0},{q:'好系统？',opts:['输小赢大','赢小输大','赌运气'],a:0},{q:'单次结果？',opts:['不重要','最重要','决定命运'],a:0}]},
+ {ico:'🧠',t:'独立思考',d:'不跟风',qs:[{q:'大师？',opts:['自己研究','跟消息','抄作业'],a:0},{q:'巴菲特买？',opts:['自己懂的','最热的','别人推荐'],a:0},{q:'市场噪音？',opts:['亏损之源','财富密码','必须听'],a:0}]},
+ {ico:'🚗',t:'自己负责',d:'担责成长',qs:[{q:'亏损怪谁？',opts:['自己','市场','庄家'],a:0},{q:'负责后？',opts:['复盘改进','骂市场','找借口'],a:0},{q:'推卸责任？',opts:['无法成长','更厉害','省事'],a:0}]},
+ {ico:'⚠️',t:'风险优先',d:'先问亏多少',qs:[{q:'先想？',opts:['最坏亏多少','能赚多少','何时买'],a:0},{q:'每笔设？',opts:['止损位','目标价','幻想'],a:0},{q:'活着才有？',opts:['资格盈利','资格吹牛','资格休息'],a:0}]},
+ {ico:'🔀',t:'大师分野',d:'价值vs投机',qs:[{q:'巴菲特？',opts:['买好公司长期持有','频繁交易','对冲'],a:0},{q:'索罗斯？',opts:['利用市场失衡','只买便宜','只做多'],a:0},{q:'共同点？',opts:['有系统守纪律','靠运气','靠消息'],a:0}]},
+ {ico:'📅',t:'习惯养成',d:'从意识到习惯',qs:[{q:'养成周期？',opts:['21天动作90天习惯','1天','1年'],a:0},{q:'先改变？',opts:['环境','别人','运气'],a:0},{q:'写进？',opts:['日历','梦里','朋友圈'],a:0}]},
+ {ico:'🛠️',t:'投资系统',d:'规则代替冲动',qs:[{q:'系统三件套？',opts:['选股仓位止损','买入持有卖出','消息热点内幕'],a:0},{q:'隔离？',opts:['情绪','盈利','知识'],a:0},{q:'没规则？',opts:['不交易','照买','梭哈'],a:0}]},
+ {ico:'💡',t:'认知升级',d:'大师思维',qs:[{q:'投资是？',opts:['概率游戏','赌博','算命'],a:0},{q:'最大风险？',opts:['没有系统','亏一点','跌一天'],a:0},{q:'先保？',opts:['本金','收益','面子'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'出手前',qs:[{q:'先设？',opts:['止损位','涨停目标','幻想'],a:0},{q:'再算？',opts:['期望值','别人赚多少','内幕'],a:0},{q:'后执行？',opts:['按系统','凭感觉','听消息'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'期望值？',opts:['胜率×赔率','股价','市值'],a:0},{q:'止损？',opts:['限制亏损','追涨','满仓'],a:0},{q:'系统？',opts:['规则集合','软件','设备'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'先防亏',qs:[{q:'第一？',opts:['不亏钱','赚大钱','上杠杆'],a:0},{q:'恐慌？',opts:['按系统','跟风','清仓'],a:0},{q:'未知？',opts:['不碰','照买','梭哈'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查习惯',qs:[{q:'我有系统？',opts:['有规则','凭感觉','听消息'],a:0},{q:'我止损？',opts:['预设好','硬扛','加仓'],a:0},{q:'我复盘？',opts:['每周','从不','偶尔'],a:0}]},
+ {ico:'🎓',t:'智慧检验',d:'大师金句',qs:[{q:'不亏钱？',opts:['第一原则','次要','无所谓'],a:0},{q:'概率游戏？',opts:['投资本质','赌注','玩笑'],a:0},{q:'自己负责？',opts:['决策承担','怪市场','怪庄家'],a:0}]},
+ {ico:'👑',t:'投资习惯大师挑战',d:'10题综合测验',qs:[{q:'23个习惯？',opts:['共同点','巧合','不同点'],a:0},{q:'第一原则？',opts:['不亏钱','赚快钱','梭哈'],a:0},{q:'投资是？',opts:['概率游戏','赌博','算命'],a:0},{q:'独立思考？',opts:['自己研究','跟消息','抄作业'],a:0},{q:'亏损怪？',opts:['自己','市场','庄家'],a:0},{q:'风险优先？',opts:['先问亏多少','先想赚多少','先买'],a:0},{q:'系统？',opts:['规则集合','软件','设备'],a:0},{q:'巴菲特？',opts:['好公司长期','频繁交易','对冲'],a:0},{q:'索罗斯？',opts:['利用失衡','只做多','只买便宜'],a:0},{q:'没系统？',opts:['最大风险','最安全','没关系'],a:0}]}
+];
+const badges=['📕','⚙️','🛡️','🎲','🧠','🚗','⚠️','🔀','📅','🛠️','💡','👑'];
+const badgeNames=['翻开序章','习惯发现者','本金守护者','概率玩家','独立思考者','责任担当者','风险管理者','风格理解者','习惯养成者','系统构建师','认知升级者','投资习惯大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
