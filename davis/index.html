@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《戴维斯王朝》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《戴维斯王朝》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>戴维斯王朝</h1>
+    <p>约翰·罗斯柴尔德 · 三代人 5 万美元到 9 亿美元的投资传承</p>
+    <span class="tag">戴维斯双击</span><span class="tag">保险股</span><span class="tag">复利奇迹</span><span class="tag">长期持有</span><span class="tag">主题投资</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 5万美金变9亿</div>
+  <div class="card">
+    <p>复利 1.8 万倍，跨越 50 年的「戴维斯双击」神话。<span class="q">以合理价格买成长股，利润涨 3 倍，股价能涨 9 倍。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1VNkxBPEVo&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 戴维斯双击（免费）</div>
+  <div class="card">
+    <h3>理解 · 利润与估值共振</h3>
+    <p><span class="q">股价 = 每股收益（EPS）× 市盈率（PE）。公司利润增长 → 市场给更高估值 → 双重推动股价。</span></p>
+    <div class="imgbox"><img src="art_double.jpg" alt="戴维斯双击"></div>
+    <div class="mini">📈 <b>关键：</b>利润涨 3 倍 + PE 升 3 倍 = 股价涨 9 倍。这就是双击的魔力。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「戴维斯双击」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 保险股炼金术（免费）</div>
+  <div class="card">
+    <h3>理解 · 浮存金复利</h3>
+    <p><span class="q">保险公司先收保费、后赔钱，浮存金可以拿去投资。1947 年市盈率 4 倍的保险股，持有几十年涨几十倍。</span></p>
+    <div class="imgbox"><img src="art_insurance.jpg" alt="保险股炼金术"></div>
+    <div class="mini">☂️ <b>关键：</b>保险股=永远的现金奶牛。1950-1990 四十年，美国保险股平均涨 200 倍。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「保险股炼金术」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 复利奇迹（免费）</div>
+  <div class="card">
+    <h3>理解 · 世界第八大奇迹</h3>
+    <p><span class="q">你不需要每年赚 50%，只需要每年赚 15%，坚持 30 年。分红再投资，滚雪球。</span></p>
+    <div class="imgbox"><img src="art_compound.jpg" alt="复利奇迹"></div>
+    <div class="mini">❄️ <b>关键：</b>47 年年化 23.18%，5 万变 9 亿。时间+复利=财富核武器。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「复利奇迹」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 合理价格买成长（免费）</div>
+  <div class="card">
+    <h3>理解 · 不要买贵也不要买烂</h3>
+    <p><span class="q">避开廉价股（便宜无好货）、避开高价股（透支未来），以合理价格购买适度增长的公司。</span></p>
+    <div class="imgbox"><img src="art_price.jpg" alt="合理价格"></div>
+    <div class="mini">⚖️ <b>关键：</b>标准：低于 15 倍市盈率 + 7%-15% 成长率。买贵了，好公司也赚不到钱。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「合理价格」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 主题投资（免费）</div>
+  <div class="card">
+    <h3>理解 · 跟着时代大趋势</h3>
+    <p><span class="q">通货膨胀看能源，通货紧缩看金融，老龄化看医疗医药。三代人踩准三次大主题。</span></p>
+    <div class="imgbox"><img src="art_theme.jpg" alt="主题投资"></div>
+    <div class="mini">🌍 <b>关键：</b>不预测个股涨跌，而是押注时代方向。日本保险股：西方偏见中买入，20 年赚翻。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「主题投资」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 长期持有纪律（免费）</div>
+  <div class="card">
+    <h3>理解 · 让赢家继续奔跑</h3>
+    <p><span class="q">优秀的管理层、顺势而为、忽略后视镜。买了就持有，让时间发酵，不频繁交易。</span></p>
+    <div class="imgbox"><img src="art_patience.jpg" alt="长期耐心"></div>
+    <div class="mini">⏳ <b>关键：</b>黑色星期一暴跌时戴维斯在抄底。耐心不是麻木，是有准备的等。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「长期持有」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 家族传承智慧（免费）</div>
+  <div class="card">
+    <h3>理解 · 投资是可以教的</h3>
+    <p><span class="q">三代人用同一套方法：保险股母矿、双击模型、复利纪律。把系统教给孩子，财富才传得下去。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1q4gLzjEoF&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">👨‍👩‍👦 <b>关键：</b>戴维斯家族投资秘诀：避开廉价股、避开高价股、合理价格买成长、让赢家奔跑、投资优秀管理层。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「家族传承」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：风险控制金字塔、全球视野与双杀防范、戴维斯投资清单实操 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（风险控制金字塔、全球视野、投资清单实操）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 风险控制金字塔</div>
+  <div class="card">
+    <h3>理解 · 七层防御体系</h3>
+    <p><span class="q">估值纪律、行业分散、仓位控制、泡沫预警、黑天鹅预案、杠杆限制、流动性管理——七层防御层层设防。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV14SBKBoEnN&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>高估值+高负债=戴维斯双杀（利润降+估值降）。防范双杀，才能活到双击那天。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「风险防御」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 全球视野</div>
+  <div class="card">
+    <h3>理解 · 跨国复制双击</h3>
+    <p><span class="q">不只看美国。日本保险股、欧洲金融股——哪里便宜买哪里，把双击模型复制到全球。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1BvKJzQEJf&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🌏 <b>关键：</b>寻找全球被低估的保险与金融股。别人有偏见的地方，机会越大。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「全球视野」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 戴维斯投资清单实操</div>
+  <div class="card">
+    <h3>理解 · 把双击变成习惯</h3>
+    <p>买入前逐一勾选：<span class="q">公司利润真实增长？市盈率低于 15？成长率 7%-15%？能长期持有？行业是时代主题？</span></p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="投资清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1 找母矿</td><td>从保险/金融行业找长期增长标的</td></tr>
+      <tr><td>2 查双击</td><td>确认利润增长+估值被压低</td></tr>
+      <tr><td>3 对价格</td><td>PE&lt;15、成长率7%-15%</td></tr>
+      <tr><td>4 建仓位</td><td>分批买入，留足现金</td></tr>
+      <tr><td>5 长期持</td><td>分红再投资，让复利奔跑</td></tr>
+      <tr><td>6 防双杀</td><td>高估值高负债标的坚决回避</td></tr>
+      <tr><td>7 传系统</td><td>把方法论写成清单传给下一代</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：戴维斯家族投资大师挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《滚雪球》《战胜华尔街》《巴菲特的护城河》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='davis';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'📈',t:'戴维斯双击',d:'利润估值共振',qs:[{q:'股价=？',opts:['EPS×PE','EPS+PE','EPS-PE'],a:0},{q:'双击=？',opts:['利润估值双升','只涨利润','只涨估值'],a:0},{q:'利润3倍PE3倍？',opts:['股价9倍','股价6倍','股价3倍'],a:0}]},
+ {ico:'☂️',t:'保险股炼金术',d:'浮存金复利',qs:[{q:'浮存金=？',opts:['先收保费后赔钱','自有资金','借款'],a:0},{q:'1947年保险股PE？',opts:['4倍','40倍','100倍'],a:0},{q:'保险股是？',opts:['现金奶牛','夕阳产业','赌场'],a:0}]},
+ {ico:'❄️',t:'复利奇迹',d:'第八大奇迹',qs:[{q:'每年15%坚持30年？',opts:['巨大财富','小钱','亏钱'],a:0},{q:'分红？',opts:['再投资','花掉','存银行'],a:0},{q:'复利+？',opts:['时间','运气','杠杆'],a:0}]},
+ {ico:'⚖️',t:'合理价格',d:'不贵不烂',qs:[{q:'避开？',opts:['廉价股高价股','好公司','成长股'],a:0},{q:'标准？',opts:['PE<15成长7-15%','PE>50','零成长'],a:0},{q:'买贵了？',opts:['好公司也赚不到','照样赚','无所谓'],a:0}]},
+ {ico:'🌍',t:'主题投资',d:'时代大趋势',qs:[{q:'通胀看？',opts:['能源','金融','医药'],a:0},{q:'通缩看？',opts:['金融','能源','科技'],a:0},{q:'老龄化看？',opts:['医疗医药','钢铁','煤炭'],a:0}]},
+ {ico:'⏳',t:'长期持有',d:'让赢家奔跑',qs:[{q:'买了？',opts:['持有几十年','天天交易','明天卖'],a:0},{q:'暴跌时？',opts:['抄底','割肉','清仓'],a:0},{q:'频繁交易？',opts:['少做','多做','必做'],a:0}]},
+ {ico:'👨‍👩‍👦',t:'家族传承',d:'系统可教',qs:[{q:'三代人？',opts:['同一套方法','各玩各的','换风格'],a:0},{q:'传什么？',opts:['系统方法','股票代码','内幕'],a:0},{q:'忽略？',opts:['后视镜','好公司','复利'],a:0}]},
+ {ico:'🛡️',t:'风险防御',d:'防双杀',qs:[{q:'双杀=？',opts:['利润估值双降','利润估值双升','股价翻倍'],a:0},{q:'高估值高负债？',opts:['回避','买入','梭哈'],a:0},{q:'七层防御？',opts:['层层设防','一层就够','不用防'],a:0}]},
+ {ico:'🌏',t:'全球视野',d:'跨国复制',qs:[{q:'只看美国？',opts:['不','只看','必须'],a:0},{q:'哪里有偏见？',opts:['机会越大','风险越大','没区别'],a:0},{q:'日本保险股？',opts:['便宜就买','永远不碰','听消息'],a:0}]},
+ {ico:'💡',t:'认知升级',d:'大师思维',qs:[{q:'复利是？',opts:['第八大奇迹','骗局','传说'],a:0},{q:'双击模型？',opts:['小学数学','高数','玄学'],a:0},{q:'时间+？',opts:['复利','杠杆','运气'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'买入前检查',qs:[{q:'利润？',opts:['真实增长','虚增','不关心'],a:0},{q:'PE？',opts:['低于15','高于50','无所谓'],a:0},{q:'行业？',opts:['时代主题','夕阳行业','热门概念'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'双击=？',opts:['利润估值双升','双涨停','双击鼠标'],a:0},{q:'双杀=？',opts:['利润估值双降','双跌停','双杀猪'],a:0},{q:'浮存金=？',opts:['先收的保费','存款','贷款'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'先避双杀',qs:[{q:'第一？',opts:['不买贵','追热点','梭哈'],a:0},{q:'高估值？',opts:['回避','买入','加仓'],a:0},{q:'杠杆？',opts:['少用','多用','梭哈'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查习惯',qs:[{q:'我是否追高？',opts:['有纪律','经常','从不'],a:0},{q:'我研究？',opts:['利润估值','K线','消息'],a:0},{q:'我能持有？',opts:['几十年','几天','一小时'],a:0}]},
+ {ico:'🎓',t:'智慧检验',d:'家族金句',qs:[{q:'买贵了？',opts:['好公司也亏','照样赚','无所谓'],a:0},{q:'复利+？',opts:['时间','运气','杠杆'],a:0},{q:'让赢家？',opts:['奔跑','下车','休息'],a:0}]},
+ {ico:'👑',t:'戴维斯家族大师挑战',d:'10题综合测验',qs:[{q:'股价=？',opts:['EPS×PE','EPS+PE','EPS-PE'],a:0},{q:'双击=？',opts:['利润估值双升','双涨停','双杀'],a:0},{q:'浮存金？',opts:['先收的保费','存款','贷款'],a:0},{q:'复利？',opts:['第八大奇迹','骗局','传说'],a:0},{q:'标准？',opts:['PE<15成长7-15%','PE>50','零成长'],a:0},{q:'通胀看？',opts:['能源','金融','医药'],a:0},{q:'暴跌时？',opts:['抄底','割肉','清仓'],a:0},{q:'双杀=？',opts:['利润估值双降','双升','翻倍'],a:0},{q:'传承？',opts:['系统方法','股票代码','内幕'],a:0},{q:'买贵了？',opts:['好公司也亏','照样赚','无所谓'],a:0}]}
+];
+const badges=['📕','📈','☂️','❄️','⚖️','🌍','⏳','👨‍👩‍👦','🛡️','🌏','💡','👑'];
+const badgeNames=['翻开序章','双击猎手','保险股炼金师','复利信徒','价格纪律者','主题先锋','长期持有者','传承导师','风险守卫者','全球视野者','认知升级者','戴维斯大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
