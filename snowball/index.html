@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《滚雪球》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《滚雪球》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>滚雪球</h1>
+    <p>艾丽斯·施罗德 · 巴菲特唯一授权传记 · 湿雪长坡的复利人生</p>
+    <span class="tag">复利思维</span><span class="tag">湿雪长坡</span><span class="tag">安全边际</span><span class="tag">能力圈</span><span class="tag">长期主义</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 读懂巴菲特一生的湿雪长坡</div>
+  <div class="card">
+    <p>巴菲特：<span class="q">人生就像滚雪球，重要的是找到很湿的雪和很长的坡。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1tSNj6rEhy&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 湿雪与长坡（免费）</div>
+  <div class="card">
+    <h3>理解 · 滚雪球的隐喻</h3>
+    <p><span class="q">湿雪=能持续增值的好资产，长坡=足够长的时间。两者相乘，才是复利。</span></p>
+    <div class="imgbox"><img src="art_snow.jpg" alt="湿雪长坡"></div>
+    <div class="mini">❄️ <b>关键：</b>普通人最缺的不是本金，是找到湿雪（好赛道好资产）和足够长的坡（早开始、活得久、拿得住）。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「滚雪球隐喻」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 复利奇迹（免费）</div>
+  <div class="card">
+    <h3>理解 · 时间是印钞机</h3>
+    <p><span class="q">巴菲特 99% 的财富是 50 岁之后赚到的。伯克希尔年化约 20%，持续 57 年，1 万变 5.3 亿。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1ia3c68Eff&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_compound.jpg" alt="复利奇迹"></div>
+    <div class="mini">⏳ <b>关键：</b>复利不靠速度靠时间。晚开始 10 年，差距是数量级。越早滚雪球，坡越长。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「复利计算」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 价值投资三基石（免费）</div>
+  <div class="card">
+    <h3>理解 · 安全边际 · 市场先生 · 能力圈</h3>
+    <p><span class="q">买得够便宜（安全边际）；把市场当情绪化的报价员（市场先生）；只做看得懂的事（能力圈）。</span></p>
+    <div class="imgbox"><img src="art_three.jpg" alt="三基石"></div>
+    <div class="mini">🛡️ <b>关键：</b>三基石来自格雷厄姆与芒格。护城河企业+合理价格=巴菲特的进化版打法。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「三基石」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 长期持有（免费）</div>
+  <div class="card">
+    <h3>理解 · 拿住不动是最难的能力</h3>
+    <p><span class="q">最伟大的投资来自耐心：选对资产，然后一动不动，让复利自然发生。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1FYubzdEor&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_long.jpg" alt="长期持有"></div>
+    <div class="mini">🏔️ <b>关键：</b>拿住优质资产的最大敌人是情绪。设置检查频率：少看账户，多看生意。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「长期持有」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 逆向思维（免费）</div>
+  <div class="card">
+    <h3>理解 · 别人贪婪我恐惧</h3>
+    <p><span class="q">1988 年股市崩盘后，巴菲特逆势重仓可口可乐，从此持有数十年。市场越恐慌，机会越大。</span></p>
+    <div class="imgbox"><img src="art_contrarian.jpg" alt="逆向思维"></div>
+    <div class="mini">🔄 <b>关键：</b>逆向不是对着干，是独立判断：买你了解的、被错杀的好公司。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「逆向思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 护城河（免费）</div>
+  <div class="card">
+    <h3>理解 · 找有壁垒的公司</h3>
+    <p><span class="q">品牌、成本、网络效应、转换成本——这些壁垒让好公司持续赚钱，抵御竞争。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Nq7X66ERg&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_moat.jpg" alt="护城河"></div>
+    <div class="mini">🏰 <b>关键：</b>先问：这家公司的护城河是什么？十年后还在吗？</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「护城河识别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 从捡烟蒂到买伟大公司（免费）</div>
+  <div class="card">
+    <h3>理解 · 巴菲特的进化</h3>
+    <p><span class="q">早期捡烟蒂（便宜的烂公司），在芒格影响下转向：以合理价格买入伟大公司，然后什么都不做。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV14SBKBoEnN&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🚜 <b>关键：</b>伟大公司+合理价格 优于 平庸公司+便宜价格。好生意会自动滚雪球。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「投资进化」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：个人雪球打造、伯克希尔模式、滚雪球实战清单 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（个人雪球打造、伯克希尔模式、实战清单）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 打造你的雪球</div>
+  <div class="card">
+    <h3>理解 · 普通人的滚雪球路径</h3>
+    <p><span class="q">第一步攒本金（收入-储蓄=支出），第二步找湿雪（好资产/好技能/好人脉），第三步给时间。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV13zTK6xEP9&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🌱 <b>关键：</b>滚雪球不只关于钱：技能、健康、关系都在复利。每天进步 1%，一年 37 倍。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「个人雪球」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 伯克希尔模式</div>
+  <div class="card">
+    <h3>理解 · 保险公司+投资组合</h3>
+    <p><span class="q">用保险浮存金做投资：低成本、长周期的钱，是巴菲特的杠杆。普通人对应的是长期储蓄与定投。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1BvKJzQEJf&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏦 <b>关键：</b>找到"永远不用还的钱"长期投资——对普通人，就是长期不用的闲钱。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「闲钱纪律」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 滚雪球实战清单</div>
+  <div class="card">
+    <h3>理解 · 从读到做到</h3>
+    <p>一套可执行的清单：<span class="q">攒雪 → 找坡 → 辨湿 → 建护城河 → 拿住 → 复盘 → 传承。</span></p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="实战清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1 攒雪</td><td>强制储蓄，收入-储蓄=支出</td></tr>
+      <tr><td>2 找坡</td><td>选能持续十年的好赛道/好资产</td></tr>
+      <tr><td>3 辨湿</td><td>只碰看得懂、有壁垒的生意</td></tr>
+      <tr><td>4 建圈</td><td>划清能力圈，圈外不碰</td></tr>
+      <tr><td>5 拿住</td><td>设检查频率，少看盘多研究</td></tr>
+      <tr><td>6 复盘</td><td>定期验证故事与护城河是否还在</td></tr>
+      <tr><td>7 传承</td><td>把复利思维传给下一代</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：滚雪球大师挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《巴菲特之道》《聪明的投资者》《穷查理宝典》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='snowball';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'❄️',t:'滚雪球隐喻',d:'湿雪长坡',qs:[{q:'湿雪指？',opts:['能增值的好资产','钱多','运气'],a:0},{q:'长坡指？',opts:['足够长的时间','陡坡','捷径'],a:0},{q:'财富核心？',opts:['湿雪×长坡','追热点','梭哈'],a:0}]},
+ {ico:'⏳',t:'复利计算',d:'时间印钞机',qs:[{q:'99%财富何时赚？',opts:['50岁后','20岁','30岁'],a:0},{q:'复利靠？',opts:['时间','速度','杠杆'],a:0},{q:'晚10年？',opts:['数量级差距','没差','更好'],a:0}]},
+ {ico:'🛡️',t:'三基石',d:'价值投资',qs:[{q:'安全边际？',opts:['买得够便宜','追高','听消息'],a:0},{q:'市场先生？',opts:['情绪化报价员','全知','敌人'],a:0},{q:'能力圈？',opts:['只做看得懂的','越大越好','圈外梭哈'],a:0}]},
+ {ico:'🏔️',t:'长期持有',d:'拿住不动',qs:[{q:'最伟大投资靠？',opts:['耐心','频繁交易','运气'],a:0},{q:'最大敌人？',opts:['情绪','市场','别人'],a:0},{q:'少看账户？',opts:['多研究生意','越看越好','盯K线'],a:0}]},
+ {ico:'🔄',t:'逆向思维',d:'别人贪婪我恐惧',qs:[{q:'崩盘后巴菲特？',opts:['逆势买好公司','全抛','恐慌'],a:0},{q:'逆向是？',opts:['独立判断','对着干','抄底梭哈'],a:0},{q:'1988年买？',opts:['可口可乐','诺基亚','郁金香'],a:0}]},
+ {ico:'🏰',t:'护城河识别',d:'壁垒',qs:[{q:'护城河是？',opts:['品牌成本网络转换','股价高','名字好'],a:0},{q:'买前问？',opts:['护城河十年还在吗','会不会涨停','庄家在哪'],a:0},{q:'无壁垒公司？',opts:['容易被打败','永远涨','必须买'],a:0}]},
+ {ico:'🚜',t:'投资进化',d:'捡烟蒂到伟大',qs:[{q:'早期策略？',opts:['捡烟蒂','只买茅台','对冲'],a:0},{q:'芒格影响？',opts:['合理价买伟大公司','更快交易','更多杠杆'],a:0},{q:'好生意？',opts:['自动滚雪球','需要天天管','随时崩'],a:0}]},
+ {ico:'🌱',t:'个人雪球',d:'普通人路径',qs:[{q:'第一步？',opts:['攒本金','借钱投资','买彩票'],a:0},{q:'公式？',opts:['收入-储蓄=支出','收入-支出=储蓄','储蓄=零'],a:0},{q:'雪球还有？',opts:['技能健康关系','只有钱','只靠运气'],a:0}]},
+ {ico:'🏦',t:'闲钱纪律',d:'不还的钱',qs:[{q:'巴菲特杠杆？',opts:['保险浮存金','银行贷款','民间借贷'],a:0},{q:'普通人对应？',opts:['长期闲钱','随时要用的钱','借来的'],a:0},{q:'闲钱投资？',opts:['长期定投','频繁进出','一把梭'],a:0}]},
+ {ico:'💡',t:'认知升级',d:'巴菲特思维',qs:[{q:'买股票就是？',opts:['买公司股权','赌代码','炒概念'],a:0},{q:'股价跌？',opts:['可能是机会','必须跑','天塌了'],a:0},{q:'不懂的？',opts:['不碰','照买','梭哈'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'滚雪球流程',qs:[{q:'先找？',opts:['湿雪（好资产）','热点','杠杆'],a:0},{q:'再找？',opts:['长坡（时间）','快钱','捷径'],a:0},{q:'最后？',opts:['拿住不动','天天交易','追涨杀跌'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'安全边际？',opts:['便宜买好货','高价追','赌'],a:0},{q:'能力圈？',opts:['懂的范围','越大越好','别人圈'],a:0},{q:'复利？',opts:['时间的朋友','一夜暴富','利息'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'先防亏',qs:[{q:'最重要？',opts:['不亏钱','赚快钱','上杠杆'],a:0},{q:'第一条？',opts:['不要亏钱','追热点','梭哈'],a:0},{q:'第二条？',opts:['记住第一条','借钱','加杠杆'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查雪球',qs:[{q:'我的雪球是？',opts:['技能/资产/关系','只有工资','彩票'],a:0},{q:'我的坡？',opts:['能滚十年的方向','三年热度','没有'],a:0},{q:'我的湿？',opts:['看得懂的增值项','跟风','赌'],a:0}]},
+ {ico:'🎓',t:'智慧检验',d:'巴菲特金句',qs:[{q:'人生就像？',opts:['滚雪球','赛跑','赌博'],a:0},{q:'湿雪长坡？',opts:['资产×时间','运气×胆量','消息×速度'],a:0},{q:'复利是？',opts:['第八大奇迹','骗局','小把戏'],a:0}]},
+ {ico:'👑',t:'滚雪球大师挑战',d:'10题综合测验',qs:[{q:'书名隐喻？',opts:['湿雪长坡','爬山','滑雪'],a:0},{q:'99%财富？',opts:['50岁后','年轻时','继承'],a:0},{q:'三基石？',opts:['安全边际市场先生能力圈','K线均线量能','消息庄家杠杆'],a:0},{q:'护城河？',opts:['品牌成本网络转换','市值大','涨停多'],a:0},{q:'逆向？',opts:['别人恐惧我贪婪','随大流','追高'],a:0},{q:'长期？',opts:['拿住好公司','频繁交易','看盘'],a:0},{q:'闲钱？',opts:['长期不用的钱','借的钱','生活费'],a:0},{q:'能力圈？',opts:['只做懂的','越大越好','圈外梭哈'],a:0},{q:'复利靠？',opts:['时间','速度','运气'],a:0},{q:'第一原则？',opts:['不亏钱','赚快钱','上杠杆'],a:0}]}
+];
+const badges=['📕','❄️','⏳','🛡️','🏔️','🔄','🏰','🚜','🌱','🏦','💡','👑'];
+const badgeNames=['翻开序章','湿雪发现者','复利信徒','三基石践行者','耐心持有者','逆向思维者','护城河侦察兵','进化投资者','个人雪球主理人','闲钱纪律家','认知升级者','滚雪球大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
