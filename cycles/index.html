@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《周期》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《周期》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>周期</h1>
+    <p>霍华德·马克斯 · 不必预测未来，只需知道自己在周期的什么位置</p>
+    <span class="tag">钟摆理论</span><span class="tag">周期定位</span><span class="tag">逆向投资</span><span class="tag">风险意识</span><span class="tag">三对平衡</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 为什么总追涨杀跌</div>
+  <div class="card">
+    <p>根源就是没看懂周期。市场像钟摆，<span class="q">极少停在中间，总从贪婪摆向恐惧。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1pDg36PEcw&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 周期三大铁律（免费）</div>
+  <div class="card">
+    <h3>理解 · 周期是什么</h3>
+    <p><span class="q">铁律一：市场不走直线，必走曲线；铁律二：市场不会过度，就是会过度；铁律三：周期不同步，但会相互影响。</span></p>
+    <div class="imgbox"><img src="art_curve.jpg" alt="周期曲线"></div>
+    <div class="mini">📈 <b>关键：</b>大涨后必有调整，大跌后总有反弹——不是偶然，是周期定律。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「周期三铁律」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 市场钟摆（免费）</div>
+  <div class="card">
+    <h3>理解 · 情绪的钟摆</h3>
+    <p><span class="q">价格被推到极端，从来不是理性计算，而是情绪。钟摆向一个方向摆得越远，回摆的力量就越大。</span></p>
+    <div class="imgbox"><img src="art_pendulum.jpg" alt="钟摆"></div>
+    <div class="mini">🕰️ <b>关键：</b>钟摆两端=贪婪与恐惧。你赚钱时觉得是天才，亏钱时觉得天塌了——这正是钟摆最危险的位置。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「钟摆位置」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 判断周期位置（免费）</div>
+  <div class="card">
+    <h3>理解 · 定位比预测重要</h3>
+    <p><span class="q">你不需要预测未来怎么走，你只需要知道自己现在站在周期的什么位置。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1X8MdzUEwi&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>识别极端信号：人人赚钱、遍地好消息=接近顶点；人人恐慌、无人敢买=接近谷底。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「周期定位」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 信贷周期（免费）</div>
+  <div class="card">
+    <h3>理解 · 信贷是市场的氧气</h3>
+    <p><span class="q">信贷宽松→资金涌入→资产暴涨；信贷收紧→资金撤离→资产暴跌。信贷周期波动最无常。</span></p>
+    <div class="imgbox"><img src="art_credit.jpg" alt="信贷周期"></div>
+    <div class="mini">🚰 <b>关键：</b>2007年信用记录一塌糊涂的人也能借钱，正是信贷周期的顶点信号。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「信贷周期」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 心理周期（免费）</div>
+  <div class="card">
+    <h3>理解 · 市场周期本质是人性周期</h3>
+    <p><span class="q">贪婪与恐惧轮流坐庄，把价格推到离谱的两岸。风险态度本身也有周期：人们有时视风险如无物，有时又过度避险。</span></p>
+    <div class="imgbox"><img src="art_psych.jpg" alt="心理周期"></div>
+    <div class="mini">😨 <b>关键：</b>亏钱的人不是不懂技术，是输给了自己脑子里的钟摆。反人性，才可能赢。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「心理周期」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 极端点与逆向（免费）</div>
+  <div class="card">
+    <h3>理解 · 别人贪婪我恐惧</h3>
+    <p><span class="q">在周期顶点，人人贪婪；在周期谷底，人人恐惧。逆向投资=在极端点反向操作。</span></p>
+    <div class="imgbox"><img src="art_extreme.jpg" alt="极端点"></div>
+    <div class="mini">⛰️ <b>关键：</b>2020年3月人人恐慌抛售时，正是贪婪的好时机。逆向难在孤独的勇气，而非抬杠。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「逆向思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 三对平衡（免费）</div>
+  <div class="card">
+    <h3>理解 · 投资成功的平衡术</h3>
+    <p><span class="q">投资成功要在三对关键因素上保持平衡：周期定位与资产选择（选时与选股）、激进与保守（进攻与防守）、技巧与运气。</span></p>
+    <div class="imgbox"><img src="art_balance.jpg" alt="三对平衡"></div>
+    <div class="mini">⚖️ <b>关键：</b>顶尖投资者既会进攻也会防守，根据周期位置动态切换仓位。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「三对平衡」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：有时有胆有备三步法、周期定位实战、马克斯50年投资智慧 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（有时有胆有备、周期定位实战、马克斯50年智慧）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 有时、有胆、有备</div>
+  <div class="card">
+    <h3>理解 · 周期定位三步法</h3>
+    <p><span class="q">有时：判断周期位置，决定仓位；有胆：在极端点逆向加仓；有备：永远留有余地，不做赌徒。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Ays3zJEHr&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>马克斯：最重要的不是你赚了多少，而是你能承受多大的回撤。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「有时有胆有备」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 周期定位实战</div>
+  <div class="card">
+    <h3>理解 · 把周期思维变成习惯</h3>
+    <p>每月问自己：<span class="q">现在是周期的什么位置？市场情绪在贪婪端还是恐惧端？我该进攻还是防守？</span></p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="周期清单"></div>
+    <div class="mini">📋 <b>关键：</b>周期思维不止在股市——经济、人生、行业都有周期，看得懂周期的人活得清醒。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「实战演练」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 马克斯 50 年投资智慧</div>
+  <div class="card">
+    <h3>理解 · 敬畏周期</h3>
+    <p>投资成功本身也有周期，失败是常态。<span class="q">赚大钱的秘诀：在别人贪婪时恐惧，在别人恐惧时贪婪，同时敬畏市场。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV14SBKBoEnN&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <table>
+      <tr><th>周期位置</th><th>情绪信号</th><th>正确动作</th></tr>
+      <tr><td>顶点</td><td>人人贪婪、遍地利好</td><td>减仓、防守</td></tr>
+      <tr><td>下降期</td><td>恐慌蔓延、无人敢买</td><td>等待、观察</td></tr>
+      <tr><td>谷底</td><td>极度悲观、无人问津</td><td>逆向布局、进攻</td></tr>
+      <tr><td>上升期</td><td>怀疑中上涨</td><td>持有、跟随趋势</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：周期大师挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《投资最重要的事》《黑天鹅》《漫步华尔街》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='cycles';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'📈',t:'周期三铁律',d:'周期本质',qs:[{q:'市场走？',opts:['曲线','直线','圆圈'],a:0},{q:'市场会？',opts:['过度','刚好','克制'],a:0},{q:'周期？',opts:['相互影响','互不相干','只有一种'],a:0}]},
+ {ico:'🕰️',t:'钟摆位置',d:'情绪位置',qs:[{q:'钟摆停在？',opts:['中间','两端','天上'],a:1},{q:'极端推手？',opts:['情绪','理性','算法'],a:0},{q:'摆得越远？',opts:['回摆越大','永远不回','直接断'],a:0}]},
+ {ico:'🧭',t:'周期定位',d:'定位比预测重要',qs:[{q:'需要预测未来？',opts:['不需要','必须','每天'],a:0},{q:'只需知道？',opts:['自己在哪','别人在哪','未来在哪'],a:0},{q:'人人赚钱=？',opts:['接近顶点','接近谷底','刚起步'],a:0}]},
+ {ico:'🚰',t:'信贷周期',d:'市场氧气',qs:[{q:'信贷宽松→？',opts:['资金涌入','资金撤离','没变化'],a:0},{q:'信贷是？',opts:['市场氧气','市场噪音','市场笑话'],a:0},{q:'烂信用也能借钱=？',opts:['顶点信号','谷底信号','正常'],a:0}]},
+ {ico:'😨',t:'心理周期',d:'人性周期',qs:[{q:'市场周期本质？',opts:['人性周期','数学周期','天气周期'],a:0},{q:'风险态度？',opts:['也有周期','恒定','不存在'],a:0},{q:'输给？',opts:['自己脑中的钟摆','庄家','消息'],a:0}]},
+ {ico:'⛰️',t:'逆向思维',d:'极端点反向',qs:[{q:'顶点人人？',opts:['贪婪','恐惧','睡觉'],a:0},{q:'谷底人人？',opts:['恐惧','贪婪','兴奋'],a:0},{q:'逆向难在？',opts:['孤独的勇气','抬杠','跟风'],a:0}]},
+ {ico:'⚖️',t:'三对平衡',d:'攻守平衡',qs:[{q:'三对要素？',opts:['选时选股攻守运气','买多卖少','牛熊猪'],a:0},{q:'激进与？',opts:['保守','疯狂','麻木'],a:0},{q:'顶尖投资者？',opts:['会攻也会守','只攻不守','只看不买'],a:0}]},
+ {ico:'🛡️',t:'有时有胆有备',d:'三步法',qs:[{q:'有时=？',opts:['判断位置','乱买','追高'],a:0},{q:'有胆=？',opts:['极端点逆向','梭哈','抄底猜底'],a:0},{q:'有备=？',opts:['留有余地','满仓','借钱'],a:0}]},
+ {ico:'📋',t:'实战演练',d:'每月自问',qs:[{q:'每月问？',opts:['周期位置','明天涨停吗','内幕'],a:0},{q:'贪婪端？',opts:['该防守','该梭哈','该睡觉'],a:0},{q:'周期思维？',opts:['不止股市','只在股市','没用'],a:0}]},
+ {ico:'💡',t:'认知升级',d:'大师思维',qs:[{q:'赚钱时你？',opts:['别得意','是天才','加杠杆'],a:0},{q:'亏钱时你？',opts:['别恐慌','天塌了','清仓'],a:0},{q:'最危险位置？',opts:['情绪极端','中间','刚开盘'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'周期决策',qs:[{q:'顶点该？',opts:['防守','满仓','追涨'],a:0},{q:'谷底该？',opts:['逆向布局','割肉','清仓'],a:0},{q:'上升期？',opts:['持有','卖光','做空'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'钟摆=？',opts:['情绪摆动','钟表','石头'],a:0},{q:'信贷周期=？',opts:['资金松紧','利率','汇率'],a:0},{q:'周期定位=？',opts:['判断位置','预测未来','算命'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'先活下来',qs:[{q:'最重要的？',opts:['不亏大钱','赚快钱','梭哈'],a:0},{q:'承受回撤？',opts:['能力之内','越大越好','无所谓'],a:0},{q:'敬畏？',opts:['市场','自己','消息'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查周期',qs:[{q:'我是否追涨？',opts:['有系统','经常','从不'],a:0},{q:'我是否恐慌？',opts:['按系统','天天怕','无所谓'],a:0},{q:'我知道自己在哪？',opts:['能判断','不知道','不关心'],a:0}]},
+ {ico:'🎓',t:'智慧检验',d:'大师金句',qs:[{q:'不必预测？',opts:['只需定位','必须预测','全靠猜'],a:0},{q:'别人贪婪我？',opts:['恐惧','更贪','跟随'],a:0},{q:'别人恐惧我？',opts:['贪婪','更怕','逃跑'],a:0}]},
+ {ico:'👑',t:'周期大师挑战',d:'10题综合测验',qs:[{q:'市场走？',opts:['曲线','直线','圆圈'],a:0},{q:'钟摆停在？',opts:['两端','中间','天上'],a:1},{q:'定位比？',opts:['预测重要','运气重要','消息重要'],a:0},{q:'信贷是？',opts:['市场氧气','噪音','笑话'],a:0},{q:'市场本质？',opts:['人性周期','数学','天气'],a:0},{q:'顶点该？',opts:['防守','满仓','追涨'],a:0},{q:'谷底该？',opts:['逆向布局','割肉','清仓'],a:0},{q:'三对平衡？',opts:['选时选股攻守运气','买多卖少','牛熊猪'],a:0},{q:'有时有胆有备？',opts:['三步法','三句话','三本书'],a:0},{q:'敬畏？',opts:['市场','自己','消息'],a:0}]}
+];
+const badges=['📕','📈','🕰️','🧭','🚰','😨','⛰️','⚖️','🛡️','📋','💡','👑'];
+const badgeNames=['翻开序章','周期认知者','钟摆观察者','定位大师','信贷理解者','人性洞察者','逆向勇士','平衡大师','风险敬畏者','实战演练者','认知升级者','周期大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
