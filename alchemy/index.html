@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《金融炼金术》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0b0f14;--card:#131a22;--gold:#c9a24b;--gold2:#f0d99a;--text:#e8edf4;--muted:#7f8ea3;--line:#23303c;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,20,.05) 0%,rgba(11,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(201,162,75,.15);color:var(--gold);border:1px solid rgba(201,162,75,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(201,162,75,.06);border:1px solid rgba(201,162,75,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#a8822f);color:#14100a;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(11,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(201,162,75,.08);border:1px dashed rgba(201,162,75,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(201,162,75,.1);color:var(--gold)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《金融炼金术》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 8 个精讲视频 · 2 段语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>金融炼金术</h1>
+    <p>乔治·索罗斯 · 认知改变现实，现实改变认知</p>
+    <span class="tag">反身性</span><span class="tag">盛衰循环</span><span class="tag">参与者偏见</span><span class="tag">市场泡沫</span><span class="tag">金融大鳄</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 反身性理论揭秘</div>
+  <div class="card">
+    <p>索罗斯：<span class="q">市场永远是错的。</span>因为参与者的偏见会反过来塑造现实。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1MtwYzcERs&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 反身性是什么（免费）</div>
+  <div class="card">
+    <h3>理解 · 认知与现实互相塑造</h3>
+    <p><span class="q">投资者根据对市场的认知行动，而行动又反过来改变市场。</span>这就是反身性——两面镜子互相映照，无穷无尽。</p>
+    <div class="imgbox"><img src="art_reflex.jpg" alt="反身性"></div>
+    <div class="mini">🪞 <b>关键：</b>索罗斯不是研究"市场是什么"，而是研究"人们以为市场是什么"——因为"以为"会变成现实的一部分。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「反身性基础」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 参与者的偏见（免费）</div>
+  <div class="card">
+    <h3>理解 · 人人戴着歪眼镜</h3>
+    <p><span class="q">没人能掌握全部信息，每个人的认知都带偏见。</span>偏见不是缺陷，是市场的燃料。</p>
+    <div class="imgbox"><img src="art_bias.jpg" alt="参与者偏见"></div>
+    <div class="mini">👓 <b>关键：</b>识别自己的偏见 + 识别市场的"主流偏见"——当主流偏见与事实严重背离，机会就来了。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「识别偏见」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 正反馈循环（免费）</div>
+  <div class="card">
+    <h3>理解 · 越涨越买，越买越涨</h3>
+    <p><span class="q">价格上涨 → 吸引买入 → 价格再涨。</span>正向反馈让趋势自我强化，直到失衡。</p>
+    <div class="imgbox"><img src="art_feedback.jpg" alt="正反馈"></div>
+    <div class="mini">🔄 <b>关键：</b>正反馈是泡沫的发动机。趋势本身会证明自己——直到证明不了。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「正反馈识别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 盛衰循环（免费）</div>
+  <div class="card">
+    <h3>理解 · 繁荣到衰退的必经之路</h3>
+    <p><span class="q">趋势 + 错误认知互相强化 → 繁荣；直到预期无法兑现 → 反转 → 衰退。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uokjBqEh9&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_boom.jpg" alt="盛衰循环"></div>
+    <div class="mini">📈 <b>关键：</b>盛衰循环不是预测终点，而是提醒你：任何趋势都有偏执与脆弱的一面。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「循环识别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 泡沫是怎样炼成的（免费）</div>
+  <div class="card">
+    <h3>理解 · 泡沫的四个阶段</h3>
+    <p><span class="q">默默发展 → 加速上涨 → 舆论狂欢 → 崩溃。</span>每个泡沫都有真实基本面打底，但价格最终脱离基本面。</p>
+    <div class="imgbox"><img src="art_bubble.jpg" alt="泡沫"></div>
+    <div class="mini">🫧 <b>关键：</b>泡沫里最危险的不是看空的人，而是"上车晚了还想上车"的人。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「泡沫阶段」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 崩盘时刻（免费）</div>
+  <div class="card">
+    <h3>理解 · 反转一旦开始，就是雪崩</h3>
+    <p><span class="q">正反馈掉头变成负反馈：越跌越卖，越卖越跌。</span></p>
+    <div class="imgbox"><img src="art_crash.jpg" alt="崩盘"></div>
+    <div class="mini">💥 <b>关键：</b>崩盘不是慢慢来的——是踩踏。识别"脆弱点"比预测"哪一天"更重要。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「崩盘信号」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 英镑狙击战（免费）</div>
+  <div class="card">
+    <h3>理解 · 反身性的实战案例</h3>
+    <p><span class="q">1992 年索罗斯做空英镑，一天赚 10 亿美元。</span>他赌的不是经济，是"固定汇率制度必然崩溃"的反身性。</p>
+    <div class="imgbox"><img src="art_bank.jpg" alt="英镑狙击"></div>
+    <div class="mini">🏦 <b>关键：</b>当一个制度靠"信仰"支撑而非实力支撑，反身性会让信仰崩塌。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「狙击手思维」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：反身性实战框架、识别假共识、炼金术实战清单 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（反身性实战框架、识别假共识、炼金术实战清单）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 反身性实战框架</div>
+  <div class="card">
+    <h3>理解 · 索罗斯的决策心法</h3>
+    <p><span class="q">先假设自己是错的，再去找证据证明。</span>索罗斯的策略 = 假设 + 反证 + 果断出手。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1DMtb6qEau&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>犯错不可怕，可怕的是不知道自己在犯错。索罗斯每次操作前都写下"如果错了，我认"的退出条件。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「反证思维」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 识别假共识</div>
+  <div class="card">
+    <h3>理解 · 共识往往是错的</h3>
+    <p><span class="q">当所有人都相信一件事，它就已经反映在价格里。</span>超额收益来自"共识即将被打破"的时刻。</p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1By84zAEQE&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="imgbox"><img src="art_apply.jpg" alt="反身性应用"></div>
+    <div class="mini">🔍 <b>关键：</b>主流偏见 ≠ 真相。当现实开始打脸共识，就是你该离场或进场的时候。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「共识检验」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 炼金术实战清单</div>
+  <div class="card">
+    <h3>理解 · 从认知到行动</h3>
+    <p>一套可执行的清单：<span class="q">看清偏见 → 判断反馈方向 → 识别脆弱点 → 设好退出条件 → 果断执行。</span></p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="实战清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1 看清偏见</td><td>问"市场现在的主流共识是什么？"</td></tr>
+      <tr><td>2 判断反馈</td><td>是正反馈（自我强化）还是负反馈（自我修正）？</td></tr>
+      <tr><td>3 找脆弱点</td><td>趋势依赖什么假设？假设破了会怎样？</td></tr>
+      <tr><td>4 设退出条件</td><td>进场前写下"什么情况我必须认错离场"</td></tr>
+      <tr><td>5 果断执行</td><td>共识反转时，不犹豫、不恋战</td></tr>
+      <tr><td>6 复盘迭代</td><td>每次操作后复盘，校准自己的偏见</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：索罗斯炼金术大师挑战</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《随机漫步的傻瓜》《黑天鹅》《反脆弱》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='alchemy';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🪞',t:'反身性基础',d:'认知改变现实',qs:[{q:'反身性是什么？',opts:['认知与现实互相塑造','市场永远正确','只看基本面'],a:0},{q:'投资者的行动？',opts:['会改变市场','不影响市场','完全随机'],a:0},{q:'索罗斯研究什么？',opts:['人们以为市场是什么','市场公式','K线形态'],a:0}]},
+ {ico:'👓',t:'识别偏见',d:'人人戴歪眼镜',qs:[{q:'谁能掌握全部信息？',opts:['没有人','机构能','索罗斯能'],a:0},{q:'偏见是？',opts:['市场的燃料','必须消除的','无关紧要'],a:0},{q:'机会来自？',opts:['偏见与现实背离','跟随偏见','躲避偏见'],a:0}]},
+ {ico:'🔄',t:'正反馈识别',d:'自我强化的循环',qs:[{q:'越涨越买是？',opts:['正反馈','负反馈','无关'],a:0},{q:'正反馈是？',opts:['泡沫的发动机','市场的刹车','稳定器'],a:0},{q:'趋势何时停？',opts:['证明不了时','永远不停','到顶就停'],a:0}]},
+ {ico:'📈',t:'循环识别',d:'繁荣到衰退',qs:[{q:'盛衰循环由？',opts:['趋势+错误认知强化','纯随机','政府决定'],a:0},{q:'繁荣后必然？',opts:['有脆弱一面','永远上涨','无风险'],a:0},{q:'循环提醒你？',opts:['任何趋势都脆弱','趋势永存','别买股票'],a:0}]},
+ {ico:'🫧',t:'泡沫阶段',d:'四阶段识别',qs:[{q:'泡沫第一阶段？',opts:['默默发展','舆论狂欢','崩溃'],a:0},{q:'泡沫基础？',opts:['有真实基本面打底','纯骗局','政府造'],a:0},{q:'最危险的是？',opts:['上车晚了还想上','看空的人','理性者'],a:0}]},
+ {ico:'💥',t:'崩盘信号',d:'识别脆弱点',qs:[{q:'崩盘是？',opts:['踩踏式雪崩','慢慢跌','可预测日'],a:0},{q:'更重要是？',opts:['识别脆弱点','预测哪天','逃顶'],a:0},{q:'负反馈？',opts:['越跌越卖越跌','越跌越买','无影响'],a:0}]},
+ {ico:'🏦',t:'狙击手思维',d:'英镑案例',qs:[{q:'1992索罗斯做空？',opts:['英镑','美元','日元'],a:0},{q:'他赌什么？',opts:['制度必然崩溃','经济衰退','股市下跌'],a:0},{q:'信仰崩塌？',opts:['反身性使然','不可能的','缓慢发生'],a:0}]},
+ {ico:'🧭',t:'反证思维',d:'先假设自己错',qs:[{q:'索罗斯第一步？',opts:['假设自己错了','找内幕','全仓买入'],a:0},{q:'犯错不可怕？',opts:['可怕的是不知错','说明不行','该退出市场'],a:0},{q:'进场前写下？',opts:['退出条件','盈利目标','后悔药'],a:0}]},
+ {ico:'🔍',t:'共识检验',d:'共识往往是错的',qs:[{q:'共识已反映在？',opts:['价格里','新闻里','梦里'],a:0},{q:'超额收益来自？',opts:['共识被打破时','跟随共识','内幕消息'],a:0},{q:'主流偏见=？',opts:['不等于真相','等于真相','等于数据'],a:0}]},
+ {ico:'🧠',t:'反馈判断',d:'正负反馈',qs:[{q:'房价越涨越买？',opts:['正反馈','负反馈','无关'],a:0},{q:'挤兑银行？',opts:['正反馈自我强化','负反馈','稳定'],a:0},{q:'负反馈作用？',opts:['自我修正','加速上涨','无影响'],a:0}]},
+ {ico:'⚖️',t:'估值偏差',d:'价格vs价值',qs:[{q:'价格长期会？',opts:['偏离价值','永远等于价值','无规律'],a:0},{q:'偏见会改变？',opts:['现实','数学','物理'],a:0},{q:'基本面+偏见？',opts:['共同推动价格','只看基本面','只看情绪'],a:0}]},
+ {ico:'💡',t:'决策心法',d:'反身性决策',qs:[{q:'看到趋势变强？',opts:['问假设还成立吗','赶紧追','无脑买'],a:0},{q:'共识疯狂？',opts:['警惕反转','更疯狂','跟随'],a:0},{q:'错了怎么办？',opts:['认错离场','死扛','加倍'],a:0}]},
+ {ico:'🎯',t:'实战演练',d:'炼金术步骤',qs:[{q:'第一步？',opts:['看清主流偏见','买入','预测'],a:0},{q:'退出条件？',opts:['进场前写下','亏了才想','不需要'],a:0},{q:'复盘？',opts:['校准自己偏见','找借口','没意义'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'反身性？',opts:['认知改变现实','市场均衡','数学公式'],a:0},{q:'盛衰循环？',opts:['趋势+偏见强化','直线上升','随机漫步'],a:0},{q:'主流偏见？',opts:['多数人的错误共识','官方消息','专家观点'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'先活下来',qs:[{q:'第一原则？',opts:['先活下来','先暴富','先预测'],a:0},{q:'杠杆？',opts:['索罗斯也慎用','越高越好','无所谓'],a:0},{q:'承认无知？',opts:['是优势','是耻辱','没必要'],a:0}]},
+ {ico:'👑',t:'炼金术大师挑战',d:'10题综合测验',qs:[{q:'反身性？',opts:['认知改变现实','市场正确','只看图'],a:0},{q:'偏见？',opts:['人人都有','机构没有','可消除'],a:0},{q:'正反馈？',opts:['自我强化','自我修正','无关'],a:0},{q:'盛衰循环？',opts:['趋势+偏见强化','直线','随机'],a:0},{q:'泡沫基础？',opts:['有真实基本面','纯骗局','无'],a:0},{q:'崩盘？',opts:['踩踏雪崩','缓慢','可预测'],a:0},{q:'1992做空？',opts:['英镑','美元','黄金'],a:0},{q:'索罗斯第一步？',opts:['假设自己错','找内幕','全仓'],a:0},{q:'共识？',opts:['已在价格里','永远正确','可忽略'],a:0},{q:'退出条件？',opts:['进场前写','亏了再想','不用'],a:0}]}
+];
+const badges=['📕','🪞','👓','🔄','📈','🫧','💥','🏦','🧭','🔍','⚖️','👑'];
+const badgeNames=['翻开序章','反身性学徒','偏见识别者','反馈猎人','循环观察者','泡沫侦察员','崩盘预警员','狙击手','反证思维者','共识检验者','炼金术士','反身性大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
