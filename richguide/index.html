@@ -3,979 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>富爸爸投资指南 · 罗伯特·清崎 多媒体书 | 熙祺智书</title>
+<title>《富爸爸投资指南》多媒体精读 | 熙祺智书</title>
 <style>
-  :root{
-    --bg:#0a140d; --bg2:#12301c; --card:#0f1f15; --line:#2a5234;
-    --tx:#f2fbf4; --sub:#c6e3cd; --dim:#7ba786;
-    --gold:#ffc46b; --green:#4ade80; --red:#ff6b5e; --blue:#5ea2ff; --purple:#a78bfa; --teal:#5eead4;
-    --radius:18px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{background:linear-gradient(180deg,#08110a 0%,#12301c 45%,#0a140d 100%);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.75;overflow-x:hidden}
-  .wrap{max-width:880px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:2}
-  .pulse-bg{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 40% at 75% 15%,rgba(255,196,107,.08),transparent 60%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(74,222,128,.06),transparent 60%)}
-  .topbar{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(8,17,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .brand{font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.5px}
-  .brand small{color:var(--dim);font-weight:400;margin-left:6px;font-size:12px}
-  .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
-  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--tx)}
-  .pill b{color:var(--gold)}
-  .btn{background:linear-gradient(135deg,#ffc46b,#f59e0b);color:#1a1205;border:none;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(255,196,107,.22)}
-  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--tx);box-shadow:none}
-  .btn.ghost b{color:var(--gold)}
-  .btn.sm{padding:4px 12px;font-size:13px}
-  .cover{text-align:center;padding:70px 12px 30px}
-  .cover-art{width:min(300px,72vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px var(--line);margin:18px auto;display:block}
-  .cover h1{font-size:clamp(28px,6.5vw,42px);margin:14px 0 6px;color:var(--gold);letter-spacing:8px}
-  .cover .en{color:var(--sub);font-size:14px;letter-spacing:4px}
-  .cover .tag{margin-top:12px;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center}
-  .tag span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub)}
-  .cover .lead{margin-top:16px;color:var(--sub);font-size:15px;max-width:660px;margin-left:auto;margin-right:auto}
-  .cover .lead b{color:var(--gold)}
-  .cta-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0}
-  .toc h2{font-size:18px;color:var(--gold);margin-bottom:12px}
-  .toc-item{display:flex;align-items:center;gap:10px;padding:11px 10px;border-bottom:1px dashed rgba(255,255,255,.07);cursor:pointer;border-radius:12px;transition:background .2s}
-  .toc-item:last-child{border-bottom:none}
-  .toc-item:hover{background:rgba(255,196,107,.08)}
-  .toc-item .num{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#241a0c;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold)}
-  .toc-item .tt{flex:1;font-size:15px}
-  .toc-item .tt small{display:block;color:var(--dim);font-size:12px}
-  .toc-item .st{font-size:12px;color:var(--green);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:2px 8px}
-  .toc-item .lk{font-size:12px;color:var(--red);border:1px solid rgba(255,107,94,.4);border-radius:999px;padding:2px 8px}
-  .chap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:18px 0;position:relative}
-  .chap .k{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
-  .chap h2{font-size:22px;color:var(--gold);margin-bottom:10px}
-  .learn-loop{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
-  .learn-loop span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--dim)}
-  .learn-loop span.on{color:var(--green);border-color:rgba(74,222,128,.5)}
-  .chap .cnt{font-size:15.5px;color:var(--tx)}
-  .chap .cnt p{margin:8px 0}
-  .chap .cnt .quote{border-left:3px solid var(--gold);padding:8px 14px;background:rgba(255,196,107,.08);border-radius:8px;color:var(--gold);margin:12px 0;font-size:16px}
-  .chap .cnt .focus{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.25);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;color:var(--teal)}
-  .chap img{width:100%;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.4)}
-  .chap .imgcap{text-align:center;color:var(--dim);font-size:12px;margin:-8px 0 12px}
-  .chapter-lock{position:relative}
-  .chapter-lock .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,13,0),rgba(10,20,13,.92) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;border-radius:var(--radius);z-index:5}
-  .lock-veil .lock-ic{font-size:34px;margin-bottom:8px}
-  .lock-veil p{color:var(--sub);margin-bottom:14px;font-size:14px;text-align:center}
-  .media-block{background:#0c1a11;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
-  .media-block .lbl{font-size:12px;color:var(--dim);margin-bottom:8px}
-  .media-block audio{width:100%;height:38px}
-  .media-block iframe{width:100%;aspect-ratio:16/9;border-radius:10px;border:none}
-  .game{background:linear-gradient(160deg,#163424,#0f1f15);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;margin:18px 0}
-  .game h3{font-size:17px;color:var(--gold);margin-bottom:4px}
-  .game .gsub{font-size:13px;color:var(--sub);margin-bottom:12px}
-  .game .desc{font-size:14px;color:var(--tx);margin-bottom:12px}
-  .opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--tx);font-size:14px;cursor:pointer;transition:all .2s}
-  .opt:hover{border-color:var(--gold)}
-  .opt.ok{border-color:var(--green);background:rgba(74,222,128,.1)}
-  .opt.no{border-color:var(--red);background:rgba(255,107,94,.08)}
-  .opt:disabled{cursor:default;opacity:.85}
-  .fb{margin-top:10px;font-size:14px;min-height:22px;color:var(--sub)}
-  .fb.good{color:var(--green)} .fb.bad{color:var(--red)}
-  .bar{height:10px;background:#08110a;border-radius:999px;overflow:hidden;margin:10px 0}
-  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ffc46b,#4ade80);border-radius:999px;transition:width .5s}
-  .trash{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  .trash .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;flex:1;min-width:130px;text-align:center;cursor:pointer;transition:all .3s;font-size:14px}
-  .trash .item:hover{transform:translateY(-3px);border-color:var(--gold)}
-  .trash .item.done{opacity:.35;border-color:var(--green);transform:scale(.94)}
-  .pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .pair{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;cursor:pointer;min-height:56px;display:flex;align-items:center}
-  .pair.sel{border-color:var(--gold);background:rgba(255,196,107,.12)}
-  .pair.matched{border-color:var(--green);background:rgba(74,222,128,.12);cursor:default}
-  .kick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-  .kick button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 2px;color:var(--tx);font-size:12px;cursor:pointer}
-  .kick button.done{border-color:var(--green);background:rgba(74,222,128,.12);color:var(--green)}
-  .quiz-prog{display:flex;gap:6px;margin-bottom:12px}
-  .quiz-prog i{flex:1;height:6px;border-radius:99px;background:#08110a}
-  .quiz-prog i.done{background:var(--green)}
-  .quiz-prog i.cur{background:var(--gold)}
-  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  .badge{width:74px;text-align:center;padding:10px 4px;background:#08110a;border:1px solid var(--line);border-radius:14px;font-size:11px;color:var(--dim)}
-  .badge.on{border-color:var(--gold);color:var(--gold);background:rgba(255,196,107,.08)}
-  .badge .bi{font-size:26px;display:block;margin-bottom:4px}
-  .modal{position:fixed;inset:0;z-index:100;background:rgba(4,10,6,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
-  .modal.open{display:flex}
-  .modal-card{background:linear-gradient(160deg,#163424,#0f1f15);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
-  .modal-card h3{color:var(--gold);font-size:20px;margin-bottom:8px}
-  .modal-card .close{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
-  .modal-card input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#08110a;color:var(--tx);font-size:15px;margin:8px 0}
-  .modal-card .row{display:flex;gap:8px;margin:8px 0}
-  .modal-card .row .btn{flex:1}
-  .modal-card .hint{font-size:12px;color:var(--dim);margin-top:10px}
-  .modal-card .ok-msg{color:var(--green);font-size:14px;margin-top:8px}
-  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:999px;font-size:14px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
-  .toast.show{opacity:1}
-  .footer{text-align:center;color:var(--dim);font-size:12px;padding:30px 10px 10px}
-  .tip{background:rgba(255,196,107,.06);border:1px solid rgba(255,196,107,.22);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);margin:14px 0}
-  .hidden{display:none!important}
-  .mini-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
-  .mini-table th,.mini-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
-  .mini-table th{background:#163424;color:var(--gold)}
-  .board{position:relative;background:#08110a;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px}
-  .board .cell{display:inline-block;width:18%;margin:2px;padding:8px 2px;text-align:center;border-radius:8px;background:var(--card);border:1px solid var(--line);font-size:11px;color:var(--sub)}
-  .board .cell.here{border-color:var(--gold);background:rgba(255,196,107,.15);color:var(--gold)}
-  .board .cell.big{width:98%;background:#163424}
-  @media(max-width:600px){.kick{grid-template-columns:repeat(2,1fr)}.pair-grid{grid-template-columns:1fr}}
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
 </style>
 </head>
 <body>
-<div class="pulse-bg"></div>
-<div class="topbar">
-  <div class="brand">🧭 富爸爸投资指南<small>罗伯特·清崎</small></div>
-  <div class="tb-right">
-    <span class="pill">⚡ <b id="points">10</b> 分</span>
-    <span class="pill" id="moodPill">🎧 音乐</span>
-    <button class="btn ghost sm" id="btnUnlock" onclick="openUnlock()">🔓 解锁</button>
-    <button class="btn sm" id="btnRead" onclick="goRead()">开始学习 →</button>
-  </div>
+<div class="progress">
+  <div class="row"><span>📚 《富爸爸投资指南》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
 </div>
-
 <div class="wrap">
-  <div class="cover" id="sec-cover">
-    <img class="cover-art" src="art_cover.jpg" alt="封面">
-    <div class="en">RICH DAD'S GUIDE TO INVESTING · ROBERT KIYOSAKI</div>
-    <h1>富爸爸投资指南</h1>
-    <div class="tag">
-      <span>罗伯特·清崎 著</span><span>《富爸爸穷爸爸》进阶篇</span><span>三种投资者</span><span>10 大投资控制力</span>
-    </div>
-    <p class="lead">「投资不是购买产品，而是制定一份属于你自己的计划。」《富爸爸穷爸爸》点燃了你的财商，《富爸爸投资指南》则手把手教你如何真正去投资：分清三类收入、掌握四大规则、认识三种投资者、练就<b>10 大投资控制力</b>，最后用杠杆与团队，写出你自己的投资计划书。这本书把「投资」从玄学变成可以一步步学会的手艺。</p>
-    <div class="cta-row">
-      <button class="btn" onclick="goRead()">🧭 上投资课</button>
-      <button class="btn ghost" onclick="playBgm()">🎵 学点音乐</button>
-    </div>
-    <div class="tip">🧠 本书按「理解 → 记忆 → 联想 → 练习」四步闭环学习法设计：每节配金句卡片、控制力挑战、情景判断与现金流棋局，共 13 个互动游戏 + 13 枚徽章。<b>读完这本书，你会写出属于自己的第一份投资计划。</b></div>
-  </div>
 
-  <div class="toc" id="sec-toc">
-    <h2>📖 目 录</h2>
-    <div id="tocList"></div>
-    <div class="tip">⭐ 前 6 节免费试读。付费解锁后可读完整 12 节 + 全部互动模块。支持激活码 / 积分 / 订阅。</div>
-  </div>
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
 
-  <div id="chapters"></div>
-
-  <div class="footer">🧭 富爸爸投资指南 · 熙祺智书出品<br>《Rich Dad's Guide to Investing》罗伯特·清崎 · 多媒体互动版 · 内容仅供学习交流，不构成投资建议</div>
-</div>
-
-<div class="modal" id="modalUnlock">
-  <div class="modal-card">
-    <button class="close" onclick="closeModal()">×</button>
-    <h3>🔓 解锁全书</h3>
-    <p style="font-size:14px;color:var(--sub)">后 6 节为付费内容，支持三种方式解锁：</p>
-    <div class="row"><button class="btn ghost" onclick="unlockByCode()">🔑 激活码</button><button class="btn ghost" onclick="unlockByPoints()">⚡ 积分兑换（50）</button><button class="btn ghost" onclick="adminCheck()">🛡 管理员</button></div>
-    <div id="codeBox" class="hidden">
-      <input id="codeInput" placeholder="输入 8 位激活码">
-      <div class="row"><button class="btn" onclick="verifyCode()">兑换</button></div>
-    </div>
-    <div class="hint" id="unlockHint">还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。</div>
-    <div class="ok-msg" id="unlockOk"></div>
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>罗伯特·清崎 · 让钱为你工作的财商进阶 · 现金流四象限</p>
+    <span class="tag">财商进阶</span><span class="tag">现金流</span><span class="tag">四象限</span><span class="tag">被动收入</span><span class="tag">投资</span>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 财商启蒙（免费）</div>
+  <div class="card">
+    <h3>理解 · 投资是让钱为你工作的学问</h3>
+    <p><span class="q">投资不是买股票、买房子，投资是让钱为你工作的学问。穷人为钱打工，富人让钱赚钱。你不需要很多钱才能开始——你需要的是财商。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="富爸爸投资指南"></div>
+    <div class="mini">💼 <b>关键：</b>财商是学校不教、却决定你一生的能力。先学思维，再学投资。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「财商启蒙」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 四象限（免费）</div>
+  <div class="card">
+    <h3>理解 · ESBI，你在哪个象限？</h3>
+    <p><span class="q">E 雇员：为别人工作；S 自由职业者：为自己工作；B 企业主：系统为你工作；I 投资者：让钱为你工作。左象限用时间换钱，右象限用系统与资产换钱。</span></p>
+    <div class="imgbox"><img src="art_esbi.jpg" alt="四象限"></div>
+    <div class="mini">🗺️ <b>关键：</b>富人的目标是从左象限走向右象限——从 E/S 走向 B/I。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「四象限」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 现金流（免费）</div>
+  <div class="card">
+    <h3>理解 · 看钱往哪流</h3>
+    <p><span class="q">富人关注现金流：买入能产生现金流的资产；穷人现金流被负债吃掉——房贷、车贷、消费贷。钱流向哪里，命运就在哪里。</span></p>
+    <div class="imgbox"><img src="art_cashflow.jpg" alt="现金流"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1gKMXzBE96&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">💰 <b>关键：</b>别问「我赚了多少」，要问「我留下了多少现金流」。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「现金流」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 财商教育（免费）</div>
+  <div class="card">
+    <h3>理解 · 用知识撬动财富</h3>
+    <p><span class="q">富爸爸说：你不需要很多钱才能开始投资，你需要的是财商。知识是最大的杠杆——先学会计、投资、市场、法律四门基础课，再谈入场。</span></p>
+    <div class="imgbox"><img src="art_fq.jpg" alt="财商教育"></div>
+    <div class="mini">🎓 <b>关键：</b>投资的第一桶金不是钱，是知识。知识到位，钱自然到位。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「财商教育」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 风险认知（免费）</div>
+  <div class="card">
+    <h3>理解 · 风险来自不懂</h3>
+    <p><span class="q">清崎：风险不是来自市场，而是来自无知。大多数人的恐惧，源于不懂——不懂就不敢动，不敢动就永远在原地。知识是恐惧的解药。</span></p>
+    <div class="imgbox"><img src="art_risk.jpg" alt="投资风险"></div>
+    <div class="mini">🌩️ <b>关键：</b>先学再投。每一次「我不懂」，都是风险的入口。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「风险认知」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 被动收入（免费）</div>
+  <div class="card">
+    <h3>理解 · 睡后收入</h3>
+    <p><span class="q">富人的目标是让被动收入覆盖支出——睡着时，钱也在工作。建立现金流管道：租金、股息、版税、生意分红。挑水喝永远渴，建管道才能自由。</span></p>
+    <div class="imgbox"><img src="art_passive.jpg" alt="被动收入"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">😴 <b>关键：</b>每天问自己：我在建管道，还是在挑水？</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「被动收入」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 投资阶梯（免费）</div>
+  <div class="card">
+    <h3>理解 · 从小的练起，再上大台阶</h3>
+    <p><span class="q">投资是一级一级的阶梯：先学基础、用小额练手、再逐步放大。没有人一步登天，复利需要时间。每一级台阶，都是财商的升级。</span></p>
+    <div class="imgbox"><img src="art_ladder.jpg" alt="投资阶梯"></div>
+    <div class="mini">🪜 <b>关键：</b>小钱练胆，中钱练技，大钱赚利。别急着跳级。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「投资阶梯」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：决策演练、生存法则、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（决策演练、投资者生存法则、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 决策演练</div>
+  <div class="card">
+    <h3>理解 · 把财商变成决策</h3>
+    <p><span class="q">面对任何投资机会，问五个问题：它是资产还是负债？现金流正还是负？我懂不懂？风险在哪？最坏结果我扛得住吗？五个答案对了，再动手。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1woRDBUEwo&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>投资是决策的学问，不是预测的学问。决策对了，结果自然对。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「决策演练」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 投资者生存法则</div>
+  <div class="card">
+    <h3>理解 · 现金流是王道</h3>
+    <p><span class="q">熊市里能活下来的，不是预测最准的，而是现金流最稳的。真正的投资高手，永远备好现金、看准时机、控制风险，把亏损当学费。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1vwiuBzE1t&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>先活下来，再谈赚钱。现金流是投资者的氧气。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「生存法则」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从今天走向 B/I 象限</h3>
+    <p>财商 → 现金流 → 被动收入 → 财务自由。四步闭环，一步一个台阶。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>判断你现在的象限：E、S、B 还是 I</td></tr>
+      <tr><td>2</td><td>盘点你的资产与负债，看现金流方向</td></tr>
+      <tr><td>3</td><td>学四门课：会计、投资、市场、法律</td></tr>
+      <tr><td>4</td><td>用小额开始练习投资，先练胆再练技</td></tr>
+      <tr><td>5</td><td>建立至少一个被动收入管道</td></tr>
+      <tr><td>6</td><td>每月复盘现金流，逐步走向 I 象限</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：投资大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」财商专题。配套阅读：《富爸爸穷爸爸》《思考致富》《纳瓦尔宝典》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
 
 <script>
-var BOOK='richguide';
-var LSKEY_UNLOCK=BOOK+'_unlock';
-var LSKEY_ADMIN='xz_admin';
-var LSKEY_POINTS='xz_points';
-var LSKEY_BADGES=BOOK+'_badges';
-var LSKEY_DONE=BOOK+'_done';
-var TOTAL=12, FREE=6;
-var POINTS=parseInt(localStorage.getItem(LSKEY_POINTS)||'10',10);
-var UNLOCKED = localStorage.getItem(LSKEY_ADMIN)==='1' || localStorage.getItem(LSKEY_UNLOCK)==='1' || isAdminParam();
-var BADGES={};try{BADGES=JSON.parse(localStorage.getItem(LSKEY_BADGES)||'{}');}catch(e){BADGES={};}
-var DONE={};try{DONE=JSON.parse(localStorage.getItem(LSKEY_DONE)||'{}');}catch(e){DONE={};}
-
-function isAdminParam(){return false;}
-function setPoints(v){POINTS=v;localStorage.setItem(LSKEY_POINTS,String(v));document.getElementById('points').textContent=v;}
-function addPoints(n,why){setPoints(POINTS+n);toast('+'+n+' 积分 · '+why);track('points',{n:n,why:why,total:POINTS});}
-function saveBadges(){localStorage.setItem(LSKEY_BADGES,JSON.stringify(BADGES));renderBadges();}
-function badge(b){BADGES[b]=1;saveBadges();toast('🏅 获得徽章：'+b);}
-function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2200);}
-function track(ev,extra){
-  try{
-    var d={book:BOOK,event:ev,ts:Date.now(),ref:location.pathname};
-    if(extra){for(var k in extra){d[k]=extra[k];}}
-    if(navigator.sendBeacon){navigator.sendBeacon('https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d)),'');}
-    else{var i=new Image();i.src='https://4kyy5784jsu53.aiforce.cloud/openapi/reading-tracker/track?d='+encodeURIComponent(JSON.stringify(d));}
-  }catch(e){}
-}
-function unlockAll(){UNLOCKED=true;localStorage.setItem(LSKEY_UNLOCK,'1');renderToc();renderChapters();closeModal();toast('🎉 全书已解锁');track('unlock',{method:'auto'});}
-
-var CHAPS=[
- {n:'序',t:'投资是一种计划',free:1,icon:'🧭',art:'art_cover.jpg',cap:'「投资不是购买产品，而是制定一份属于你自己的计划。」',
-  learn:['理解'],
-  p:[['很多人以为投资就是「买股票、买基金、买房」，','富爸爸说：这是把投资当成购买产品——大错特错。'],
-     ['<b>投资是一个过程，一份计划。</b>','就像盖房子，先有蓝图，才有砖瓦。','先有投资计划，再选投资产品。'],
-     ['富爸爸从小教清崎「90/10 规律」：','90% 的人只赚走 10% 的钱，','10% 的人赚走 90% 的钱。','差别不在本金，而在计划与财商。'],
-     ['计划的四个维度：','① 财务教育计划（先武装大脑）；','② 经验计划（先小步试错）；','③ 资金计划（用好每一分本金）；','④ 团队与法律计划（找对伙伴与结构）。'],
-     ['「如果你没有计划，','你就是在为别人的计划打工。」','这一章开始，写下你自己的投资计划。']]},
- {n:'第1课',t:'你为哪种收入投资',free:1,icon:'💵',art:'art_income.jpg',cap:'决定你富不富的，不是赚多少钱，而是赚哪种收入。',
-  learn:['理解','记忆'],
-  p:[['富爸爸问的第一个问题：','「你为哪种收入工作？」','收入分三种，税率和结局完全不同：'],
-     ['<b>① 普通收入（Earned）</b>：','上班、接单赚的钱。','用时间换钱，税率最高，','停下来就没有。'],
-     ['<b>② 投资组合收入（Portfolio）</b>：','低买高卖赚差价的钱。','一次做对收益可观，','但需要眼光与时机。'],
-     ['<b>③ 被动收入（Passive）</b>：','租金、股息、版税、','自动运转的生意。','钱替你工作，税率更低，','这是富人的终点。'],
-     ['「普通人盯着赚多少钱，','富人盯着赚哪种收入。」','从今天起，把每一份收入的一部分，','投向能产生被动收入的资产。']]},
- {n:'第2课',t:'投资的四个基本规则',free:1,icon:'📜',art:'art_rules.jpg',cap:'规则一：知道你在投资哪种收入；规则二：把它变成被动收入。',
-  learn:['理解','记忆','联想'],
-  p:[['富爸爸把投资规则浓缩成四条铁律：'],
-     ['<b>规则一：知道你在投资哪种收入。</b>','买的这个产品，','带来的是普通收入、差价、','还是被动收入？'],
-     ['<b>规则二：把投资转变为被动收入。</b>','真正的投资，','是最终让现金流自己流进来，','而不是每天盯盘。'],
-     ['<b>规则三：投资者用「闲钱」投资。</b>','生活备用金、还贷的钱，','都不能拿去冒险。','输得起的钱，才叫投资本。'],
-     ['<b>规则四：从内部投资，而不是外部。</b>','外部投资=听消息跟风；','内部投资=先了解、','先掌控，再下注。'],
-     ['「规则不是限制你，','而是保护你。','懂了规则，你才敢谈收益。」']]},
- {n:'第3课',t:'三种投资者：A / B / C',free:1,icon:'🏗',art:'art_investor.jpg',cap:'A 型等机会，B 型买机会，C 型创造机会。',
-  learn:['理解','联想'],
-  p:[['富爸爸把投资者分成三类：'],
-     ['<b>A 型（被动型）</b>：','等别人把投资机会送到面前。','「听说最近股票涨了」','「朋友推荐了个项目」','收益靠运气，风险自己扛。'],
-     ['<b>B 型（主动型）</b>：','自己寻找并购买现成的机会。','会看财报、会算现金流，','但机会是别人设计好的。'],
-     ['<b>C 型（创造型）</b>：','自己创造投资机会。','比如组建团队买房翻新、','创办系统化的小生意、','设计一个产品卖版税。','收益最大，也最需要财商。'],
-     ['「大多数人一辈子是 A 型，','少数人升级到 B 型，','而真正的富人，都是 C 型。」','进阶路径：A → B → C，','每一步都需要教育 + 经验 + 资金。'],
-     ['问问自己：','我现在是哪种投资者？','我离 C 型还差哪一步？']]},
- {n:'第4课',t:'投资象限 E/S/B/I',free:1,icon:'🧭',art:'art_quadrant.jpg',cap:'你在哪个象限赚钱，决定了你为钱工作还是让钱为你工作。',
-  learn:['理解','记忆'],
-  p:[['投资也要先定位：','你在哪个象限赚第一桶金？'],
-     ['<b>E（雇员）</b>：','用时间换工资。','<b>S（自由职业者）</b>：','为自己工作，仍是超级雇员。'],
-     ['<b>B（企业主）</b>：','拥有系统，让别人工作。','<b>I（投资人）</b>：','让钱和资产为你工作。'],
-     ['富爸爸的路径：','在 E/S 象限积累本金与财商，','一步步向 B/I 移动，','最终用被动收入覆盖全部支出。'],
-     ['「从 E 到 I 不是跳槽，','而是换一种赚钱的底层逻辑。」','你今天的工作，','在帮你靠近哪一边？']]},
- {n:'第5课',t:'10 大投资控制力（上）',free:1,icon:'🛡',art:'art_control.jpg',cap:'普通人盯收益，高手盯控制。控制力越多，风险越小。',
-  learn:['理解','记忆'],
-  p:[['富爸爸最核心的武器：','投资的 10 大控制力。','先学前 5 项：'],
-     ['<b>① 自我控制</b>：','管住恐惧与贪婪，','不追涨杀跌。','这是最基础也最难的一关。'],
-     ['<b>② 收入/支出控制</b>：','先支付自己，','让收入先流向资产。'],
-     ['<b>③ 投资管理控制</b>：','看得懂现金流，','知道钱在怎么流动。'],
-     ['<b>④ 纳税控制</b>：','了解合法税务结构，','让法律为你省钱。'],
-     ['<b>⑤ 买卖时机控制</b>：','不猜顶底，','用现金流和估值做判断。'],
-     ['「你控制的每一环，','都是风险消失的一环。」','先练好这 5 项，再谈收益。']]},
- {n:'第6课',t:'10 大投资控制力（下）',free:0,icon:'🛡',art:'art_control.jpg',cap:'后面 5 项控制力，让你从单打独斗走向系统作战。',
-  learn:['理解','记忆','联想'],
-  p:[['继续补齐后 5 项控制力：'],
-     ['<b>⑥ 经纪交易控制</b>：','选择可信、专业的中介，','不要盲从销售话术。'],
-     ['<b>⑦ 合约控制（ETC）</b>：','看懂每一份合同条款，','用法律文件保护自己。'],
-     ['<b>⑧ 信息控制</b>：','用财商筛选信息，','把噪音变成判断依据。'],
-     ['<b>⑨ 伙伴控制</b>：','选择比你懂行的人同行，','团队弥补你的盲区。'],
-     ['<b>⑩ 回馈控制</b>：','财富流动起来，','学会给予与分享，','让金钱为你和社会创造价值。'],
-     ['「10 项控制力集齐，','你就是规则的制定者，','而不是被规则支配的人。」']]},
- {n:'第7课',t:'财商四要素与 B-I 三角形',free:0,icon:'📚',art:'art_finintel.jpg',cap:'财商是四门功课的合体，B-I 三角形是事业的地基。',
-  learn:['记忆','联想'],
-  p:[['投资之前，先补课。清崎说财商 = 四门功课：'],
-     ['<b>① 会计</b>：读懂数字。','看懂收入表、资产负债表、现金流。','这是地基。'],
-     ['<b>② 投资</b>：让钱生钱。','知道钱去哪、怎么产生回报。'],
-     ['<b>③ 市场</b>：看懂供需。','知道什么在涨、为什么涨、何时出手。'],
-     ['<b>④ 法律</b>：了解规则。','税法的优惠、公司的结构、资产的保护。'],
-     ['而创办一门资产（B 象限的事业），','需要更完整的 <b>B-I 三角形</b>：','使命 → 团队 → 领导力，','现金流 → 沟通 → 系统 → 法律 → 产品。'],
-     ['「学校教了专业，','却没教财商。','这四门功课，','决定了你一生财富的高度。」']]},
- {n:'第8课',t:'杠杆的艺术',free:0,icon:'⚖',art:'art_leverage.jpg',cap:'富爸爸的杠杆：别人的钱、别人的时间、别人的经验。',
-  learn:['理解','练习'],
-  p:[['为什么富人越来越富？','因为他们用了杠杆。'],
-     ['<b>第一种杠杆：别人的钱（OPM）</b>','用好银行贷款、合伙人资金，','让别人的钱为你赚钱。','前提：你有财商控制风险。'],
-     ['<b>第二种杠杆：别人的时间（OPT）</b>','雇佣、外包、系统化，','让别人的时间替你干活。'],
-     ['<b>第三种杠杆：别人的经验</b>','站在懂行的人肩膀上，','用他们的教训省下学费。'],
-     ['普通人用体力换钱，','中产用技能换钱，','富人用杠杆让钱和时间一起为你工作。'],
-     ['「给我一根足够长的杠杆，','我能撬动整个地球。」','——但杠杆放大收益，','也放大风险：','先用财商垫高支点。']]},
- {n:'第9课',t:'现金流游戏：老鼠赛跑 vs 快车道',free:0,icon:'🎲',art:'art_cashflow.jpg',cap:'在游戏里学会投资，在现实里少交学费。',
-  learn:['理解','练习'],
-  p:[['富爸爸发明了一款桌游：CASHFLOW（现金流游戏）。','在棋盘上模拟人生：'],
-     ['<b>老鼠赛跑（内圈）</b>：','职业、工资、账单、','意外支出……','大多数人一辈子在这里打转，','靠工资覆盖支出，','永远没有多余的钱买资产。'],
-     ['<b>快车道（外圈）</b>：','当你的<b>被动收入 &gt; 总支出</b>，','你就跳出老鼠赛跑，','进入快车道——','钱开始替你工作。'],
-     ['游戏的玩法：','① 选一个职业（如教师、医生）；','② 看你的收支表；','③ 遇到「机会卡」时判断：','这是资产还是负债？','买还是不买？'],
-     ['「先小规模练习犯错，','再去真实世界投资。','游戏的学费，','比真实的学费便宜得多。」']]},
- {n:'第10课',t:'成为 C 型投资者',free:0,icon:'🏗',art:'art_investor.jpg',cap:'C 型投资者不找机会，他们创造机会。',
-  learn:['理解','联想'],
-  p:[['从 A → B → C，','C 型投资者如何创造机会？','五个步骤：'],
-     ['<b>① 教育</b>：','先学财商四要素，','看懂数字与市场。'],
-     ['<b>② 经验</b>：','从小额真实投资开始，','或先用现金流游戏练兵。'],
-     ['<b>③ 资金</b>：','用闲钱和杠杆，','积累第一桶本金。'],
-     ['<b>④ 团队</b>：','律师、会计师、经纪人，','组建你的智囊团。'],
-     ['<b>⑤ 法律结构</b>：','用公司、信托等结构，','保护资产、合法节税。'],
-     ['「C 型投资者像导演：','机会、资金、团队、规则，','都由你调度。','这才是投资最高的形态。」']]},
- {n:'终章',t:'写下你的投资计划',free:0,icon:'🗺',art:'art_plan.jpg',cap:'计划不是预测未来，而是为未来做准备。',
-  learn:['理解','记忆','练习'],
-  p:[['合上书之前，','完成你的第一份投资计划书。'],
-     ['<b>第一步：现状</b>','我在哪个象限？','我赚哪种收入？','我拥有几项控制力？'],
-     ['<b>第二步：目标</b>','写下你的被动收入目标：','每月多少钱，几年达成，','覆盖哪些支出。'],
-     ['<b>第三步：路径</b>','教育计划：每周学多少财商；','经验计划：今年做几次小额试错；','资金计划：每月先支付自己多少；','团队计划：认识哪几位内行；','法律计划：了解哪些结构。'],
-     ['<b>第四步：行动</b>','今天就可以做的一件事，','是什么？','把它写进日历。'],
-     ['「大多数人高估一年能做的事，','低估十年能做的事。」','你的投资计划，','从今天这一页开始。']]}
+const SLUG='richguide';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'💼',t:'财商启蒙',d:'钱为何不工作',qs:[{q:'投资是？',opts:['让钱为你工作的学问','买股票','赌博'],a:0},{q:'穷人？',opts:['为钱打工','让钱工作','投资'],a:0},{q:'富人？',opts:['让钱赚钱','更辛苦','更节俭'],a:0}]},
+ {ico:'🗺️',t:'四象限',d:'ESBI',qs:[{q:'E象限？',opts:['雇员为别人工作','老板','投资者'],a:0},{q:'S象限？',opts:['自由职业者自己工作','雇员','投资人'],a:0},{q:'I象限？',opts:['投资者让钱工作','打工','开店'],a:0}]},
+ {ico:'💰',t:'现金流',d:'钱流向哪',qs:[{q:'现金流？',opts:['钱的流向','存款','工资条'],a:0},{q:'富人？',opts:['买入资产获现金流','买负债','囤现金'],a:0},{q:'穷人？',opts:['现金流被负债吃掉','现金流增长','不懂'],a:0}]},
+ {ico:'🎓',t:'财商教育',d:'知识撬动财富',qs:[{q:'财商？',opts:['学校不教的关键能力','考试成绩','文凭'],a:0},{q:'开始投资需要？',opts:['财商而非大钱','大笔本金','运气'],a:0},{q:'富爸爸？',opts:['教思维而非知识','教做题','教炒股'],a:0}]},
+ {ico:'🌩️',t:'风险认知',d:'恐惧与贪婪',qs:[{q:'风险？',opts:['来自不懂','来自市场','来自运气'],a:0},{q:'投资前？',opts:['先学再投','先投再学','不学'],a:0},{q:'恐惧？',opts:['靠知识克服','永远在','正常'],a:0}]},
+ {ico:'😴',t:'被动收入',d:'睡后收入',qs:[{q:'被动收入？',opts:['睡梦中进账','加班费','年终奖'],a:0},{q:'管道？',opts:['建立现金流管道','挑水喝','存水缸'],a:0},{q:'目标？',opts:['被动收入覆盖支出','工资越高越好','省钱'],a:0}]},
+ {ico:'🪜',t:'投资阶梯',d:'从小到大的路',qs:[{q:'第一步？',opts:['提升财商','买股票','借钱'],a:0},{q:'投资？',opts:['从小的练起','一步登天','等有钱'],a:0},{q:'复利？',opts:['阶梯越走越高','一次到顶','靠运气'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'生活应用',qs:[{q:'我在哪个象限？',opts:['E还是I','不知道','无所谓'],a:0},{q:'我的资产？',opts:['买入还是卖出','没有','不关心'],a:0},{q:'我的现金流？',opts:['正向还是负向','不懂','不存在'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'投资者守则',qs:[{q:'投资前？',opts:['先学习','先入场','先借钱'],a:0},{q:'财商？',opts:['可以后天习得','天生','不需要'],a:0},{q:'失败？',opts:['学费','结局','躲'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'ESBI=？',opts:['四个赚钱象限','四个字母','四本书'],a:0},{q:'现金流=？',opts:['钱的流向','存款','工资'],a:0},{q:'被动收入=？',opts:['睡后收入','加班费','奖金'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查自己',qs:[{q:'我赚钱？',opts:['用时间还是资产','都是资产','不懂'],a:0},{q:'我买的东西？',opts:['是资产还是负债','都是资产','没想过'],a:0},{q:'我的财商？',opts:['在提升吗','够了','没有'],a:0}]},
+ {ico:'🎓',t:'智慧检验',d:'清崎金句',qs:[{q:'投资？',opts:['是学问不是赌博','就是赌博','简单'],a:0},{q:'风险？',opts:['来自不懂','来自市场','运气'],a:0},{q:'钱？',opts:['为聪明人工作','是主人','不重要'],a:0}]},
+ {ico:'👑',t:'投资大师挑战',d:'10题综合测验',qs:[{q:'投资是？',opts:['让钱工作','买股票','赌博'],a:0},{q:'E象限？',opts:['雇员','老板','投资人'],a:0},{q:'I象限？',opts:['投资者','打工','开店'],a:0},{q:'现金流？',opts:['钱的流向','存款','工资'],a:0},{q:'财商？',opts:['后天可习得','天生','不需要'],a:0},{q:'风险？',opts:['来自不懂','市场','运气'],a:0},{q:'被动收入？',opts:['睡后收入','加班费','奖金'],a:0},{q:'第一步？',opts:['提升财商','买股票','借钱'],a:0},{q:'穷人？',opts:['为钱打工','让钱工作','投资'],a:0},{q:'富人？',opts:['让钱赚钱','更辛苦','更省'],a:0}]}
 ];
-
-var QUIZ=[
- {q:'《富爸爸投资指南》说投资是什么？',o:['一份属于你自己的计划','买股票基金','跟着专家买'],a:0},
- {q:'三种收入中，税率最低、最接近财务自由的是？',o:['被动收入','普通收入','差价收入'],a:0},
- {q:'「用闲钱投资」的意思？',o:['输得起的钱才去投资','借钱投资','用全部积蓄投资'],a:0},
- {q:'A/B/C 三种投资者中，创造机会的是？',o:['C 型（创造型）','A 型（被动型）','B 型（主动型）'],a:0},
- {q:'10 大控制力中，最基础的是？',o:['自我控制','纳税控制','经纪交易控制'],a:0},
- {q:'现金流游戏中，跳出老鼠赛跑的条件是？',o:['被动收入 > 总支出','工资更高','中彩票'],a:0},
- {q:'富爸爸说的三种杠杆不包括？',o:['别人的运气','别人的钱','别人的时间'],a:0},
- {q:'B-I 三角形不包括哪一项？',o:['炒股软件','使命','现金流'],a:0},
- {q:'「先支付自己」的意思是？',o:['收入先流向资产再付账单','先买奢侈品','先存消费基金'],a:0},
- {q:'成为 C 型投资者的第一步是？',o:['教育（学财商）','借钱','找内幕消息'],a:0}
-];
-
-function renderToc(){
-  var el=document.getElementById('tocList');el.innerHTML='';
-  CHAPS.forEach(function(c,i){
-    var d=document.createElement('div');d.className='toc-item';
-    d.innerHTML='<span class="num">'+c.icon+'</span><span class="tt">'+c.n+' · '+c.t+(c.free?'':'<small>付费章节 · 投资进阶</small>')+'</span>';
-    var st=document.createElement('span');
-    if(c.free||UNLOCKED){st.className='st';st.textContent='可学';d.onclick=function(){goTo(i);};}
-    else{st.className='lk';st.textContent='🔒 付费';d.onclick=function(){openUnlock();};}
-    d.appendChild(st);
-    el.appendChild(d);
-  });
-}
-function renderChapters(){
-  var el=document.getElementById('chapters');el.innerHTML='';
-  CHAPS.forEach(function(c,i){
-    var d=document.createElement('div');d.className='chap';
-    d.id='chap-'+i;
-    d.innerHTML='<div class="k">'+c.n+' · RICH DAD LESSON</div><h2>'+c.t+'</h2>';
-    var loop=document.createElement('div');loop.className='learn-loop';
-    ['理解','记忆','联想','练习'].forEach(function(s){var sp=document.createElement('span');sp.textContent=s;if((c.learn||[]).indexOf(s)>=0)sp.className='on';loop.appendChild(sp);});
-    d.appendChild(loop);
-    if(c.free||UNLOCKED){d.appendChild(chapBody(c,i));}
-    else{
-      d.className+=' chapter-lock';
-      d.appendChild(chapBodyPreview(c,i));
-      var veil=document.createElement('div');veil.className='lock-veil';
-      veil.innerHTML='<div class="lock-ic">🔒</div><p>本节为付费内容 · 解锁后可阅读全文并体验完整互动</p><button class="btn" onclick="openUnlock()">解锁本节</button>';
-      d.appendChild(veil);
-    }
-    el.appendChild(d);
-  });
-  renderBadges();
-}
-function chapBody(c,i){
-  var h=document.createElement('div');
-  var ps='';c.p.forEach(function(para){ps+='<p>'+para.join('<br>')+'</p>';});
-  var pwrap=document.createElement('div');
-  pwrap.innerHTML=ps+'<div class="quote">'+c.cap+'</div><div class="focus">🧠 学习闭环：这一节先把概念读懂（理解），再记下金句（记忆），把概念套到自己身上想一想（联想），最后用互动小游戏练一遍（练习）。</div>';
-  h.appendChild(pwrap);
-  h.appendChild(mediaFor(i));
-  return h;
-}
-function chapBodyPreview(c,i){
-  var h=document.createElement('div');
-  var ps='';c.p.forEach(function(para,pi){
-    ps+='<p>';
-    para.forEach(function(line,li){if(pi===0&&li===0){ps+=line;}});
-    ps+='</p>';
-  });
-  h.innerHTML=ps+'<p style="color:var(--dim)">……（付费内容）</p>';
-  return h;
-}
-function mediaFor(i){
-  var h=document.createElement('div');
-  var im=document.createElement('img');im.src=CHAPS[i].art;im.alt=CHAPS[i].t;
-  var cap=document.createElement('div');cap.className='imgcap';cap.textContent=CHAPS[i].cap;
-  h.appendChild(im);h.appendChild(cap);
-  if(i===0){h.appendChild(audioBlock('voice_open.wav','🎧 序章 · 投资是一种计划'));}
-  if(i===1){h.appendChild(audioBlock('voice_income.wav','🎧 核心概念 · 三种收入'));}
-  if(i===5){h.appendChild(audioBlock('voice_control.wav','🎧 高手武器 · 10 大投资控制力'));}
-  if(i===0){
-    var vb0=document.createElement('div');vb0.className='media-block';
-    vb0.innerHTML='<div class="lbl">📺 深度解码 · 投资不是“花钱买代码”，而是“成为游戏设计者”</div><iframe src="https://player.bilibili.com/player.html?bvid=BV12DQ3BBExz&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
-    h.appendChild(vb0);
-  }
-  if(i===11){
-    h.appendChild(audioBlock('voice_plan.wav','🎧 收束 · 写下你的投资计划'));
-    var vb=document.createElement('div');vb.className='media-block';
-    vb.innerHTML='<div class="lbl">📺 3 分钟读懂 · 富爸爸投资指南</div><iframe src="https://player.bilibili.com/player.html?bvid=BV1XL8BzDEJn&page=1&high_quality=1&danmaku=0" allowfullscreen scrolling="no" loading="lazy"></iframe>';
-    h.appendChild(vb);
-  }
-  var gs=gameFor(i);gs.forEach(function(g){h.appendChild(g);});
-  return h;
-}
-function audioBlock(src,lbl){
-  var d=document.createElement('div');d.className='media-block';
-  d.innerHTML='<div class="lbl">'+lbl+'</div><audio controls preload="none" src="'+src+'" onplay="track(\'audio\',{src:\''+src+'\'})"></audio>';
-  return d;
-}
-
-function gameFor(i){
-  var out=[];
-  if(i===0){out.push(gamePlanMind());}
-  if(i===1){out.push(gameIncome());}
-  if(i===2){out.push(gameRules());}
-  if(i===3){out.push(gameInvestorType());}
-  if(i===4){out.push(gameQuadrant());}
-  if(i===5){out.push(gameControlA());}
-  if(i===6){out.push(gameControlPair());}
-  if(i===7){out.push(gameFinIntel());}
-  if(i===8){out.push(gameLeverage());}
-  if(i===9){out.push(gameBoard());}
-  if(i===10){out.push(gameCInvestor());}
-  if(i===11){out.push(gamePlan());out.push(gameQuiz());}
-  return out;
-}
-
-/* 0 计划思维辨认 */
-function gamePlanMind(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-planmind';
-  d.innerHTML='<h3>🧭 计划思维辨认</h3><div class="gsub">理解：这些是「投资计划思维」还是「买产品思维」？点开揭晓。</div>';
-  d.innerHTML+='<div class="trash" id="pmWrap"></div><div class="fb" id="pmFb"></div>';
-  setTimeout(function(){
-    var w=document.getElementById('pmWrap');
-    var items=[
-      {t:'📋 「先写目标，再选产品」',s:'✓ 计划思维：蓝图先于砖瓦。'},
-      {t:'📉 「哪个涨得快就买哪个」',s:'✗ 产品思维：跟风 = 别人的计划。'},
-      {t:'💡 「先学习，再拿闲钱试错」',s:'✓ 计划思维：教育先于本金。'},
-      {t:'🕳 「朋友推荐稳赚，梭哈」',s:'✗ 产品思维：赌徒心态。'},
-      {t:'📊 「每月记录现金流」',s:'✓ 计划思维：控制先于收益。'},
-      {t:'🏃 「先看别人买什么」',s:'✗ 产品思维：你在为别人的计划打工。'}
-    ];
-    var n=0;
-    items.forEach(function(it,ii){
-      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="pmS'+ii+'">'+it.s+'</small>';
-      b.onclick=function(){
-        var s=document.getElementById('pmS'+ii);s.style.display='block';
-        b.className='item done';b.onclick=null;n++;
-        document.getElementById('pmFb').textContent='已辨认 '+n+' / '+items.length+' 种心态';
-        if(n===items.length){
-          document.getElementById('pmFb').innerHTML='<span class="fb good">🧭 辨认完成！投资从一份计划开始，而不是从一个产品开始。</span>';
-          addPoints(6,'辨认计划思维');badge('计划思维者','🧭');track('game',{g:'planmind',score:items.length});
-        }
-      };
-      w.appendChild(b);
-    });
-  },0);
-  return d;
-}
-
-/* 1 三种收入判断 */
-function gameIncome(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-income';
-  d.innerHTML='<h3>💵 三种收入辨识</h3><div class="gsub">记忆：下面这些钱，属于普通收入、投资组合收入还是被动收入？</div>';
-  d.innerHTML+='<div id="inWrap"></div><div class="fb" id="inFb"></div>';
-  var qs=[
-    {q:'每月工资条上的薪水',o:['普通收入','投资组合收入','被动收入'],a:0},
-    {q:'出租房产每月收到的租金',o:['被动收入','普通收入','差价收入'],a:0},
-    {q:'低买高卖股票赚的差价',o:['投资组合收入','被动收入','普通收入'],a:0},
-    {q:'写书每年收到的版税',o:['被动收入','普通收入','投资组合收入'],a:0},
-    {q:'接一单活赚的一次性劳务费',o:['普通收入','被动收入','投资组合收入'],a:0},
-    {q:'开公司每月自动进账的分红',o:['被动收入','普通收入','差价收入'],a:0}
-  ];
-  var qi=0,pts=0;
-  setTimeout(function(){renderQ();},0);
-  function renderQ(){
-    var w=document.getElementById('inWrap');
-    if(qi>=qs.length){
-      w.innerHTML='<div style="font-size:15px;color:var(--gold)">辨识完成：'+pts+' / '+qs.length+' 正确<br><span style="color:var(--sub);font-size:13px">记住：富人的终点是被动收入覆盖全部支出。</span></div>';
-      addPoints(pts>=5?8:4,'三种收入辨识');badge(pts>=5?'收入鉴定师':'收入学徒','💵');track('game',{g:'income',score:pts});
-      return;
-    }
-    var cur=qs[qi];
-    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
-    cur.o.forEach(function(t,oi){
-      var b=document.createElement('button');b.className='opt';b.textContent=t;
-      b.onclick=function(){
-        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
-        if(oi===cur.a){b.className='opt ok';pts++;document.getElementById('inFb').innerHTML='<span class="fb good">✓ 正确</span>';}
-        else{b.className='opt no';document.getElementById('inFb').innerHTML='<span class="fb bad">✗ 想想它是不是持续自动流进来的钱</span>';}
-        qi++;setTimeout(renderQ,800);
-      };
-      w.appendChild(b);
-    });
-  }
-  return d;
-}
-
-/* 2 四个规则配对 */
-function gameRules(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-rules';
-  d.innerHTML='<h3>📜 投资四规则配对</h3><div class="gsub">记忆：把规则和它的含义配成对。</div>';
-  d.innerHTML+='<div class="pair-grid" id="rlGrid"></div><div class="fb" id="rlFb">配对（已完成 0 / 4）</div>';
-  var pairs=[
-    {q:'规则一',a:'知道你在投资哪种收入'},
-    {q:'规则二',a:'把投资变成被动收入'},
-    {q:'规则三',a:'只用闲钱投资'},
-    {q:'规则四',a:'从内部投资，先了解再下注'}
-  ];
-  var matched=0,sel=null,selEl=null;
-  setTimeout(function(){
-    var grid=document.getElementById('rlGrid');
-    pairs.forEach(function(p,pi){
-      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
-      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
-      qb.dataset.pi=pi;ab.dataset.pi=pi;
-      qb.onclick=function(){pick(pi,qb);};
-      ab.onclick=function(){pick(pi,ab);};
-      grid.appendChild(qb);grid.appendChild(ab);
-    });
-    function pick(pi,el){
-      if(el.classList.contains('matched'))return;
-      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
-      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
-      selEl.classList.remove('sel');
-      var qHalf=selEl===grid.children[sel*2];
-      var aHalf=el===grid.children[pi*2+1];
-      if(sel===pi&&qHalf!==aHalf){
-        var q=grid.children[pi*2],a=grid.children[pi*2+1];
-        q.className='pair matched';a.className='pair matched';
-        matched++;
-        document.getElementById('rlFb').innerHTML='配对（已完成 '+matched+' / 4）';
-        if(matched===pairs.length){
-          document.getElementById('rlFb').innerHTML='<span class="fb good">📜 配对完成！四条规则，是保护你的四道城墙。</span>';
-          addPoints(8,'投资四规则配对');badge('规则学徒','📜');track('game',{g:'rules',score:pairs.length});
-        }
-      }else{document.getElementById('rlFb').innerHTML='<span class="fb bad">配错了，再想想。</span>';}
-      sel=null;selEl=null;
-    }
-  },0);
-  return d;
-}
-
-/* 3 投资者类型识别 */
-function gameInvestorType(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-invtype';
-  d.innerHTML='<h3>🏗 三种投资者识别</h3><div class="gsub">理解+联想：这是 A 型、B 型还是 C 型投资者？点开揭晓。</div>';
-  d.innerHTML+='<div class="trash" id="itWrap"></div><div class="fb" id="itFb"></div>';
-  setTimeout(function(){
-    var w=document.getElementById('itWrap');
-    var items=[
-      {t:'🛋 「等朋友推荐一个好项目」',s:'A 型 · 被动等机会，运气理财。'},
-      {t:'🔍 「自己看财报，买现成好资产」',s:'B 型 · 主动购买机会。'},
-      {t:'🏗 「组队翻新旧房再出租」',s:'C 型 · 自己创造投资机会。'},
-      {t:'📱 「看到短视频推荐就买」',s:'A 型 · 被别人的计划支配。'},
-      {t:'🛠 「创办自动运转的小生意」',s:'C 型 · 建立自己的现金流系统。'},
-      {t:'🧮 「研究估值模型寻找低估资产」',s:'B 型 · 用财商筛选现成机会。'}
-    ];
-    var n=0;
-    items.forEach(function(it,ii){
-      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="itS'+ii+'">'+it.s+'</small>';
-      b.onclick=function(){
-        var s=document.getElementById('itS'+ii);s.style.display='block';
-        b.className='item done';b.onclick=null;n++;
-        document.getElementById('itFb').textContent='已识别 '+n+' / '+items.length+' 种投资者';
-        if(n===items.length){
-          document.getElementById('itFb').innerHTML='<span class="fb good">🏗 识别完成！进阶路线：A → B → C，每走一步都要教育与经验垫底。</span>';
-          addPoints(6,'识别投资者类型');badge('投资者鉴定师','🏗');track('game',{g:'invtype',score:items.length});
-        }
-      };
-      w.appendChild(b);
-    });
-  },0);
-  return d;
-}
-
-/* 4 象限判断 */
-function gameQuadrant(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-quad';
-  d.innerHTML='<h3>🧭 象限定位</h3><div class="gsub">联想：下面这些人主要在哪个象限赚钱？</div>';
-  d.innerHTML+='<div id="qdWrap"></div><div class="fb" id="qdFb"></div>';
-  var qs=[
-    {q:'在单位按时上下班领工资',o:['E 雇员','S 自由职业','I 投资人'],a:0},
-    {q:'自己开诊所，病人认你个人',o:['S 自由职业','E 雇员','B 企业主'],a:0},
-    {q:'拥有连锁店，店长替你管理',o:['B 企业主','S 自由职业','E 雇员'],a:0},
-    {q:'靠房产股息被动收入生活',o:['I 投资人','E 雇员','S 自由职业'],a:0},
-    {q:'写代码接外包，单子自己接',o:['S 自由职业','I 投资人','B 企业主'],a:0}
-  ];
-  var qi=0,pts=0;
-  setTimeout(function(){renderQ();},0);
-  function renderQ(){
-    var w=document.getElementById('qdWrap');
-    if(qi>=qs.length){
-      w.innerHTML='<div style="font-size:15px;color:var(--gold)">象限定位：'+pts+' / 5<br><span style="color:var(--sub);font-size:13px">目标：从 E/S 出发，向 B/I 移动。</span></div>';
-      addPoints(pts>=4?6:3,'象限定位');badge('象限导航员','🧭');track('game',{g:'quad',score:pts});
-      return;
-    }
-    var cur=qs[qi];
-    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
-    cur.o.forEach(function(t,oi){
-      var b=document.createElement('button');b.className='opt';b.textContent=t;
-      b.onclick=function(){
-        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
-        if(oi===cur.a){b.className='opt ok';pts++;document.getElementById('qdFb').innerHTML='<span class="fb good">✓ 正确</span>';}
-        else{b.className='opt no';document.getElementById('qdFb').innerHTML='<span class="fb bad">✗ 想想钱是靠什么进来的</span>';}
-        qi++;setTimeout(renderQ,800);
-      };
-      w.appendChild(b);
-    });
-  }
-  return d;
-}
-
-/* 5 控制力选择（上） */
-function gameControlA(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-ctrla';
-  d.innerHTML='<h3>🛡 控制力挑战（上）</h3><div class="gsub">练习：面对这些情境，该动用哪一项控制力？</div>';
-  d.innerHTML+='<div id="caWrap"></div><div class="fb" id="caFb"></div>';
-  var qs=[
-    {q:'行情暴跌，你很想割肉离场',o:['自我控制','买卖时机控制','经纪控制'],a:0},
-    {q:'发工资后先买资产还是先消费',o:['收入/支出控制','纳税控制','合约控制'],a:0},
-    {q:'想合法地少交税',o:['纳税控制','自我控制','信息控制'],a:0},
-    {q:'不知道这笔钱在怎么流动',o:['投资管理控制','经纪控制','回馈控制'],a:0},
-    {q:'别人追高，你要不要跟',o:['买卖时机控制','合约控制','回馈控制'],a:0}
-  ];
-  var qi=0,pts=0;
-  setTimeout(function(){renderQ();},0);
-  function renderQ(){
-    var w=document.getElementById('caWrap');
-    if(qi>=qs.length){
-      w.innerHTML='<div style="font-size:15px;color:var(--gold)">挑战完成：'+pts+' / 5<br><span style="color:var(--sub);font-size:13px">前 5 项控制力，先练起来。</span></div>';
-      addPoints(pts>=4?6:3,'控制力挑战（上）');badge('控制力学徒','🛡');track('game',{g:'ctrla',score:pts});
-      return;
-    }
-    var cur=qs[qi];
-    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
-    cur.o.forEach(function(t,oi){
-      var b=document.createElement('button');b.className='opt';b.textContent=t;
-      b.onclick=function(){
-        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
-        if(oi===cur.a){b.className='opt ok';pts++;document.getElementById('caFb').innerHTML='<span class="fb good">✓ 高手的选择</span>';}
-        else{b.className='opt no';document.getElementById('caFb').innerHTML='<span class="fb bad">✗ 再想想：这一环是谁在掌控？</span>';}
-        qi++;setTimeout(renderQ,800);
-      };
-      w.appendChild(b);
-    });
-  }
-  return d;
-}
-
-/* 6 控制力配对（下） */
-function gameControlPair(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-ctrlp';
-  d.innerHTML='<h3>🛡 控制力配对（下）</h3><div class="gsub">记忆：把控制力和它的含义配成对。</div>';
-  d.innerHTML+='<div class="pair-grid" id="cpGrid"></div><div class="fb" id="cpFb">配对（已完成 0 / 5）</div>';
-  var pairs=[
-    {q:'经纪交易控制',a:'选择可信的专业中介'},
-    {q:'合约控制',a:'看懂每一份合同条款'},
-    {q:'信息控制',a:'用财商筛选信息'},
-    {q:'伙伴控制',a:'与懂行的人同行'},
-    {q:'回馈控制',a:'让财富流动与分享'}
-  ];
-  var matched=0,sel=null,selEl=null;
-  setTimeout(function(){
-    var grid=document.getElementById('cpGrid');
-    pairs.forEach(function(p,pi){
-      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
-      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
-      qb.dataset.pi=pi;ab.dataset.pi=pi;
-      qb.onclick=function(){pick(pi,qb);};
-      ab.onclick=function(){pick(pi,ab);};
-      grid.appendChild(qb);grid.appendChild(ab);
-    });
-    function pick(pi,el){
-      if(el.classList.contains('matched'))return;
-      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
-      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
-      selEl.classList.remove('sel');
-      var qHalf=selEl===grid.children[sel*2];
-      var aHalf=el===grid.children[pi*2+1];
-      if(sel===pi&&qHalf!==aHalf){
-        var q=grid.children[pi*2],a=grid.children[pi*2+1];
-        q.className='pair matched';a.className='pair matched';
-        matched++;
-        document.getElementById('cpFb').innerHTML='配对（已完成 '+matched+' / 5）';
-        if(matched===pairs.length){
-          document.getElementById('cpFb').innerHTML='<span class="fb good">🛡 配对完成！10 项控制力集齐，你就是规则的制定者。</span>';
-          addPoints(10,'控制力配对');badge('控制力大师','🛡');track('game',{g:'ctrlpair',score:pairs.length});
-        }
-      }else{document.getElementById('cpFb').innerHTML='<span class="fb bad">配错了，再想想。</span>';}
-      sel=null;selEl=null;
-    }
-  },0);
-  return d;
-}
-
-/* 7 财商四要素配对 */
-function gameFinIntel(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-fin';
-  d.innerHTML='<h3>📚 财商四要素配对</h3><div class="gsub">记忆：把四门功课和它们的用途配成对。</div>';
-  d.innerHTML+='<div class="pair-grid" id="fnGrid"></div><div class="fb" id="fnFb">配对（已完成 0 / 4）</div>';
-  var pairs=[
-    {q:'会计',a:'读懂数字，看懂报表'},
-    {q:'投资',a:'让钱生钱'},
-    {q:'市场',a:'看懂供需与时机'},
-    {q:'法律',a:'了解规则与结构'}
-  ];
-  var matched=0,sel=null,selEl=null;
-  setTimeout(function(){
-    var grid=document.getElementById('fnGrid');
-    pairs.forEach(function(p,pi){
-      var qb=document.createElement('div');qb.className='pair';qb.textContent=p.q;
-      var ab=document.createElement('div');ab.className='pair';ab.textContent=p.a;
-      qb.dataset.pi=pi;ab.dataset.pi=pi;
-      qb.onclick=function(){pick(pi,qb);};
-      ab.onclick=function(){pick(pi,ab);};
-      grid.appendChild(qb);grid.appendChild(ab);
-    });
-    function pick(pi,el){
-      if(el.classList.contains('matched'))return;
-      if(sel===null){sel=pi;selEl=el;el.classList.add('sel');return;}
-      if(sel===pi){selEl.classList.remove('sel');sel=null;selEl=null;return;}
-      selEl.classList.remove('sel');
-      var qHalf=selEl===grid.children[sel*2];
-      var aHalf=el===grid.children[pi*2+1];
-      if(sel===pi&&qHalf!==aHalf){
-        var q=grid.children[pi*2],a=grid.children[pi*2+1];
-        q.className='pair matched';a.className='pair matched';
-        matched++;
-        document.getElementById('fnFb').innerHTML='配对（已完成 '+matched+' / 4）';
-        if(matched===pairs.length){
-          document.getElementById('fnFb').innerHTML='<span class="fb good">📚 配对完成！四门功课，学校不教，但决定一生财富走向。</span>';
-          addPoints(8,'财商四要素配对');badge('财商读书人','📚');track('game',{g:'finintel',score:pairs.length});
-        }
-      }else{document.getElementById('fnFb').innerHTML='<span class="fb bad">配错了，再想想。</span>';}
-      sel=null;selEl=null;
-    }
-  },0);
-  return d;
-}
-
-/* 8 杠杆判断 */
-function gameLeverage(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-lever';
-  d.innerHTML='<h3>⚖ 杠杆辨认</h3><div class="gsub">理解：这是哪种杠杆？点开揭晓。</div>';
-  d.innerHTML+='<div class="trash" id="lvWrap"></div><div class="fb" id="lvFb"></div>';
-  setTimeout(function(){
-    var w=document.getElementById('lvWrap');
-    var items=[
-      {t:'🏦 用低息贷款买出租房',s:'别人的钱（OPM）· 让银行的钱为你工作。'},
-      {t:'👥 雇员工处理日常事务',s:'别人的时间（OPT）· 让系统替你干活。'},
-      {t:'🎓 请投资老手当顾问',s:'别人的经验 · 用教训换学费。'},
-      {t:'💳 刷爆信用卡买奢侈品',s:'⚠ 这不是杠杆，是负债：没有资产承接。'},
-      {t:'🏢 外包给专业团队做账',s:'别人的时间+经验 · 专业分工。'},
-      {t:'📱 跟风炒短线',s:'⚠ 这不是杠杆：杠杆的前提是财商支点。'}
-    ];
-    var n=0;
-    items.forEach(function(it,ii){
-      var b=document.createElement('div');b.className='item';b.innerHTML=it.t+'<br><small style="color:var(--dim);display:none" id="lvS'+ii+'">'+it.s+'</small>';
-      b.onclick=function(){
-        var s=document.getElementById('lvS'+ii);s.style.display='block';
-        b.className='item done';b.onclick=null;n++;
-        document.getElementById('lvFb').textContent='已辨认 '+n+' / '+items.length+' 种用法';
-        if(n===items.length){
-          document.getElementById('lvFb').innerHTML='<span class="fb good">⚖ 辨认完成！杠杆放大收益也放大风险，先用财商垫高支点。</span>';
-          addPoints(6,'杠杆辨认');badge('杠杆玩家','⚖');track('game',{g:'lever',score:items.length});
-        }
-      };
-      w.appendChild(b);
-    });
-  },0);
-  return d;
-}
-
-/* 9 现金流棋局 */
-function gameBoard(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-board';
-  d.innerHTML='<h3>🎲 现金流棋局</h3><div class="gsub">练习：掷骰子前进，遇到机会卡就判断——买资产，还是绕开？目标：让被动收入超过支出。</div>';
-  d.innerHTML+='<div style="text-align:center;margin-bottom:10px"><button class="btn" id="bdRoll">🎲 掷骰子</button></div><div class="board" id="bdBoard"></div><div class="fb" id="bdFb">点「掷骰子」开始，从起点出发。</div>';
-  var cells=[
-    {t:'起点',big:true},
-    {t:'工资日 +¥10',big:false},
-    {t:'机会卡',big:false},
-    {t:'意外支出 -¥5',big:false},
-    {t:'工资日 +¥10',big:false},
-    {t:'机会卡',big:false},
-    {t:'市场波动 ±0',big:false},
-    {t:'工资日 +¥10',big:false},
-    {t:'机会卡',big:false},
-    {t:'税务 -¥3',big:false},
-    {t:'被动收入 +¥15 🏁',big:true}
-  ];
-  var pos=0,passive=0,expense=10,rounds=0,maxRounds=6,done=false;
-  setTimeout(function(){renderBoard();},0);
-  function renderBoard(){
-    var w=document.getElementById('bdBoard');w.innerHTML='';
-    cells.forEach(function(c,i){
-      var e=document.createElement('div');e.className='cell'+(i===pos?' here':'')+(c.big?' big':'');
-      e.textContent=c.t;w.appendChild(e);
-    });
-  }
-  function roll(){
-    if(done)return;
-    rounds++;
-    var r=1+Math.floor(Math.random()*3);
-    pos=(pos+r)%cells.length;
-    renderBoard();
-    var cell=cells[pos];
-    var fb=document.getElementById('bdFb');
-    if(cell.t.indexOf('工资日')>=0){document.getElementById('bdFb').innerHTML='<span class="fb good">🎲 '+r+' 点 → 工资日：+10 现金（但不产生被动收入）。</span>';}
-    else if(cell.t.indexOf('意外支出')>=0){document.getElementById('bdFb').innerHTML='<span class="fb bad">🎲 '+r+' 点 → 意外支出：-5。这就是老鼠赛跑的日常。</span>';}
-    else if(cell.t.indexOf('税务')>=0){document.getElementById('bdFb').innerHTML='<span class="fb">🎲 '+r+' 点 → 税务：-3。</span>';}
-    else if(cell.t.indexOf('市场波动')>=0){document.getElementById('bdFb').innerHTML='<span class="fb">🎲 '+r+' 点 → 市场波动：不追涨杀跌，静观其变。</span>';}
-    else if(cell.t.indexOf('机会卡')>=0){
-      var buy=Math.random()<0.5;
-      if(buy){passive+=5;document.getElementById('bdFb').innerHTML='<span class="fb good">🎲 '+r+' 点 → 机会卡：你买入一项产生 +5 被动收入的资产！当前被动收入 '+passive+'。</span>';}
-      else{document.getElementById('bdFb').innerHTML='<span class="fb">🎲 '+r+' 点 → 机会卡：观望了一下（判断现金流后没买）。</span>';}
-    }
-    else if(cell.t.indexOf('被动收入')>=0){
-      fb.innerHTML='<span class="fb good">🎲 '+r+' 点 → 被动收入卡：+15！被动收入共 '+passive+'。</span>';
-    }
-    if(rounds>=maxRounds||(cell.t.indexOf('被动收入')>=0&&passive>0)){
-      done=true;
-      var ok=passive>=15;
-      document.getElementById('bdRoll').textContent='再来一局';
-      document.getElementById('bdRoll').onclick=function(){location.reload();};
-      fb.innerHTML='<span class="fb '+(ok?'good':'')+'">⏱ 6 回合结束：被动收入 '+passive+' / 支出 10。'+(ok?'🎉 被动收入超过支出，你跳出了老鼠赛跑！':'下次记住：遇到机会卡，多买资产。')+'</span>';
-      addPoints(ok?10:5,'现金流棋局');badge(ok?'棋盘富翁':'棋盘学徒','🎲');track('game',{g:'board',score:passive});
-      return;
-    }
-  }
-  var btn=document.getElementById('bdRoll');
-  btn.onclick=function(){roll();};
-  return d;
-}
-
-/* 10 C 型投资者决策 */
-function gameCInvestor(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-cinv';
-  d.innerHTML='<h3>🏗 C 型投资者决策</h3><div class="gsub">练习：想成为 C 型投资者，面对这些情况你该怎么做？</div>';
-  d.innerHTML+='<div id="ciWrap"></div><div class="fb" id="ciFb"></div>';
-  var qs=[
-    {q:'还没学过财务知识，先做哪一步？',o:['先完成教育，看懂数字','直接借钱投资','等别人给机会'],a:0},
-    {q:'想积累投资经验，最稳妥的是？',o:['玩现金流游戏+小额试错','全仓押注','听消息梭哈'],a:0},
-    {q:'本金不足时，可以借助？',o:['闲钱+受控的杠杆（OPM）','信用卡套现','高利贷'],a:0},
-    {q:'想组队创造机会，先找谁？',o:['律师、会计师、内行顾问','只信销售员','自己硬扛'],a:0},
-    {q:'C 型投资者最大的武器是？',o:['财商+计划+团队','运气','本金多少'],a:0}
-  ];
-  var qi=0,pts=0;
-  setTimeout(function(){renderQ();},0);
-  function renderQ(){
-    var w=document.getElementById('ciWrap');
-    if(qi>=qs.length){
-      w.innerHTML='<div style="font-size:15px;color:var(--gold)">决策练习：'+pts+' / 5<br><span style="color:var(--sub);font-size:13px">C 型路径：教育 → 经验 → 资金 → 团队 → 法律结构。</span></div>';
-      addPoints(pts>=4?8:4,'C型投资者决策');badge('机会创造者','🏗');track('game',{g:'cinv',score:pts});
-      return;
-    }
-    var cur=qs[qi];
-    w.innerHTML='<div class="desc">'+(qi+1)+' / '+qs.length+' · '+cur.q+'</div>';
-    cur.o.forEach(function(t,oi){
-      var b=document.createElement('button');b.className='opt';b.textContent=t;
-      b.onclick=function(){
-        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
-        if(oi===cur.a){b.className='opt ok';pts++;document.getElementById('ciFb').innerHTML='<span class="fb good">✓ 创造者的选择</span>';}
-        else{b.className='opt no';document.getElementById('ciFb').innerHTML='<span class="fb bad">✗ 再想想 C 型靠什么立足</span>';}
-        qi++;setTimeout(renderQ,800);
-      };
-      w.appendChild(b);
-    });
-  }
-  return d;
-}
-
-/* 11 投资计划书 */
-function gamePlan(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-plan';
-  d.innerHTML='<h3>🗺 投资计划书生成器</h3><div class="gsub">练习：按顺序点亮你投资计划的五个模块。</div>';
-  d.innerHTML+='<div class="kick" id="plKick"></div><div class="bar" id="plBar"><i style="width:0%"></i></div><div class="fb" id="plFb">依次点亮：教育 → 经验 → 资金 → 团队 → 行动。</div>';
-  var steps=['🎓 教育计划','🧪 经验计划','💰 资金计划','👥 团队计划','🚀 行动'];
-  var cur=0;
-  setTimeout(function(){
-    var w=document.getElementById('plKick');
-    steps.forEach(function(s,si){
-      var b=document.createElement('button');b.textContent=s;b.disabled=true;
-      b.onclick=function(){
-        if(si===cur){
-          b.className='done';b.disabled=true;cur++;
-          document.getElementById('plBar').firstChild.style.width=(cur/steps.length*100)+'%';
-          if(cur>=steps.length){
-            document.getElementById('plFb').innerHTML='<span class="fb good">🎉 计划书五模块点亮！你的投资地图已经展开。</span>';
-            addPoints(10,'完成投资计划书');badge('计划制定者','🗺');track('game',{g:'plan',score:steps.length});
-          }else{document.getElementById('plFb').innerHTML='已点亮 '+cur+' / '+steps.length+'：下一步「'+steps[cur]+'」';}
-        }
-      };
-      w.appendChild(b);
-    });
-    w.children[0].disabled=false;
-  },0);
-  return d;
-}
-
-/* 12 读后小测 */
-function gameQuiz(){
-  var d=document.createElement('div');d.className='game';
-  d.id='g-quiz';
-  d.innerHTML='<h3>📝 读后小测</h3><div class="gsub">练习：检验你是否真的掌握了这本书的核心。</div>';
-  d.innerHTML+='<div class="quiz-prog" id="qzProg"></div><div id="qzWrap"></div><div class="fb" id="qzFb"></div>';
-  var qi=0,score=0;
-  setTimeout(function(){renderQ();},0);
-  function renderQ(){
-    var w=document.getElementById('qzWrap');
-    var prog=document.getElementById('qzProg');prog.innerHTML='';
-    QUIZ.forEach(function(q,i){var s=document.createElement('i');if(i<qi)s.className='done';if(i===qi)s.className='cur';prog.appendChild(s);});
-    if(qi>=QUIZ.length){
-      var full=score===QUIZ.length;
-      w.innerHTML='<div style="font-size:15px;color:var(--gold)">得分：'+score+' / '+QUIZ.length+(full?' 🎉 满分学员！':'。再复习一下计划、收入、控制力和杠杆吧。')+'</div>';
-      addPoints(score>=8?10:5,'完成读后小测');badge(full?'满分学员':'勤奋学员','📝');track('game',{g:'quiz',score:score});
-      return;
-    }
-    var cur=QUIZ[qi];
-    w.innerHTML='<div class="desc">'+(qi+1)+' / '+QUIZ.length+' · '+cur.q+'</div>';
-    cur.o.forEach(function(t,oi){
-      var b=document.createElement('button');b.className='opt';b.textContent=t;
-      b.onclick=function(){
-        w.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
-        if(oi===cur.a){b.className='opt ok';score++;document.getElementById('qzFb').innerHTML='<span class="fb good">✓ 正确</span>';}
-        else{b.className='opt no';document.getElementById('qzFb').innerHTML='<span class="fb bad">✗ 正确答案：'+cur.o[cur.a]+'</span>';}
-        qi++;setTimeout(renderQ,700);
-      };
-      w.appendChild(b);
-    });
-  }
-  return d;
-}
-
-function renderBadges(){
-  var list=[['🧭','计划思维者'],['💵','收入鉴定师'],['📜','规则学徒'],['🏗','投资者鉴定师'],['🧭','象限导航员'],['🛡','控制力学徒'],['🛡','控制力大师'],['📚','财商读书人'],['⚖','杠杆玩家'],['🎲','棋盘富翁'],['🏗','机会创造者'],['🗺','计划制定者'],['📝','满分学员']];
-  var box=document.getElementById('badgeBox');
-  if(!box){box=document.createElement('div');box.className='badges';box.id='badgeBox';var footer=document.querySelector('.footer');footer.parentNode.insertBefore(box,footer);}
-  box.innerHTML='';
-  list.forEach(function(b){
-    var e=document.createElement('div');e.className='badge'+(BADGES[b[1]]?' on':'');
-    e.innerHTML='<span class="bi">'+b[0]+'</span>'+b[1];box.appendChild(e);
-  });
-}
-
-/* 通用 */
-function goRead(){document.getElementById('sec-toc').scrollIntoView({behavior:'smooth'});}
-function goTo(i){var el=document.getElementById('chap-'+i);if(el){el.scrollIntoView({behavior:'smooth'});}}
-function openUnlock(){document.getElementById('modalUnlock').classList.add('open');document.getElementById('unlockHint').textContent='还没有激活码？完成互动任务可获得积分；免费章节积累 30 积分即可兑换全书。';document.getElementById('unlockOk').textContent='';document.getElementById('codeBox').classList.add('hidden');}
-function closeModal(){document.getElementById('modalUnlock').classList.remove('open');}
-function unlockByCode(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='请输入管理员发放的 8 位激活码（可向平台客服获取）。';}
-function unlockByPoints(){document.getElementById('codeBox').classList.remove('hidden');document.getElementById('unlockHint').textContent='当前积分：'+POINTS+' 分。兑换全书需要 50 分。完成免费章节的互动游戏即可积累积分。';}
-function verifyCode(){
-  var v=document.getElementById('codeInput').value.trim().toUpperCase();
-  if(v.indexOf('XQ2026')>=0||v.length===8){unlockAll();document.getElementById('unlockOk').textContent='✓ 激活成功！全书已解锁。';return;}
-  if(POINTS>=50){setPoints(POINTS-50);unlockAll();document.getElementById('unlockOk').textContent='✓ 已用 50 积分兑换，全书已解锁。';return;}
-  document.getElementById('unlockOk').textContent='✗ 激活码无效或积分不足（需要 50 分）。';
-}
-function adminCheck(){
-  var p=prompt('管理员口令：');
-  if(p==='xiqi-admin-2026'){localStorage.setItem(LSKEY_ADMIN,'1');unlockAll();document.getElementById('unlockOk').textContent='✓ 管理员已授权，全部内容开放。';track('unlock',{method:'admin'});}
-  else{document.getElementById('unlockOk').textContent='✗ 口令错误。';}
-}
-function playBgm(){
-  var a=document.getElementById('bgmAudio');
-  if(!a){
-    a=document.createElement('audio');a.id='bgmAudio';a.src='bgm.wav';a.loop=true;
-    document.body.appendChild(a);
-  }
-  if(a.paused){a.play();document.getElementById('moodPill').textContent='🎵 播放中';}
-  else{a.pause();document.getElementById('moodPill').textContent='🎧 音乐';}
-}
-renderToc();renderChapters();
-setPoints(POINTS);
-if(UNLOCKED){document.getElementById('btnUnlock').textContent='✓ 已解锁';}
+const badges=['💼','🗺️','💰','🎓','🌩️','😴','🪜','🧭','🛡️','💎','🔍','👑'];
+const badgeNames=['财商觉醒者','四象限导航员','现金流管家','知识投资者','风险认知者','睡后收入者','阶梯攀登者','决策者','守则执行者','概念掌握者','自省者','投资大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
 </script>
 </body>
 </html>
