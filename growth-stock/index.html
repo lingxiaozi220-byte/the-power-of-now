@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《怎样选择成长股》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《怎样选择成长股》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>菲利普·费雪 · 成长股投资之父 · 巴菲特15%的灵感来源</p>
+    <span class="tag">成长股</span><span class="tag">长期持有</span><span class="tag">闲聊调查</span><span class="tag">集中投资</span><span class="tag">费雪十五要点</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 成长股：买能长大的公司（免费）</div>
+  <div class="card">
+    <h3>理解 · 费雪的投资哲学</h3>
+    <p><span class="q">菲利普·费雪说：买股票就是买公司，而且是要买能持续长大的公司。他不在乎短期波动，只关心这家公司十年后能赚多少钱。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="怎样选择成长股"></div>
+    <div class="mini">🌱 <b>关键：</b>好公司像好树，值得种下看它十年。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「成长股」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 闲聊调查法（免费）</div>
+  <div class="card">
+    <h3>理解 · Scuttlebutt：四处打听真相</h3>
+    <p><span class="q">费雪不只看财报，他亲自去问：问客户产品好不好，问员工公司实不实，问供应商回款快不快，问竞争对手怕不怕。多方交叉验证，真相自然浮现。</span></p>
+    <div class="imgbox"><img src="art_scuttlebutt.jpg" alt="闲聊调查法"></div>
+    <div class="mini">💬 <b>关键：</b>财报会说谎，人不会一直说谎。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「闲聊调查」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 长期持有（免费）</div>
+  <div class="card">
+    <h3>理解 · 买入后几乎不卖</h3>
+    <p><span class="q">费雪的规则：除非公司基本面彻底变坏，否则不卖。涨多了不卖，跌了也不卖——时间会让好公司的价值自己长大。</span></p>
+    <div class="imgbox"><img src="art_hold.jpg" alt="长期持有"></div>
+    <div class="mini">🕰️ <b>关键：</b>最好的卖出，是永不卖出。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「长期持有」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 研发与产品（免费）</div>
+  <div class="card">
+    <h3>理解 · 未来的利润藏在实验室里</h3>
+    <p><span class="q">费雪特别看重研发：公司有没有持续推出新产品的能力？研发投入占收入比例高不高？产品线够不够宽？这是成长股的发动机。</span></p>
+    <div class="imgbox"><img src="art_rd.jpg" alt="研发与产品"></div>
+    <div class="mini">🔬 <b>关键：</b>今天的研发，是十年后的利润。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「研发与产品」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 费雪十五要点（免费）</div>
+  <div class="card">
+    <h3>理解 · 一张系统化的选股清单</h3>
+    <p><span class="q">产品市场潜力大不大？利润空间在不在提升？研发是否有效？销售团队强不强？管理层是否诚信？——十五条逐一打勾，全过才买。</span></p>
+    <div class="imgbox"><img src="art_points.jpg" alt="十五要点"></div>
+    <div class="mini">📋 <b>关键：</b>清单让选股不再凭感觉。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「十五要点」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 管理层质量（免费）</div>
+  <div class="card">
+    <h3>理解 · 买公司就是买人</h3>
+    <p><span class="q">费雪说：管理层的诚信和能力，决定公司能走多远。坦诚面对坏消息的管理者，比只报喜不报忧的，值得多付溢价。</span></p>
+    <div class="imgbox"><img src="art_management.jpg" alt="管理层"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1woRDBUEwo&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">👔 <b>关键：</b>宁要诚实的能力，不要聪明的骗子。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「管理层」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 集中投资（免费）</div>
+  <div class="card">
+    <h3>理解 · 少而精，敢重仓</h3>
+    <p><span class="q">费雪一生只重仓少数几只股票：深入研究让你有信心，有信心才敢重仓，重仓好公司才能赚大钱。分散太多等于承认自己不懂。</span></p>
+    <div class="imgbox"><img src="art_patience.jpg" alt="集中投资"></div>
+    <div class="mini">🎯 <b>关键：</b>把鸡蛋放在少数几个最稳的篮子里。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「集中投资」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：决策演练、生存法则、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（决策演练、成长股生存法则、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 决策演练</div>
+  <div class="card">
+    <h3>理解 · 用费雪清单走一遍</h3>
+    <p><span class="q">选一家你感兴趣的公司：① 列十五要点逐一打分；② 去访谈至少三类人（客户/员工/供应商）；③ 看研发投入与产品线；④ 判断管理层诚信；⑤ 全过才考虑买入。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>调研越深，拿得越稳。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「决策演练」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 成长股生存法则</div>
+  <div class="card">
+    <h3>理解 · 别让情绪毁掉好公司</h3>
+    <p><span class="q">不追热门题材、不做频繁交易、下跌时先问公司变没变坏、不加杠杆。好公司跌下去还会回来，坏公司涨上去也是陷阱。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1vwiuBzE1t&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>你唯一要卖的时机，是公司变质时。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「生存法则」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 成长股的完整闭环</h3>
+    <p>十五要点 → 闲聊调查 → 长期持有 → 集中重仓，四步闭环，一生践行。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>下载费雪十五要点清单，为持仓逐一打分</td></tr>
+      <tr><td>2</td><td>访谈至少三类人验证公司真相</td></tr>
+      <tr><td>3</td><td>检查研发投入占收入比例</td></tr>
+      <tr><td>4</td><td>把持仓收缩到你能深研的少数几只</td></tr>
+      <tr><td>5</td><td>制定卖出标准：只有公司变质才卖</td></tr>
+      <tr><td>6</td><td>每季度复查一次十五要点</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：成长股大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《巴菲特的护城河》《投资最重要的事》《股市长线法宝》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='growth-stock';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🌱',t:'成长股',d:'选能长大的',qs:[{q:'成长股？',opts:['长期增长空间大','短期热炒','稳定分红'],a:0},{q:'费雪选股？',opts:['看十年增长','看明天涨跌','看消息'],a:0},{q:'好公司？',opts:['产品+管理+研发','股价高','名字响'],a:0}]},
+ {ico:'💬',t:'闲聊调查',d:'Scuttlebutt',qs:[{q:'闲聊调查？',opts:['问多方核实真相','只看财报','听消息'],a:0},{q:'问谁？',opts:['员工客户供应商','只问朋友','不问'],a:0},{q:'小道消息？',opts:['不等于真相','就是真相','必须信'],a:0}]},
+ {ico:'🕰️',t:'长期持有',d:'种树不砍',qs:[{q:'费雪持有期？',opts:['十年以上','一年','一周'],a:0},{q:'何时卖？',opts:['公司变坏才卖','涨了就卖','天天想卖'],a:0},{q:'耐心？',opts:['是最大优势','是浪费','没用'],a:0}]},
+ {ico:'🔬',t:'研发与产品',d:'看未来',qs:[{q:'研发？',opts:['决定未来竞争力','是浪费','不重要'],a:0},{q:'新产品线？',opts:['是增长来源','是风险','没影响'],a:0},{q:'费雪看研发？',opts:['重点考察','从不看','顺带看'],a:0}]},
+ {ico:'📋',t:'十五要点',d:'选股清单',qs:[{q:'十五要点？',opts:['系统筛选公司','随便看看','没用'],a:0},{q:'产品潜力？',opts:['市场空间要大','小也行','无所谓'],a:0},{q:'利润空间？',opts:['持续提升才好','越低越好','无所谓'],a:0}]},
+ {ico:'👔',t:'管理层',d:'人的质量',qs:[{q:'管理层？',opts:['决定公司命运','无关','次要'],a:0},{q:'诚信？',opts:['第一要求','无所谓','装样子'],a:0},{q:'管理层能力？',opts:['必须考察','不用','看看照片'],a:0}]},
+ {ico:'🎯',t:'集中投资',d:'少而精',qs:[{q:'费雪持仓？',opts:['集中少数几只','分散一百只','越散越好'],a:0},{q:'深入研究？',opts:['才有信心重仓','浪费时间','随便'],a:0},{q:'重仓？',opts:['好公司敢重仓','永远轻仓','不敢'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'生活应用',qs:[{q:'我的研究？',opts:['深度调研过吗','看新闻','不研究'],a:0},{q:'我的持仓？',opts:['拿得住十年吗','天天换','三天'],a:0},{q:'我的选择？',opts:['有清单吗','凭感觉','听推荐'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'避开陷阱',qs:[{q:'热门题材？',opts:['不追','追','梭哈'],a:0},{q:'下跌？',opts:['公司没变就拿着','割肉','加杠杆'],a:0},{q:'频繁交易？',opts:['增加成本','赚更多','更好'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'闲聊调查=？',opts:['多方访谈核实','闲聊八卦','小道消息'],a:0},{q:'成长股=？',opts:['长期增长的公司','短期热门','高分红'],a:0},{q:'费雪式卖出=？',opts:['公司变质才卖','涨了卖','跌了卖'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查自己',qs:[{q:'我调研？',opts:['访谈过客户吗','没有','不必要'],a:0},{q:'我看十年？',opts:['想过多远','只看到明天','一年'],a:0},{q:'我换手？',opts:['频繁吗','从不','偶尔'],a:0}]},
+ {ico:'👑',t:'成长股大师挑战',d:'10题综合测验',qs:[{q:'成长股？',opts:['长期增长','短期热炒','稳定分红'],a:0},{q:'闲聊调查？',opts:['问多方核实','只看财报','听消息'],a:0},{q:'持有期？',opts:['十年以上','一年','一周'],a:0},{q:'研发？',opts:['决定未来','是浪费','不重要'],a:0},{q:'十五要点？',opts:['系统筛选','随便','没用'],a:0},{q:'管理层？',opts:['决定命运','无关','次要'],a:0},{q:'持仓？',opts:['集中少数','分散一百','越散越好'],a:0},{q:'热门题材？',opts:['不追','追','梭哈'],a:0},{q:'闲聊调查=？',opts:['多方访谈','八卦','小道消息'],a:0},{q:'何时卖？',opts:['公司变坏才卖','涨了卖','跌了卖'],a:0}]}
+];
+const badges=['🌱','💬','🕰️','🔬','📋','👔','🎯','🧭','🛡️','💎','🔍','👑'];
+const badgeNames=['成长猎手','调查大师','耐心持有者','研发观察家','十五要点家','管理鉴别家','集中投资者','决策者','守本卫士','概念掌握者','自省者','费雪大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
