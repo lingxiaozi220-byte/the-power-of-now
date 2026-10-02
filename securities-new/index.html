@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《证券分析》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《证券分析》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>本杰明·格雷厄姆 · 价值投资之父 · 巴菲特的老师</p>
+    <span class="tag">价值投资</span><span class="tag">安全边际</span><span class="tag">内在价值</span><span class="tag">市场先生</span><span class="tag">防御型投资</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 什么是投资（免费）</div>
+  <div class="card">
+    <h3>理解 · 格雷厄姆的经典定义</h3>
+    <p><span class="q">投资 = 经过深入分析 + 保证本金安全 + 获得满意回报。三条缺一，就是投机。多数人在股市亏钱，因为把投机当成了投资。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="证券分析"></div>
+    <div class="mini">📚 <b>关键：</b>先分清你是在投资，还是在赌博。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「投资定义」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 内在价值（免费）</div>
+  <div class="card">
+    <h3>理解 · 价格是你付出的，价值是你得到的</h3>
+    <p><span class="q">格雷厄姆把公司拆开算：资产值多少、盈利能持续吗、未来现金折现多少——得出内在价值。股价天天变，价值几年不变。</span></p>
+    <div class="imgbox"><img src="art_value.jpg" alt="内在价值"></div>
+    <div class="mini">⚖️ <b>关键：</b>把价格和价值的差距，变成你的利润。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「内在价值」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 市场先生（免费）</div>
+  <div class="card">
+    <h3>理解 · 别被情绪化报价牵着走</h3>
+    <p><span class="q">想象一个叫"市场先生"的合伙人，每天报一个价格：有时极度乐观报天价，有时极度悲观报地板价。他的报价只代表情绪，不代表价值。你可以利用他，但别被他利用。</span></p>
+    <div class="imgbox"><img src="art_mr.jpg" alt="市场先生"></div>
+    <div class="mini">🎭 <b>关键：</b>他恐惧时买，他疯狂时卖。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「市场先生」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 安全边际（免费）</div>
+  <div class="card">
+    <h3>理解 · 保本第一原则</h3>
+    <p><span class="q">内在价值 100 元，只在 60-70 元买——那 30-40% 的折价就是安全边际。它保护你：即使判断错了、市场崩了，你也亏不了多少。</span></p>
+    <div class="imgbox"><img src="art_margin.jpg" alt="安全边际"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1woRDBUEwo&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🌉 <b>关键：</b>安全边际是投资的核心，也是唯一确定的东西。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「安全边际」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 投资 vs 投机（免费）</div>
+  <div class="card">
+    <h3>理解 · 别把投机包装成投资</h3>
+    <p><span class="q">追热点、听消息、赌短期涨跌——都是投机。格雷厄姆说：投机不是错，错的是以为自己是在投资。诚实面对自己的操作，才能控制风险。</span></p>
+    <div class="imgbox"><img src="art_speculation.jpg" alt="投资vs投机"></div>
+    <div class="mini">🎲 <b>关键：</b>认识自己是哪种人，比认识市场更重要。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「投资vs投机」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 防御型与进攻型（免费）</div>
+  <div class="card">
+    <h3>理解 · 认清自己再选打法</h3>
+    <p><span class="q">防御型：没时间研究 → 分散配置 + 低费用指数 + 长期持有。进攻型：有大量时间精力 → 深入研究少数公司。多数人该做防御型。</span></p>
+    <div class="imgbox"><img src="art_defensive.jpg" alt="防御型与进攻型"></div>
+    <div class="mini">🛡️ <b>关键：</b>不懂就防御，懂才进攻，别装懂。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「防御型投资」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 估值公式（免费）</div>
+  <div class="card">
+    <h3>理解 · 格雷厄姆的估值框架</h3>
+    <p><span class="q">内在价值 ≈ 每股盈利 × (8.5 + 2 × 预期增长率)。不求精确，只求方向：低估时买，高估时等。宁要模糊的正确，不要精确的错误。</span></p>
+    <div class="imgbox"><img src="art_formula.jpg" alt="估值公式"></div>
+    <div class="mini">🧮 <b>关键：</b>估值是艺术，不是科学，保守为上。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「估值公式」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 8 课 · 财务稳健检查（免费）</div>
+  <div class="card">
+    <h3>理解 · 先看会不会死，再看赚多少</h3>
+    <p><span class="q">资产负债率、流动比率、现金流——先排除破产风险，再谈盈利。格雷厄姆最怕的不是亏钱，是本金永久性损失。</span></p>
+    <div class="imgbox"><img src="art_finance.jpg" alt="财务稳健"></div>
+    <div class="mini">🏦 <b>关键：</b>活得下去的公司，才有资格谈价值。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「财务稳健」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 9-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：决策演练、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 9-10 课完整内容（决策演练、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 9 课 · 决策演练</div>
+  <div class="card">
+    <h3>理解 · 给持仓做一次体检</h3>
+    <p><span class="q">① 标出每只股票的买入理由：是投资还是投机；② 估算内在价值，对比现价算安全边际；③ 检查资产负债率和现金流；④ 决定：加仓、持有、还是承认投机退出。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>承认投机不可耻，把投机当投资才危险。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「决策演练」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 价值投资的不变法则</h3>
+    <p>算价值 → 等价格 → 留边际 → 保本金，四步闭环，一生践行。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>写下你每一笔操作是投资还是投机</td></tr>
+      <tr><td>2</td><td>为每只持仓估算内在价值</td></tr>
+      <tr><td>3</td><td>只买有 30% 以上安全边际的价格</td></tr>
+      <tr><td>4</td><td>检查负债率，排除破产风险</td></tr>
+      <tr><td>5</td><td>投机仓位设上限，绝不超过总资产 10%</td></tr>
+      <tr><td>6</td><td>每年复查一次内在价值</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：证券分析大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《聪明的投资者》《投资最重要的事》《巴菲特致股东的信》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='securities-new';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'📚',t:'投资定义',d:'什么是投资',qs:[{q:'投资=？',opts:['深入分析+保本+满意回报','随便买','赌博'],a:0},{q:'做不到三条？',opts:['就是投机','还是投资','没关系'],a:0},{q:'格雷厄姆？',opts:['价值投资之父','短线大师','赌博高手'],a:0}]},
+ {ico:'⚖️',t:'内在价值',d:'价格≠价值',qs:[{q:'价格？',opts:['你付出的','你得到的','没区别'],a:0},{q:'价值？',opts:['你得到的','你付出的','股价'],a:0},{q:'低估？',opts:['价值高于价格','价格高','没区别'],a:0}]},
+ {ico:'🎭',t:'市场先生',d:'情绪化伙伴',qs:[{q:'市场先生？',opts:['情绪化报价','理性定价','从不犯错'],a:0},{q:'他恐惧时？',opts:['是买入机会','快逃','跟着卖'],a:0},{q:'他疯狂时？',opts:['是卖出机会','追高','无所谓'],a:0}]},
+ {ico:'🌉',t:'安全边际',d:'保本第一',qs:[{q:'安全边际？',opts:['价格远低于价值','价格越高越好','无所谓'],a:0},{q:'它保护什么？',opts:['判断失误和波动','只保护利润','没作用'],a:0},{q:'没有它？',opts:['不买','追高','梭哈'],a:0}]},
+ {ico:'🎲',t:'投资vs投机',d:'分清两者',qs:[{q:'投机？',opts:['赌短期涨跌','分析价值','保本'],a:0},{q:'热门题材？',opts:['是投机','是投资','都是'],a:0},{q:'格雷厄姆警告？',opts:['别把投机当投资','鼓励投机','无所谓'],a:0}]},
+ {ico:'🛡️',t:'防御型投资',d:'稳字当头',qs:[{q:'防御型？',opts:['分散+低费用+长期','追热点','加杠杆'],a:0},{q:'防御者？',opts:['宽基指数为主','个股梭哈','频繁交易'],a:0},{q:'进攻型？',opts:['需大量研究','人人适合','不用学'],a:0}]},
+ {ico:'🧮',t:'估值公式',d:'格雷厄姆公式',qs:[{q:'公式核心？',opts:['盈利×系数','股价高低','消息'],a:0},{q:'价值=？',opts:['合理PE×每股盈利','市盈率','波动率'],a:0},{q:'估值？',opts:['要保守','越乐观越好','无所谓'],a:0}]},
+ {ico:'🏦',t:'财务稳健',d:'资产负债表',qs:[{q:'负债？',opts:['越低越稳','越高越好','没影响'],a:0},{q:'现金流？',opts:['持续为正','负数正常','无所谓'],a:0},{q:'格雷厄姆？',opts:['先看破产风险','只看利润','只看股价'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'生活应用',qs:[{q:'我的操作？',opts:['是投资还是投机','不清楚','就是投资'],a:0},{q:'我的安全边际？',opts:['留了吗','没有','不懂'],a:0},{q:'我的持仓？',opts:['有内在价值吗','看涨跌','听消息'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'保本三原则',qs:[{q:'第一原则？',opts:['不要亏钱','赚钱','梭哈'],a:0},{q:'第二原则？',opts:['记住第一条','加仓','追高'],a:0},{q:'恐慌时？',opts:['保持理性','跟着恐慌','割肉'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'内在价值=？',opts:['资产盈利决定','股价','概念'],a:0},{q:'安全边际=？',opts:['价值-价格差距','价格-价值','盈亏比'],a:0},{q:'市场先生=？',opts:['情绪化报价者','理性定价','政府'],a:0}]},
+ {ico:'👑',t:'证券分析大师挑战',d:'10题综合测验',qs:[{q:'投资=？',opts:['深入分析+保本','随便买','赌博'],a:0},{q:'价格？',opts:['你付出的','你得到的','没区别'],a:0},{q:'市场先生？',opts:['情绪化','理性','从不犯错'],a:0},{q:'安全边际？',opts:['价格低于价值','越高越好','无所谓'],a:0},{q:'投机？',opts:['赌短期','分析价值','保本'],a:0},{q:'防御型？',opts:['分散低费长期','追热点','杠杆'],a:0},{q:'估值？',opts:['保守','乐观','随意'],a:0},{q:'负债？',opts:['越低越稳','越高越好','没影响'],a:0},{q:'第一原则？',opts:['不要亏钱','赚钱','梭哈'],a:0},{q:'安全边际=？',opts:['价值-价格差距','价格-价值','盈亏比'],a:0}]}
+];
+const badges=['📚','⚖️','🎭','🌉','🎲','🛡️','🧮','🏦','🧭','🛡️','💎','👑'];
+const badgeNames=['价值信徒','内在价值家','市场先生朋友','安全边际守卫','投机辨别家','防御投资者','估值计算家','财务侦探','决策者','保本卫士','概念掌握者','格雷厄姆大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
