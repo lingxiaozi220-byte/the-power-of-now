@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《股票魔法师》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《股票魔法师》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>马克·米勒维尼 · 四年冠军 · 年化335%</p>
+    <span class="tag">SEPA策略</span><span class="tag">VCP模式</span><span class="tag">趋势模板</span><span class="tag">四阶段</span><span class="tag">冠军心态</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · SEPA策略（免费）</div>
+  <div class="card">
+    <h3>理解 · 只在正确阶段买股票</h3>
+    <p><span class="q">SEPA = 特定阶段分析：只在股票处于第二阶段（上升趋势）时买入，回避下跌与筑底阶段。买对阶段，事半功倍。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="股票魔法师"></div>
+    <div class="mini">🪄 <b>关键：</b>好股票 + 好阶段 + 好买点。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「SEPA策略」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · VCP模式（免费）</div>
+  <div class="card">
+    <h3>理解 · 波动收缩 = 弹簧压缩</h3>
+    <p><span class="q">VCP（波动收缩模式）：回调时波动逐次缩小，像弹簧越压越紧。波动收缩到极致时，就是突破前夜。</span></p>
+    <div class="imgbox"><img src="art_sepa.jpg" alt="SEPA策略"></div>
+    <div class="mini">🪗 <b>关键：</b>收缩得越紧，弹得越高。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「VCP模式」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 趋势模板（免费）</div>
+  <div class="card">
+    <h3>理解 · 先过滤，再选股</h3>
+    <p><span class="q">趋势模板：股价高于200日均线、150日均线、50日均线，均线多头排列，股价接近52周新高。不满足模板的股票，直接排除。</span></p>
+    <div class="imgbox"><img src="art_vcp.jpg" alt="VCP模式"></div>
+    <div class="mini">📈 <b>关键：</b>模板是门槛，过滤掉90%的平庸。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「趋势模板」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 四阶段理论（免费）</div>
+  <div class="card">
+    <h3>理解 · 股票的生命周期</h3>
+    <p><span class="q">第一阶段：筑底；第二阶段：上升趋势（最佳买入期）；第三阶段：顶部派发；第四阶段：下跌趋势（坚决回避）。</span></p>
+    <div class="imgbox"><img src="art_stage.jpg" alt="四阶段"></div>
+    <div class="mini">🪜 <b>关键：</b>只吃第二阶段，回避第四阶段。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「四阶段」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 风险管理（免费）</div>
+  <div class="card">
+    <h3>理解 · 先活下来，再谈冠军</h3>
+    <p><span class="q">止损必须预先设定：跌破关键支撑就走。单笔风险控制在小比例，连亏不伤本金。米勒维尼的规则：亏损要小，盈利要大。</span></p>
+    <div class="imgbox"><img src="art_risk.jpg" alt="风险管理"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>截断亏损，让利润奔跑。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「风险管理」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 冠军心态（免费）</div>
+  <div class="card">
+    <h3>理解 · 冠军是练出来的</h3>
+    <p><span class="q">冠军交易者的共同点：接受亏损是交易的一部分、每天复盘、把错误当学费。心态不是天生的，是日复一日练出来的。</span></p>
+    <div class="imgbox"><img src="art_champ.jpg" alt="冠军心态"></div>
+    <div class="mini">🏆 <b>关键：</b>同样的错误不犯两次，就是成长。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「冠军心态」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 双引擎全览（免费）</div>
+  <div class="card">
+    <h3>理解 · 技术面 + 基本面双确认</h3>
+    <p><span class="q">技术面（趋势模板、VCP、阶段）定时机，基本面（盈利增长、行业地位）定质量。两者共振，才是魔法师的完整配方。</span></p>
+    <div class="imgbox"><img src="art_duo.jpg" alt="双引擎"></div>
+    <div class="mini">🧭 <b>关键：</b>时机与质量，缺一不可。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「决策演练」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：决策演练、生存法则、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（决策演练、生存法则、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 决策演练</div>
+  <div class="card">
+    <h3>理解 · 给一只股票做体检</h3>
+    <p><span class="q">① 它处于第几阶段？② 是否满足趋势模板（均线排列）？③ 有没有VCP收缩形态？④ 买点在哪，止损设哪？⑤ 基本面盈利是否增长？五关全过，才允许买入。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1woRDBUEwo&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>体检不过关，坚决不买。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「决策演练」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 生存法则</div>
+  <div class="card">
+    <h3>理解 · 魔法师的三条戒律</h3>
+    <p><span class="q">① 只在第二阶段交易；② 止损永远预先设定；③ 每天复盘，错误不犯第二次。三条戒律，是冠军的护身符。</span></p>
+    <div class="mini">🛡️ <b>关键：</b>没有戒律，魔法就会反噬。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「生存法则」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 阶段 · 买点 · 纪律</h3>
+    <p>看阶段 → 等VCP → 守止损 → 勤复盘，四步闭环，一生践行。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>只关注处于第二阶段的股票</td></tr>
+      <tr><td>2</td><td>每只候选股过趋势模板</td></tr>
+      <tr><td>3</td><td>等VCP收缩完成再买入</td></tr>
+      <tr><td>4</td><td>买入前写下止损位</td></tr>
+      <tr><td>5</td><td>每天复盘交易记录</td></tr>
+      <tr><td>6</td><td>错误模式绝不犯第二次</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：米勒维尼大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 交易技术。配套阅读：《笑傲股市》《股市稳赚》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='stock-magician';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🪄',t:'SEPA策略',d:'特定阶段分析',qs:[{q:'SEPA？',opts:['只买第二阶段','什么阶段都买','抄底'],a:0},{q:'阶段？',opts:['四阶段模型','随机','无'],a:0},{q:'买点？',opts:['第二阶段回调','跌了买','追高'],a:0}]},
+ {ico:'🪗',t:'VCP模式',d:'波动收缩',qs:[{q:'VCP？',opts:['波动收缩形态','横盘','下跌'],a:0},{q:'收缩？',opts:['波动逐次变小','越来越大','不变'],a:0},{q:'含义？',opts:['弹簧压缩','无力','衰退'],a:0}]},
+ {ico:'📈',t:'趋势模板',d:'先过滤',qs:[{q:'趋势模板？',opts:['先过滤再选股','直接买','听消息'],a:0},{q:'均线？',opts:['多头排列','空头','无所谓'],a:0},{q:'新高？',opts:['接近新高','新低','无要求'],a:0}]},
+ {ico:'🪜',t:'四阶段',d:'阶段理论',qs:[{q:'最佳阶段？',opts:['第二阶段','第四阶段','第一阶段'],a:0},{q:'第四阶段？',opts:['回避','买入','重仓'],a:0},{q:'阶段切换？',opts:['跟随','无视','预测'],a:0}]},
+ {ico:'🛡️',t:'风险管理',d:'守住底线',qs:[{q:'止损？',opts:['跌破即走','死扛','加仓'],a:0},{q:'单笔风险？',opts:['小比例','梭哈','随意'],a:0},{q:'亏损？',opts:['截断','放任','加倍'],a:0}]},
+ {ico:'🏆',t:'冠军心态',d:'赢家特质',qs:[{q:'冠军？',opts:['练出来的','天生的','靠运气'],a:0},{q:'亏损？',opts:['接受并学习','回避','否认'],a:0},{q:'复盘？',opts:['每天做','从不','没必要'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'生活应用',qs:[{q:'我的选股？',opts:['有流程吗','随意','听消息'],a:0},{q:'我的买点？',opts:['VCP吗','追高','抄底'],a:0},{q:'我的纪律？',opts:['有止损吗','没有','扛单'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'避开陷阱',qs:[{q:'抄底？',opts:['不','经常','喜欢'],a:0},{q:'重仓？',opts:['不','梭哈','喜欢'],a:0},{q:'无计划？',opts:['先计划','照样做','无所谓'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'SEPA=？',opts:['特定阶段分析','随机选股','预测'],a:0},{q:'VCP=？',opts:['波动收缩','横盘','下跌'],a:0},{q:'最佳阶段=？',opts:['第二阶段','第四阶段','第一阶段'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查自己',qs:[{q:'我的交易？',opts:['有系统吗','随意','靠感觉'],a:0},{q:'我的情绪？',opts:['能控制吗','不能','失控'],a:0},{q:'我的复盘？',opts:['做吗','不做','没必要'],a:0}]},
+ {ico:'⏳',t:'时间感',d:'周期视角',qs:[{q:'买入？',opts:['等买点','急着买','随便'],a:0},{q:'持有？',opts:['趋势走完','赚点就跑','天天换'],a:0},{q:'复利？',opts:['时间的朋友','没概念','快钱'],a:0}]},
+ {ico:'👑',t:'米勒维尼挑战',d:'10题综合测验',qs:[{q:'SEPA？',opts:['只买第二阶段','什么阶段都买','抄底'],a:0},{q:'VCP？',opts:['波动收缩形态','横盘','下跌'],a:0},{q:'趋势模板？',opts:['先过滤再选股','直接买','听消息'],a:0},{q:'最佳阶段？',opts:['第二阶段','第四阶段','第一阶段'],a:0},{q:'止损？',opts:['跌破即走','死扛','加仓'],a:0},{q:'冠军？',opts:['练出来的','天生的','靠运气'],a:0},{q:'抄底？',opts:['不','经常','喜欢'],a:0},{q:'SEPA=？',opts:['特定阶段分析','随机选股','预测'],a:0},{q:'买入？',opts:['等买点','急着买','随便'],a:0},{q:'含义？',opts:['弹簧压缩','无力','衰退'],a:0}]}
+];
+const badges=['🪄','🪗','📈','🪜','🛡️','🏆','🧭','🛡️','💎','🔍','⏳','👑'];
+const badgeNames=['SEPA策略家','VCP猎人','模板过滤者','阶段识别家','风险守护者','冠军心态','决策者','守本卫士','概念掌握者','自省者','时间感者','米勒维尼大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
