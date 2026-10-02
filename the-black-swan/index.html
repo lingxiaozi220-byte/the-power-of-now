@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《黑天鹅》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《黑天鹅》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>纳西姆·塔勒布 · 不确定性大师 · 反脆弱之父</p>
+    <span class="tag">黑天鹅</span><span class="tag">极端斯坦</span><span class="tag">杠铃策略</span><span class="tag">反脆弱</span><span class="tag">不确定性</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 什么是黑天鹅（免费）</div>
+  <div class="card">
+    <h3>理解 · 不可预测，却改变一切</h3>
+    <p><span class="q">黑天鹅三要素：稀有（不在预期内）、极端影响（冲击巨大）、事后可解释（事后诸葛亮）。911、金融危机、疫情——它们定义时代。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="黑天鹅"></div>
+    <div class="mini">🦢 <b>关键：</b>无法预测黑天鹅，但可以准备应对。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「黑天鹅」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 极端斯坦（免费）</div>
+  <div class="card">
+    <h3>理解 · 少数事件主导世界</h3>
+    <p><span class="q">平均斯坦：个体不影响整体（身高、体重）。极端斯坦：少数极端值主导一切（财富、图书销量、疫情传播）。金融与人生，都属于极端斯坦。</span></p>
+    <div class="imgbox"><img src="art_extreme.jpg" alt="极端斯坦"></div>
+    <div class="mini">📊 <b>关键：</b>别用平均思维理解极端世界。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「两种斯坦」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 杠铃策略（免费）</div>
+  <div class="card">
+    <h3>理解 · 两极分化，拒绝中间</h3>
+    <p><span class="q">杠铃策略：90%极度保守（国债现金）+ 10%极度激进（风险投资）。放弃平庸的中间地带。亏损有限，收益无限。</span></p>
+    <div class="imgbox"><img src="art_barbell.jpg" alt="杠铃策略"></div>
+    <div class="mini">🏋️ <b>关键：</b>让你的损失有下限，收益无上限。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「杠铃策略」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 预测的陷阱（免费）</div>
+  <div class="card">
+    <h3>理解 · 别把赌注押在预测上</h3>
+    <p><span class="q">专家预测常常不如随机。应对黑天鹅的正确姿势不是预测，而是准备：留足现金、保持灵活、避免致命脆弱。</span></p>
+    <div class="imgbox"><img src="art_predict.jpg" alt="预测的陷阱"></div>
+    <div class="mini">🔮 <b>关键：</b>准备比预测更可靠。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「预测的陷阱」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 反脆弱（免费）</div>
+  <div class="card">
+    <h3>理解 · 从混乱中受益</h3>
+    <p><span class="q">脆弱：害怕波动；强韧：承受波动；反脆弱：从波动中受益。肌肉、免疫系统、创业失败后的成长——都是反脆弱。</span></p>
+    <div class="imgbox"><img src="art_antifragile.jpg" alt="反脆弱"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🌱 <b>关键：</b>压力是成长的原料。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「反脆弱」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 正面黑天鹅（免费）</div>
+  <div class="card">
+    <h3>理解 · 把意外变成礼物</h3>
+    <p><span class="q">正面黑天鹅：意外的巨大收益（新书爆红、新技能带来机会）。策略：小成本、大敞口——投入不多，但一旦发生就赚翻。</span></p>
+    <div class="imgbox"><img src="art_positive.jpg" alt="正面黑天鹅"></div>
+    <div class="mini">🎁 <b>关键：</b>给自己留几张彩票，而不是全部押上。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「正面黑天鹅」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 系统全览（免费）</div>
+  <div class="card">
+    <h3>理解 · 不确定性思维框架</h3>
+    <p><span class="q">识别（这是平均还是极端斯坦）→ 防御（杠铃配置）→ 不预测（只准备）→ 受益（寻找正面黑天鹅）。四步，让你在黑天鹅世界活得更好。</span></p>
+    <div class="imgbox"><img src="art_stan.jpg" alt="两种斯坦"></div>
+    <div class="mini">🧭 <b>关键：</b>先承认无知，再设计应对。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「决策演练」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：决策演练、生存法则、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（决策演练、生存法则、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 决策演练</div>
+  <div class="card">
+    <h3>理解 · 设计你自己的杠铃</h3>
+    <p><span class="q">① 你的资产：90%放在安全的地方了吗？② 你的10%：有没有投给正面黑天鹅（新技能、新事业、高风险小仓位）？③ 你的职业：有没有第二曲线？④ 你的现金：留足6个月应急了吗？四个问题，画出你的杠铃。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1woRDBUEwo&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>杠铃画出来，人生才有弹性。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「决策演练」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 生存法则</div>
+  <div class="card">
+    <h3>理解 · 黑天鹅世界的三条命</h3>
+    <p><span class="q">① 永不把全部身家押在一个赌注上；② 永不信专家对未来的精确预测；③ 永远保留正面黑天鹅的小敞口。三条守住，意外伤不到你的根基。</span></p>
+    <div class="mini">🛡️ <b>关键：</b>活过意外，才有资格享受时代。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「生存法则」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 识别 · 防御 · 受益</h3>
+    <p>识别斯坦 → 杠铃防御 → 拒绝预测 → 拥抱机会，四步闭环，一生践行。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>判断重要事项属于哪种斯坦</td></tr>
+      <tr><td>2</td><td>资产按杠铃配置</td></tr>
+      <tr><td>3</td><td>留足应急现金</td></tr>
+      <tr><td>4</td><td>给正面黑天鹅留小敞口</td></tr>
+      <tr><td>5</td><td>遇到冲击先问：我能受益吗</td></tr>
+      <tr><td>6</td><td>每月审视：我是不是太脆弱</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：塔勒布大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 风险认知。配套阅读：《随机漫步的傻瓜》《反脆弱》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='the-black-swan';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🦢',t:'黑天鹅',d:'不可预测的大事件',qs:[{q:'黑天鹅？',opts:['不可预测影响巨大','可预测','常见'],a:0},{q:'世界由谁主导？',opts:['极端事件','日常小事','平均数'],a:0},{q:'黑天鹅？',opts:['无法预测','可以预测','概率固定'],a:0}]},
+ {ico:'🏋️',t:'杠铃策略',d:'两极分化',qs:[{q:'杠铃？',opts:['极端保守加极端激进','中间地带','全押'],a:0},{q:'中间？',opts:['回避','最佳','稳妥'],a:0},{q:'目的？',opts:['正面黑天鹅受益','稳赚','预测'],a:0}]},
+ {ico:'📊',t:'两种斯坦',d:'平均与极端',qs:[{q:'平均斯坦？',opts:['个体不影响整体','个体主导','随机'],a:0},{q:'极端斯坦？',opts:['少数主导一切','平均分布','无极端'],a:0},{q:'财富属于？',opts:['极端斯坦','平均斯坦','都算'],a:0}]},
+ {ico:'🔮',t:'预测的陷阱',d:'别迷信预测',qs:[{q:'预测？',opts:['黑天鹅不可预测','专家能预测','很可靠'],a:0},{q:'专家？',opts:['常犯错','永远对','先知'],a:0},{q:'对策？',opts:['准备而非预测','预测','无视'],a:0}]},
+ {ico:'🌱',t:'反脆弱',d:'从混乱受益',qs:[{q:'反脆弱？',opts:['从冲击中受益','被冲击摧毁','不受影响'],a:0},{q:'脆弱？',opts:['怕波动','喜欢波动','无所谓'],a:0},{q:'目标？',opts:['变反脆弱','变脆弱','不变'],a:0}]},
+ {ico:'🎁',t:'正面黑天鹅',d:'意外礼物',qs:[{q:'正面黑天鹅？',opts:['意外的巨大收益','损失','无影响'],a:0},{q:'策略？',opts:['小成本大敞口','重仓赌','回避'],a:0},{q:'心态？',opts:['拥抱机会','害怕','无视'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'生活应用',qs:[{q:'我的资产？',opts:['杠铃配置吗','全在中间','全押'],a:0},{q:'我的职业？',opts:['有正面黑天鹅吗','没有','不关心'],a:0},{q:'我的准备？',opts:['应对意外吗','没有','预测'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'避开陷阱',qs:[{q:'全押？',opts:['不','梭哈','喜欢'],a:0},{q:'迷信预测？',opts:['不','相信','依赖'],a:0},{q:'忽视尾部风险？',opts:['不','忽视','无所谓'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'黑天鹅=？',opts:['不可预测影响巨大','可预测','常见'],a:0},{q:'杠铃=？',opts:['极端保守加激进','中间地带','全押'],a:0},{q:'反脆弱=？',opts:['从冲击中受益','被摧毁','不受影响'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查自己',qs:[{q:'我的认知？',opts:['承认无知吗','全知','无所谓'],a:0},{q:'我的资产？',opts:['有保护吗','裸奔','梭哈'],a:0},{q:'我的心态？',opts:['拥抱不确定吗','害怕','回避'],a:0}]},
+ {ico:'⏳',t:'时间感',d:'长期视角',qs:[{q:'重大变化？',opts:['突然发生','慢慢来','可预测'],a:0},{q:'复利？',opts:['时间的朋友','没概念','快钱'],a:0},{q:'耐心？',opts:['等意外机会','急着赚','没有'],a:0}]},
+ {ico:'👑',t:'塔勒布挑战',d:'10题综合测验',qs:[{q:'黑天鹅？',opts:['不可预测影响巨大','可预测','常见'],a:0},{q:'杠铃？',opts:['极端保守加极端激进','中间地带','全押'],a:0},{q:'平均斯坦？',opts:['个体不影响整体','个体主导','随机'],a:0},{q:'预测？',opts:['黑天鹅不可预测','专家能预测','很可靠'],a:0},{q:'反脆弱？',opts:['从冲击中受益','被冲击摧毁','不受影响'],a:0},{q:'正面黑天鹅？',opts:['意外的巨大收益','损失','无影响'],a:0},{q:'全押？',opts:['不','梭哈','喜欢'],a:0},{q:'黑天鹅=？',opts:['不可预测影响巨大','可预测','常见'],a:0},{q:'重大变化？',opts:['突然发生','慢慢来','可预测'],a:0},{q:'目的？',opts:['正面黑天鹅受益','稳赚','预测'],a:0}]}
+];
+const badges=['🦢','🏋️','📊','🔮','🌱','🎁','🧭','🛡️','💎','🔍','⏳','👑'];
+const badgeNames=['黑天鹅见证者','杠铃设计师','斯坦识别家','预测怀疑者','反脆弱斗士','机会猎人','决策者','守本卫士','概念掌握者','自省者','时间感者','塔勒布大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
