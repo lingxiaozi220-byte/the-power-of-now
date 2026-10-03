@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《伟大的博弈》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《伟大的博弈》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>约翰·戈登 · 华尔街350年兴衰史 · 资本市场的周期与人性</p>
+    <span class="tag">华尔街</span><span class="tag">金融史</span><span class="tag">泡沫</span><span class="tag">周期</span><span class="tag">人性</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 华尔街的诞生（免费）</div>
+  <div class="card">
+    <h3>理解 · 梧桐树下的一纸协议</h3>
+    <p><span class="q">1792 年，24 位经纪人在华尔街一棵梧桐树下签订协议，约定固定佣金、互相交易——这就是纽约证券交易所的起点。一条城墙上的小路，成了全球资本的心脏。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="华尔街"></div>
+    <div class="mini">🌳 <b>关键：</b>资本市场从第一天起，就是"规则+人性"的游戏。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「梧桐树下」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 投机与泡沫的轮回（免费）</div>
+  <div class="card">
+    <h3>理解 · 贪婪是永动机</h3>
+    <p><span class="q">郁金香、南海、铁路、互联网……每个时代的泡沫都不同，但剧本相同：新概念→狂热→全民入场→崩盘→教训→遗忘。历史不会重演，但总会押韵。</span></p>
+    <div class="imgbox"><img src="art_history.jpg" alt="历史长廊"></div>
+    <div class="mini">🎈 <b>关键：</b>泡沫的燃料不是故事，是"怕错过"的人性。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「泡沫周期」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 铁路与资本时代（免费）</div>
+  <div class="card">
+    <h3>理解 · 资本推动文明</h3>
+    <p><span class="q">19 世纪铁路建设需要天文数字资金，华尔街第一次把"资本配置"变成国家能力。范德比尔特们用市场规则重塑美国：资本投向哪里，繁荣就在哪里。</span></p>
+    <div class="imgbox"><img src="art_bubble.jpg" alt="泡沫崩盘"></div>
+    <div class="mini">🚂 <b>关键：</b>资本是中性的，规则决定它是建设还是破坏。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「铁路时代」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 摩根与托拉斯（免费）</div>
+  <div class="card">
+    <h3>理解 · 银行家的权力时代</h3>
+    <p><span class="q">JP摩根一人之力稳定 1907 年金融危机——私人银行家比政府更有信用。他也缔造了托拉斯（垄断集团），引发反垄断浪潮。权力的双刃剑，从那时就写进历史。</span></p>
+    <div class="imgbox"><img src="art_morgan.jpg" alt="摩根时代"></div>
+    <div class="mini">🎩 <b>关键：</b>金融权力没有制衡，就是下一场危机的种子。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「摩根时代」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 1929 大崩盘（免费）</div>
+  <div class="card">
+    <h3>理解 · 杠杆与狂热</h3>
+    <p><span class="q">1929 年黑色星期四，股市崩盘，随后是大萧条——十年寒冬。原因：全民用保证金（杠杆）炒股、银行资金涌入、监管缺失。崩盘前，人人都觉得自己是天才。</span></p>
+    <div class="imgbox"><img src="art_crash.jpg" alt="大崩盘"></div>
+    <div class="mini">💥 <b>关键：</b>杠杆放大收益，也放大毁灭；狂热时最该冷静。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「大崩盘」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 新政与监管（免费）</div>
+  <div class="card">
+    <h3>理解 · 规则是市场的氧气</h3>
+    <p><span class="q">大萧条后罗斯福新政：成立 SEC（证券交易委员会）、强制信息披露、分离银行与券商。市场没有监管就是赌场；有了规则，普通人才敢进场。</span></p>
+    <div class="imgbox"><img src="art_modern.jpg" alt="现代交易所"></div>
+    <div class="mini">🏛️ <b>关键：</b>保护投资者的规则，才让市场活到今天。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「新政与监管」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 系统全览（免费）</div>
+  <div class="card">
+    <h3>理解 · 350 年的主旋律</h3>
+    <p><span class="q">从梧桐树到纳斯达克：科技（电报→电话→电脑→算法）改变工具，不改变人性；周期永远存在；监管与创新反复拉锯。读懂历史，才能站在周期的正确一侧。</span></p>
+    <div class="imgbox"><img src="art_rule.jpg" alt="博弈规则"></div>
+    <div class="mini">♟️ <b>关键：</b>唯一不变的是变化，和人性。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「博弈规则」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：现代华尔街、永恒博弈规则、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（现代华尔街、永恒博弈规则、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 现代华尔街</div>
+  <div class="card">
+    <h3>理解 · 算法与全球化</h3>
+    <p><span class="q">1987 黑色星期一、互联网泡沫、2008 金融危机、量化交易崛起。工具变了：速度从分钟到微秒；但 2008 的根源依然是杠杆+贪婪+监管缺失——和 1929 一模一样。</span></p>
+    <div class="mini">🖥️ <b>关键：</b>技术升级了赌具，没有升级人性。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「现代华尔街」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 永恒的博弈规则</div>
+  <div class="card">
+    <h3>理解 · 赢家的纪律</h3>
+    <p><span class="q">历史给投资者的三条铁律：①警惕全民狂热（卖点）；②敬畏杠杆（活下来最重要）；③在无人问津处布局（买点）。顺周期赚小钱，逆周期赚大钱。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">♟️ <b>关键：</b>市场是财富再分配机器：从急躁者流向耐心者。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「术语配对」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 周期 · 人性 · 纪律</h3>
+    <p>读史使人明智：识别周期位置、管理情绪、严守纪律、敬畏杠杆——四者齐备，才能穿越牛熊。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>判断当前市场处于周期哪个位置</td></tr>
+      <tr><td>2</td><td>写下你的投资情绪日记（贪婪/恐惧）</td></tr>
+      <tr><td>3</td><td>检查杠杆：确认自己绝不会被迫出局</td></tr>
+      <tr><td>4</td><td>列出"全民狂热"信号清单，贴墙</td></tr>
+      <tr><td>5</td><td>读一页金融史，再决定是否追热点</td></tr>
+      <tr><td>6</td><td>复盘上次亏损：是周期还是人性的错？</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：华尔街大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 金融史。配套阅读：《非理性繁荣》《金融炼金术》《周期》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='great-game';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🌳',t:'梧桐树下',d:'华尔街起源',qs:[{q:'华尔街起点？',opts:['梧桐树协议','交易所大楼','政府法案'],a:0},{q:'1792年？',opts:['24人签协议','万人炒股','成立央行'],a:0},{q:'名字由来？',opts:['城墙上的路','人名','河流'],a:0}]},
+ {ico:'🎈',t:'泡沫周期',d:'投机轮回',qs:[{q:'郁金香泡沫？',opts:['人性不变','一次意外','历史孤例'],a:0},{q:'泡沫特征？',opts:['脱离基本面','理性定价','价值回归'],a:0},{q:'泡沫后？',opts:['必然崩盘','平稳着陆','永续上涨'],a:0}]},
+ {ico:'🚂',t:'铁路时代',d:'资本的力量',qs:[{q:'铁路融资？',opts:['华尔街大发展','被禁止','小打小闹'],a:0},{q:'范德比尔特？',opts:['船王与铁路王','普通商人','政客'],a:0},{q:'资本作用？',opts:['配置资源','制造泡沫','无意义'],a:0}]},
+ {ico:'🎩',t:'摩根时代',d:'银行家的权力',qs:[{q:'JP摩根？',opts:['救市与托拉斯','普通银行家','政客'],a:0},{q:'1907年？',opts:['摩根救市','股市崩盘','政府破产'],a:0},{q:'托拉斯？',opts:['垄断与争议','健康发展','政府主导'],a:0}]},
+ {ico:'💥',t:'大崩盘',d:'1929教训',qs:[{q:'1929年？',opts:['黑色星期四','平稳调整','小波动'],a:0},{q:'崩盘原因？',opts:['杠杆与狂热','经济太好','政府干预'],a:0},{q:'大萧条？',opts:['十年寒冬','一年恢复','从未发生'],a:0}]},
+ {ico:'🏛️',t:'新政与监管',d:'规则诞生',qs:[{q:'罗斯福新政？',opts:['建立监管','取消股市','放任市场'],a:0},{q:'SEC？',opts:['证券监管机构','证券公司','银行'],a:0},{q:'监管作用？',opts:['保护投资者','阻碍发展','无意义'],a:0}]},
+ {ico:'🖥️',t:'现代华尔街',d:'科技与全球',qs:[{q:'电脑交易？',opts:['改变市场','无关紧要','消失'],a:0},{q:'全球资本？',opts:['互联互通','封闭','衰退'],a:0},{q:'1987年？',opts:['黑色星期一','平稳','小跌'],a:0}]},
+ {ico:'♟️',t:'博弈规则',d:'永恒教训',qs:[{q:'周期？',opts:['永不消失','已被驯服','随机'],a:0},{q:'人性？',opts:['贪婪恐惧不变','已经进化','无关'],a:0},{q:'赚钱之道？',opts:['理性与纪律','追涨杀跌','跟风'],a:0}]},
+ {ico:'📜',t:'术语配对',d:'核心概念',qs:[{q:'梧桐树协议=？',opts:['纽交所前身','一棵树','法律条文'],a:0},{q:'黑色星期四=？',opts:['1929崩盘日','节日','平常一天'],a:0},{q:'SEC=？',opts:['证券监管','证券公司','股票代码'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查自己',qs:[{q:'我的投资？',opts:['有历史意识','只看眼前','凭感觉'],a:0},{q:'我的情绪？',opts:['能识别贪婪恐惧','随波逐流','无'],a:0},{q:'我的仓位？',opts:['留有余地','满仓梭哈','无概念'],a:0}]},
+ {ico:'🗺️',t:'历史地图',d:'350年脉络',qs:[{q:'起点？',opts:['梧桐树协议','纽交所','纳斯达克'],a:0},{q:'巅峰？',opts:['全球金融中心','二流市场','消失'],a:0},{q:'不变？',opts:['人性与周期','技术','规则'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"历史不会重演，但"？',opts:['总是押韵','必然重复','已经结束'],a:0},{q:'"牛市中赚钱，熊市中"？',opts:['赚钱与学知识','亏光','躲起来'],a:0},{q:'"贪婪与恐惧是"？',opts:['永恒的引擎','可消除','现代产物'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'全民炒股狂热？',opts:['警惕泡沫','赶紧入场','无所谓'],a:0},{q:'暴跌恐慌？',opts:['保持理性','割肉离场','加杠杆'],a:0},{q:'别人都赚？',opts:['不跟风','眼红追入','焦虑'],a:0}]},
+ {ico:'🔄',t:'周期思维',d:'识别阶段',qs:[{q:'牛市顶点？',opts:['人人乐观','人人恐惧','无人关心'],a:0},{q:'熊市底部？',opts:['无人问津','门庭若市','正常'],a:0},{q:'最好策略？',opts:['逆周期理性','追热点','满仓'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地实践',qs:[{q:'我的投资历史观？',opts:['建立了吗','没有','无意义'],a:0},{q:'我的泡沫意识？',opts:['有','没有','不需要'],a:0},{q:'我的纪律？',opts:['写下来了吗','靠感觉','没有'],a:0}]},
+ {ico:'👑',t:'华尔街挑战',d:'10题综合测验',qs:[{q:'华尔街起点？',opts:['梧桐树协议','交易所大楼','政府法案'],a:0},{q:'郁金香泡沫？',opts:['人性不变','一次意外','历史孤例'],a:0},{q:'摩根？',opts:['救市与托拉斯','普通银行家','政客'],a:0},{q:'1929？',opts:['黑色星期四','平稳调整','小波动'],a:0},{q:'大萧条？',opts:['十年寒冬','一年恢复','从未发生'],a:0},{q:'SEC？',opts:['证券监管','证券公司','银行'],a:0},{q:'电脑交易？',opts:['改变市场','无关紧要','消失'],a:0},{q:'周期？',opts:['永不消失','已被驯服','随机'],a:0},{q:'赚钱之道？',opts:['理性与纪律','追涨杀跌','跟风'],a:0},{q:'全民狂热？',opts:['警惕泡沫','赶紧入场','无所谓'],a:0}]}
+];
+const badges=['🌳','🎈','🚂','🎩','💥','🏛️','🖥️','♟️','📜','🔎','🗺️','👑'];
+const badgeNames=['梧桐树下','泡沫观察者','铁路见证者','摩根学徒','崩盘幸存者','监管理解者','现代交易者','博弈玩家','概念掌握者','自省者','历史地图师','华尔街大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
