@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《拿铁因素》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《拿铁因素》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>大卫·巴赫 · 小钱大富 · 储蓄复利</p>
+    <span class="tag">先付给自己</span><span class="tag">自动化储蓄</span><span class="tag">复利</span><span class="tag">小钱</span><span class="tag">习惯</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 拿铁因子（免费）</div>
+  <div class="card">
+    <h3>理解 · 财富是被小钱偷走的</h3>
+    <p><span class="q">每天一杯 30 元的拿铁，一年就是 1 万多；30 年加上复利，可能超过 100 万。你的财富不是被房贷偷走的，是被无数个"小拿铁"悄悄搬走的。找到它，就是找到财富入口。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="拿铁与储蓄罐"></div>
+    <div class="mini">☕ <b>关键：</b>省下的不是一杯咖啡，是一笔未来的财富。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「拿铁因子」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 先付给自己（免费）</div>
+  <div class="card">
+    <h3>理解 · 第一条财富法则</h3>
+    <p><span class="q">工资到账，第一件事：把 10% 存起来——先付给自己。剩下的再交房租、还账单、消费。顺序反了（先消费再存），月底永远没钱。顺序，就是穷富的分界线。</span></p>
+    <div class="imgbox"><img src="art_latte.jpg" alt="拿铁因子"></div>
+    <div class="mini">💌 <b>关键：</b>不是"存剩下的"，是"花剩下的"。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「先付给自己」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 自动化储蓄（免费）</div>
+  <div class="card">
+    <h3>理解 · 别相信意志力</h3>
+    <p><span class="q">意志力会耗尽，系统不会。设置发薪日自动转账到储蓄账户，钱还没到手就消失了——眼不见，心不烦，账上悄悄变厚。自动化是普通人最强大的理财武器。</span></p>
+    <div class="imgbox"><img src="art_pay.jpg" alt="先付给自己"></div>
+    <div class="mini">🔁 <b>关键：</b>让系统替你做决定，意志力留给大事。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「自动化」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 复利雪球（免费）</div>
+  <div class="card">
+    <h3>理解 · 越早滚越大</h3>
+    <p><span class="q">复利=利滚利：本金产生利息，利息再生利息。同样年化 8%，25 岁开始的人比 35 岁开始的人，退休时多出 2-3 倍。雪球的第一捧雪，是时间给的。</span></p>
+    <div class="imgbox"><img src="art_auto.jpg" alt="自动储蓄"></div>
+    <div class="mini">❄️ <b>关键：</b>开始得越早，雪球滚得越大——今天就是最早。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「复利雪球」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 习惯的力量（免费）</div>
+  <div class="card">
+    <h3>理解 · 微小改变的复利</h3>
+    <p><span class="q">储蓄不是一次性的决心，是每天的小习惯：记账、审视订阅、冷静 24 小时再买。习惯的复利和金钱的复利一样——每天 1% 的改进，一年就是 37 倍。</span></p>
+    <div class="imgbox"><img src="art_snowball.jpg" alt="复利雪球"></div>
+    <div class="mini">📅 <b>关键：</b>你存下的每一笔小钱，都是习惯的利息。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「习惯养成」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 三个账户（免费）</div>
+  <div class="card">
+    <h3>理解 · 专款专用的储蓄架构</h3>
+    <p><span class="q">设置三个账户：①保障账户（应急，够 6 个月开支）②梦想账户（旅行、首付等大目标）③教育/未来账户（长期投资）。专款专用，钱有了名字，就有了方向。</span></p>
+    <div class="imgbox"><img src="art_habit.jpg" alt="习惯打卡"></div>
+    <div class="mini">🏺 <b>关键：</b>给每一分钱一个名字，它就听你的话。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「三个账户」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 系统全览（免费）</div>
+  <div class="card">
+    <h3>理解 · 五步变富闭环</h3>
+    <p><span class="q">①找出拿铁因子（省出 10%）→ ②先付给自己（储蓄优先）→ ③自动化（发薪自动转）→ ④三个账户（专款专用）→ ⑤长期复利（耐心持有）。五步闭环，人人可做。</span></p>
+    <div class="imgbox"><img src="art_three.jpg" alt="三个账户"></div>
+    <div class="mini">🧭 <b>关键：</b>财富是系统产物，不是运气产物。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「财务体检」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：消费警戒、复利演练、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（消费警戒、复利演练、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 消费警戒</div>
+  <div class="card">
+    <h3>理解 · 区分需要与想要</h3>
+    <p><span class="q">冲动消费的解药：24 小时冷静期。问三个问题——我需要吗？我有替代品吗？它能让我长期快乐吗？小额优惠是商家设的陷阱，不因便宜而买，是最省钱的习惯。</span></p>
+    <div class="mini">🛡️ <b>关键：</b>冷静 24 小时，省下的钱存进梦想账户。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「消费警戒」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 复利演练</div>
+  <div class="card">
+    <h3>理解 · 数字会说话</h3>
+    <p><span class="q">算给你看：每天 30 元=每年 1 万+；每月 1000 元、年化 8%，20 年后约 59 万，30 年后约 148 万。本金、收益率、时间——你能掌控的是时间，所以要早。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🔢 <b>关键：</b>不要高估一年能做的，不要低估十年能做的。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「术语配对」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 小钱 · 系统 · 时间</h3>
+    <p>找到拿铁 → 先付给自己 → 自动化 → 三账户 → 复利。财富自由不是赚大钱，是留小钱、早开始、坚持久。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>找出你的 3 个拿铁因子，写下来</td></tr>
+      <tr><td>2</td><td>发薪日设置 10% 自动储蓄转账</td></tr>
+      <tr><td>3</td><td>开三个账户，给每笔钱一个名字</td></tr>
+      <tr><td>4</td><td>建立 24 小时冷静期购物规则</td></tr>
+      <tr><td>5</td><td>算一笔复利账：从现在开始每月存多少</td></tr>
+      <tr><td>6</td><td>每天记账，月底审视拿铁清单</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：财富大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 财商入门。配套阅读：《小狗钱钱》《巴比伦最富有的人》《金钱心理学》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='latte-factor';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'☕',t:'拿铁因子',d:'小钱大钱',qs:[{q:'拿铁因子？',opts:['被忽略的小支出','大额开销','房贷'],a:0},{q:'每天30元？',opts:['一年超一万','一年几千','不算钱'],a:0},{q:'财富流失？',opts:['从小钱开始','只从大钱','无关'],a:0}]},
+ {ico:'💌',t:'先付给自己',d:'第一法则',qs:[{q:'先付给自己？',opts:['工资到账先储蓄','先消费后剩','先还债'],a:0},{q:'储蓄比例？',opts:['收入的10%','全部','0%'],a:0},{q:'顺序？',opts:['储蓄在消费前','消费在储蓄前','随意'],a:0}]},
+ {ico:'🔁',t:'自动化',d:'让系统帮你还钱',qs:[{q:'自动化储蓄？',opts:['发薪自动转账','手动存钱','不存'],a:0},{q:'为什么有效？',opts:['不靠意志力','靠自律','靠运气'],a:0},{q:'步骤？',opts:['设置一次自动执行','每天手动','想起来才存'],a:0}]},
+ {ico:'❄️',t:'复利雪球',d:'时间的魔法',qs:[{q:'复利？',opts:['利滚利','单利','无'],a:0},{q:'越早开始？',opts:['滚得越大','没区别','越差'],a:0},{q:'雪球需要？',opts:['时间与坚持','一夜暴富','投机'],a:0}]},
+ {ico:'📅',t:'习惯养成',d:'微小改变',qs:[{q:'改变习惯？',opts:['从小做起','一步到位','靠发誓'],a:0},{q:'记录？',opts:['让支出看得见','懒得记','无意义'],a:0},{q:'惯性？',opts:['要用系统对抗','靠意志','无法改变'],a:0}]},
+ {ico:'🏺',t:'三个账户',d:'储蓄架构',qs:[{q:'三个账户？',opts:['保障梦想教育','一个账户','随意'],a:0},{q:'梦想账户？',opts:['专门存梦想','乱花','没有'],a:0},{q:'专用？',opts:['专款专用','混着用','无规划'],a:0}]},
+ {ico:'🧭',t:'财务体检',d:'找到你的拿铁',qs:[{q:'我的拿铁？',opts:['找到了吗','不知道','没有'],a:0},{q:'隐形支出？',opts:['订阅外卖奶茶','只有房贷','无'],a:0},{q:'砍掉后？',opts:['存起来','换个花法','无所谓'],a:0}]},
+ {ico:'🛡️',t:'消费警戒',d:'避开陷阱',qs:[{q:'冲动消费？',opts:['先冷静24小时','立刻买','必买'],a:0},{q:'奢侈品？',opts:['区分需要想要','见好就买','无概念'],a:0},{q:'小额优惠？',opts:['不因便宜买','多多益善','必买'],a:0}]},
+ {ico:'💡',t:'术语配对',d:'核心概念',qs:[{q:'先付给自己=？',opts:['储蓄优先','消费优先','还债优先'],a:0},{q:'自动化=？',opts:['系统替你存','手动存','不存'],a:0},{q:'拿铁因子=？',opts:['小支出大流失','咖啡店','大额开销'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查自己',qs:[{q:'我的储蓄？',opts:['自动了吗','手动且不稳定','无'],a:0},{q:'我的账户？',opts:['分好了吗','一个','无'],a:0},{q:'我的支出？',opts:['记录吗','从不','无'],a:0}]},
+ {ico:'🗺️',t:'财富地图',d:'全书脉络',qs:[{q:'第一步？',opts:['找到拿铁因子','买股票','升职'],a:0},{q:'第二步？',opts:['先付给自己','加杠杆','消费升级'],a:0},{q:'第三步？',opts:['自动化复利','买彩票','等加薪'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"决定你财富的不是收入，而是"？',opts:['你存下多少','你赚多少','你花多少'],a:0},{q:'"先付给自己"是谁？',opts:['你','银行','商家'],a:0},{q:'"复利是"？',opts:['世界第八大奇迹','骗局','快速致富'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'发薪日？',opts:['先转储蓄','先购物','先还款'],a:0},{q:'想买非必需？',opts:['冷静24小时','立刻下单','必须买'],a:0},{q:'收到退款？',opts:['存入储蓄','马上花掉','无所谓'],a:0}]},
+ {ico:'🔄',t:'复利演练',d:'算一算',qs:[{q:'每天30元×365？',opts:['约1万','约3千','约5万'],a:0},{q:'每月存1000，年化8%？',opts:['复利滚雪球','无增长','亏本'],a:0},{q:'坚持10年？',opts:['明显变富','没变化','变穷'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地实践',qs:[{q:'我的拿铁清单？',opts:['写了吗','没有','不需要'],a:0},{q:'我的自动转账？',opts:['设置了吗','没有','怕麻烦'],a:0},{q:'我的目标？',opts:['具体金额了吗','模糊','没有'],a:0}]},
+ {ico:'👑',t:'财富挑战',d:'10题综合测验',qs:[{q:'拿铁因子？',opts:['被忽略的小支出','大额开销','房贷'],a:0},{q:'先付给自己？',opts:['储蓄优先','消费优先','还债优先'],a:0},{q:'自动化？',opts:['系统替你存','手动存','不存'],a:0},{q:'复利？',opts:['利滚利','单利','无'],a:0},{q:'改变习惯？',opts:['从小做起','一步到位','靠发誓'],a:0},{q:'三个账户？',opts:['保障梦想教育','一个账户','随意'],a:0},{q:'冲动消费？',opts:['先冷静24小时','立刻买','必买'],a:0},{q:'发薪日？',opts:['先转储蓄','先购物','先还款'],a:0},{q:'每天30元×365？',opts:['约1万','约3千','约5万'],a:0},{q:'决定财富？',opts:['你存下多少','你赚多少','你花多少'],a:0}]}
+];
+const badges=['☕','💌','🔁','❄️','📅','🏺','🧭','🛡️','💡','🔎','🗺️','👑'];
+const badgeNames=['拿铁侦探','付给自己者','自动化玩家','复利信徒','习惯大师','三账户规划师','财务体检师','消费警戒员','概念掌握者','自省者','财富地图师','财富大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
