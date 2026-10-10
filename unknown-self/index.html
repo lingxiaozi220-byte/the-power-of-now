@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《遇见未知的自己》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《遇见未知的自己》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>张德芬 · 心灵成长作家 · 身心灵疗愈经典</p>
+    <span class="tag">身心灵</span><span class="tag">真我</span><span class="tag">能量</span><span class="tag">臣服</span><span class="tag">觉察</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 遇见未知的自己（免费）</div>
+  <div class="card">
+    <h3>理解 · 外面没有别人，只有你自己</h3>
+    <p><span class="q">张德芬用小说讲身心灵：我们所有的痛苦，都来自认同了不属于我们的角色、想法和外在评价。你感到的孤独、委屈、焦虑，根源都在内在——找回真我，比改变世界更优先。这本书，是一场向内走的旅程。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="遇见未知的自己"></div>
+    <div class="mini">🪞 <b>关键：</b>痛苦源于认同，出路在于内求。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「遇见未知的自己」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 你是谁（免费）</div>
+  <div class="card">
+    <h3>理解 · 身份是扮演的，真我是底色</h3>
+    <p><span class="q">我们戴着角色面具活着：好员工、好伴侣、好孩子。角色换了一个又一个，真正的自己却被忘在角落。真我的本质是和平、喜悦和爱——不需要证明，不需要竞争，只需要被记起来。卸下面具的瞬间，你会看见自己。</span></p>
+    <div class="imgbox"><img src="art_who.jpg" alt="你是谁"></div>
+    <div class="mini">🎭 <b>关键：</b>角色只是扮演，真我从未离开。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「你是谁」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 能量振动（免费）</div>
+  <div class="card">
+    <h3>理解 · 你是什么频率，就会吸引什么</h3>
+    <p><span class="q">万事万物都是能量振动。愤怒、抱怨、恐惧是低频；感恩、喜悦、爱是高频。低频状态下，好事也看不见；把频率调高，机会和善意自然靠近。所以每天问自己：我现在这个情绪，是在提升频率，还是在拉低频率？</span></p>
+    <div class="imgbox"><img src="art_energy.jpg" alt="能量振动"></div>
+    <div class="mini">🌈 <b>关键：</b>情绪即频率，调频是头等大事。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「能量振动」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 身体觉察（免费）</div>
+  <div class="card">
+    <h3>理解 · 身体是情绪的仓库，呼吸是回家的路</h3>
+    <p><span class="q">压抑的情绪不会消失，会储存在身体里：紧绷的肩、堵着的胸口。联结身体的方法很简单——回到呼吸。吸气时知道自己在吸气，呼气时知道自己在呼气，念头飘走就再回来。几分钟的呼吸觉察，就能把你从思维漩涡里拉回当下。</span></p>
+    <div class="imgbox"><img src="art_body.jpg" alt="身体觉察"></div>
+    <div class="mini">🧘 <b>关键：</b>呼吸是回到当下的最快路径。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「身体觉察」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 臣服与接纳（免费）</div>
+  <div class="card">
+    <h3>理解 · 接纳事实，然后你才有力量</h3>
+    <p><span class="q">抗拒事实是最耗能的动作：已经发生的事，越对抗越疼。臣服不是认输，是承认"它已经发生了"——承认之后，你才能把能量从对抗转向应对。接纳当下，不等于放弃改变；恰恰相反，接纳是改变唯一能站上去的地基。</span></p>
+    <div class="imgbox"><img src="art_accept.jpg" alt="臣服与接纳"></div>
+    <div class="mini">💧 <b>关键：</b>抗拒耗能，接纳赋能。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「臣服与接纳」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 心想事成（免费）</div>
+  <div class="card">
+    <h3>理解 · 先调频，再行动</h3>
+    <p><span class="q">心想事成不是空想：愿景越具体，内在越笃定；感恩让频率上升，行动让愿景落地。三步：清晰地想（愿景）、真诚地谢（调频）、坚定地做（行动）。你相信什么、振动什么，世界就回应什么。</span></p>
+    <div class="imgbox"><img src="art_manifest.jpg" alt="心想事成"></div>
+    <div class="mini">🌱 <b>关键：</b>愿景+感恩+行动=心想事成。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「心想事成」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 连接真我（免费）</div>
+  <div class="card">
+    <h3>理解 · 真我一直在，等你想起来</h3>
+    <p><span class="q">静心不是放空，是回家——回到那个不需要表演的地方。当你不再向外抓取认可、不再被角色捆绑，和平、喜悦、爱会像泉眼一样自己涌出来。每天留一点安静给内在，你会越来越接近那个未知的自己，而那个自己，其实一直认识你。</span></p>
+    <div class="imgbox"><img src="art_connect.jpg" alt="连接真我"></div>
+    <div class="mini">🌌 <b>关键：</b>静心是通往真我的门。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「连接真我」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：觉醒心态、身心灵四步法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（觉醒心态、身心灵四步法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 觉醒心态</div>
+  <div class="card">
+    <h3>理解 · 觉醒是认出你不是你的想法</h3>
+    <p><span class="q">念头升起时，你不是念头，你是看念头的人。练习三步：看见（哦，我又在焦虑了）、允许（可以焦虑，没关系）、放手（看着它来，看着它走）。当你和想法之间拉开距离，你就拿回了人生的方向盘。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏆 <b>关键：</b>看见念头，允许它，放手它。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「觉醒心态」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 身心灵四步法</div>
+  <div class="card">
+    <h3>理解 · 一套可执行的回归流程</h3>
+    <p>第一步觉察：看见想法和情绪，不评判；第二步接纳：允许当下如实存在；第三步臣服：对已发生的事放下抗拒；第四步连接：通过呼吸和静心回到真我。四步循环，频率越来越稳，生活越来越轻。</p>
+    <div class="imgbox"><img src="art_body.jpg" alt="身心灵四步法"></div>
+    <div class="mini">🧭 <b>关键：</b>觉察→接纳→臣服→连接。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 向内走，才能向外赢</h3>
+    <p>遇见自己 → 卸下角色 → 调高频 → 联结身体 → 臣服接纳 → 心想事成 → 连接真我——七步把"向外索求"转回"向内安顿"。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>每天早晚各做5分钟呼吸觉察</td></tr>
+      <tr><td>2</td><td>睡前写下三件值得感恩的事</td></tr>
+      <tr><td>3</td><td>情绪来时先问：这个想法是真的吗</td></tr>
+      <tr><td>4</td><td>对一件已发生无法改变的事说"我接受"</td></tr>
+      <tr><td>5</td><td>写下你真正想要的愿景，越具体越好</td></tr>
+      <tr><td>6</td><td>每天留10分钟独处，不听不看，只和自己待着</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：真我挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」身心灵专题。配套阅读：《当下的力量》《悉达多》《活出心流》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='unknown-self';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🪞',t:'遇见未知的自己',d:'书名之义',qs:[{q:'痛苦？',opts:['来自认同角色和想法','来自外面的人','无感'],a:0},{q:'外面？',opts:['没有别人只有自己','都是别人的错','无感'],a:0},{q:'本书？',opts:['找回真我之旅','鸡汤','无感'],a:0}]},
+ {ico:'🎭',t:'你是谁',d:'真我与角色',qs:[{q:'真我？',opts:['和平喜悦爱','社会角色','无感'],a:0},{q:'角色？',opts:['只是扮演','就是全部','无感'],a:0},{q:'认同？',opts:['别太当真','越当真越好','无感'],a:0}]},
+ {ico:'🌈',t:'能量振动',d:'吸引力法则',qs:[{q:'能量？',opts:['同频相吸','不存在','无感'],a:0},{q:'情绪？',opts:['能量频率','没意义','无感'],a:0},{q:'抱怨？',opts:['拉低频率','释放压力','无感'],a:0}]},
+ {ico:'🧘',t:'身体觉察',d:'与身体连接',qs:[{q:'身体？',opts:['储存情绪','只是工具','无感'],a:0},{q:'呼吸？',opts:['把意识带回当下','没感觉','无感'],a:0},{q:'觉察？',opts:['观身体感觉','忽略身体','无感'],a:0}]},
+ {ico:'💧',t:'臣服与接纳',d:'放下抗拒',qs:[{q:'臣服？',opts:['接纳当下','认输放弃','无感'],a:0},{q:'抗拒？',opts:['消耗能量','保护自己','无感'],a:0},{q:'当下？',opts:['只能接纳','必须对抗','无感'],a:0}]},
+ {ico:'🌱',t:'心想事成',d:'愿景法则',qs:[{q:'心想事成？',opts:['先调频再行动','空想就行','无感'],a:0},{q:'愿景？',opts:['越具体越有力','随便想想','无感'],a:0},{q:'感谢？',opts:['感恩提升频率','无关','无感'],a:0}]},
+ {ico:'🌌',t:'连接真我',d:'终极归处',qs:[{q:'真我？',opts:['一直都在','需要去寻找','无感'],a:0},{q:'静心？',opts:['听见内在声音','浪费时间','无感'],a:0},{q:'和平？',opts:['真我的底色','外求才有','无感'],a:0}]},
+ {ico:'🏆',t:'觉醒心态',d:'改变之道',qs:[{q:'改变？',opts:['从内在开始','改变别人','无感'],a:0},{q:'练习？',opts:['每天觉察','偶尔想','无感'],a:0},{q:'身份？',opts:['我是谁可以重写','定死了','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['外面没有别人只有自己','全是别人的错','无感'],a:0},{q:'关键？',opts:['觉察-接纳-臣服','对抗-抱怨','无感'],a:0},{q:'方法？',opts:['身体连接+调频','向外抓取','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我觉察？',opts:['能看见想法','被想法带走','无'],a:0},{q:'我接纳？',opts:['臣服当下','抗拒现实','无'],a:0},{q:'我连接？',opts:['每天静心','从不独处','无'],a:0}]},
+ {ico:'🧭',t:'觉醒启示',d:'学到什么',qs:[{q:'第一？',opts:['内在决定外在','外在决定内在','无感'],a:0},{q:'核心？',opts:['觉察即自由','控制即自由','无感'],a:0},{q:'终点？',opts:['回归真我','成为别人','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"外面"？',opts:['没有别人只有自己','全是别人','无感'],a:0},{q:'"真我"？',opts:['和平喜悦爱','金钱地位','无感'],a:0},{q:'"力量"？',opts:['在自己之内','在别人手里','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'被否定？',opts:['回到内在觉察','立刻反击','无感'],a:0},{q:'不顺心？',opts:['臣服再调整','死磕对抗','无感'],a:0},{q:'焦虑？',opts:['呼吸回到当下','越想越多','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['外面没有别人','别人害了我','无感'],a:0},{q:'记忆？',opts:['觉察-接纳-臣服-连接','无关联概念','无感'],a:0},{q:'练习？',opts:['每天静心觉察','从不练习','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我调频？',opts:['感恩三件事','常抱怨','无'],a:0},{q:'我觉察？',opts:['记录情绪来源','任情绪发作','无'],a:0},{q:'我臣服？',opts:['接纳一件烦事','死磕到底','无'],a:0}]},
+ {ico:'👑',t:'真我挑战',d:'10题综合测验',qs:[{q:'痛苦？',opts:['来自认同角色和想法','来自外面的人','无感'],a:0},{q:'真我？',opts:['和平喜悦爱','社会角色','无感'],a:0},{q:'能量？',opts:['同频相吸','不存在','无感'],a:0},{q:'身体？',opts:['储存情绪','只是工具','无感'],a:0},{q:'臣服？',opts:['接纳当下','认输放弃','无感'],a:0},{q:'心想事成？',opts:['先调频再行动','空想就行','无感'],a:0},{q:'真我？',opts:['一直都在','需要去寻找','无感'],a:0},{q:'本质？',opts:['外面没有别人只有自己','全是别人的错','无感'],a:0},{q:'方法？',opts:['身体连接+调频','向外抓取','无感'],a:0},{q:'"外面"？',opts:['没有别人只有自己','全是别人','无感'],a:0}]}
+];
+const badges=['🪞','🎭','🌈','🧘','💧','🌱','🌌','🏆','💡','🔎','🧭','👑'];
+const badgeNames=['遇见者','角色觉醒者','能量调频师','身体觉察者','臣服者','愿景播种者','真我连接者','觉醒者','概念掌握者','自省者','心灵导航员','真我大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
