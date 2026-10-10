@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《小狗钱钱》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《小狗钱钱》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>博多·舍费尔 · 欧洲理财大师 · 写给孩子的金钱童话</p>
+    <span class="tag">愿望清单</span><span class="tag">梦想相册</span><span class="tag">成功日记</span><span class="tag">鹅生金蛋</span><span class="tag">基金定投</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 小狗钱钱（免费）</div>
+  <div class="card">
+    <h3>理解 · 一只狗教你的理财课</h3>
+    <p><span class="q">12岁的吉娅捡到一只受伤的拉布拉多，取名钱钱。没想到钱钱会说话，而且是个理财高手：从愿望清单到养金鹅，一步步把吉娅从"月光女孩"变成"理财小达人"。理财从来不是大人的专利。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="小狗钱钱"></div>
+    <div class="mini">🐶 <b>关键：</b>理财要趁早，从小养成好习惯。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「小狗钱钱」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 愿望清单（免费）</div>
+  <div class="card">
+    <h3>理解 · 先想清楚为什么赚钱</h3>
+    <p><span class="q">钱钱的第一课：写下10个想变富有的理由，选出最重要的3个。然后为每个愿望准备一个罐子，把照片贴上去——具体、明确的愿望，才配得上具体的行动。不知道要什么，钱就没有方向。</span></p>
+    <div class="imgbox"><img src="art_wish.jpg" alt="愿望清单"></div>
+    <div class="mini">🍯 <b>关键：</b>明确愿望→视觉化→每天看。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「愿望清单」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 梦想相册（免费）</div>
+  <div class="card">
+    <h3>理解 · 看得见的梦想才够近</h3>
+    <p><span class="q">找一个相册，贴上你梦想的照片：想去的地方、想要的东西、想过的生活。每天看一遍，想象已经拥有。这不是迷信，而是用视觉不断提醒大脑——目标就在那里，值得为此努力。</span></p>
+    <div class="imgbox"><img src="art_album.jpg" alt="梦想相册"></div>
+    <div class="mini">📸 <b>关键：</b>视觉化让目标从模糊变清晰。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「梦想相册」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 鹅生金蛋（免费）</div>
+  <div class="card">
+    <h3>理解 · 千万别杀掉你的鹅</h3>
+    <p><span class="q">故事：农夫养了一只每天下一枚金蛋的鹅，却嫌太慢，把鹅杀了，从此一无所有。鹅=你的本金，金蛋=本金产生的利息收益。把钱分成三份：50%养鹅、40%梦想罐、10%零花。杀掉鹅=花光本金=永远没有金蛋。</span></p>
+    <div class="imgbox"><img src="art_goose.jpg" alt="鹅生金蛋"></div>
+    <div class="mini">🪿 <b>关键：</b>先养鹅，金蛋才会源源不断。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「鹅生金蛋」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 成功日记（免费）</div>
+  <div class="card">
+    <h3>理解 · 自信是赚钱的起点</h3>
+    <p><span class="q">每天睡前写下5件做成的事——哪怕很小。坚持两周，你会发现自己远比想象中能干。自信的人敢行动、敢尝试，而机会偏爱行动者。还有72小时法则：决定做的事，72小时内必须迈出第一步。</span></p>
+    <div class="imgbox"><img src="art_diary.jpg" alt="成功日记"></div>
+    <div class="mini">📔 <b>关键：</b>自信来自一次次小成功的积累。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「成功日记」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 挣钱之道（免费）</div>
+  <div class="card">
+    <h3>理解 · 帮别人解决问题就是赚钱</h3>
+    <p><span class="q">吉娅帮邻居遛狗、训练狗，赚到第一桶金。钱钱说：挣钱就是为别人解决难题，并专注于自己知道的、能做的、拥有的。不要总想"这不赚钱"，要问"我能帮谁解决什么"。</span></p>
+    <div class="imgbox"><img src="art_earn.jpg" alt="挣钱之道"></div>
+    <div class="mini">💼 <b>关键：</b>用擅长的事帮人解决问题。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「挣钱之道」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 基金与股票（免费）</div>
+  <div class="card">
+    <h3>理解 · 让钱为你工作的工具</h3>
+    <p><span class="q">基金=把你的钱交给专业团队，分散买入一篮子股票。定投=每月固定买入，摊平成本、积少成多。长期（5-10年）坚持，让时间和复利替你赚钱。别因短期波动惊慌，跌了反而是买入的好时机。</span></p>
+    <div class="imgbox"><img src="art_fund.jpg" alt="基金与股票"></div>
+    <div class="mini">📈 <b>关键：</b>基金定投+长期持有=普通人最好的武器。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「基金股票」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：债务管理、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（债务管理、财商启示、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 债务管理</div>
+  <div class="card">
+    <h3>理解 · 告别负债的四个原则</h3>
+    <p><span class="q">第一，砍掉不必要的支出，先攒钱；第二，信用卡别透支，欠款尽快还清；第三，还债的同时也要留一部分养鹅，别让债务吃掉本金；第四，借来的钱永远不是你的钱——远离"以贷养贷"。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">💳 <b>关键：</b>还债≠花光所有，鹅要一直养。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「债务管理」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 财商启示</div>
+  <div class="card">
+    <h3>理解 · 理财就是理人生</h3>
+    <p>愿望给你方向，相册给你动力，成功日记给你自信，鹅给你本金，定投让钱生钱，帮人解决问题让你有收入——这一整套，不只是理财方法，更是让生活越变越好的思维方式。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="财商启示"></div>
+    <div class="mini">🧭 <b>关键：</b>理财不是抠门，是让生活更好。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 养出你的金鹅</h3>
+    <p>写下愿望（清单）→ 看见梦想（相册）→ 记录成功（日记）→ 帮人赚钱（挣钱）→ 分三份钱（50%养鹅）→ 养大金鹅（定投基金）→ 管理债务（别杀鹅）→ 立即行动（72小时）——八步建立受益一生的理财习惯。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>写下10个愿望，选出最重要的3个</td></tr>
+      <tr><td>2</td><td>做一本梦想相册，每天看一遍</td></tr>
+      <tr><td>3</td><td>每晚写成功日记：5件做成的事</td></tr>
+      <tr><td>4</td><td>收入分成三份：50%养鹅、40%梦想、10%零花</td></tr>
+      <tr><td>5</td><td>每月定投基金，坚持5-10年</td></tr>
+      <tr><td>6</td><td>决定的事72小时内行动起来</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：理财大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 财商启蒙。配套阅读：《富爸爸穷爸爸》《财务自由之路》《巴比伦最富有的人》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='money-dog';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🐶',t:'小狗钱钱',d:'认识理财童话',qs:[{q:'钱钱？',opts:['会理财的狗','普通狗','无感'],a:0},{q:'吉娅？',opts:['12岁女孩','大人','无感'],a:0},{q:'核心？',opts:['从小理财','长大了再说','无感'],a:0}]},
+ {ico:'🍯',t:'愿望清单',d:'写下目标',qs:[{q:'第一步？',opts:['写下愿望','先存钱','无感'],a:0},{q:'愿望罐？',opts:['放照片','存硬币','无感'],a:0},{q:'愿望要？',opts:['具体明确','模糊','无感'],a:0}]},
+ {ico:'📸',t:'梦想相册',d:'视觉化目标',qs:[{q:'梦想相册？',opts:['贴目标图','贴明星','无感'],a:0},{q:'每天看？',opts:['提醒自己','浪费时间','无感'],a:0},{q:'视觉化？',opts:['坚定目标','迷信','无感'],a:0}]},
+ {ico:'🪿',t:'鹅生金蛋',d:'养鹅理论',qs:[{q:'鹅？',opts:['本金','消费','无感'],a:0},{q:'金蛋？',opts:['收益','花光','无感'],a:0},{q:'杀鹅？',opts:['花光本金','留本金','无感'],a:0}]},
+ {ico:'📔',t:'成功日记',d:'建立自信',qs:[{q:'成功日记？',opts:['每天记5件成就','记烦恼','无感'],a:0},{q:'作用？',opts:['建立自信','炫耀','无感'],a:0},{q:'72小时？',opts:['马上行动','拖延','无感'],a:0}]},
+ {ico:'💼',t:'挣钱之道',d:'帮人解决问题',qs:[{q:'怎么挣钱？',opts:['帮人解决问题','想发财','无感'],a:0},{q:'优势？',opts:['做擅长的事','跟风','无感'],a:0},{q:'坚持？',opts:['做你会的','换方向','无感'],a:0}]},
+ {ico:'📈',t:'基金股票',d:'让钱生钱',qs:[{q:'基金？',opts:['专业团队打理','自己炒股','无感'],a:0},{q:'定投？',opts:['定期买入','一次allin','无感'],a:0},{q:'长期？',opts:['5-10年','明天卖','无感'],a:0}]},
+ {ico:'💳',t:'债务管理',d:'告别负债',qs:[{q:'还债先？',opts:['砍支出','借更多','无感'],a:0},{q:'信用卡？',opts:['别过度透支','多多用','无感'],a:0},{q:'还完？',opts:['继续养鹅','消费','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'鹅？',opts:['本金','消费','无感'],a:0},{q:'金蛋？',opts:['收益','花光','无感'],a:0},{q:'72小时？',opts:['马上行动','拖延','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我的愿望？',opts:['写下来','没想','无'],a:0},{q:'我的鹅？',opts:['在养','没有','无'],a:0},{q:'成功日记？',opts:['在写','没有','无'],a:0}]},
+ {ico:'🧭',t:'财商启示',d:'学到什么',qs:[{q:'理财从？',opts:['愿望开始','赚钱开始','无感'],a:0},{q:'自信靠？',opts:['成功日记','别人夸','无感'],a:0},{q:'致富靠？',opts:['养鹅','打工','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"钱不是"？',opts:['人生中最重要','一切','无感'],a:0},{q:'"鹅生金蛋"？',opts:['别杀鹅','快花','无感'],a:0},{q:'"72小时"？',opts:['立即行动','等等看','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'发零花钱？',opts:['分三份','全花掉','无感'],a:0},{q:'想买东西？',opts:['等金蛋','透支','无感'],a:0},{q:'遇到机会？',opts:['72小时行动','犹豫','无感'],a:0}]},
+ {ico:'🔄',t:'理财循环',d:'四步闭环',qs:[{q:'理解？',opts:['鹅生金蛋','花钱','无感'],a:0},{q:'记忆？',opts:['成功日记','游戏','无感'],a:0},{q:'练习？',opts:['分三份钱','全花','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我懂养鹅？',opts:['懂','不','无'],a:0},{q:'我懂定投？',opts:['懂','不','无'],a:0},{q:'我写日记？',opts:['会','不','无'],a:0}]},
+ {ico:'👑',t:'理财大师挑战',d:'10题综合测验',qs:[{q:'钱钱？',opts:['会理财的狗','普通狗','无感'],a:0},{q:'第一步？',opts:['写下愿望','先存钱','无感'],a:0},{q:'梦想相册？',opts:['贴目标图','贴明星','无感'],a:0},{q:'鹅？',opts:['本金','消费','无感'],a:0},{q:'成功日记？',opts:['每天记5件成就','记烦恼','无感'],a:0},{q:'怎么挣钱？',opts:['帮人解决问题','想发财','无感'],a:0},{q:'基金？',opts:['专业团队打理','自己炒股','无感'],a:0},{q:'还债先？',opts:['砍支出','借更多','无感'],a:0},{q:'理财从？',opts:['愿望开始','赚钱开始','无感'],a:0},{q:'"72小时"？',opts:['立即行动','等等看','无感'],a:0}]}
+];
+const badges=['🐶','🍯','📸','🪿','📔','💼','📈','💳','💡','🔎','🧭','👑'];
+const badgeNames=['理财启蒙者','愿望清单家','梦想视觉家','养鹅人','自信记录者','挣钱小能手','基金投资者','债务管理者','概念掌握者','自省者','财商洞察者','理财大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
