@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《笑傲股市》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《笑傲股市》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>威廉·欧奈尔 · CANSLIM选股法创始人 · 散户投资经典</p>
+    <span class="tag">CANSLIM</span><span class="tag">龙头股</span><span class="tag">杯柄形态</span><span class="tag">止损纪律</span><span class="tag">趋势跟随</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 笑傲股市（免费）</div>
+  <div class="card">
+    <h3>理解 · CANSLIM 从哪里来</h3>
+    <p><span class="q">威廉·欧奈尔研究1880年以来美国股市所有大牛股的共同特征，总结出 CANSLIM 七要素选股法：当季盈利加速、年度盈利增长、新产品新管理、龙头地位、机构资金追捧、大盘配合、买入信号明确。它不是预测，而是把历史大牛股的规律变成可执行清单。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="笑傲股市"></div>
+    <div class="mini">🚀 <b>关键：</b>用历史规律做系统化选股。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「笑傲股市」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 龙头股（免费）</div>
+  <div class="card">
+    <h3>理解 · 只买行业最强</h3>
+    <p><span class="q">大牛股从来不是市场里最便宜的，而是每个行业里盈利增速最快、股价最强的龙头。欧奈尔反复强调：强者恒强——资金涌向领涨股，弱势股补涨往往是行情末端。买龙头，不买"看起来便宜"的落后者。</span></p>
+    <div class="imgbox"><img src="art_leader.jpg" alt="龙头股"></div>
+    <div class="mini">🐉 <b>关键：</b>龙头=盈利加速+领涨行业。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「龙头股」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 趋势跟随（免费）</div>
+  <div class="card">
+    <h3>理解 · 顺水行舟不抄底</h3>
+    <p><span class="q">欧奈尔不做价值抄底，只做趋势跟随：股价在上升趋势中（站稳长期均线、放量上行）才买入。趋势是你的朋友——让利润奔跑，趋势走坏才离场。下跌中的股票看着便宜，但"便宜"不是买它的理由。</span></p>
+    <div class="imgbox"><img src="art_trend.jpg" alt="趋势跟随"></div>
+    <div class="mini">📈 <b>关键：</b>只做上升趋势，不接下跌的刀。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「趋势跟随」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 杯柄形态（免费）</div>
+  <div class="card">
+    <h3>理解 · 经典突破买点</h3>
+    <p><span class="q">杯柄形态：股价先涨出一段，回调形成"杯"，再小幅下探形成"柄"，随后放量突破柄部高点——这是欧奈尔眼中最可靠的买入信号。买在突破点而非最低点：突破确认趋势，缩量回调是蓄势，放量突破是发令枪。</span></p>
+    <div class="imgbox"><img src="art_cup.jpg" alt="杯柄形态"></div>
+    <div class="mini">☕ <b>关键：</b>杯柄突破+放量=最佳买点。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「杯柄形态」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 止损纪律（免费）</div>
+  <div class="card">
+    <h3>理解 · 先活下来，再赚钱</h3>
+    <p><span class="q">欧奈尔铁律：任何买入的股票，一旦跌破买入价 7%~8% 必须无条件卖出，绝不摊平、绝不死扛。因为大牛股极少深调超过8%后还能走出主升浪；截断亏损，才能让少数大赢家覆盖所有小亏损。错几次没关系，对的那一次要拿住。</span></p>
+    <div class="imgbox"><img src="art_stop.jpg" alt="止损纪律"></div>
+    <div class="mini">✂️ <b>关键：</b>8%止损，保护本金第一。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「止损纪律」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 大盘研判（免费）</div>
+  <div class="card">
+    <h3>理解 · 顺势而为，熊市休息</h3>
+    <p><span class="q">四分之三的股票跟随大盘方向。欧奈尔建议：用指数走势判断市场阶段，大盘走弱时宁可空仓，也不要逆势重仓；大盘确认走强时再全力出击。趋势向上、量能配合、领涨板块活跃，才是可以满仓做多的环境。</span></p>
+    <div class="imgbox"><img src="art_market.jpg" alt="大盘研判"></div>
+    <div class="mini">🧭 <b>关键：</b>大盘是总开关，弱市现金为王。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「大盘研判」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 基本面与筹码（免费）</div>
+  <div class="card">
+    <h3>理解 · 好股的里子</h3>
+    <p><span class="q">选股要看里子：季度盈利大幅增长（最好加速）、年度盈利持续增长、处于新产业高景气赛道、产品有真实需求。筹码上看机构：基金和明星机构持续增持的股票，上涨更有底气；散户大量扎堆的热门股，往往已是出货期。</span></p>
+    <div class="imgbox"><img src="art_fund.jpg" alt="基本面与筹码"></div>
+    <div class="mini">💼 <b>关键：</b>盈利加速+机构增持=里子硬。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「基本面筹码」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：选股心法、欧奈尔实战法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（选股心法、欧奈尔实战法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 选股心法</div>
+  <div class="card">
+    <h3>理解 · 七要素缺一不可</h3>
+    <p><span class="q">CANSLIM 七要素：C当季盈利大增；A年度盈利持续增长；N新产品新管理层新价格；S供给与领涨（龙头）；L领先股而非落后股；I机构认可；M大盘方向。七要素共振，才是可买的好票——任何一条缺失都要打折，宁可错过不可做错。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏆 <b>关键：</b>C-A-N-S-L-I-M 缺一不可。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「选股心法」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 欧奈尔实战法</div>
+  <div class="card">
+    <h3>理解 · 一套完整交易流程</h3>
+    <p>第一步判大盘：指数趋势向上才入市。第二步筛龙头：按盈利增速与相对强度排行业前几名。第三步找买点：等待杯柄突破放量信号。第四步设止损：买入价下方7%~8%挂好止损单。第五步拿住赢家：涨了不轻易卖，趋势走坏才离场。第六步复盘：每月复盘买卖记录，修正规则。</p>
+    <div class="imgbox"><img src="art_fund.jpg" alt="欧奈尔实战法"></div>
+    <div class="mini">🧭 <b>关键：</b>判势-选龙-买点-止损-持有-复盘。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从乱买股票到系统制胜的路线图</h3>
+    <p>掌握CANSLIM → 学会判大盘 → 会认杯柄买点 → 严守止损 → 复盘迭代——五步建立趋势交易系统。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>确认大盘指数处于上升趋势</td></tr>
+      <tr><td>2</td><td>从行业涨幅榜锁定前三名</td></tr>
+      <tr><td>3</td><td>用CANSLIM筛出候选龙头</td></tr>
+      <tr><td>4</td><td>等待杯柄突破放量再买入</td></tr>
+      <tr><td>5</td><td>买入即挂8%止损单</td></tr>
+      <tr><td>6</td><td>每周复盘持仓与买卖记录</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：欧奈尔挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 趋势交易。配套阅读：《股票大作手回忆录》《海龟交易法则》《笑傲股市》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='laughing-stocks';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🚀',t:'笑傲股市',d:'书名之义',qs:[{q:'核心？',opts:['CANSLIM系统选股','凭感觉炒股','无感'],a:0},{q:'作者？',opts:['威廉·欧奈尔','短线游资','无感'],a:0},{q:'本书？',opts:['数据+纪律跑赢市场','每天追涨杀跌','无感'],a:0}]},
+ {ico:'🐉',t:'龙头股',d:'只买最强的',qs:[{q:'龙头？',opts:['领涨行业的新强势股','跌幅最大的股','无感'],a:0},{q:'为什么？',opts:['强者恒强资金聚集','便宜就是好','无感'],a:0},{q:'选择？',opts:['买各行业龙头','买补涨弱势股','无感'],a:0}]},
+ {ico:'📈',t:'趋势跟随',d:'顺水行舟',qs:[{q:'方向？',opts:['只做上升趋势','抄底下跌股','无感'],a:0},{q:'信号？',opts:['股价站上均线放量','股价新低','无感'],a:0},{q:'心态？',opts:['趋势结束才离场','赚一点就跑','无感'],a:0}]},
+ {ico:'☕',t:'杯柄形态',d:'经典买点',qs:[{q:'形态？',opts:['先杯后柄再突破','直线下跌','无感'],a:0},{q:'买点？',opts:['突破杯柄高点买入','最低点接刀','无感'],a:0},{q:'量能？',opts:['突破要放量','越缩量越好','无感'],a:0}]},
+ {ico:'✂️',t:'止损纪律',d:'活下来最重要',qs:[{q:'止损？',opts:['跌破买点8%坚决走','死扛等回本','无感'],a:0},{q:'目的？',opts:['保护本金控制回撤','证明自己没错','无感'],a:0},{q:'次数？',opts:['错几次都行关键对一次','每次都要赢','无感'],a:0}]},
+ {ico:'🧭',t:'大盘研判',d:'顺势而为',qs:[{q:'大盘？',opts:['牛市做多熊市休息','任何时候满仓','无感'],a:0},{q:'判断？',opts:['指数趋势与量能配合','只看个股','无感'],a:0},{q:'原则？',opts:['大盘不好不买新股','逆势重仓','无感'],a:0}]},
+ {ico:'💼',t:'基本面筹码',d:'好股的内核',qs:[{q:'盈利？',opts:['季度盈利加速增长','亏损股讲故事','无感'],a:0},{q:'筹码？',opts:['机构资金持续买入','散户大量接盘','无感'],a:0},{q:'行业？',opts:['新产业高景气','夕阳行业','无感'],a:0}]},
+ {ico:'🏆',t:'选股心法',d:'赢家思维',qs:[{q:'第一？',opts:['强势龙头+趋势买点','低位便宜股','无感'],a:0},{q:'关键？',opts:['基本面与技术面共振','只看一样','无感'],a:0},{q:'结局？',opts:['截断亏损让利润奔跑','频繁止损','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['CANSLIM七要素','K线算命','无感'],a:0},{q:'关键？',opts:['龙头-趋势-买点-止损','抄底-摊平-死扛','无感'],a:0},{q:'方法？',opts:['规则化执行','凭情绪操作','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我懂？',opts:['会找龙头会认买点','只会看涨跌','无'],a:0},{q:'我纪律？',opts:['止损铁律','舍不得割肉','无'],a:0},{q:'我顺势？',opts:['跟着大盘节奏','逆势满仓','无'],a:0}]},
+ {ico:'🧭',t:'智慧启示',d:'学到什么',qs:[{q:'第一？',opts:['普通人能系统化选股','只能靠内幕','无感'],a:0},{q:'核心？',opts:['数据筛选+纪律执行','复杂指标堆砌','无感'],a:0},{q:'终点？',opts:['稳定复利','一夜暴富','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"龙头"？',opts:['强者恒强','跌得多的会反弹','无感'],a:0},{q:'"止损"？',opts:['错了就走','死扛到底','无感'],a:0},{q:'"趋势"？',opts:['顺势者昌','逆势者赢','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'强势股创新高？',opts:['突破买点可买','恐高不敢买','无感'],a:0},{q:'跌破止损线？',opts:['机械卖出','再等等看','无感'],a:0},{q:'熊市来了？',opts:['空仓等待','满仓硬扛','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['龙头+趋势+买点+止损','追涨杀跌','无感'],a:0},{q:'记忆？',opts:['CANSLIM七要素','随机指标','无感'],a:0},{q:'练习？',opts:['复盘数据选股','凭感觉买卖','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我选股？',opts:['按CANSLIM筛','追热门','无'],a:0},{q:'我买点？',opts:['突破放量买入','跌了接刀','无'],a:0},{q:'我止损？',opts:['8%铁律','死扛','无'],a:0}]},
+ {ico:'👑',t:'欧奈尔挑战',d:'10题综合测验',qs:[{q:'核心？',opts:['CANSLIM系统选股','凭感觉炒股','无感'],a:0},{q:'龙头？',opts:['领涨行业的新强势股','跌幅最大的股','无感'],a:0},{q:'买点？',opts:['突破杯柄高点买入','最低点接刀','无感'],a:0},{q:'止损？',opts:['跌破买点8%坚决走','死扛等回本','无感'],a:0},{q:'大盘？',opts:['牛市做多熊市休息','任何时候满仓','无感'],a:0},{q:'盈利？',opts:['季度盈利加速增长','亏损股讲故事','无感'],a:0},{q:'筹码？',opts:['机构资金持续买入','散户大量接盘','无感'],a:0},{q:'"止损"？',opts:['错了就走','死扛到底','无感'],a:0},{q:'本质？',opts:['CANSLIM七要素','K线算命','无感'],a:0},{q:'结局？',opts:['截断亏损让利润奔跑','频繁止损','无感'],a:0}]}
+];
+const badges=['🚀','🐉','📈','☕','✂️','🧭','💼','🏆','💡','🔎','🧭','👑'];
+const badgeNames=['笑傲股神','龙头猎手','趋势跟随者','杯柄专家','止损铁律','大盘判官','筹码侦探','选股心法家','概念掌握者','自省者','智慧导航员','欧奈尔传人'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
