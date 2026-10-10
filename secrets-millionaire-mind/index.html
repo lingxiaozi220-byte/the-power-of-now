@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《有钱人想的和你不一样》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《有钱人想的和你不一样》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>哈维·艾克 · 财富心理教练 · 全球销量超200万册的财富思维圣经</p>
+    <span class="tag">财富蓝图</span><span class="tag">创造思维</span><span class="tag">格局放大</span><span class="tag">机会导向</span><span class="tag">行动至上</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 财富思维的差距（免费）</div>
+  <div class="card">
+    <h3>理解 · 钱不是赚来的，是心想出来的</h3>
+    <p><span class="q">哈维·艾克说：你的收入最多只能增长到你的思维所允许的程度。穷人想"够用就好"，富人想"我要创造更多"。想改变结果，先改变思维——这是有钱人和你想的不一样的第一课。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="财富思维"></div>
+    <div class="mini">🧠 <b>关键：</b>思维程序决定财富上限。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「财富思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 财富蓝图（免费）</div>
+  <div class="card">
+    <h3>理解 · 你的财务程序出厂设置</h3>
+    <p><span class="q">你的财富蓝图=从小听过的关于钱的话+见过的爸妈的理财方式+亲历的金钱事件。它像恒温器：默认设定30万，赚到30万就"自动断电"。好消息：蓝图可以重写——觉知+宣言+行动。</span></p>
+    <div class="imgbox"><img src="art_blueprint.jpg" alt="财富蓝图"></div>
+    <div class="mini">🗺️ <b>关键：</b>重写蓝图，重设财富恒温器。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「财富蓝图」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 创造财富（免费）</div>
+  <div class="card">
+    <h3>理解 · 从"我要"到"我创造"</h3>
+    <p><span class="q">穷人专注"如何省钱"，富人专注"如何创造"。机会到处都有，只等有人创造价值。把注意力从障碍转向机会，从"怎么办"转向"我提供什么价值"——财富跟着价值走。</span></p>
+    <div class="imgbox"><img src="art_create.jpg" alt="创造财富"></div>
+    <div class="mini">🎯 <b>关键：</b>专注机会与价值，财富自然来。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「创造财富」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 玩大游戏（免费）</div>
+  <div class="card">
+    <h3>理解 · 格局决定结局</h3>
+    <p><span class="q">穷人玩小游戏：目标小、圈子小、梦想小。富人玩大游戏：想得大、帮的人多、解决的问题大。问题越大，回报越大——你的收入与你解决的问题的规模成正比。</span></p>
+    <div class="imgbox"><img src="art_scale.jpg" alt="游戏规模"></div>
+    <div class="mini">♟️ <b>关键：</b>你的成就=你解决的问题的大小。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「游戏规模」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 机会思维（免费）</div>
+  <div class="card">
+    <h3>理解 · 障碍与机会是同一件事</h3>
+    <p><span class="q">同一个市场，穷人看到风险，富人看到机会。富人带着恐惧行动——勇气不是不害怕，是害怕也要上。每一次失败都是学费，每一次拒绝都是筛选：态度决定你站多高。</span></p>
+    <div class="imgbox"><img src="art_opportunity.jpg" alt="机会思维"></div>
+    <div class="mini">🪜 <b>关键：</b>带着恐惧行动，失败是学费。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「机会思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 接受能力（免费）</div>
+  <div class="card">
+    <h3>理解 · 你配得上你赚的每一分钱</h3>
+    <p><span class="q">很多人潜意识里"不配有钱"：收钱不好意思、被夸就谦虚、赚了钱有负罪感。富人坦然接受赞赏和金钱——你配得上，才能接得住。先在心里允许自己有钱，钱才会流向你。</span></p>
+    <div class="imgbox"><img src="art_receive.jpg" alt="接受能力"></div>
+    <div class="mini">🤲 <b>关键：</b>先相信自己配得上，才接得住财富。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「接受能力」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 行动至上（免费）</div>
+  <div class="card">
+    <h3>理解 · 想法不值钱，执行才值钱</h3>
+    <p><span class="q">人人都有好点子，差别在谁先动手。富人不等完美：先做、再改、再优化。机会窗口稍纵即逝——速度就是竞争力。今天想到，今天就迈出第一步。</span></p>
+    <div class="imgbox"><img src="art_action.jpg" alt="行动至上"></div>
+    <div class="mini">🚀 <b>关键：</b>先做再改，速度就是竞争力。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「行动至上」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：赢家心态、17个财富档案 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（赢家心态、财富档案、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 赢家心态</div>
+  <div class="card">
+    <h3>理解 · 聚焦赢，而不是不输</h3>
+    <p><span class="q">富人专注赚钱，穷人专注不亏钱。富人做决定很快，因为他们的目标清晰；穷人犹豫不决，因为害怕犯错。把焦点从"别输"转向"怎么赢"，行为立刻不同。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏆 <b>关键：</b>聚焦赢，行动快，看长期。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「赢家心态」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 十七个财富档案</div>
+  <div class="card">
+    <h3>理解 · 财富思维的对照表</h3>
+    <p>有钱人：相信我创造人生/玩大游戏/专注机会/欣赏有钱人/愿意宣传自己/大问题大格局/善于管理钱/让钱工作/克服恐惧/持续学习成长。穷人档案正好相反——逐条对照，逐条改写。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="财富档案"></div>
+    <div class="mini">💡 <b>关键：</b>17条对照表，逐条重写思维程序。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 财富思维升级路线</h3>
+    <p>觉知旧蓝图 → 用宣言重写程序 → 专注机会与价值 → 放大目标格局 → 带着恐惧行动 → 坦然接受财富 → 快速执行迭代——七步升级你的财富心智。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>写下小时候关于钱的三个信念，审视它</td></tr>
+      <tr><td>2</td><td>每天朗读财富宣言："我创造我的人生"</td></tr>
+      <tr><td>3</td><td>遇到问题先找机会，再谈困难</td></tr>
+      <tr><td>4</td><td>设定一个大目标，写下它解决的问题</td></tr>
+      <tr><td>5</td><td>本周完成一件拖着没做的事</td></tr>
+      <tr><td>6</td><td>被夸时练习说"谢谢"而不是推辞</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：财富心智挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 财富心理。配套阅读：《金钱心理学》《邻家的百万富翁》《富爸爸穷爸爸》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='secrets-millionaire-mind';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🧠',t:'财富思维',d:'认识差距',qs:[{q:'钱靠什么？',opts:['思维','运气','无感'],a:0},{q:'穷人想？',opts:['够用就好','更多','无感'],a:0},{q:'富人想？',opts:['创造','节省','无感'],a:0}]},
+ {ico:'🗺️',t:'财富蓝图',d:'思维程序',qs:[{q:'蓝图源于？',opts:['童年的钱观念','天生','无感'],a:0},{q:'蓝图决定？',opts:['财富上限','运气','无感'],a:0},{q:'能改？',opts:['能，重写程序','不能','无感'],a:0}]},
+ {ico:'🎯',t:'创造财富',d:'先给予后收获',qs:[{q:'富人？',opts:['创造机会','等机会','无感'],a:0},{q:'专注？',opts:['机会','障碍','无感'],a:0},{q:'给予？',opts:['先给价值','先索取','无感'],a:0}]},
+ {ico:'♟️',t:'游戏规模',d:'格局决定结局',qs:[{q:'游戏？',opts:['越大越好','小就好','无感'],a:0},{q:'目标？',opts:['大目标','小目标','无感'],a:0},{q:'难题？',opts:['越大成就越大','逃避','无感'],a:0}]},
+ {ico:'🪜',t:'机会思维',d:'态度决定高度',qs:[{q:'看障碍？',opts:['机会','问题','无感'],a:0},{q:'恐惧？',opts:['带着恐惧行动','等不害怕','无感'],a:0},{q:'失败？',opts:['学习机会','丢脸','无感'],a:0}]},
+ {ico:'🤲',t:'接受能力',d:'配得上财富',qs:[{q:'别人夸？',opts:['接受','谦虚推辞','无感'],a:0},{q:'赚钱？',opts:['配得上','不配','无感'],a:0},{q:'收钱？',opts:['坦然接受','不好意思','无感'],a:0}]},
+ {ico:'🚀',t:'行动至上',d:'速度就是一切',qs:[{q:'富人？',opts:['马上行动','完美再动','无感'],a:0},{q:'想法？',opts:['执行才有用','想想就行','无感'],a:0},{q:'机会？',opts:['先试','再等等','无感'],a:0}]},
+ {ico:'🏆',t:'赢家心态',d:'聚焦胜利',qs:[{q:'专注？',opts:['赢','不输','无感'],a:0},{q:'做决定？',opts:['很快','反复纠结','无感'],a:0},{q:'结果？',opts:['看长期','看眼前','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'第一？',opts:['财富蓝图','运气','无感'],a:0},{q:'富人专注？',opts:['机会','障碍','无感'],a:0},{q:'行动？',opts:['马上','完美再动','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我的蓝图？',opts:['在升级','不知道','无'],a:0},{q:'我的想法？',opts:['创造','抱怨','无'],a:0},{q:'我的行动？',opts:['快','慢','无'],a:0}]},
+ {ico:'🧭',t:'财富启示',d:'学到什么',qs:[{q:'本质？',opts:['思维决定财富','工资决定','无感'],a:0},{q:'关键？',opts:['重写蓝图','换工作','无感'],a:0},{q:'捷径？',opts:['没有，改思维','有','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"富人想"？',opts:['创造财富','节省','无感'],a:0},{q:'"穷人为钱"？',opts:['工作','思考','无感'],a:0},{q:'"想法"？',opts:['产生行动','只是空想','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'遇到障碍？',opts:['找机会','放弃','无感'],a:0},{q:'大目标？',opts:['敢想','怕大','无感'],a:0},{q:'别人夸？',opts:['接受','推辞','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['蓝图','运气','无感'],a:0},{q:'记忆？',opts:['创造思维','节省','无感'],a:0},{q:'练习？',opts:['马上行动','拖延','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我改思维？',opts:['在改','没有','无'],a:0},{q:'我敢想大？',opts:['敢','不敢','无'],a:0},{q:'我行动快？',opts:['快','慢','无'],a:0}]},
+ {ico:'👑',t:'财富心智挑战',d:'10题综合测验',qs:[{q:'钱靠什么？',opts:['思维','运气','无感'],a:0},{q:'蓝图源于？',opts:['童年','天生','无感'],a:0},{q:'富人？',opts:['创造机会','等机会','无感'],a:0},{q:'游戏？',opts:['越大越好','小就好','无感'],a:0},{q:'看障碍？',opts:['机会','问题','无感'],a:0},{q:'别人夸？',opts:['接受','推辞','无感'],a:0},{q:'富人？',opts:['马上行动','完美再动','无感'],a:0},{q:'专注？',opts:['赢','不输','无感'],a:0},{q:'本质？',opts:['思维决定财富','工资决定','无感'],a:0},{q:'"富人想"？',opts:['创造财富','节省','无感'],a:0}]}
+];
+const badges=['🧠','🗺️','🎯','♟️','🪜','🤲','🚀','🏆','💡','🔎','🧭','👑'];
+const badgeNames=['财富思维家','蓝图重塑者','创造者','格局放大者','机会猎手','坦然接受者','行动火箭','赢家心态者','概念掌握者','自省者','财富洞察者','财富心智大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
