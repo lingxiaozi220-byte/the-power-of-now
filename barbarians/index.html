@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《门口的野蛮人》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《门口的野蛮人》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>布赖恩·伯勒 · 华尔街并购史的传奇经典 · 资本战争全记录</p>
+    <span class="tag">杠杆收购</span><span class="tag">敌意收购</span><span class="tag">垃圾债券</span><span class="tag">MBO</span><span class="tag">华尔街</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 华尔街的资本战争（免费）</div>
+  <div class="card">
+    <h3>理解 · 史上最著名的收购战</h3>
+    <p><span class="q">1988年，华尔街的猎人盯上了烟草巨头雷诺兹。KKR、纳贝斯克管理层、各路投行——一场250亿美元的杠杆收购大战，把华尔街的贪婪、勇气与疯狂展现得淋漓尽致。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="门口的野蛮人"></div>
+    <div class="mini">🏰 <b>关键：</b>门口的野蛮人=用杠杆强行敲门的并购者。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「收购战序幕」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 杠杆收购（免费）</div>
+  <div class="card">
+    <h3>理解 · 借钱买公司</h3>
+    <p><span class="q">杠杆收购（LBO）：用很少的自有资金，借大量债务买下公司，再用公司未来的现金流还债。杠杆放大收益，也放大风险——这是资本游戏的发动机。</span></p>
+    <div class="imgbox"><img src="art_leveraged.jpg" alt="杠杆收购"></div>
+    <div class="mini">🪛 <b>关键：</b>LBO=小资金+大杠杆+现金流还债。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「杠杆收购」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 垃圾债券（免费）</div>
+  <div class="card">
+    <h3>理解 · 高息融资的武器</h3>
+    <p><span class="q">垃圾债券=高收益高风险债券。米尔肯把垃圾债券变成并购的弹药库：只要出得起利息，就能借到钱，就能收购任何公司。融资工具改变了整个收购格局。</span></p>
+    <div class="imgbox"><img src="art_junk.jpg" alt="垃圾债券"></div>
+    <div class="mini">💵 <b>关键：</b>垃圾债券让"小钱办大事"成为可能。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「垃圾债券」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 敌意收购（免费）</div>
+  <div class="card">
+    <h3>理解 · 强行敲门的野蛮人</h3>
+    <p><span class="q">敌意收购：管理层反对，收购方就绕过管理层，直接向股东发出收购要约。用价格打动股东，用杠杆搞定资金——管理层挡不住"门口的野蛮人"。</span></p>
+    <div class="imgbox"><img src="art_hostile.jpg" alt="敌意收购"></div>
+    <div class="mini">⚔️ <b>关键：</b>敌意收购=跳过管理层，直接买股东。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「敌意收购」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 股权争夺战（免费）</div>
+  <div class="card">
+    <h3>理解 · 谁掌握公司</h3>
+    <p><span class="q">收购的本质是股权争夺：谁能拿到多数股份，谁就控制公司。纳贝斯克之战中，管理层组队（MBO）与KKR竞价，把收购价从每股75美元抬到109美元——价格战就是控制权之战。</span></p>
+    <div class="imgbox"><img src="art_stake.jpg" alt="股权争夺"></div>
+    <div class="mini">🤝 <b>关键：</b>控制权=股权，收购就是买股权。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「友好收购」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 管理层收购（免费）</div>
+  <div class="card">
+    <h3>理解 · 自己买下自己</h3>
+    <p><span class="q">MBO：管理层借债收购自己经营的公司，从打工者变成老板。纳贝斯克管理层的MBO计划引爆了竞购战——他们想保住公司，却把价格推得更高。</span></p>
+    <div class="imgbox"><img src="art_mbo.jpg" alt="MBO"></div>
+    <div class="mini">🔑 <b>关键：</b>MBO=管理层用杠杆自己买公司。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「MBO」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 反收购防御（免费）</div>
+  <div class="card">
+    <h3>理解 · 守城者的武器</h3>
+    <p><span class="q">毒丸计划（增发股份稀释收购方）、金降落伞（高管巨额离职补偿）、白衣骑士（找友好买家）——管理层用各种手段提高收购成本、拖延时间、寻找救兵。</span></p>
+    <div class="imgbox"><img src="art_wall.jpg" alt="华尔街"></div>
+    <div class="mini">🛡️ <b>关键：</b>防御的本质：让强行收购变得又贵又难。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「防御战术」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：竞购大战全复盘、收购对市场的启示、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（竞购大战全复盘、收购对市场的启示、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 竞购大战全复盘</div>
+  <div class="card">
+    <h3>理解 · 250亿美元的竞价马拉松</h3>
+    <p><span class="q">KKR、管理层、第一波士顿三方竞购，报价一轮高过一轮：75→90→100→109美元。最终KKR以250亿美元胜出，但背上了沉重的债务——胜利者也难言轻松。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">⚖️ <b>关键：</b>竞购战=价格战，最后赢家往往付出过高代价。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「利益博弈」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 收购对市场的启示</div>
+  <div class="card">
+    <h3>理解 · 资本游戏的三堂课</h3>
+    <p>杠杆是把双刃剑（收益放大、风险也放大）；公司治理是利益平衡的艺术；华尔街永远在逐利——理解游戏规则，才能在资本市场保护自己。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="市场启示"></div>
+    <div class="mini">🧭 <b>关键：</b>资本市场的本质是利益博弈，规则透明才能避险。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「术语配对」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 看懂资本战争的能力</h3>
+    <p>认识杠杆（借债收购）→ 看清弹药（垃圾债券）→ 分辨敌友（敌意vs友好）→ 理解股权（控制权之争）→ 看懂防御（反收购）→ 洞见人性（贪婪与博弈）——六步看懂任何并购大战。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>识别并购类型：LBO、MBO、敌意、友好</td></tr>
+      <tr><td>2</td><td>看收购资金来源：自有 vs 杠杆</td></tr>
+      <tr><td>3</td><td>分析各方利益：股东、管理层、收购方、债权人</td></tr>
+      <tr><td>4</td><td>评估防御手段：毒丸、金降落伞、白衣骑士</td></tr>
+      <tr><td>5</td><td>警惕杠杆风险：高负债=高风险高波动</td></tr>
+      <tr><td>6</td><td>写下启示：资本游戏规则对个人投资的教训</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：并购大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 资本并购。配套阅读：《大而不倒》《时运变迁》《金融的本质》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='barbarians';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🏰',t:'收购战序幕',d:'了解战役',qs:[{q:'门口野蛮人？',opts:['并购者','守卫者','旁观者'],a:0},{q:'雷诺兹？',opts:['被收购目标','收购方','银行'],a:0},{q:'大战性质？',opts:['杠杆收购','慈善','无感'],a:0}]},
+ {ico:'🪛',t:'杠杆收购',d:'借钱买公司',qs:[{q:'杠杆收购？',opts:['借债收购','自有资金','无感'],a:0},{q:'收购的钱？',opts:['大部分借的','全自有','无感'],a:0},{q:'风险？',opts:['高负债','无风险','稳赚'],a:0}]},
+ {ico:'💵',t:'垃圾债券',d:'高息融资',qs:[{q:'垃圾债券？',opts:['高息高风险','保本','无风险'],a:0},{q:'用途？',opts:['并购融资','存钱','无感'],a:0},{q:'米尔肯？',opts:['垃圾债券之王','银行家','无感'],a:0}]},
+ {ico:'⚔️',t:'敌意收购',d:'强行敲门',qs:[{q:'敌意收购？',opts:['管理层反对','友好谈判','无感'],a:0},{q:'绕过管理层？',opts:['直接买股东','放弃','无感'],a:0},{q:'野蛮人？',opts:['强行并购者','慈善家','无感'],a:0}]},
+ {ico:'🤝',t:'友好收购',d:'协商交易',qs:[{q:'友好收购？',opts:['双方同意','强行','无感'],a:0},{q:'白衣骑士？',opts:['友好买家','敌人','无感'],a:0},{q:'谈判核心？',opts:['价格','面子','无感'],a:0}]},
+ {ico:'🔑',t:'MBO',d:'管理层收购',qs:[{q:'MBO？',opts:['管理层收购','外部收购','无感'],a:0},{q:'管理层动机？',opts:['保住公司','看戏','无感'],a:0},{q:'MBO后？',opts:['自负盈亏','无变化','无感'],a:0}]},
+ {ico:'🛡️',t:'防御战术',d:'守住公司',qs:[{q:'毒丸计划？',opts:['增加收购成本','白送','无感'],a:0},{q:'金降落伞？',opts:['高管离职补偿','陷阱','无感'],a:0},{q:'反收购？',opts:['管理层自救','投降','无感'],a:0}]},
+ {ico:'⚖️',t:'利益博弈',d:'各方算盘',qs:[{q:'股东要？',opts:['最高价','公司情谊','无感'],a:0},{q:'管理层要？',opts:['保住地位','高价','无感'],a:0},{q:'收购方要？',opts:['低价买','高价买','无感'],a:0}]},
+ {ico:'💡',t:'术语配对',d:'核心概念',qs:[{q:'LBO？',opts:['杠杆收购','直线并购','无感'],a:0},{q:'MBO？',opts:['管理层收购','恶意收购','无感'],a:0},{q:'毒丸？',opts:['反收购防御','毒药','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'收购为什么能成？',opts:['钱+杠杆+时机','运气','无感'],a:0},{q:'谁最受伤？',opts:['高杠杆风险','股东','无感'],a:0},{q:'并购创造价值？',opts:['未必','一定','无感'],a:0}]},
+ {ico:'🧭',t:'商业启示',d:'学到什么',qs:[{q:'杠杆两面？',opts:['放大收益与风险','只有好','无感'],a:0},{q:'华尔街本质？',opts:['逐利博弈','慈善','无感'],a:0},{q:'公司治理？',opts:['利益平衡','无感','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"门口的野蛮人"？',opts:['敲门并购者','守护者','无感'],a:0},{q:'"杠杆收购是"？',opts:['资本的游戏','慈善','无感'],a:0},{q:'"并购背后是"？',opts:['利益与人性','公平','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'收购价暴涨？',opts:['警惕负债','必赚','无感'],a:0},{q:'管理层反击？',opts:['博弈开始','结束','无感'],a:0},{q:'高杠杆收购？',opts:['高风险高波动','稳赚','无感'],a:0}]},
+ {ico:'🔄',t:'周期复盘',d:'战役重演',qs:[{q:'第一步？',opts:['找目标','买楼','无感'],a:0},{q:'中间？',opts:['融资谈判','等待','无感'],a:0},{q:'终点？',opts:['交割还债','庆祝','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我懂并购逻辑？',opts:['懂','不','无'],a:0},{q:'我看懂资本游戏？',opts:['看','不','无'],a:0},{q:'我警惕杠杆？',opts:['是','不','无'],a:0}]},
+ {ico:'👑',t:'并购大师挑战',d:'10题综合测验',qs:[{q:'门口野蛮人？',opts:['并购者','守卫者','旁观者'],a:0},{q:'杠杆收购？',opts:['借债收购','自有资金','无感'],a:0},{q:'垃圾债券？',opts:['高息高风险','保本','无风险'],a:0},{q:'敌意收购？',opts:['管理层反对','友好谈判','无感'],a:0},{q:'友好收购？',opts:['双方同意','强行','无感'],a:0},{q:'MBO？',opts:['管理层收购','外部收购','无感'],a:0},{q:'毒丸计划？',opts:['增加收购成本','白送','无感'],a:0},{q:'股东要？',opts:['最高价','公司情谊','无感'],a:0},{q:'杠杆两面？',opts:['放大收益与风险','只有好','无感'],a:0},{q:'"门口的野蛮人"？',opts:['敲门并购者','守护者','无感'],a:0}]}
+];
+const badges=['🏰','🪛','💵','⚔️','🤝','🔑','🛡️','⚖️','💡','🔎','🧭','👑'];
+const badgeNames=['战役观察家','杠杆理解者','债券专家','敌意识别家','谈判高手','MBO玩家','防御战术师','利益分析家','概念掌握者','自省者','商业洞察者','并购大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
