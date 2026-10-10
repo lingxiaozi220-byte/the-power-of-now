@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《邓普顿教你逆向投资》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《邓普顿教你逆向投资》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>约翰·邓普顿 · 全球投资之父 · 逆向投资的开山之作</p>
+    <span class="tag">逆向投资</span><span class="tag">最大悲观点</span><span class="tag">便宜货猎手</span><span class="tag">全球视野</span><span class="tag">长期耐心</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 逆向投资的核心（免费）</div>
+  <div class="card">
+    <h3>理解 · 在别人恐惧时贪婪</h3>
+    <p><span class="q">逆向投资的本质：市场情绪会走极端，价格会偏离价值。聪明的投资者在悲观时买入便宜货，在乐观时卖出。不是故意反着来，而是价值导向——只跟价值走，不跟情绪走。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="邓普顿教你逆向投资"></div>
+    <div class="mini">🔄 <b>关键：</b>逆向≠抬杠，是价值导向的反情绪操作。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「逆向思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 最大悲观点买入（免费）</div>
+  <div class="card">
+    <h3>理解 · 乌云密布时买进</h3>
+    <p><span class="q">邓普顿名言：最悲观的时刻就是最佳买点。1929、1987、2008——每次股灾都是便宜货的盛宴。当所有人都绝望离场时，价格远低于价值，这正是买入的时刻。</span></p>
+    <div class="imgbox"><img src="art_pessimism.jpg" alt="最大悲观点"></div>
+    <div class="mini">⛈️ <b>关键：</b>最大悲观点=最佳买点，恐慌是机会的敲门声。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「最大悲观点」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 便宜货猎手（免费）</div>
+  <div class="card">
+    <h3>理解 · 只买价低于值的</h3>
+    <p><span class="q">便宜货不是股价低，而是价格低于内在价值。邓普顿把全球市场当折扣商店：同样的好公司，在日本便宜就在日本买。关键永远是价值与价格的差距。</span></p>
+    <div class="imgbox"><img src="art_bargain.jpg" alt="便宜货猎手"></div>
+    <div class="mini">🛒 <b>关键：</b>便宜=价低于值，不是低价股。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「便宜货猎手」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 全球视野（免费）</div>
+  <div class="card">
+    <h3>理解 · 全世界都是你的购物车</h3>
+    <p><span class="q">邓普顿是全球化投资的先驱：哪里便宜买哪里。冷门市场藏着最多的便宜货——别人不去的地方，竞争最少，机会最大。分散到全球，还能降低单一市场风险。</span></p>
+    <div class="imgbox"><img src="art_global.jpg" alt="全球视野"></div>
+    <div class="mini">🌍 <b>关键：</b>全球化=更广的便宜货来源+更分散的风险。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「全球视野」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 情绪钟摆（免费）</div>
+  <div class="card">
+    <h3>理解 · 市场在贪婪与恐惧间摇摆</h3>
+    <p><span class="q">市场情绪像钟摆：从极度贪婪摆到极度恐惧，很少停留在中间。钟摆到贪婪端，价格高估该警惕；摆到恐惧端，价格低估是机会。识别钟摆位置，就知道该买还是该卖。</span></p>
+    <div class="imgbox"><img src="art_pendulum.jpg" alt="情绪钟摆"></div>
+    <div class="mini">🎭 <b>关键：</b>情绪极端=价格偏离价值=逆向的机会。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「情绪钟摆」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 长期耐心（免费）</div>
+  <div class="card">
+    <h3>理解 · 让时间兑现价值</h3>
+    <p><span class="q">邓普顿持股以年为单位，等待价值回归常常需要数年。买在悲观点只是开始，耐心持有直到市场重新认识价值，才是完整的逆向投资。</span></p>
+    <div class="imgbox"><img src="art_patience.jpg" alt="长期耐心"></div>
+    <div class="mini">⏳ <b>关键：</b>逆向=便宜买入+耐心等待价值回归。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「长期耐心」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 最大乐观点卖出（免费）</div>
+  <div class="card">
+    <h3>理解 · 在欢呼声中离场</h3>
+    <p><span class="q">与买入对称：当市场狂热、人人赚钱时，就是卖出的时刻。卖出标准不是怕跌，而是价格远超价值。别人贪婪时，你把筹码换成现金——逆向的完整闭环。</span></p>
+    <div class="imgbox"><img src="art_sell.jpg" alt="卖出时机"></div>
+    <div class="mini">💰 <b>关键：</b>最大乐观点=卖点，卖出看价值不看恐惧。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「卖出艺术」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：逆向实战案例、风险控制体系、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（逆向实战案例、风险控制体系、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 逆向实战案例</div>
+  <div class="card">
+    <h3>理解 · 三次经典战役</h3>
+    <p><span class="q">1939年二战爆发，邓普顿借1万美元买入104只跌破1美元的股票，4年后全部获利；1970s买入日本便宜股大赚；2000年互联网泡沫前离场。每次都是：悲观时买入、乐观时卖出。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">📚 <b>关键：</b>历史证明：极端情绪=极端价格=极端机会。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「避险法则」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 风险控制体系</div>
+  <div class="card">
+    <h3>理解 · 逆向不等于冒险</h3>
+    <p>分散买入（不押单一标的）、留足现金（随时有子弹）、设好止损认知（价值逻辑被破坏就认错）、不用杠杆（活着才有复利）。逆向的前提是风险可控。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="风险控制"></div>
+    <div class="mini">🛡️ <b>关键：</b>逆向的核心纪律：分散+现金+不杠杆。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「术语配对」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 建立你的逆向投资体系</h3>
+    <p>看钟摆（情绪位置）→ 找便宜货（价低于值）→ 全球扫描（哪里便宜买哪里）→ 悲观买入 → 耐心持有 → 乐观卖出——六步闭环，与情绪为敌，与价值为友。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>建立观察清单：跟踪情绪极端事件（股灾/恐慌/狂热）</td></tr>
+      <tr><td>2</td><td>用估值判断贵贱，只列价低于值的标的</td></tr>
+      <tr><td>3</td><td>全球扫描：冷门市场优先</td></tr>
+      <tr><td>4</td><td>在最大悲观点分批买入，留足现金</td></tr>
+      <tr><td>5</td><td>设好卖出规则：价值高估即分批离场</td></tr>
+      <tr><td>6</td><td>复盘每次极端情绪下的操作，写逆向日记</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：逆向大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 逆向投资。配套阅读：《投资最重要的事》《安全边际》《漫步华尔街》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='templeton';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🔄',t:'逆向思维',d:'反着走',qs:[{q:'别人恐惧？',opts:['我贪婪','我也跑','无感'],a:0},{q:'别人贪婪？',opts:['我警惕','我梭哈','跟风'],a:0},{q:'逆向投资？',opts:['买便宜货','追热门','随大流'],a:0}]},
+ {ico:'⛈️',t:'最大悲观点',d:'最佳买点',qs:[{q:'最大悲观点？',opts:['买点','卖点','无感'],a:0},{q:'众人绝望？',opts:['机会来了','快逃','无感'],a:0},{q:'悲观到极？',opts:['准备买入','远离','犹豫'],a:0}]},
+ {ico:'🛒',t:'便宜货猎手',d:'寻找折扣',qs:[{q:'便宜货？',opts:['价格低于价值','价格低就行','炒作'],a:0},{q:'股价跌一半？',opts:['看价值','恐慌','无感'],a:0},{q:'猎手看？',opts:['价值与价格差','涨跌','消息'],a:0}]},
+ {ico:'🌍',t:'全球视野',d:'全世界找机会',qs:[{q:'邓普顿看？',opts:['全球市场','只看本国','只玩美股'],a:0},{q:'冷门市场？',opts:['藏便宜货','没机会','危险'],a:0},{q:'全球投资？',opts:['分散机会','太麻烦','不靠谱'],a:0}]},
+ {ico:'🎭',t:'情绪钟摆',d:'市场情绪',qs:[{q:'钟摆到贪婪？',opts:['警惕泡沫','追涨','无感'],a:0},{q:'钟摆到恐惧？',opts:['寻找机会','割肉','无感'],a:0},{q:'情绪极端？',opts:['逆向操作','跟随','无感'],a:0}]},
+ {ico:'⏳',t:'长期耐心',d:'时间的朋友',qs:[{q:'邓普顿持股？',opts:['以年计','以天计','以小时计'],a:0},{q:'买后下跌？',opts:['持有等价值回归','割肉','加杠杆'],a:0},{q:'耐心是？',opts:['逆向投资核心','浪费','无聊'],a:0}]},
+ {ico:'💰',t:'卖出艺术',d:'高点离场',qs:[{q:'最大乐观点？',opts:['卖点','买点','无感'],a:0},{q:'人人赚钱？',opts:['准备离场','梭哈','无感'],a:0},{q:'卖出的标准？',opts:['价值高估','怕跌','听消息'],a:0}]},
+ {ico:'🛡️',t:'避险法则',d:'避开陷阱',qs:[{q:'热门新股？',opts:['高估风险','必赚','无风险'],a:0},{q:'跟风追涨？',opts:['危险','聪明','无影响'],a:0},{q:'杠杆抄底？',opts:['绝对禁止','可以','无风险'],a:0}]},
+ {ico:'💡',t:'术语配对',d:'核心概念',qs:[{q:'逆向投资？',opts:['反情绪操作','追热点','随大流'],a:0},{q:'最大悲观点？',opts:['最佳买点','最高点','无感'],a:0},{q:'便宜货？',opts:['价低于值','低价股','垃圾股'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查自己',qs:[{q:'我敢逆向？',opts:['敢','不','无'],a:0},{q:'我看价值？',opts:['看','不','无'],a:0},{q:'我有耐心？',opts:['有','无','不确定'],a:0}]},
+ {ico:'🧭',t:'心态地图',d:'逆向心态',qs:[{q:'跌得最惨？',opts:['研究买入','恐慌','远离'],a:0},{q:'涨得最疯？',opts:['警惕','追高','无感'],a:0},{q:'别人都赚？',opts:['保持清醒','焦虑','跟风'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"在最大悲观点"？',opts:['买入','卖出','观望'],a:0},{q:'"便宜货是"？',opts:['价低于值的股票','低价股','垃圾'],a:0},{q:'"投资要"？',opts:['有耐心','有运气','有消息'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'股灾恐慌？',opts:['找便宜货','割肉','无感'],a:0},{q:'牛市狂热？',opts:['准备离场','梭哈','无感'],a:0},{q:'冷门市场暴跌？',opts:['研究机会','远离','无感'],a:0}]},
+ {ico:'🔄',t:'周期演练',d:'穿越牛熊',qs:[{q:'熊市？',opts:['逆向买入','恐慌','远离'],a:0},{q:'牛市？',opts:['分批卖出','追高','贪婪'],a:0},{q:'震荡？',opts:['按价值操作','乱操作','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地实践',qs:[{q:'我写逆向清单？',opts:['写','不','无'],a:0},{q:'我跟踪情绪指标？',opts:['跟','不','无'],a:0},{q:'我设买卖规则？',opts:['设','不','无'],a:0}]},
+ {ico:'👑',t:'逆向大师挑战',d:'10题综合测验',qs:[{q:'别人恐惧？',opts:['我贪婪','我也跑','无感'],a:0},{q:'最大悲观点？',opts:['买点','卖点','无感'],a:0},{q:'便宜货？',opts:['价格低于价值','价格低就行','炒作'],a:0},{q:'邓普顿看？',opts:['全球市场','只看本国','只玩美股'],a:0},{q:'钟摆到贪婪？',opts:['警惕泡沫','追涨','无感'],a:0},{q:'邓普顿持股？',opts:['以年计','以天计','以小时计'],a:0},{q:'最大乐观点？',opts:['卖点','买点','无感'],a:0},{q:'跌得最惨？',opts:['研究买入','恐慌','远离'],a:0},{q:'热门新股？',opts:['高估风险','必赚','无风险'],a:0},{q:'"在最大悲观点"？',opts:['买入','卖出','观望'],a:0}]}
+];
+const badges=['🔄','⛈️','🛒','🌍','🎭','⏳','💰','🛡️','💡','🔎','🧭','👑'];
+const badgeNames=['逆向思维者','悲观点猎手','便宜货侦探','全球视野者','钟摆观察家','耐心大师','卖出艺术家','避险专家','概念掌握者','自省者','心态导航员','逆向大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
