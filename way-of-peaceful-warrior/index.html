@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《深夜加油站遇见苏格拉底》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《深夜加油站遇见苏格拉底》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>丹·米尔曼 · 半自传体心灵经典 · 和平勇士之道</p>
+    <span class="tag">活在当下</span><span class="tag">清理心智</span><span class="tag">身体修行</span><span class="tag">直面死亡</span><span class="tag">全然觉醒</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 深夜加油站（免费）</div>
+  <div class="card">
+    <h3>理解 · 故事的起点：与苏格拉底相遇</h3>
+    <p><span class="q">年轻体操冠军丹·米尔曼在深夜加油站偶遇神秘老人"苏格拉底"，从此踏上觉醒之路。加油站是隐喻：人生需要不断"加油"，而真正的能量来自内心，不是外求。每一次深夜的困顿，都可能是觉醒的开始。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="深夜加油站"></div>
+    <div class="mini">🌙 <b>关键：</b>困境不是终点，是转机。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「深夜加油站」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 活在当下（免费）</div>
+  <div class="card">
+    <h3>理解 · 当下是唯一真实</h3>
+    <p><span class="q">苏格拉底问丹："你在哪儿？""此时此地。"过去已死，未来未生，只有当下真实存在。焦虑来自未来，悔恨来自过去，而力量只存在于此刻。最好的生活不是规划出来的，是活出来的。</span></p>
+    <div class="imgbox"><img src="art_now.jpg" alt="活在当下"></div>
+    <div class="mini">⏰ <b>关键：</b>此刻即力量，当下即道场。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「活在当下」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 清理心智（免费）</div>
+  <div class="card">
+    <h3>理解 · 先倒空，再装满</h3>
+    <p><span class="q">苏格拉底把水杯倒扣："想倒进新知，先清空旧念。"心智装满成见、恐惧、欲望时，学不进任何东西。清理不是遗忘，是放下：放下控制欲，放下"我什么都懂"，腾出空间给真正的体验。</span></p>
+    <div class="imgbox"><img src="art_clear.jpg" alt="清理心智"></div>
+    <div class="mini">🥛 <b>关键：</b>空杯心态，是一切学习的起点。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「清理心智」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 身体修行（免费）</div>
+  <div class="card">
+    <h3>理解 · 身体是修行的道场</h3>
+    <p><span class="q">苏格拉底带丹做倒立、爬坡、水中训练——不是为体能，而是教他"专注每一个动作"。身体从不欺骗你，它只活在当下。呼吸是回到此刻最快的路：念头跑了，回到呼吸，人就在了。</span></p>
+    <div class="imgbox"><img src="art_body.jpg" alt="身体修行"></div>
+    <div class="mini">🧘 <b>关键：</b>身心一体，身体是回到当下的锚。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「身体修行」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 直面死亡（免费）</div>
+  <div class="card">
+    <h3>理解 · 向死而生</h3>
+    <p><span class="q">苏格拉底让丹体验"死亡"：当你真切地知道自己终将死去，每一刻都变得珍贵。恐惧死亡的人，也恐惧生活。承认死亡，才能全然地活——不是活给未来，而是活在此刻。</span></p>
+    <div class="imgbox"><img src="art_death.jpg" alt="直面死亡"></div>
+    <div class="mini">🕯️ <b>关键：</b>死亡是最好的老师，向死而生。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「直面死亡」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 内省旅程（免费）</div>
+  <div class="card">
+    <h3>理解 · 旅程向内，答案在己</h3>
+    <p><span class="q">丹翻山越岭找苏格拉底，最后发现路在自己脚下。修行不在深山，在日常：走路时走路，吃饭时吃饭，工作时不带情绪。你寻找的答案，从来不在别处，只在自己身上。</span></p>
+    <div class="imgbox"><img src="art_journey.jpg" alt="内省旅程"></div>
+    <div class="mini">🥾 <b>关键：</b>向外求索千遍，不如向内看一次。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「内省旅程」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 全然觉醒（免费）</div>
+  <div class="card">
+    <h3>理解 · 和平勇士之道</h3>
+    <p><span class="q">和平勇士不是战无不胜，而是内心平静：该行动时行动，该放下时放下，不被输赢定义。觉醒不是获得超能力，而是看见自己——看见恐惧、看见执着、看见那个真实的你。</span></p>
+    <div class="imgbox"><img src="art_awake.jpg" alt="全然觉醒"></div>
+    <div class="mini">🌅 <b>关键：</b>真正的勇士，是敢于看见自己的人。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「全然觉醒」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：勇士心态、日常修行法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（勇士心态、日常修行法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 勇士心态</div>
+  <div class="card">
+    <h3>理解 · 平凡时刻即是修炼</h3>
+    <p><span class="q">"没有平凡的时刻。"排队时、洗碗时、走路时，都是修炼场。勇士不追求特别时刻，他让每个时刻都特别。你唯一能掌控的，就是此刻的选择——选择专注、选择平静、选择行动。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏆 <b>关键：</b>没有平凡时刻，此刻就是修行。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「勇士心态」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 日常修行法</div>
+  <div class="card">
+    <h3>理解 · 一套可执行的觉醒流程</h3>
+    <p>晨起深呼吸→通勤放下手机看风景→工作单任务专注→饭时细嚼慢咽→睡前回放今日三个"此刻"。把修行装进日程，觉醒就不再是口号。呼吸是遥控器，念头跑了就按回当下。</p>
+    <div class="imgbox"><img src="art_now.jpg" alt="日常修行"></div>
+    <div class="mini">🧭 <b>关键：</b>修行装进日程，觉醒落进日常。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 觉醒者的路线图</h3>
+    <p>相遇加油站 → 活在当下 → 清空心智 → 身体修行 → 直面死亡 → 向内旅程 → 全然觉醒——七步从"迷路的冠军"走向"和平勇士"。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>每天5分钟静观呼吸，回到当下</td></tr>
+      <tr><td>2</td><td>吃饭时不刷手机，专注品尝</td></tr>
+      <tr><td>3</td><td>焦虑未来时问自己：现在能做什么</td></tr>
+      <tr><td>4</td><td>每天一次全身运动，专注身体感受</td></tr>
+      <tr><td>5</td><td>写一句"今天我最专注的此刻"</td></tr>
+      <tr><td>6</td><td>睡前放下今日所有未完成，不带到明天</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：和平勇士挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」心灵成长专题 · 觉醒之路。配套阅读：《当下的力量》《悉达多》《心流》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='way-of-peaceful-warrior';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🌙',t:'深夜加油站',d:'故事的起点',qs:[{q:'加油站？',opts:['指引者苏格拉底','汽车店','无感'],a:0},{q:'深夜？',opts:['内心困顿的隐喻','时间','无感'],a:0},{q:'相遇？',opts:['改变一生的缘分','偶然','无感'],a:0}]},
+ {ico:'⏰',t:'活在当下',d:'此刻即力量',qs:[{q:'当下？',opts:['唯一真实','过去了','无感'],a:0},{q:'规划？',opts:['行动中调整','纸上完美','无感'],a:0},{q:'此刻？',opts:['用心体验','想着以后','无感'],a:0}]},
+ {ico:'🥛',t:'清理心智',d:'清空杂念',qs:[{q:'心智？',opts:['需要清理','装满就好','无感'],a:0},{q:'杂念？',opts:['倒掉才能装新','留着','无感'],a:0},{q:'知识？',opts:['活学活用','囤积','无感'],a:0}]},
+ {ico:'🧘',t:'身体修行',d:'身心灵一体',qs:[{q:'身体？',opts:['修行的道场','皮囊','无感'],a:0},{q:'训练？',opts:['专注每一个动作','应付','无感'],a:0},{q:'呼吸？',opts:['回到当下','忽略','无感'],a:0}]},
+ {ico:'🕯️',t:'直面死亡',d:'向死而生',qs:[{q:'死亡？',opts:['最好的老师','恐惧的源头','无感'],a:0},{q:'恐惧？',opts:['面对它','逃避它','无感'],a:0},{q:'生命？',opts:['此刻最真','等以后','无感'],a:0}]},
+ {ico:'🥾',t:'内省旅程',d:'向内探索',qs:[{q:'旅程？',opts:['向内走','向外跑','无感'],a:0},{q:'修行？',opts:['日常中','深山外','无感'],a:0},{q:'答案？',opts:['在自己身上','在别处','无感'],a:0}]},
+ {ico:'🌅',t:'全然觉醒',d:'最终状态',qs:[{q:'觉醒？',opts:['看见自己','看见别人','无感'],a:0},{q:'和平勇士？',opts:['内心平静','武力强大','无感'],a:0},{q:'自由？',opts:['放下执念','获得一切','无感'],a:0}]},
+ {ico:'🏆',t:'勇士心态',d:'日常即道场',qs:[{q:'平凡？',opts:['没有平凡时刻','无聊','无感'],a:0},{q:'行动？',opts:['做而不求','求而不做','无感'],a:0},{q:'修炼？',opts:['每一刻','只在打坐','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['活在当下','规划未来','无感'],a:0},{q:'关键？',opts:['体验而非思考','分析一切','无感'],a:0},{q:'方法？',opts:['身体与呼吸','书本堆积','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我在此刻？',opts:['是','想着别处','无'],a:0},{q:'我清理？',opts:['常倒空','囤积','无'],a:0},{q:'我训练身体？',opts:['有','没有','无'],a:0}]},
+ {ico:'🧭',t:'觉醒启示',d:'学到什么',qs:[{q:'第一？',opts:['没有平凡时刻','成功学','无感'],a:0},{q:'核心？',opts:['当下体验','未来想象','无感'],a:0},{q:'终点？',opts:['和平勇士','无所不能','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"旅程"？',opts:['就是目的地','要去远方','无感'],a:0},{q:'"恐惧"？',opts:['源自对未来','源自当下','无感'],a:0},{q:'"行动"？',opts:['永远好过思考','先想清楚','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'焦虑未来？',opts:['回到呼吸','继续想','无感'],a:0},{q:'后悔过去？',opts:['放下','反复咀嚼','无感'],a:0},{q:'日常琐事？',opts:['全神贯注','心不在焉','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['当下唯一真实','未来才是','无感'],a:0},{q:'记忆？',opts:['没有平凡时刻','金句堆砌','无感'],a:0},{q:'练习？',opts:['每日静观呼吸','只看书','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我静观？',opts:['每日5分钟','从不','无'],a:0},{q:'我体验？',opts:['吃饭专注','刷手机','无'],a:0},{q:'我放下？',opts:['常放下','执着','无'],a:0}]},
+ {ico:'👑',t:'和平勇士挑战',d:'10题综合测验',qs:[{q:'加油站？',opts:['指引者苏格拉底','汽车店','无感'],a:0},{q:'当下？',opts:['唯一真实','过去了','无感'],a:0},{q:'心智？',opts:['需要清理','装满就好','无感'],a:0},{q:'身体？',opts:['修行的道场','皮囊','无感'],a:0},{q:'死亡？',opts:['最好的老师','恐惧的源头','无感'],a:0},{q:'旅程？',opts:['向内走','向外跑','无感'],a:0},{q:'觉醒？',opts:['看见自己','看见别人','无感'],a:0},{q:'平凡？',opts:['没有平凡时刻','无聊','无感'],a:0},{q:'本质？',opts:['活在当下','规划未来','无感'],a:0},{q:'"行动"？',opts:['永远好过思考','先想清楚','无感'],a:0}]}
+];
+const badges=['🌙','⏰','🥛','🧘','🕯️','🥾','🌅','🏆','💡','🔎','🧭','👑'];
+const badgeNames=['深夜寻路者','当下觉醒者','心智清空者','身体修行者','向死而生者','内省旅人','全然觉醒者','和平勇士','概念掌握者','自省者','心灵导航员','觉悟大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
