@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《金融心理学》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《金融心理学》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>拉斯·特维德 · 市场心理大师 · 情绪周期研究者</p>
+    <span class="tag">羊群效应</span><span class="tag">锚定效应</span><span class="tag">过度自信</span><span class="tag">处置效应</span><span class="tag">信息瀑布</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 金融心理学（免费）</div>
+  <div class="card">
+    <h3>理解 · 市场是人性的放大镜</h3>
+    <p><span class="q">拉斯·特维德指出：市场波动的真正驱动力不是理性计算，而是人的情绪。贪婪在顶部推动泡沫，恐惧在底部造成踩踏，羊群效应让涨跌被放大。看懂这些心理机制，就能理解为什么历史总是重演——因为人性不变。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="金融心理学"></div>
+    <div class="mini">🎭 <b>关键：</b>情绪是市场周期的发动机。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「金融心理学」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 羊群效应（免费）</div>
+  <div class="card">
+    <h3>理解 · 从众是最安全的错觉</h3>
+    <p><span class="q">看到别人赚钱，我们本能地想跟上，因为"大家都买"给了安全感。但羊群效应让你在顶部买入、在底部卖出：上涨时人人追高，下跌时人人割肉。对策很简单——人多的地方保持冷静，用独立判断代替从众本能。</span></p>
+    <div class="imgbox"><img src="art_herd.jpg" alt="羊群效应"></div>
+    <div class="mini">🐑 <b>关键：</b>从众安全是错觉，独立判断才可靠。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「羊群效应」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 锚定效应（免费）</div>
+  <div class="card">
+    <h3>理解 · 被成本价绑架的决策</h3>
+    <p><span class="q">锚定效应让我们把买入价当成决策参照：股票跌到成本价舍不得卖，涨回成本价马上卖。但市场不关心你的成本。真正的锚应该是公司价值。对策：忘掉成本，问自己"如果现在手里是现金，我还会买它吗？"</span></p>
+    <div class="imgbox"><img src="art_anchor.jpg" alt="锚定效应"></div>
+    <div class="mini">⚓ <b>关键：</b>锚定价值，不锚定成本。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「锚定效应」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 过度自信（免费）</div>
+  <div class="card">
+    <h3>理解 · 高估自己是最贵的错觉</h3>
+    <p><span class="q">连赚几笔后，人容易觉得自己是天才，于是加大仓位、上杠杆，结果一次失误前功尽弃。研究显示：大多数人高估自己的判断准确率。对策：永远假设自己可能犯错——分散、控仓、设止损，把"我会错"写进规则。</span></p>
+    <div class="imgbox"><img src="art_confidence.jpg" alt="过度自信"></div>
+    <div class="mini">💪 <b>关键：</b>越自信越要控仓，假设自己会错。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「过度自信」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 恐惧与贪婪（免费）</div>
+  <div class="card">
+    <h3>理解 · 情绪钟摆的两端</h3>
+    <p><span class="q">市场情绪像钟摆：一端是贪婪，一端是恐惧，很少停在中间。顶部时人人贪婪、估值离谱；底部时人人恐惧、遍地便宜货。巴菲特说"别人贪婪我恐惧，别人恐惧我贪婪"——逆着钟摆方向思考，是长期赚钱的秘诀。</span></p>
+    <div class="imgbox"><img src="art_swing.jpg" alt="恐惧与贪婪"></div>
+    <div class="mini">⚖️ <b>关键：</b>贪婪在顶，恐惧在底，反向操作。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「恐惧与贪婪」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 处置效应（免费）</div>
+  <div class="card">
+    <h3>理解 · 赚一点就跑，亏了死扛</h3>
+    <p><span class="q">处置效应是散户最典型的错误：股票一盈利就急着卖出"落袋为安"，一亏损就舍不得割肉等回本。结果永远赚小钱、亏大钱。根源是害怕利润回吐的懊悔感和不愿承认错误的心理。对策：让利润奔跑，砍掉亏损——反过来做。</span></p>
+    <div class="imgbox"><img src="art_disposition.jpg" alt="处置效应"></div>
+    <div class="mini">🪓 <b>关键：</b>截断亏损，让利润奔跑。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「处置效应」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 信息瀑布（免费）</div>
+  <div class="card">
+    <h3>理解 · 谣言和跟风如何放大波动</h3>
+    <p><span class="q">信息瀑布：一个人看到别人在买，不管原因跟着买，下一个人又跟着他，形成瀑布式的跟风。一条未经证实的小道消息，能被放大成暴涨暴跌。对策：核实消息源头，问"这条信息的原始证据是什么"，拒绝跟着传闻做决策。</span></p>
+    <div class="imgbox"><img src="art_cascade.jpg" alt="信息瀑布"></div>
+    <div class="mini">🌊 <b>关键：</b>追消息不如追证据。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「信息瀑布」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：逆向思维、心理实战法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（逆向思维、心理实战法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 逆向思维</div>
+  <div class="card">
+    <h3>理解 · 在冷清处寻找机会</h3>
+    <p><span class="q">逆向思维不是为反而反，而是看清人群情绪位置后反向思考：当新闻头条全是牛市、身边人都在荐股，警惕顶部；当人人谈股色变、基金无人问津，往往接近底部。配合估值数据确认，在情绪极端处布局，在狂热处离场。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>情绪极端处，估值来确认。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「逆向思维」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 心理实战法</div>
+  <div class="card">
+    <h3>理解 · 一套管理情绪的流程</h3>
+    <p>第一步觉察：记录每次交易时的情绪（贪婪/恐惧/从众）。第二步问源头：这个决定是来自证据还是情绪？第三步逆情绪：人多冷静、人少行动、顶部警惕、底部关注。第四步写规则：把买卖条件量化，情绪不参与决策。第五步复盘：每周回看情绪记录，改进心理弱点。第六步坚持：把逆向变成习惯。</p>
+    <div class="imgbox"><img src="art_cascade.jpg" alt="心理实战法"></div>
+    <div class="mini">🧭 <b>关键：</b>觉察-溯源-逆情绪-写规则-复盘。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从被人性牵着走到驾驭人性</h3>
+    <p>认识羊群效应 → 破除锚定陷阱 → 校准过度自信 → 平衡恐惧贪婪 → 修正处置效应 → 溯源信息瀑布——六步建立自己的心理防线。记住：市场是情绪的镜子，看懂情绪就赢得了半个市场。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>建立交易情绪日记，记录每次买卖时的情绪</td></tr>
+      <tr><td>2</td><td>每笔交易前问：这是证据还是情绪？</td></tr>
+      <tr><td>3</td><td>只买自己研究过的公司，不跟热点</td></tr>
+      <tr><td>4</td><td>把止盈止损规则量化，写下来贴出来</td></tr>
+      <tr><td>5</td><td>热门榜出现时提醒自己：人多处冷静</td></tr>
+      <tr><td>6</td><td>每月复盘情绪记录，找出重复犯的心理错误</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：心理大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 市场心理。配套阅读：《非理性繁荣》《思考，快与慢》《金钱心理学》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='financial-psychology';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🎭',t:'金融心理学',d:'书名之义',qs:[{q:'核心？',opts:['市场波动源于人的情绪','市场完全理性','无感'],a:0},{q:'作者？',opts:['拉斯·特维德','巴菲特','无感'],a:0},{q:'本书？',opts:['看懂人群心理周期','预测点位','无感'],a:0}]},
+ {ico:'🐑',t:'羊群效应',d:'从众的力量',qs:[{q:'羊群？',opts:['别人买我也买','独立思考','无感'],a:0},{q:'后果？',opts:['追高杀跌','稳健盈利','无感'],a:0},{q:'对策？',opts:['人多处冷静','人少处冲动','无感'],a:0}]},
+ {ico:'⚓',t:'锚定效应',d:'参照点陷阱',qs:[{q:'锚定？',opts:['拿买入价当参照','看公司价值','无感'],a:0},{q:'后果？',opts:['被成本价绑架决策','理性估值','无感'],a:0},{q:'对策？',opts:['忘掉成本看价值','死守成本','无感'],a:0}]},
+ {ico:'💪',t:'过度自信',d:'盲目乐观',qs:[{q:'过度自信？',opts:['高估自己判断力','低估自己','无感'],a:0},{q:'后果？',opts:['重仓加杠杆','小仓位','无感'],a:0},{q:'对策？',opts:['假设自己会错','相信自己全对','无感'],a:0}]},
+ {ico:'⚖️',t:'恐惧与贪婪',d:'情绪钟摆',qs:[{q:'钟摆？',opts:['情绪在两端摆动','情绪稳定','无感'],a:0},{q:'顶底？',opts:['贪婪在顶恐惧在底','贪婪在底','无感'],a:0},{q:'对策？',opts:['别人贪婪我恐惧','别人贪婪我更贪','无感'],a:0}]},
+ {ico:'🪓',t:'处置效应',d:'止盈过早止损过晚',qs:[{q:'处置效应？',opts:['赚一点就跑亏了死扛','赚大钱亏小钱','无感'],a:0},{q:'原因？',opts:['害怕利润回吐','理性决策','无感'],a:0},{q:'对策？',opts:['让利润奔跑砍掉亏损','反着来','无感'],a:0}]},
+ {ico:'🌊',t:'信息瀑布',d:'谣言与跟风',qs:[{q:'瀑布？',opts:['人云亦云放大消息','独立核实','无感'],a:0},{q:'后果？',opts:['消息推动暴涨暴跌','价格合理','无感'],a:0},{q:'对策？',opts:['核实源头再行动','跟着传闻冲','无感'],a:0}]},
+ {ico:'🛡️',t:'逆向思维',d:'心理之外',qs:[{q:'逆向？',opts:['在冷清处寻找机会','在热闹处追高','无感'],a:0},{q:'纪律？',opts:['先定规则再交易','随心所欲','无感'],a:0},{q:'心态？',opts:['接受波动是常态','恐慌割肉','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['羊群-锚定-自信-贪婪-瀑布','市场理性','无感'],a:0},{q:'关键？',opts:['情绪是周期驱动力','技术指标万能','无感'],a:0},{q:'方法？',opts:['逆情绪+纪律','顺情绪','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我从众？',opts:['能识别自己在跟风','跟风不自知','无'],a:0},{q:'我被锚定？',opts:['忘掉成本看价值','死盯成本','无'],a:0},{q:'我贪惧？',opts:['能觉察情绪波动','无感','无'],a:0}]},
+ {ico:'🧭',t:'智慧启示',d:'学到什么',qs:[{q:'第一？',opts:['市场是情绪放大器','市场是理性机器','无感'],a:0},{q:'核心？',opts:['逆人群心理操作','随大流','无感'],a:0},{q:'终点？',opts:['情绪稳定+逆向','情绪化追涨','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"市场"？',opts:['是心理的镜子','是数学机器','无感'],a:0},{q:'"周期"？',opts:['由情绪驱动','由政策决定','无感'],a:0},{q:'"恐惧"？',opts:['是买入机会','是卖出理由','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'全民炒股？',opts:['警惕泡沫减仓','满仓跟进','无感'],a:0},{q:'恐慌抛售？',opts:['冷静找机会','跟风割肉','无感'],a:0},{q:'股票盈利？',opts:['让利润奔跑','马上落袋','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['情绪驱动周期','市场理性','无感'],a:0},{q:'记忆？',opts:['羊群锚定处置效应','孤立概念','无感'],a:0},{q:'练习？',opts:['记录自己情绪决策','凭感觉','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我觉察？',opts:['记录交易时情绪','无记录','无'],a:0},{q:'我逆向？',opts:['人多处冷静','追热点','无'],a:0},{q:'我纪律？',opts:['规则先于情绪','情绪先于规则','无'],a:0}]},
+ {ico:'👑',t:'心理大师挑战',d:'10题综合测验',qs:[{q:'核心？',opts:['市场波动源于人的情绪','市场完全理性','无感'],a:0},{q:'羊群？',opts:['别人买我也买','独立思考','无感'],a:0},{q:'锚定？',opts:['拿买入价当参照','看公司价值','无感'],a:0},{q:'过度自信？',opts:['高估自己判断力','低估自己','无感'],a:0},{q:'钟摆？',opts:['情绪在两端摆动','情绪稳定','无感'],a:0},{q:'处置效应？',opts:['赚一点就跑亏了死扛','赚大钱亏小钱','无感'],a:0},{q:'瀑布？',opts:['人云亦云放大消息','独立核实','无感'],a:0},{q:'逆向？',opts:['在冷清处寻找机会','在热闹处追高','无感'],a:0},{q:'本质？',opts:['羊群-锚定-自信-贪婪-瀑布','市场理性','无感'],a:0},{q:'终点？',opts:['情绪稳定+逆向','情绪化追涨','无感'],a:0}]}
+];
+const badges=['🎭','🐑','⚓','💪','⚖️','🪓','🌊','🛡️','💡','🔎','🧭','👑'];
+const badgeNames=['心理观察家','羊群觉醒者','锚定破除者','自信校准员','钟摆平衡师','处置效应猎人','瀑布溯源者','逆向思维者','概念掌握者','自省者','智慧导航员','心理大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
