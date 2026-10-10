@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《通向财务自由之路》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《通向财务自由之路》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>范·撒普 · 交易系统设计大师 · 期望值数学派</p>
+    <span class="tag">期望值</span><span class="tag">头寸规模</span><span class="tag">交易类型</span><span class="tag">心理因素</span><span class="tag">系统测试</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 通向财务自由之路（免费）</div>
+  <div class="card">
+    <h3>理解 · 交易是系统游戏，不是预测游戏</h3>
+    <p><span class="q">范·撒普研究了几十年交易员，发现赚钱的人不是预测更准的人，而是系统更完整的人。一个交易系统包含：入场规则、出场规则、头寸管理、风险控制。胜率低没关系，只要期望值为正、风险可控，长期就能盈利——这就是交易的科学。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="通向财务自由之路"></div>
+    <div class="mini">🗺️ <b>关键：</b>系统完整度决定长期盈亏。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「财务自由之路」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 圣杯误区（免费）</div>
+  <div class="card">
+    <h3>理解 · 世界上没有完美系统</h3>
+    <p><span class="q">很多人一辈子在找"圣杯"：一个胜率极高的神奇指标或完美系统。范·撒普说：圣杯不存在。真正重要的是系统是否匹配你的个性、时间与心理承受力。再好的系统，你不执行等于零；适合自己的简单系统，坚持执行就能赚钱。</span></p>
+    <div class="imgbox"><img src="art_grail.jpg" alt="圣杯误区"></div>
+    <div class="mini">🏆 <b>关键：</b>与其找完美，不如找匹配。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「圣杯误区」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 期望值（免费）</div>
+  <div class="card">
+    <h3>理解 · 胜率不重要，期望值才重要</h3>
+    <p><span class="q">期望值=胜率×平均盈利-败率×平均亏损。举例：胜率只有40%，但赢一次赚3倍、输一次亏1倍，期望值=0.4×3-0.6×1=0.6，长期为正。高胜率但盈亏比差（赚小亏大）的系统反而是陷阱。所以设计系统先算期望值——亏小赚大才是正道。</span></p>
+    <div class="imgbox"><img src="art_expect.jpg" alt="期望值"></div>
+    <div class="mini">🧮 <b>关键：</b>期望为正才值得长期执行。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「期望值」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 头寸规模（免费）</div>
+  <div class="card">
+    <h3>理解 · 仓位决定账户生死</h3>
+    <p><span class="q">撒普认为头寸规模是系统里最重要的部分：它决定一笔亏损对账户的影响。原则：单笔风险用账户固定比例（如2%）计算仓位，而不是固定股数。亏损50%要涨100%才能回本——所以控制回撤，就是保护复利。</span></p>
+    <div class="imgbox"><img src="art_sizing.jpg" alt="头寸规模"></div>
+    <div class="mini">📊 <b>关键：</b>仓位管理决定你能活多久。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「头寸规模」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 交易类型（免费）</div>
+  <div class="card">
+    <h3>理解 · 六大打法，选一种打透</h3>
+    <p><span class="q">撒普总结六类交易风格：趋势跟踪（吃大波段）、波段交易（吃中期波动）、短线交易（吃日内波动）、套利（吃价差回归）、价值投资（吃低估修复）、基本面交易（吃业绩驱动）。选择依据：你有多少时间？能承受多大回撤？性格耐得住吗？选一类匹配自己的，打透它。</span></p>
+    <div class="imgbox"><img src="art_types.jpg" alt="交易类型"></div>
+    <div class="mini">🧩 <b>关键：</b>类型与个性匹配，才能坚持。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「交易类型」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 心理因素（免费）</div>
+  <div class="card">
+    <h3>理解 · 心态即系统的一部分</h3>
+    <p><span class="q">恐惧让你不敢进场，贪婪让你不肯离场，报复心理让你加大仓位——情绪是系统最大的敌人。解决方案不是"控制情绪"，而是"机械执行"：把规则写成清单，亏损了按计划走，盈利了也按计划走。一致性执行，比任何聪明判断都重要。</span></p>
+    <div class="imgbox"><img src="art_mind.jpg" alt="心理因素"></div>
+    <div class="mini">🧠 <b>关键：</b>纪律打败情绪，一致性成就复利。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「心理因素」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 测试优化（免费）</div>
+  <div class="card">
+    <h3>理解 · 回测通过再上实盘</h3>
+    <p><span class="q">系统建好后必须验证：先在历史数据上回测，再用样本外数据（没用过的数据段）检验，最后小仓位实盘试运行。警惕过度优化——把参数调到历史完美拟合，实盘反而失效。检验标准：多个市场、多个周期都稳定，而不是单次巧合。</span></p>
+    <div class="imgbox"><img src="art_test.jpg" alt="测试优化"></div>
+    <div class="mini">🔬 <b>关键：</b>简单稳健的系统，胜过复杂过拟合。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「测试优化」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：风险控制、系统构建实战、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（风险控制、系统构建实战、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 风险控制</div>
+  <div class="card">
+    <h3>理解 · 先活下来，再谈赚钱</h3>
+    <p><span class="q">风险控制三原则：第一，单笔风险不超账户2%，连续亏损不失控；第二，单市场/单品种仓位设上限，避免黑天鹅一锅端；第三，账户回撤超20%强制降杠杆。记住：市场永远有机会，本金没了就什么都没了。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>2%单笔风险+20%回撤红线。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「风险控制」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 系统构建实战</div>
+  <div class="card">
+    <h3>理解 · 一套完整搭建流程</h3>
+    <p>第一步定类型：按时间和性格选交易风格。第二步定规则：明确入场、出场、止损的量化条件。第三步算期望：回测胜率与盈亏比，确认期望为正。第四步定仓位：单笔风险2%反推头寸。第五步样本外验证：换时间段检验稳健性。第六步小仓实盘：验证真实执行，磨合心理，逐步加仓。</p>
+    <div class="imgbox"><img src="art_test.jpg" alt="系统构建实战"></div>
+    <div class="mini">🧭 <b>关键：</b>类型-规则-期望-仓位-验证-实盘。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从找圣杯到建系统</h3>
+    <p>破除圣杯幻想 → 理解期望值 → 掌握头寸规模 → 选择匹配类型 → 控制心理执行 → 测试验证上线——六步搭起属于自己的交易系统，通向财务自由。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>写下你的交易类型选择与理由</td></tr>
+      <tr><td>2</td><td>把入场、出场、止损写成量化规则</td></tr>
+      <tr><td>3</td><td>用历史数据回测50笔以上</td></tr>
+      <tr><td>4</td><td>计算系统期望值是否为正</td></tr>
+      <tr><td>5</td><td>单笔风险设为账户2%</td></tr>
+      <tr><td>6</td><td>小仓位实盘30天，记录每笔执行</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：撒普挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 交易系统。配套阅读：《海龟交易法则》《日本蜡烛图技术》《交易心理分析》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='trading-systems';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🗺️',t:'财务自由之路',d:'书名之义',qs:[{q:'核心？',opts:['构建适合自己的交易系统','寻找完美预测','无感'],a:0},{q:'作者？',opts:['范·撒普','华尔街会计','无感'],a:0},{q:'本书？',opts:['胜率不重要期望值才重要','胜率越高越好','无感'],a:0}]},
+ {ico:'🏆',t:'圣杯误区',d:'没有完美系统',qs:[{q:'圣杯？',opts:['不存在百战百胜的系统','存在万能指标','无感'],a:0},{q:'误区？',opts:['追求胜率忽略期望','期望最重要','无感'],a:0},{q:'正解？',opts:['系统匹配自己个性','复制别人的','无感'],a:0}]},
+ {ico:'🧮',t:'期望值',d:'胜率×赔率×频率',qs:[{q:'公式？',opts:['期望值=胜率×盈利-败率×亏损','期望=胜率','无感'],a:0},{q:'含义？',opts:['期望为正才值得长期做','每笔都赚','无感'],a:0},{q:'关键？',opts:['亏小赚大比高胜率重要','胜率第一','无感'],a:0}]},
+ {ico:'📊',t:'头寸规模',d:'仓位决定生死',qs:[{q:'作用？',opts:['决定账户最大回撤','只影响利润','无感'],a:0},{q:'原则？',opts:['单笔风险固定比例','满仓梭哈','无感'],a:0},{q:'关键？',opts:['活下来才有复利','赚快钱','无感'],a:0}]},
+ {ico:'🧩',t:'交易类型',d:'六大打法',qs:[{q:'类型？',opts:['趋势波段套利短线等','只有一种','无感'],a:0},{q:'选择？',opts:['匹配时间与个性','跟风选','无感'],a:0},{q:'关键？',opts:['一类打透','样样都碰','无感'],a:0}]},
+ {ico:'🧠',t:'心理因素',d:'心态即系统',qs:[{q:'心理？',opts:['恐惧贪婪摧毁系统','不影响','无感'],a:0},{q:'方法？',opts:['机械执行+接受亏损','凭感觉','无感'],a:0},{q:'关键？',opts:['一致性执行','随心所欲','无感'],a:0}]},
+ {ico:'🔬',t:'测试优化',d:'回测验证',qs:[{q:'步骤？',opts:['历史回测+样本外验证','直接实盘','无感'],a:0},{q:'注意？',opts:['避免过度优化','参数越多越好','无感'],a:0},{q:'验证？',opts:['多市场多周期稳健','单次巧合','无感'],a:0}]},
+ {ico:'🛡️',t:'风险控制',d:'先活下来',qs:[{q:'第一？',opts:['控制单笔风险','追求高收益','无感'],a:0},{q:'止损？',opts:['错了按规则离场','死扛','无感'],a:0},{q:'仓位？',opts:['回撤超限减仓','加倍梭哈','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['期望-仓位-类型-心理-测试','完美预测','无感'],a:0},{q:'关键？',opts:['正期望+控回撤','高胜率','无感'],a:0},{q:'方法？',opts:['系统化流程化','随心交易','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我系统？',opts:['有明确进出场规则','凭感觉','无'],a:0},{q:'我仓位？',opts:['单笔风险固定比例','随意','无'],a:0},{q:'我执行？',opts:['机械执行','情绪化','无'],a:0}]},
+ {ico:'🧭',t:'智慧启示',d:'学到什么',qs:[{q:'第一？',opts:['交易是系统游戏不是预测游戏','预测为王','无感'],a:0},{q:'核心？',opts:['活下来比赚快钱重要','赚快钱','无感'],a:0},{q:'终点？',opts:['系统+纪律=财务自由','运气','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"系统"？',opts:['是胜率赔率仓位的结合','是神奇指标','无感'],a:0},{q:'"亏损"？',opts:['是系统成本必须接受','是失败','无感'],a:0},{q:'"交易"？',opts:['是概率与纪律','是赌博','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'连亏三笔？',opts:['检查系统是否仍有效','放弃系统','无感'],a:0},{q:'别人暴赚？',opts:['坚持自己节奏','跟风换系统','无感'],a:0},{q:'系统回撤？',opts:['按计划减仓','加倍押注','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['期望-仓位-类型-心理','预测市场','无感'],a:0},{q:'记忆？',opts:['正期望控回撤','孤立概念','无感'],a:0},{q:'练习？',opts:['回测自己系统','凭感觉','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我构建？',opts:['从期望值出发','从指标出发','无'],a:0},{q:'我测试？',opts:['回测再实盘','直接上','无'],a:0},{q:'我执行？',opts:['记录每笔执行','随意','无'],a:0}]},
+ {ico:'👑',t:'撒普挑战',d:'10题综合测验',qs:[{q:'核心？',opts:['构建适合自己的交易系统','寻找完美预测','无感'],a:0},{q:'圣杯？',opts:['不存在百战百胜的系统','存在万能指标','无感'],a:0},{q:'公式？',opts:['期望值=胜率×盈利-败率×亏损','期望=胜率','无感'],a:0},{q:'头寸？',opts:['决定账户最大回撤','只影响利润','无感'],a:0},{q:'类型？',opts:['趋势波段套利短线等','只有一种','无感'],a:0},{q:'心理？',opts:['恐惧贪婪摧毁系统','不影响','无感'],a:0},{q:'测试？',opts:['历史回测+样本外验证','直接实盘','无感'],a:0},{q:'第一？',opts:['控制单笔风险','追求高收益','无感'],a:0},{q:'本质？',opts:['期望-仓位-类型-心理-测试','完美预测','无感'],a:0},{q:'终点？',opts:['系统+纪律=财务自由','运气','无感'],a:0}]}
+];
+const badges=['🗺️','🏆','🧮','📊','🧩','🧠','🔬','🛡️','💡','🔎','🧭','👑'];
+const badgeNames=['寻路者','圣杯破除者','期望值数学家','仓位指挥官','打法匠人','心理掌控者','系统测试师','风控卫士','概念掌握者','自省者','智慧导航员','撒普门徒'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
