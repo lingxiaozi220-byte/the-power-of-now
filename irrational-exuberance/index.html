@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《非理性繁荣》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《非理性繁荣》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>罗伯特·席勒 · 诺贝尔经济学奖得主 · 泡沫与市场心理的经典之作</p>
+    <span class="tag">市场泡沫</span><span class="tag">从众心理</span><span class="tag">反馈环</span><span class="tag">新闻效应</span><span class="tag">锚定</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 什么是非理性繁荣（免费）</div>
+  <div class="card">
+    <h3>理解 · 价格如何远离价值</h3>
+    <p><span class="q">非理性繁荣指市场情绪把价格推离基本面价值。席勒发现：股市在繁荣期市盈率极高，但投资者深信还能涨。泡沫不是随机事件，而是人性、媒体、文化共同作用的产物。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="非理性繁荣"></div>
+    <div class="mini">🎈 <b>关键：</b>非理性繁荣=情绪驱动的价格泡沫。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「泡沫识别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 新闻与媒体的放大（免费）</div>
+  <div class="card">
+    <h3>理解 · 媒体是情绪的放大器</h3>
+    <p><span class="q">牛市时财经新闻铺天盖地，报道本身就在放大乐观。媒体追逐热点，热点又吸引更多人入场——新闻不是中立的镜子，它是情绪的扩音器。</span></p>
+    <div class="imgbox"><img src="art_news.jpg" alt="新闻放大效应"></div>
+    <div class="mini">📰 <b>关键：</b>新闻越多越热，越要警惕情绪过热。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「新闻效应」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 从众心理（免费）</div>
+  <div class="card">
+    <h3>理解 · 羊群效应</h3>
+    <p><span class="q">人是社会动物：看到别人赚钱，就会跟风入场。羊群效应让上涨自我强化——不是价值在涨，是情绪在传染。独立思考在人群中是最稀缺的能力。</span></p>
+    <div class="imgbox"><img src="art_herd.jpg" alt="从众心理"></div>
+    <div class="mini">🐑 <b>关键：</b>从众是泡沫的燃料，独立是理性的护城河。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「从众心理」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 反馈环（免费）</div>
+  <div class="card">
+    <h3>理解 · 上涨推动上涨</h3>
+    <p><span class="q">反馈环是泡沫的发动机：价格上涨→投资者赚钱→更多人入场→价格再涨。正反馈让繁荣自我强化，也让崩盘同样剧烈。识别反馈环，就知道泡沫何时最危险。</span></p>
+    <div class="imgbox"><img src="art_feedback.jpg" alt="反馈环"></div>
+    <div class="mini">🔄 <b>关键：</b>正反馈放大泡沫，也放大崩盘。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「反馈环」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 文化与社会氛围（免费）</div>
+  <div class="card">
+    <h3>理解 · 时代情绪助推泡沫</h3>
+    <p><span class="q">全民炒股、暴富故事流行、把投资当谈资——文化氛围决定了市场的温度。当"不买就亏了"成为社会共识，说明泡沫已经进入最后的疯狂。</span></p>
+    <div class="imgbox"><img src="art_culture.jpg" alt="文化因素"></div>
+    <div class="mini">🎭 <b>关键：</b>文化狂热是泡沫的晚期信号。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「文化氛围」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 心理机制（免费）</div>
+  <div class="card">
+    <h3>理解 · 大脑里的陷阱</h3>
+    <p><span class="q">锚定：用过去价格当参照，觉得"跌这么多该买了"；过度自信：觉得"我能跑赢市场"；后悔厌恶：怕错过上涨所以追高。理解这些心理，才能反着用。</span></p>
+    <div class="imgbox"><img src="art_psych.jpg" alt="心理因素"></div>
+    <div class="mini">🧠 <b>关键：</b>锚定、过度自信、后悔厌恶，是追高的三块磁铁。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「心理机制」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 历史泡沫的教训（免费）</div>
+  <div class="card">
+    <h3>理解 · 从郁金香到互联网</h3>
+    <p><span class="q">1637郁金香、1720南海泡沫、1929大崩盘、2000互联网泡沫、2008次贷危机——五百年间泡沫不断重演。变的只是标的，不变的是人性。</span></p>
+    <div class="imgbox"><img src="art_bubble.jpg" alt="市场泡沫"></div>
+    <div class="mini">⏳ <b>关键：</b>历史不会重复，但人性总是押韵。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「历史泡沫」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：席勒预警框架、泡沫中的生存策略、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（席勒预警框架、泡沫中的生存策略、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 席勒预警框架</div>
+  <div class="card">
+    <h3>理解 · 十个预警信号</h3>
+    <p><span class="q">市盈率处于历史高位、全民入市、新闻渲染暴富、新股疯抢、媒体制造新叙事（"这次不一样"）、杠杆泛滥、估值远超历史均值——信号越多，泡沫越近。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🚨 <b>关键：</b>信号叠加出现时，是离场而非入场的时候。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「避险法则」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 泡沫中的生存策略</div>
+  <div class="card">
+    <h3>理解 · 不预测，只应对</h3>
+    <p>不猜顶、不抄底：用估值分批买卖，永远留现金，远离杠杆，敬畏市场。泡沫既没发生时也不空仓等待——保持纪律，涨跌都有预案。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="生存策略"></div>
+    <div class="mini">🛡️ <b>关键：</b>应对策略：估值纪律+现金储备+零杠杆。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「术语配对」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 在狂热中保持清醒</h3>
+    <p>识泡沫（价格远离价值）→ 看媒体（警惕放大）→ 反从众（独立思考）→ 拆反馈（看清循环）→ 察文化（感知温度）→ 守纪律（估值买卖）——六步体系，穿越繁荣与衰退。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>建立估值红线：市盈率历史分位超80%即分批减仓</td></tr>
+      <tr><td>2</td><td>跟踪情绪指标：全民入市、新闻热度、杠杆水平</td></tr>
+      <tr><td>3</td><td>写投资纪律：涨跌都有预案，不临时决策</td></tr>
+      <tr><td>4</td><td>保持现金储备：永远有子弹应对极端情况</td></tr>
+      <tr><td>5</td><td>远离杠杆：活着才有复利</td></tr>
+      <tr><td>6</td><td>复盘每轮牛熊：记录自己当时的情绪与操作</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：泡沫大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 市场心理。配套阅读：《思考，快与慢》《漫步华尔街》《动物精神》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='irrational-exuberance';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🎈',t:'泡沫识别',d:'认识繁荣',qs:[{q:'泡沫？',opts:['价格远离价值','正常波动','没风险'],a:0},{q:'人声鼎沸？',opts:['警惕泡沫','上车','无感'],a:0},{q:'泡沫终局？',opts:['破裂','永续','无感'],a:0}]},
+ {ico:'📰',t:'新闻效应',d:'媒体放大',qs:[{q:'新闻大涨？',opts:['放大情绪','揭示真相','无影响'],a:0},{q:'牛市报道多？',opts:['推高泡沫','理性','无感'],a:0},{q:'媒体角色？',opts:['情绪放大器','客观中立','无影响'],a:0}]},
+ {ico:'🐑',t:'从众心理',d:'羊群效应',qs:[{q:'人人都买？',opts:['跟风还是警惕','必赚','无感'],a:0},{q:'羊群效应？',opts:['群体盲从','独立思考','无影响'],a:0},{q:'从众买股？',opts:['危险','聪明','无感'],a:0}]},
+ {ico:'🔄',t:'反馈环',d:'自我强化',qs:[{q:'反馈环？',opts:['涨价推动涨价','无变化','随机'],a:0},{q:'乐观推动上涨？',opts:['再推乐观','冷静','无感'],a:0},{q:'泡沫中反馈？',opts:['正反馈放大','负反馈','无影响'],a:0}]},
+ {ico:'🎭',t:'文化氛围',d:'时代情绪',qs:[{q:'全民炒股热？',opts:['泡沫信号','正常','无感'],a:0},{q:'暴富故事流行？',opts:['吸引跟风','理性','无影响'],a:0},{q:'文化狂热？',opts:['警惕高估','参与','无感'],a:0}]},
+ {ico:'🧠',t:'心理机制',d:'大脑陷阱',qs:[{q:'锚定？',opts:['价格记忆影响判断','客观','无影响'],a:0},{q:'过度自信？',opts:['高估自己','冷静','无感'],a:0},{q:'后悔厌恶？',opts:['怕错过追涨','理性','无影响'],a:0}]},
+ {ico:'⏳',t:'历史泡沫',d:'从郁金香到互联网',qs:[{q:'郁金香泡沫？',opts:['历史重演','已绝迹','无感'],a:0},{q:'互联网泡沫？',opts:['非理性繁荣','理性定价','无感'],a:0},{q:'历史教训？',opts:['人性不变','人性改变','无感'],a:0}]},
+ {ico:'🛡️',t:'避险法则',d:'避开泡沫',qs:[{q:'市盈率极高？',opts:['警惕','买入','无感'],a:0},{q:'人人谈股？',opts:['风险信号','机会','无感'],a:0},{q:'杠杆追涨？',opts:['绝对禁止','可以','无风险'],a:0}]},
+ {ico:'💡',t:'术语配对',d:'核心概念',qs:[{q:'反馈环？',opts:['自我强化','随机波动','无影响'],a:0},{q:'锚定？',opts:['价格参照','真实价值','无感'],a:0},{q:'羊群效应？',opts:['群体跟风','独立判断','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查自己',qs:[{q:'我跟风吗？',opts:['偶尔','从不','无'],a:0},{q:'我信新闻？',opts:['半信','全信','无'],a:0},{q:'我查估值？',opts:['查','不','无'],a:0}]},
+ {ico:'🧭',t:'心态地图',d:'狂热心态',qs:[{q:'周围人暴富？',opts:['保持理性','焦虑','跟风'],a:0},{q:'自己没上车？',opts:['等估值','追高','无感'],a:0},{q:'泡沫破裂？',opts:['早有预案','恐慌','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"非理性繁荣"？',opts:['市场情绪推高的价格','理性定价','无感'],a:0},{q:'"泡沫是"？',opts:['人性的产物','随机事件','无感'],a:0},{q:'"市场短期是"？',opts:['投票机','称重机','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'全民抢购基金？',opts:['泡沫信号','正常','无感'],a:0},{q:'新闻天天涨？',opts:['警惕','追涨','无感'],a:0},{q:'估值历史高位？',opts:['减仓','加仓','无感'],a:0}]},
+ {ico:'🔄',t:'周期演练',d:'穿越牛熊',qs:[{q:'牛市狂热？',opts:['分批离场','梭哈','无感'],a:0},{q:'熊市冷清？',opts:['研究布局','远离','无感'],a:0},{q:'崩盘恐慌？',opts:['按计划','割肉','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地实践',qs:[{q:'我设估值红线？',opts:['设','不','无'],a:0},{q:'我跟踪情绪指标？',opts:['跟','不','无'],a:0},{q:'我写投资纪律？',opts:['写','不','无'],a:0}]},
+ {ico:'👑',t:'泡沫大师挑战',d:'10题综合测验',qs:[{q:'泡沫？',opts:['价格远离价值','正常波动','没风险'],a:0},{q:'新闻大涨？',opts:['放大情绪','揭示真相','无影响'],a:0},{q:'人人都买？',opts:['跟风还是警惕','必赚','无感'],a:0},{q:'反馈环？',opts:['涨价推动涨价','无变化','随机'],a:0},{q:'全民炒股热？',opts:['泡沫信号','正常','无感'],a:0},{q:'锚定？',opts:['价格记忆影响判断','客观','无影响'],a:0},{q:'郁金香泡沫？',opts:['历史重演','已绝迹','无感'],a:0},{q:'市盈率极高？',opts:['警惕','买入','无感'],a:0},{q:'周围人暴富？',opts:['保持理性','焦虑','跟风'],a:0},{q:'"泡沫是"？',opts:['人性的产物','随机事件','无感'],a:0}]}
+];
+const badges=['🎈','📰','🐑','🔄','🎭','🧠','⏳','🛡️','💡','🔎','🧭','👑'];
+const badgeNames=['泡沫识别家','新闻解读者','羊群观察员','反馈环专家','文化审视者','心理洞察家','历史学家','避险专家','概念掌握者','自省者','心态导航员','泡沫大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
