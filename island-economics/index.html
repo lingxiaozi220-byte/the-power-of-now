@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《小岛经济学》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《小岛经济学》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>彼得·希夫 · 寓言体经济学入门 · 三个渔民讲透世界</p>
+    <span class="tag">生产力</span><span class="tag">储蓄</span><span class="tag">信贷</span><span class="tag">货币</span><span class="tag">通胀</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 生产力（免费）</div>
+  <div class="card">
+    <h3>理解 · 第一桶金</h3>
+    <p><span class="q">三个渔民每天徒手抓一条鱼，刚好够吃。直到有人饿一天、织一张渔网——一天抓两条。渔网=资本：牺牲眼前消费，换未来更高产出。一切财富的起点，都是生产力提高。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="小岛经济学"></div>
+    <div class="mini">🎣 <b>关键：</b>消费填饱今天，投资（渔网）改变明天。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「生产力」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 储蓄（免费）</div>
+  <div class="card">
+    <h3>理解 · 存鱼是财富的起点</h3>
+    <p><span class="q">有了多余的鱼，怎么办？存起来。储蓄不是守财奴，而是资本的蓄水池：它是投资的弹药、风险的缓冲、未来自由的前提。不储蓄的民族，永远在为今天打工。</span></p>
+    <div class="imgbox"><img src="art_net.jpg" alt="渔网生产力"></div>
+    <div class="mini">🐟 <b>关键：</b>储蓄率决定一个家庭（和国家）的未来。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「储蓄」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 借贷（免费）</div>
+  <div class="card">
+    <h3>理解 · 信用让资本流动</h3>
+    <p><span class="q">把存鱼借给想织网的人，收点利息。借贷把闲置资本送到生产者手里，创造更多产出；利息是资金的时间价值。但过度借贷=透支未来，杠杆终有清算日。</span></p>
+    <div class="imgbox"><img src="art_save.jpg" alt="存鱼储蓄"></div>
+    <div class="mini">🤝 <b>关键：</b>信贷是把双刃剑：助力生产，也能制造泡沫。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「借贷」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 分工与交易（免费）</div>
+  <div class="card">
+    <h3>理解 · 比较优势让总产出变大</h3>
+    <p><span class="q">有人擅长织网，有人擅长捕鱼，交换——双方都得到更多。国际贸易同理：各做自己最擅长的，总蛋糕变大。贸易不是零和游戏，是正和游戏。</span></p>
+    <div class="imgbox"><img src="art_loan.jpg" alt="借贷信用"></div>
+    <div class="mini">⚙️ <b>关键：</b>交易让双方受益——反对自由贸易就是反对变富。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「分工交易」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 货币（免费）</div>
+  <div class="card">
+    <h3>理解 · 从鱼到纸币</h3>
+    <p><span class="q">鱼会腐烂，以物易物太麻烦，于是出现了贝壳、金币、纸币。货币只是交换媒介——它的价值不来自印刷，而来自背后的生产力和信用。钞票本身不是财富，能买到的生产力才是。</span></p>
+    <div class="imgbox"><img src="art_trade.jpg" alt="分工交易"></div>
+    <div class="mini">🪙 <b>关键：</b>纸币印得再精美，也不能当鱼吃。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「货币」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 通胀（免费）</div>
+  <div class="card">
+    <h3>理解 · 印钞机的诱惑</h3>
+    <p><span class="q">岛民发现印贝壳就能"变富"，于是多印——鱼还是那么多，贝壳多了，每个贝壳能换的鱼少了。这就是通胀：钱变多不会创造财富，只会稀释购买力。最先受害的，是存钱的普通人。</span></p>
+    <div class="imgbox"><img src="art_money.jpg" alt="货币起源"></div>
+    <div class="mini">🏭 <b>关键：</b>对抗通胀：持有资产与生产力，而不是现金。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「通胀」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 系统全览（免费）</div>
+  <div class="card">
+    <h3>理解 · 经济机器一张图</h3>
+    <p><span class="q">生产力（渔网）→ 储蓄（存鱼）→ 信贷（借鱼生息）→ 分工交易（扩大产出）→ 货币（交换媒介）→ 通胀（印钞稀释）。六环联动，就是小岛也是大国的经济机器。</span></p>
+    <div class="imgbox"><img src="art_inflation.jpg" alt="印钞通胀"></div>
+    <div class="mini">🗺️ <b>关键：</b>看懂这台机器，就看得懂财经新闻。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「经济机器」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：泡沫与危机、政府与市场、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（泡沫与危机、政府与市场、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 泡沫与危机</div>
+  <div class="card">
+    <h3>理解 · 杠杆的清算日</h3>
+    <p><span class="q">借贷消费、预期永远上涨、人人追涨——资产价格脱离生产力，就是泡沫。泡沫的破灭不是意外，是必然：信用扩张到极限，清算随之而来。每一次危机，都从"这次不一样"开始。</span></p>
+    <div class="mini">📉 <b>关键：</b>脱离生产力的价格，迟早回归。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「避险法则」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 政府与市场</div>
+  <div class="card">
+    <h3>理解 · 看得见的手与看不见的手</h3>
+    <p><span class="q">政府能做好什么：规则、产权、安全网。政府做不好什么：取代市场定价、无限印钞、救助泡沫。好政策是修路不造车——让生产者自由创造，让市场发现价格。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏛️ <b>关键：</b>市场定价有缺陷，但没有更好的替代。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「术语配对」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 小岛即世界</h3>
+    <p>三条鱼讲透经济：生产力是根，储蓄是土，信贷是水，交易是阳光，货币是容器，通胀是风雨。看懂规律，做好自己。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>找到你的"渔网"：一项提升收入的技能或资产</td></tr>
+      <tr><td>2</td><td>先存够 6 个月生活费（你的鱼干）</td></tr>
+      <tr><td>3</td><td>盘点负债：区分"生产性借贷"和"消费性透支"</td></tr>
+      <tr><td>4</td><td>配置抗通胀资产（生产力型资产）</td></tr>
+      <tr><td>5</td><td>用经济学框架重读一条财经新闻</td></tr>
+      <tr><td>6</td><td>每月审视：我的储蓄率提高了吗</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：经济大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 宏观入门。配套阅读：《经济学原理》《金融的本质》《时运变迁》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='island-economics';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🎣',t:'生产力',d:'第一桶金',qs:[{q:'渔网代表？',opts:['生产力工具','娱乐','装饰'],a:0},{q:'先造网？',opts:['牺牲眼前换未来','天天手抓鱼','不干'],a:0},{q:'经济起点？',opts:['生产率提高','印钞','消费'],a:0}]},
+ {ico:'🐟',t:'储蓄',d:'存鱼是财富起点',qs:[{q:'存鱼？',opts:['积累资本','囤积癖','浪费'],a:0},{q:'储蓄用途？',opts:['投资与应急','藏起来','炫耀'],a:0},{q:'不储蓄？',opts:['永远原地踏步','变富','无影响'],a:0}]},
+ {ico:'🤝',t:'借贷',d:'信用让资本流动',qs:[{q:'借鱼给朋友？',opts:['支持生产','傻','白给'],a:0},{q:'利息？',opts:['资金的时间价值','剥削','违法'],a:0},{q:'过度借贷？',opts:['埋下危机','好事','无影响'],a:0}]},
+ {ico:'⚙️',t:'分工交易',d:'比较优势',qs:[{q:'分工？',opts:['各干所长','都干一样','混乱'],a:0},{q:'交易？',opts:['双方受益','零和','吃亏'],a:0},{q:'贸易？',opts:['扩大总产出','减少产出','无影响'],a:0}]},
+ {ico:'🪙',t:'货币',d:'从鱼到纸币',qs:[{q:'货币本质？',opts:['交换媒介','财富本身','废纸'],a:0},{q:'为何出现？',opts:['交易方便','政府强迫','装饰'],a:0},{q:'纸币背后？',opts:['生产力与信用','印刷成本','图案'],a:0}]},
+ {ico:'🏭',t:'通胀',d:'印钞机的诱惑',qs:[{q:'多印钞？',opts:['稀释购买力','大家变富','无影响'],a:0},{q:'通胀受害者？',opts:['存款人','借款人','政府'],a:0},{q:'抗通胀？',opts:['资产与生产力','存现金','囤钞'],a:0}]},
+ {ico:'🗺️',t:'经济机器',d:'全书脉络',qs:[{q:'起点？',opts:['生产力','印钞','消费'],a:0},{q:'中间？',opts:['储蓄信贷交易','投机','借贷消费'],a:0},{q:'终点？',opts:['可持续繁荣','泡沫','通胀'],a:0}]},
+ {ico:'🛡️',t:'避险法则',d:'避开陷阱',qs:[{q:'超前消费？',opts:['量入为出','刷卡透支','无概念'],a:0},{q:'追涨楼市？',opts:['警惕泡沫','赶紧上车','必买'],a:0},{q:'现金为王？',opts:['通胀会吃掉它','永远保值','最好'],a:0}]},
+ {ico:'💡',t:'术语配对',d:'核心概念',qs:[{q:'GDP增长之源？',opts:['生产率','印钞','统计'],a:0},{q:'通货紧缩？',opts:['物价下跌','物价上涨','无'],a:0},{q:'经济危机？',opts:['杠杆破裂','运气差','天灾'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查自己',qs:[{q:'我的储蓄？',opts:['有储备吗','月光','负债'],a:0},{q:'我的杠杆？',opts:['控制吗','高杠杆','无概念'],a:0},{q:'我的消费？',opts:['理性吗','冲动','无'],a:0}]},
+ {ico:'🧭',t:'经济地图',d:'理解世界',qs:[{q:'新闻说GDP涨？',opts:['看来源','直接信','无感'],a:0},{q:'央行降息？',opts:['理解含义','无感','不关心'],a:0},{q:'物价上涨？',opts:['警惕通胀','正常','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"经济的基础是"？',opts:['生产力','印钞','消费'],a:0},{q:'"储蓄是"？',opts:['未来投资的种子','守财奴','过时'],a:0},{q:'"没有免费的"？',opts:['午餐','鱼','网'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'发钱刺激消费？',opts:['短期兴奋长期通胀','人人变富','无影响'],a:0},{q:'别人加杠杆买房？',opts:['评估自身风险','跟风','必须买'],a:0},{q:'储蓄被通胀稀释？',opts:['配置资产','存更多现金','不管'],a:0}]},
+ {ico:'🔄',t:'经济演练',d:'换个视角',qs:[{q:'小岛扩产？',opts:['造更多工具','多印鱼','等鱼'],a:0},{q:'失业？',opts:['结构性升级','需求消失','无解'],a:0},{q:'贸易战？',opts:['损人不利己','人人受益','无影响'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地实践',qs:[{q:'我的生产力？',opts:['提升了吗','停滞','无所谓'],a:0},{q:'我的储备？',opts:['6个月了吗','没有','不需要'],a:0},{q:'我的负债？',opts:['可控吗','失控','无'],a:0}]},
+ {ico:'👑',t:'经济大师挑战',d:'10题综合测验',qs:[{q:'渔网代表？',opts:['生产力工具','娱乐','装饰'],a:0},{q:'存鱼？',opts:['积累资本','囤积癖','浪费'],a:0},{q:'借鱼给朋友？',opts:['支持生产','傻','白给'],a:0},{q:'分工？',opts:['各干所长','都干一样','混乱'],a:0},{q:'货币本质？',opts:['交换媒介','财富本身','废纸'],a:0},{q:'多印钞？',opts:['稀释购买力','大家变富','无影响'],a:0},{q:'超前消费？',opts:['量入为出','刷卡透支','无概念'],a:0},{q:'GDP增长之源？',opts:['生产率','印钞','统计'],a:0},{q:'经济危机？',opts:['杠杆破裂','运气差','天灾'],a:0},{q:'发钱刺激消费？',opts:['短期兴奋长期通胀','人人变富','无影响'],a:0}]}
+];
+const badges=['🎣','🐟','🤝','⚙️','🪙','🏭','🗺️','🛡️','💡','🔎','🧭','👑'];
+const badgeNames=['生产力先锋','储蓄家','信用玩家','分工大师','货币理解者','通胀对抗者','经济地图师','避险专家','概念掌握者','自省者','经济导航员','经济大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
