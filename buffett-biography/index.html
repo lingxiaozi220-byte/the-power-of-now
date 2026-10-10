@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《巴菲特传》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《巴菲特传》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>罗杰·洛温斯坦 · 巴菲特权威传记 · 价值投资人生课</p>
+    <span class="tag">格雷厄姆</span><span class="tag">能力圈</span><span class="tag">浮存金</span><span class="tag">复利</span><span class="tag">长期持有</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 巴菲特传（免费）</div>
+  <div class="card">
+    <h3>理解 · 一个美国资本家的成长</h3>
+    <p><span class="q">1930年巴菲特出生于奥马哈，从小卖报纸、送可乐攒钱。26岁创立合伙公司，后来收购伯克希尔，用70年把投资做成了一门艺术。这本书不是神化巴菲特，而是展示一个普通聪明人如何用纪律、耐心和复利，一步一步成为最伟大的投资者。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="巴菲特传"></div>
+    <div class="mini">📘 <b>关键：</b>巴菲特的伟大来自可以学习的方法，不是天赋。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「巴菲特传」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 少年巴菲特（免费）</div>
+  <div class="card">
+    <h3>理解 · 童年就是生意场</h3>
+    <p><span class="q">六岁卖口香糖，十三岁送报纸，十五岁投资农场。少年巴菲特把每一分零花钱都当成种子：他早早就明白钱能生钱。送报时他规划路线让效率最高，卖可乐时他知道哪里人最多。这些看似简单的童年生意，训练了他一生最重要的能力——理解商业。</span></p>
+    <div class="imgbox"><img src="art_boy.jpg" alt="少年巴菲特"></div>
+    <div class="mini">🚲 <b>关键：</b>商业理解力从童年就开始积累。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「少年巴菲特」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 格雷厄姆课堂（免费）</div>
+  <div class="card">
+    <h3>理解 · 价值投资的源头</h3>
+    <p><span class="q">巴菲特在哥伦比亚大学师从格雷厄姆，学到两个核心理念：一是买股票就是买公司；二是要有安全边际——用低于内在价值的价格买入。格雷厄姆的"烟蒂股"方法：捡便宜货，价格低于账面价值就买。这套方法让巴菲特赚到第一桶金。</span></p>
+    <div class="imgbox"><img src="art_graham.jpg" alt="格雷厄姆课堂"></div>
+    <div class="mini">🎓 <b>关键：</b>买股票=买公司，价格要有安全边际。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「格雷厄姆课堂」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 合伙公司（免费）</div>
+  <div class="card">
+    <h3>理解 · 从奥马哈走向世界</h3>
+    <p><span class="q">1956年巴菲特26岁，在家乡奥马哈创立合伙公司，亲朋好友出资，他管理操盘。他定下规矩：只投看得懂的公司、大幅跑赢市场才拿分成。13年合伙期间年化收益超20%，远超道琼斯指数——证明了价值投资方法可以稳定复制。</span></p>
+    <div class="imgbox"><img src="art_partnership.jpg" alt="合伙公司"></div>
+    <div class="mini">🏠 <b>关键：</b>合伙模式证明：价值投资可复制、可跑赢。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「合伙公司」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 喜诗糖果（免费）</div>
+  <div class="card">
+    <h3>理解 · 从捡烟蒂到买好公司</h3>
+    <p><span class="q">1972年巴菲特花2500万美元收购喜诗糖果——比账面价值贵很多，打破了捡烟蒂的教条。结果糖果品牌带来稳定现金流和提价权，成为现金奶牛。芒格点醒他：用合理价格买伟大公司，好过用便宜价格买平庸公司。这是巴菲特投资哲学的转折点。</span></p>
+    <div class="imgbox"><img src="art_candy.jpg" alt="喜诗糖果"></div>
+    <div class="mini">🍬 <b>关键：</b>品牌与定价权，比便宜更重要。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「喜诗糖果」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 浮存金（免费）</div>
+  <div class="card">
+    <h3>理解 · 保险是现金机器</h3>
+    <p><span class="q">巴菲特收购保险公司，发现"浮存金"的秘密：客户先交保费，理赔可能几年后才发生，这笔钱在手里时可以拿去投资。保险业务赚钱+浮存金投资增值，伯克希尔从此有了源源不断的低成本资金，雪球越滚越大。</span></p>
+    <div class="imgbox"><img src="art_float.jpg" alt="浮存金"></div>
+    <div class="mini">🛡️ <b>关键：</b>用别人的钱滚自己的雪球。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「浮存金」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 可口可乐（免费）</div>
+  <div class="card">
+    <h3>理解 · 长期持有的经典</h3>
+    <p><span class="q">1988年巴菲特买入可口可乐，一拿就是三十多年。逻辑很简单：全球品牌、现金流稳定、人人爱喝。他不看短期波动，只问：这家公司十年后会不会更值钱？会，就拿着。这笔投资让他赚了上百倍，也示范了什么才是真正的长期主义。</span></p>
+    <div class="imgbox"><img src="art_coke.jpg" alt="可口可乐"></div>
+    <div class="mini">🥤 <b>关键：</b>问十年后值不值，而不是明天涨不涨。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「可口可乐」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：能力圈、巴菲特实战法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（能力圈、巴菲特实战法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 能力圈</div>
+  <div class="card">
+    <h3>理解 · 只做懂的事</h3>
+    <p><span class="q">巴菲特说：我不碰科技股，因为我看不懂十年后的科技公司。能力圈不是圈越大越好，而是圈内的东西你要真正懂。圈外再热的机会，放弃也不可惜——守住能力圈，就守住了不亏钱的第一原则。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧠 <b>关键：</b>能力圈内重仓，圈外宁愿错过。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「能力圈」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 巴菲特实战法</div>
+  <div class="card">
+    <h3>理解 · 一套完整投资流程</h3>
+    <p>第一步圈定能力圈：只研究自己懂的企业。第二步评估质地：品牌、护城河、现金流、管理层。第三步估算价值：算清内在价值，等待市场给出低价。第四步买入：好公司+好价格=机会，重仓但留安全边际。第五步持有：只要基本面不变坏就一直拿。第六步复盘：每笔投资记录决策理由，错了就承认。</p>
+    <div class="imgbox"><img src="art_float.jpg" alt="巴菲特实战法"></div>
+    <div class="mini">🧭 <b>关键：</b>圈-质地-价值-买点-持有-复盘。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 做时间的朋友</h3>
+    <p>看懂巴菲特的一生：少年积累商业感 → 师从格雷厄姆打基础 → 合伙公司验证方法 → 喜诗糖果升级哲学 → 浮存金放大复利 → 可口可乐示范长期主义——六步理解价值投资全貌。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>画出你的能力圈，列出3个真正懂的行业</td></tr>
+      <tr><td>2</td><td>选一家圈内公司精读财报</td></tr>
+      <tr><td>3</td><td>估算它的内在价值与安全边际</td></tr>
+      <tr><td>4</td><td>只在其价格低于价值时考虑买入</td></tr>
+      <tr><td>5</td><td>设好"基本面变坏"的卖出条件</td></tr>
+      <tr><td>6</td><td>每季度复盘，记录决策理由</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：巴菲特挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 价值投资。配套阅读：《巴菲特致股东的信》《滚雪球》《聪明的投资者》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='buffett-biography';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'📘',t:'巴菲特传',d:'书名之义',qs:[{q:'核心？',opts:['价值投资+复利+耐心的成长史','短线投机','无感'],a:0},{q:'作者？',opts:['罗杰·洛温斯坦','华尔街会计','无感'],a:0},{q:'本书？',opts:['从送报纸少年到投资大师','天才不可学','无感'],a:0}]},
+ {ico:'🚲',t:'少年巴菲特',d:'童年生意经',qs:[{q:'少年？',opts:['卖报纸送可乐攒钱','只会花钱','无感'],a:0},{q:'特质？',opts:['从小爱数字爱生意','不爱学习','无感'],a:0},{q:'启示？',opts:['复利从早开始','成年再理财','无感'],a:0}]},
+ {ico:'🎓',t:'格雷厄姆课堂',d:'价值投资启蒙',qs:[{q:'导师？',opts:['格雷厄姆-烟蒂股捡便宜','技术分析大师','无感'],a:0},{q:'学什么？',opts:['安全边际+基本面分析','追涨杀跌','无感'],a:0},{q:'名言？',opts:['买股票就是买公司','股票只是筹码','无感'],a:0}]},
+ {ico:'🏠',t:'合伙公司',d:'奥马哈起步',qs:[{q:'起点？',opts:['1956年合伙公司从家乡起步','纽约证交所','无感'],a:0},{q:'原则？',opts:['只投看得懂的公司','什么热投什么','无感'],a:0},{q:'业绩？',opts:['连续跑赢市场','偶尔赚钱','无感'],a:0}]},
+ {ico:'🍬',t:'喜诗糖果',d:'从捡烟蒂到买好公司',qs:[{q:'转变？',opts:['买有品牌的好公司而非便宜货','继续捡烟蒂','无感'],a:0},{q:'关键？',opts:['品牌与定价权创造复利','低价才买','无感'],a:0},{q:'意义？',opts:['从格雷厄姆式到芒格式','没有改变','无感'],a:0}]},
+ {ico:'🛡️',t:'浮存金',d:'保险是现金机器',qs:[{q:'浮存金？',opts:['保费先收后赔的现金','保险不赚钱','无感'],a:0},{q:'用处？',opts:['用浮存金投资滚雪球','只能存银行','无感'],a:0},{q:'本质？',opts:['负成本资金杠杆','负债陷阱','无感'],a:0}]},
+ {ico:'🥤',t:'可口可乐',d:'长期持有经典',qs:[{q:'买入？',opts:['1988年买入长期持有','短线炒作','无感'],a:0},{q:'逻辑？',opts:['全球品牌+现金流稳定','看K线','无感'],a:0},{q:'结果？',opts:['持有几十年赚百倍','赚点就跑','无感'],a:0}]},
+ {ico:'🧠',t:'能力圈',d:'只做懂的事',qs:[{q:'定义？',opts:['只投自己懂的领域','什么都碰','无感'],a:0},{q:'作用？',opts:['避免无知亏损','扩大机会','无感'],a:0},{q:'执行？',opts:['不懂就跳过','不懂也买','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['安全边际-能力圈-复利','短线消息','无感'],a:0},{q:'关键？',opts:['买好公司长期持有','频繁交易','无感'],a:0},{q:'方法？',opts:['财务分析+耐心等待','追热点','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我耐心？',opts:['好公司拿得住','天天换股','无'],a:0},{q:'我能力圈？',opts:['只投懂的','什么都碰','无'],a:0},{q:'我安全边际？',opts:['便宜好公司才买','追高','无'],a:0}]},
+ {ico:'🧭',t:'智慧启示',d:'学到什么',qs:[{q:'第一？',opts:['投资是认知与耐心的游戏','是赌运','无感'],a:0},{q:'核心？',opts:['复利需要时间兑现','时间无用','无感'],a:0},{q:'终点？',opts:['做时间的朋友','做市场的对手','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"投资"？',opts:['最重要的事是不要亏损','最重要是赚快钱','无感'],a:0},{q:'"买股票"？',opts:['就是买公司的一部分','只是赌筹码','无感'],a:0},{q:'"价格"？',opts:['是你付出的，价值是你得到的','越高越好','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'热门股疯涨？',opts:['超能力圈就放弃','追进去','无感'],a:0},{q:'好公司大跌？',opts:['看基本面是否变坏','恐慌卖出','无感'],a:0},{q:'别人赚快钱？',opts:['坚持自己的节奏','跟风换策略','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['安全边际-能力圈-复利','市场有效','无感'],a:0},{q:'记忆？',opts:['好公司好价格长期持有','孤立概念','无感'],a:0},{q:'练习？',opts:['用能力圈筛选公司','凭感觉','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我选股？',opts:['圈内好公司+合理价','圈外热点','无'],a:0},{q:'我持有？',opts:['长期+基本面跟踪','短线进出','无'],a:0},{q:'我学习？',opts:['持续读财报','从不研究','无'],a:0}]},
+ {ico:'👑',t:'巴菲特挑战',d:'10题综合测验',qs:[{q:'核心？',opts:['价值投资+复利+耐心的成长史','短线投机','无感'],a:0},{q:'导师？',opts:['格雷厄姆-烟蒂股捡便宜','技术分析大师','无感'],a:0},{q:'转变？',opts:['买有品牌的好公司而非便宜货','继续捡烟蒂','无感'],a:0},{q:'浮存金？',opts:['保费先收后赔的现金','保险不赚钱','无感'],a:0},{q:'可口可乐？',opts:['1988年买入长期持有','短线炒作','无感'],a:0},{q:'能力圈？',opts:['只投自己懂的领域','什么都碰','无感'],a:0},{q:'安全边际？',opts:['便宜好公司才买','追高','无感'],a:0},{q:'名言？',opts:['买股票就是买公司','股票只是筹码','无感'],a:0},{q:'本质？',opts:['安全边际-能力圈-复利','短线消息','无感'],a:0},{q:'终点？',opts:['做时间的朋友','做市场的对手','无感'],a:0}]}
+];
+const badges=['📘','🚲','🎓','🏠','🍬','🛡️','🥤','🧠','💡','🔎','🧭','👑'];
+const badgeNames=['传记读者','少年生意家','格雷厄姆门徒','奥马哈创始人','糖果发现者','浮存金玩家','可乐收藏家','能力圈守卫','概念掌握者','自省者','智慧导航员','巴菲特传人'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
