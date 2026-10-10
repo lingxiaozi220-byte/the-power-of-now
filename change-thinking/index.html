@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《思维改变生活》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《思维改变生活》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>萨拉·埃德尔曼 · 认知行为疗法专家 · 心理自助经典</p>
+    <span class="tag">认知重构</span><span class="tag">CBT</span><span class="tag">想法</span><span class="tag">信念</span><span class="tag">自尊</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 思维改变生活（免费）</div>
+  <div class="card">
+    <h3>理解 · 痛苦来自看法，不来自事情</h3>
+    <p><span class="q">萨拉·埃德尔曼把认知行为疗法（CBT）变成人人都能用的自助工具：同一件事，不同想法带来完全不同的情绪。你的痛苦不是事情本身造成的，是你对事情的解读造成的——好消息是，解读可以改。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="思维改变生活"></div>
+    <div class="mini">🧠 <b>关键：</b>看法决定感受，想法可以改写。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「思维改变生活」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 识别想法（免费）</div>
+  <div class="card">
+    <h3>理解 · 先看见想法，才能改写想法</h3>
+    <p><span class="q">大多数想法是"自动想法"：一瞬间冒出来，快到你根本来不及察觉，就直接引发了情绪。练习的第一步是放慢——把当时的想法写下来：发生了什么？我当时在想什么？这个想法是真的吗？看见，是改变的开始。</span></p>
+    <div class="imgbox"><img src="art_spot.jpg" alt="识别想法"></div>
+    <div class="mini">🔍 <b>关键：</b>想法日记：捕捉自动想法。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「识别想法」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 情绪与思维（免费）</div>
+  <div class="card">
+    <h3>理解 · 情绪是信使，不是主人</h3>
+    <p><span class="q">情绪不会凭空出现，它背后总站着一个想法。焦虑背后是"我可能搞砸"，愤怒背后是"这不该发生"。觉察情绪→找到背后的想法→质疑那个想法，情绪就会松动。情绪是信号，不是敌人。</span></p>
+    <div class="imgbox"><img src="art_emotion.jpg" alt="情绪与思维"></div>
+    <div class="mini">🌊 <b>关键：</b>改想法，情绪就跟着变。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「情绪与思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 挑战信念（免费）</div>
+  <div class="card">
+    <h3>理解 · 把信念放到证据面前</h3>
+    <p><span class="q">"我必须完美""别人都在看我""我这辈子就这样了"——这些是核心信念，不是事实。挑战三问：支持它的证据是什么？反对它的证据是什么？换个角度，还有别的解释吗？信念像旧墙，被证据一锤就裂。</span></p>
+    <div class="imgbox"><img src="art_challenge.jpg" alt="挑战信念"></div>
+    <div class="mini">🧱 <b>关键：</b>拿证据检验信念。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「挑战信念」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 直面恐惧（免费）</div>
+  <div class="card">
+    <h3>理解 · 恐惧是喂大的，也是饿小的</h3>
+    <p><span class="q">回避让恐惧长大：你越躲，大脑越确信"这事危险"。暴露练习反着来：把害怕的事拆成小台阶，从最不怕的一级开始，一级一级爬。每次"原来也没那么糟"，都是在给恐惧断粮。最坏的结果，往往没有你想象的一半糟。</span></p>
+    <div class="imgbox"><img src="art_fear.jpg" alt="直面恐惧"></div>
+    <div class="mini">🌉 <b>关键：</b>小步暴露，恐惧才会缩小。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「直面恐惧」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 自尊重建（免费）</div>
+  <div class="card">
+    <h3>理解 · 自尊是浇出来的，不是等来的</h3>
+    <p><span class="q">高自尊不是"我比别人强"，而是"我值得被好好对待"。低自尊常伴随三个歪曲：完美标准、灾难化想象、过度自我批判。重建方法：用行动积累成就感（哪怕很小）、把标准调到合理、把"我什么都做不好"换成"我在学，我在做"。</span></p>
+    <div class="imgbox"><img src="art_self.jpg" alt="自尊重建"></div>
+    <div class="mini">🌱 <b>关键：</b>用行动浇灌自我价值。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「自尊重建」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 行动生活（免费）</div>
+  <div class="card">
+    <h3>理解 · 先动起来，想法才会跟上</h3>
+    <p><span class="q">抑郁和焦虑的陷阱是：等状态好了再做。但状态是行动的副产品——你越不动，状态越差。打破循环：把任务拆成不可能失败的小步，先做5分钟。行为改变情绪，情绪又强化行为，这是正循环，也是唯一可靠的路。</span></p>
+    <div class="imgbox"><img src="art_act.jpg" alt="行动生活"></div>
+    <div class="mini">🏃 <b>关键：</b>行动先于状态，小步就能启动。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「行动生活」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：重塑心态、认知行为四步法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（重塑心态、认知行为四步法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 重塑心态</div>
+  <div class="card">
+    <h3>理解 · 新想法需要练习，就像肌肉</h3>
+    <p><span class="q">旧的思维回路走了几十年，新的想法一天记不住。给自己耐心：每天记录三条想法，练习质疑，练习替换。想法不是事实，它只是大脑的一个建议——你可以听完，然后选择要不要采纳。练久了，新回路自然变默认回路。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏆 <b>关键：</b>想法是建议，不是命令。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「重塑心态」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 认知行为四步法</div>
+  <div class="card">
+    <h3>理解 · 一套可执行的改变流程</h3>
+    <p>第一步识别：写下触发事件和自动想法；第二步质疑：用证据挑战那个想法；第三步替换：想一个更客观平衡的新想法；第四步行动：带着新想法去做一件之前不敢做的事。四步循环，思维和情绪一起改变。</p>
+    <div class="imgbox"><img src="art_emotion.jpg" alt="认知行为四步法"></div>
+    <div class="mini">🧭 <b>关键：</b>识别→质疑→替换→行动。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从痛苦到自由的路线图</h3>
+    <p>识别想法 → 理解情绪 → 挑战信念 → 直面恐惧 → 重建自尊 → 行动生活 → 重塑心态——七步把"被想法控制"变成"主动选择想法"。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>今天写下三件烦心事对应的自动想法</td></tr>
+      <tr><td>2</td><td>对每条想法问：证据是什么</td></tr>
+      <tr><td>3</td><td>给每条想法写一个更客观的替代版本</td></tr>
+      <tr><td>4</td><td>挑一件怕的事，做最小的一步暴露</td></tr>
+      <tr><td>5</td><td>睡前夸自己一个真实的进步（无论多小）</td></tr>
+      <tr><td>6</td><td>连续30天记录想法日记，观察变化</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：思维挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」心理成长专题。配套阅读：《了不起的我》《被讨厌的勇气》《心流》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='change-thinking';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🧠',t:'思维改变生活',d:'书名之义',qs:[{q:'痛苦？',opts:['来自看法而非事情','来自事情本身','无感'],a:0},{q:'想法？',opts:['可以识别和改写','天生注定','无感'],a:0},{q:'本书？',opts:['认知行为疗法','鸡汤','无感'],a:0}]},
+ {ico:'🔍',t:'识别想法',d:'想法捕捉',qs:[{q:'想法？',opts:['先捕捉再质疑','直接相信','无感'],a:0},{q:'自动想法？',opts:['一瞬间冒出来的','深思熟虑的','无感'],a:0},{q:'记录？',opts:['写下来更清楚','想想就行','无感'],a:0}]},
+ {ico:'🌊',t:'情绪与思维',d:'谁影响谁',qs:[{q:'情绪？',opts:['由想法引起','由事情引起','无感'],a:0},{q:'改变？',opts:['改想法就改情绪','只能忍着','无感'],a:0},{q:'觉察？',opts:['情绪是信号','情绪是敌人','无感'],a:0}]},
+ {ico:'🧱',t:'挑战信念',d:'质疑旧念',qs:[{q:'信念？',opts:['可以质疑','不可动摇','无感'],a:0},{q:'证据？',opts:['拿证据检验想法','凭感觉','无感'],a:0},{q:'换个角度？',opts:['还有别的解释吗','只有一种','无感'],a:0}]},
+ {ico:'🌉',t:'直面恐惧',d:'暴露练习',qs:[{q:'恐惧？',opts:['越回避越强','越面对越弱','无感'],a:0},{q:'练习？',opts:['小步暴露','一次躲开','无感'],a:0},{q:'最坏？',opts:['真的那么糟吗','一定完蛋','无感'],a:0}]},
+ {ico:'🌱',t:'自尊重建',d:'自我价值',qs:[{q:'自尊？',opts:['用行动浇灌','等别人认可','无感'],a:0},{q:'标准？',opts:['合理标准','完美标准','无感'],a:0},{q:'比较？',opts:['跟自己比','跟别人比','无感'],a:0}]},
+ {ico:'🏃',t:'行动生活',d:'动起来',qs:[{q:'行动？',opts:['先动起来想法跟上','想通再动','无感'],a:0},{q:'拖延？',opts:['拆小步','等状态','无感'],a:0},{q:'习惯？',opts:['重复形成','一次定型','无感'],a:0}]},
+ {ico:'🏆',t:'重塑心态',d:'改变之道',qs:[{q:'想法？',opts:['可以换新想法','根深蒂固','无感'],a:0},{q:'练习？',opts:['每天记想法日记','偶尔想','无感'],a:0},{q:'坚持？',opts:['改变是习惯','改变是决心','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['看法决定感受','事情决定感受','无感'],a:0},{q:'关键？',opts:['识别-质疑-替换','压制情绪','无感'],a:0},{q:'方法？',opts:['想法日记+暴露练习','逃避','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我识别？',opts:['能捕捉想法','被想法带着走','无'],a:0},{q:'我质疑？',opts:['会问证据','直接相信','无'],a:0},{q:'我行动？',opts:['有暴露练习','一直回避','无'],a:0}]},
+ {ico:'🧭',t:'改变启示',d:'学到什么',qs:[{q:'第一？',opts:['想法可改写','想法不可变','无感'],a:0},{q:'核心？',opts:['情绪跟着想法走','情绪没法动','无感'],a:0},{q:'终点？',opts:['活得更自由','忍受痛苦','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"痛苦"？',opts:['来自看法','来自事情','无感'],a:0},{q:'"想法"？',opts:['可以检验','不可质疑','无感'],a:0},{q:'"改变"？',opts:['从思维开始','从环境开始','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'被批评？',opts:['检验想法再回应','立刻崩溃','无感'],a:0},{q:'怕演讲？',opts:['小步暴露练习','一直躲','无感'],a:0},{q:'自卑？',opts:['用行动浇灌','等表扬','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['认知决定情绪','环境决定情绪','无感'],a:0},{q:'记忆？',opts:['识别-质疑-替换','无关联概念','无感'],a:0},{q:'练习？',opts:['每天想法日记','从不记录','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我记录？',opts:['今天记三条想法','从不记','无'],a:0},{q:'我质疑？',opts:['问自己证据','全信','无'],a:0},{q:'我暴露？',opts:['做一次怕的事','继续躲','无'],a:0}]},
+ {ico:'👑',t:'思维挑战',d:'10题综合测验',qs:[{q:'痛苦？',opts:['来自看法而非事情','来自事情本身','无感'],a:0},{q:'想法？',opts:['先捕捉再质疑','直接相信','无感'],a:0},{q:'情绪？',opts:['由想法引起','由事情引起','无感'],a:0},{q:'信念？',opts:['可以质疑','不可动摇','无感'],a:0},{q:'恐惧？',opts:['越回避越强','越面对越弱','无感'],a:0},{q:'自尊？',opts:['用行动浇灌','等别人认可','无感'],a:0},{q:'行动？',opts:['先动起来想法跟上','想通再动','无感'],a:0},{q:'本质？',opts:['看法决定感受','事情决定感受','无感'],a:0},{q:'方法？',opts:['想法日记+暴露练习','逃避','无感'],a:0},{q:'"痛苦"？',opts:['来自看法','来自事情','无感'],a:0}]}
+];
+const badges=['🧠','🔍','🌊','🧱','🌉','🌱','🏃','🏆','💡','🔎','🧭','👑'];
+const badgeNames=['认知重塑者','想法侦探','情绪舵手','信念破壁者','勇气行者','自尊园丁','行动家','重塑者','概念掌握者','自省者','思维导航员','思维大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
