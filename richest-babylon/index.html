@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《巴比伦最富有的人》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《巴比伦最富有的人》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>乔治·克拉森 · 财富寓言经典 · 全球销量超百万册的理财启蒙书</p>
+    <span class="tag">存下十分之一</span><span class="tag">控制欲望</span><span class="tag">黄金增值</span><span class="tag">保护本金</span><span class="tag">提升能力</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 巴比伦的财富秘密（免费）</div>
+  <div class="card">
+    <h3>理解 · 四千年前的理财课</h3>
+    <p><span class="q">巴比伦是古代最富有的城市，不是因为金矿多，而是因为人人懂得理财。克拉森用寓言讲透七条财富法则：存下十分之一、控制欲望、让黄金增值、保护本金、安居置业、提升能力、勤劳致富——今天的理财书讲的还是这些。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="巴比伦城"></div>
+    <div class="mini">🏛️ <b>关键：</b>财富法则千年不变：储蓄+增值+保本。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「财富七律」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 存下十分之一（免费）</div>
+  <div class="card">
+    <h3>理解 · 第一桶金的起点</h3>
+    <p><span class="q">"把收入的十分之一留给自己。"发薪日的第一件事，不是还债、不是消费，而是先付给自己。十分之一不多，却能启动你的财富机器——本金是所有财富的种子。</span></p>
+    <div class="imgbox"><img src="art_tenth.jpg" alt="存下十分之一"></div>
+    <div class="mini">💰 <b>关键：</b>先存后花，十分之一启动财富机器。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「存下十分之一」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 控制欲望（免费）</div>
+  <div class="card">
+    <h3>理解 · 让支出小于收入</h3>
+    <p><span class="q">欲望无限，收入有限。给每笔支出分类：必要的（衣食住行）和想要的（消费升级）。先满足必要的，再考虑想要的，永远让支出小于收入——省钱不是抠门，是给未来攒子弹。</span></p>
+    <div class="imgbox"><img src="art_desire.jpg" alt="控制欲望"></div>
+    <div class="mini">🧺 <b>关键：</b>支出<收入，欲望才有边界。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「控制欲望」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 让黄金增值（免费）</div>
+  <div class="card">
+    <h3>理解 · 让每一块钱都工作</h3>
+    <p><span class="q">"黄金要为它的主人辛勤工作。"存下的钱不能躺着——学会投资：让钱生钱。本金是鹅，收益是蛋。借给可靠的人、投进可靠的项目，复利和时间会把雪球越滚越大。</span></p>
+    <div class="imgbox"><img src="art_grow.jpg" alt="黄金增值"></div>
+    <div class="mini">🌱 <b>关键：</b>钱不工作，你就得一直工作。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「黄金增值」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 保护本金（免费）</div>
+  <div class="card">
+    <h3>理解 · 不亏钱是第一法则</h3>
+    <p><span class="q">"宁可慢，不可亏。"投资前先问：我了解它吗？借给谁？靠什么还？高收益永远伴随高风险，看不懂的钱不赚。先保本、再求利，这是巴比伦最古老的忠告。</span></p>
+    <div class="imgbox"><img src="art_guard.jpg" alt="保护本金"></div>
+    <div class="mini">🛡️ <b>关键：</b>第一法则：不亏钱。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「保护本金」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 安居置业（免费）</div>
+  <div class="card">
+    <h3>理解 · 有房才有根</h3>
+    <p><span class="q">拥有一座自己的房子，胜过黄金百两：它给你安全感，省下房租，还是一项不断增值的资产。先存首付、再供房、尽早还清——安居才能乐业，才能安心致富。</span></p>
+    <div class="imgbox"><img src="art_home.jpg" alt="安居置业"></div>
+    <div class="mini">🏠 <b>关键：</b>自住房=安心+积累，是财富的根。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「安居置业」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 提升赚钱能力（免费）</div>
+  <div class="card">
+    <h3>理解 · 最好的投资是自己</h3>
+    <p><span class="q">巴比伦工匠手艺越好，收入越高。你也一样：持续学习、精进技能，让雇主和客户愿意为你付更高的价钱。能力是唯一别人抢不走的资产——收入翻倍，储蓄自然翻倍。</span></p>
+    <div class="imgbox"><img src="art_skill.jpg" alt="提升能力"></div>
+    <div class="mini">📚 <b>关键：</b>投资自己，回报率最高。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「提升能力」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：勤劳致富、五条黄金法则 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（勤劳致富、五条黄金法则、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 勤劳致富</div>
+  <div class="card">
+    <h3>理解 · 财富偏爱行动者</h3>
+    <p><span class="q">巴比伦人说：财富会逃离懒惰之手，拥抱勤劳之人。把想法变成行动，把行动变成习惯——存钱的习惯、学习的习惯、工作的习惯。日积月累，小钱变大钱。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧑‍🌾 <b>关键：</b>行动+习惯=财富。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「勤劳致富」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 五条黄金法则</div>
+  <div class="card">
+    <h3>理解 · 黄金的脾气</h3>
+    <p>①黄金乐意流向善于储蓄的人；②黄金会为懂得增值的人加倍工作；③黄金会跟随谨慎的人、避开莽撞的人；④黄金逃离不懂行的人；⑤黄金像野马，驾驭它需要智慧和经验。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="黄金法则"></div>
+    <div class="mini">🧭 <b>关键：</b>储蓄、增值、谨慎、懂行、经验。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 巴比伦行动清单</h3>
+    <p>发薪先存10%（存下十分之一）→ 列预算控欲望 → 闲置资金让黄金增值 → 投资先保本 → 攒首付拥有家宅 → 精进技能提升收入 → 每天行动积累习惯——七步成为你人生最富有的人。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>发薪日先存收入的10%，存进"鹅"账户</td></tr>
+      <tr><td>2</td><td>列月度预算：必要支出与想要支出分开</td></tr>
+      <tr><td>3</td><td>闲置资金配置：定投指数基金等可靠渠道</td></tr>
+      <tr><td>4</td><td>投资前问三问：懂不懂、借给谁、靠什么还</td></tr>
+      <tr><td>5</td><td>制定购房计划：首付目标+月供测算</td></tr>
+      <tr><td>6</td><td>每月学一门技能，提升主业收入</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：巴比伦富豪挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 财富寓言。配套阅读：《小狗钱钱》《财务自由之路》《富爸爸穷爸爸》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='richest-babylon';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🏛️',t:'财富七律',d:'认识法则',qs:[{q:'第一条？',opts:['存下十分之一','先花完','无感'],a:0},{q:'几条？',opts:['七条','三条','无感'],a:0},{q:'源自？',opts:['巴比伦','华尔街','无感'],a:0}]},
+ {ico:'💰',t:'存下十分之一',d:'第一桶金',qs:[{q:'存多少？',opts:['十分之一','全部','无感'],a:0},{q:'先做？',opts:['先付给自己','先还债','无感'],a:0},{q:'目的？',opts:['积累本金','消费','无感'],a:0}]},
+ {ico:'🧺',t:'控制欲望',d:'量入为出',qs:[{q:'欲望？',opts:['分清需要和想要','全满足','无感'],a:0},{q:'预算？',opts:['必要支出','随心花','无感'],a:0},{q:'钱袋？',opts:['让支出小于收入','月光','无感'],a:0}]},
+ {ico:'🌱',t:'黄金增值',d:'钱生钱',qs:[{q:'闲置黄金？',opts:['让它工作','藏着','无感'],a:0},{q:'增值靠？',opts:['复利+时间','一夜暴富','无感'],a:0},{q:'投给谁？',opts:['可靠的人','陌生人','无感'],a:0}]},
+ {ico:'🛡️',t:'保护本金',d:'安全第一',qs:[{q:'投资前？',opts:['了解风险','只看收益','无感'],a:0},{q:'借给谁？',opts:['可信赖','来者不拒','无感'],a:0},{q:'秘诀？',opts:['不亏钱','赚快钱','无感'],a:0}]},
+ {ico:'🏠',t:'安居置业',d:'拥有家宅',qs:[{q:'住房？',opts:['拥有自己的家','一直租房','无感'],a:0},{q:'意义？',opts:['安心+积累','负担','无感'],a:0},{q:'还清？',opts:['尽早','拖延','无感'],a:0}]},
+ {ico:'📚',t:'提升能力',d:'增加收入',qs:[{q:'收入靠？',opts:['技能提升','运气','无感'],a:0},{q:'学习？',opts:['持续投资自己','停止','无感'],a:0},{q:'工匠？',opts:['练到最好','凑合','无感'],a:0}]},
+ {ico:'🧑‍🌾',t:'勤劳致富',d:'行动原则',qs:[{q:'财富给谁？',opts:['勤劳者','懒汉','无感'],a:0},{q:'行动？',opts:['现在就做','拖延','无感'],a:0},{q:'坚持？',opts:['日积月累','三天打鱼','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'第一律？',opts:['存下十分之一','消费','无感'],a:0},{q:'第三律？',opts:['让黄金增值','藏起来','无感'],a:0},{q:'第五律？',opts:['拥有家宅','租房','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我的十分之一？',opts:['在存','没有','无'],a:0},{q:'我的欲望？',opts:['在控制','失控','无'],a:0},{q:'我的黄金？',opts:['在工作','闲置','无'],a:0}]},
+ {ico:'🧭',t:'财富启示',d:'学到什么',qs:[{q:'最重要？',opts:['自律储蓄','运气','无感'],a:0},{q:'第二？',opts:['让钱工作','藏钱','无感'],a:0},{q:'保障？',opts:['保护本金','追求高收益','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"财富属于"？',opts:['善于储蓄的人','挥霍的人','无感'],a:0},{q:'"黄金喜欢"？',opts:['勤劳的人','懒惰的人','无感'],a:0},{q:'"聪明投资"？',opts:['先保本','先冒险','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'发薪日？',opts:['先存10%','先消费','无感'],a:0},{q:'想买东西？',opts:['问必要吗','直接买','无感'],a:0},{q:'有人借钱？',opts:['看信用','就借','无感'],a:0}]},
+ {ico:'🔄',t:'财富闭环',d:'四步闭环',qs:[{q:'理解？',opts:['七律','运气','无感'],a:0},{q:'记忆？',opts:['十分之一','挥霍','无感'],a:0},{q:'练习？',opts:['预算+储蓄','月光','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我懂储蓄？',opts:['懂','不','无'],a:0},{q:'我懂增值？',opts:['懂','不','无'],a:0},{q:'我懂保本？',opts:['懂','不','无'],a:0}]},
+ {ico:'👑',t:'巴比伦富豪挑战',d:'10题综合测验',qs:[{q:'第一条？',opts:['存下十分之一','先花完','无感'],a:0},{q:'存多少？',opts:['十分之一','全部','无感'],a:0},{q:'欲望？',opts:['分清需要想要','全满足','无感'],a:0},{q:'闲置黄金？',opts:['让它工作','藏着','无感'],a:0},{q:'投资前？',opts:['了解风险','只看收益','无感'],a:0},{q:'住房？',opts:['拥有自己的家','一直租房','无感'],a:0},{q:'收入靠？',opts:['技能提升','运气','无感'],a:0},{q:'财富给谁？',opts:['勤劳者','懒汉','无感'],a:0},{q:'最重要？',opts:['自律储蓄','运气','无感'],a:0},{q:'聪明投资？',opts:['先保本','先冒险','无感'],a:0}]}
+];
+const badges=['🏛️','💰','🧺','🌱','🛡️','🏠','📚','🧑‍🌾','💡','🔎','🧭','👑'];
+const badgeNames=['财富法则家','十分之一践行者','欲望管理者','黄金增值师','本金守护者','安居置业家','能力提升者','勤劳致富人','概念掌握者','自省者','财富洞察者','巴比伦富豪'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
