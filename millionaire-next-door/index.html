@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《邻家的百万富翁》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《邻家的百万富翁》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>托马斯·斯坦利 · 百万富翁研究权威 · 美国财富真相的揭幕之作</p>
+    <span class="tag">量入为出</span><span class="tag">节俭自律</span><span class="tag">财富积累</span><span class="tag">时间分配</span><span class="tag">财务自由</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 富翁的真相（免费）</div>
+  <div class="card">
+    <h3>理解 · 他可能就住你隔壁</h3>
+    <p><span class="q">研究美国百万富翁20年的斯坦利发现：真正的富翁不穿名牌、不住豪宅、不开豪车，他们低调地住在普通社区。财富不是买出来的，是攒出来的——你看到的高消费，往往是假富人。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="邻家百万富翁"></div>
+    <div class="mini">🏠 <b>关键：</b>真富翁低调，假富人高调。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「富翁真相」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 量入为出（免费）</div>
+  <div class="card">
+    <h3>理解 · 支出的第一原则</h3>
+    <p><span class="q">收入再高，支出更高也是穷人。富翁的第一原则：让支出永远小于收入。每月做预算，区分需要和想要；收入增加时，别急着升级消费——把差额变成储蓄和投资。</span></p>
+    <div class="imgbox"><img src="art_balance.jpg" alt="量入为出"></div>
+    <div class="mini">⚖️ <b>关键：</b>支出<收入，是财富的起点。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「量入为出」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 节俭自律（免费）</div>
+  <div class="card">
+    <h3>理解 · 节俭不是抠门，是战略</h3>
+    <p><span class="q">富翁购物会看价格、会用优惠券、会开二手好车。他们把钱花在刀刃上：健康、教育、投资。节俭省下的每一块钱，都是可以生钱的种子——生活朴素，账户丰盈。</span></p>
+    <div class="imgbox"><img src="art_thrift.jpg" alt="节俭生活"></div>
+    <div class="mini">🍲 <b>关键：</b>对自己抠门，对资产大方。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「节俭自律」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 财富积累（免费）</div>
+  <div class="card">
+    <h3>理解 · 时间是财富的朋友</h3>
+    <p><span class="q">富翁的净资产是多年储蓄+投资积累的：储蓄率常在15%以上，投资长期持有，从不为市场波动慌神。复利曲线前期平缓、后期陡峭——早存十年，胜过晚存十年加十倍努力。</span></p>
+    <div class="imgbox"><img src="art_accumulate.jpg" alt="财富积累"></div>
+    <div class="mini">📈 <b>关键：</b>储蓄率+时间=复利奇迹。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「财富积累」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 时间分配（免费）</div>
+  <div class="card">
+    <h3>理解 · 把时间卖给未来</h3>
+    <p><span class="q">富翁把大量时间花在工作、学习和研究投资上，而不是娱乐消费。他们每天研究市场、规划财务、陪伴家人——时间花在哪，财富就在哪生长。富人管理时间，穷人打发时间。</span></p>
+    <div class="imgbox"><img src="art_time.jpg" alt="时间分配"></div>
+    <div class="mini">⏰ <b>关键：</b>时间管理=财富管理。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「时间分配」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 职业选择（免费）</div>
+  <div class="card">
+    <h3>理解 · 选对赛道，事半功倍</h3>
+    <p><span class="q">富翁大多是自己经营生意的老板，或在专业领域深耕的专家。选择你懂行的行业，把专业做到最好，收入自然水涨船高——职业是收入引擎，选对了，财富之路顺一半。</span></p>
+    <div class="imgbox"><img src="art_career.jpg" alt="职业选择"></div>
+    <div class="mini">💼 <b>关键：</b>深耕懂行的领域，收入与价值匹配。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「职业选择」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 财富传承（免费）</div>
+  <div class="card">
+    <h3>理解 · 富不过三代的破解法</h3>
+    <p><span class="q">给子女大笔金钱，常常毁掉他们。富翁的做法：给教育、给价值观、给机会，但钱要自己挣。教孩子做预算、自己存钱、从零创业——授人以渔，财富才能传下去。</span></p>
+    <div class="imgbox"><img src="art_legacy.jpg" alt="财富传承"></div>
+    <div class="mini">👨‍👩‍👧 <b>关键：</b>传习惯胜过传金钱。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「财富传承」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：财务自由、富翁的10大习惯 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（财务自由、富翁习惯、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 财务自由</div>
+  <div class="card">
+    <h3>理解 · 富翁的真正自由</h3>
+    <p><span class="q">净资产是衡量财富的唯一标准。富翁的终极目标不是炫富，而是财务自由：被动收入覆盖支出，不必为钱工作。财富带来的是选择权——想工作就工作，不想工作就停。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>自由=被动收入>支出。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「财务自由」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 富翁的十大习惯</div>
+  <div class="card">
+    <h3>理解 · 可复制的日常</h3>
+    <p>①做预算②量入为出③储蓄率15%+④投资长期⑤不追名牌⑥研究市场⑦深耕专业⑧自己当老板⑨时间用于积累⑩教育子女理财。十个习惯，普通人照做十年，也能成为邻家的百万富翁。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="富翁习惯"></div>
+    <div class="mini">💡 <b>关键：</b>习惯决定财富，与出身无关。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 邻家富翁行动清单</h3>
+    <p>做预算量入为出 → 生活节俭 → 储蓄率提到15%+ → 投资长期持有 → 时间用于积累 → 深耕职业赛道 → 教育子女理财——七步，让财富住进你的生活。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>建立月度预算，追踪每一笔支出</td></tr>
+      <tr><td>2</td><td>消费前问：这是需要还是想要？</td></tr>
+      <tr><td>3</td><td>储蓄率提到15%以上，发薪先存</td></tr>
+      <tr><td>4</td><td>每月定投指数基金，长期持有</td></tr>
+      <tr><td>5</td><td>每周学习专业/投资知识2小时</td></tr>
+      <tr><td>6</td><td>给孩子零花钱，教他做预算</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：富翁挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 财富习惯。配套阅读：《巴比伦最富有的人》《小狗钱钱》《财务自由之路》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='millionaire-next-door';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🏠',t:'富翁真相',d:'认识富翁',qs:[{q:'百万富翁？',opts:['就在邻家','住豪宅','无感'],a:0},{q:'开什么车？',opts:['普通车','豪车','无感'],a:0},{q:'财富来源？',opts:['习惯','运气','无感'],a:0}]},
+ {ico:'⚖️',t:'量入为出',d:'收支纪律',qs:[{q:'核心？',opts:['支出<收入','消费至上','无感'],a:0},{q:'预算？',opts:['必须做','随性','无感'],a:0},{q:'升级消费？',opts:['理性评估','立即买','无感'],a:0}]},
+ {ico:'🍲',t:'节俭自律',d:'消费观',qs:[{q:'穿衣？',opts:['舒适朴素','名牌','无感'],a:0},{q:'吃饭？',opts:['在家做','下馆子','无感'],a:0},{q:'打折？',opts:['会精打细算','不屑','无感'],a:0}]},
+ {ico:'📈',t:'财富积累',d:'长期主义',qs:[{q:'财富靠？',opts:['日积月累','一夜暴富','无感'],a:0},{q:'储蓄率？',opts:['15%以上','月光','无感'],a:0},{q:'投资？',opts:['长期持有','频繁交易','无感'],a:0}]},
+ {ico:'⏰',t:'时间分配',d:'精力管理',qs:[{q:'时间花哪？',opts:['工作+学习','娱乐','无感'],a:0},{q:'研究投资？',opts:['花时间','不关心','无感'],a:0},{q:'陪伴家人？',opts:['重视','忽略','无感'],a:0}]},
+ {ico:'💼',t:'职业选择',d:'收入引擎',qs:[{q:'最佳职业？',opts:['自己当老板','打工','无感'],a:0},{q:'专业？',opts:['懂行的领域','跟风','无感'],a:0},{q:'收入？',opts:['与价值匹配','与面子匹配','无感'],a:0}]},
+ {ico:'👨‍👩‍👧',t:'财富传承',d:'教育子女',qs:[{q:'给子女？',opts:['理财教育','大笔现金','无感'],a:0},{q:'子女就业？',opts:['自食其力','安排工作','无感'],a:0},{q:'富不过？',opts:['三代','永远','无感'],a:0}]},
+ {ico:'🧭',t:'财务自由',d:'终极目标',qs:[{q:'富翁标准？',opts:['净资产','开豪车','无感'],a:0},{q:'自由靠？',opts:['被动收入','高消费','无感'],a:0},{q:'幸福？',opts:['不被钱绑架','花钱','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'第一原则？',opts:['量入为出','名牌','无感'],a:0},{q:'财富引擎？',opts:['职业+节俭','运气','无感'],a:0},{q:'衡量标准？',opts:['净资产','收入','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我的支出？',opts:['在控制','失控','无'],a:0},{q:'我的储蓄率？',opts:['15%+','0%','无'],a:0},{q:'我的时间？',opts:['用于积累','用于娱乐','无'],a:0}]},
+ {ico:'🧭',t:'富翁启示',d:'学到什么',qs:[{q:'最重要？',opts:['消费自律','收入高低','无感'],a:0},{q:'第二？',opts:['长期积累','快速致富','无感'],a:0},{q:'传承？',opts:['教育','遗产','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"富不靠"？',opts:['收入，靠习惯','运气','无感'],a:0},{q:'"财富是"？',opts:['积累的结果','消费的结果','无感'],a:0},{q:'"别人看不出"？',opts:['你有多少钱','你的努力','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'想买车？',opts:['评估折旧','炫耀','无感'],a:0},{q:'涨工资？',opts:['多存少花','立刻花','无感'],a:0},{q:'孩子要钱？',opts:['教挣钱','直接给','无感'],a:0}]},
+ {ico:'🔄',t:'财富闭环',d:'四步闭环',qs:[{q:'理解？',opts:['量入为出','消费','无感'],a:0},{q:'记忆？',opts:['节俭+积累','名牌','无感'],a:0},{q:'练习？',opts:['预算+储蓄','月光','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我能量入为出？',opts:['能','不','无'],a:0},{q:'我能节俭？',opts:['能','不','无'],a:0},{q:'我能长期积累？',opts:['能','不','无'],a:0}]},
+ {ico:'👑',t:'富翁挑战',d:'10题综合测验',qs:[{q:'百万富翁？',opts:['就在邻家','住豪宅','无感'],a:0},{q:'核心？',opts:['支出<收入','消费至上','无感'],a:0},{q:'穿衣？',opts:['舒适朴素','名牌','无感'],a:0},{q:'财富靠？',opts:['日积月累','一夜暴富','无感'],a:0},{q:'时间花哪？',opts:['工作+学习','娱乐','无感'],a:0},{q:'最佳职业？',opts:['自己当老板','打工','无感'],a:0},{q:'给子女？',opts:['理财教育','大笔现金','无感'],a:0},{q:'富翁标准？',opts:['净资产','开豪车','无感'],a:0},{q:'最重要？',opts:['消费自律','收入高低','无感'],a:0},{q:'财富是？',opts:['积累的结果','消费的结果','无感'],a:0}]}
+];
+const badges=['🏠','⚖️','🍲','📈','⏰','💼','👨‍👩‍👧','🧭','💡','🔎','🧭','👑'];
+const badgeNames=['真相发现者','量入为出者','节俭生活家','积累主义者','时间管理者','职业规划师','传承教育家','自由追寻者','概念掌握者','自省者','财富洞察者','邻家富翁'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
