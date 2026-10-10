@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《有效资产管理》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《有效资产管理》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>威廉·伯恩斯坦 · 资产配置大师 · 有效前沿实践指南</p>
+    <span class="tag">风险收益</span><span class="tag">资产类别</span><span class="tag">有效前沿</span><span class="tag">组合构建</span><span class="tag">生命周期</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 有效资产（免费）</div>
+  <div class="card">
+    <h3>理解 · 配置决定长期回报与风险</h3>
+    <p><span class="q">《有效资产管理》的核心命题：投资组合的长期回报和风险，主要由大类资产配置决定，而不是个股选择。伯恩斯坦用金融学实证证明：股票、债券、房产怎么配，比买哪只股票重要得多。科学的配置，是普通投资者唯一可靠的取胜之道。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="有效资产管理"></div>
+    <div class="mini">📊 <b>关键：</b>先决定持有什么，再决定怎么买。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「有效资产」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 风险收益（免费）</div>
+  <div class="card">
+    <h3>理解 · 收益是承担风险的报酬</h3>
+    <p><span class="q">金融的第一定律：高收益必然伴随高风险。股票长期回报最高，但波动也最大；债券回报平稳但收益有限。没有免费的午餐——宣称"高收益低风险"的，都是骗子。投资者要做的，是选一个自己能承受的波动水平，再追求对应的回报。</span></p>
+    <div class="imgbox"><img src="art_risk.jpg" alt="风险收益"></div>
+    <div class="mini">⚖️ <b>关键：</b>能睡好觉的波动，才是你的风险预算。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「风险收益」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 资产类别（免费）</div>
+  <div class="card">
+    <h3>理解 · 认识你的投资武器库</h3>
+    <p><span class="q">三大核心资产：股票（长期回报高、波动大）、债券（回报稳、波动小）、房产（独立于股市的第三极）。加上现金与海外资产做补充。每类资产都有自己的性格：涨跌周期、风险特征各不相同——组合的价值，正在于让它们互补。</span></p>
+    <div class="imgbox"><img src="art_asset.jpg" alt="资产类别"></div>
+    <div class="mini">🧩 <b>关键：</b>资产各司其职，组合让它们互补。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「资产类别」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 有效前沿（免费）</div>
+  <div class="card">
+    <h3>理解 · 在风险与回报之间找到最优</h3>
+    <p><span class="q">有效前沿是现代金融的瑰宝：在同等风险下收益最高、或同等收益下风险最低的那些组合，连成一条曲线。分散化能把组合"推"上前沿——同样风险赚更多，或同样收益担更少。你的工作，是在前沿上选一个适合自己风险承受的点。</span></p>
+    <div class="imgbox"><img src="art_frontier.jpg" alt="有效前沿"></div>
+    <div class="mini">📈 <b>关键：</b>分散不是降低收益，而是优化风险收益比。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「有效前沿」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 组合构建（免费）</div>
+  <div class="card">
+    <h3>理解 · 先拼大类，再填细节</h3>
+    <p><span class="q">构建组合的正确顺序：第一步定大类比例（股票债券房产现金）；第二步在各资产内部分散（不同行业、不同国家）；第三步定期再平衡。伯恩斯坦强调：组合中各类资产的相关性越低越好——它们涨跌不同步，整体才稳。</span></p>
+    <div class="imgbox"><img src="art_portfolio.jpg" alt="组合构建"></div>
+    <div class="mini">🧩 <b>关键：</b>低相关资产拼出的组合更有效。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「组合构建」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 生命周期（免费）</div>
+  <div class="card">
+    <h3>理解 · 配置随年龄进化</h3>
+    <p><span class="q">年轻的时候人力资本充足、时间窗口长，可以承受高波动，股票占比可以很高（比如80%）；临近退休，需要用钱越来越近，配置要转向保守，债券占比升高。伯恩斯坦给出的简单法则：配置要和你的生命阶段匹配，越老越保守。</span></p>
+    <div class="imgbox"><img src="art_life.jpg" alt="生命周期"></div>
+    <div class="mini">⏰ <b>关键：</b>年龄就是风险承受力的一部分。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「生命周期」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 耐心坚持（免费）</div>
+  <div class="card">
+    <h3>理解 · 配置的价值要用十年兑现</h3>
+    <p><span class="q">有效配置的回报，需要足够长的时间才显现：十年以上，复利才能滚出雪球，分散的好处才能兑现。伯恩斯坦说：投资者最大的敌人不是市场，是自己的手——频繁买卖、追涨杀跌，会把科学配置毁于一旦。</span></p>
+    <div class="imgbox"><img src="art_patience.jpg" alt="耐心坚持"></div>
+    <div class="mini">🌳 <b>关键：</b>树要时间长大，组合要时间复利。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「耐心坚持」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：投资心法、伯恩斯坦配置法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（投资心法、伯恩斯坦配置法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 投资心法</div>
+  <div class="card">
+    <h3>理解 · 风险、分散、耐心</h3>
+    <p><span class="q">伯恩斯坦心法三条：第一，风险匹配——收益来自承担风险，选你能承受的波动；第二，真正分散——低相关资产互补，把组合推上有效前沿；第三，长期耐心——配置的价值用十年兑现，别让手毁掉脑子的决定。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏆 <b>关键：</b>风险、分散、耐心。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「投资心法」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 伯恩斯坦配置法</div>
+  <div class="card">
+    <h3>理解 · 一套可执行的配置流程</h3>
+    <p>第一步测风险：评估年龄、收入、心理承受，定出可接受的最大回撤。第二步定比例：按风险预算分配股票债券房产现金。第三步选工具：各资产内部用低成本指数基金分散。第四步再平衡：每年恢复目标比例，涨多卖跌多买。</p>
+    <div class="imgbox"><img src="art_frontier.jpg" alt="伯恩斯坦配置法"></div>
+    <div class="mini">🧭 <b>关键：</b>测风险-定比例-选工具-再平衡。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从拍脑袋到科学配置的路线图</h3>
+    <p>认识风险收益 → 熟悉资产类别 → 理解有效前沿 → 构建低相关组合 → 匹配生命周期 → 长期耐心执行——六步走上科学配置之路。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>写下你能承受的最大亏损比例</td></tr>
+      <tr><td>2</td><td>按年龄设定股票债券目标比例</td></tr>
+      <tr><td>3</td><td>各资产内选低成本指数基金</td></tr>
+      <tr><td>4</td><td>设定每年再平衡一次</td></tr>
+      <tr><td>5</td><td>写下"波动不卖"的书面纪律</td></tr>
+      <tr><td>6</td><td>每年复盘配置执行情况</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：伯恩斯坦挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 资产配置。配套阅读：《不落俗套的成功》《共同基金常识》《漫步华尔街》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='rational-asset';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'📊',t:'有效资产',d:'书名之义',qs:[{q:'核心？',opts:['配置决定长期回报风险','选股决定一切','无感'],a:0},{q:'作者？',opts:['资产配置大师','短线高手','无感'],a:0},{q:'本书？',opts:['科学配置方法论','炒股秘籍','无感'],a:0}]},
+ {ico:'⚖️',t:'风险收益',d:'天平两端',qs:[{q:'收益？',opts:['与风险正相关','与风险无关','无感'],a:0},{q:'高收益？',opts:['伴随高波动','一定安全','无感'],a:0},{q:'选择？',opts:['按能承受的波动','只追最高收益','无感'],a:0}]},
+ {ico:'🧩',t:'资产类别',d:'认识各类资产',qs:[{q:'股票？',opts:['长期回报高波动大','长期回报低','无感'],a:0},{q:'债券？',opts:['波动小回报稳','波动大','无感'],a:0},{q:'房产？',opts:['第三类核心资产','不算资产','无感'],a:0}]},
+ {ico:'📈',t:'有效前沿',d:'最优组合',qs:[{q:'前沿？',opts:['同等风险收益最高','收益最高的点','无感'],a:0},{q:'分散？',opts:['把组合推向前沿','降低收益','无感'],a:0},{q:'目标？',opts:['前沿上选一点','随便买','无感'],a:0}]},
+ {ico:'🧩',t:'组合构建',d:'拼图组合',qs:[{q:'构建？',opts:['先定大类比例','先选个股','无感'],a:0},{q:'比例？',opts:['按风险承受','按心情','无感'],a:0},{q:'相关？',opts:['低相关更好','越高越好','无感'],a:0}]},
+ {ico:'⏰',t:'生命周期',d:'年龄决定配置',qs:[{q:'年轻？',opts:['股票比例高','债券比例高','无感'],a:0},{q:'年老？',opts:['债多于股','股多于债','无感'],a:0},{q:'原则？',opts:['越老越保守','越老越激进','无感'],a:0}]},
+ {ico:'🌳',t:'耐心坚持',d:'让树长大',qs:[{q:'期限？',opts:['十年以上','几天','无感'],a:0},{q:'波动？',opts:['正常现象','灾难','无感'],a:0},{q:'复利？',opts:['需要时间','不需要','无感'],a:0}]},
+ {ico:'🏆',t:'投资心法',d:'赢家思维',qs:[{q:'第一？',opts:['定配置守纪律','找牛股','无感'],a:0},{q:'关键？',opts:['分散+低成本+耐心','消息+运气','无感'],a:0},{q:'结局？',opts:['长期稳稳变富','一夜暴富','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['配置-前沿-分散-生命周期','选股-择时','无感'],a:0},{q:'关键？',opts:['低相关+再平衡+低成本','满仓一只','无感'],a:0},{q:'方法？',opts:['按风险定比例','凭感觉','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我配置？',opts:['有明确比例','没有','无'],a:0},{q:'我分散？',opts:['跨资产类别','全仓一股','无'],a:0},{q:'我坚持？',opts:['长期执行','频繁变动','无'],a:0}]},
+ {ico:'🧭',t:'智慧启示',d:'学到什么',qs:[{q:'第一？',opts:['风险收益要匹配','只想要高收益','无感'],a:0},{q:'核心？',opts:['分散与耐心','集中与赌博','无感'],a:0},{q:'终点？',opts:['一生受益','一时爽','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"收益"？',opts:['来自承担风险','来自聪明','无感'],a:0},{q:'"配置"？',opts:['决定长期成败','可有可无','无感'],a:0},{q:'"组合"？',opts:['比个股更重要','不重要','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'股市大涨？',opts:['再平衡降股票','追涨加仓','无感'],a:0},{q:'市场暴跌？',opts:['按配置执行','恐慌清仓','无感'],a:0},{q:'临近退休？',opts:['降低股票比例','加杠杆','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['配置决定长期回报','选股决定一切','无感'],a:0},{q:'记忆？',opts:['风险-类别-前沿-组合-生命周期','无关联概念','无感'],a:0},{q:'练习？',opts:['按生命周期定比例再平衡','凭感觉','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我定比例？',opts:['按年龄风险','追热点','无'],a:0},{q:'我选品？',opts:['低成本指数','高费基金','无'],a:0},{q:'我执行？',opts:['定期再平衡','从不动','无'],a:0}]},
+ {ico:'👑',t:'伯恩斯坦挑战',d:'10题综合测验',qs:[{q:'核心？',opts:['配置决定长期回报风险','选股决定一切','无感'],a:0},{q:'收益？',opts:['与风险正相关','与风险无关','无感'],a:0},{q:'股票？',opts:['长期回报高波动大','长期回报低','无感'],a:0},{q:'前沿？',opts:['同等风险收益最高','收益最高的点','无感'],a:0},{q:'构建？',opts:['先定大类比例','先选个股','无感'],a:0},{q:'年轻？',opts:['股票比例高','债券比例高','无感'],a:0},{q:'期限？',opts:['十年以上','几天','无感'],a:0},{q:'"收益"？',opts:['来自承担风险','来自聪明','无感'],a:0},{q:'本质？',opts:['配置-前沿-分散-生命周期','选股-择时','无感'],a:0},{q:'第一？',opts:['定配置守纪律','找牛股','无感'],a:0}]}
+];
+const badges=['📊','⚖️','🧩','📈','🧩','⏰','🌳','🏆','💡','🔎','🧭','👑'];
+const badgeNames=['配置大师','风险匹配者','资产行家','前沿行者','组合建筑师','生命周期规划师','耐心园丁','投资心法家','概念掌握者','自省者','智慧导航员','伯恩斯坦传人'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
