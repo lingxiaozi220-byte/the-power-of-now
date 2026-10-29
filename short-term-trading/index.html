@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《短线交易秘诀》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《短线交易秘诀》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>拉里·威廉姆斯 · 短线交易冠军 · 四十年实战系统</p>
+    <span class="tag">波动率突破</span><span class="tag">开盘区间</span><span class="tag">止损纪律</span><span class="tag">仓位管理</span><span class="tag">交易心理</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 短线交易秘诀（免费）</div>
+  <div class="card">
+    <h3>理解 · 短线赚钱靠纪律，不靠预测</h3>
+    <p><span class="q">拉里·威廉姆斯用四十年实战证明：短线交易的核心不是预测涨跌，而是建立一套有正期望值的规则系统，并机械执行。情绪是短线最大的敌人，规则是最可靠的战友。本书教你的是一整套被反复验证的交易方法：波动率突破、开盘区间、止损纪律、仓位管理。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="短线交易秘诀"></div>
+    <div class="mini">⚡ <b>关键：</b>系统+纪律=稳定盈利。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「短线交易」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 交易心理（免费）</div>
+  <div class="card">
+    <h3>理解 · 把情绪关在门外</h3>
+    <p><span class="q">恐惧让你该止损时不敢动，贪婪让你该止盈时不肯走。威廉姆斯强调：职业交易者和散户的区别不在技术，而在心理管理。方法很简单——把决策交给预先写好的规则，情绪不参与下单。恐惧时按计划止损，贪婪时到目标位落袋。</span></p>
+    <div class="imgbox"><img src="art_mind.jpg" alt="交易心理"></div>
+    <div class="mini">🧠 <b>关键：</b>规则替你下单，情绪靠边站。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「交易心理」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 波动率突破（免费）</div>
+  <div class="card">
+    <h3>理解 · 波动收缩后必有爆发</h3>
+    <p><span class="q">市场波动像弹簧：压缩越紧，反弹越猛。威廉姆斯的核心方法之一是在波动率收缩后，等价格突破近期区间高点时顺势进场。要点：波动率是价格波动的幅度；突破必须带量确认；假突破用止损保护。这套方法的本质是捕捉被压抑行情的爆发段。</span></p>
+    <div class="imgbox"><img src="art_breakout.jpg" alt="波动率突破"></div>
+    <div class="mini">📈 <b>关键：</b>收缩后突破，顺势进场。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「波动率突破」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 开盘区间（免费）</div>
+  <div class="card">
+    <h3>理解 · 日内最重要的战场</h3>
+    <p><span class="q">开盘后一段时间形成的价格区间（开盘区间），是日内交易者最重要的参考：突破开盘区间高点，短线顺势做多；跌破低点，顺势做空。威廉姆斯发现开盘第一小时的区间最有效，因为那里聚集了隔夜信息的定价和当日第一批方向的确认。</span></p>
+    <div class="imgbox"><img src="art_range.jpg" alt="开盘区间"></div>
+    <div class="mini">⏰ <b>关键：</b>突破开盘区间，顺势而行。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「开盘区间」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 止损纪律（免费）</div>
+  <div class="card">
+    <h3>理解 · 保命是交易第一原则</h3>
+    <p><span class="q">威廉姆斯的铁律：每笔交易必设止损。止损不是认输，而是用可控的小亏换取赚大钱的机会——这就是期望值思维。小亏大赚，赢多亏少，长期必然盈利。最忌讳的是扛单等回本，一次大亏足以毁掉十次小赚。</span></p>
+    <div class="imgbox"><img src="art_stop.jpg" alt="止损纪律"></div>
+    <div class="mini">🛑 <b>关键：</b>小亏换大赚，止损保命。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「止损纪律」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 仓位管理（免费）</div>
+  <div class="card">
+    <h3>理解 · 资金曲线比单笔盈亏重要</h3>
+    <p><span class="q">仓位管理决定你能活多久：按风险而不是按感觉定仓位；账户回撤到警戒线就减仓，而不是加倍押注想翻本。目标不是单笔暴富，而是让资金曲线平滑向上。仓位管理是专业和业余的分水岭。</span></p>
+    <div class="imgbox"><img src="art_sizing.jpg" alt="仓位管理"></div>
+    <div class="mini">⚖️ <b>关键：</b>按风险定仓，回撤就减仓。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「仓位管理」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 复盘训练（免费）</div>
+  <div class="card">
+    <h3>理解 · 高手都是复盘的产物</h3>
+    <p><span class="q">每天收盘后复盘：记录每笔交易的进出场理由、当时的情绪、是否遵守规则。复盘不是看盈亏数字，而是找出重复犯的错误——该止损没止损、该等待没等待。错误清单就是你的改进地图。坚持三个月，你会看见自己的交易水平跃升。</span></p>
+    <div class="imgbox"><img src="art_review.jpg" alt="复盘训练"></div>
+    <div class="mini">📋 <b>关键：</b>复盘找错误，错误是地图。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「复盘训练」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：系统化交易、短线实战法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（系统化交易、短线实战法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 系统化交易</div>
+  <div class="card">
+    <h3>理解 · 把交易变成流水线</h3>
+    <p><span class="q">系统化交易：把进出场、止损、仓位全部写成规则，信号出现才动手，完全照规则执行。好处：杜绝情绪干扰、可复盘、可优化。心态上接受单笔亏损是系统的正常成本——只要期望值为正，执行得越多越接近盈利。记住：交易是概率游戏，不是每笔都要赢。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>信号出现才动手，完全照规则。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「系统化交易」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 短线实战法</div>
+  <div class="card">
+    <h3>理解 · 一套完整的日内流程</h3>
+    <p>第一步定标的：选波动活跃、流动性好的品种。第二步看开盘：记录开盘区间与方向。第三步等突破：波动收缩后等待区间突破信号。第四步进场：突破时顺势进场，带量确认。第五步设止损：进场同时挂好止损位（区间另一侧）。第六步管理：到目标位分批止盈，破止损无条件离场。收盘复盘记录。</p>
+    <div class="imgbox"><img src="art_review.jpg" alt="短线实战法"></div>
+    <div class="mini">🧭 <b>关键：</b>选标的-看开盘-等突破-进场-止损-止盈。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从情绪交易到系统交易</h3>
+    <p>交易心理管情绪 → 波动率突破找机会 → 开盘区间定方向 → 止损纪律保本金 → 仓位管理控风险 → 复盘训练促成长——六步建立自己的短线交易系统。记住：短线交易的秘诀不是预测，而是纪律。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>写下你的交易规则：进出场、止损、仓位</td></tr>
+      <tr><td>2</td><td>每笔交易进场前检查：信号是否出现</td></tr>
+      <tr><td>3</td><td>进场同时挂好止损，绝不取消</td></tr>
+      <tr><td>4</td><td>到目标位分批止盈，不贪多</td></tr>
+      <tr><td>5</td><td>每天收盘复盘，记录理由与情绪</td></tr>
+      <tr><td>6</td><td>每周统计胜率盈亏比，优化系统</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：短线大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 短线交易。配套阅读：《股市趋势技术分析》《日本蜡烛图技术》《海龟交易法则》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='short-term-trading';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'⚡',t:'短线交易',d:'书名之义',qs:[{q:'核心？',opts:['用规则和纪律稳定盈利','靠预测抓大行情','无感'],a:0},{q:'作者？',opts:['拉里·威廉姆斯','巴菲特','无感'],a:0},{q:'本书？',opts:['一套被验证四十年的系统','随机买卖法','无感'],a:0}]},
+ {ico:'🧠',t:'交易心理',d:'情绪与规则',qs:[{q:'关键？',opts:['把情绪关在门外','凭感觉下单','无感'],a:0},{q:'恐惧？',opts:['按计划止损','追涨杀跌','无感'],a:0},{q:'贪婪？',opts:['到目标位落袋','贪多不卖','无感'],a:0}]},
+ {ico:'📈',t:'波动率突破',d:'区间的爆发',qs:[{q:'波动率？',opts:['价格波动幅度','成交量大小','无感'],a:0},{q:'突破？',opts:['突破区间高点进场','突破就观望','无感'],a:0},{q:'意义？',opts:['波动收缩后爆发','波动永远均匀','无感'],a:0}]},
+ {ico:'⏰',t:'开盘区间',d:'日内的高低点',qs:[{q:'开盘区间？',opts:['开盘一段时间的价差范围','全天均价','无感'],a:0},{q:'用法？',opts:['突破开盘区间顺势进场','逆势抄底','无感'],a:0},{q:'时间？',opts:['开盘一小时最有效','收盘前最有效','无感'],a:0}]},
+ {ico:'🛑',t:'止损纪律',d:'保命第一',qs:[{q:'止损？',opts:['每笔交易必设','只设大单','无感'],a:0},{q:'幅度？',opts:['小亏即走','扛单等回本','无感'],a:0},{q:'意义？',opts:['小亏换大赚的机会','止损丢面子','无感'],a:0}]},
+ {ico:'⚖️',t:'仓位管理',d:'资金曲线',qs:[{q:'仓位？',opts:['按风险定仓位','满仓梭哈','无感'],a:0},{q:'回撤？',opts:['回撤时减仓','回撤时加仓','无感'],a:0},{q:'目标？',opts:['资金曲线平滑向上','单笔暴富','无感'],a:0}]},
+ {ico:'📋',t:'复盘训练',d:'日复一日',qs:[{q:'复盘？',opts:['记录每笔交易','做完整天不记','无感'],a:0},{q:'内容？',opts:['进出场理由与情绪','只看盈亏','无感'],a:0},{q:'价值？',opts:['找出重复错误','毫无用处','无感'],a:0}]},
+ {ico:'🛡️',t:'系统化交易',d:'机械执行',qs:[{q:'系统？',opts:['信号出现才动手','随意进出','无感'],a:0},{q:'执行？',opts:['完全照规则','临时改规则','无感'],a:0},{q:'心态？',opts:['接受单笔亏损','追求每笔都赚','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['心理-突破-止损-仓位-复盘','预测点位','无感'],a:0},{q:'关键？',opts:['规则大于情绪','情绪大于规则','无感'],a:0},{q:'方法？',opts:['小亏大赚的期望值','每笔都赢','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我设止损？',opts:['每笔必设','经常不设','无'],a:0},{q:'我复盘？',opts:['每天记录交易','从不复盘','无'],a:0},{q:'我执行？',opts:['完全照规则','常破规则','无'],a:0}]},
+ {ico:'🧭',t:'智慧启示',d:'学到什么',qs:[{q:'第一？',opts:['短线赚钱靠纪律','靠盘感','无感'],a:0},{q:'核心？',opts:['系统化+机械化','随性交易','无感'],a:0},{q:'终点？',opts:['稳定的小亏大赚','一夜暴富','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"交易"？',opts:['是概率游戏','是运气游戏','无感'],a:0},{q:'"止损"？',opts:['是保命之本','是认输','无感'],a:0},{q:'"规则"？',opts:['替你做决定','束缚自由','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'波动收缩？',opts:['准备突破爆发','无操作意义','无感'],a:0},{q:'突破开盘区间？',opts:['顺势进场','立刻反向','无感'],a:0},{q:'连续亏损？',opts:['减仓复盘','加倍押注','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['短线=概率+纪律','短线=盘感','无感'],a:0},{q:'记忆？',opts:['突破止损仓位复盘','孤立概念','无感'],a:0},{q:'练习？',opts:['模拟盘按规则执行','凭感觉','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我建系统？',opts:['写清进出场规则','无系统','无'],a:0},{q:'我执行？',opts:['模拟盘跑系统','随意进出','无'],a:0},{q:'我改进？',opts:['按复盘优化规则','凭感觉改','无'],a:0}]},
+ {ico:'👑',t:'短线大师挑战',d:'10题综合测验',qs:[{q:'核心？',opts:['用规则和纪律稳定盈利','靠预测抓大行情','无感'],a:0},{q:'波动率？',opts:['价格波动幅度','成交量大小','无感'],a:0},{q:'开盘区间？',opts:['开盘一段时间的价差范围','全天均价','无感'],a:0},{q:'止损？',opts:['每笔交易必设','只设大单','无感'],a:0},{q:'仓位？',opts:['按风险定仓位','满仓梭哈','无感'],a:0},{q:'复盘？',opts:['记录每笔交易','做完整天不记','无感'],a:0},{q:'执行？',opts:['完全照规则','临时改规则','无感'],a:0},{q:'本质？',opts:['心理-突破-止损-仓位-复盘','预测点位','无感'],a:0},{q:'方法？',opts:['小亏大赚的期望值','每笔都赢','无感'],a:0},{q:'终点？',opts:['稳定的小亏大赚','一夜暴富','无感'],a:0}]}
+];
+const badges=['⚡','🧠','📈','⏰','🛑','⚖️','📋','🛡️','💡','🔎','🧭','👑'];
+const badgeNames=['短线猎手','情绪控制者','波动率行者','区间突破手','止损卫士','仓位管理师','复盘达人','系统执行者','概念掌握者','自省者','智慧导航员','短线大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
