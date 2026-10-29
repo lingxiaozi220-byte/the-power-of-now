@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《约翰·聂夫的成功投资》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《约翰·聂夫的成功投资》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>约翰·聂夫 · 温莎基金传奇 · 低市盈率投资大师</p>
+    <span class="tag">低市盈率</span><span class="tag">股息收益</span><span class="tag">反向思维</span><span class="tag">耐心持有</span><span class="tag">价值回归</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 约翰·聂夫的成功投资（免费）</div>
+  <div class="card">
+    <h3>理解 · 低市盈率投资的传奇</h3>
+    <p><span class="q">约翰·聂夫管理温莎基金三十一年，平均年化跑赢市场三个百分点，31年中22年跑赢标普500。他的方法核心：低市盈率投资——在冷门处买便宜的好股票，用纪律等待价值回归。股息收益、反向思维、耐心持有，构成他的完整投资哲学。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="约翰聂夫成功投资"></div>
+    <div class="mini">📉 <b>关键：</b>便宜买入好公司，纪律等待回归。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「低市盈率投资」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 选股筛子（免费）</div>
+  <div class="card">
+    <h3>理解 · 聂夫的七大选股标准</h3>
+    <p><span class="q">聂夫用七个标准筛股票：①市盈率低于市场平均；②盈利增长稳健可持续；③股息率稳定且可观；④总回报率（盈利成长+股息）相对市盈率有吸引力；⑤基本面良好；⑥行业地位稳固；⑦股价被市场忽视或低估。全部满足才入选，缺一项就淘汰。</span></p>
+    <div class="imgbox"><img src="art_screen.jpg" alt="选股筛子"></div>
+    <div class="mini">🔍 <b>关键：</b>七大标准全过才入选。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「选股筛子」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 市盈率（免费）</div>
+  <div class="card">
+    <h3>理解 · 便宜与贵的尺子</h3>
+    <p><span class="q">市盈率=股价÷每股盈利：用多少钱买一元盈利。低市盈率意味着同样的盈利，你花的钱更少——这就是安全边际。但低PE不是万能：盈利下滑的公司PE会失真，要结合盈利趋势看。聂夫买低PE，同时要求盈利真实且可持续。</span></p>
+    <div class="imgbox"><img src="art_pe.jpg" alt="市盈率"></div>
+    <div class="mini">⚖️ <b>关键：</b>低PE+真盈利=便宜好货。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「市盈率」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 股息收益（免费）</div>
+  <div class="card">
+    <h3>理解 · 下跌时也有现金回报</h3>
+    <p><span class="q">股息是公司分给股东的真金白银。聂夫特别看重股息：股价下跌时，股息依然照发，给了投资者现金回报和心理支撑；股息再投资还能加速复利。高股息+低PE+稳健盈利，是聂夫最爱的组合——下跌有底，上涨有弹性。</span></p>
+    <div class="imgbox"><img src="art_dividend.jpg" alt="股息收益"></div>
+    <div class="mini">💵 <b>关键：</b>股息是下跌中的安全垫。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「股息收益」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 反向思维（免费）</div>
+  <div class="card">
+    <h3>理解 · 在无人问津处淘金</h3>
+    <p><span class="q">热门股人人抢，价格被推高，机会反而不多；冷门股无人问津，往往被低估。聂夫总在别人不愿看的地方寻找机会：被行业低谷打压的公司、被市场遗忘的细分龙头。反向思维不是为反而反，而是让价格回到价值——人多的地方贵，人少的地方可能藏着宝。</span></p>
+    <div class="imgbox"><img src="art_contrarian.jpg" alt="反向思维"></div>
+    <div class="mini">🔄 <b>关键：</b>冷门处寻找被低估的好货。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「反向思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 耐心持有（免费）</div>
+  <div class="card">
+    <h3>理解 · 等待价值回归</h3>
+    <p><span class="q">买入便宜的好股票后，聂夫做的只有一件事：等。价格终会向价值回归，只是时间问题。他平均持有周期远超市场，换手率低，交易成本省。卖出条件：价值兑现（涨到估值高位）、基本面恶化、或有更便宜更好的替代品。</span></p>
+    <div class="imgbox"><img src="art_patience.jpg" alt="耐心持有"></div>
+    <div class="mini">🐢 <b>关键：</b>便宜买进，耐心等价值兑现。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「耐心持有」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 行业轮动（免费）</div>
+  <div class="card">
+    <h3>理解 · 组合管理是长期游戏</h3>
+    <p><span class="q">聂夫把资金分散在多个行业，既降低单一行业风险，又能捕捉不同行业的低估机会。他关注行业景气周期：在行业低谷布局，在行业高峰减持。评价标准是组合整体跑赢大盘，而不是每笔都要赢——这是组合管理最重要的心态。</span></p>
+    <div class="imgbox"><img src="art_review.jpg" alt="行业轮动"></div>
+    <div class="mini">📊 <b>关键：</b>多行业分散，组合整体取胜。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「行业轮动」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：纪律为王、价值投资实战、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（纪律为王、价值投资实战、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 纪律为王</div>
+  <div class="card">
+    <h3>理解 · 投资成败在纪律</h3>
+    <p><span class="q">聂夫的成功一半来自选股，一半来自纪律：按标准买卖，不感情用事；贵了就卖，便宜了就买，不预测市场；长期持有，不因波动惊慌。投资不是预测的艺术，是纪律的艺术。把规则写下来，市场喧嚣时，规则替你做主。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>规则写下来，情绪不参与。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「纪律为王」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 价值投资实战</div>
+  <div class="card">
+    <h3>理解 · 一套完整选股流程</h3>
+    <p>第一步建池：全市场扫描，筛出低PE+正盈利的股票。第二步过滤：按七大标准逐项核对，剔除不合格者。第三步对比：用总回报率（盈利成长+股息）除以市盈率，比值越高越有吸引力。第四步分散：覆盖多个行业，控制单票仓位。第五步买入：在股价被低估且无人问津时分批买入。第六步持有：耐心等价值兑现，达目标位或基本面恶化时卖出。</p>
+    <div class="imgbox"><img src="art_review.jpg" alt="价值投资实战"></div>
+    <div class="mini">🧭 <b>关键：</b>建池-过滤-对比-分散-买入-持有。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从低市盈率到长期复利</h3>
+    <p>选股筛子找便宜好货 → 市盈率衡量安全边际 → 股息提供下跌保护 → 反向思维挖掘冷门机会 → 耐心等待价值回归 → 行业轮动管理组合——六步建立自己的价值投资体系。记住：投资是纪律的艺术，便宜买入、耐心持有、笑到最后。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>建立股票池，用市盈率初筛低估值股票</td></tr>
+      <tr><td>2</td><td>用聂夫七大标准逐项核对候选公司</td></tr>
+      <tr><td>3</td><td>计算总回报率（盈利成长+股息）对比估值</td></tr>
+      <tr><td>4</td><td>分散配置3-5个行业，单票仓位设上限</td></tr>
+      <tr><td>5</td><td>写下买入与卖出规则，市场波动时照做</td></tr>
+      <tr><td>6</td><td>每季度复盘组合，评估是否跑赢大盘</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：价值大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 价值投资。配套阅读：《聪明的投资者》《彼得·林奇的成功投资》《股市长线法宝》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='john-neff';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'📉',t:'低市盈率投资',d:'书名之义',qs:[{q:'核心？',opts:['用低市盈率买便宜好股','追高热门股','无感'],a:0},{q:'作者？',opts:['约翰·聂夫','巴菲特','无感'],a:0},{q:'业绩？',opts:['31年跑赢市场22年','常年垫底','无感'],a:0}]},
+ {ico:'🔍',t:'选股筛子',d:'七大标准',qs:[{q:'市盈率？',opts:['低于市场平均','越高越好','无感'],a:0},{q:'股息？',opts:['稳定分红','不分红','无感'],a:0},{q:'成长？',opts:['盈利稳健增长','亏损扩张','无感'],a:0}]},
+ {ico:'⚖️',t:'市盈率',d:'价格与盈利',qs:[{q:'市盈率？',opts:['股价÷每股盈利','股价×盈利','无感'],a:0},{q:'低PE？',opts:['同样的盈利花更少的钱','公司差','无感'],a:0},{q:'陷阱？',opts:['盈利下滑的低PE要警惕','低PE必涨','无感'],a:0}]},
+ {ico:'💵',t:'股息收益',d:'分红的力量',qs:[{q:'股息？',opts:['公司分给股东的钱','公司收入','无感'],a:0},{q:'意义？',opts:['下跌时也有现金回报','无意义','无感'],a:0},{q:'聂夫？',opts:['股息是收益重要来源','股息不重要','无感'],a:0}]},
+ {ico:'🔄',t:'反向思维',d:'冷门处淘金',qs:[{q:'热门股？',opts:['人多的地方贵','机会多','无感'],a:0},{q:'冷门股？',opts:['被忽视可能便宜','一定差','无感'],a:0},{q:'聂夫？',opts:['在无人问津处寻找机会','追热点','无感'],a:0}]},
+ {ico:'🐢',t:'耐心持有',d:'等价值回归',qs:[{q:'耐心？',opts:['持有到价值回归','天天换股','无感'],a:0},{q:'回归？',opts:['价格终会反映价值','永远偏离','无感'],a:0},{q:'卖点？',opts:['价值兑现后卖出','跌了就卖','无感'],a:0}]},
+ {ico:'📊',t:'行业轮动',d:'组合管理',qs:[{q:'分散？',opts:['多个行业分散配置','全仓一只','无感'],a:0},{q:'换手？',opts:['低换手省成本','频繁交易','无感'],a:0},{q:'组合？',opts:['整体跑赢才算赢','单笔要赢','无感'],a:0}]},
+ {ico:'🛡️',t:'纪律为王',d:'投资之外',qs:[{q:'情绪？',opts:['按标准买卖不感情用事','追涨杀跌','无感'],a:0},{q:'估值？',opts:['贵了就卖便宜就买','随大流','无感'],a:0},{q:'目标？',opts:['长期稳定复利','一夜暴富','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['低PE-股息-反向-耐心-纪律','追热点','无感'],a:0},{q:'关键？',opts:['在便宜处买好货','在贵处追好货','无感'],a:0},{q:'方法？',opts:['筛子选股+纪律持有','凭感觉','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我看PE？',opts:['会算会对比','不看估值','无'],a:0},{q:'我反向？',opts:['敢在冷门处看','只追热门','无'],a:0},{q:'我耐心？',opts:['拿得住好票','天天换股','无'],a:0}]},
+ {ico:'🧭',t:'智慧启示',d:'学到什么',qs:[{q:'第一？',opts:['便宜买入是超额收益来源','贵的好股也赚','无感'],a:0},{q:'核心？',opts:['纪律+耐心+估值','热点+运气','无感'],a:0},{q:'终点？',opts:['安静地长期赚钱','喧嚣地短期投机','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"投资"？',opts:['是纪律不是冲动','是冲动不是纪律','无感'],a:0},{q:'"低市盈率"？',opts:['是安全边际','是廉价劣质','无感'],a:0},{q:'"耐心"？',opts:['是复利的朋友','是浪费时间','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'热门股疯涨？',opts:['警惕估值过高','满仓追进','无感'],a:0},{q:'冷门股无人问？',opts:['研究是否有便宜好货','直接回避','无感'],a:0},{q:'股票涨到位？',opts:['按估值卖出','继续追涨','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['低PE+股息+反向+耐心','孤立概念','无感'],a:0},{q:'记忆？',opts:['七大选股标准','标准是什么','无感'],a:0},{q:'练习？',opts:['给股票池算PE对比','凭感觉','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我建池？',opts:['筛选低PE高股息股','无股票池','无'],a:0},{q:'我持有？',opts:['长期持有到价值兑现','频繁换股','无'],a:0},{q:'我复盘？',opts:['定期评估组合','从不复盘','无'],a:0}]},
+ {ico:'👑',t:'价值大师挑战',d:'10题综合测验',qs:[{q:'核心？',opts:['用低市盈率买便宜好股','追高热门股','无感'],a:0},{q:'市盈率？',opts:['股价÷每股盈利','股价×盈利','无感'],a:0},{q:'股息？',opts:['公司分给股东的钱','公司收入','无感'],a:0},{q:'热门股？',opts:['人多的地方贵','机会多','无感'],a:0},{q:'耐心？',opts:['持有到价值回归','天天换股','无感'],a:0},{q:'分散？',opts:['多个行业分散配置','全仓一只','无感'],a:0},{q:'情绪？',opts:['按标准买卖不感情用事','追涨杀跌','无感'],a:0},{q:'本质？',opts:['低PE-股息-反向-耐心-纪律','追热点','无感'],a:0},{q:'卖点？',opts:['价值兑现后卖出','跌了就卖','无感'],a:0},{q:'终点？',opts:['安静地长期赚钱','喧嚣地短期投机','无感'],a:0}]}
+];
+const badges=['📉','🔍','⚖️','💵','🔄','🐢','📊','🛡️','💡','🔎','🧭','👑'];
+const badgeNames=['低市盈率猎手','选股筛子匠','估值分析师','股息收集者','反向思维者','耐心持有家','组合管理者','纪律卫士','概念掌握者','自省者','智慧导航员','价值大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
