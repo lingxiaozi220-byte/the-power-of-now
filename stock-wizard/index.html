@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《股票魔法师》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《股票魔法师》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>马克·米勒维尼 · 美国投资冠军 · SEPA选股法</p>
+    <span class="tag">趋势确认</span><span class="tag">基本面</span><span class="tag">技术面</span><span class="tag">风险控制</span><span class="tag">节奏管理</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 股票魔法师（免费）</div>
+  <div class="card">
+    <h3>理解 · SEPA：捕捉超级强势股</h3>
+    <p><span class="q">马克·米勒维尼四夺全美投资冠军，靠的是一套叫SEPA的方法——特定进场点分析。核心：只买正在爆发的最强股票，在趋势启动初期进场。SEPA把趋势、基本面、技术面拧成一股绳：趋势确认方向，基本面确认质量，技术面确认时机，风险控制保命。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="股票魔法师"></div>
+    <div class="mini">🧙 <b>关键：</b>等风来，乘风起，趋势替你赚钱。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「股票魔法师」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 趋势确认（免费）</div>
+  <div class="card">
+    <h3>理解 · 只做上升趋势中的股票</h3>
+    <p><span class="q">米勒维尼从不抄底：他只在股票走出上升趋势后进场。趋势确认看三点：价格创出阶段新高、站上关键均线、相对强度领先市场。配合VCP形态（波动收缩形态）——价格波动一次比一次小，像弹簧被压紧，随后放量突破就是最好的进场点。</span></p>
+    <div class="imgbox"><img src="art_trend.jpg" alt="趋势确认"></div>
+    <div class="mini">📈 <b>关键：</b>上升趋势+波动收缩，等突破。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「趋势确认」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 基本面分析（免费）</div>
+  <div class="card">
+    <h3>理解 · 盈利是股价的发动机</h3>
+    <p><span class="q">米勒维尼要求公司盈利加速增长：收入与利润同步走高，连续数个季度超预期。看ROE（净资产收益率）高不高、现金流强不强、管理层有没有增持。股价长期由基本面驱动，技术面只是基本面的影子。好股票一定有好故事，好故事一定要有数字支撑。</span></p>
+    <div class="imgbox"><img src="art_fund.jpg" alt="基本面分析"></div>
+    <div class="mini">🔍 <b>关键：</b>盈利加速+高ROE+强现金流。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「基本面分析」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 技术面共振（免费）</div>
+  <div class="card">
+    <h3>理解 · 基本面与技术面双确认</h3>
+    <p><span class="q">好公司不等于好股票，还要技术面配合：基本面确认公司值得买，技术面确认现在买。米勒维尼等两者共振：财报超预期+股价放量突破，才是SEPA的完美进场信号。只有基本面没有技术面，可能买太早；只有技术面没有基本面，可能买错公司。</span></p>
+    <div class="imgbox"><img src="art_resonance.jpg" alt="技术面共振"></div>
+    <div class="mini">⚙️ <b>关键：</b>双轮驱动：公司好+时机对。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「技术面共振」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 风险控制（免费）</div>
+  <div class="card">
+    <h3>理解 · 先活下来，再谈赚钱</h3>
+    <p><span class="q">米勒维尼的铁律：跌破进场点无条件止损，通常亏损控制在8%以内；单票仓位设上限，绝不满仓一只。风险控制的本质是保住本金——亏50%要涨100%才能回本，而复利的前提是别大亏。赢家的秘密不是胜率高，而是亏小赚大。</span></p>
+    <div class="imgbox"><img src="art_risk.jpg" alt="风险控制"></div>
+    <div class="mini">🛡️ <b>关键：</b>止损8%，仓位有限，亏小赚大。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「风险控制」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 节奏管理（免费）</div>
+  <div class="card">
+    <h3>理解 · 买卖的时机决定一切</h3>
+    <p><span class="q">什么时候买：最佳进场点（突破点）出现才买，错过就等下一次，绝不追高。什么时候持有：趋势未破坏就坚定拿住，让利润奔跑。什么时候卖：趋势破坏、达目标位、或基本面恶化。节奏管理就是分清买点、持点、卖点，宁可错过，不可做错。</span></p>
+    <div class="imgbox"><img src="art_rhythm.jpg" alt="节奏管理"></div>
+    <div class="mini">⏳ <b>关键：</b>买在突破点，持到趋势破。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「节奏管理」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 复盘训练（免费）</div>
+  <div class="card">
+    <h3>理解 · 冠军是复盘出来的</h3>
+    <p><span class="q">米勒维尼每天收盘后复盘：记录每笔交易的理由、情绪、是否按规则执行；统计胜率、盈亏比、平均亏损；找出重复犯的错——该止损没止损、追高、过早卖出。复盘把交易变成可改进的系统，坚持三个月，你会看见自己从一个散户变成执行机器。</span></p>
+    <div class="imgbox"><img src="art_review.jpg" alt="复盘训练"></div>
+    <div class="mini">📋 <b>关键：</b>复盘找错误，数据改系统。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「复盘训练」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：冠军纪律、SEPA实战法、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（冠军纪律、SEPA实战法、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 冠军纪律</div>
+  <div class="card">
+    <h3>理解 · 纪律让方法生效</h3>
+    <p><span class="q">SEPA再完美，没有纪律也是零。冠军与普通人的区别：冠军按规则执行，不感情用事；没信号就空仓等待，不天天交易；接受亏损是系统的成本，不因一笔亏损改变计划。把规则写成清单，每次下单前逐条核对，情绪就被规则挡在门外。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏆 <b>关键：</b>规则清单，下单前逐条核对。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「冠军纪律」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · SEPA实战法</div>
+  <div class="card">
+    <h3>理解 · 一套完整选股流程</h3>
+    <p>第一步定趋势：只研究上升趋势中的股票，剔除下跌与横盘。第二步筛基本面：盈利加速、高ROE、强现金流，业绩连续超预期。第三步找形态：识别VCP波动收缩形态，等待放量突破。第四步定进场点：突破日进场，量价配合确认。第五步设止损：跌破进场点或亏损8%即走。第六步管理节奏：趋势未破持有，趋势破坏或达目标卖出。每日收盘复盘记录。</p>
+    <div class="imgbox"><img src="art_review.jpg" alt="SEPA实战法"></div>
+    <div class="mini">🧭 <b>关键：</b>趋势-基本面-形态-进场-止损-节奏。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「概念速记」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 从散户到魔法师</h3>
+    <p>趋势确认方向 → 基本面确认质量 → 技术面确认时机 → 风险控制保命 → 节奏管理增厚利润 → 复盘训练持续进化——六步走完SEPA闭环。记住：股票魔法师的魔法不在预测，而在纪律与等待。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>建立上升趋势股票池，剔除下跌股</td></tr>
+      <tr><td>2</td><td>逐只核对盈利增速、ROE、现金流</td></tr>
+      <tr><td>3</td><td>识别VCP形态，标记潜在突破点</td></tr>
+      <tr><td>4</td><td>突破日放量进场，同时挂好止损</td></tr>
+      <tr><td>5</td><td>趋势未破坚定持有，让利润奔跑</td></tr>
+      <tr><td>6</td><td>每日复盘，统计胜率盈亏比优化</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：魔法师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题 · 成长股。配套阅读：《笑傲股市》《股市趋势技术分析》《海龟交易法则》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='stock-wizard';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🧙',t:'股票魔法师',d:'书名之义',qs:[{q:'核心？',opts:['用SEPA捕捉超级强势股','靠内幕消息','无感'],a:0},{q:'作者？',opts:['马克·米勒维尼','巴菲特','无感'],a:0},{q:'SEPA？',opts:['特定进场点分析','随机买入','无感'],a:0}]},
+ {ico:'📈',t:'趋势确认',d:'只做上升股',qs:[{q:'趋势？',opts:['在上升趋势中选股','抄底下跌股','无感'],a:0},{q:'形态？',opts:['波动收缩后突破','无规律','无感'],a:0},{q:'时机？',opts:['启动初期进场','涨高后追','无感'],a:0}]},
+ {ico:'🔍',t:'基本面分析',d:'盈利为王',qs:[{q:'盈利？',opts:['收入利润加速增长','亏损无妨','无感'],a:0},{q:'质量？',opts:['高ROE强现金流','高负债讲故事','无感'],a:0},{q:'驱动？',opts:['公司基本面驱动股价','纯资金炒作','无感'],a:0}]},
+ {ico:'⚙️',t:'技术面共振',d:'双轮驱动',qs:[{q:'共振？',opts:['基本面+技术面同时确认','只看一面','无感'],a:0},{q:'进场？',opts:['突破点进场','盲目买入','无感'],a:0},{q:'确认？',opts:['量价配合确认趋势','无信号就买','无感'],a:0}]},
+ {ico:'🛡️',t:'风险控制',d:'活下来第一',qs:[{q:'止损？',opts:['跌破进场点即止损','死扛到底','无感'],a:0},{q:'仓位？',opts:['单票仓位有上限','满仓一只','无感'],a:0},{q:'原则？',opts:['保住本金才能复利','搏一搏单车变摩托','无感'],a:0}]},
+ {ico:'⏳',t:'节奏管理',d:'买卖的时机',qs:[{q:'买入？',opts:['最佳进场点出现才买','天天想买','无感'],a:0},{q:'持有？',opts:['趋势未破就拿住','赚一点就跑','无感'],a:0},{q:'卖出？',opts:['趋势破坏或达目标卖','等回本再卖','无感'],a:0}]},
+ {ico:'📋',t:'复盘训练',d:'冠军的日常',qs:[{q:'复盘？',opts:['每日记录交易与情绪','做完就不管','无感'],a:0},{q:'数据？',opts:['统计胜率盈亏比','只看感觉','无感'],a:0},{q:'改进？',opts:['按数据优化系统','凭心情改','无感'],a:0}]},
+ {ico:'🏆',t:'冠军纪律',d:'投资之外',qs:[{q:'情绪？',opts:['按规则执行不感情用事','追涨杀跌','无感'],a:0},{q:'等待？',opts:['没信号就空仓等待','天天交易','无感'],a:0},{q:'目标？',opts:['稳定复利跑赢市场','一夜暴富','无感'],a:0}]},
+ {ico:'💡',t:'概念速记',d:'核心关键词',qs:[{q:'本质？',opts:['趋势+基本面+技术面+风险','纯运气','无感'],a:0},{q:'关键？',opts:['等风来乘风起','追热点','无感'],a:0},{q:'方法？',opts:['SEPA四步筛选','凭感觉','无感'],a:0}]},
+ {ico:'🔎',t:'自省练习',d:'检查理解',qs:[{q:'我止损？',opts:['跌破进场点就走','经常扛单','无'],a:0},{q:'我看基本面？',opts:['查盈利与ROE','只看K线','无'],a:0},{q:'我等时机？',opts:['最佳点才进','天天想买','无'],a:0}]},
+ {ico:'🧭',t:'智慧启示',d:'学到什么',qs:[{q:'第一？',opts:['在正确的时机买正确的股','乱买等涨','无感'],a:0},{q:'核心？',opts:['SEPA+纪律+节奏','运气+冲动','无感'],a:0},{q:'终点？',opts:['复利滚雪球','一夜暴富','无感'],a:0}]},
+ {ico:'📖',t:'金句补全',d:'经典语句',qs:[{q:'"趋势"？',opts:['是你的朋友','是你的敌人','无感'],a:0},{q:'"风险"？',opts:['先控制再谈收益','置之不理','无感'],a:0},{q:'"等待"？',opts:['是纪律的奖赏','是浪费时间','无感'],a:0}]},
+ {ico:'🧩',t:'情境判断',d:'对号入座',qs:[{q:'股价新高？',opts:['确认趋势找进场点','觉得太贵不敢买','无感'],a:0},{q:'跌破止损线？',opts:['无条件离场','加仓摊平','无感'],a:0},{q:'没有好标的？',opts:['空仓等待','随便买一只','无感'],a:0}]},
+ {ico:'🔄',t:'思维闭环',d:'四步闭环',qs:[{q:'理解？',opts:['SEPA=趋势+基本面+技术面','孤立概念','无感'],a:0},{q:'记忆？',opts:['趋势确认-共振-风险-节奏','步骤模糊','无感'],a:0},{q:'练习？',opts:['模拟盘按SEPA选股','凭感觉','无感'],a:0}]},
+ {ico:'🚀',t:'应用演练',d:'落地理解',qs:[{q:'我筛股？',opts:['用SEPA四步建股票池','无股票池','无'],a:0},{q:'我执行？',opts:['按系统规则买卖','随意进出','无'],a:0},{q:'我复盘？',opts:['每日复盘记录','从不复盘','无'],a:0}]},
+ {ico:'👑',t:'魔法师挑战',d:'10题综合测验',qs:[{q:'核心？',opts:['用SEPA捕捉超级强势股','靠内幕消息','无感'],a:0},{q:'SEPA？',opts:['特定进场点分析','随机买入','无感'],a:0},{q:'趋势？',opts:['在上升趋势中选股','抄底下跌股','无感'],a:0},{q:'盈利？',opts:['收入利润加速增长','亏损无妨','无感'],a:0},{q:'共振？',opts:['基本面+技术面同时确认','只看一面','无感'],a:0},{q:'止损？',opts:['跌破进场点即止损','死扛到底','无感'],a:0},{q:'买入？',opts:['最佳进场点出现才买','天天想买','无感'],a:0},{q:'本质？',opts:['趋势+基本面+技术面+风险','纯运气','无感'],a:0},{q:'卖出？',opts:['趋势破坏或达目标卖','等回本再卖','无感'],a:0},{q:'终点？',opts:['复利滚雪球','一夜暴富','无感'],a:0}]}
+];
+const badges=['🧙','📈','🔍','⚙️','🛡️','⏳','📋','🏆','💡','🔎','🧭','👑'];
+const badgeNames=['魔法学徒','趋势确认者','基本面侦探','共振分析家','风险卫士','节奏大师','复盘冠军','纪律执行者','概念掌握者','自省者','智慧导航员','股票魔法师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
