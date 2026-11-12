@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《半秒》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《半秒》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>李笑来 · 改写大脑底层代码 · 意志力是最大的错觉</p>
+    <span class="tag">潜意识</span><span class="tag">习惯改写</span><span class="tag">自我对话</span><span class="tag">认知升级</span><span class="tag">行为科学</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 半秒真相（免费）</div>
+  <div class="card">
+    <h3>理解 · 意志力是最大的错觉</h3>
+    <p><span class="q">潜意识比意识快半秒到 10 秒。在你思考之前，它已经替你做完了决定——这就是你「管不住自己」的真相。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="半秒"></div>
+    <div class="mini">⚡ <b>关键：</b>不是意志力薄弱，是潜意识早已自动执行。改变要从改写潜意识入手，不是靠硬扛。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「半秒真相」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 频率计数器（免费）</div>
+  <div class="card">
+    <h3>理解 · 大脑只算重复次数</h3>
+    <p><span class="q">大脑里有个频率计数器：不辨真假、不看证据，只算重复次数。一句话听得越多，越被当成真理。</span></p>
+    <div class="imgbox"><img src="art_freq.jpg" alt="频率计数器"></div>
+    <div class="mini">📟 <b>关键：</b>你的大多数「第一反应」不是你的——是被广告、父母、环境重复植入的。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「频率计数器」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 自动行为（免费）</div>
+  <div class="card">
+    <h3>理解 · 每天 43% 的行为是自动的</h3>
+    <p><span class="q">每天约 43% 的行为在思考之前就自动发生了。坏习惯不是孤立存在的，它们和场景、情绪、节奏绑定。</span></p>
+    <div class="imgbox"><img src="art_race.jpg" alt="自动行为"></div>
+    <div class="mini">🏃 <b>关键：</b>你不是在「戒」一个习惯，而是在和成百上千个触发器斗争。先看清触发器。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「自动行为」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 自我陈述法（免费）</div>
+  <div class="card">
+    <h3>理解 · 用语言重写潜意识</h3>
+    <p><span class="q">Self-talk 公式：身份声明 + 理由 + 情绪标签。不是「我要戒」，而是「我从来不抽烟，因为……」</span></p>
+    <div class="imgbox"><img src="art_selftalk.jpg" alt="自我陈述"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV17wKQ6sEgh&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🗣️ <b>关键：</b>对自己说「我是什么样的人」，配理由和感受，让大脑信以为真。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「自我陈述法」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 身份重构（免费）</div>
+  <div class="card">
+    <h3>理解 · 新习惯从新身份开始</h3>
+    <p><span class="q">「我是一个每天早晨去健身房的人」——用新身份降低行动阻力，让大脑慢慢接受。</span></p>
+    <div class="imgbox"><img src="art_identity.jpg" alt="身份重构"></div>
+    <div class="mini">🎩 <b>关键：</b>先定义身份，再行动。身份声明要具体可执行，不是「我要变有钱」这种空口号。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「身份重构」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 退出坏习惯（免费）</div>
+  <div class="card">
+    <h3>理解 · 退出，而不是克服</h3>
+    <p><span class="q">坏习惯是可以全身而退的——退出是一秒钟的事。建立新习惯，反而比退出难得多。</span></p>
+    <div class="imgbox"><img src="art_exit.jpg" alt="退出习惯"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1SHp4zaE9G&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🚪 <b>关键：</b>先退出一条旧回路，再建一条新回路。别用「克服」的力气打「退出」的仗。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「退出坏习惯」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 注意力公式（免费）</div>
+  <div class="card">
+    <h3>理解 · 注意力 > 时间 > 金钱</h3>
+    <p><span class="q">钱花光了能再赚，时间是稀缺的，注意力比时间更稀缺。注意力在哪里，收获就在哪里。</span></p>
+    <div class="imgbox"><img src="art_attention.jpg" alt="注意力"></div>
+    <div class="mini">🎯 <b>关键：</b>把注意力投向高价值处，它比金钱更能决定你的人生走向。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「注意力公式」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：决策担当、损失厌恶、自我塑造 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（决策担当、损失厌恶、自我塑造）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 决策担当</div>
+  <div class="card">
+    <h3>理解 · 谁承担后果，谁做决策</h3>
+    <p><span class="q">三条原则：谁承担后果谁决策；共同承担时，谁执行谁决策；共同执行时，最有判断力的人决策。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1xgTkzwEMZ&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧠 <b>关键：</b>父母可以给建议，但读什么专业、辞不辞职，后果由你承担，决策必须由你来做。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「决策担当」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 损失厌恶</div>
+  <div class="card">
+    <h3>理解 · 怕失去，比想得到更有力</h3>
+    <p><span class="q">损失厌恶是强大的反向驱动力。写清楚「不改变的损失」，比写「改变的好处」更能推动你行动。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Bhd7BnEt5&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🛡️ <b>关键：</b>把「继续这样会失去什么」写下来，让损失厌恶为你打工。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「损失厌恶」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 自我塑造（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 人 100% 可以自我塑造</h3>
+    <p>觉察自动行为 → 看清频率计数器的植入 → 定义新身份 → 自我陈述反复编程 → 退出旧回路 → 用注意力投资自己。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>写下你最想改的坏习惯，找出绑定场景</td></tr>
+      <tr><td>2</td><td>用 X 光式觉察：行动前停半秒</td></tr>
+      <tr><td>3</td><td>定义新身份：我是……的人（具体可执行）</td></tr>
+      <tr><td>4</td><td>每天自我陈述：身份+理由+情绪标签</td></tr>
+      <tr><td>5</td><td>写清不改变的损失，利用损失厌恶</td></tr>
+      <tr><td>6</td><td>把注意力投到高价值的事上</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：半秒改写挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」认知成长专题。配套阅读：《思考致富》《纳瓦尔宝典》《把时间当作朋友》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='halfsec';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'⚡',t:'半秒真相',d:'潜意识先跑',qs:[{q:'潜意识比意识？',opts:['快半秒到10秒','慢半秒','同时'],a:0},{q:'意志力？',opts:['是最大的错觉','决定一切','天生'],a:0},{q:'失败根源？',opts:['潜意识早做了决定','不够努力','太懒'],a:0}]},
+ {ico:'📟',t:'频率计数器',d:'只算重复',qs:[{q:'频率计数器？',opts:['只算重复次数','辨真假','看证据'],a:0},{q:'被重复越多？',opts:['越成默认反应','越被怀疑','越不重要'],a:0},{q:'第一反应？',opts:['多是被植入的','全是天生的','自主的'],a:0}]},
+ {ico:'🏃',t:'自动行为',d:'43%的日常',qs:[{q:'每天多少行为自动？',opts:['约43%','几乎为0','100%'],a:0},{q:'自动行为？',opts:['思考前已发生','想清楚才动','可控制'],a:0},{q:'坏习惯与？',opts:['场景绑定','基因绑定','无关'],a:0}]},
+ {ico:'🗣️',t:'自我陈述法',d:'Self-talk',qs:[{q:'自我陈述公式？',opts:['身份+理由+情绪','我要+努力+坚持','口号+计划'],a:0},{q:'举例？',opts:['我从不喝奶茶因为高糖','我要戒奶茶','少喝奶茶'],a:0},{q:'说给谁听？',opts:['潜意识','别人','领导'],a:0}]},
+ {ico:'🎩',t:'身份重构',d:'新身份编程',qs:[{q:'新习惯先？',opts:['定义新身份','准备工具','等时机'],a:0},{q:'反复说？',opts:['我是每天健身的人','我想健身','应该健身'],a:0},{q:'大脑？',opts:['慢慢信以为真','立刻识破','无所谓'],a:0}]},
+ {ico:'🚪',t:'退出坏习惯',d:'一秒退出',qs:[{q:'退出坏习惯？',opts:['一秒的事','很难','靠意志'],a:0},{q:'建立新习惯？',opts:['比退出难得多','更容易','一样'],a:0},{q:'戒烟先？',opts:['退出不是克服','硬扛','替代'],a:0}]},
+ {ico:'🎯',t:'注意力公式',d:'注意力最重要',qs:[{q:'排序？',opts:['注意力>时间>金钱','金钱>时间>注意力','时间>金钱>注意力'],a:0},{q:'注意力在哪？',opts:['收获就在哪','无所谓','看运气'],a:0},{q:'钱花光？',opts:['能再赚','就没了','不担心'],a:0}]},
+ {ico:'🧠',t:'决策担当',d:'谁承担谁决策',qs:[{q:'谁承担后果？',opts:['谁决策','谁职位高','谁有钱'],a:0},{q:'共同承担？',opts:['谁执行谁决策','都别决策','开会'],a:0},{q:'共同执行？',opts:['最有判断力的人决策','投票','轮流'],a:0}]},
+ {ico:'🛡️',t:'损失厌恶',d:'反向驱动力',qs:[{q:'损失厌恶？',opts:['怕失去比想得到强','无所谓','弱'],a:0},{q:'利用它？',opts:['写清不改变的损失','只谈好处','回避'],a:0},{q:'它驱动？',opts:['行动','拖延','放弃'],a:0}]},
+ {ico:'🔓',t:'自我塑造',d:'100%可变',qs:[{q:'人可以？',opts:['100%自我塑造','基本定型','改不了'],a:0},{q:'错误价值观？',opts:['拖你一辈子后腿','无关紧要','会自愈'],a:0},{q:'改写本能？',opts:['有方法','靠运气','不可能'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'半秒应用',qs:[{q:'想刷手机？',opts:['先等半秒再决定','直接刷','自责'],a:0},{q:'坏习惯触发？',opts:['觉察场景','顺从','责怪'],a:0},{q:'给潜意识编程？',opts:['每天自我陈述','偶尔想起','不必要'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'频率计数器=？',opts:['只算重复次数的机制','算命的','计算器'],a:0},{q:'自我陈述=？',opts:['身份+理由+情绪','检讨书','口号'],a:0},{q:'半秒=？',opts:['潜意识领先时间','反应速度','视频时长'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'改写守则',qs:[{q:'先？',opts:['觉察再行动','行动再觉察','不觉察'],a:0},{q:'用？',opts:['新身份替代旧身份','旧习惯硬扛','意志力'],a:0},{q:'反复？',opts:['重复直到信以为真','一次就够','靠别人'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查自己',qs:[{q:'我的第一反应？',opts:['是植入的吗','全是我的','无所谓'],a:0},{q:'我的坏习惯？',opts:['绑在哪些场景','改不掉','不存在'],a:0},{q:'我的身份声明？',opts:['有吗','不需要','随口'],a:0}]},
+ {ico:'🎓',t:'智慧检验',d:'李笑来金句',qs:[{q:'意志力？',opts:['最大的错觉','万能钥匙','天生'],a:0},{q:'潜意识？',opts:['快半秒做决定','听指挥','不存在'],a:0},{q:'人？',opts:['100%可塑造','定型','看命'],a:0}]},
+ {ico:'👑',t:'半秒改写挑战',d:'10题综合测验',qs:[{q:'潜意识比意识？',opts:['快半秒','慢','同时'],a:0},{q:'意志力？',opts:['是错觉','万能','天生'],a:0},{q:'频率计数器？',opts:['只算重复','辨真假','看证据'],a:0},{q:'自动行为？',opts:['43%','0%','100%'],a:0},{q:'自我陈述？',opts:['身份+理由+情绪','口号','检讨'],a:0},{q:'新习惯先？',opts:['定义身份','买装备','等时机'],a:0},{q:'退出坏习惯？',opts:['一秒的事','很难','靠意志'],a:0},{q:'注意力？',opts:['>时间>金钱','<时间','无所谓'],a:0},{q:'谁决策？',opts:['谁承担后果','职位高','有钱'],a:0},{q:'人？',opts:['100%可塑造','定型','看命'],a:0}]}
+];
+const badges=['⚡','📟','🏃','🗣️','🎩','🚪','🎯','🧠','🛡️','🔓','🧭','👑'];
+const badgeNames=['半秒觉知者','频率破解者','自动行为猎人','自我对话师','身份重构者','习惯退出者','注意力赢家','决策担当者','损失厌恶玩家','自我塑造者','决策者','半秒改写大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
