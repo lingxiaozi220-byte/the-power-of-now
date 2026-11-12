@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《早起的奇迹》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《早起的奇迹》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>哈尔·埃尔罗德 · 从临床死亡到超级马拉松 · 晨间奇迹公式</p>
+    <span class="tag">早起</span><span class="tag">SAVERS</span><span class="tag">自我肯定</span><span class="tag">习惯养成</span><span class="tag">个人成长</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 早起奇迹（免费）</div>
+  <div class="card">
+    <h3>理解 · 人生的改变，从一次早起开始</h3>
+    <p><span class="q">哈尔·埃尔罗德 20 岁遭遇严重车祸，临床死亡 6 分钟，医生宣布他终生无法行走。他不仅重新站起来，还成为超级马拉松选手。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="早起的奇迹"></div>
+    <div class="mini">🌅 <b>关键：</b>早起一小时是一天中唯一不受干扰、完全属于你的黄金时间——用它撬动全天效率。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「早起奇迹」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · SAVERS 计划（免费）</div>
+  <div class="card">
+    <h3>理解 · 六把钥匙打开新人生</h3>
+    <p><span class="q">SAVERS 人生拯救计划：Silence 静心、Affirmations 自我肯定、Visualization 可视化、Exercise 运动、Reading 阅读、Scribing 书写。</span></p>
+    <div class="imgbox"><img src="art_savers.jpg" alt="SAVERS"></div>
+    <div class="mini">🗝️ <b>关键：</b>不是高深理论，是拿来就能用的六个简单步骤——给身心开机、优化、杀毒、升级。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「SAVERS」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 静心（免费）</div>
+  <div class="card">
+    <h3>理解 · 一天的主动权，从先和自己对话开始</h3>
+    <p><span class="q">多数人睁眼先摸手机，让全世界的情绪抢在自己之前住进脑子。静心：在世界苏醒前冥想、深呼吸、感恩。</span></p>
+    <div class="imgbox"><img src="art_silence.jpg" alt="静心"></div>
+    <div class="mini">🧘 <b>关键：</b>清空大脑杂念、调整好心态，心态稳了，再大的事也能从容应对。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「静心」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 自我肯定（免费）</div>
+  <div class="card">
+    <h3>理解 · 就地取材的积极编程</h3>
+    <p><span class="q">用现在时态写下肯定宣言并大声朗读：「我每天精力充沛地醒来」「我正在一步步实现我的目标」。</span></p>
+    <div class="imgbox"><img src="art_affirmation.jpg" alt="自我肯定"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV17wKQ6sEgh&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">📣 <b>关键：</b>大声说出你想成为的样子，大脑会开始相信并执行。这是对潜意识的编程。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「自我肯定」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 可视化（免费）</div>
+  <div class="card">
+    <h3>理解 · 大脑先看到，现实才发生</h3>
+    <p><span class="q">闭上眼睛，像看电影一样想象目标实现的画面：你的样子、你的环境、你的感受。让大脑提前预演成功。</span></p>
+    <div class="imgbox"><img src="art_visual.jpg" alt="可视化"></div>
+    <div class="mini">🎯 <b>关键：</b>可视化不是白日梦，是大脑的训练场。几分钟的预演，决定一整天的行动方向。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「可视化」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 运动唤醒（免费）</div>
+  <div class="card">
+    <h3>理解 · 用身体开启一天</h3>
+    <p><span class="q">晨间运动让大脑分泌 BDNF、多巴胺、血清素——唤醒身体、提升精力、稳定情绪，为全天充电。</span></p>
+    <div class="imgbox"><img src="art_formula.jpg" alt="运动唤醒"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Fi5q65Eqa&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🏃 <b>关键：</b>适量即可——几分钟的拉伸或快走，都能让大脑进入最佳状态。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「运动唤醒」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 晨间阅读（免费）</div>
+  <div class="card">
+    <h3>理解 · 用成长输入开启大脑</h3>
+    <p><span class="q">晨间黄金时间先读个人成长类书籍，而不是新闻和消息。输入什么，你就成为什么。</span></p>
+    <div class="imgbox"><img src="art_reading.jpg" alt="晨间阅读"></div>
+    <div class="mini">📚 <b>关键：</b>每天读 10 页，一年就是 3650 页——把平庸的清晨拧成新的人生。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「晨间阅读」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 8-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：书写感恩、奇迹公式、五分钟法则 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 8-10 课完整内容（书写感恩、奇迹公式、五分钟法则）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 8 课 · 书写感恩</div>
+  <div class="card">
+    <h3>理解 · 感恩是幸福的开关</h3>
+    <p><span class="q">晨间书写：记录感恩的事、梳理思绪、写下目标。感恩提升幸福感，书写让想法落地。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1SHp4zaE9G&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">✍️ <b>关键：</b>写下来的目标，被执行的几率远高于只放在脑中的目标。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「书写感恩」</button>
+  </div>
+
+  <div class="sec-t">第 9 课 · 奇迹公式</div>
+  <div class="card">
+    <h3>理解 · 非凡结果 = 非理性信仰 + 有目的行动</h3>
+    <p><span class="q">信仰：无论现实如何，都相信能做到。行动：持续朝目标推进。两者缺一不可。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1xgTkzwEMZ&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">⚡ <b>关键：</b>先相信，后看见。没有信仰的行动会半途而废，没有行动的信仰只是空想。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「奇迹公式」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 五分钟法则（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 睡前与醒来的两个 5 分钟</h3>
+    <p>睡前 5 分钟做自我肯定（给潜意识编程）；醒来 5 分钟立刻起身（不按贪睡按钮）。两个 5 分钟决定一天。</p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>今晚睡前 5 分钟：写下明天要成为的样子</td></tr>
+      <tr><td>2</td><td>闹钟放在够不到的地方，响后立刻起身</td></tr>
+      <tr><td>3</td><td>醒来先静心 5-10 分钟，不碰手机</td></tr>
+      <tr><td>4</td><td>执行 SAVERS：静心、肯定、想象、运动、阅读、书写</td></tr>
+      <tr><td>5</td><td>每天只加一点，三阶段：讨厌→接受→热爱</td></tr>
+      <tr><td>6</td><td>坚持 30 天，看到早起带来的复利</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：早起大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」个人成长专题。配套阅读：《运动改造大脑》《半秒》《富爸爸穷爸爸》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='miracle-morning';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🌅',t:'早起奇迹',d:'改变人生',qs:[{q:'人生的改变？',opts:['从一次早起开始','从发财开始','从运气'],a:0},{q:'作者？',opts:['从临床死亡到超级马拉松','天生健康','普通人'],a:0},{q:'黄金一小时？',opts:['唯一不受干扰的时间','最困的时间','无所谓'],a:0}]},
+ {ico:'🗝️',t:'SAVERS',d:'六把钥匙',qs:[{q:'SAVERS是？',opts:['人生拯救计划','六瓶饮料','健身操'],a:0},{q:'六个字母？',opts:['六件简单的事','六个目标','六本书'],a:0},{q:'它？',opts:['拿来就能用','高深理论','只适合富人'],a:0}]},
+ {ico:'🧘',t:'静心',d:'S-Silence',qs:[{q:'睁眼第一件事？',opts:['先静心不摸手机','摸手机','回消息'],a:0},{q:'静心目的？',opts:['清空杂念稳住心态','看新闻','想工作'],a:0},{q:'方法？',opts:['冥想深呼吸感恩','刷视频','喝咖啡'],a:0}]},
+ {ico:'📣',t:'自我肯定',d:'A-Affirmations',qs:[{q:'自我肯定？',opts:['现在时态宣言','检讨书','目标清单'],a:0},{q:'例子？',opts:['我每天精力充沛','我要努力','希望成功'],a:0},{q:'大声说出？',opts:['是的强化信念','小声怕羞','不必'],a:0}]},
+ {ico:'🎯',t:'可视化',d:'V-Visualization',qs:[{q:'可视化？',opts:['想象目标成真画面','白日梦','看照片'],a:0},{q:'作用？',opts:['大脑提前预演','浪费时间','迷信'],a:0},{q:'做多久？',opts:['几分钟','一小时','一天'],a:0}]},
+ {ico:'🏃',t:'运动唤醒',d:'E-Exercise',qs:[{q:'晨间运动？',opts:['唤醒身体提升精力','太累了','浪费时间'],a:0},{q:'强度？',opts:['适量即可','必须跑马拉松','随便'],a:0},{q:'运动后？',opts:['全天更有精神','更困','无所谓'],a:0}]},
+ {ico:'📚',t:'晨间阅读',d:'R-Reading',qs:[{q:'晨读？',opts:['成长输入优先','刷新闻','不看'],a:0},{q:'读什么？',opts:['个人成长类','娱乐八卦','小说'],a:0},{q:'目的？',opts:['改变人生轨迹','打发时间','催眠'],a:0}]},
+ {ico:'✍️',t:'书写感恩',d:'S-Scribing',qs:[{q:'晨间书写？',opts:['日记感恩记录','写作业','签名'],a:0},{q:'感恩？',opts:['提升幸福感','矫情','迷信'],a:0},{q:'书写？',opts:['梳理思绪','浪费纸','只打字'],a:0}]},
+ {ico:'⚡',t:'奇迹公式',d:'非凡结果',qs:[{q:'奇迹公式？',opts:['非理性信仰+有目的行动','运气+努力','天赋+机会'],a:0},{q:'信仰？',opts:['相信能做到','怀疑自己','看别人'],a:0},{q:'行动？',opts:['有目的持续行动','三天打鱼','空想'],a:0}]},
+ {ico:'⏰',t:'五分钟法则',d:'睡前醒来',qs:[{q:'睡前5分钟？',opts:['做自我肯定','刷手机','看剧'],a:0},{q:'醒来5分钟？',opts:['立刻起身','再睡会儿','回消息'],a:0},{q:'贪睡按钮？',opts:['是对现实的妥协','休息需要','无所谓'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'生活应用',qs:[{q:'明天早上？',opts:['试一次早起','照旧','定闹钟不起'],a:0},{q:'早起做什么？',opts:['SAVERS','刷手机','发呆'],a:0},{q:'坚持？',opts:['三阶段讨厌到热爱','一周就停','靠意志'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'SAVERS=？',opts:['晨间六步人生计划','六本书','六目标'],a:0},{q:'奇迹公式=？',opts:['信仰+行动','运气+努力','天赋+机会'],a:0},{q:'黄金一小时=？',opts:['完全属于你的早晨','午休','深夜'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'晨间守则',qs:[{q:'起床？',opts:['闹钟响立刻起','按贪睡','等自然醒'],a:0},{q:'第一件事？',opts:['静心','看手机','开会'],a:0},{q:'心态？',opts:['现在比昨天更伟大','昨天最好','躺平'],a:0}]},
+ {ico:'🔍',t:'自省练习',d:'检查自己',qs:[{q:'我起床？',opts:['先摸手机吗','先静心','无所谓'],a:0},{q:'我有？',opts:['晨间程序吗','没有','不需要'],a:0},{q:'我的清晨？',opts:['属于自己吗','被消息占领','没区别'],a:0}]},
+ {ico:'🎓',t:'智慧检验',d:'哈尔金句',qs:[{q:'平庸清晨？',opts:['拧成新人生','就这样了','靠运气'],a:0},{q:'恐惧？',opts:['是幻觉','是真的','要躲避'],a:0},{q:'现在？',opts:['比昨天更伟大','没意义','等未来'],a:0}]},
+ {ico:'👑',t:'早起大师挑战',d:'10题综合测验',qs:[{q:'人生改变？',opts:['从早起开始','从发财','靠运气'],a:0},{q:'SAVERS？',opts:['人生拯救计划','饮料','健身操'],a:0},{q:'睁眼第一件事？',opts:['静心','摸手机','回消息'],a:0},{q:'自我肯定？',opts:['现在时宣言','检讨','清单'],a:0},{q:'可视化？',opts:['想象成真','白日梦','迷信'],a:0},{q:'奇迹公式？',opts:['信仰+行动','运气+努力','天赋'],a:0},{q:'睡前5分钟？',opts:['自我肯定','刷手机','看剧'],a:0},{q:'醒来5分钟？',opts:['立刻起身','再睡','回消息'],a:0},{q:'晨读？',opts:['成长输入','八卦','不看'],a:0},{q:'现在？',opts:['比昨天伟大','没意义','等未来'],a:0}]}
+];
+const badges=['🌅','🗝️','🧘','📣','🎯','🏃','📚','✍️','⚡','⏰','🧭','👑'];
+const badgeNames=['晨光行者','六钥持有者','静心者','自我肯定者','愿景师','身体唤醒者','晨读者','感恩书写者','奇迹公式家','五分钟掌控者','决策者','早起大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
