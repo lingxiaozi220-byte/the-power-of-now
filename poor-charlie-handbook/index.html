@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《穷查理宝典》多媒体精读 | 熙祺智书</title>
+<style>
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="progress">
+  <div class="row"><span>📚 《穷查理宝典》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
+</div>
+<div class="wrap">
+
+<div class="notice">🧠 本多媒体书含 10 节课 · 16 个互动游戏 · 7 个精讲视频 · 语音领读 · 12 枚成就徽章。前 7 节免费试读，解锁全部后可玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>心流</h1>
+    <p>查理·芒格 · 巴菲特的黄金搭档 · 多元思维模型大师</p>
+    <span class="tag">多元思维模型</span><span class="tag">逆向思维</span><span class="tag">能力圈</span><span class="tag">误判心理学</span><span class="tag">检查清单</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场视频 · 顶级快乐藏在专注里</div>
+  <div class="card">
+    <p>人最幸福的时刻不是躺着刷手机，而是全神贯注做一件有挑战的事。<span class="q">心流，是主动掌控人生的方法。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1uT7Q63EsU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 别做拿锤子的人（免费）</div>
+  <div class="card">
+    <h3>理解 · 芒格的智慧起点</h3>
+    <p><span class="q">芒格说：手里拿着锤子，看什么都像钉子。只懂一个学科的人，会把所有问题都套进自己的框架。真正的高手，是跨学科思考的。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="穷查理宝典"></div>
+    <div class="mini">🔨 <b>关键：</b>你的思维工具箱里，不能只有一把锤子。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「锤子效应」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 多元思维模型（免费）</div>
+  <div class="card">
+    <h3>理解 · 从各学科借钥匙</h3>
+    <p><span class="q">数学给你复利和概率，物理给你临界点和均衡，心理学给你误判清单，经济学给你激励视角。掌握 100 个重要模型，决策质量完全不同。</span></p>
+    <div class="imgbox"><img src="art_models.jpg" alt="多元思维模型"></div>
+    <div class="mini">🧩 <b>关键：</b>模型的组合，比模型本身更值钱。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「思维模型」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 逆向思维（免费）</div>
+  <div class="card">
+    <h3>理解 · 反过来想，总是反过来想</h3>
+    <p><span class="q">想知道怎么成功，先想清楚怎么失败；想获得幸福，先避开痛苦。避开所有大坑，你就自动走在了正确的路上。</span></p>
+    <div class="imgbox"><img src="art_invert.jpg" alt="逆向思维"></div>
+    <div class="mini">🔄 <b>关键：</b>先求不死，再求活得好。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「逆向思维」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 能力圈（免费）</div>
+  <div class="card">
+    <h3>理解 · 知道自己不知道什么</h3>
+    <p><span class="q">芒格只投资自己真正懂的行业。能力圈的大小不重要，知道边界才重要——在圈外，你只是运气好或运气差。</span></p>
+    <div class="imgbox"><img src="art_circle.jpg" alt="能力圈"></div>
+    <div class="mini">⭕ <b>关键：</b>圈内下重注，圈外不下注。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「能力圈」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 误判心理学（免费）</div>
+  <div class="card">
+    <h3>理解 · 25 种心理倾向</h3>
+    <p><span class="q">奖励惩罚的超级反应、从众的社会认同、高估自己的自我服务倾向、避免不一致、妒忌、回馈倾向……芒格总结了 25 种让人犯错的底层心理。</span></p>
+    <div class="imgbox"><img src="art_psychology.jpg" alt="误判心理学"></div>
+    <div class="mini">🧠 <b>关键：</b>知道自己的倾向，才能对抗自己的倾向。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「误判心理学」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 6 课 · 检查清单（免费）</div>
+  <div class="card">
+    <h3>理解 · 像飞行员一样决策</h3>
+    <p><span class="q">飞行员起飞前必过检查清单。芒格把决策也清单化：激励是什么？反馈是什么？我在能力圈内吗？有反证吗？情绪在影响我吗？</span></p>
+    <div class="imgbox"><img src="art_checklist.jpg" alt="检查清单"></div>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1woRDBUEwo&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">📋 <b>关键：</b>清单是防蠢的保险。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「检查清单」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 终身学习（免费）</div>
+  <div class="card">
+    <h3>理解 · 知识是复利增长的投资</h3>
+    <p><span class="q">芒格 90 多岁还在读书。他说：我这辈子遇到的聪明人，没有一个不是每天阅读的。知识的复利，比金钱的复利更惊人。</span></p>
+    <div class="imgbox"><img src="art_learn.jpg" alt="终身学习"></div>
+    <div class="mini">📖 <b>关键：</b>每天读一点，十年后你是另一个人。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「终身学习」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 8 课 · 耐心等待（免费）</div>
+  <div class="card">
+    <h3>理解 · 一生几次重击就够</h3>
+    <p><span class="q">芒格：投资的关键不是频繁出手，而是等待那个"好球"。一生打中几次大机会，就足够富有。平时不出手，不是浪费，是纪律。</span></p>
+    <div class="imgbox"><img src="art_patience.jpg" alt="耐心等待"></div>
+    <div class="mini">🎣 <b>关键：</b>机会像钓鱼，耐心等，别乱挥竿。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「耐心等待」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 9-10 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：决策演练、总结复盘 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 9-10 课完整内容（决策演练、总结复盘）+ 全部 16 个互动游戏 + 全部 12 枚徽章 + 深度精读视频。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+  <div class="sec-t">第 9 课 · 决策演练</div>
+  <div class="card">
+    <h3>理解 · 建立你的决策清单</h3>
+    <p><span class="q">写下你的检查清单：① 我在能力圈内吗；② 有哪些思维模型适用；③ 反过来想：最坏的结果是什么；④ 我正被哪种心理倾向影响；⑤ 有反证吗。每次重要决策，逐条过。</span></p>
+    <div class="video"><iframe src="https://player.bilibili.com/player.html?bvid=BV1kqjdzpEiU&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+    <div class="mini">🧭 <b>关键：</b>决策质量靠清单，不靠聪明。</div>
+    <button class="btn" onclick="openGame(8)">🎮 练习：游戏「决策演练」</button>
+  </div>
+
+  <div class="sec-t">第 10 课 · 总结复盘（附行动清单）</div>
+  <div class="card">
+    <h3>理解 · 智慧的四根支柱</h3>
+    <p>多元模型 → 逆向思考 → 能力圈 → 检查清单，四步闭环，一生践行。</p>
+    <div class="imgbox"><img src="art_checklist2.jpg" alt="行动清单"></div>
+    <table>
+      <tr><th>步骤</th><th>行动</th></tr>
+      <tr><td>1</td><td>列出你常用的思维模型，凑到 10 个以上</td></tr>
+      <tr><td>2</td><td>写出你人生中最该避开的 5 个大坑</td></tr>
+      <tr><td>3</td><td>圈定你的能力圈边界，写下来</td></tr>
+      <tr><td>4</td><td>学习 25 种误判心理，给自己标出最易犯的 3 个</td></tr>
+      <tr><td>5</td><td>建立个人决策检查清单</td></tr>
+      <tr><td>6</td><td>每天阅读 30 分钟，雷打不动</td></tr>
+    </table>
+    <button class="btn" onclick="openGame(15)">🎮 终局测验：芒格大师挑战</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（16 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（12 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」投资理财专题。配套阅读：《证券分析》《投资最重要的事》《巴菲特的护城河》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='poor-charlie-handbook-new';
+const FREE=7;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:'🔨',t:'锤子效应',d:'别只有一把锤子',qs:[{q:'手里有锤子？',opts:['看什么都像钉子','很专业','无影响'],a:0},{q:'单一学科？',opts:['思维受限','最高效','最正确'],a:0},{q:'多元思维？',opts:['跨学科更准','没必要','太复杂'],a:0}]},
+ {ico:'🧩',t:'思维模型',d:'多把钥匙',qs:[{q:'数学？',opts:['复利概率思维','用不上','算账而已'],a:0},{q:'心理学？',opts:['理解误判','没用','玄学'],a:0},{q:'经济学？',opts:['理解激励','没用','猜谜'],a:0}]},
+ {ico:'🔄',t:'逆向思维',d:'反过来想',qs:[{q:'怎么成功？',opts:['先想怎么失败','只管冲','复制别人'],a:0},{q:'避开大坑？',opts:['比追求机会重要','次要','无所谓'],a:0},{q:'反过来想？',opts:['芒格最爱','没有用','太绕'],a:0}]},
+ {ico:'⭕',t:'能力圈',d:'知道自己不知道',qs:[{q:'能力圈？',opts:['只做懂的','什么都做','越大越好'],a:0},{q:'不懂的？',opts:['不做','硬做','慢慢亏'],a:0},{q:'边界？',opts:['清楚认知','模糊','不重要'],a:0}]},
+ {ico:'🧠',t:'误判心理学',d:'25种倾向',qs:[{q:'奖励惩罚？',opts:['超级反应倾向','没影响','不存在'],a:0},{q:'从众？',opts:['社会认同倾向','独立','有利'],a:0},{q:'自我服务？',opts:['高估自己','客观','不存在'],a:0}]},
+ {ico:'📋',t:'检查清单',d:'像飞行员',qs:[{q:'投资前？',opts:['过检查清单','凭感觉','听消息'],a:0},{q:'清单？',opts:['防漏防错','麻烦','没用'],a:0},{q:'情绪？',opts:['检查清单对抗','不管','没用'],a:0}]},
+ {ico:'📖',t:'终身学习',d:'每天进步',qs:[{q:'芒格？',opts:['每天阅读学习','不读书','靠天赋'],a:0},{q:'知识？',opts:['复利增长','一次性','过期'],a:0},{q:'跨学科？',opts:['必须掌握','不用','太累'],a:0}]},
+ {ico:'🎣',t:'耐心等待',d:'机会不常有',qs:[{q:'好机会？',opts:['极少要等','天天有','随时买'],a:0},{q:'不出手？',opts:['也是策略','是浪费','不会'],a:0},{q:'芒格？',opts:['一生几次重击','频繁交易','天天买'],a:0}]},
+ {ico:'🧭',t:'决策演练',d:'生活应用',qs:[{q:'我的决策？',opts:['有模型吗','凭感觉','听别人'],a:0},{q:'我的能力圈？',opts:['清楚吗','模糊','不在乎'],a:0},{q:'我的情绪？',opts:['检查过吗','不管','没感觉'],a:0}]},
+ {ico:'🛡️',t:'生存法则',d:'避开大坑',qs:[{q:'杠杆？',opts:['远离','常用','没关系'],a:0},{q:'嫉妒？',opts:['是愚蠢','正常','无影响'],a:0},{q:'频繁交易？',opts:['增加成本','赚更多','更好'],a:0}]},
+ {ico:'💎',t:'术语配对',d:'核心概念',qs:[{q:'多元思维模型=？',opts:['跨学科知识','单学科','碎片知识'],a:0},{q:'能力圈=？',opts:['你真正懂的领域','会的都做','越大越好'],a:0},{q:'误判心理学=？',opts:['人类心理倾向','算命','星座'],a:0}]},
+ {ico:'👑',t:'芒格大师挑战',d:'10题综合测验',qs:[{q:'手里有锤子？',opts:['看什么都像钉子','很专业','无影响'],a:0},{q:'数学？',opts:['复利概率思维','用不上','算账'],a:0},{q:'怎么成功？',opts:['先想怎么失败','只管冲','复制'],a:0},{q:'能力圈？',opts:['只做懂的','什么都做','越大越好'],a:0},{q:'从众？',opts:['社会认同倾向','独立','有利'],a:0},{q:'投资前？',opts:['过检查清单','凭感觉','听消息'],a:0},{q:'芒格？',opts:['每天阅读','不读书','靠天赋'],a:0},{q:'好机会？',opts:['极少要等','天天有','随时买'],a:0},{q:'杠杆？',opts:['远离','常用','没关系'],a:0},{q:'能力圈=？',opts:['真正懂的领域','会的都做','越大越好'],a:0}]}
+];
+const badges=['🔨','🧩','🔄','⭕','🧠','📋','📖','🎣','🧭','🛡️','💎','👑'];
+const badgeNames=['锤子破除者','思维模型家','逆向思考者','能力圈守卫','心理侦探','清单飞行员','终身学习者','耐心渔翁','决策者','守本卫士','概念掌握者','芒格大师'];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=11;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
+</body>
+</html>
