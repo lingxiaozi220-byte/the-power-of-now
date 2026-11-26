@@ -1,28 +1,274 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<title>《量子迷宫》· 制作中</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《量子迷宫》多媒体精读 | 熙祺智书</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f172a;color:#e2e8f0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;padding:24px}
-.card{max-width:520px;width:100%;background:#1e293b;border:1px solid #334155;border-radius:18px;padding:36px 28px;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.35)}
-.badge{display:inline-block;font-size:12px;letter-spacing:2px;color:#93c5fd;border:1px solid #3b82f6;border-radius:999px;padding:6px 14px;margin-bottom:20px}
-h1{font-size:26px;line-height:1.4;margin-bottom:14px}
-p{font-size:15px;line-height:1.9;color:#94a3b8}
-.line{width:56px;height:2px;background:#3b82f6;margin:22px auto}
-.tip{font-size:13px;color:#64748b;margin-top:18px}
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="badge">熙祺智书 · 多媒体书</div>
-  <h1>《量子迷宫》</h1>
-  <p>这本书正在按“六化”标准重做，公网阅读暂未开放。</p>
-  <div class="line"></div>
-  <p class="tip">返回熙祺智书平台，可阅读其余已上架书目。</p>
+<div class="progress">
+  <div class="row"><span>📚 《量子迷宫》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
 </div>
+<div class="wrap">
+
+<div class="notice">⚛️ 本多媒体书含 8 节课 · 9 个互动游戏 · 语音领读 · 9 枚成就徽章。前 5 节免费试读，解锁后可读全部章节、玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>量子迷宫</h1>
+    <p>量子物理 · 通识入门</p>
+    <span class="tag">波粒二象性</span><span class="tag">量子叠加</span><span class="tag">量子纠缠</span><span class="tag">不确定性</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场 · 语音领读</div>
+  <div class="card">
+    <p>一颗电子可以同时穿过两条缝；在你观察它之前，它没有确定的位置；两个粒子相隔光年，却能瞬间呼应。量子力学不是科幻，它正在支撑芯片、激光、导航和未来的量子计算机。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="量子迷宫"></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 波粒二象性（免费）</div>
+  <div class="card">
+    <h3>理解 · 光既是波，也是粒子</h3>
+    <p><span class="q">牛顿说光是粒子，托马斯·杨用双缝实验证明光是波；爱因斯坦用光电效应又说光是粒子。答案不是谁对谁错，而是：在有的实验里它像波，在有的实验里它像粒子。微观世界不接受非此即彼。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="波粒二象性"></div>
+    <div class="mini">🌊 <b>关键：</b>不要问“到底是波还是粒子”，要问“在什么实验里表现成什么”。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「波粒二象性」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 双缝实验（免费）</div>
+  <div class="card">
+    <h3>理解 · 观察，会改变结果</h3>
+    <p><span class="q">一次只发射一个电子，它仍然会在屏幕上留下干涉条纹——说明它同时穿过了两条缝。可一旦你装上探测器去看它走了哪条缝，条纹立刻消失。观察不是旁观，观察是参与。</span></p>
+    <div class="imgbox"><img src="art_1.jpg" alt="双缝实验"></div>
+    <div class="mini">🎯 <b>关键：</b>在量子世界，测量不是发现答案，而是制造答案。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「双缝实验」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 量子叠加（免费）</div>
+  <div class="card">
+    <h3>理解 · 在没被测量前，它同时是多种可能</h3>
+    <p><span class="q">量子态不是“我们已经不知道它在哪”，而是它真的处在多个可能性的叠加里。薛定谔的猫既死又活，不是猫的悖论，而是把量子规则硬套到宏观世界的荒谬提醒。</span></p>
+    <div class="imgbox"><img src="art_2.jpg" alt="量子叠加"></div>
+    <div class="mini">🌫️ <b>关键：</b>叠加不是无知，而是概率幅的真实共存。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「量子叠加」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 测量与坍缩（免费）</div>
+  <div class="card">
+    <h3>理解 · 从“可能”到“确定”的那一瞬</h3>
+    <p><span class="q">测量让叠加态坍缩成一个确定结果，但量子力学只能预测各结果出现的概率，不能预测下一次一定是什么。这不是理论不完整，而是自然界的底层规则：确定性在微观层面让位于概率。</span></p>
+    <div class="imgbox"><img src="art_3.jpg" alt="测量与坍缩"></div>
+    <div class="mini">👁️ <b>关键：</b>量子力学给的是概率，不是命运。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「测量与坍缩」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 量子纠缠（免费）</div>
+  <div class="card">
+    <h3>理解 · 相隔光年，仍像一个整体</h3>
+    <p><span class="q">两个纠缠粒子共享一个量子态：测出其中一个自旋向上，另一个瞬间就是向下，无论相隔多远。它不能用来超光速传信息，却能用来做量子密钥分发和量子隐形传态。</span></p>
+    <div class="imgbox"><img src="art_4.jpg" alt="量子纠缠"></div>
+    <div class="mini">🔗 <b>关键：</b>纠缠不是心灵感应，是共同的量子态。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「量子纠缠」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 6-8 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：量子计算、量子密码、量子世界观 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 6-8 课完整内容（量子计算、量子密码、量子世界观）+ 全部 9 个互动游戏 + 全部 9 枚徽章。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+<div class="sec">
+  <div class="sec-t">第 6 课 · 量子隧穿</div>
+  <div class="card">
+    <h3>理解 · 穿不过去的墙，也有概率穿过去</h3>
+    <p><span class="q">微观粒子遇到能量壁垒时，有一定概率直接出现在另一边，像穿墙而过。太阳内部的核聚变、扫描隧道显微镜、闪存写入，都靠这个效应工作。</span></p>
+    <div class="imgbox"><img src="art_5.jpg" alt="量子隧穿"></div>
+    <div class="mini">🧱 <b>关键：</b>隧穿提醒我们：概率不为零，就一切皆有可能。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「量子隧穿」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 量子计算</div>
+  <div class="card">
+    <h3>理解 · 用叠加和纠缠做并行计算</h3>
+    <p><span class="q">经典比特是 0 或 1，量子比特可以同时是 0 和 1 的叠加。量子算法利用干涉放大正确答案、抵消错误答案，在因式分解、模拟分子、优化问题上展现优势。但量子计算机不是万能加速器。</span></p>
+    <div class="imgbox"><img src="art_6.jpg" alt="量子计算"></div>
+    <div class="mini">💠 <b>关键：</b>量子计算的优势来自算法，不是“更快”两个字。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「量子计算」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 8 课 · 量子世界观</div>
+  <div class="card">
+    <h3>理解 · 世界在最底层是概率的</h3>
+    <p><span class="q">量子力学逼我们放弃“看得见的确定世界”这个直觉：位置和动量不能同时精确，结果只能用概率描述，观察者无法完全置身事外。接受这一点，不是放弃理性，而是升级理性。</span></p>
+    <div class="imgbox"><img src="art_7.jpg" alt="量子世界观"></div>
+    <div class="mini">🧭 <b>关键：</b>理解量子，不是理解公式，是理解“确定性”的边界。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「量子世界观」</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（9 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（9 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」科技科普专题。配套阅读：《上帝掷骰子吗》《量子之谜》《费曼物理学讲义》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='quantum-maze';
+const FREE=5;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:"🌊",t:"波粒二象性",d:"光的两副面孔",qs:[{q:"双缝实验说明光？",opts:["具有波动性","只是粒子","没有规律"],a:0},{q:"光电效应说明光？",opts:["具有粒子性","只是波","不存在"],a:0},{q:"正确态度？",opts:["看实验条件","非此即彼","否定物理"],a:0}]},
+ {ico:"🎯",t:"双缝实验",d:"观察的代价",qs:[{q:"单个电子会？",opts:["留下干涉条纹","只走一条缝","消失"],a:0},{q:"装上探测器后？",opts:["条纹消失","条纹更深","没有变化"],a:0},{q:"这说明观察？",opts:["参与并改变结果","只是旁观","无关紧要"],a:0}]},
+ {ico:"🌫️",t:"量子叠加",d:"可能性的共存",qs:[{q:"叠加态是？",opts:["多个可能同时存在","我们不知道","随机噪声"],a:0},{q:"薛定谔的猫说明？",opts:["量子规则套到宏观很荒谬","猫真的不死","量子力学错误"],a:0},{q:"叠加什么时候消失？",opts:["被测量时","永远不消失","加热时"],a:0}]},
+ {ico:"👁️",t:"测量与坍缩",d:"从可能到确定",qs:[{q:"测量得到？",opts:["一个确定结果","所有结果","没有结果"],a:0},{q:"量子力学能预测？",opts:["概率","唯一结果","未来全部"],a:0},{q:"这意味着？",opts:["底层是概率性的","理论不完整","世界没有规律"],a:0}]},
+ {ico:"🔗",t:"量子纠缠",d:"超距关联",qs:[{q:"纠缠粒子？",opts:["共享一个量子态","互相独立","只是颜色相同"],a:0},{q:"能超光速传信息？",opts:["不能","能","看距离"],a:0},{q:"纠缠可用于？",opts:["量子密钥分发","永动机","时间旅行"],a:0}]},
+ {ico:"🧱",t:"量子隧穿",d:"概率穿墙",qs:[{q:"隧穿是？",opts:["有一定概率穿过势垒","绝对穿不过","必然穿过"],a:0},{q:"太阳核聚变靠？",opts:["量子隧穿","化学燃烧","引力摩擦"],a:0},{q:"隧穿说明？",opts:["概率不为零就可能发生","一切必发生","能量守恒失效"],a:0}]},
+ {ico:"💠",t:"量子计算",d:"并行与干涉",qs:[{q:"量子比特可以？",opts:["同时是 0 和 1 的叠加","只能是 0","只能是 1"],a:0},{q:"量子算法靠？",opts:["干涉放大正确答案","无限复制","提高主频"],a:0},{q:"量子计算机？",opts:["不是万能加速器","什么都能秒算","已取代电脑"],a:0}]},
+ {ico:"🧭",t:"量子世界观",d:"确定性的边界",qs:[{q:"位置和动量？",opts:["不能同时精确","都能精确","都不存在"],a:0},{q:"观察者在量子力学中？",opts:["无法完全置身事外","完全无关","决定一切"],a:0},{q:"理解量子需要？",opts:["升级对确定性的理解","放弃理性","背公式"],a:0}]},
+ {ico:"👑",t:"量子挑战",d:"综合测验",qs:[{q:"光是什么？",opts:["波粒二象性","只有波","只有粒子"],a:0},{q:"观察会？",opts:["改变量子结果","毫无影响","消除概率"],a:0},{q:"叠加是？",opts:["多种可能共存","无知","噪声"],a:0},{q:"测量得到？",opts:["确定结果","所有结果","无结果"],a:0},{q:"纠缠能传信息？",opts:["不能","能","看情况"],a:0},{q:"隧穿是？",opts:["概率穿垒","必然穿垒","不可能"],a:0},{q:"量子计算靠？",opts:["叠加与干涉","主频","内存"],a:0},{q:"量子世界底层？",opts:["概率性","完全确定","没有规律"],a:0}]}
+];
+const badges=["🌊","🎯","🌫️","👁️","🔗","🧱","💠","🧭","👑"];
+const badgeNames=["波粒观察者","双缝侦探","叠加旅人","测量者","纠缠信使","隧穿行者","量子工程师","世界观重构者","量子大师"];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=8;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
 </body>
 </html>

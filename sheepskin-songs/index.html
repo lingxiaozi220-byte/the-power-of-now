@@ -1,28 +1,274 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<title>《羊皮卷之歌》· 制作中</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《羊皮卷之歌》多媒体精读 | 熙祺智书</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f172a;color:#e2e8f0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;padding:24px}
-.card{max-width:520px;width:100%;background:#1e293b;border:1px solid #334155;border-radius:18px;padding:36px 28px;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.35)}
-.badge{display:inline-block;font-size:12px;letter-spacing:2px;color:#93c5fd;border:1px solid #3b82f6;border-radius:999px;padding:6px 14px;margin-bottom:20px}
-h1{font-size:26px;line-height:1.4;margin-bottom:14px}
-p{font-size:15px;line-height:1.9;color:#94a3b8}
-.line{width:56px;height:2px;background:#3b82f6;margin:22px auto}
-.tip{font-size:13px;color:#64748b;margin-top:18px}
+:root{--bg:#0e0f14;--card:#181a22;--gold:#d4a017;--gold2:#f2d98c;--text:#e9edf4;--muted:#818ca1;--line:#2a2f3a;--green:#3fb950;--red:#f85149;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+.hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+.hero img{width:100%;display:block}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,20,.05) 0%,rgba(14,15,20,.96) 100%)}
+.hero .txt{position:absolute;left:22px;right:22px;bottom:18px}
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:2px;margin-bottom:6px}
+.hero p{font-size:13.5px;color:#c9d1d9}
+.tag{display:inline-block;background:rgba(212,160,23,.15);color:var(--gold);border:1px solid rgba(212,160,23,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin:4px 6px 4px 0}
+.sec{margin:24px 0}
+.sec-t{font-size:20px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-t::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px;display:inline-block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{color:var(--gold2);font-size:15.5px;margin:12px 0 8px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:var(--text);margin-bottom:8px}
+.q{color:var(--gold);font-weight:700;font-style:italic}
+.mini{display:flex;gap:10px;align-items:flex-start;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.35);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#d7dde8}
+.mini b{color:var(--gold2)}
+.imgbox{border-radius:12px;overflow:hidden;margin:10px 0;border:1px solid var(--line)}
+.imgbox img{width:100%;display:block}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:12px 0;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%}
+.audio-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:linear-gradient(135deg,var(--gold),#8a6d1a);color:#140f07;border:none;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.game:hover{border-color:var(--gold)}
+.game h4{color:var(--gold2);font-size:14.5px;margin-bottom:6px}
+.game p{font-size:13px;color:var(--muted)}
+.game .ico{font-size:26px;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.mbox{background:var(--card);border:1px solid var(--gold);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:22px}
+.mbox h3{color:var(--gold2);margin-bottom:12px}
+.mbox .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px;margin:8px 0;cursor:pointer;font-size:14px}
+.mbox .opt:hover{border-color:var(--gold)}
+.mbox .opt.correct{background:rgba(63,185,80,.15);border-color:var(--green)}
+.mbox .opt.wrong{background:rgba(248,81,73,.15);border-color:var(--red)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;opacity:.35;transition:.3s}
+.badge.got{opacity:1;border-color:var(--gold)}
+.badge .bico{font-size:30px}
+.badge .bn{font-size:12.5px;color:var(--muted);margin-top:4px}
+.progress{position:sticky;top:0;background:rgba(14,15,20,.96);border-bottom:1px solid var(--line);z-index:50;padding:10px 16px;backdrop-filter:blur(8px)}
+.progress .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:.4s}
+.progress .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.lock{display:flex;align-items:center;gap:10px;background:rgba(212,160,23,.08);border:1px dashed rgba(212,160,23,.5);border-radius:10px;padding:12px;margin-top:12px;color:var(--gold);font-size:13.5px}
+input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:8px;font-size:14px;outline:none;width:100%;margin:6px 0}
+input:focus{border-color:var(--gold)}
+.quiz-ok{color:var(--green);font-size:13px;margin-top:6px}
+.quiz-ng{color:var(--red);font-size:13px;margin-top:6px}
+.notice{background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--blue);margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:rgba(212,160,23,.1);color:var(--gold)}
+.muted{color:var(--muted)}
+@media(max-width:600px){.hero h1{font-size:20px}.sec-t{font-size:17px}}
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="badge">熙祺智书 · 多媒体书</div>
-  <h1>《羊皮卷之歌》</h1>
-  <p>这本书正在按“六化”标准重做，公网阅读暂未开放。</p>
-  <div class="line"></div>
-  <p class="tip">返回熙祺智书平台，可阅读其余已上架书目。</p>
+<div class="progress">
+  <div class="row"><span>📚 《羊皮卷之歌》</span><span id="pgTxt">0%</span></div>
+  <div class="bar"><div class="fill" id="pgFill"></div></div>
 </div>
+<div class="wrap">
+
+<div class="notice">📜 本多媒体书含 8 节课 · 9 个互动游戏 · 语音领读 · 9 枚成就徽章。前 5 节免费试读，解锁后可读全部章节、玩所有游戏、收集全部徽章。管理员账号可直读全书。</div>
+
+<div class="hero">
+  <img src="art_cover.jpg" alt="封面">
+  <div class="mask"></div>
+  <div class="txt">
+    <h1>羊皮卷之歌</h1>
+    <p>诗歌与文学 · 经典精读</p>
+    <span class="tag">诗经</span><span class="tag">楚辞</span><span class="tag">唐诗</span><span class="tag">莎士比亚</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎬 开场 · 语音领读</div>
+  <div class="card">
+    <p>有些句子，穿过一千年，仍然能击中你今天的心。我们读诗，不是为了考试，是为了在艰难的日子里，仍然有一句话能救自己。</p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="羊皮卷之歌"></div>
+    <div class="audio-row">
+      <button class="btn" onclick="playVoice('voice_open')">▶ 语音领读 · 序章</button>
+      <button class="btn ghost" onclick="toggleBgm()">🎵 背景音乐</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 1 课 · 诗经（免费）</div>
+  <div class="card">
+    <h3>理解 · 两千年前的月光，照进今天的心事</h3>
+    <p><span class="q">“蒹葭苍苍，白露为霜。所谓伊人，在水一方。”求而不得，是中国人最早写下的情感原型。诗经不只有风花雪月，还有劳作、战争、宴饮与底层人的哭声——它是一部用歌谣写成的社会史。</span></p>
+    <div class="imgbox"><img src="art_cover.jpg" alt="诗经"></div>
+    <div class="mini">🌾 <b>关键：</b>诗经的力量，在于用最朴素的话，说出最深的渴望。</div>
+    <button class="btn" onclick="openGame(0)">🎮 练习：游戏「诗经」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 2 课 · 楚辞（免费）</div>
+  <div class="card">
+    <h3>理解 · 路漫漫其修远兮，吾将上下而求索</h3>
+    <p><span class="q">屈原把神话、香草、政治与个人命运熔成一种全新的诗体。楚辞不是温柔的低吟，而是带着血性的追问：当世界浑浊，一个人还要不要坚持清洁？两千年来，它一直是失意者的火把。</span></p>
+    <div class="imgbox"><img src="art_1.jpg" alt="楚辞"></div>
+    <div class="mini">🌊 <b>关键：</b>楚辞把“不肯低头”写成了一种美学。</div>
+    <button class="btn" onclick="openGame(1)">🎮 练习：游戏「楚辞」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 3 课 · 唐诗（免费）</div>
+  <div class="card">
+    <h3>理解 · 举头望明月，低头思故乡</h3>
+    <p><span class="q">唐诗是中国人共同的情感词典：李白的豪迈、杜甫的沉郁、王维的空灵、白居易的平易。短短二十个字，能装下一整座长安、一场离别、一生的漂泊。它教会我们：最深的情绪，可以用最少的字。</span></p>
+    <div class="imgbox"><img src="art_2.jpg" alt="唐诗"></div>
+    <div class="mini">🌙 <b>关键：</b>唐诗的厉害，是把辽阔写成二十个字。</div>
+    <button class="btn" onclick="openGame(2)">🎮 练习：游戏「唐诗」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 4 课 · 宋词（免费）</div>
+  <div class="card">
+    <h3>理解 · 一蓑烟雨任平生</h3>
+    <p><span class="q">词比诗更接近日常：酒醒、梦回、离别、登楼。苏轼把苦难写成旷达，李清照把孤独写成细雨，辛弃疾把不甘写成刀锋。宋词告诉我们，人可以一边受伤，一边把日子过下去。</span></p>
+    <div class="imgbox"><img src="art_3.jpg" alt="宋词"></div>
+    <div class="mini">🌧️ <b>关键：</b>宋词不是软弱，是看清生活后仍然选择深情。</div>
+    <button class="btn" onclick="openGame(3)">🎮 练习：游戏「宋词」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 5 课 · 元曲（免费）</div>
+  <div class="card">
+    <h3>理解 · 旧时王谢堂前燕，飞入寻常百姓家</h3>
+    <p><span class="q">元曲把诗词从士大夫的书房带到勾栏瓦舍。它更口语、更泼辣、更接地气，写尽小人物、市井、离别与不甘。高雅文学向下走了一步，反而获得了更长的生命力。</span></p>
+    <div class="imgbox"><img src="art_4.jpg" alt="元曲"></div>
+    <div class="mini">🎭 <b>关键：</b>当文学走进人群，它才真正活过来。</div>
+    <button class="btn" onclick="openGame(4)">🎮 练习：游戏「元曲」</button>
+  </div>
+</div>
+
+<div class="sec" id="locked">
+  <div class="sec-t">第 6-8 课 · 付费内容</div>
+  <div class="card lock">🔒 本节为付费内容 · 解锁后可阅读：莎士比亚、泰戈尔、诗歌与救赎 + 全部游戏与徽章</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔓 解锁 · 开通全部内容</div>
+  <div class="card">
+    <p style="font-size:14px">解锁你将获得：第 6-8 课完整内容（莎士比亚、泰戈尔、诗歌与救赎）+ 全部 9 个互动游戏 + 全部 9 枚徽章。</p>
+    <input type="text" id="codeIn" placeholder="输入激活码（如 XQ2026 开头的激活码）">
+    <div class="audio-row">
+      <button class="btn" onclick="tryUnlock()">🔓 解锁全书</button>
+      <button class="btn ghost" onclick="openAdmin()">🔑 管理员入口</button>
+    </div>
+    <div id="unlockMsg"></div>
+  </div>
+</div>
+
+<div class="sec" id="secExtra" style="display:none">
+<div class="sec">
+  <div class="sec-t">第 6 课 · 莎士比亚</div>
+  <div class="card">
+    <h3>理解 · 全世界是一个舞台，所有男女都只是演员</h3>
+    <p><span class="q">莎士比亚写的不只是英国宫廷，而是欲望、权力、嫉妒、爱情与死亡。哈姆雷特的犹豫、麦克白的野心、李尔王的傲慢，都是我们每个人心里的一小部分。四百年过去，人性没有升级。</span></p>
+    <div class="imgbox"><img src="art_5.jpg" alt="莎士比亚"></div>
+    <div class="mini">🎬 <b>关键：</b>莎士比亚的舞台，照见的是我们自己。</div>
+    <button class="btn" onclick="openGame(5)">🎮 练习：游戏「莎士比亚」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 7 课 · 泰戈尔</div>
+  <div class="card">
+    <h3>理解 · 生如夏花之绚烂，死如秋叶之静美</h3>
+    <p><span class="q">泰戈尔把印度哲学、自然与童真写成短诗。他不逃避死亡，而是把死亡放回生命的花园里。读泰戈尔，是在焦虑的世界里，重新学会呼吸、抬头、看见一只鸟飞过。</span></p>
+    <div class="imgbox"><img src="art_6.jpg" alt="泰戈尔"></div>
+    <div class="mini">🌺 <b>关键：</b>泰戈尔教我们：温柔不是脆弱，是看见完整的世界。</div>
+    <button class="btn" onclick="openGame(6)">🎮 练习：游戏「泰戈尔」</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">第 8 课 · 诗歌与救赎</div>
+  <div class="card">
+    <h3>理解 · 在艰难的日子里，留一句话给自己</h3>
+    <p><span class="q">诗歌不能解决房贷、疾病和失业，但它能改变你承受它们的方式。一句诗，可能让你在深夜不至于彻底崩塌；一段韵脚，可能让你重新相信语言还有温度。这就是文学最朴素的用处。</span></p>
+    <div class="imgbox"><img src="art_7.jpg" alt="诗歌与救赎"></div>
+    <div class="mini">🕯️ <b>关键：</b>诗不替你走路，但会在黑暗里给你一盏灯。</div>
+    <button class="btn" onclick="openGame(7)">🎮 练习：游戏「诗歌与救赎」</button>
+  </div>
+</div>
+
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎮 游戏大厅（9 个互动游戏）</div>
+  <div class="games" id="gameHall"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🏅 成就徽章（9 枚）</div>
+  <div class="badges" id="badgeBox"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📌 更多推荐</div>
+  <div class="card">
+    <p class="muted">本书出自「熙祺智书」文学经典专题。配套阅读：《诗经》《楚辞》《唐诗三百首》《莎士比亚十四行诗》。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<audio id="bgm" loop preload="auto"><source src="bgm.wav" type="audio/wav"></audio>
+<audio id="voice"><source id="voiceSrc" type="audio/wav"></audio>
+
+<script>
+const SLUG='sheepskin-songs';
+const FREE=5;
+let unlocked = localStorage.getItem('xz_unlock_'+SLUG)==='1' || localStorage.getItem('xz_admin')==='1';
+const games=[
+ {ico:"🌾",t:"诗经",d:"最早的歌声",qs:[{q:"“蒹葭苍苍”下一句？",opts:["白露为霜","在水一方","月出皎兮"],a:0},{q:"诗经的主体是？",opts:["民间歌谣","宫廷小说","戏剧"],a:0},{q:"诗经也记录了？",opts:["劳作、战争与底层生活","只有爱情","只有神话"],a:0}]},
+ {ico:"🌊",t:"楚辞",d:"求索的精神",qs:[{q:"楚辞代表诗人？",opts:["屈原","李白","苏轼"],a:0},{q:"“路漫漫其修远兮”下一句？",opts:["吾将上下而求索","吾将归去","心远地自偏"],a:0},{q:"楚辞的风格？",opts:["神话、香草与血性追问","平淡口语","宫廷应酬"],a:0}]},
+ {ico:"🌙",t:"唐诗",d:"中国人的情感词典",qs:[{q:"“举头望明月”下一句？",opts:["低头思故乡","天涯共此时","对影成三人"],a:0},{q:"李白风格？",opts:["豪迈飘逸","沉郁顿挫","空灵"],a:0},{q:"杜甫风格？",opts:["沉郁顿挫","豪迈","口语"],a:0}]},
+ {ico:"🌧️",t:"宋词",d:"日常与旷达",qs:[{q:"“一蓑烟雨任平生”作者？",opts:["苏轼","李清照","辛弃疾"],a:0},{q:"李清照擅长写？",opts:["孤独与细腻情绪","战争","宫廷"],a:0},{q:"宋词更接近？",opts:["日常情感","祭祀","史书"],a:0}]},
+ {ico:"🎭",t:"元曲",d:"市井的声音",qs:[{q:"元曲把文学带到？",opts:["勾栏瓦舍","宫廷","神庙"],a:0},{q:"元曲语言？",opts:["更口语、更泼辣","更文言","更晦涩"],a:0},{q:"它的价值？",opts:["让小人物进入文学","只供贵族","只写神话"],a:0}]},
+ {ico:"🎬",t:"莎士比亚",d:"人性的舞台",qs:[{q:"“全世界是一个舞台”出自？",opts:["莎士比亚","泰戈尔","屈原"],a:0},{q:"哈姆雷特的核心？",opts:["犹豫与追问","野心","嫉妒"],a:0},{q:"莎翁写的是？",opts:["普遍人性","只有英国历史","只有爱情"],a:0}]},
+ {ico:"🌺",t:"泰戈尔",d:"温柔地看见世界",qs:[{q:"“生如夏花”下一句？",opts:["死如秋叶之静美","死如冬雪","生如朝露"],a:0},{q:"泰戈尔来自？",opts:["印度","英国","中国"],a:0},{q:"他的主题？",opts:["自然、童真与生死","宫廷斗争","战争"],a:0}]},
+ {ico:"🕯️",t:"诗歌与救赎",d:"黑暗里的灯",qs:[{q:"诗歌能解决现实问题？",opts:["不能，但能改变承受方式","能","完全无用"],a:0},{q:"文学最朴素的用处？",opts:["给语言温度","赚钱","考试"],a:0},{q:"读诗的意义？",opts:["在艰难时留一句话给自己","背知识点","炫耀"],a:0}]},
+ {ico:"👑",t:"诗歌挑战",d:"综合测验",qs:[{q:"诗经名句？",opts:["蒹葭苍苍","举头望明月","一蓑烟雨"],a:0},{q:"楚辞代表？",opts:["屈原","李白","苏轼"],a:0},{q:"唐诗代表？",opts:["李白杜甫","莎士比亚","泰戈尔"],a:0},{q:"宋词代表？",opts:["苏轼李清照","屈原","关汉卿"],a:0},{q:"元曲特色？",opts:["口语与市井","宫廷雅乐","神话"],a:0},{q:"莎士比亚？",opts:["英国戏剧家","印度诗人","中国词人"],a:0},{q:"泰戈尔？",opts:["印度诗人","英国剧作家","法国小说家"],a:0},{q:"诗歌的作用？",opts:["给黑暗一盏灯","解决所有问题","没有作用"],a:0}]}
+];
+const badges=["🌾","🌊","🌙","🌧️","🎭","🎬","🌺","🕯️","👑"];
+const badgeNames=["诗经拾穗人","楚辞求索者","唐诗望月人","宋词听雨者","元曲看客","莎翁演员","泰戈尔园丁","守灯人","诗歌大师"];
+let done = JSON.parse(localStorage.getItem('xz_badges_'+SLUG)||'[]');
+function save(){localStorage.setItem('xz_badges_'+SLUG,JSON.stringify(done));renderBadges();}
+function renderBadges(){const b=document.getElementById('badgeBox');b.innerHTML='';badges.forEach((ic,i)=>{const d=document.createElement('div');d.className='badge'+(done.includes(i)?' got':'');d.innerHTML=`<div class="bico">${ic}</div><div>${badgeNames[i]}</div>`;b.appendChild(d);});}
+function track(ev){try{fetch('https://the-power-of-now.pages.dev/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookKey:SLUG,eventType:ev,visitorId:localStorage.getItem('xiqi_vid')||'guest'})}).catch(()=>{});}catch(e){}}
+function playVoice(n){const v=document.getElementById('voice');document.getElementById('voiceSrc').src=n+'.wav';v.load();v.play();track('chapter_read');}
+function toggleBgm(){const b=document.getElementById('bgm');if(b.paused){b.play();}else{b.pause();}}
+function tryUnlock(){const c=document.getElementById('codeIn').value.trim().toUpperCase();const ok=c.startsWith('XQ2026')||/^[A-Z0-9]{8}$/.test(c)||c==='XIQI2026';if(ok){unlocked=true;localStorage.setItem('xz_unlock_'+SLUG,'1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">🎉 解锁成功！全书内容已开启。</div>';showAll();track('finish');}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">激活码无效，请检查后重试。</div>';}}
+function openAdmin(){const c=prompt('请输入管理员口令：');if(c==='xiqi-admin-2026'){unlocked=true;localStorage.setItem('xz_admin','1');document.getElementById('unlockMsg').innerHTML='<div class="quiz-ok">👑 管理员权限已开启，全书直读。</div>';showAll();}else{document.getElementById('unlockMsg').innerHTML='<div class="quiz-ng">口令错误。</div>';}}
+function showAll(){document.getElementById('secExtra').style.display='block';document.getElementById('locked').style.display='none';updateProgress();}
+function updateProgress(){const total=8;let n=FREE;if(unlocked){n=11;}const p=Math.round(n/total*100);document.getElementById('pgFill').style.width=p+'%';document.getElementById('pgTxt').textContent=p+'%';}
+function openGame(i){if(i>=FREE&&!unlocked){alert('🔒 解锁后可玩此游戏');return;}const m=document.getElementById('modal');const b=document.getElementById('mbox');const g=games[i];b.innerHTML=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:12px">${g.d}</p><button class="btn" onclick="startQ(${i})">开始挑战</button>`;m.classList.add('open');track('chapter_read');}
+function startQ(i){const g=games[i];const b=document.getElementById('mbox');let qi=0;window['qidx'+i]=qi;const q=g.qs[qi];let h=`<h3>${g.ico} ${g.t}</h3><p style="margin-bottom:10px">${q.q}</p>`;q.opts.forEach((o,j)=>{h+=`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`;});h+=`<div id="ansMsg"></div>`;b.innerHTML=h;window['qidx'+i]=qi;}
+function ans(g,j,el){const gd=games[g];const qi=window['qidx'+g]||0;const q=gd.qs[qi];const opts=el.parentNode.querySelectorAll('.opt');opts.forEach(o=>o.disabled=true);if(j===q.a){el.classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ok">✅ 正确！</div>';}else{el.classList.add('wrong');opts[q.a].classList.add('correct');document.getElementById('ansMsg').innerHTML='<div class="quiz-ng">❌ 正确答案已标绿，记下来！</div>';}
+setTimeout(()=>{const nq=qi+1;if(nq<gd.qs.length){window['qidx'+g]=nq;startQ(g);}else{if(!done.includes(g)){done.push(g);save();}document.getElementById('mbox').innerHTML=`<h3>${gd.ico} ${gd.t}</h3><div class="quiz-ok" style="font-size:16px">🎉 挑战成功！获得徽章：${badgeNames[g]}</div><br><button class="btn" onclick="document.getElementById('modal').classList.remove('open')">继续学习</button>`;}},1600);}
+function initGames(){const h=document.getElementById('gameHall');h.innerHTML='';games.forEach((g,i)=>{const d=document.createElement('div');d.className='game';d.innerHTML=`<div class="ico">${g.ico}</div><h4>${g.t}</h4><p>${g.d}</p>`;d.onclick=()=>openGame(i);h.appendChild(d);});}
+document.getElementById('modal').onclick=function(e){if(e.target===this)this.classList.remove('open');};
+if(unlocked){showAll();}
+initGames();renderBadges();updateProgress();track('view');
+</script>
 </body>
 </html>
